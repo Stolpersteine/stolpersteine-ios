@@ -17,17 +17,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    // Berlin
+    CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 12000, 12000);
+    self.mapView.region = region;
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewWillAppear:animated];
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
     [self setMapView:nil];
     [super viewDidUnload];
 }
+
 @end

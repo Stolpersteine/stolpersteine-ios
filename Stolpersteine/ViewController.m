@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController () <UISearchDisplayDelegate, UISearchBarDelegate>
+@interface ViewController () <UITableViewDataSource, UISearchBarDelegate>
 
 @end
 
@@ -28,6 +28,21 @@
 {
     [self setMapView:nil];
     [super viewDidUnload];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 0;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSLog(@"%@", searchText);
 }
 
 @end

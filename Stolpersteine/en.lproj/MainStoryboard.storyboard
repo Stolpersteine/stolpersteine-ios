@@ -9,21 +9,21 @@
         <!--View Controller-->
         <scene sceneID="5">
             <objects>
-                <viewController wantsFullScreenLayout="YES" id="2" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nic-0c-bX8">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="omQ-fz-cwh">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
-                            <searchBar contentMode="redraw" id="xsE-A0-gQz">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                            <searchBar contentMode="redraw" id="Ti2-C3-UfW">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="2" id="vbz-Iv-CLe"/>
+                                    <outlet property="delegate" destination="2" id="sWY-4g-gnB"/>
                                 </connections>
                             </searchBar>
                         </subviews>
@@ -31,25 +31,17 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="omQ-fz-cwh" id="JBd-Rf-WH9"/>
-                        <outlet property="searchDisplayController" destination="SV3-SX-1fg" id="PRL-Y6-ltl"/>
+                        <outlet property="searchDisplayController" destination="v91-Yz-HyQ" id="VOc-MX-1fx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="oBH-cF-pM3">
+                <searchDisplayController id="v91-Yz-HyQ">
                     <connections>
-                        <outlet property="delegate" destination="2" id="bko-ZD-0IF"/>
-                        <outlet property="searchContentsController" destination="2" id="XZy-jf-hdP"/>
-                        <outlet property="searchResultsDataSource" destination="2" id="gdt-aV-I7h"/>
-                        <outlet property="searchResultsDelegate" destination="2" id="7KH-Hf-9p7"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="SV3-SX-1fg">
-                    <connections>
-                        <outlet property="delegate" destination="2" id="o3v-tF-rvd"/>
-                        <outlet property="searchBar" destination="xsE-A0-gQz" id="Odl-Ju-ef9"/>
-                        <outlet property="searchContentsController" destination="2" id="uv3-7y-TmV"/>
-                        <outlet property="searchResultsDataSource" destination="2" id="8wi-pJ-8Mk"/>
-                        <outlet property="searchResultsDelegate" destination="2" id="tAs-fY-1vY"/>
+                        <outlet property="delegate" destination="2" id="Ef0-O3-BHn"/>
+                        <outlet property="searchBar" destination="Ti2-C3-UfW" id="23F-EO-9iv"/>
+                        <outlet property="searchContentsController" destination="2" id="FRO-z6-z9d"/>
+                        <outlet property="searchResultsDataSource" destination="2" id="GPV-kv-Wmc"/>
+                        <outlet property="searchResultsDelegate" destination="2" id="0zl-Ew-SN5"/>
                     </connections>
                 </searchDisplayController>
             </objects>

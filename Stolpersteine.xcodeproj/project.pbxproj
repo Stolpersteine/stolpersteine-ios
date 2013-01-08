@@ -96,7 +96,6 @@
 		627E43A7169B0F040065C1F1 = {
 			isa = PBXGroup;
 			children = (
-				484C8EE4169B609F001CEA59 /* CoreLocation.framework */,
 				627E43BC169B0F050065C1F1 /* Stolpersteine */,
 				627E43B5169B0F050065C1F1 /* Frameworks */,
 				627E43B3169B0F050065C1F1 /* Products */,
@@ -114,6 +113,7 @@
 		627E43B5169B0F050065C1F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				484C8EE4169B609F001CEA59 /* CoreLocation.framework */,
 				627E4404169B273D0065C1F1 /* MobileCoreServices.framework */,
 				627E4402169B27360065C1F1 /* SystemConfiguration.framework */,
 				627E43D9169B0FFC0065C1F1 /* MapKit.framework */,

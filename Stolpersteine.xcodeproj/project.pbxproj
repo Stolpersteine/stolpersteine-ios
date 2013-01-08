@@ -31,6 +31,8 @@
 		627E4400169B270B0065C1F1 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43F7169B270B0065C1F1 /* UIImageView+AFNetworking.m */; };
 		627E4403169B27370065C1F1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E4402169B27360065C1F1 /* SystemConfiguration.framework */; };
 		627E4405169B273D0065C1F1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E4404169B273D0065C1F1 /* MobileCoreServices.framework */; };
+		627E4432169C420A0065C1F1 /* StolpersteineNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4431169C420A0065C1F1 /* StolpersteineNetworkService.m */; };
+		627E4438169C43970065C1F1 /* Stolperstein.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4437169C43970065C1F1 /* Stolperstein.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +75,10 @@
 		627E43F7169B270B0065C1F1 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		627E4402169B27360065C1F1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		627E4404169B273D0065C1F1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		627E4430169C420A0065C1F1 /* StolpersteineNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteineNetworkService.h; sourceTree = "<group>"; };
+		627E4431169C420A0065C1F1 /* StolpersteineNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteineNetworkService.m; sourceTree = "<group>"; };
+		627E4436169C43970065C1F1 /* Stolperstein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stolperstein.h; sourceTree = "<group>"; };
+		627E4437169C43970065C1F1 /* Stolperstein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stolperstein.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +161,7 @@
 		627E43E3169B270B0065C1F1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				627E442F169C41EC0065C1F1 /* Stolpersteine API */,
 				627E43E4169B270B0065C1F1 /* AFNetworking-1.1.0 */,
 			);
 			path = Shared;
@@ -184,6 +191,17 @@
 				627E43F7169B270B0065C1F1 /* UIImageView+AFNetworking.m */,
 			);
 			path = "AFNetworking-1.1.0";
+			sourceTree = "<group>";
+		};
+		627E442F169C41EC0065C1F1 /* Stolpersteine API */ = {
+			isa = PBXGroup;
+			children = (
+				627E4430169C420A0065C1F1 /* StolpersteineNetworkService.h */,
+				627E4431169C420A0065C1F1 /* StolpersteineNetworkService.m */,
+				627E4436169C43970065C1F1 /* Stolperstein.h */,
+				627E4437169C43970065C1F1 /* Stolperstein.m */,
+			);
+			path = "Stolpersteine API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +282,8 @@
 				627E43FE169B270B0065C1F1 /* AFURLConnectionOperation.m in Sources */,
 				627E43FF169B270B0065C1F1 /* AFXMLRequestOperation.m in Sources */,
 				627E4400169B270B0065C1F1 /* UIImageView+AFNetworking.m in Sources */,
+				627E4432169C420A0065C1F1 /* StolpersteineNetworkService.m in Sources */,
+				627E4438169C43970065C1F1 /* Stolperstein.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

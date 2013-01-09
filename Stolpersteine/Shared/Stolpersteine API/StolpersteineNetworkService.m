@@ -23,7 +23,7 @@
 {
     if (self = [super init]) {
         self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://httpbin.org"]];
-        [self.httpClient setParameterEncoding:AFJSONParameterEncoding];
+        self.httpClient.parameterEncoding = AFJSONParameterEncoding;
         [self.httpClient registerHTTPOperationClass:AFJSONRequestOperation.class];
     }
     

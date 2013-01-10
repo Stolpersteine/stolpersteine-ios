@@ -11,11 +11,12 @@
 
 @interface Stolperstein : NSObject
 
+@property (nonatomic, strong) NSString *id;
 @property (nonatomic, strong) NSString *personFirstName;
 @property (nonatomic, strong) NSString *personLastName;
 @property (nonatomic, strong) NSString *locationStreet;
 @property (nonatomic, strong) NSString *locationZipCode;
 @property (nonatomic, strong) NSString *locationCity;
-@property (nonatomic, assign) CLLocationCoordinate2D locationCoordinates;
+@property (nonatomic, strong) CLLocation *locationCoordinates;
 
 @end

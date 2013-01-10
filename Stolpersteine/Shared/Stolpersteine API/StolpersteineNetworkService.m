@@ -11,6 +11,8 @@
 #import "AFJSONRequestOperation.h"
 #import "AFHTTPClient.h"
 
+static NSString *BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/api/";
+
 @interface StolpersteineNetworkService ()
 
 @property (nonatomic, strong) AFHTTPClient *httpClient;
@@ -22,7 +24,7 @@
 - (id)initWithURL:(NSURL *)url clientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword
 {
     if (self = [super init]) {
-        self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://httpbin.org"]];
+        self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:BASE_URL]];
         self.httpClient.parameterEncoding = AFJSONParameterEncoding;
         [self.httpClient registerHTTPOperationClass:AFJSONRequestOperation.class];
     }
@@ -32,10 +34,9 @@
 
 - (void)retrieveStolpersteineWithSearchData:(SearchData *)searchData page:(NSUInteger)page pageSize:(NSUInteger)pageSize completionHandler:(void (^)(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error))completionHandler
 {
-    NSURLRequest *request = [self.httpClient requestWithMethod:@"GET" path:@"ip" parameters:nil];
+    NSURLRequest *request = [self.httpClient requestWithMethod:@"GET" path:@"stolpersteine" parameters:nil];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSLog(@"%@", JSON);
-        NSLog(@"IP Address: %@", [JSON valueForKeyPath:@"origin"]);
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"Error %@", error);
     }];

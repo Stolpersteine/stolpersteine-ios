@@ -11,8 +11,6 @@
 #import "AFJSONRequestOperation.h"
 #import "AFHTTPClient.h"
 
-static NSString *BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/api/";
-
 @interface StolpersteineNetworkService ()
 
 @property (nonatomic, strong) AFHTTPClient *httpClient;
@@ -24,7 +22,7 @@ static NSString *BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/api/";
 - (id)initWithURL:(NSURL *)url clientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword
 {
     if (self = [super init]) {
-        self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:BASE_URL]];
+        self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
         self.httpClient.parameterEncoding = AFJSONParameterEncoding;
         [self.httpClient registerHTTPOperationClass:AFJSONRequestOperation.class];
     }

@@ -10,11 +10,25 @@
 
 #import "StolpersteineNetworkService.h"
 
+#ifdef DEBUG
+@interface NSURLRequest (HTTPS)
++ (void)setAllowsAnyHTTPSCertificate:(BOOL)allow forHost:(NSString *)host;
+@end
+#endif
+
+static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/api/";
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.networkService = [[StolpersteineNetworkService alloc] initWithURL:nil clientUser:nil clientPassword:nil];
+    NSURL *url = [NSURL URLWithString:BASE_URL];
+    self.networkService = [[StolpersteineNetworkService alloc] initWithURL:url clientUser:nil clientPassword:nil];
+#ifdef DEBUG
+    // This allows invalid certificates so that proxies can decrypt the traffic.
+    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:url.host];
+#endif
+    
     [self.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
         NSLog(@"retrieveStolpersteineWithSearchData done");
     }];

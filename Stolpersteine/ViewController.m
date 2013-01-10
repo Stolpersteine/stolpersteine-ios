@@ -10,6 +10,8 @@
 
 @interface ViewController () <UITableViewDataSource, UISearchBarDelegate>
 
+@property (nonatomic, strong) MKUserLocation *userLocation;
+
 @end
 
 @implementation ViewController
@@ -27,7 +29,13 @@
 - (void)viewDidUnload
 {
     [self setMapView:nil];
+    [self setSearchBar:nil];
     [super viewDidUnload];
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    self.userLocation = userLocation;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -43,6 +51,14 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     NSLog(@"%@", searchText);
+}
+
+- (IBAction)centerToUserLocation:(UIButton *)sender
+{
+    if (self.userLocation.location) {
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.userLocation.location.coordinate, 12000, 12000);
+        [self.mapView setRegion:region animated:YES];
+    }
 }
 
 @end

@@ -12,5 +12,8 @@
 @interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+- (IBAction)centerToUserLocation:(UIButton *)sender;
 
 @end

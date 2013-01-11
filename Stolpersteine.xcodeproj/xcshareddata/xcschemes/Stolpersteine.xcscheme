@@ -38,6 +38,16 @@
                ReferencedContainer = "container:Stolpersteine.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "480FFF8516A0C6150012CCD5"
+               BuildableName = "Stolpersteine Integration Tests.octest"
+               BlueprintName = "Stolpersteine Integration Tests"
+               ReferencedContainer = "container:Stolpersteine.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

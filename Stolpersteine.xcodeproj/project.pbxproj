@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		480FFF8716A0C6160012CCD5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
+		480FFF8816A0C6160012CCD5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
+		480FFF8916A0C6160012CCD5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B8169B0F050065C1F1 /* Foundation.framework */; };
+		480FFF8F16A0C6160012CCD5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 480FFF8D16A0C6160012CCD5 /* InfoPlist.strings */; };
+		480FFF9B16A0C6890012CCD5 /* StolpersteineNetworkServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 480FFF9A16A0C6890012CCD5 /* StolpersteineNetworkServiceTests.m */; };
+		480FFF9C16A0C74B0012CCD5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E4402169B27360065C1F1 /* SystemConfiguration.framework */; };
+		480FFF9D16A0C7520012CCD5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E4404169B273D0065C1F1 /* MobileCoreServices.framework */; };
+		480FFF9E16A0C75D0012CCD5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484C8EE4169B609F001CEA59 /* CoreLocation.framework */; };
+		480FFF9F16A0C79D0012CCD5 /* StolpersteineNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4431169C420A0065C1F1 /* StolpersteineNetworkService.m */; };
+		480FFFA016A0C79D0012CCD5 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
+		480FFFA116A0C79D0012CCD5 /* Stolperstein.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4437169C43970065C1F1 /* Stolperstein.m */; };
+		480FFFA216A0C79D0012CCD5 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43E6169B270B0065C1F1 /* AFHTTPClient.m */; };
+		480FFFA316A0C79D0012CCD5 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43E8169B270B0065C1F1 /* AFHTTPRequestOperation.m */; };
+		480FFFA416A0C79D0012CCD5 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43EA169B270B0065C1F1 /* AFImageRequestOperation.m */; };
+		480FFFA516A0C79D0012CCD5 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43EC169B270B0065C1F1 /* AFJSONRequestOperation.m */; };
+		480FFFA616A0C79D0012CCD5 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43EE169B270B0065C1F1 /* AFNetworkActivityIndicatorManager.m */; };
+		480FFFA716A0C79D0012CCD5 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43F1169B270B0065C1F1 /* AFPropertyListRequestOperation.m */; };
+		480FFFA816A0C79D0012CCD5 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43F3169B270B0065C1F1 /* AFURLConnectionOperation.m */; };
+		480FFFA916A0C79D0012CCD5 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43F5169B270B0065C1F1 /* AFXMLRequestOperation.m */; };
+		480FFFAA16A0C79D0012CCD5 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43F7169B270B0065C1F1 /* UIImageView+AFNetworking.m */; };
 		484C8EE5169B609F001CEA59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484C8EE4169B609F001CEA59 /* CoreLocation.framework */; };
 		6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		6222BF2516A037CE006ED538 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
@@ -57,6 +77,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		480FFF8616A0C6150012CCD5 /* Stolpersteine Integration Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stolpersteine Integration Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		480FFF8C16A0C6160012CCD5 /* Stolpersteine Integration Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Stolpersteine Integration Tests-Info.plist"; sourceTree = "<group>"; };
+		480FFF8E16A0C6160012CCD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		480FFF9316A0C6160012CCD5 /* Stolpersteine Integration Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stolpersteine Integration Tests-Prefix.pch"; sourceTree = "<group>"; };
+		480FFF9916A0C6890012CCD5 /* StolpersteineNetworkServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteineNetworkServiceTests.h; sourceTree = "<group>"; };
+		480FFF9A16A0C6890012CCD5 /* StolpersteineNetworkServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteineNetworkServiceTests.m; sourceTree = "<group>"; };
 		484C8EE4169B609F001CEA59 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
 		6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Parsing.m"; sourceTree = "<group>"; };
@@ -112,6 +138,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		480FFF8216A0C6150012CCD5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				480FFF9E16A0C75D0012CCD5 /* CoreLocation.framework in Frameworks */,
+				480FFF9D16A0C7520012CCD5 /* MobileCoreServices.framework in Frameworks */,
+				480FFF9C16A0C74B0012CCD5 /* SystemConfiguration.framework in Frameworks */,
+				480FFF8716A0C6160012CCD5 /* SenTestingKit.framework in Frameworks */,
+				480FFF8816A0C6160012CCD5 /* UIKit.framework in Frameworks */,
+				480FFF8916A0C6160012CCD5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6222BF1F16A037CE006ED538 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -142,6 +181,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		480FFF8A16A0C6160012CCD5 /* Stolpersteine Integration Tests */ = {
+			isa = PBXGroup;
+			children = (
+				480FFF9816A0C6890012CCD5 /* Stolpersteine API */,
+				480FFF8B16A0C6160012CCD5 /* Supporting Files */,
+			);
+			path = "Stolpersteine Integration Tests";
+			sourceTree = "<group>";
+		};
+		480FFF8B16A0C6160012CCD5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				480FFF8C16A0C6160012CCD5 /* Stolpersteine Integration Tests-Info.plist */,
+				480FFF8D16A0C6160012CCD5 /* InfoPlist.strings */,
+				480FFF9316A0C6160012CCD5 /* Stolpersteine Integration Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		480FFF9816A0C6890012CCD5 /* Stolpersteine API */ = {
+			isa = PBXGroup;
+			children = (
+				480FFF9916A0C6890012CCD5 /* StolpersteineNetworkServiceTests.h */,
+				480FFF9A16A0C6890012CCD5 /* StolpersteineNetworkServiceTests.m */,
+			);
+			path = "Stolpersteine API";
+			sourceTree = "<group>";
+		};
 		6222BF2816A037CE006ED538 /* Stolpersteine Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +242,7 @@
 			children = (
 				627E43BC169B0F050065C1F1 /* Stolpersteine */,
 				6222BF2816A037CE006ED538 /* Stolpersteine Unit Tests */,
+				480FFF8A16A0C6160012CCD5 /* Stolpersteine Integration Tests */,
 				627E43B5169B0F050065C1F1 /* Frameworks */,
 				627E43B3169B0F050065C1F1 /* Products */,
 			);
@@ -185,6 +253,7 @@
 			children = (
 				627E43B2169B0F050065C1F1 /* Stolpersteine.app */,
 				6222BF2316A037CE006ED538 /* Stolpersteine Unit Tests.octest */,
+				480FFF8616A0C6150012CCD5 /* Stolpersteine Integration Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -283,6 +352,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		480FFF8516A0C6150012CCD5 /* Stolpersteine Integration Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 480FFF9616A0C6160012CCD5 /* Build configuration list for PBXNativeTarget "Stolpersteine Integration Tests" */;
+			buildPhases = (
+				480FFF8116A0C6150012CCD5 /* Sources */,
+				480FFF8216A0C6150012CCD5 /* Frameworks */,
+				480FFF8316A0C6150012CCD5 /* Resources */,
+				480FFF8416A0C6150012CCD5 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Stolpersteine Integration Tests";
+			productName = "Stolpersteine Integration Tests";
+			productReference = 480FFF8616A0C6150012CCD5 /* Stolpersteine Integration Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		6222BF2216A037CE006ED538 /* Stolpersteine Unit Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6222BF3216A037CE006ED538 /* Build configuration list for PBXNativeTarget "Stolpersteine Unit Tests" */;
@@ -341,11 +428,20 @@
 			targets = (
 				627E43B1169B0F050065C1F1 /* Stolpersteine */,
 				6222BF2216A037CE006ED538 /* Stolpersteine Unit Tests */,
+				480FFF8516A0C6150012CCD5 /* Stolpersteine Integration Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		480FFF8316A0C6150012CCD5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				480FFF8F16A0C6160012CCD5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6222BF2016A037CE006ED538 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -369,6 +465,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		480FFF8416A0C6150012CCD5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		6222BF2116A037CE006ED538 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -385,6 +494,26 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		480FFF8116A0C6150012CCD5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				480FFF9B16A0C6890012CCD5 /* StolpersteineNetworkServiceTests.m in Sources */,
+				480FFF9F16A0C79D0012CCD5 /* StolpersteineNetworkService.m in Sources */,
+				480FFFA016A0C79D0012CCD5 /* NSDictionary+Parsing.m in Sources */,
+				480FFFA116A0C79D0012CCD5 /* Stolperstein.m in Sources */,
+				480FFFA216A0C79D0012CCD5 /* AFHTTPClient.m in Sources */,
+				480FFFA316A0C79D0012CCD5 /* AFHTTPRequestOperation.m in Sources */,
+				480FFFA416A0C79D0012CCD5 /* AFImageRequestOperation.m in Sources */,
+				480FFFA516A0C79D0012CCD5 /* AFJSONRequestOperation.m in Sources */,
+				480FFFA616A0C79D0012CCD5 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				480FFFA716A0C79D0012CCD5 /* AFPropertyListRequestOperation.m in Sources */,
+				480FFFA816A0C79D0012CCD5 /* AFURLConnectionOperation.m in Sources */,
+				480FFFA916A0C79D0012CCD5 /* AFXMLRequestOperation.m in Sources */,
+				480FFFAA16A0C79D0012CCD5 /* UIImageView+AFNetworking.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6222BF1E16A037CE006ED538 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,6 +559,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		480FFF8D16A0C6160012CCD5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				480FFF8E16A0C6160012CCD5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		6222BF2B16A037CE006ED538 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -457,6 +594,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		480FFF9416A0C6160012CCD5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Stolpersteine Integration Tests/Stolpersteine Integration Tests-Prefix.pch";
+				INFOPLIST_FILE = "Stolpersteine Integration Tests/Stolpersteine Integration Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		480FFF9516A0C6160012CCD5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Stolpersteine Integration Tests/Stolpersteine Integration Tests-Prefix.pch";
+				INFOPLIST_FILE = "Stolpersteine Integration Tests/Stolpersteine Integration Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		6222BF3316A037CE006ED538 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -564,6 +731,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		480FFF9616A0C6160012CCD5 /* Build configuration list for PBXNativeTarget "Stolpersteine Integration Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				480FFF9416A0C6160012CCD5 /* Debug */,
+				480FFF9516A0C6160012CCD5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		6222BF3216A037CE006ED538 /* Build configuration list for PBXNativeTarget "Stolpersteine Unit Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

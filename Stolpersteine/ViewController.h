@@ -13,6 +13,8 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *centerLocationBarButtonItem;
 
 - (IBAction)centerToUserLocation:(UIButton *)sender;
 

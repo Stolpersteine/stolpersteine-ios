@@ -40,6 +40,8 @@
     [self setSearchBar:nil];
     self.locationManager.delegate = nil;
     
+    [self setNavigationBar:nil];
+    [self setCenterLocationBarButtonItem:nil];
     [super viewDidUnload];
 }
 
@@ -56,6 +58,20 @@
         self.userLocation = nil;
         self.mapView.showsUserLocation = FALSE;
     }
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    [self.navigationBar.topItem setRightBarButtonItem:nil animated:TRUE];
+    
+    return TRUE;
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    [self.navigationBar.topItem setRightBarButtonItem:self.centerLocationBarButtonItem animated:TRUE];
+    
+    return TRUE;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

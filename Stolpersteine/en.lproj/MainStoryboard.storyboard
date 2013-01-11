@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <deployment version="1280" identifier="iOS"/>
         <development version="4500" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -34,6 +34,7 @@
                             <searchBar contentMode="redraw" id="Ti2-C3-UfW">
                                 <rect key="frame" x="0.0" y="0.0" width="254" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="sWY-4g-gnB"/>
@@ -50,7 +51,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="centerLocationBarButtonItem" destination="r98-E5-DRq" id="eb6-7q-dr0"/>
                         <outlet property="mapView" destination="omQ-fz-cwh" id="JBd-Rf-WH9"/>
+                        <outlet property="navigationBar" destination="AKZ-nn-PpG" id="287-HB-HeZ"/>
                         <outlet property="searchBar" destination="Ti2-C3-UfW" id="0B9-sO-2eX"/>
                         <outlet property="searchDisplayController" destination="v91-Yz-HyQ" id="VOc-MX-1fx"/>
                     </connections>
@@ -73,7 +76,9 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
                 <relationship kind="action" name="centerToUserLocation:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="centerLocationBarButtonItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>

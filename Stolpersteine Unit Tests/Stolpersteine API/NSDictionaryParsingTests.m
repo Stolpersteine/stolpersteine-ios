@@ -11,6 +11,10 @@
 #import "NSDictionary+Parsing.h"
 #import "Stolperstein.h"
 
+// http://www.infinite-loop.dk/blog/2011/09/using-nsurlprotocol-for-injecting-test-data/
+// http://www.infinite-loop.dk/blog/2011/04/unittesting-asynchronous-network-access/
+// https://gist.github.com/2254570
+
 @implementation NSDictionaryParsingTests
 
 - (void)testNewStolperstein

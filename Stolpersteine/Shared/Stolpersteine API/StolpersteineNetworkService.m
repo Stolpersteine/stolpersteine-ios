@@ -35,14 +35,20 @@
 - (void)retrieveStolpersteineWithSearchData:(SearchData *)searchData page:(NSUInteger)page pageSize:(NSUInteger)pageSize completionHandler:(void (^)(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error))completionHandler
 {
     NSURLRequest *request = [self.httpClient requestWithMethod:@"GET" path:@"stolpersteine" parameters:nil];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSArray *stolpersteineAsJSON = JSON;
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSArray *stolpersteineAsJSON) {
+        NSMutableArray *stolpersteine = [NSMutableArray arrayWithCapacity:stolpersteineAsJSON.count];
         for (NSDictionary *stolpersteinAsJSON in stolpersteineAsJSON) {
             Stolperstein *stolperstein = [stolpersteinAsJSON newStolperstein];
-            NSLog(@"%@", stolperstein.id);
+            [stolpersteine addObject:stolperstein];
+        }
+        
+        if (completionHandler) {
+            completionHandler(stolpersteine, 0, nil);
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        NSLog(@"Error %@", error);
+        if (completionHandler) {
+            completionHandler(nil, 0, error);
+        }
     }];
     [self.httpClient enqueueHTTPRequestOperation:operation];
 }

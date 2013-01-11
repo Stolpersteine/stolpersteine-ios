@@ -20,7 +20,11 @@
 {
     [super viewDidLoad];
     
-    // Berlin
+    // Make UISearchBar transparent
+    self.searchBar.backgroundImage = [UIImage new];
+    self.searchBar.translucent = YES;
+    
+    // Set map locationto Berlin
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 12000, 12000);
     self.mapView.region = region;

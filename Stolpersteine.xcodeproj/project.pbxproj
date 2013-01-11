@@ -60,9 +60,6 @@
 		484C8EE4169B609F001CEA59 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
 		6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Parsing.m"; sourceTree = "<group>"; };
-		6222BF0E16A036F4006ED538 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		6222BF0F16A036F4006ED538 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		6222BF1016A036F4006ED538 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6222BF2316A037CE006ED538 /* Stolpersteine Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stolpersteine Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6222BF2416A037CE006ED538 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		6222BF2A16A037CE006ED538 /* Stolpersteine Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Stolpersteine Unit Tests-Info.plist"; sourceTree = "<group>"; };
@@ -145,16 +142,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6222BF0D16A036F4006ED538 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6222BF0E16A036F4006ED538 /* AppKit.framework */,
-				6222BF0F16A036F4006ED538 /* CoreData.framework */,
-				6222BF1016A036F4006ED538 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
 		6222BF2816A037CE006ED538 /* Stolpersteine Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,7 +200,6 @@
 				627E43B8169B0F050065C1F1 /* Foundation.framework */,
 				627E43BA169B0F050065C1F1 /* CoreGraphics.framework */,
 				6222BF2416A037CE006ED538 /* SenTestingKit.framework */,
-				6222BF0D16A036F4006ED538 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -585,6 +571,7 @@
 				6222BF3416A037CE006ED538 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		627E43AC169B0F050065C1F1 /* Build configuration list for PBXProject "Stolpersteine" */ = {
 			isa = XCConfigurationList;

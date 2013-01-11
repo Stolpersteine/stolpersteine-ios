@@ -45,9 +45,8 @@
         @"    }"                                                \
         @"}";
 
-    NSError *error;
     NSData *stolpersteinAsData = [stolpersteinAsJSON dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *stolpersteinAsDictionary = [NSJSONSerialization JSONObjectWithData:stolpersteinAsData options:0 error:&error];
+    NSDictionary *stolpersteinAsDictionary = [NSJSONSerialization JSONObjectWithData:stolpersteinAsData options:0 error:NULL];
     Stolperstein *stolperstein = [stolpersteinAsDictionary newStolperstein];
     STAssertEqualObjects(stolperstein.id, @"50d78c43f737060b54000002", @"Wrong id");
 }

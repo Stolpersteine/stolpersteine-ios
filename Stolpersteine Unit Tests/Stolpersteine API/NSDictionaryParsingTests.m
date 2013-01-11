@@ -10,10 +10,17 @@
 
 #import "NSDictionary+Parsing.h"
 #import "Stolperstein.h"
+#import "StolpersteineNetworkService.h"
 
 // http://www.infinite-loop.dk/blog/2011/09/using-nsurlprotocol-for-injecting-test-data/
 // http://www.infinite-loop.dk/blog/2011/04/unittesting-asynchronous-network-access/
 // https://gist.github.com/2254570
+
+@interface NSDictionaryParsingTests()
+
+@property (nonatomic, assign) BOOL done;
+
+@end
 
 @implementation NSDictionaryParsingTests
 
@@ -49,6 +56,34 @@
     NSDictionary *stolpersteinAsDictionary = [NSJSONSerialization JSONObjectWithData:stolpersteinAsData options:0 error:NULL];
     Stolperstein *stolperstein = [stolpersteinAsDictionary newStolperstein];
     STAssertEqualObjects(stolperstein.id, @"50d78c43f737060b54000002", @"Wrong id");
+}
+
+- (BOOL)waitForCompletion:(NSTimeInterval)timeoutSecs
+{
+    NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeoutSecs];
+    
+    do {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:timeoutDate];
+        if([timeoutDate timeIntervalSinceNow] < 0.0) {
+            break;
+        }
+    } while (!self.done);
+    
+    return self.done;
+}
+
+- (void)testRetrieveStolpersteine
+{
+    static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/api/";
+    self.done = FALSE;
+
+    StolpersteineNetworkService *networkService = [[StolpersteineNetworkService alloc] initWithURL:[NSURL URLWithString:BASE_URL] clientUser:nil clientPassword:nil];
+    [networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+        self.done = TRUE;
+        
+        STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
+    }];
+    STAssertTrue([self waitForCompletion:5.0], @"Time out");
 }
 
 @end

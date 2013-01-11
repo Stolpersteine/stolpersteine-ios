@@ -11,6 +11,7 @@
 #import "AFJSONRequestOperation.h"
 #import "AFHTTPClient.h"
 #import "Stolperstein.h"
+#import "NSDictionary+Parsing.h"
 
 @interface StolpersteineNetworkService ()
 
@@ -37,20 +38,7 @@
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSArray *stolpersteineAsJSON = JSON;
         for (NSDictionary *stolpersteinAsJSON in stolpersteineAsJSON) {
-            Stolperstein *stolperstein = [[Stolperstein alloc] init];
-            stolperstein.id = [stolpersteinAsJSON valueForKeyPath:@"_id"];
-            stolperstein.personFirstName = [stolpersteinAsJSON valueForKeyPath:@"person.name"];
-            stolperstein.personLastName = [stolpersteinAsJSON valueForKeyPath:@"person.name"];
-            stolperstein.locationStreet = [stolpersteinAsJSON valueForKeyPath:@"location.street"];
-            stolperstein.locationZipCode = [stolpersteinAsJSON valueForKeyPath:@"location.zipCode"];
-            stolperstein.locationCity = [stolpersteinAsJSON valueForKeyPath:@"location.city"];
-            
-            NSString *latitudeAsString = [stolpersteinAsJSON valueForKeyPath:@"location.coordinates.latitude"];
-            NSString *longitudeAsString = [stolpersteinAsJSON valueForKeyPath:@"location.coordinates.longitude"];
-            if (latitudeAsString && longitudeAsString) {
-                stolperstein.locationCoordinates = [[CLLocation alloc] initWithLatitude:latitudeAsString.doubleValue longitude:longitudeAsString.doubleValue];
-            }
-            
+            Stolperstein *stolperstein = [stolpersteinAsJSON newStolperstein];
             NSLog(@"%@", stolperstein.id);
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {

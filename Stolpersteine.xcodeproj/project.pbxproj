@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		484C8EE5169B609F001CEA59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484C8EE4169B609F001CEA59 /* CoreLocation.framework */; };
+		6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		627E43B7169B0F050065C1F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
 		627E43B9169B0F050065C1F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B8169B0F050065C1F1 /* Foundation.framework */; };
 		627E43BB169B0F050065C1F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43BA169B0F050065C1F1 /* CoreGraphics.framework */; };
@@ -37,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		484C8EE4169B609F001CEA59 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
+		6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Parsing.m"; sourceTree = "<group>"; };
 		627E43B2169B0F050065C1F1 /* Stolpersteine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stolpersteine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		627E43B6169B0F050065C1F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		627E43B8169B0F050065C1F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -198,6 +201,8 @@
 			children = (
 				627E4430169C420A0065C1F1 /* StolpersteineNetworkService.h */,
 				627E4431169C420A0065C1F1 /* StolpersteineNetworkService.m */,
+				6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */,
+				6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */,
 				627E4436169C43970065C1F1 /* Stolperstein.h */,
 				627E4437169C43970065C1F1 /* Stolperstein.m */,
 			);
@@ -284,6 +289,7 @@
 				627E4400169B270B0065C1F1 /* UIImageView+AFNetworking.m in Sources */,
 				627E4432169C420A0065C1F1 /* StolpersteineNetworkService.m in Sources */,
 				627E4438169C43970065C1F1 /* Stolperstein.m in Sources */,
+				6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

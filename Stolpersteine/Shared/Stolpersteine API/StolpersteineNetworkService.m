@@ -51,8 +51,10 @@
             completionHandler(nil, 0, error);
         }
     }];
+    NSLog(@"before");
     [self.httpClient enqueueHTTPRequestOperation:operation];
     [self.httpClient.operationQueue waitUntilAllOperationsAreFinished];
+    NSLog(@"after");
 }
 
 @end

@@ -12,6 +12,15 @@
 
 @implementation NSDictionary (Parsing)
 
+- (NSDate *)newDateForKeyPath:(NSString *)keyPath
+{
+    NSString *dateAsString = [self valueForKeyPath:keyPath];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    NSDate *date = [dateFormatter dateFromString:dateAsString];
+    return date;
+}
+
 - (Stolperstein *)newStolperstein
 {
     Stolperstein *stolperstein = [[Stolperstein alloc] init];
@@ -21,6 +30,8 @@
     stolperstein.locationStreet = [self valueForKeyPath:@"location.street"];
     stolperstein.locationZipCode = [self valueForKeyPath:@"location.zipCode"];
     stolperstein.locationCity = [self valueForKeyPath:@"location.city"];
+    stolperstein.sourceRetrievedAt = [self newDateForKeyPath:@"source.retrievedAt"];
+    NSLog(@"%@", stolperstein.sourceRetrievedAt);
     
     NSString *latitudeAsString = [self valueForKeyPath:@"location.coordinates.latitude"];
     NSString *longitudeAsString = [self valueForKeyPath:@"location.coordinates.longitude"];

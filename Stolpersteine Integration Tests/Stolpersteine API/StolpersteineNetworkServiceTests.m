@@ -69,6 +69,8 @@
             STAssertNotNil(stolperstein.locationCity, @"Wrong city");
             STAssertNotNil(stolperstein.locationZipCode, @"Wrong zip code");
             STAssertNotNil(stolperstein.locationCoordinates, @"Wrong coordinates");
+            STAssertNotNil(stolperstein.sourceRetrievedAt, @"Wrong retrieved at date");
+            STAssertTrue([stolperstein.sourceRetrievedAt isKindOfClass:NSDate.class], @"Wrong type for retrieved at date");
         }
     }];
     STAssertTrue([self waitForCompletion:5.0], @"Time out");

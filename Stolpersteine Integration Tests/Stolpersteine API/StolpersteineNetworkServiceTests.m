@@ -54,6 +54,7 @@
     [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:url.host];
 #endif
 
+    __block Stolperstein *stolpersteinTest;
     StolpersteineNetworkService *networkService = [[StolpersteineNetworkService alloc] initWithURL:url clientUser:nil clientPassword:nil];
     [networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
         self.done = TRUE;
@@ -62,6 +63,7 @@
         
         if (stolpersteine.count > 0) {
             Stolperstein *stolperstein = [stolpersteine objectAtIndex:0];
+            stolpersteinTest = stolperstein;
             STAssertNotNil(stolperstein.id, @"Wrong ID");
             STAssertNotNil(stolperstein.personFirstName, @"Wrong first name");
             STAssertNotNil(stolperstein.personLastName, @"Wrong last name");
@@ -73,6 +75,7 @@
             STAssertTrue([stolperstein.sourceRetrievedAt isKindOfClass:NSDate.class], @"Wrong type for retrieved at date");
         }
     }];
+    STAssertNotNil(stolpersteinTest.id, @"Wrong ID");
     STAssertTrue([self waitForCompletion:5.0], @"Time out");
 }
 

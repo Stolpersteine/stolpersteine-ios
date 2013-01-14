@@ -33,7 +33,6 @@
 		6222BF2616A037CE006ED538 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
 		6222BF2716A037CE006ED538 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B8169B0F050065C1F1 /* Foundation.framework */; };
 		6222BF2D16A037CE006ED538 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6222BF2B16A037CE006ED538 /* InfoPlist.strings */; };
-		6222BF3816A03E82006ED538 /* NSDictionaryParsingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF3716A03E82006ED538 /* NSDictionaryParsingTests.m */; };
 		6222BF3916A043B2006ED538 /* StolpersteineNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4431169C420A0065C1F1 /* StolpersteineNetworkService.m */; };
 		6222BF3A16A043B2006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		6222BF3B16A043B2006ED538 /* Stolperstein.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4437169C43970065C1F1 /* Stolperstein.m */; };
@@ -91,8 +90,6 @@
 		6222BF2A16A037CE006ED538 /* Stolpersteine Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Stolpersteine Unit Tests-Info.plist"; sourceTree = "<group>"; };
 		6222BF2C16A037CE006ED538 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6222BF3116A037CE006ED538 /* Stolpersteine Unit Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stolpersteine Unit Tests-Prefix.pch"; sourceTree = "<group>"; };
-		6222BF3616A03E82006ED538 /* NSDictionaryParsingTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionaryParsingTests.h; sourceTree = "<group>"; };
-		6222BF3716A03E82006ED538 /* NSDictionaryParsingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryParsingTests.m; sourceTree = "<group>"; };
 		627E43B2169B0F050065C1F1 /* Stolpersteine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stolpersteine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		627E43B6169B0F050065C1F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		627E43B8169B0F050065C1F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -231,8 +228,6 @@
 		6222BF3516A03E82006ED538 /* Stolpersteine API */ = {
 			isa = PBXGroup;
 			children = (
-				6222BF3616A03E82006ED538 /* NSDictionaryParsingTests.h */,
-				6222BF3716A03E82006ED538 /* NSDictionaryParsingTests.m */,
 			);
 			path = "Stolpersteine API";
 			sourceTree = "<group>";
@@ -518,7 +513,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6222BF3816A03E82006ED538 /* NSDictionaryParsingTests.m in Sources */,
 				6222BF3916A043B2006ED538 /* StolpersteineNetworkService.m in Sources */,
 				6222BF3A16A043B2006ED538 /* NSDictionary+Parsing.m in Sources */,
 				6222BF3B16A043B2006ED538 /* Stolperstein.m in Sources */,
@@ -738,6 +732,7 @@
 				480FFF9516A0C6160012CCD5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6222BF3216A037CE006ED538 /* Build configuration list for PBXNativeTarget "Stolpersteine Unit Tests" */ = {
 			isa = XCConfigurationList;

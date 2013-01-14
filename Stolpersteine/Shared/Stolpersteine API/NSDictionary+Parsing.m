@@ -15,9 +15,9 @@
 - (Stolperstein *)newStolperstein
 {
     Stolperstein *stolperstein = [[Stolperstein alloc] init];
-    stolperstein.id = [self valueForKeyPath:@"_id"];
-    stolperstein.personFirstName = [self valueForKeyPath:@"person.name"];
-    stolperstein.personLastName = [self valueForKeyPath:@"person.name"];
+    stolperstein.id = [self valueForKeyPath:@"id"];
+    stolperstein.personFirstName = [self valueForKeyPath:@"person.firstName"];
+    stolperstein.personLastName = [self valueForKeyPath:@"person.lastName"];
     stolperstein.locationStreet = [self valueForKeyPath:@"location.street"];
     stolperstein.locationZipCode = [self valueForKeyPath:@"location.zipCode"];
     stolperstein.locationCity = [self valueForKeyPath:@"location.city"];

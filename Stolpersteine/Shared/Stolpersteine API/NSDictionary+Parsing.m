@@ -31,7 +31,6 @@
     stolperstein.locationZipCode = [self valueForKeyPath:@"location.zipCode"];
     stolperstein.locationCity = [self valueForKeyPath:@"location.city"];
     stolperstein.sourceRetrievedAt = [self newDateForKeyPath:@"source.retrievedAt"];
-    NSLog(@"%@", stolperstein.sourceRetrievedAt);
     
     NSString *latitudeAsString = [self valueForKeyPath:@"location.coordinates.latitude"];
     NSString *longitudeAsString = [self valueForKeyPath:@"location.coordinates.longitude"];

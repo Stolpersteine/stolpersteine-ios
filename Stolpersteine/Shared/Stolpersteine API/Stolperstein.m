@@ -10,4 +10,20 @@
 
 @implementation Stolperstein
 
+- (NSString *)title
+{
+    NSString *title = [NSString stringWithFormat:@"%@ %@", self.personFirstName, self.personLastName];
+    return title;
+}
+
+- (NSString *)subtitle
+{
+    return self.locationStreet;
+}
+
+- (CLLocationCoordinate2D)coordinate
+{
+    return self.locationCoordinates.coordinate;
+}
+
 @end

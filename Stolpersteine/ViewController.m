@@ -8,6 +8,11 @@
 
 #import "ViewController.h"
 
+#import "AppDelegate.h"
+#import "StolpersteineNetworkService.h"
+#import "Stolperstein.h"
+#import <MapKit/MapKit.h>
+
 @interface ViewController () <MKMapViewDelegate, UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
@@ -44,6 +49,16 @@
     [self setCenterLocationBarButtonItem:nil];
     
     [super viewDidUnload];
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+        NSLog(@"retrieveStolpersteineWithSearchData %d", stolpersteine.count);
+
+        [mapView removeAnnotations:mapView.annotations];
+        [mapView addAnnotations:stolpersteine];
+    }];
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation

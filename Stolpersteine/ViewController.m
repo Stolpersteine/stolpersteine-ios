@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController () <UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate>
+@interface ViewController () <MKMapViewDelegate, UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -36,12 +36,13 @@
 
 - (void)viewDidUnload
 {
+    self.locationManager.delegate = nil;
+
     [self setMapView:nil];
     [self setSearchBar:nil];
-    self.locationManager.delegate = nil;
-    
     [self setNavigationBar:nil];
     [self setCenterLocationBarButtonItem:nil];
+    
     [super viewDidUnload];
 }
 

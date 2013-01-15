@@ -36,7 +36,6 @@
 {
     NSURLRequest *request = [self.httpClient requestWithMethod:@"GET" path:@"stolpersteine" parameters:nil];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSArray *stolpersteineAsJSON) {
-        NSLog(@"finished");
         NSMutableArray *stolpersteine = [NSMutableArray arrayWithCapacity:stolpersteineAsJSON.count];
         for (NSDictionary *stolpersteinAsJSON in stolpersteineAsJSON) {
             Stolperstein *stolperstein = [stolpersteinAsJSON newStolperstein];
@@ -51,10 +50,8 @@
             completionHandler(nil, 0, error);
         }
     }];
-    NSLog(@"before");
+
     [self.httpClient enqueueHTTPRequestOperation:operation];
-    [self.httpClient.operationQueue waitUntilAllOperationsAreFinished];
-    NSLog(@"after");
 }
 
 @end

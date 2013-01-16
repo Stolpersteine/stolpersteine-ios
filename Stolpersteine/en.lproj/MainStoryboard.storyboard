@@ -22,7 +22,7 @@
                                     <navigationItem title="Title" id="R9E-Ye-6TF">
                                         <barButtonItem key="rightBarButtonItem" title="Home" id="r98-E5-DRq">
                                             <connections>
-                                                <action selector="centerToUserLocation:" destination="2" id="B0b-MA-Ohr"/>
+                                                <action selector="centerMap:" destination="2" id="rcB-IQ-lkv"/>
                                             </connections>
                                         </barButtonItem>
                                         <connections>

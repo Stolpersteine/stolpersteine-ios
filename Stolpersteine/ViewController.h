@@ -16,6 +16,6 @@
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *centerLocationBarButtonItem;
 
-- (IBAction)centerToUserLocation:(UIButton *)sender;
+- (IBAction)centerMap:(UIButton *)sender;
 
 @end

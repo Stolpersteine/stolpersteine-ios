@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
 
 @end
 
@@ -56,7 +57,9 @@
     [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
         NSLog(@"retrieveStolpersteineWithSearchData %d", stolpersteine.count);
 
-        [mapView removeAnnotations:mapView.annotations];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF != %@", mapView.userLocation];
+        NSArray *annotations = [mapView.annotations filteredArrayUsingPredicate:predicate];
+        [mapView removeAnnotations:annotations];
         [mapView addAnnotations:stolpersteine];
     }];
 }
@@ -105,11 +108,29 @@
     NSLog(@"%@", searchText);
 }
 
-- (IBAction)centerToUserLocation:(UIButton *)sender
+- (IBAction)centerMap:(UIButton *)sender
 {
-    if (self.userLocation.location) {
+    if (!self.isUserLocationMode && self.userLocation.location) {
+        self.userLocationMode = TRUE;
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.userLocation.location.coordinate, 12000, 12000);
         [self.mapView setRegion:region animated:YES];
+    } else {
+        self.userLocationMode = FALSE;
+        MKMapRect zoomRect = MKMapRectNull;
+        for (id<MKAnnotation> annotation in self.mapView.annotations) {
+            if (annotation != self.mapView.userLocation) {
+                MKMapPoint annotationPoint = MKMapPointForCoordinate(annotation.coordinate);
+                MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.1, 0.1);
+                if (MKMapRectIsNull(zoomRect)) {
+                    zoomRect = pointRect;
+                } else {
+                    zoomRect = MKMapRectUnion(zoomRect, pointRect);
+                }
+            }
+        }
+        
+        UIEdgeInsets edgePadding = UIEdgeInsetsMake(100, 100, 100, 100);
+        [self.mapView setVisibleMapRect:zoomRect edgePadding:edgePadding animated:YES];
     }
 }
 

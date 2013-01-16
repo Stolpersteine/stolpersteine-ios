@@ -27,6 +27,8 @@
 		480FFFA816A0C79D0012CCD5 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43F3169B270B0065C1F1 /* AFURLConnectionOperation.m */; };
 		480FFFA916A0C79D0012CCD5 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43F5169B270B0065C1F1 /* AFXMLRequestOperation.m */; };
 		480FFFAA16A0C79D0012CCD5 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43F7169B270B0065C1F1 /* UIImageView+AFNetworking.m */; };
+		4811D52F16A73CB400C8B58D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4811D52E16A73CB400C8B58D /* DetailViewController.m */; };
+		4811D53616A7479800C8B58D /* CustomSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4811D53516A7479800C8B58D /* CustomSearchDisplayController.m */; };
 		484C8EE5169B609F001CEA59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484C8EE4169B609F001CEA59 /* CoreLocation.framework */; };
 		6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		6222BF2516A037CE006ED538 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
@@ -58,7 +60,7 @@
 		627E43CB169B0F050065C1F1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 627E43CA169B0F050065C1F1 /* Default@2x.png */; };
 		627E43CD169B0F050065C1F1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 627E43CC169B0F050065C1F1 /* Default-568h@2x.png */; };
 		627E43D0169B0F050065C1F1 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 627E43CE169B0F050065C1F1 /* MainStoryboard.storyboard */; };
-		627E43D3169B0F050065C1F1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43D2169B0F050065C1F1 /* ViewController.m */; };
+		627E43D3169B0F050065C1F1 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43D2169B0F050065C1F1 /* MapViewController.m */; };
 		627E43DA169B0FFC0065C1F1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43D9169B0FFC0065C1F1 /* MapKit.framework */; };
 		627E43F8169B270B0065C1F1 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43E6169B270B0065C1F1 /* AFHTTPClient.m */; };
 		627E43F9169B270B0065C1F1 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43E8169B270B0065C1F1 /* AFHTTPRequestOperation.m */; };
@@ -82,6 +84,10 @@
 		480FFF9316A0C6160012CCD5 /* Stolpersteine Integration Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stolpersteine Integration Tests-Prefix.pch"; sourceTree = "<group>"; };
 		480FFF9916A0C6890012CCD5 /* StolpersteineNetworkServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteineNetworkServiceTests.h; sourceTree = "<group>"; };
 		480FFF9A16A0C6890012CCD5 /* StolpersteineNetworkServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteineNetworkServiceTests.m; sourceTree = "<group>"; };
+		4811D52D16A73CB400C8B58D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		4811D52E16A73CB400C8B58D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		4811D53416A7479800C8B58D /* CustomSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSearchDisplayController.h; sourceTree = "<group>"; };
+		4811D53516A7479800C8B58D /* CustomSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchDisplayController.m; sourceTree = "<group>"; };
 		484C8EE4169B609F001CEA59 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
 		6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Parsing.m"; sourceTree = "<group>"; };
@@ -104,8 +110,8 @@
 		627E43CA169B0F050065C1F1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		627E43CC169B0F050065C1F1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		627E43CF169B0F050065C1F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		627E43D1169B0F050065C1F1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		627E43D2169B0F050065C1F1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		627E43D1169B0F050065C1F1 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		627E43D2169B0F050065C1F1 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		627E43D9169B0FFC0065C1F1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		627E43E5169B270B0065C1F1 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		627E43E6169B270B0065C1F1 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
@@ -273,9 +279,12 @@
 			children = (
 				627E43C5169B0F050065C1F1 /* AppDelegate.h */,
 				627E43C6169B0F050065C1F1 /* AppDelegate.m */,
-				627E43CE169B0F050065C1F1 /* MainStoryboard.storyboard */,
-				627E43D1169B0F050065C1F1 /* ViewController.h */,
-				627E43D2169B0F050065C1F1 /* ViewController.m */,
+				627E43D1169B0F050065C1F1 /* MapViewController.h */,
+				627E43D2169B0F050065C1F1 /* MapViewController.m */,
+				4811D52D16A73CB400C8B58D /* DetailViewController.h */,
+				4811D52E16A73CB400C8B58D /* DetailViewController.m */,
+				4811D53416A7479800C8B58D /* CustomSearchDisplayController.h */,
+				4811D53516A7479800C8B58D /* CustomSearchDisplayController.m */,
 				627E43E3169B270B0065C1F1 /* Shared */,
 				627E43BD169B0F050065C1F1 /* Supporting Files */,
 			);
@@ -285,6 +294,7 @@
 		627E43BD169B0F050065C1F1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				627E43CE169B0F050065C1F1 /* MainStoryboard.storyboard */,
 				627E43BE169B0F050065C1F1 /* Stolpersteine-Info.plist */,
 				627E43BF169B0F050065C1F1 /* InfoPlist.strings */,
 				627E43C2169B0F050065C1F1 /* main.m */,
@@ -534,7 +544,7 @@
 			files = (
 				627E43C3169B0F050065C1F1 /* main.m in Sources */,
 				627E43C7169B0F050065C1F1 /* AppDelegate.m in Sources */,
-				627E43D3169B0F050065C1F1 /* ViewController.m in Sources */,
+				627E43D3169B0F050065C1F1 /* MapViewController.m in Sources */,
 				627E43F8169B270B0065C1F1 /* AFHTTPClient.m in Sources */,
 				627E43F9169B270B0065C1F1 /* AFHTTPRequestOperation.m in Sources */,
 				627E43FA169B270B0065C1F1 /* AFImageRequestOperation.m in Sources */,
@@ -547,6 +557,8 @@
 				627E4432169C420A0065C1F1 /* StolpersteineNetworkService.m in Sources */,
 				627E4438169C43970065C1F1 /* Stolperstein.m in Sources */,
 				6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */,
+				4811D52F16A73CB400C8B58D /* DetailViewController.m in Sources */,
+				4811D53616A7479800C8B58D /* CustomSearchDisplayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

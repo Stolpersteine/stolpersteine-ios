@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MapViewController.h"
 
 #import "AppDelegate.h"
 #import "StolpersteineNetworkService.h"
 #import "Stolperstein.h"
 #import <MapKit/MapKit.h>
 
-@interface ViewController () <MKMapViewDelegate, UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate>
+@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation ViewController
+@implementation MapViewController
 
 - (void)viewDidLoad
 {
@@ -46,8 +46,7 @@
 
     [self setMapView:nil];
     [self setSearchBar:nil];
-    [self setNavigationBar:nil];
-    [self setCenterLocationBarButtonItem:nil];
+    [self setCenterMapBarButtonItem:nil];
     
     [super viewDidUnload];
 }
@@ -62,6 +61,32 @@
         [mapView removeAnnotations:annotations];
         [mapView addAnnotations:stolpersteine];
     }];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    MKAnnotationView *annotationView;
+    
+    if ([annotation isKindOfClass:Stolperstein.class]) {
+        static NSString *stolpersteinIdentifier = @"stolpersteinIdentifier";
+        
+        annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
+        if (annotationView) {
+            annotationView.annotation = annotation;
+        } else {
+            MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
+            pinView.animatesDrop = YES;
+            pinView.canShowCallout = YES;
+            
+            UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [rightButton addTarget:self action:@selector(showDetails:) forControlEvents:UIControlEventTouchUpInside];
+            pinView.rightCalloutAccessoryView = rightButton;
+            
+            annotationView = pinView;
+        }
+    }
+    
+    return annotationView;
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -79,20 +104,6 @@
     }
 }
 
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
-    [self.navigationBar.topItem setRightBarButtonItem:nil animated:TRUE];
-    
-    return TRUE;
-}
-
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
-{
-    [self.navigationBar.topItem setRightBarButtonItem:self.centerLocationBarButtonItem animated:TRUE];
-    
-    return TRUE;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return nil;
@@ -103,9 +114,24 @@
     return 0;
 }
 
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+{
+    [self.navigationItem setRightBarButtonItem:nil animated:TRUE];
+}
+
+- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+{
+    [self.navigationItem setRightBarButtonItem:self.centerMapBarButtonItem animated:TRUE];
+}
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    NSLog(@"%@", searchText);
+    NSLog(@"search");
+}
+
+- (void)showDetails:(UIButton *)sender
+{
+    [self performSegueWithIdentifier:@"mapViewControllerToDetailViewController" sender:self];
 }
 
 - (IBAction)centerMap:(UIButton *)sender

@@ -9,12 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface ViewController : UIViewController
+@interface MapViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *centerLocationBarButtonItem;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *centerMapBarButtonItem;
 
 - (IBAction)centerMap:(UIButton *)sender;
 

@@ -8,18 +8,15 @@
 
 #import "DetailViewController.h"
 
-@interface DetailViewController ()
-
-@end
+#import "Stolperstein.h"
 
 @implementation DetailViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)viewWillAppear:(BOOL)animated
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
+    [super viewWillAppear:animated];
+    
+    self.title = self.stolperstein.title;
 }
 
 @end

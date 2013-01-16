@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Stolperstein;
+
 @interface DetailViewController : UIViewController
+
+@property (nonatomic, strong) Stolperstein *stolperstein;
 
 @end

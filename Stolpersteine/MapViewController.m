@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import "StolpersteineNetworkService.h"
 #import "Stolperstein.h"
+#import "DetailViewController.h"
+
 #import <MapKit/MapKit.h>
 
 @interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate>
@@ -79,7 +81,6 @@
             pinView.canShowCallout = YES;
             
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            [rightButton addTarget:self action:@selector(showDetails:) forControlEvents:UIControlEventTouchUpInside];
             pinView.rightCalloutAccessoryView = rightButton;
             
             annotationView = pinView;
@@ -92,6 +93,11 @@
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     self.userLocation = userLocation;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    [self performSegueWithIdentifier:@"mapViewControllerToDetailViewController" sender:view.annotation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
@@ -129,11 +135,6 @@
     NSLog(@"search");
 }
 
-- (void)showDetails:(UIButton *)sender
-{
-    [self performSegueWithIdentifier:@"mapViewControllerToDetailViewController" sender:self];
-}
-
 - (IBAction)centerMap:(UIButton *)sender
 {
     if (!self.isUserLocationMode && self.userLocation.location) {
@@ -157,6 +158,14 @@
         
         UIEdgeInsets edgePadding = UIEdgeInsetsMake(100, 100, 100, 100);
         [self.mapView setVisibleMapRect:zoomRect edgePadding:edgePadding animated:YES];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"mapViewControllerToDetailViewController"]) {
+        DetailViewController *detailViewController = (DetailViewController *)segue.destinationViewController;
+        detailViewController.stolperstein = sender;
     }
 }
 

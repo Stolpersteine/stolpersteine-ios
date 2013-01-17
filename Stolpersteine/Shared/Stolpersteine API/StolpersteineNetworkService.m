@@ -10,6 +10,7 @@
 
 #import "AFJSONRequestOperation.h"
 #import "AFHTTPClient.h"
+#import "AFNetworkActivityIndicatorManager.h"
 #import "Stolperstein.h"
 #import "NSDictionary+Parsing.h"
 
@@ -27,6 +28,8 @@
         self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
         self.httpClient.parameterEncoding = AFJSONParameterEncoding;
         [self.httpClient registerHTTPOperationClass:AFJSONRequestOperation.class];
+        
+        [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     }
     
     return self;

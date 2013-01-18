@@ -20,6 +20,7 @@
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
+@property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
 
 @end
 
@@ -54,7 +55,8 @@
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+    [self.retrieveStolpersteineOperation cancel];
+    self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
         NSLog(@"retrieveStolpersteineWithSearchData %d", stolpersteine.count);
 
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF != %@", mapView.userLocation];

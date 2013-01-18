@@ -58,13 +58,11 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
 
 - (void)testRetrieveStolpersteine
 {
-    [self.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+    [self.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:5 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
         self.done = TRUE;
         
         STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
-        if (stolpersteine.count > 0) {
-            Stolperstein *stolperstein = [stolpersteine objectAtIndex:0];
-            
+        for (Stolperstein *stolperstein in stolpersteine) {
             // Mandatory fields
             STAssertNotNil(stolperstein.id, @"Wrong ID");
             STAssertTrue([stolperstein.id isKindOfClass:NSString.class], @"Wrong type for ID");
@@ -87,6 +85,16 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
             STAssertTrue([stolperstein.sourceURLString hasPrefix:@"http"], @"Wrong content source URL string");
             STAssertNotNil(stolperstein.sourceName, @"Wrong source name");
             STAssertTrue([stolperstein.sourceName isKindOfClass:NSString.class], @"Wrong type for source name");
+            
+            // Optional fields
+            if (stolperstein.imageURLString) {
+                STAssertTrue([stolperstein.imageURLString isKindOfClass:NSString.class], @"Wrong type for image URL string");
+                STAssertTrue([stolperstein.imageURLString hasPrefix:@"http"], @"Wrong content image URL string");
+            }
+            
+            if (stolperstein.text) {
+                STAssertTrue([stolperstein.text isKindOfClass:NSString.class], @"Wrong type for text");
+            }
         }
     }];
     STAssertTrue([self waitForCompletion:5.0], @"Time out");

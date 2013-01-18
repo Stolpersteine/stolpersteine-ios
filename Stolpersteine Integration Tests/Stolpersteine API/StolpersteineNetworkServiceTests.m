@@ -64,6 +64,8 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
         STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
         if (stolpersteine.count > 0) {
             Stolperstein *stolperstein = [stolpersteine objectAtIndex:0];
+            
+            // Mandatory fields
             STAssertNotNil(stolperstein.id, @"Wrong ID");
             STAssertTrue([stolperstein.id isKindOfClass:NSString.class], @"Wrong type for ID");
             STAssertNotNil(stolperstein.personFirstName, @"Wrong first name");
@@ -80,6 +82,11 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
             STAssertTrue([stolperstein.locationCoordinates isKindOfClass:CLLocation.class], @"Wrong type for coordinates");
             STAssertNotNil(stolperstein.sourceRetrievedAt, @"Wrong retrieved at date");
             STAssertTrue([stolperstein.sourceRetrievedAt isKindOfClass:NSDate.class], @"Wrong type for retrieved at date");
+            STAssertNotNil(stolperstein.sourceURLString, @"Wrong source URL string");
+            STAssertTrue([stolperstein.sourceURLString isKindOfClass:NSString.class], @"Wrong type for source URL string");
+            STAssertTrue([stolperstein.sourceURLString hasPrefix:@"http"], @"Wrong content source URL string");
+            STAssertNotNil(stolperstein.sourceName, @"Wrong source name");
+            STAssertTrue([stolperstein.sourceName isKindOfClass:NSString.class], @"Wrong type for source name");
         }
     }];
     STAssertTrue([self waitForCompletion:5.0], @"Time out");

@@ -16,6 +16,8 @@
 @property (nonatomic, strong) NSString *id;
 @property (nonatomic, strong) NSString *personFirstName;
 @property (nonatomic, strong) NSString *personLastName;
+@property (nonatomic, strong) NSString *sourceURLString;
+@property (nonatomic, strong) NSString *sourceName;
 @property (nonatomic, strong) NSDate *sourceRetrievedAt;
 @property (nonatomic, strong) NSString *locationStreet;
 @property (nonatomic, strong) NSString *locationZipCode;

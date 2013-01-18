@@ -15,6 +15,10 @@
 - (NSDate *)newDateForKeyPath:(NSString *)keyPath
 {
     NSString *dateAsString = [self valueForKeyPath:keyPath];
+    if ([dateAsString hasSuffix:@"Z"]) {
+        dateAsString = [[dateAsString substringToIndex:dateAsString.length - 1] stringByAppendingString:@"GMT"];
+    }
+
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
     NSDate *date = [dateFormatter dateFromString:dateAsString];

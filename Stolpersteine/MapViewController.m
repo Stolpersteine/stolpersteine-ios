@@ -15,7 +15,7 @@
 
 #import <MapKit/MapKit.h>
 
-@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate>
+@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -30,8 +30,8 @@
     [super viewDidLoad];
     
     // Make UISearchBar transparent
-    self.searchBar.backgroundImage = [UIImage new];
-    self.searchBar.translucent = YES;
+    self.searchDisplayController.searchBar.backgroundImage = [UIImage new];
+    self.searchDisplayController.searchBar.translucent = YES;
     
     // Set map location to Berlin
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);
@@ -47,7 +47,6 @@
     self.locationManager.delegate = nil;
 
     [self setMapView:nil];
-    [self setSearchBar:nil];
     [self setCenterMapBarButtonItem:nil];
     
     [super viewDidUnload];

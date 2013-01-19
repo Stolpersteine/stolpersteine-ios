@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "CustomSearchDisplayController.h"
+#import "SearchDisplayController.h"
 
-@implementation CustomSearchDisplayController
+@implementation SearchDisplayController
 
 - (void)setActive:(BOOL)visible animated:(BOOL)animated
 {

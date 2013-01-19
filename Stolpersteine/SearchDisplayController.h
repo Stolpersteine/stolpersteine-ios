@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomSearchDisplayController : UISearchDisplayController
+@interface SearchDisplayController : UISearchDisplayController
 
 @end

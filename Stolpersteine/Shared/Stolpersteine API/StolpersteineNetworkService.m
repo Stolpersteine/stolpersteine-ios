@@ -9,6 +9,7 @@
 #import "StolpersteineNetworkService.h"
 
 #import "AFJSONRequestOperation.h"
+#import "AFImageRequestOperation.h"
 #import "AFHTTPClient.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "Stolperstein.h"

@@ -29,6 +29,9 @@
             [self.imageActivityIndicator stopAnimating];
         }];
     }
+    
+    CGFloat height = self.imageView.frame.origin.y + self.imageView.frame.size.height + 20;
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, height);
 }
 
 - (void)viewDidUnload
@@ -36,6 +39,7 @@
     [self setNameLabel:nil];
     [self setImageView:nil];
     [self setImageActivityIndicator:nil];
+    [self setScrollView:nil];
     [super viewDidUnload];
 }
 @end

@@ -57,7 +57,7 @@
 {
     [self.retrieveStolpersteineOperation cancel];
     self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
-        NSLog(@"retrieveStolpersteineWithSearchData %d", stolpersteine.count);
+        NSLog(@"retrieveStolpersteineWithSearchData %d (%@)", stolpersteine.count, error);
 
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF != %@", mapView.userLocation];
         NSArray *annotations = [mapView.annotations filteredArrayUsingPredicate:predicate];

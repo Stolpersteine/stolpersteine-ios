@@ -12,15 +12,17 @@
 #import "StolpersteineNetworkService.h"
 #import "Stolperstein.h"
 #import "DetailViewController.h"
+#import "SearchDisplayController.h"
 
 #import <MapKit/MapKit.h>
 
-@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate>
+@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, SearchDisplayControllerDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
+@property (nonatomic, strong) SearchDisplayController *sdc;
 
 @end
 
@@ -33,6 +35,8 @@
     // Make UISearchBar transparent
     self.searchDisplayController.searchBar.backgroundImage = [UIImage new];
     self.searchDisplayController.searchBar.translucent = YES;
+    self.sdc = [[SearchDisplayController alloc] initWithSearchBar:nil contentsController:self];
+    self.sdc.delegate = self;
     
     // Set map location to Berlin
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);
@@ -160,6 +164,11 @@
         UIEdgeInsets edgePadding = UIEdgeInsetsMake(100, 100, 100, 100);
         [self.mapView setVisibleMapRect:zoomRect edgePadding:edgePadding animated:YES];
     }
+}
+
+- (IBAction)startSearch:(UITextField *)sender
+{
+    [self.sdc setActive:TRUE animated:TRUE];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

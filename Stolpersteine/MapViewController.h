@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *centerMapBarButtonItem;
 
 - (IBAction)centerMap:(UIButton *)sender;
+- (IBAction)startSearch:(UITextField *)sender;
 
 @end

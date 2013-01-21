@@ -28,7 +28,7 @@
 		480FFFA916A0C79D0012CCD5 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43F5169B270B0065C1F1 /* AFXMLRequestOperation.m */; };
 		480FFFAA16A0C79D0012CCD5 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43F7169B270B0065C1F1 /* UIImageView+AFNetworking.m */; };
 		4811D52F16A73CB400C8B58D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4811D52E16A73CB400C8B58D /* DetailViewController.m */; };
-		4811D53616A7479800C8B58D /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4811D53516A7479800C8B58D /* SearchDisplayController.m */; };
+		4811D53616A7479800C8B58D /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4811D53516A7479800C8B58D /* SearchDisplayController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		484C8EE5169B609F001CEA59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484C8EE4169B609F001CEA59 /* CoreLocation.framework */; };
 		4872543416AB4D7D00BE6100 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4872543316AB4D7D00BE6100 /* NavigationController.m */; };
 		6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };

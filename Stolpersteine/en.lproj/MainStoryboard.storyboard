@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="XLj-i0-kjg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="XLj-i0-kjg">
     <dependencies>
         <deployment version="1280" identifier="iOS"/>
         <development version="4500" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller - Map-->
+        <!--Map View Controller-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="MapViewController" sceneMemberID="viewController">
@@ -14,15 +14,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" id="Ti2-C3-UfW">
-                                <rect key="frame" x="0.0" y="-44" width="254" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="2" id="sWY-4g-gnB"/>
-                                </connections>
-                            </searchBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="omQ-fz-cwh">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,33 +24,30 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Map" id="wB8-Ca-YR2">
+                    <navigationItem key="navigationItem" id="wB8-Ca-YR2">
+                        <nil key="title"/>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Xn6-zm-gyj">
+                            <rect key="frame" x="5" y="7" width="248" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="startSearch:" destination="2" eventType="editingDidBegin" id="TFn-ka-jTP"/>
+                            </connections>
+                        </textField>
                         <barButtonItem key="rightBarButtonItem" title="Home" id="r98-E5-DRq">
                             <connections>
                                 <action selector="centerMap:" destination="2" id="rcB-IQ-lkv"/>
                             </connections>
                         </barButtonItem>
-                        <connections>
-                            <outlet property="titleView" destination="Ti2-C3-UfW" id="GSp-0y-QQx"/>
-                        </connections>
                     </navigationItem>
                     <connections>
                         <outlet property="centerMapBarButtonItem" destination="r98-E5-DRq" id="sGL-oC-sIQ"/>
                         <outlet property="mapView" destination="omQ-fz-cwh" id="JBd-Rf-WH9"/>
-                        <outlet property="searchDisplayController" destination="v91-Yz-HyQ" id="acm-WK-8pj"/>
                         <segue destination="Az3-JW-c4L" kind="push" identifier="mapViewControllerToDetailViewController" id="hg1-Lc-53S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="v91-Yz-HyQ" customClass="SearchDisplayController">
-                    <connections>
-                        <outlet property="delegate" destination="2" id="Ef0-O3-BHn"/>
-                        <outlet property="searchBar" destination="Ti2-C3-UfW" id="23F-EO-9iv"/>
-                        <outlet property="searchContentsController" destination="2" id="FRO-z6-z9d"/>
-                        <outlet property="searchResultsDataSource" destination="2" id="GPV-kv-Wmc"/>
-                        <outlet property="searchResultsDelegate" destination="2" id="0zl-Ew-SN5"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="21" y="-11"/>
         </scene>
@@ -144,15 +132,13 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
             <relationships>
                 <relationship kind="action" name="centerMap:" candidateClass="UIButton"/>
+                <relationship kind="action" name="startSearch:" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="centerMapBarButtonItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>
         <class className="NavigationController" superclassName="UINavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationController.h"/>
-        </class>
-        <class className="SearchDisplayController" superclassName="UISearchDisplayController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchDisplayController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

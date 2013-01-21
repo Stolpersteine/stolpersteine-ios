@@ -29,10 +29,6 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
     [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:url.host];
 #endif
     
-    [self.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
-        NSLog(@"retrieveStolpersteineWithSearchData done %@", stolpersteine);
-    }];
-    
     return YES;
 }
 

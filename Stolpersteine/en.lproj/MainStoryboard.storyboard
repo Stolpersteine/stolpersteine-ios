@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="XLj-i0-kjg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="XLj-i0-kjg">
     <dependencies>
         <deployment version="1280" identifier="iOS"/>
         <development version="4500" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Map View Controller-->
@@ -26,7 +26,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="wB8-Ca-YR2">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Xn6-zm-gyj">
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Xn6-zm-gyj" customClass="SearchTextField">
                             <rect key="frame" x="5" y="7" width="248" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -44,6 +44,7 @@
                     <connections>
                         <outlet property="centerMapBarButtonItem" destination="r98-E5-DRq" id="sGL-oC-sIQ"/>
                         <outlet property="mapView" destination="omQ-fz-cwh" id="JBd-Rf-WH9"/>
+                        <outlet property="searchTextField" destination="Xn6-zm-gyj" id="M8r-PG-Uq6"/>
                         <segue destination="Az3-JW-c4L" kind="push" identifier="mapViewControllerToDetailViewController" id="hg1-Lc-53S"/>
                     </connections>
                 </viewController>
@@ -135,10 +136,14 @@
                 <relationship kind="action" name="startSearch:" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="centerMapBarButtonItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="searchTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="NavigationController" superclassName="UINavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationController.h"/>
+        </class>
+        <class className="SearchTextField" superclassName="UITextField">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchTextField.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

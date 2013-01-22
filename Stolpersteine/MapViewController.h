@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+@class SearchTextField;
+
 @interface MapViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *centerMapBarButtonItem;
+@property (weak, nonatomic) IBOutlet SearchTextField *searchTextField;
 
 - (IBAction)centerMap:(UIButton *)sender;
 - (IBAction)startSearch:(UITextField *)sender;

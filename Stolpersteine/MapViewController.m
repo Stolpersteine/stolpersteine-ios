@@ -12,6 +12,7 @@
 #import "StolpersteineNetworkService.h"
 #import "Stolperstein.h"
 #import "DetailViewController.h"
+#import "SearchTextField.h"
 #import "SearchDisplayController.h"
 
 #import <MapKit/MapKit.h>
@@ -54,7 +55,19 @@
     [self setMapView:nil];
     [self setCenterMapBarButtonItem:nil];
     
+    [self setSearchTextField:nil];
     [super viewDidUnload];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+	CGRect frame = self.searchTextField.frame;
+    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+        frame.size.height = 25;
+    } else {
+        frame.size.height = 30;
+    }
+    self.searchTextField.frame = frame;
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated

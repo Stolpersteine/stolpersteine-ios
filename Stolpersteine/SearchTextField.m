@@ -29,6 +29,14 @@
     UIImageView *iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"magnifier.png"]];
     self.leftView = iconImageView;
     self.leftViewMode = UITextFieldViewModeAlways;
+
+    UIImage *backgroundImage = [[UIImage imageNamed:@"search-text-field.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15.0f, 13.5f, 15.0f, 13.5f)];
+    self.background = backgroundImage;
+    self.borderStyle = UITextBorderStyleNone;
+    
+    CGRect frame = self.frame;
+    frame.size.height = 30;
+    self.frame = frame;
 }
 
 @end

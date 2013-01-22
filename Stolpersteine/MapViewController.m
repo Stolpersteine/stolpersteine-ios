@@ -63,9 +63,9 @@
 {
 	CGRect frame = self.searchTextField.frame;
     if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-        frame.size.height = 25;
+//        frame.size.height = 25;
     } else {
-        frame.size.height = 30;
+//        frame.size.height = 30;
     }
     self.searchTextField.frame = frame;
 }

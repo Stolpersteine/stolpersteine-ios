@@ -26,15 +26,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="wB8-Ca-YR2">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Xn6-zm-gyj" customClass="SearchTextField">
-                            <rect key="frame" x="5" y="7" width="248" height="30"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <action selector="startSearch:" destination="2" eventType="editingDidBegin" id="TFn-ka-jTP"/>
-                            </connections>
-                        </textField>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="VHj-dn-zwY">
+                            <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Xn6-zm-gyj" customClass="SearchTextField">
+                                <rect key="frame" x="5" y="7" width="248" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="startSearch:" destination="2" eventType="editingDidBegin" id="TFn-ka-jTP"/>
+                                </connections>
+                            </textField>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Home" id="r98-E5-DRq">
                             <connections>
                                 <action selector="centerMap:" destination="2" id="rcB-IQ-lkv"/>
@@ -136,7 +138,7 @@
                 <relationship kind="action" name="startSearch:" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="centerMapBarButtonItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="searchTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="searchTextField" candidateClass="SearchTextField"/>
             </relationships>
         </class>
         <class className="NavigationController" superclassName="UINavigationController">

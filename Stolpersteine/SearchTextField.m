@@ -72,7 +72,6 @@
 {
     CGRect editingRect = [super editingRectForBounds:bounds];
     editingRect.origin.x += 5;
-    editingRect.origin.y -= 1;
     editingRect.size.width -= 5;
     return editingRect;
 }

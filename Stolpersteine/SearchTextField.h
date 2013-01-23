@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchTextField : UITextField
+@interface SearchTextField : UITextField<UITextFieldDelegate>
 
 @property (nonatomic, assign) BOOL portraitHeightEnabled;
 

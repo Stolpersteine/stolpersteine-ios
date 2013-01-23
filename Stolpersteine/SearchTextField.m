@@ -27,14 +27,17 @@
 - (void)setup
 {
     self.leftViewMode = UITextFieldViewModeAlways;
-    self.rightViewMode = UITextFieldViewModeAlways;
+    self.rightViewMode = UITextFieldViewModeNever;
     self.clearButtonMode = UITextFieldViewModeNever;
     self.borderStyle = UITextBorderStyleNone;
     self.portraitHeightEnabled = TRUE;
+    self.delegate = self;
 }
 
 - (void)setPortraitHeightEnabled:(BOOL)portraitHeightEnabled
 {
+    _portraitHeightEnabled = portraitHeightEnabled;
+    
     UIImage *backgroundImage, *iconImage, *clearImage;
     CGRect frame = self.frame;
     if (portraitHeightEnabled) {
@@ -57,10 +60,12 @@
     iconImageView.contentMode = UIViewContentModeRight;
     self.leftView = iconImageView;
 
-    UIImageView *clearImageView = [[UIImageView alloc] initWithImage:clearImage];
-    clearImageView.frame = CGRectMake(0, 0, clearImageView.frame.size.width + 6, clearImageView.frame.size.height);
-    clearImageView.contentMode = UIViewContentModeLeft;
-    self.rightView = clearImageView;
+    UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [clearButton setImage:clearImage forState:UIControlStateNormal];
+    clearButton.frame = CGRectMake(0, 0, clearImage.size.width + 10, clearImage.size.height);
+    clearButton.contentMode = UIViewContentModeLeft;
+    [clearButton addTarget:self action:@selector(clearText:) forControlEvents:UIControlEventTouchUpInside];
+    self.rightView = clearButton;
 }
 
 - (CGRect)textRectForBounds:(CGRect)bounds
@@ -74,6 +79,20 @@
     editingRect.origin.x += 5;
     editingRect.size.width -= 5;
     return editingRect;
+}
+
+- (void)clearText:(UIButton *)sender
+{
+    self.text = nil;
+    self.rightViewMode = UITextFieldViewModeNever;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    self.rightViewMode = text.length > 0 ? UITextFieldViewModeAlways : UITextFieldViewModeNever;
+    
+    return TRUE;
 }
 
 @end

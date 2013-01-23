@@ -26,34 +26,41 @@
 
 - (void)setup
 {
-    UIImageView *iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search-text-field-magnifier.png"]];
-    iconImageView.frame = CGRectMake(0, 0, iconImageView.frame.size.width + 10, iconImageView.frame.size.height);
-    iconImageView.contentMode = UIViewContentModeRight;
-    self.leftView = iconImageView;
     self.leftViewMode = UITextFieldViewModeAlways;
-
+    self.rightViewMode = UITextFieldViewModeAlways;
+    self.clearButtonMode = UITextFieldViewModeNever;
     self.borderStyle = UITextBorderStyleNone;
-    self.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.portraitHeightEnabled = TRUE;
-    
-    CGRect frame = self.frame;
-    frame.size.height = 30;
-    self.frame = frame;
 }
 
 - (void)setPortraitHeightEnabled:(BOOL)portraitHeightEnabled
 {
-    UIImage *backgroundImage;
+    UIImage *backgroundImage, *iconImage, *clearImage;
     CGRect frame = self.frame;
     if (portraitHeightEnabled) {
         frame.size.height = 30;
         backgroundImage = [[UIImage imageNamed:@"search-text-field-portrait.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 15, 15, 15)];
+        iconImage = [UIImage imageNamed:@"search-text-field-magnifier-portrait.png"];
+        clearImage = [UIImage imageNamed:@"search-text-field-clear-button-portrait.png"];
     } else {
         frame.size.height = 24;
         backgroundImage = [[UIImage imageNamed:@"search-text-field-landscape.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
+        iconImage = [UIImage imageNamed:@"search-text-field-magnifier-landscape.png"];
+        clearImage = [UIImage imageNamed:@"search-text-field-clear-button-landscape.png"];
     }
+    
     self.frame = frame;
     self.background = backgroundImage;
+    
+    UIImageView *iconImageView = [[UIImageView alloc] initWithImage:iconImage];
+    iconImageView.frame = CGRectMake(0, 0, iconImageView.frame.size.width + 10, iconImageView.frame.size.height);
+    iconImageView.contentMode = UIViewContentModeRight;
+    self.leftView = iconImageView;
+
+    UIImageView *clearImageView = [[UIImageView alloc] initWithImage:clearImage];
+    clearImageView.frame = CGRectMake(0, 0, clearImageView.frame.size.width + 6, clearImageView.frame.size.height);
+    clearImageView.contentMode = UIViewContentModeLeft;
+    self.rightView = clearImageView;
 }
 
 - (CGRect)textRectForBounds:(CGRect)bounds
@@ -65,6 +72,7 @@
 {
     CGRect editingRect = [super editingRectForBounds:bounds];
     editingRect.origin.x += 5;
+    editingRect.origin.y -= 1;
     editingRect.size.width -= 5;
     return editingRect;
 }

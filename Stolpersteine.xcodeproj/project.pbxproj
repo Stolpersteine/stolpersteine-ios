@@ -30,6 +30,11 @@
 		4811D52F16A73CB400C8B58D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4811D52E16A73CB400C8B58D /* DetailViewController.m */; };
 		4811D53616A7479800C8B58D /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4811D53516A7479800C8B58D /* SearchDisplayController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		484C8EE5169B609F001CEA59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484C8EE4169B609F001CEA59 /* CoreLocation.framework */; };
+		4871C43516B0893000C23C9A /* search-text-field-magnifier-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4871C43316B0893000C23C9A /* search-text-field-magnifier-landscape@2x.png */; };
+		4871C43616B0893000C23C9A /* search-text-field-magnifier-portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4871C43416B0893000C23C9A /* search-text-field-magnifier-portrait@2x.png */; };
+		4871C43A16B08E0400C23C9A /* search-text-field-search-text-field-clear-button-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4871C43816B08E0400C23C9A /* search-text-field-search-text-field-clear-button-landscape@2x.png */; };
+		4871C43D16B08F9F00C23C9A /* search-text-field-clear-button-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4871C43B16B08F9F00C23C9A /* search-text-field-clear-button-landscape@2x.png */; };
+		4871C43E16B08F9F00C23C9A /* search-text-field-clear-button-portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4871C43C16B08F9F00C23C9A /* search-text-field-clear-button-portrait@2x.png */; };
 		4872543416AB4D7D00BE6100 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4872543316AB4D7D00BE6100 /* NavigationController.m */; };
 		6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		6222BF2516A037CE006ED538 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
@@ -56,8 +61,6 @@
 		6276353B16AFDB5900465F7E /* search-text-field-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6276353516AFDB5900465F7E /* search-text-field-landscape.png */; };
 		6276353C16AFDB5900465F7E /* search-text-field-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6276353616AFDB5900465F7E /* search-text-field-landscape@2x.png */; };
 		6276353D16AFDB5900465F7E /* search-text-field-portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6276353716AFDB5900465F7E /* search-text-field-portrait@2x.png */; };
-		6276353E16AFDB5900465F7E /* search-text-field-magnifier.png in Resources */ = {isa = PBXBuildFile; fileRef = 6276353816AFDB5900465F7E /* search-text-field-magnifier.png */; };
-		6276353F16AFDB5900465F7E /* search-text-field-magnifier@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6276353916AFDB5900465F7E /* search-text-field-magnifier@2x.png */; };
 		627E43B7169B0F050065C1F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
 		627E43B9169B0F050065C1F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B8169B0F050065C1F1 /* Foundation.framework */; };
 		627E43BB169B0F050065C1F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43BA169B0F050065C1F1 /* CoreGraphics.framework */; };
@@ -97,6 +100,11 @@
 		4811D53416A7479800C8B58D /* SearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayController.h; sourceTree = "<group>"; };
 		4811D53516A7479800C8B58D /* SearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDisplayController.m; sourceTree = "<group>"; };
 		484C8EE4169B609F001CEA59 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4871C43316B0893000C23C9A /* search-text-field-magnifier-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field-magnifier-landscape@2x.png"; sourceTree = "<group>"; };
+		4871C43416B0893000C23C9A /* search-text-field-magnifier-portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field-magnifier-portrait@2x.png"; sourceTree = "<group>"; };
+		4871C43816B08E0400C23C9A /* search-text-field-search-text-field-clear-button-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field-search-text-field-clear-button-landscape@2x.png"; sourceTree = "<group>"; };
+		4871C43B16B08F9F00C23C9A /* search-text-field-clear-button-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field-clear-button-landscape@2x.png"; sourceTree = "<group>"; };
+		4871C43C16B08F9F00C23C9A /* search-text-field-clear-button-portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field-clear-button-portrait@2x.png"; sourceTree = "<group>"; };
 		4872543216AB4D7D00BE6100 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		4872543316AB4D7D00BE6100 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
@@ -112,8 +120,6 @@
 		6276353516AFDB5900465F7E /* search-text-field-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field-landscape.png"; sourceTree = "<group>"; };
 		6276353616AFDB5900465F7E /* search-text-field-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field-landscape@2x.png"; sourceTree = "<group>"; };
 		6276353716AFDB5900465F7E /* search-text-field-portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field-portrait@2x.png"; sourceTree = "<group>"; };
-		6276353816AFDB5900465F7E /* search-text-field-magnifier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field-magnifier.png"; sourceTree = "<group>"; };
-		6276353916AFDB5900465F7E /* search-text-field-magnifier@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field-magnifier@2x.png"; sourceTree = "<group>"; };
 		627E43B2169B0F050065C1F1 /* Stolpersteine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stolpersteine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		627E43B6169B0F050065C1F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		627E43B8169B0F050065C1F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -259,12 +265,15 @@
 		626BBF0E16AEB15600DEC6EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4871C43B16B08F9F00C23C9A /* search-text-field-clear-button-landscape@2x.png */,
+				4871C43C16B08F9F00C23C9A /* search-text-field-clear-button-portrait@2x.png */,
+				4871C43816B08E0400C23C9A /* search-text-field-search-text-field-clear-button-landscape@2x.png */,
+				4871C43316B0893000C23C9A /* search-text-field-magnifier-landscape@2x.png */,
+				4871C43416B0893000C23C9A /* search-text-field-magnifier-portrait@2x.png */,
 				6276353416AFDB5900465F7E /* search-text-field-portrait.png */,
 				6276353516AFDB5900465F7E /* search-text-field-landscape.png */,
 				6276353616AFDB5900465F7E /* search-text-field-landscape@2x.png */,
 				6276353716AFDB5900465F7E /* search-text-field-portrait@2x.png */,
-				6276353816AFDB5900465F7E /* search-text-field-magnifier.png */,
-				6276353916AFDB5900465F7E /* search-text-field-magnifier@2x.png */,
 			);
 			name = Resources;
 			path = Stolpersteine/Resources;
@@ -505,8 +514,11 @@
 				6276353B16AFDB5900465F7E /* search-text-field-landscape.png in Resources */,
 				6276353C16AFDB5900465F7E /* search-text-field-landscape@2x.png in Resources */,
 				6276353D16AFDB5900465F7E /* search-text-field-portrait@2x.png in Resources */,
-				6276353E16AFDB5900465F7E /* search-text-field-magnifier.png in Resources */,
-				6276353F16AFDB5900465F7E /* search-text-field-magnifier@2x.png in Resources */,
+				4871C43516B0893000C23C9A /* search-text-field-magnifier-landscape@2x.png in Resources */,
+				4871C43616B0893000C23C9A /* search-text-field-magnifier-portrait@2x.png in Resources */,
+				4871C43A16B08E0400C23C9A /* search-text-field-search-text-field-clear-button-landscape@2x.png in Resources */,
+				4871C43D16B08F9F00C23C9A /* search-text-field-clear-button-landscape@2x.png in Resources */,
+				4871C43E16B08F9F00C23C9A /* search-text-field-clear-button-portrait@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

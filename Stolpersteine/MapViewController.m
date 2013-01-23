@@ -59,7 +59,7 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    self.searchTextField.portraitHeightEnabled = UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
+    self.searchTextField.portraitModeEnabled = UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated

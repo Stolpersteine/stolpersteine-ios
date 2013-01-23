@@ -30,17 +30,17 @@
     self.rightViewMode = UITextFieldViewModeNever;
     self.clearButtonMode = UITextFieldViewModeNever;
     self.borderStyle = UITextBorderStyleNone;
-    self.portraitHeightEnabled = TRUE;
+    self.portraitModeEnabled = TRUE;
     self.delegate = self;
 }
 
-- (void)setPortraitHeightEnabled:(BOOL)portraitHeightEnabled
+- (void)setPortraitModeEnabled:(BOOL)portraitModeEnabled
 {
-    _portraitHeightEnabled = portraitHeightEnabled;
+    _portraitModeEnabled = portraitModeEnabled;
     
     UIImage *backgroundImage, *iconImage, *clearImage;
     CGRect frame = self.frame;
-    if (portraitHeightEnabled) {
+    if (portraitModeEnabled) {
         frame.size.height = 30;
         backgroundImage = [[UIImage imageNamed:@"search-text-field-portrait.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 15, 15, 15)];
         iconImage = [UIImage imageNamed:@"search-text-field-magnifier-portrait.png"];

@@ -10,6 +10,6 @@
 
 @interface SearchTextField : UITextField<UITextFieldDelegate>
 
-@property (nonatomic, assign) BOOL portraitHeightEnabled;
+@property (nonatomic, assign, getter = isPortraitModeEnabled) BOOL portraitModeEnabled;
 
 @end

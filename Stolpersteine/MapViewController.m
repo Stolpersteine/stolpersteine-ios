@@ -15,8 +15,6 @@
 #import "SearchTextField.h"
 #import "SearchDisplayController.h"
 
-#import <MapKit/MapKit.h>
-
 @interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UISearchBarDelegate, SearchDisplayControllerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;

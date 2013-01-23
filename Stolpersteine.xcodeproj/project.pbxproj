@@ -56,6 +56,10 @@
 		626BBF1616AEB19500DEC6EA /* SearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 626BBF1516AEB19500DEC6EA /* SearchTextField.m */; };
 		626BBF2116AEBC9200DEC6EA /* search-text-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 626BBF1F16AEBC9200DEC6EA /* search-text-field.png */; };
 		626BBF2216AEBC9200DEC6EA /* search-text-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 626BBF2016AEBC9200DEC6EA /* search-text-field@2x.png */; };
+		6276352A16AFD1E000465F7E /* search-bar-portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 6276352616AFD1E000465F7E /* search-bar-portrait.png */; };
+		6276352B16AFD1E000465F7E /* search-bar-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6276352716AFD1E000465F7E /* search-bar-landscape.png */; };
+		6276352C16AFD1E000465F7E /* search-bar-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6276352816AFD1E000465F7E /* search-bar-landscape@2x.png */; };
+		6276352D16AFD1E000465F7E /* search-bar-portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6276352916AFD1E000465F7E /* search-bar-portrait@2x.png */; };
 		627E43B7169B0F050065C1F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
 		627E43B9169B0F050065C1F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B8169B0F050065C1F1 /* Foundation.framework */; };
 		627E43BB169B0F050065C1F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43BA169B0F050065C1F1 /* CoreGraphics.framework */; };
@@ -110,6 +114,10 @@
 		626BBF1516AEB19500DEC6EA /* SearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTextField.m; sourceTree = "<group>"; };
 		626BBF1F16AEBC9200DEC6EA /* search-text-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field.png"; sourceTree = "<group>"; };
 		626BBF2016AEBC9200DEC6EA /* search-text-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field@2x.png"; sourceTree = "<group>"; };
+		6276352616AFD1E000465F7E /* search-bar-portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-bar-portrait.png"; sourceTree = "<group>"; };
+		6276352716AFD1E000465F7E /* search-bar-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-bar-landscape.png"; sourceTree = "<group>"; };
+		6276352816AFD1E000465F7E /* search-bar-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-bar-landscape@2x.png"; sourceTree = "<group>"; };
+		6276352916AFD1E000465F7E /* search-bar-portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-bar-portrait@2x.png"; sourceTree = "<group>"; };
 		627E43B2169B0F050065C1F1 /* Stolpersteine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stolpersteine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		627E43B6169B0F050065C1F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		627E43B8169B0F050065C1F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -259,6 +267,10 @@
 				626BBF2016AEBC9200DEC6EA /* search-text-field@2x.png */,
 				626BBF0F16AEB15600DEC6EA /* magnifier.png */,
 				626BBF1016AEB15600DEC6EA /* magnifier@2x.png */,
+				6276352616AFD1E000465F7E /* search-bar-portrait.png */,
+				6276352716AFD1E000465F7E /* search-bar-landscape.png */,
+				6276352816AFD1E000465F7E /* search-bar-landscape@2x.png */,
+				6276352916AFD1E000465F7E /* search-bar-portrait@2x.png */,
 			);
 			name = Resources;
 			path = Stolpersteine/Resources;
@@ -499,6 +511,10 @@
 				626BBF1216AEB15600DEC6EA /* magnifier@2x.png in Resources */,
 				626BBF2116AEBC9200DEC6EA /* search-text-field.png in Resources */,
 				626BBF2216AEBC9200DEC6EA /* search-text-field@2x.png in Resources */,
+				6276352A16AFD1E000465F7E /* search-bar-portrait.png in Resources */,
+				6276352B16AFD1E000465F7E /* search-bar-landscape.png in Resources */,
+				6276352C16AFD1E000465F7E /* search-bar-landscape@2x.png in Resources */,
+				6276352D16AFD1E000465F7E /* search-bar-portrait@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

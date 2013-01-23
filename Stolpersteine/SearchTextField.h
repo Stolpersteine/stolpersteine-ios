@@ -10,4 +10,6 @@
 
 @interface SearchTextField : UITextField
 
+@property (nonatomic, assign) BOOL portraitHeightEnabled;
+
 @end

@@ -61,13 +61,7 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-	CGRect frame = self.searchTextField.frame;
-    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-//        frame.size.height = 25;
-    } else {
-//        frame.size.height = 30;
-    }
-    self.searchTextField.frame = frame;
+    self.searchTextField.portraitHeightEnabled = UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated

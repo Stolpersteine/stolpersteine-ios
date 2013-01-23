@@ -27,7 +27,7 @@
                     <navigationItem key="navigationItem" id="wB8-Ca-YR2">
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" id="VHj-dn-zwY">
-                            <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Xn6-zm-gyj" customClass="SearchTextField">
+                            <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" minimumFontSize="17" id="Xn6-zm-gyj" customClass="SearchTextField">
                                 <rect key="frame" x="5" y="7" width="248" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

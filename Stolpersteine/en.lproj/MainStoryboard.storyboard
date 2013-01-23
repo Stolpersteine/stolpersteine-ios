@@ -84,7 +84,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="236"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="gray" id="wrI-We-3Np">
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" id="wrI-We-3Np">
                                         <rect key="frame" x="130" y="108" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
@@ -110,6 +110,7 @@
                     </scrollView>
                     <navigationItem key="navigationItem" id="kTu-o1-owI"/>
                     <connections>
+                        <outlet property="imageActivityIndicator" destination="wrI-We-3Np" id="37j-Zp-W0Y"/>
                         <outlet property="imageView" destination="S6J-eu-TBE" id="d8J-9s-pDo"/>
                         <outlet property="scrollView" destination="lxM-gj-iBt" id="GMS-el-bx7"/>
                     </connections>

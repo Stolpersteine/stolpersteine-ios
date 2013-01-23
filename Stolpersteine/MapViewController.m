@@ -21,7 +21,7 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
-@property (nonatomic, strong) SearchDisplayController *sdc;
+@property (nonatomic, strong) SearchDisplayController *customSearchDisplayController;
 
 @end
 
@@ -32,10 +32,10 @@
     [super viewDidLoad];
     
     // Make UISearchBar transparent
-    self.searchDisplayController.searchBar.backgroundImage = [UIImage new];
-    self.searchDisplayController.searchBar.translucent = YES;
-    self.sdc = [[SearchDisplayController alloc] initWithSearchBar:nil contentsController:self];
-    self.sdc.delegate = self;
+    self.customSearchDisplayController.searchBar.backgroundImage = [UIImage new];
+    self.customSearchDisplayController.searchBar.translucent = YES;
+    self.customSearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:nil contentsController:self];
+    self.customSearchDisplayController.delegate = self;
     
     // Set map location to Berlin
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);
@@ -148,7 +148,7 @@
 
 - (IBAction)showSearchDisplayController:(UITextField *)sender
 {
-    [self.sdc setActive:TRUE animated:TRUE];
+    [self.customSearchDisplayController setActive:TRUE animated:TRUE];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

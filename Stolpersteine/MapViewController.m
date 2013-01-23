@@ -17,7 +17,7 @@
 
 #import <MapKit/MapKit.h>
 
-@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, SearchDisplayControllerDelegate, CLLocationManagerDelegate>
+@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UISearchBarDelegate, SearchDisplayControllerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -54,8 +54,8 @@
 
     [self setMapView:nil];
     [self setCenterMapBarButtonItem:nil];
-    
     [self setSearchTextField:nil];
+    
     [super viewDidUnload];
 }
 
@@ -122,31 +122,6 @@
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return nil;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 0;
-}
-
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
-{
-    [self.navigationItem setRightBarButtonItem:nil animated:TRUE];
-}
-
-- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
-{
-    [self.navigationItem setRightBarButtonItem:self.centerMapBarButtonItem animated:TRUE];
-}
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    NSLog(@"search");
-}
-
 - (IBAction)centerMap:(UIButton *)sender
 {
     if (!self.isUserLocationMode && self.userLocation.location) {
@@ -173,7 +148,7 @@
     }
 }
 
-- (IBAction)startSearch:(UITextField *)sender
+- (IBAction)showSearchDisplayController:(UITextField *)sender
 {
     [self.sdc setActive:TRUE animated:TRUE];
 }

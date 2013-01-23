@@ -18,6 +18,6 @@
 @property (weak, nonatomic) IBOutlet SearchTextField *searchTextField;
 
 - (IBAction)centerMap:(UIButton *)sender;
-- (IBAction)startSearch:(UITextField *)sender;
+- (IBAction)showSearchDisplayController:(UITextField *)sender;
 
 @end

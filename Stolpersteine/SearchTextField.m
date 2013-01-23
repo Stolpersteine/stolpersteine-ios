@@ -26,7 +26,7 @@
 
 - (void)setup
 {
-    UIImageView *iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"magnifier.png"]];
+    UIImageView *iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search-text-field-magnifier.png"]];
     iconImageView.frame = CGRectMake(0, 0, iconImageView.frame.size.width + 10, iconImageView.frame.size.height);
     iconImageView.contentMode = UIViewContentModeRight;
     self.leftView = iconImageView;
@@ -47,10 +47,10 @@
     CGRect frame = self.frame;
     if (portraitHeightEnabled) {
         frame.size.height = 30;
-        backgroundImage = [[UIImage imageNamed:@"search-bar-portrait.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 15, 15, 15)];
+        backgroundImage = [[UIImage imageNamed:@"search-text-field-portrait.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 15, 15, 15)];
     } else {
         frame.size.height = 24;
-        backgroundImage = [[UIImage imageNamed:@"search-bar-landscape.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
+        backgroundImage = [[UIImage imageNamed:@"search-text-field-landscape.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
     }
     self.frame = frame;
     self.background = backgroundImage;

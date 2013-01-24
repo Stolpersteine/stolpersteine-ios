@@ -34,6 +34,7 @@
     self.rightViewMode = UITextFieldViewModeNever;
     self.clearButtonMode = UITextFieldViewModeNever;
     self.borderStyle = UITextBorderStyleNone;
+    self.accessibilityTraits = UIAccessibilityTraitSearchField;
     self.delegate = self;
     self.portraitModeEnabled = TRUE;
 }
@@ -66,8 +67,10 @@
     UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [clearButton setImage:clearImage forState:UIControlStateNormal];
     clearButton.frame = CGRectMake(0, 0, clearImage.size.width, clearImage.size.height);
+    clearButton.accessibilityLabel = @"Clear text";
     [clearButton addTarget:self action:@selector(clearText:) forControlEvents:UIControlEventTouchUpInside];
     self.rightView = clearButton;
+    [self bringSubviewToFront:self.rightView];  // needed for VoiceOver to find that button
 }
 
 - (CGRect)textRectForBounds:(CGRect)bounds

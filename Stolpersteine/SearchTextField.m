@@ -56,14 +56,12 @@
     self.background = backgroundImage;
     
     UIImageView *iconImageView = [[UIImageView alloc] initWithImage:iconImage];
-    iconImageView.frame = CGRectMake(0, 0, iconImageView.frame.size.width + 10, iconImageView.frame.size.height);
-    iconImageView.contentMode = UIViewContentModeRight;
+    iconImageView.frame = CGRectMake(0, 0, iconImageView.frame.size.width, iconImageView.frame.size.height);
     self.leftView = iconImageView;
 
     UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [clearButton setImage:clearImage forState:UIControlStateNormal];
-    clearButton.frame = CGRectMake(0, 0, clearImage.size.width + 10, clearImage.size.height);
-    clearButton.contentMode = UIViewContentModeLeft;
+    clearButton.frame = CGRectMake(0, 0, clearImage.size.width, clearImage.size.height);
     [clearButton addTarget:self action:@selector(clearText:) forControlEvents:UIControlEventTouchUpInside];
     self.rightView = clearButton;
 }
@@ -79,6 +77,20 @@
     editingRect.origin.x += 5;
     editingRect.size.width -= 5;
     return editingRect;
+}
+
+- (CGRect)rightViewRectForBounds:(CGRect)bounds
+{
+    CGRect rightViewRect = [super rightViewRectForBounds:bounds];
+    rightViewRect.origin.x -= 5;
+    return rightViewRect;
+}
+
+- (CGRect)leftViewRectForBounds:(CGRect)bounds
+{
+    CGRect leftViewRect = [super leftViewRectForBounds:bounds];
+    leftViewRect.origin.x += 10;
+    return leftViewRect;
 }
 
 - (void)clearText:(UIButton *)sender

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchTextField : UITextField<UITextFieldDelegate>
+@interface SearchTextField : UITextField
 
 @property (nonatomic, assign, getter = isPortraitModeEnabled) BOOL portraitModeEnabled;
 

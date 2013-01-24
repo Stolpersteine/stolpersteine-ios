@@ -8,6 +8,10 @@
 
 #import "SearchTextField.h"
 
+@interface SearchTextField() <UITextFieldDelegate>
+
+@end
+
 @implementation SearchTextField
 
 - (id)initWithFrame:(CGRect)frame
@@ -30,8 +34,8 @@
     self.rightViewMode = UITextFieldViewModeNever;
     self.clearButtonMode = UITextFieldViewModeNever;
     self.borderStyle = UITextBorderStyleNone;
-    self.portraitModeEnabled = TRUE;
     self.delegate = self;
+    self.portraitModeEnabled = TRUE;
 }
 
 - (void)setPortraitModeEnabled:(BOOL)portraitModeEnabled

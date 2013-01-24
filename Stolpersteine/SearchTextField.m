@@ -82,14 +82,14 @@
 {
     CGRect editingRect = [super editingRectForBounds:bounds];
     editingRect.origin.x += 5;
-    editingRect.size.width -= 5;
+    editingRect.size.width -= 20;
     return editingRect;
 }
 
 - (CGRect)rightViewRectForBounds:(CGRect)bounds
 {
     CGRect rightViewRect = [super rightViewRectForBounds:bounds];
-    rightViewRect.origin.x -= 5;
+    rightViewRect.origin.x -= 8;
     return rightViewRect;
 }
 

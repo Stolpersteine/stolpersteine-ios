@@ -8,10 +8,6 @@
 
 #import "SearchTextField.h"
 
-@interface SearchTextField() <UITextFieldDelegate>
-
-@end
-
 @implementation SearchTextField
 
 - (id)initWithFrame:(CGRect)frame
@@ -31,11 +27,9 @@
 - (void)setup
 {
     self.leftViewMode = UITextFieldViewModeAlways;
-    self.rightViewMode = UITextFieldViewModeNever;
     self.clearButtonMode = UITextFieldViewModeNever;
     self.borderStyle = UITextBorderStyleNone;
     self.accessibilityTraits = UIAccessibilityTraitSearchField;
-    self.delegate = self;
     self.portraitModeEnabled = TRUE;
 }
 
@@ -102,16 +96,14 @@
 
 - (void)clearText:(UIButton *)sender
 {
-    self.text = nil;
-    self.rightViewMode = UITextFieldViewModeNever;
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    self.rightViewMode = text.length > 0 ? UITextFieldViewModeAlways : UITextFieldViewModeNever;
+    BOOL shouldClear = YES;
+    if ([self.delegate respondsToSelector:@selector(textFieldShouldClear:)]) {
+        shouldClear = [self.delegate textFieldShouldClear:self];
+    }
     
-    return TRUE;
+    if (shouldClear) {
+        self.text = nil;
+    }
 }
 
 @end

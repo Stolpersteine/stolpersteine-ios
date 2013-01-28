@@ -12,11 +12,11 @@
 #import "StolpersteineNetworkService.h"
 #import "Stolperstein.h"
 #import "DetailViewController.h"
-#import "SearchBarView.h"
-#import "SearchBarViewDelegate.h"
+#import "SearchBar.h"
+#import "SearchBarDelegate.h"
 #import "SearchDisplayController.h"
 
-@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, SearchBarViewDelegate, SearchDisplayControllerDelegate>
+@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, SearchBarDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -32,8 +32,8 @@
 {
     [super viewDidLoad];
     
-    self.customSearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:nil contentsController:self];
-    self.customSearchDisplayController.delegate = self;
+    self.customSearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBarView contentsController:self];
+//    self.customSearchDisplayController.delegate = self;
     self.searchBarView.delegate = self;
     
     // Set map location to Berlin
@@ -150,7 +150,12 @@
     [self.customSearchDisplayController setActive:TRUE animated:TRUE];
 }
 
-- (void)searchBarView:(SearchBarView *)searchBarView textDidChange:(NSString *)searchText
+- (void)searchBarTextDidBeginEditing:(SearchBar *)searchBar
+{
+    [self.customSearchDisplayController setActive:TRUE animated:TRUE];
+}
+
+- (void)searchBarView:(SearchBar *)searchBarView textDidChange:(NSString *)searchText
 {
     NSLog(@"search: %@", searchText);
 }

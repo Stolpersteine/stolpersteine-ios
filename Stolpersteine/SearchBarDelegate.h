@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol SearchBarViewDelegate <NSObject>
+@protocol SearchBarDelegate <NSObject>
 
 @optional
-- (void)searchBarView:(SearchBarView *)searchBarView textDidChange:(NSString *)searchText;
+- (void)searchBarTextDidBeginEditing:(SearchBar *)searchBar;
+- (void)searchBar:(SearchBar *)searchBar textDidChange:(NSString *)searchText;
 
 @end

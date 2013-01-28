@@ -26,7 +26,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="wB8-Ca-YR2">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="AgH-MU-KZc" customClass="SearchBarView">
+                        <view key="titleView" contentMode="scaleToFill" id="AgH-MU-KZc" customClass="SearchBar">
                             <rect key="frame" x="5" y="7" width="248" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

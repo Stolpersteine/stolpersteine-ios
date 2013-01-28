@@ -6,18 +6,18 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "SearchBarView.h"
+#import "SearchBar.h"
 
 #import "SearchTextField.h"
-#import "SearchBarViewDelegate.h"
+#import "SearchBarDelegate.h"
 
-@interface SearchBarView() <UITextFieldDelegate>
+@interface SearchBar() <UITextFieldDelegate>
 
 @property (nonatomic, strong) SearchTextField *searchTextField;
 
 @end
 
-@implementation SearchBarView
+@implementation SearchBar
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -44,6 +44,7 @@
     self.searchTextField.rightViewMode = UITextFieldViewModeNever;
     [self addSubview:self.searchTextField];
     
+    [self.searchTextField addTarget:self action:@selector(editingDidBegin:) forControlEvents:UIControlEventEditingDidBegin];
     [self.searchTextField addTarget:self action:@selector(editingChanged:) forControlEvents:UIControlEventEditingChanged];
 }
 
@@ -71,10 +72,17 @@
     return TRUE;
 }
 
+- (void)editingDidBegin:(UITextField *)textField
+{
+    if ([self.delegate respondsToSelector:@selector(searchBarTextDidBeginEditing:)]) {
+        [self.delegate searchBarTextDidBeginEditing:self];
+    }
+}
+
 - (void)editingChanged:(UITextField *)textField
 {
     if ([self.delegate respondsToSelector:@selector(searchBarView:textDidChange:)]) {
-        [self.delegate searchBarView:self textDidChange:textField.text];
+        [self.delegate searchBar:self textDidChange:textField.text];
     }
 }
 

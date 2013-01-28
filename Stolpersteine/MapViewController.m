@@ -13,10 +13,10 @@
 #import "Stolperstein.h"
 #import "DetailViewController.h"
 #import "SearchBar.h"
-#import "SearchBarDelegate.h"
 #import "SearchDisplayController.h"
+#import "SearchDisplayDelegate.h"
 
-@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, SearchBarDelegate>
+@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, SearchDisplayDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -32,9 +32,8 @@
 {
     [super viewDidLoad];
     
-    self.customSearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBarView contentsController:self];
-//    self.customSearchDisplayController.delegate = self;
-    self.searchBarView.delegate = self;
+    self.customSearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+    self.customSearchDisplayController.delegate = self;
     UIBarButtonItem *barButtonItem = self.navigationItem.rightBarButtonItem;
     barButtonItem.possibleTitles = [NSSet setWithArray:@[@"Cancel", @"Home"]];
     self.navigationItem.rightBarButtonItem = nil;   // forces possible titles to take effect
@@ -55,14 +54,14 @@
 
     [self setMapView:nil];
     [self setCenterMapBarButtonItem:nil];
+    [self setSearchBar:nil];
     
-    [self setSearchBarView:nil];
     [super viewDidUnload];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    self.searchBarView.portraitModeEnabled = UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
+    self.searchBar.portraitModeEnabled = UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
@@ -149,14 +148,11 @@
     }
 }
 
-- (void)searchBarTextDidBeginEditing:(SearchBar *)searchBar
+- (BOOL)searchDisplayController:(SearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    [self.customSearchDisplayController setActive:TRUE animated:TRUE];
-}
-
-- (void)searchBar:(SearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    NSLog(@"search: %@", searchText);
+    NSLog(@"search: %@", searchString);
+    
+    return TRUE;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@class SearchBar;
+#import "SearchBarDelegate.h"
 
-@interface SearchDisplayController : NSObject
+@class SearchBar;
+@protocol SearchDisplayDelegate;
+
+@interface SearchDisplayController : NSObject<SearchBarDelegate>
 
 @property (nonatomic, assign, getter = isActive) BOOL active;
+@property (nonatomic, weak) NSObject<SearchDisplayDelegate> *delegate;
 
 - (id)initWithSearchBar:(SearchBar *)searchBar contentsController:(UIViewController *)viewController;
 - (void)setActive:(BOOL)active animated:(BOOL)animated;

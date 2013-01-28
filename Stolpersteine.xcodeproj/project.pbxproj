@@ -107,6 +107,7 @@
 		484C8EE4169B609F001CEA59 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4872543216AB4D7D00BE6100 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		4872543316AB4D7D00BE6100 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
+		48B0397A16B72C080062DEB3 /* SearchDisplayDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayDelegate.h; sourceTree = "<group>"; };
 		48F75A8B16B1DF1200D7B060 /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
 		48F75A8C16B1DF1200D7B060 /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
@@ -347,6 +348,7 @@
 				626BBF1516AEB19500DEC6EA /* SearchTextField.m */,
 				62F6D1FC16B6EA94003A196A /* SearchDisplayController.h */,
 				62F6D1FD16B6EA94003A196A /* SearchDisplayController.m */,
+				48B0397A16B72C080062DEB3 /* SearchDisplayDelegate.h */,
 				4811D53416A7479800C8B58D /* SearchDisplayController2.h */,
 				4811D53516A7479800C8B58D /* SearchDisplayController2.m */,
 				4872543216AB4D7D00BE6100 /* NavigationController.h */,

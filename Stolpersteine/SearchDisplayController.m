@@ -9,6 +9,7 @@
 #import "SearchDisplayController.h"
 
 #import "SearchBar.h"
+#import "SearchDisplayDelegate.h"
 
 @interface SearchDisplayController()
 
@@ -46,6 +47,7 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
     self = [super init];
     if (self) {
         self.searchBar = searchBar;
+        self.searchBar.delegate = self;
         self.viewController = viewController;
         
         CGRect frame = CGRectMake(0, 0, self.viewController.view.frame.size.width, self.viewController.view.frame.size.height);
@@ -124,6 +126,19 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
 {
     [self.searchBar resignFirstResponder];
     [self setActive:FALSE animated:TRUE];
+}
+
+- (void)searchBarTextDidBeginEditing:(SearchBar *)searchBar
+{
+    [self setActive:TRUE animated:TRUE];
+}
+
+- (void)searchBar:(SearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    BOOL shouldReloadData = TRUE;
+    if ([self.delegate respondsToSelector:@selector(searchDisplayController:shouldReloadTableForSearchString:)]) {
+        shouldReloadData = [self.delegate searchDisplayController:self shouldReloadTableForSearchString:searchText];
+    }
 }
 
 @end

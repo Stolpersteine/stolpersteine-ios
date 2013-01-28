@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class SearchBar;
+
 @protocol SearchBarDelegate <NSObject>
 
 @optional

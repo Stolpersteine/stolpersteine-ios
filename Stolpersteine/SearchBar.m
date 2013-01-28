@@ -86,4 +86,10 @@
     }
 }
 
+- (BOOL)resignFirstResponder
+{
+    [super resignFirstResponder];
+    return [self.searchTextField resignFirstResponder];
+}
+
 @end

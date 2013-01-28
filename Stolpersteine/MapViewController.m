@@ -35,6 +35,10 @@
     self.customSearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBarView contentsController:self];
 //    self.customSearchDisplayController.delegate = self;
     self.searchBarView.delegate = self;
+    UIBarButtonItem *barButtonItem = self.navigationItem.rightBarButtonItem;
+    barButtonItem.possibleTitles = [NSSet setWithArray:@[@"Cancel", @"Home"]];
+    self.navigationItem.rightBarButtonItem = nil;   // forces possible titles to take effect
+    self.navigationItem.rightBarButtonItem = barButtonItem;
     
     // Set map location to Berlin
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);

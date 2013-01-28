@@ -10,4 +10,6 @@
 
 @interface SearchBarView : UIView
 
+@property (nonatomic, assign, getter = isPortraitModeEnabled) BOOL portraitModeEnabled;
+
 @end

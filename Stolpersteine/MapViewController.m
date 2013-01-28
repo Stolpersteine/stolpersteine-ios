@@ -12,7 +12,7 @@
 #import "StolpersteineNetworkService.h"
 #import "Stolperstein.h"
 #import "DetailViewController.h"
-#import "SearchTextField.h"
+#import "SearchBarView.h"
 #import "SearchDisplayController.h"
 
 @interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UISearchBarDelegate, SearchDisplayControllerDelegate>
@@ -52,14 +52,14 @@
 
     [self setMapView:nil];
     [self setCenterMapBarButtonItem:nil];
-    [self setSearchTextField:nil];
     
+    [self setSearchBarView:nil];
     [super viewDidUnload];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    self.searchTextField.portraitModeEnabled = UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
+    self.searchBarView.portraitModeEnabled = UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated

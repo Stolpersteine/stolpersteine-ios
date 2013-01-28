@@ -10,7 +10,7 @@
 
 #import "SearchTextField.h"
 
-@interface SearchBarView()<UITextFieldDelegate>
+@interface SearchBarView() <UITextFieldDelegate>
 
 @property (nonatomic, strong) SearchTextField *searchTextField;
 
@@ -44,10 +44,14 @@
     [self addSubview:self.searchTextField];
 }
 
-- (void)layoutSubviews
+- (void)setPortraitModeEnabled:(BOOL)portraitModeEnabled
 {
-    [super layoutSubviews];
-    NSLog(@"%@", NSStringFromCGRect(self.frame));
+    self.searchTextField.portraitModeEnabled = portraitModeEnabled;
+}
+
+- (BOOL)isPortraitModeEnabled
+{
+    return self.searchTextField.isPortraitModeEnabled;
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField

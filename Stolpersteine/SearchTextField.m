@@ -51,6 +51,7 @@
         clearImage = [UIImage imageNamed:@"search-text-field-clear-button-landscape.png"];
     }
     
+    frame.origin.y = roundf((self.frame.size.height - frame.size.height) * 0.5);
     self.frame = frame;
     self.background = backgroundImage;
     
@@ -76,6 +77,7 @@
 {
     CGRect editingRect = [super editingRectForBounds:bounds];
     editingRect.origin.x += 5;
+    editingRect.origin.y += self.isPortraitModeEnabled ? 4 : 0;
     editingRect.size.width -= 20;
     return editingRect;
 }
@@ -83,6 +85,7 @@
 - (CGRect)rightViewRectForBounds:(CGRect)bounds
 {
     CGRect rightViewRect = [super rightViewRectForBounds:bounds];
+    rightViewRect.origin.y -= 1;
     rightViewRect.origin.x -= 8;
     return rightViewRect;
 }

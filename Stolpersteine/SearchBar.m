@@ -81,7 +81,7 @@
 
 - (void)editingChanged:(UITextField *)textField
 {
-    if ([self.delegate respondsToSelector:@selector(searchBarView:textDidChange:)]) {
+    if ([self.delegate respondsToSelector:@selector(searchBar:textDidChange:)]) {
         [self.delegate searchBar:self textDidChange:textField.text];
     }
 }

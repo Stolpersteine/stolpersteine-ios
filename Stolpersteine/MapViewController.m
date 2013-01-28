@@ -145,17 +145,12 @@
     }
 }
 
-- (IBAction)showSearchDisplayController:(UITextField *)sender
-{
-    [self.customSearchDisplayController setActive:TRUE animated:TRUE];
-}
-
 - (void)searchBarTextDidBeginEditing:(SearchBar *)searchBar
 {
     [self.customSearchDisplayController setActive:TRUE animated:TRUE];
 }
 
-- (void)searchBarView:(SearchBar *)searchBarView textDidChange:(NSString *)searchText
+- (void)searchBar:(SearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     NSLog(@"search: %@", searchText);
 }

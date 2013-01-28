@@ -17,6 +17,11 @@
 
 @property (nonatomic, assign, getter = isActive) BOOL active;
 @property (nonatomic, weak) NSObject<SearchDisplayDelegate> *delegate;
+@property (nonatomic, readonly, strong) SearchBar *searchBar;
+@property (nonatomic, readonly) UIViewController *searchContentsController;
+@property (nonatomic, weak) id<UITableViewDataSource> searchResultsDataSource;
+@property (nonatomic, weak) id<UITableViewDelegate> searchResultsDelegate;
+@property (nonatomic, readonly, strong) UITableView *searchResultsTableView;
 
 - (id)initWithSearchBar:(SearchBar *)searchBar contentsController:(UIViewController *)viewController;
 - (void)setActive:(BOOL)active animated:(BOOL)animated;

@@ -13,9 +13,9 @@
 
 @interface SearchDisplayController()
 
-@property (nonatomic, weak) UIViewController *viewController;
+@property (nonatomic, weak) UIViewController *searchContentsController;
 @property (nonatomic, strong) SearchBar *searchBar;
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableView *searchResultsTableView;
 @property (nonatomic, strong) UIBarButtonItem *barButtonItem;
 
 @end
@@ -42,20 +42,20 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
 
 @implementation SearchDisplayController
 
-- (id)initWithSearchBar:(SearchBar *)searchBar contentsController:(UIViewController *)viewController
+- (id)initWithSearchBar:(SearchBar *)searchBar contentsController:(UIViewController *)contentsController
 {
     self = [super init];
     if (self) {
         self.searchBar = searchBar;
         self.searchBar.delegate = self;
-        self.viewController = viewController;
+        self.searchContentsController = contentsController;
         
-        CGRect frame = CGRectMake(0, 0, self.viewController.view.frame.size.width, self.viewController.view.frame.size.height);
-        self.tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-        self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        self.tableView.hidden = TRUE;
-        self.tableView.alpha = 0;
-        [self.viewController.view addSubview:self.tableView];
+        CGRect frame = CGRectMake(0, 0, contentsController.view.frame.size.width, contentsController.view.frame.size.height);
+        self.searchResultsTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+        self.searchResultsTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        self.searchResultsTableView.hidden = TRUE;
+        self.searchResultsTableView.alpha = 0;
+        [contentsController.view addSubview:self.searchResultsTableView];
         
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -72,19 +72,19 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     NSValue *keyboardFrameAsValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardFrame = [self.viewController.view convertRect:keyboardFrameAsValue.CGRectValue toView:nil];
+    CGRect keyboardFrame = [self.searchContentsController.view convertRect:keyboardFrameAsValue.CGRectValue toView:nil];
     NSTimeInterval animationDuration;
     [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
     UIViewAnimationCurve animationCurve;
     [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
     UIViewAnimationOptions animationOptions = UIViewAnimationOptionsFromCurve(animationCurve);
 
-    self.tableView.hidden = FALSE;
+    self.searchResultsTableView.hidden = FALSE;
     [UIView animateWithDuration:animationDuration delay:0.0 options:animationOptions animations:^{
-        CGRect frame = self.tableView.frame;
+        CGRect frame = self.searchResultsTableView.frame;
         frame.size.height -= keyboardFrame.size.height;
-        self.tableView.frame = frame;
-        self.tableView.alpha = 1;
+        self.searchResultsTableView.frame = frame;
+        self.searchResultsTableView.alpha = 1;
     } completion:NULL];
 }
 
@@ -97,29 +97,34 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
     UIViewAnimationOptions animationOptions = UIViewAnimationOptionsFromCurve(animationCurve);
     
     [UIView animateWithDuration:animationDuration delay:0.0 options:animationOptions animations:^{
-        CGRect frame = self.tableView.frame;
-        frame.size.height = self.viewController.view.frame.size.height;
-        self.tableView.frame = frame;
-        self.tableView.alpha = 0;
+        CGRect frame = self.searchResultsTableView.frame;
+        frame.size.height = self.searchContentsController.view.frame.size.height;
+        self.searchResultsTableView.frame = frame;
+        self.searchResultsTableView.alpha = 0;
     } completion:^(BOOL finished) {
-        self.tableView.hidden = TRUE;
+        self.searchResultsTableView.hidden = TRUE;
     }];
+}
+
+- (void)setActive:(BOOL)active
+{
+    [self setActive:active animated:NO];
 }
 
 - (void)setActive:(BOOL)active animated:(BOOL)animated
 {
-    self.active = active;
+    _active = active;
     
     UIBarButtonItem *barButtonItem;
     if (active) {
-        self.barButtonItem = self.viewController.navigationItem.rightBarButtonItem;
+        self.barButtonItem = self.searchContentsController.navigationItem.rightBarButtonItem;
         barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
     } else {
         barButtonItem = self.barButtonItem;
         self.barButtonItem = nil;
     }
 
-    [self.viewController.navigationItem setRightBarButtonItem:barButtonItem animated:YES];
+    [self.searchContentsController.navigationItem setRightBarButtonItem:barButtonItem animated:YES];
 }
 
 - (void)cancel:(UIBarButtonItem *)barButtonItem

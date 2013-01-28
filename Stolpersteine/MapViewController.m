@@ -13,9 +13,10 @@
 #import "Stolperstein.h"
 #import "DetailViewController.h"
 #import "SearchBarView.h"
+#import "SearchBarViewDelegate.h"
 #import "SearchDisplayController.h"
 
-@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UISearchBarDelegate, SearchDisplayControllerDelegate>
+@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, SearchBarViewDelegate, SearchDisplayControllerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -31,11 +32,9 @@
 {
     [super viewDidLoad];
     
-    // Make UISearchBar transparent
-    self.customSearchDisplayController.searchBar.backgroundImage = [UIImage new];
-    self.customSearchDisplayController.searchBar.translucent = YES;
     self.customSearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:nil contentsController:self];
     self.customSearchDisplayController.delegate = self;
+    self.searchBarView.delegate = self;
     
     // Set map location to Berlin
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);
@@ -149,6 +148,11 @@
 - (IBAction)showSearchDisplayController:(UITextField *)sender
 {
     [self.customSearchDisplayController setActive:TRUE animated:TRUE];
+}
+
+- (void)searchBarView:(SearchBarView *)searchBarView textDidChange:(NSString *)searchText
+{
+    NSLog(@"search: %@", searchText);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

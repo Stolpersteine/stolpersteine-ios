@@ -171,6 +171,7 @@
 		628D63D916B120DF004B9766 /* search-text-field-clear-button-portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field-clear-button-portrait.png"; sourceTree = "<group>"; };
 		628D63DA16B120DF004B9766 /* search-text-field-clear-button-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field-clear-button-landscape@2x.png"; sourceTree = "<group>"; };
 		628D63DB16B120DF004B9766 /* search-text-field-clear-button-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-text-field-clear-button-landscape.png"; sourceTree = "<group>"; };
+		62F6D1F516B6A159003A196A /* SearchBarViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarViewDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +339,7 @@
 				4811D52E16A73CB400C8B58D /* DetailViewController.m */,
 				48F75A8B16B1DF1200D7B060 /* SearchBarView.h */,
 				48F75A8C16B1DF1200D7B060 /* SearchBarView.m */,
+				62F6D1F516B6A159003A196A /* SearchBarViewDelegate.h */,
 				626BBF1416AEB19500DEC6EA /* SearchTextField.h */,
 				626BBF1516AEB19500DEC6EA /* SearchTextField.m */,
 				4811D53416A7479800C8B58D /* SearchDisplayController.h */,

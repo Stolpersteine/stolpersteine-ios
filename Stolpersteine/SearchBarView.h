@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SearchBarViewDelegate;
+
 @interface SearchBarView : UIView
 
 @property (nonatomic, assign, getter = isPortraitModeEnabled) BOOL portraitModeEnabled;
+@property (nonatomic, weak) NSObject<SearchBarViewDelegate> *delegate;
 
 @end

@@ -46,7 +46,7 @@
 @property (nonatomic, getter=isActive) BOOL active;
 @property (nonatomic, readonly) UIViewController *searchContentsController;
 @property (nonatomic, readonly) UISearchBar *searchBar;
-@property (nonatomic, assign) id<UISearchBarDelegate, SearchDisplayControllerDelegate> delegate;
+@property (nonatomic, assign) NSObject<SearchDisplayControllerDelegate> *delegate;
 
 // give user control over the table view
 // currently, setting this

@@ -9,6 +9,7 @@
 #import "SearchBarView.h"
 
 #import "SearchTextField.h"
+#import "SearchBarViewDelegate.h"
 
 @interface SearchBarView() <UITextFieldDelegate>
 
@@ -42,6 +43,8 @@
     self.searchTextField.delegate = self;
     self.searchTextField.rightViewMode = UITextFieldViewModeNever;
     [self addSubview:self.searchTextField];
+    
+    [self.searchTextField addTarget:self action:@selector(editingChanged:) forControlEvents:UIControlEventEditingChanged];
 }
 
 - (void)setPortraitModeEnabled:(BOOL)portraitModeEnabled
@@ -66,6 +69,13 @@
     textField.rightViewMode = text.length > 0 ? UITextFieldViewModeAlways : UITextFieldViewModeNever;
     
     return TRUE;
+}
+
+- (void)editingChanged:(UITextField *)textField
+{
+    if ([self.delegate respondsToSelector:@selector(searchBarView:textDidChange:)]) {
+        [self.delegate searchBarView:self textDidChange:textField.text];
+    }
 }
 
 @end

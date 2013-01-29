@@ -70,11 +70,25 @@
     [self.retrieveStolpersteineOperation cancel];
     self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
         NSLog(@"retrieveStolpersteineWithSearchData %d (%@)", stolpersteine.count, error);
+        
+        if (stolpersteine.count > 0) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF != %@", mapView.userLocation];
+            NSArray *annotations = [mapView.annotations filteredArrayUsingPredicate:predicate];
 
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF != %@", mapView.userLocation];
-        NSArray *annotations = [mapView.annotations filteredArrayUsingPredicate:predicate];
-        [mapView removeAnnotations:annotations];
-        [mapView addAnnotations:stolpersteine];
+            // Annotations to be removed
+            NSArray *stolpersteineIds = [stolpersteine valueForKey:@"id"];
+            predicate = [NSPredicate predicateWithFormat:@"NOT (id IN %@)", stolpersteineIds];
+            NSArray *annotationsToRemove = [annotations filteredArrayUsingPredicate:predicate];
+            [mapView removeAnnotations:annotationsToRemove];
+            
+            // New annotations
+            NSArray *annotationIds = [annotations valueForKey:@"id"];
+            predicate = [NSPredicate predicateWithFormat:@"NOT (id IN %@)", annotationIds];
+            NSArray *annotationsToAdd = [stolpersteine filteredArrayUsingPredicate:predicate];
+            [mapView addAnnotations:annotationsToAdd];
+            
+            NSLog(@"%d added, %d removed", annotationsToAdd.count, annotationsToRemove.count);
+        }
     }];
 }
 

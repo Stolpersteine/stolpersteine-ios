@@ -30,7 +30,7 @@
         }];
     }
     
-    CGFloat height = self.imageView.frame.origin.y + self.imageView.frame.size.height + 20;
+    CGFloat height = 2 * self.imageView.frame.origin.y + self.imageView.frame.size.height;
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, height);
 }
 
@@ -49,4 +49,15 @@
     [self setScrollView:nil];
     [super viewDidUnload];
 }
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    CGRect frame = self.imageView.frame;
+    frame.size.height = UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ? 280 : 440;
+    self.imageView.frame = frame;
+    
+    CGFloat height = 2 * self.imageView.frame.origin.y + self.imageView.frame.size.height;
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, height);
+}
+
 @end

@@ -18,7 +18,7 @@
     [super viewWillAppear:animated];
     
     self.title = self.stolperstein.title;
-    if (self.stolperstein.imageURLString) {
+    if (self.stolperstein.imageURLString && !self.imageView.image) {
         NSURL *URL = [NSURL URLWithString:self.stolperstein.imageURLString];
         NSURLRequest *request = [[NSURLRequest alloc] initWithURL:URL];
         [self.imageActivityIndicator startAnimating];
@@ -32,6 +32,13 @@
     
     CGFloat height = self.imageView.frame.origin.y + self.imageView.frame.size.height + 20;
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, height);
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.imageView cancelImageRequestOperation];
 }
 
 - (void)viewDidUnload

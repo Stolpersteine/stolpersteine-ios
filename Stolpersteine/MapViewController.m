@@ -34,6 +34,7 @@
     
     self.customSearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
     self.customSearchDisplayController.delegate = self;
+    self.customSearchDisplayController.searchResultsDataSource = self;
     UIBarButtonItem *barButtonItem = self.navigationItem.rightBarButtonItem;
     barButtonItem.possibleTitles = [NSSet setWithArray:@[@"Cancel", @"Home"]];
     self.navigationItem.rightBarButtonItem = nil;   // forces possible titles to take effect
@@ -153,6 +154,21 @@
     NSLog(@"search: %@", searchString);
     
     return TRUE;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString * const reuseIdentifier = @"reuseIdentifier";
+    
+    UITableViewCell *tableViewCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    tableViewCell.textLabel.text = @"Test";
+
+    return tableViewCell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

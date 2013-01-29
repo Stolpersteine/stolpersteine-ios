@@ -140,6 +140,16 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
     if ([self.delegate respondsToSelector:@selector(searchDisplayController:shouldReloadTableForSearchString:)]) {
         shouldReloadData = [self.delegate searchDisplayController:self shouldReloadTableForSearchString:searchText];
     }
+    
+    if (shouldReloadData) {
+        [self.searchResultsTableView reloadData];
+    }
+}
+
+- (void)setSearchResultsDataSource:(id<UITableViewDataSource>)searchResultsDataSource
+{
+    _searchResultsDataSource = searchResultsDataSource;
+    self.searchResultsTableView.dataSource = searchResultsDataSource;
 }
 
 @end

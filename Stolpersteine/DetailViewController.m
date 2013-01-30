@@ -11,7 +11,28 @@
 #import "Stolperstein.h"
 #import "UIImageView+AFNetworking.h"
 
+#define PADDING 20
+
+@interface DetailViewController()
+
+@property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
+
+@end
+
 @implementation DetailViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.imageView = [[UIImageView alloc] init];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.imageView.clipsToBounds = YES;
+    [self.scrollView addSubview:self.imageView];
+    
+    [self layoutSubviewsForInterfaceOrientation:self.interfaceOrientation];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -22,16 +43,15 @@
         NSURL *URL = [NSURL URLWithString:self.stolperstein.imageURLString];
         NSURLRequest *request = [[NSURLRequest alloc] initWithURL:URL];
         [self.imageActivityIndicator startAnimating];
+        
+        __weak DetailViewController *weakSelf = self;
         [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-            self.imageView.image = image;
-            [self.imageActivityIndicator stopAnimating];
+            weakSelf.imageView.image = image;
+            [weakSelf.imageActivityIndicator stopAnimating];
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            [self.imageActivityIndicator stopAnimating];
+            [weakSelf.imageActivityIndicator stopAnimating];
         }];
     }
-    
-    CGFloat height = 2 * self.imageContentView.frame.origin.y + self.imageContentView.frame.size.height;
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, height);
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -46,22 +66,26 @@
     [self setImageView:nil];
     [self setImageActivityIndicator:nil];
     [self setScrollView:nil];
-    [self setImageContentView:nil];
 
     [super viewDidUnload];
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+- (void)layoutSubviewsForInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    NSLog(@"%@", NSStringFromCGRect(UIApplication.sharedApplication.keyWindow.frame));
-    NSLog(@"%@", NSStringFromCGRect(self.view.frame));
-    CGRect frame = self.imageView.frame;
-    frame.size.height = UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ? UIApplication.sharedApplication.keyWindow.frame.size.width : UIApplication.sharedApplication.keyWindow.frame.size.width;
-    frame.size.height -= 2 * self.imageContentView.frame.origin.y;
-    self.imageView.frame = frame;
+    CGFloat screenWidth;
+    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
+        screenWidth = UIApplication.sharedApplication.keyWindow.frame.size.width;
+    } else {
+        screenWidth = UIApplication.sharedApplication.keyWindow.frame.size.height;
+    }
     
-    CGFloat height = 2 * self.imageContentView.frame.origin.y + self.imageContentView.frame.size.height;
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, height);
+    self.imageView.frame = CGRectMake(PADDING, PADDING, screenWidth - 2 * PADDING, screenWidth - 2 * PADDING);
+    self.scrollView.contentSize = CGSizeMake(screenWidth, self.imageView.frame.origin.y + self.imageView.frame.size.height + PADDING);
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self layoutSubviewsForInterfaceOrientation:toInterfaceOrientation];
 }
 
 @end

@@ -29,6 +29,8 @@
 		480FFFAA16A0C79D0012CCD5 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43F7169B270B0065C1F1 /* UIImageView+AFNetworking.m */; };
 		4811D52F16A73CB400C8B58D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4811D52E16A73CB400C8B58D /* DetailViewController.m */; };
 		4811D53616A7479800C8B58D /* SearchDisplayController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4811D53516A7479800C8B58D /* SearchDisplayController2.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4830C50416B9A33600C463D2 /* image-frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 4830C50216B9A33600C463D2 /* image-frame.png */; };
+		4830C50516B9A33600C463D2 /* image-frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4830C50316B9A33600C463D2 /* image-frame@2x.png */; };
 		484C8EE5169B609F001CEA59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484C8EE4169B609F001CEA59 /* CoreLocation.framework */; };
 		4872543416AB4D7D00BE6100 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4872543316AB4D7D00BE6100 /* NavigationController.m */; };
 		48F75A8D16B1DF1300D7B060 /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F75A8C16B1DF1200D7B060 /* SearchBar.m */; };
@@ -104,6 +106,8 @@
 		4811D52E16A73CB400C8B58D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		4811D53416A7479800C8B58D /* SearchDisplayController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayController2.h; sourceTree = "<group>"; };
 		4811D53516A7479800C8B58D /* SearchDisplayController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDisplayController2.m; sourceTree = "<group>"; };
+		4830C50216B9A33600C463D2 /* image-frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-frame.png"; sourceTree = "<group>"; };
+		4830C50316B9A33600C463D2 /* image-frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-frame@2x.png"; sourceTree = "<group>"; };
 		484C8EE4169B609F001CEA59 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4872543216AB4D7D00BE6100 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		4872543316AB4D7D00BE6100 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
@@ -291,6 +295,8 @@
 				628D63D916B120DF004B9766 /* search-text-field-clear-button-portrait.png */,
 				628D63DA16B120DF004B9766 /* search-text-field-clear-button-landscape@2x.png */,
 				628D63DB16B120DF004B9766 /* search-text-field-clear-button-landscape.png */,
+				4830C50216B9A33600C463D2 /* image-frame.png */,
+				4830C50316B9A33600C463D2 /* image-frame@2x.png */,
 			);
 			name = Resources;
 			path = Stolpersteine/Resources;
@@ -545,6 +551,8 @@
 				628D63E516B120DF004B9766 /* search-text-field-clear-button-portrait.png in Resources */,
 				628D63E616B120DF004B9766 /* search-text-field-clear-button-landscape@2x.png in Resources */,
 				628D63E716B120DF004B9766 /* search-text-field-clear-button-landscape.png in Resources */,
+				4830C50416B9A33600C463D2 /* image-frame.png in Resources */,
+				4830C50516B9A33600C463D2 /* image-frame@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

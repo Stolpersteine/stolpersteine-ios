@@ -13,10 +13,6 @@
 @interface DetailViewController : UIViewController
 
 @property (nonatomic, strong) Stolperstein *stolperstein;
-
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imageActivityIndicator;
-@property (weak, nonatomic) IBOutlet UIView *imageContentView;
 
 @end

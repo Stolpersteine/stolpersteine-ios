@@ -71,31 +71,10 @@
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="lxM-gj-iBt">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" id="PUQ-Tw-HFb">
-                                <rect key="frame" x="19" y="19" width="282" height="282"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="S6J-eu-TBE">
-                                        <rect key="frame" x="1" y="1" width="280" height="280"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </imageView>
-                                    <activityIndicatorView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" id="wrI-We-3Np">
-                                        <rect key="frame" x="131" y="131" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </scrollView>
                     <navigationItem key="navigationItem" id="kTu-o1-owI"/>
                     <connections>
-                        <outlet property="imageActivityIndicator" destination="wrI-We-3Np" id="37j-Zp-W0Y"/>
-                        <outlet property="imageContentView" destination="PUQ-Tw-HFb" id="7lE-j5-9oe"/>
-                        <outlet property="imageView" destination="S6J-eu-TBE" id="d8J-9s-pDo"/>
                         <outlet property="scrollView" destination="lxM-gj-iBt" id="GMS-el-bx7"/>
                     </connections>
                 </viewController>
@@ -109,9 +88,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="imageActivityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="imageContentVoew" candidateClass="UIView"/>
+                <relationship kind="outlet" name="imageContentView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>

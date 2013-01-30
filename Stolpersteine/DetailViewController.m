@@ -40,13 +40,13 @@
     self.imageActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.imageActivityIndicator.hidesWhenStopped = TRUE;
     [self.imageView addSubview:self.imageActivityIndicator];
-    
-    [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
 
     self.title = self.stolperstein.title;
     if (self.stolperstein.imageURLString && !self.imageView.image) {
@@ -80,10 +80,10 @@
     [super viewDidUnload];
 }
 
-- (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+- (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     CGFloat screenWidth;
-    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
         screenWidth = UIApplication.sharedApplication.keyWindow.frame.size.width;
     } else {
         screenWidth = UIApplication.sharedApplication.keyWindow.frame.size.height;

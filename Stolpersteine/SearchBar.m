@@ -11,6 +11,9 @@
 #import "SearchTextField.h"
 #import "SearchBarDelegate.h"
 
+#define PADDING_LEFT 5
+#define PADDING_RIGHT 75
+
 @interface SearchBar() <UITextFieldDelegate>
 
 @property (nonatomic, strong) SearchTextField *searchTextField;
@@ -38,7 +41,7 @@
     self.backgroundColor = UIColor.clearColor;
     
     self.searchTextField = [[SearchTextField alloc] initWithFrame:CGRectZero];  // text field automatically resizes to fit
-    self.searchTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.searchTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.searchTextField.delegate = self;
     self.searchTextField.rightViewMode = UITextFieldViewModeNever;
     [self addSubview:self.searchTextField];
@@ -47,8 +50,17 @@
     [self.searchTextField addTarget:self action:@selector(editingChanged:) forControlEvents:UIControlEventEditingChanged];
 }
 
+- (void)setFrame:(CGRect)frame
+{
+    // Hack to avoid wrong width when changing the orientation while the search
+    // bar is not visible.
+    CGFloat y = (self.superview.frame.size.height - self.frame.size.height) * 0.5;
+    [super setFrame:CGRectMake(PADDING_LEFT, y, self.superview.frame.size.width - PADDING_RIGHT, frame.size.height)];
+}
+
 - (void)setPortraitModeEnabled:(BOOL)portraitModeEnabled
 {
+    NSLog(@"setPortraitModeEnabled %@", portraitModeEnabled? @"Y" : @"N");
     self.searchTextField.portraitModeEnabled = portraitModeEnabled;
 }
 

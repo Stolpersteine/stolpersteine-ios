@@ -60,9 +60,21 @@
     [super viewDidUnload];
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+- (void)viewWillAppear:(BOOL)animated
 {
-    self.searchBar.portraitModeEnabled = UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
+    [super viewWillAppear:animated];
+    
+    [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
+}
+
+- (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    self.searchBar.portraitModeEnabled = UIInterfaceOrientationIsPortrait(interfaceOrientation);
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self layoutViewsForInterfaceOrientation:toInterfaceOrientation];
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated

@@ -26,10 +26,20 @@
 {
     [super viewDidLoad];
     
-    self.imageView = [[UIImageView alloc] init];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
     [self.scrollView addSubview:self.imageView];
+
+    UIEdgeInsets frameEdgeInsets = UIEdgeInsetsMake(1, 1, 1, 1);
+    UIImage *frameImage = [[UIImage imageNamed:@"image-frame.png"] resizableImageWithCapInsets:frameEdgeInsets];
+    UIImageView *frameImageView = [[UIImageView alloc] initWithImage:frameImage];
+    frameImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.imageView addSubview:frameImageView];
+    
+    self.imageActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.imageActivityIndicator.hidesWhenStopped = TRUE;
+    [self.imageView addSubview:self.imageActivityIndicator];
     
     [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
 }
@@ -37,7 +47,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
     self.title = self.stolperstein.title;
     if (self.stolperstein.imageURLString && !self.imageView.image) {
         NSURL *URL = [NSURL URLWithString:self.stolperstein.imageURLString];
@@ -80,6 +90,10 @@
     }
     
     self.imageView.frame = CGRectMake(PADDING, PADDING, screenWidth - 2 * PADDING, screenWidth - 2 * PADDING);
+    CGRect imageActivityIndicatorFrame = self.imageActivityIndicator.frame;
+    imageActivityIndicatorFrame.origin.x = (self.imageView.frame.size.width - self.imageActivityIndicator.frame.size.width) * 0.5;
+    imageActivityIndicatorFrame.origin.y = (self.imageView.frame.size.height - self.imageActivityIndicator.frame.size.height) * 0.5;
+    self.imageActivityIndicator.frame = imageActivityIndicatorFrame;
     self.scrollView.contentSize = CGSizeMake(screenWidth, self.imageView.frame.origin.y + self.imageView.frame.size.height + PADDING);
 }
 

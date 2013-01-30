@@ -94,6 +94,7 @@
                     <navigationItem key="navigationItem" id="kTu-o1-owI"/>
                     <connections>
                         <outlet property="imageActivityIndicator" destination="wrI-We-3Np" id="37j-Zp-W0Y"/>
+                        <outlet property="imageContentView" destination="PUQ-Tw-HFb" id="7lE-j5-9oe"/>
                         <outlet property="imageView" destination="S6J-eu-TBE" id="d8J-9s-pDo"/>
                         <outlet property="scrollView" destination="lxM-gj-iBt" id="GMS-el-bx7"/>
                     </connections>
@@ -108,6 +109,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="imageActivityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="imageContentVoew" candidateClass="UIView"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>

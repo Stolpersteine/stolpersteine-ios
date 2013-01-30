@@ -33,26 +33,30 @@
     self.portraitModeEnabled = TRUE;
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGFloat height = self.portraitModeEnabled ? 30 : 24;
+    CGFloat y = roundf((self.superview.frame.size.height - height) * 0.5);
+    CGRect frame = CGRectMake(0, y, self.superview.frame.size.width, height);
+    self.frame = frame;
+}
+
 - (void)setPortraitModeEnabled:(BOOL)portraitModeEnabled
 {
     _portraitModeEnabled = portraitModeEnabled;
     
     UIImage *backgroundImage, *iconImage, *clearImage;
-    CGRect frame = self.frame;
     if (portraitModeEnabled) {
-        frame.size.height = 30;
         backgroundImage = [[UIImage imageNamed:@"search-text-field-portrait.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 15, 15, 15)];
         iconImage = [UIImage imageNamed:@"search-text-field-magnifier-portrait.png"];
         clearImage = [UIImage imageNamed:@"search-text-field-clear-button-portrait.png"];
     } else {
-        frame.size.height = 24;
         backgroundImage = [[UIImage imageNamed:@"search-text-field-landscape.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
         iconImage = [UIImage imageNamed:@"search-text-field-magnifier-landscape.png"];
         clearImage = [UIImage imageNamed:@"search-text-field-clear-button-landscape.png"];
     }
-    
-    frame.origin.y = roundf((self.frame.size.height - frame.size.height) * 0.5);
-    self.frame = frame;
     self.background = backgroundImage;
     
     UIImageView *iconImageView = [[UIImageView alloc] initWithImage:iconImage];

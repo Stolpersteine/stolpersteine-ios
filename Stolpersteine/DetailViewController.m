@@ -30,7 +30,7 @@
         }];
     }
     
-    CGFloat height = 2 * self.imageView.frame.origin.y + self.imageView.frame.size.height;
+    CGFloat height = 2 * self.imageContentView.frame.origin.y + self.imageContentView.frame.size.height;
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, height);
 }
 
@@ -43,20 +43,24 @@
 
 - (void)viewDidUnload
 {
-    [self setNameLabel:nil];
     [self setImageView:nil];
     [self setImageActivityIndicator:nil];
     [self setScrollView:nil];
+    [self setImageContentView:nil];
+
     [super viewDidUnload];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
+    NSLog(@"%@", NSStringFromCGRect(UIApplication.sharedApplication.keyWindow.frame));
+    NSLog(@"%@", NSStringFromCGRect(self.view.frame));
     CGRect frame = self.imageView.frame;
-    frame.size.height = UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ? 280 : 440;
+    frame.size.height = UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ? UIApplication.sharedApplication.keyWindow.frame.size.width : UIApplication.sharedApplication.keyWindow.frame.size.width;
+    frame.size.height -= 2 * self.imageContentView.frame.origin.y;
     self.imageView.frame = frame;
     
-    CGFloat height = 2 * self.imageView.frame.origin.y + self.imageView.frame.size.height;
+    CGFloat height = 2 * self.imageContentView.frame.origin.y + self.imageContentView.frame.size.height;
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, height);
 }
 

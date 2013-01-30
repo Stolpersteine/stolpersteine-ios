@@ -37,8 +37,7 @@
 {
     self.backgroundColor = UIColor.clearColor;
     
-    CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    self.searchTextField = [[SearchTextField alloc] initWithFrame:frame];
+    self.searchTextField = [[SearchTextField alloc] initWithFrame:CGRectZero];  // text field automatically resizes to fit
     self.searchTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.searchTextField.delegate = self;
     self.searchTextField.rightViewMode = UITextFieldViewModeNever;

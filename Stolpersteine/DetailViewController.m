@@ -31,7 +31,7 @@
     self.imageView.clipsToBounds = YES;
     [self.scrollView addSubview:self.imageView];
     
-    [self layoutSubviewsForInterfaceOrientation:self.interfaceOrientation];
+    [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -70,7 +70,7 @@
     [super viewDidUnload];
 }
 
-- (void)layoutSubviewsForInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+- (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     CGFloat screenWidth;
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
@@ -85,7 +85,7 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    [self layoutSubviewsForInterfaceOrientation:toInterfaceOrientation];
+    [self layoutViewsForInterfaceOrientation:toInterfaceOrientation];
 }
 
 @end

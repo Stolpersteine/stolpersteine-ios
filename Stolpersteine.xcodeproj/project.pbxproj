@@ -28,7 +28,6 @@
 		480FFFA916A0C79D0012CCD5 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43F5169B270B0065C1F1 /* AFXMLRequestOperation.m */; };
 		480FFFAA16A0C79D0012CCD5 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43F7169B270B0065C1F1 /* UIImageView+AFNetworking.m */; };
 		4811D52F16A73CB400C8B58D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4811D52E16A73CB400C8B58D /* DetailViewController.m */; };
-		4811D53616A7479800C8B58D /* SearchDisplayController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4811D53516A7479800C8B58D /* SearchDisplayController2.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4830C50416B9A33600C463D2 /* image-frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 4830C50216B9A33600C463D2 /* image-frame.png */; };
 		4830C50516B9A33600C463D2 /* image-frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4830C50316B9A33600C463D2 /* image-frame@2x.png */; };
 		484C8EE5169B609F001CEA59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484C8EE4169B609F001CEA59 /* CoreLocation.framework */; };
@@ -105,8 +104,6 @@
 		480FFF9A16A0C6890012CCD5 /* StolpersteineNetworkServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteineNetworkServiceTests.m; sourceTree = "<group>"; };
 		4811D52D16A73CB400C8B58D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		4811D52E16A73CB400C8B58D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		4811D53416A7479800C8B58D /* SearchDisplayController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayController2.h; sourceTree = "<group>"; };
-		4811D53516A7479800C8B58D /* SearchDisplayController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDisplayController2.m; sourceTree = "<group>"; };
 		4830C50216B9A33600C463D2 /* image-frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-frame.png"; sourceTree = "<group>"; };
 		4830C50316B9A33600C463D2 /* image-frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-frame@2x.png"; sourceTree = "<group>"; };
 		484C8EE4169B609F001CEA59 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -360,8 +357,6 @@
 				62F6D1FC16B6EA94003A196A /* SearchDisplayController.h */,
 				62F6D1FD16B6EA94003A196A /* SearchDisplayController.m */,
 				48B0397A16B72C080062DEB3 /* SearchDisplayDelegate.h */,
-				4811D53416A7479800C8B58D /* SearchDisplayController2.h */,
-				4811D53516A7479800C8B58D /* SearchDisplayController2.m */,
 				4872543216AB4D7D00BE6100 /* NavigationController.h */,
 				4872543316AB4D7D00BE6100 /* NavigationController.m */,
 				627E43E3169B270B0065C1F1 /* Shared */,
@@ -652,7 +647,6 @@
 				627E4438169C43970065C1F1 /* Stolperstein.m in Sources */,
 				6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */,
 				4811D52F16A73CB400C8B58D /* DetailViewController.m in Sources */,
-				4811D53616A7479800C8B58D /* SearchDisplayController2.m in Sources */,
 				4872543416AB4D7D00BE6100 /* NavigationController.m in Sources */,
 				626BBF1616AEB19500DEC6EA /* SearchTextField.m in Sources */,
 				48F75A8D16B1DF1300D7B060 /* SearchBar.m in Sources */,

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "CopyImageView.h"
+#import "CopyableImageView.h"
 
-@implementation CopyImageView
+@implementation CopyableImageView
 
 - (id)initWithFrame:(CGRect)frame
 {

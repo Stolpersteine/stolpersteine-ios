@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CopyImageView : UIImageView
+@interface CopyableImageView : UIImageView
 
 @end

@@ -10,13 +10,13 @@
 
 #import "Stolperstein.h"
 #import "UIImageView+AFNetworking.h"
-#import "CopyImageView.h"
+#import "CopyableImageView.h"
 
 #define PADDING 20
 
 @interface DetailViewController()
 
-@property (strong, nonatomic) CopyImageView *imageView;
+@property (strong, nonatomic) CopyableImageView *imageView;
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
 
 @end
@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     
-    self.imageView = [[CopyImageView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
+    self.imageView = [[CopyableImageView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
     [self.scrollView addSubview:self.imageView];

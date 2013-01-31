@@ -9,12 +9,12 @@
         <!--Map View Controller-->
         <scene sceneID="5">
             <objects>
-                <viewController id="2" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nic-0c-bX8">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="omQ-fz-cwh">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="omQ-fz-cwh">
                                 <connections>
                                     <outlet property="delegate" destination="2" id="cmn-I6-Sfx"/>
                                 </connections>
@@ -30,7 +30,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="wB8-Ca-YR2">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="AgH-MU-KZc" customClass="SearchBar">
+                        <view key="titleView" contentMode="scaleToFill" restorationIdentifier="" id="AgH-MU-KZc" customClass="SearchBar">
                             <rect key="frame" x="11" y="7" width="242" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -55,7 +55,7 @@
         <!--Navigation Controller-->
         <scene sceneID="zxt-c3-c4Y">
             <objects>
-                <navigationController definesPresentationContext="YES" id="XLj-i0-kjg" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigationController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XLj-i0-kjg" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cIR-Dy-Gmq">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -71,8 +71,8 @@
         <!--Detail View Controller-->
         <scene sceneID="osR-H4-E6h">
             <objects>
-                <viewController id="Az3-JW-c4L" customClass="DetailViewController" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="lxM-gj-iBt">
+                <viewController storyboardIdentifier="detailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Az3-JW-c4L" customClass="DetailViewController" sceneMemberID="viewController">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="scrollView" id="lxM-gj-iBt">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

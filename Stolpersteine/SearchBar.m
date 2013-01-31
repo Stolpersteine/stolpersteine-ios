@@ -50,6 +50,16 @@
     [self.searchTextField addTarget:self action:@selector(editingChanged:) forControlEvents:UIControlEventEditingChanged];
 }
 
+- (void)setText:(NSString *)text
+{
+    self.searchTextField.text = text;
+}
+
+- (NSString *)text
+{
+    return self.searchTextField.text;
+}
+
 - (void)setFrame:(CGRect)frame
 {
     // Hack to avoid wrong width when changing the orientation while the search
@@ -60,7 +70,6 @@
 
 - (void)setPortraitModeEnabled:(BOOL)portraitModeEnabled
 {
-    NSLog(@"setPortraitModeEnabled %@", portraitModeEnabled? @"Y" : @"N");
     self.searchTextField.portraitModeEnabled = portraitModeEnabled;
 }
 

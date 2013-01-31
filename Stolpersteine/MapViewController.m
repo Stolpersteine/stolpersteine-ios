@@ -21,6 +21,8 @@
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
+@property (nonatomic, assign) MKCoordinateRegion restoredRegion;
+@property (nonatomic, assign, getter = isRestoredRegionInvalid) BOOL restoredRegionInvalid;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
 @property (nonatomic, strong) SearchDisplayController *customSearchDisplayController;
 
@@ -40,13 +42,13 @@
     self.navigationItem.rightBarButtonItem = nil;   // forces possible titles to take effect
     self.navigationItem.rightBarButtonItem = barButtonItem;
     
-    // Set map location to Berlin
-    CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 12000, 12000);
-    self.mapView.region = region;
-    
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+    
+    // Set map location to Berlin
+    CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);
+    self.restoredRegion = MKCoordinateRegionMakeWithDistance(location, 12000, 12000);
+    
 }
 
 - (void)viewDidUnload
@@ -64,7 +66,38 @@
 {
     [super viewWillAppear:animated];
     
+    // Region is restored here to avoid problems when setting this property
+    // while the map is off screen.
+    if (!self.isRestoredRegionInvalid) {
+        self.mapView.region = self.restoredRegion;
+        self.restoredRegionInvalid = TRUE;
+    }
+    
     [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
+}
+
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:self.searchBar.text forKey:@"searchBar.text"];
+    [coder encodeDouble:self.mapView.region.center.latitude forKey:@"mapView.region.center.latitude"];
+    [coder encodeDouble:self.mapView.region.center.longitude forKey:@"mapView.region.center.longitude"];
+    [coder encodeDouble:self.mapView.region.span.latitudeDelta forKey:@"mapView.region.span.latitudeDelta"];
+    [coder encodeDouble:self.mapView.region.span.longitudeDelta forKey:@"mapView.region.span.longitudeDelta"];
+    
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    self.searchBar.text = [coder decodeObjectForKey:@"searchBar.text"];
+    MKCoordinateRegion region;
+    region.center.latitude = [coder decodeDoubleForKey:@"mapView.region.center.latitude"];
+    region.center.longitude = [coder decodeDoubleForKey:@"mapView.region.center.longitude"];
+    region.span.latitudeDelta = [coder decodeDoubleForKey:@"mapView.region.span.latitudeDelta"];
+    region.span.longitudeDelta = [coder decodeDoubleForKey:@"mapView.region.span.longitudeDelta"];
+    self.restoredRegion = region;
+    
+    [super decodeRestorableStateWithCoder:coder];
 }
 
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -41,6 +41,11 @@
     self.imageActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.imageActivityIndicator.hidesWhenStopped = TRUE;
     [self.imageView addSubview:self.imageActivityIndicator];
+    
+    self.title = self.stolperstein.title;
+    if (self.stolperstein.imageURLString) {
+        [self loadImageWithURLString:self.stolperstein.imageURLString];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -48,21 +53,25 @@
     [super viewWillAppear:animated];
     
     [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
+}
 
-    self.title = self.stolperstein.title;
-    if (self.stolperstein.imageURLString && !self.imageView.image) {
-        NSURL *URL = [NSURL URLWithString:self.stolperstein.imageURLString];
-        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:URL];
-        [self.imageActivityIndicator startAnimating];
-        
-        __weak DetailViewController *weakSelf = self;
-        [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-            weakSelf.imageView.image = image;
-            [weakSelf.imageActivityIndicator stopAnimating];
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            [weakSelf.imageActivityIndicator stopAnimating];
-        }];
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:self.stolperstein.imageURLString forKey:@"stolperstein.imageURLString"];
+    [coder encodeObject:self.title forKey:@"title"];
+    
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    NSString *imageURLString = [coder decodeObjectForKey:@"stolperstein.imageURLString"];
+    if (imageURLString) {
+        [self loadImageWithURLString:imageURLString];
     }
+    self.title = [coder decodeObjectForKey:@"title"];
+
+    [super decodeRestorableStateWithCoder:coder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -81,15 +90,24 @@
     [super viewDidUnload];
 }
 
+- (void)loadImageWithURLString:(NSString *)URLString
+{
+    NSURL *URL = [NSURL URLWithString:URLString];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:URL];
+    [self.imageActivityIndicator startAnimating];
+    
+    __weak DetailViewController *weakSelf = self;
+    [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        weakSelf.imageView.image = image;
+        [weakSelf.imageActivityIndicator stopAnimating];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        [weakSelf.imageActivityIndicator stopAnimating];
+    }];
+}
+
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    CGFloat screenWidth;
-    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-        screenWidth = UIApplication.sharedApplication.keyWindow.frame.size.width;
-    } else {
-        screenWidth = UIApplication.sharedApplication.keyWindow.frame.size.height;
-    }
-    
+    CGFloat screenWidth = self.view.frame.size.width;
     self.imageView.frame = CGRectMake(PADDING, PADDING, screenWidth - 2 * PADDING, screenWidth - 2 * PADDING);
     CGRect imageActivityIndicatorFrame = self.imageActivityIndicator.frame;
     imageActivityIndicatorFrame.origin.x = (self.imageView.frame.size.width - self.imageActivityIndicator.frame.size.width) * 0.5;

@@ -32,6 +32,16 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
+{
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
+{
+    return YES;
+}
+
 + (StolpersteineNetworkService *)networkService
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];

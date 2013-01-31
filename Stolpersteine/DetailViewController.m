@@ -103,4 +103,15 @@
     [self layoutViewsForInterfaceOrientation:toInterfaceOrientation];
 }
 
+- (IBAction)showActivities:(UIBarButtonItem *)sender
+{
+    NSMutableArray *itemsToShare = [NSMutableArray arrayWithObject:self.title];
+    if (self.imageView.image) {
+        [itemsToShare addObject:self.imageView.image];
+    }
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+    activityViewController.excludedActivityTypes = @[UIActivityTypeAssignToContact];
+    [self presentViewController:activityViewController animated:YES completion:nil];
+}
+
 @end

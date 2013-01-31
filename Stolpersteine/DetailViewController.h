@@ -15,4 +15,6 @@
 @property (nonatomic, strong) Stolperstein *stolperstein;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
+- (IBAction)showActivities:(UIBarButtonItem *)sender;
+
 @end

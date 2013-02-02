@@ -11,7 +11,9 @@
 #import "AppDelegate.h"
 #import "StolpersteineNetworkService.h"
 #import "Stolperstein.h"
-#import "DetailViewController.h"
+#import "StolpersteinGroup.h"
+#import "StolpersteinDetailViewController.h"
+#import "StolpersteinListViewController.h"
 #import "SearchBar.h"
 #import "SearchDisplayController.h"
 #import "SearchDisplayDelegate.h"
@@ -34,6 +36,9 @@
 {
     [super viewDidLoad];
     
+    self.title = @"Map";
+    
+    // Search
     self.customSearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
     self.customSearchDisplayController.delegate = self;
     self.customSearchDisplayController.searchResultsDataSource = self;
@@ -42,13 +47,13 @@
     self.navigationItem.rightBarButtonItem = nil;   // forces possible titles to take effect
     self.navigationItem.rightBarButtonItem = barButtonItem;
     
+    // User location
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
     // Set map location to Berlin
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);
     self.restoredRegion = MKCoordinateRegionMakeWithDistance(location, 12000, 12000);
-    
 }
 
 - (void)viewDidUnload
@@ -117,7 +122,7 @@
         NSLog(@"retrieveStolpersteineWithSearchData %d (%@)", stolpersteine.count, error);
         
         if (stolpersteine.count > 0) {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF != %@", mapView.userLocation];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"class == %@", Stolperstein.class];
             NSArray *annotations = [mapView.annotations filteredArrayUsingPredicate:predicate];
 
             // Annotations to be removed
@@ -133,6 +138,14 @@
             [mapView addAnnotations:annotationsToAdd];
             
             NSLog(@"%d added, %d removed", annotationsToAdd.count, annotationsToRemove.count);
+            
+            // Test
+            if (annotationsToAdd.count > 1) {
+                StolpersteinGroup *stolpersteinGroup = [[StolpersteinGroup alloc] init];
+                stolpersteinGroup.stolpersteine = annotationsToAdd;
+                stolpersteinGroup.locationCoordinates = [[CLLocation alloc] initWithLatitude:52.54 longitude:13.35];
+                [self.mapView addAnnotation:stolpersteinGroup];
+            }
         }
     }];
 }
@@ -141,7 +154,7 @@
 {
     MKAnnotationView *annotationView;
     
-    if ([annotation isKindOfClass:Stolperstein.class]) {
+    if ([annotation isKindOfClass:Stolperstein.class] || [annotation isKindOfClass:StolpersteinGroup.class]) {
         static NSString *stolpersteinIdentifier = @"stolpersteinIdentifier";
         
         annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
@@ -169,7 +182,13 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    [self performSegueWithIdentifier:@"mapViewControllerToDetailViewController" sender:view.annotation];
+    NSString *identifier;
+    if ([view.annotation isKindOfClass:Stolperstein.class]) {
+        identifier = @"mapViewControllerToStolpersteinDetailViewController";
+    } else {
+        identifier = @"mapViewControllerToStolpersteinListViewController";
+    }
+    [self performSegueWithIdentifier:identifier sender:view.annotation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
@@ -239,9 +258,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"mapViewControllerToDetailViewController"]) {
-        DetailViewController *detailViewController = (DetailViewController *)segue.destinationViewController;
-        detailViewController.stolperstein = sender;
+    id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
+    if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
+        StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
+        detailViewController.stolperstein = selectedAnnotation;
+    } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinListViewController"]) {
+        StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
+        listViewController.stolpersteinGroup = selectedAnnotation;
     }
 }
 

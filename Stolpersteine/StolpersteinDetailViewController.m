@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "DetailViewController.h"
+#import "StolpersteinDetailViewController.h"
 
 #import "Stolperstein.h"
 #import "UIImageView+AFNetworking.h"
@@ -14,7 +14,7 @@
 
 #define PADDING 20
 
-@interface DetailViewController()
+@interface StolpersteinDetailViewController()
 
 @property (strong, nonatomic) CopyableImageView *imageView;
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation DetailViewController
+@implementation StolpersteinDetailViewController
 
 - (void)viewDidLoad
 {
@@ -118,7 +118,7 @@
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:URL];
     [self.imageActivityIndicator startAnimating];
     
-    __weak DetailViewController *weakSelf = self;
+    __weak StolpersteinDetailViewController *weakSelf = self;
     [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
         weakSelf.imageView.image = image;
         [weakSelf.imageActivityIndicator stopAnimating];

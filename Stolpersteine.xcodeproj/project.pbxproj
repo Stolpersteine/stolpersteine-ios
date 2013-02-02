@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		480AF2E716BDBDC500232683 /* StolpersteinGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 480AF2E616BDBDC500232683 /* StolpersteinGroup.m */; };
+		480AF2E816BDBDC500232683 /* StolpersteinGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 480AF2E616BDBDC500232683 /* StolpersteinGroup.m */; };
+		480AF2E916BDBDC500232683 /* StolpersteinGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 480AF2E616BDBDC500232683 /* StolpersteinGroup.m */; };
+		480AF2EC16BDC82900232683 /* StolpersteinListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 480AF2EB16BDC82800232683 /* StolpersteinListViewController.m */; };
 		480FFF8716A0C6160012CCD5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
 		480FFF8816A0C6160012CCD5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
 		480FFF8916A0C6160012CCD5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B8169B0F050065C1F1 /* Foundation.framework */; };
@@ -18,7 +22,7 @@
 		480FFF9F16A0C79D0012CCD5 /* StolpersteineNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4431169C420A0065C1F1 /* StolpersteineNetworkService.m */; };
 		480FFFA016A0C79D0012CCD5 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		480FFFA116A0C79D0012CCD5 /* Stolperstein.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4437169C43970065C1F1 /* Stolperstein.m */; };
-		4811D52F16A73CB400C8B58D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4811D52E16A73CB400C8B58D /* DetailViewController.m */; };
+		4811D52F16A73CB400C8B58D /* StolpersteinDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4811D52E16A73CB400C8B58D /* StolpersteinDetailViewController.m */; };
 		4830C50416B9A33600C463D2 /* image-frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 4830C50216B9A33600C463D2 /* image-frame.png */; };
 		4830C50516B9A33600C463D2 /* image-frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4830C50316B9A33600C463D2 /* image-frame@2x.png */; };
 		484C8EE5169B609F001CEA59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484C8EE4169B609F001CEA59 /* CoreLocation.framework */; };
@@ -97,14 +101,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		480AF2E516BDBDC500232683 /* StolpersteinGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinGroup.h; sourceTree = "<group>"; };
+		480AF2E616BDBDC500232683 /* StolpersteinGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinGroup.m; sourceTree = "<group>"; };
+		480AF2EA16BDC82800232683 /* StolpersteinListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinListViewController.h; sourceTree = "<group>"; };
+		480AF2EB16BDC82800232683 /* StolpersteinListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinListViewController.m; sourceTree = "<group>"; };
 		480FFF8616A0C6150012CCD5 /* Stolpersteine Integration Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stolpersteine Integration Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		480FFF8C16A0C6160012CCD5 /* Stolpersteine Integration Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Stolpersteine Integration Tests-Info.plist"; sourceTree = "<group>"; };
 		480FFF8E16A0C6160012CCD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		480FFF9316A0C6160012CCD5 /* Stolpersteine Integration Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stolpersteine Integration Tests-Prefix.pch"; sourceTree = "<group>"; };
 		480FFF9916A0C6890012CCD5 /* StolpersteineNetworkServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteineNetworkServiceTests.h; sourceTree = "<group>"; };
 		480FFF9A16A0C6890012CCD5 /* StolpersteineNetworkServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteineNetworkServiceTests.m; sourceTree = "<group>"; };
-		4811D52D16A73CB400C8B58D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		4811D52E16A73CB400C8B58D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		4811D52D16A73CB400C8B58D /* StolpersteinDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinDetailViewController.h; sourceTree = "<group>"; };
+		4811D52E16A73CB400C8B58D /* StolpersteinDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinDetailViewController.m; sourceTree = "<group>"; };
 		4830C50216B9A33600C463D2 /* image-frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-frame.png"; sourceTree = "<group>"; };
 		4830C50316B9A33600C463D2 /* image-frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-frame@2x.png"; sourceTree = "<group>"; };
 		484C8EE4169B609F001CEA59 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -393,8 +401,10 @@
 				627E43C6169B0F050065C1F1 /* AppDelegate.m */,
 				627E43D1169B0F050065C1F1 /* MapViewController.h */,
 				627E43D2169B0F050065C1F1 /* MapViewController.m */,
-				4811D52D16A73CB400C8B58D /* DetailViewController.h */,
-				4811D52E16A73CB400C8B58D /* DetailViewController.m */,
+				480AF2EA16BDC82800232683 /* StolpersteinListViewController.h */,
+				480AF2EB16BDC82800232683 /* StolpersteinListViewController.m */,
+				4811D52D16A73CB400C8B58D /* StolpersteinDetailViewController.h */,
+				4811D52E16A73CB400C8B58D /* StolpersteinDetailViewController.m */,
 				62C7EEAA16BA925900DDF28A /* CopyableImageView.h */,
 				62C7EEAB16BA925900DDF28A /* CopyableImageView.m */,
 				48F75A8B16B1DF1200D7B060 /* SearchBar.h */,
@@ -446,6 +456,8 @@
 				6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */,
 				627E4436169C43970065C1F1 /* Stolperstein.h */,
 				627E4437169C43970065C1F1 /* Stolperstein.m */,
+				480AF2E516BDBDC500232683 /* StolpersteinGroup.h */,
+				480AF2E616BDBDC500232683 /* StolpersteinGroup.m */,
 			);
 			path = "Stolpersteine API";
 			sourceTree = "<group>";
@@ -626,6 +638,7 @@
 				627A0BAF16BC037200CFA71E /* AFURLConnectionOperation.m in Sources */,
 				627A0BB016BC037200CFA71E /* AFXMLRequestOperation.m in Sources */,
 				627A0BB116BC037200CFA71E /* UIImageView+AFNetworking.m in Sources */,
+				480AF2E916BDBDC500232683 /* StolpersteinGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,6 +658,7 @@
 				627A0BA616BC037100CFA71E /* AFURLConnectionOperation.m in Sources */,
 				627A0BA716BC037100CFA71E /* AFXMLRequestOperation.m in Sources */,
 				627A0BA816BC037100CFA71E /* UIImageView+AFNetworking.m in Sources */,
+				480AF2E816BDBDC500232683 /* StolpersteinGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,7 +672,7 @@
 				627E4432169C420A0065C1F1 /* StolpersteineNetworkService.m in Sources */,
 				627E4438169C43970065C1F1 /* Stolperstein.m in Sources */,
 				6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */,
-				4811D52F16A73CB400C8B58D /* DetailViewController.m in Sources */,
+				4811D52F16A73CB400C8B58D /* StolpersteinDetailViewController.m in Sources */,
 				626BBF1616AEB19500DEC6EA /* SearchTextField.m in Sources */,
 				48F75A8D16B1DF1300D7B060 /* SearchBar.m in Sources */,
 				62F6D1FE16B6EA94003A196A /* SearchDisplayController.m in Sources */,
@@ -672,6 +686,8 @@
 				627A0B9316BBFF5300CFA71E /* AFURLConnectionOperation.m in Sources */,
 				627A0B9416BBFF5300CFA71E /* AFXMLRequestOperation.m in Sources */,
 				627A0B9516BBFF5300CFA71E /* UIImageView+AFNetworking.m in Sources */,
+				480AF2E716BDBDC500232683 /* StolpersteinGroup.m in Sources */,
+				480AF2EC16BDC82900232683 /* StolpersteinListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

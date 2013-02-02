@@ -49,7 +49,12 @@
     }
     
     // Address
-    NSMutableString *address = [NSMutableString stringWithString:self.stolperstein.locationStreet];
+    NSMutableString *address = [NSMutableString stringWithCapacity:20];
+    
+    if (self.stolperstein.locationStreet) {
+        [address appendString:self.stolperstein.locationStreet];
+    }
+    
     if (self.stolperstein.locationZipCode || self.stolperstein.locationCity) {
         [address appendString:@"\n"];
         

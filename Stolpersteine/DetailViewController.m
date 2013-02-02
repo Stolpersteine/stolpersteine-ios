@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) CopyableImageView *imageView;
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
+@property (strong, nonatomic) UILabel *addressLabel;
 
 @end
 
@@ -26,7 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    // Image
     self.imageView = [[CopyableImageView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
@@ -42,10 +44,30 @@
     self.imageActivityIndicator.hidesWhenStopped = TRUE;
     [self.imageView addSubview:self.imageActivityIndicator];
     
-    self.title = self.stolperstein.title;
     if (self.stolperstein.imageURLString) {
         [self loadImageWithURLString:self.stolperstein.imageURLString];
     }
+    
+    // Address
+    NSMutableString *address = [NSMutableString stringWithString:self.stolperstein.locationStreet];
+    if (self.stolperstein.locationZipCode || self.stolperstein.locationCity) {
+        [address appendString:@"\n"];
+        
+        if (self.stolperstein.locationZipCode) {
+            [address appendFormat:@"%@", self.stolperstein.locationZipCode];
+        }
+        if (self.stolperstein.locationCity) {
+            [address appendFormat:@" %@", self.stolperstein.locationCity];
+        }
+    }
+    NSAttributedString *addressText = [[NSAttributedString alloc] initWithString:address];
+    self.addressLabel = [[UILabel alloc] init];
+    self.addressLabel.attributedText = addressText;
+    self.addressLabel.numberOfLines = INT_MAX;
+    [self.scrollView addSubview:self.addressLabel];
+
+    // Title
+    self.title = self.stolperstein.title;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -53,6 +75,22 @@
     [super viewWillAppear:animated];
     
     [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.imageView cancelImageRequestOperation];
+}
+
+- (void)viewDidUnload
+{
+    [self setImageView:nil];
+    [self setImageActivityIndicator:nil];
+    [self setScrollView:nil];
+
+    [super viewDidUnload];
 }
 
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder
@@ -70,24 +108,8 @@
         [self loadImageWithURLString:imageURLString];
     }
     self.title = [coder decodeObjectForKey:@"title"];
-
-    [super decodeRestorableStateWithCoder:coder];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
     
-    [self.imageView cancelImageRequestOperation];
-}
-
-- (void)viewDidUnload
-{
-    [self setImageView:nil];
-    [self setImageActivityIndicator:nil];
-    [self setScrollView:nil];
-
-    [super viewDidUnload];
+    [super decodeRestorableStateWithCoder:coder];
 }
 
 - (void)loadImageWithURLString:(NSString *)URLString
@@ -108,12 +130,23 @@
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     CGFloat screenWidth = self.view.frame.size.width;
+    
+    // Image
     self.imageView.frame = CGRectMake(PADDING, PADDING, screenWidth - 2 * PADDING, screenWidth - 2 * PADDING);
     CGRect imageActivityIndicatorFrame = self.imageActivityIndicator.frame;
     imageActivityIndicatorFrame.origin.x = (self.imageView.frame.size.width - self.imageActivityIndicator.frame.size.width) * 0.5;
     imageActivityIndicatorFrame.origin.y = (self.imageView.frame.size.height - self.imageActivityIndicator.frame.size.height) * 0.5;
     self.imageActivityIndicator.frame = imageActivityIndicatorFrame;
-    self.scrollView.contentSize = CGSizeMake(screenWidth, self.imageView.frame.origin.y + self.imageView.frame.size.height + PADDING);
+    
+    // Address
+    CGRect addressFrame;
+    addressFrame.origin.x = PADDING;
+    addressFrame.origin.y = self.imageView.frame.origin.y + self.imageView.frame.size.height + PADDING * 0.5;
+    addressFrame.size = [self.addressLabel sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
+    self.addressLabel.frame = addressFrame;
+    
+    // Scroll view
+    self.scrollView.contentSize = CGSizeMake(screenWidth, self.addressLabel.frame.origin.y + self.addressLabel.frame.size.height + PADDING);
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

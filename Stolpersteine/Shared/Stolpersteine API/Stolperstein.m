@@ -18,7 +18,19 @@
 
 - (NSString *)subtitle
 {
-    return self.locationStreet;
+    NSMutableString *subtitle = [NSMutableString stringWithString:self.locationStreet];
+    if (self.locationZipCode || self.locationCity) {
+        [subtitle appendString:@","];
+        
+        if (self.locationZipCode) {
+            [subtitle appendFormat:@" %@", self.locationZipCode];
+        }
+        if (self.locationCity) {
+            [subtitle appendFormat:@" %@", self.locationCity];
+        }
+    }
+    
+    return subtitle;
 }
 
 - (CLLocationCoordinate2D)coordinate

@@ -83,7 +83,7 @@
     
     // Region is restored here to avoid problems when setting this property
     // while the map is off screen.
-    if (!self.isRestoredRegionInvalid) {
+    if (!self.isRegionToSetInvalid) {
         self.mapView.region = self.regionToSet;
         self.regionToSetInvalid = TRUE;
     }
@@ -128,7 +128,7 @@
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     if (self.stolpersteinToSelect) {
-//        [mapView selectAnnotation:self.stolpersteinToSelect animated:YES];
+        [mapView selectAnnotation:self.stolpersteinToSelect animated:YES];
         self.stolpersteinToSelect = nil;
     }
     
@@ -281,6 +281,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Deselect table row
+    UITableViewCell *tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
+    [tableViewCell setSelected:FALSE animated:TRUE];
+     
+    // Center on selected stolperstein
     Stolperstein *stolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"class == %@ AND id == %@", Stolperstein.class, stolperstein.id];
     NSArray *annotations = [self.mapView.annotations filteredArrayUsingPredicate:predicate];

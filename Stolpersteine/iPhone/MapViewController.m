@@ -298,6 +298,9 @@
     [self.mapView setRegion:region animated:YES];
     
     // Actual selection happens in mapView:regionDidChangeAnimated:
+    for (id<MKAnnotation> selectedAnnotation in self.mapView.selectedAnnotations) {
+        [self.mapView deselectAnnotation:selectedAnnotation animated:TRUE];
+    }
     self.stolpersteinToSelect = stolperstein;
     [self.customSearchDisplayController setActive:FALSE animated:TRUE];
 }

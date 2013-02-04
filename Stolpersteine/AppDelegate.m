@@ -43,12 +43,12 @@ static NSString * const GOOGLE_ANALYTICS_ID = @"UA-38166041-1";
 
 - (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
 {
-    return YES;
+    return NO;
 }
 
 - (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
 {
-    return YES;
+    return NO;
 }
 
 + (StolpersteineNetworkService *)networkService

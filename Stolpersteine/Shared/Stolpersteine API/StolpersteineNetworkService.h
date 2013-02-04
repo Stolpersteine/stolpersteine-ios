@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class SearchData;
+@class StolpersteinSearchData;
 
 @interface StolpersteineNetworkService : NSObject
 
 - (id)initWithURL:(NSURL *)url clientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword;
 
-- (NSOperation *)retrieveStolpersteineWithSearchData:(SearchData *)searchData page:(NSUInteger)page pageSize:(NSUInteger)pageSize completionHandler:(void (^)(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error))completionHandler;
+- (NSOperation *)retrieveStolpersteineWithSearchData:(StolpersteinSearchData *)searchData page:(NSUInteger)page pageSize:(NSUInteger)pageSize completionHandler:(void (^)(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error))completionHandler;
 
 @end

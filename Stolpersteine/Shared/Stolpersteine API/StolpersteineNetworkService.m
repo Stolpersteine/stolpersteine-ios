@@ -13,6 +13,7 @@
 #import "AFHTTPClient.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "Stolperstein.h"
+#import "StolpersteinSearchData.h"
 #import "NSDictionary+Parsing.h"
 
 @interface StolpersteineNetworkService ()
@@ -36,9 +37,13 @@
     return self;
 }
 
-- (NSOperation *)retrieveStolpersteineWithSearchData:(SearchData *)searchData page:(NSUInteger)page pageSize:(NSUInteger)pageSize completionHandler:(void (^)(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error))completionHandler
+- (NSOperation *)retrieveStolpersteineWithSearchData:(StolpersteinSearchData *)searchData page:(NSUInteger)page pageSize:(NSUInteger)pageSize completionHandler:(void (^)(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error))completionHandler
 {
-    NSURLRequest *request = [self.httpClient requestWithMethod:@"GET" path:@"stolpersteine" parameters:nil];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    if (searchData.keyword) {
+        [parameters setObject:searchData.keyword forKey:@"q"];
+    }
+    NSURLRequest *request = [self.httpClient requestWithMethod:@"GET" path:@"stolpersteine" parameters:parameters];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSArray *stolpersteineAsJSON) {
         NSMutableArray *stolpersteine = [NSMutableArray arrayWithCapacity:stolpersteineAsJSON.count];
         for (NSDictionary *stolpersteinAsJSON in stolpersteineAsJSON) {

@@ -12,6 +12,7 @@
 #import "StolpersteineNetworkService.h"
 #import "Stolperstein.h"
 #import "StolpersteinGroup.h"
+#import "StolpersteinSearchData.h"
 #import "StolpersteinDetailViewController.h"
 #import "StolpersteinListViewController.h"
 #import "SearchBar.h"
@@ -26,7 +27,9 @@
 @property (nonatomic, assign) MKCoordinateRegion restoredRegion;
 @property (nonatomic, assign, getter = isRestoredRegionInvalid) BOOL restoredRegionInvalid;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
+@property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
 @property (nonatomic, strong) SearchDisplayController *customSearchDisplayController;
+@property (nonatomic, strong) NSArray *searchedStolpersteine;
 
 @end
 
@@ -229,31 +232,36 @@
 
 - (BOOL)searchDisplayController:(SearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    NSLog(@"search: %@", searchString);
+    [self.searchStolpersteineOperation cancel];
     
-    return TRUE;
+    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+    searchData.keyword = searchString;
+    self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:searchData page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+        NSLog(@"shouldReloadTableForSearchString %d (%@)", stolpersteine.count, error);
+
+        self.searchedStolpersteine = stolpersteine;
+        [self.customSearchDisplayController.searchResultsTableView reloadData];
+    }];
+                                           
+    return FALSE;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * const reuseIdentifier = @"reuseIdentifier";
+    static NSString * const reuseIdentifier = @"cell";
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
     
-    UITableViewCell *tableViewCell;
-    if (indexPath.row == 0) {
-        tableViewCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
-    } else if (indexPath.row == 1) {
-        tableViewCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
-    }
-    tableViewCell.textLabel.text = @"Test";
-    tableViewCell.detailTextLabel.text = @"Subtitle";
-    tableViewCell.imageView.image = [UIImage imageNamed:@"search-text-field-magnifier-portrait.png"];
+    Stolperstein *stolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];
+    cell.textLabel.text = stolperstein.title;
+    cell.detailTextLabel.text = stolperstein.subtitle;
+//    tableViewCell.imageView.image = [UIImage imageNamed:@"search-text-field-magnifier-portrait.png"];
 
-    return tableViewCell;
+    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return self.searchedStolpersteine.count;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

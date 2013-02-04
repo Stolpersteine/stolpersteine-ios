@@ -148,8 +148,12 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
 
 - (void)setSearchResultsDataSource:(id<UITableViewDataSource>)searchResultsDataSource
 {
-    _searchResultsDataSource = searchResultsDataSource;
     self.searchResultsTableView.dataSource = searchResultsDataSource;
+}
+
+- (id<UITableViewDataSource>)searchResultsDataSource
+{
+    return self.searchResultsDataSource;
 }
 
 @end

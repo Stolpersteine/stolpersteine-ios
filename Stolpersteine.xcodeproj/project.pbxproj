@@ -30,6 +30,8 @@
 		48633B9C16C03F690057A317 /* StolpersteinDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */; };
 		48633B9D16C03F690057A317 /* StolpersteinListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9616C03F690057A317 /* StolpersteinListViewController.m */; };
 		48633BA016C03FCE0057A317 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9F16C03FCE0057A317 /* AppDelegate.m */; };
+		48633BA616C040520057A317 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48633BA216C040520057A317 /* InfoPlist.strings */; };
+		48633BA716C040520057A317 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48633BA416C040520057A317 /* MainStoryboard.storyboard */; };
 		48AC6D7016BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7116BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7216BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
@@ -90,12 +92,10 @@
 		627E43B7169B0F050065C1F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
 		627E43B9169B0F050065C1F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B8169B0F050065C1F1 /* Foundation.framework */; };
 		627E43BB169B0F050065C1F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43BA169B0F050065C1F1 /* CoreGraphics.framework */; };
-		627E43C1169B0F050065C1F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 627E43BF169B0F050065C1F1 /* InfoPlist.strings */; };
 		627E43C3169B0F050065C1F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43C2169B0F050065C1F1 /* main.m */; };
 		627E43C9169B0F050065C1F1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 627E43C8169B0F050065C1F1 /* Default.png */; };
 		627E43CB169B0F050065C1F1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 627E43CA169B0F050065C1F1 /* Default@2x.png */; };
 		627E43CD169B0F050065C1F1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 627E43CC169B0F050065C1F1 /* Default-568h@2x.png */; };
-		627E43D0169B0F050065C1F1 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 627E43CE169B0F050065C1F1 /* MainStoryboard.storyboard */; };
 		627E43DA169B0FFC0065C1F1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43D9169B0FFC0065C1F1 /* MapKit.framework */; };
 		627E4403169B27370065C1F1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E4402169B27360065C1F1 /* SystemConfiguration.framework */; };
 		627E4405169B273D0065C1F1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E4404169B273D0065C1F1 /* MobileCoreServices.framework */; };
@@ -131,6 +131,8 @@
 		48633B9616C03F690057A317 /* StolpersteinListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinListViewController.m; sourceTree = "<group>"; };
 		48633B9E16C03FCE0057A317 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		48633B9F16C03FCE0057A317 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		48633BA316C040520057A317 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		48633BA516C040520057A317 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		48AC6D6E16BF0964004C4AF4 /* StolpersteinSearchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinSearchData.h; sourceTree = "<group>"; };
 		48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinSearchData.m; sourceTree = "<group>"; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
@@ -185,13 +187,11 @@
 		627E43B8169B0F050065C1F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		627E43BA169B0F050065C1F1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		627E43BE169B0F050065C1F1 /* Stolpersteine-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Stolpersteine-Info.plist"; sourceTree = "<group>"; };
-		627E43C0169B0F050065C1F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		627E43C2169B0F050065C1F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		627E43C4169B0F050065C1F1 /* Stolpersteine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stolpersteine-Prefix.pch"; sourceTree = "<group>"; };
 		627E43C8169B0F050065C1F1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		627E43CA169B0F050065C1F1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		627E43CC169B0F050065C1F1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		627E43CF169B0F050065C1F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		627E43D9169B0FFC0065C1F1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		627E4402169B27360065C1F1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		627E4404169B273D0065C1F1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -298,6 +298,15 @@
 			path = iPhone;
 			sourceTree = "<group>";
 		};
+		48633BA116C040520057A317 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				48633BA216C040520057A317 /* InfoPlist.strings */,
+				48633BA416C040520057A317 /* MainStoryboard.storyboard */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		6222BF2816A037CE006ED538 /* Stolpersteine Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +357,7 @@
 		626BBF0E16AEB15600DEC6EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				48633BA116C040520057A317 /* UI */,
 				6243177116BFDF2400055933 /* Images */,
 			);
 			name = Resources;
@@ -444,9 +454,7 @@
 		627E43BD169B0F050065C1F1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				627E43CE169B0F050065C1F1 /* MainStoryboard.storyboard */,
 				627E43BE169B0F050065C1F1 /* Stolpersteine-Info.plist */,
-				627E43BF169B0F050065C1F1 /* InfoPlist.strings */,
 				627E43C2169B0F050065C1F1 /* main.m */,
 				627E43C4169B0F050065C1F1 /* Stolpersteine-Prefix.pch */,
 				627E43C8169B0F050065C1F1 /* Default.png */,
@@ -590,11 +598,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				627E43C1169B0F050065C1F1 /* InfoPlist.strings in Resources */,
 				627E43C9169B0F050065C1F1 /* Default.png in Resources */,
 				627E43CB169B0F050065C1F1 /* Default@2x.png in Resources */,
 				627E43CD169B0F050065C1F1 /* Default-568h@2x.png in Resources */,
-				627E43D0169B0F050065C1F1 /* MainStoryboard.storyboard in Resources */,
 				6243178016BFDF2400055933 /* image-frame.png in Resources */,
 				6243178116BFDF2400055933 /* image-frame@2x.png in Resources */,
 				6243178216BFDF2400055933 /* search-text-field-clear-button-landscape.png in Resources */,
@@ -609,6 +615,8 @@
 				6243178B16BFDF2400055933 /* search-text-field-magnifier-portrait@2x.png in Resources */,
 				6243178C16BFDF2400055933 /* search-text-field-portrait.png in Resources */,
 				6243178D16BFDF2400055933 /* search-text-field-portrait@2x.png in Resources */,
+				48633BA616C040520057A317 /* InfoPlist.strings in Resources */,
+				48633BA716C040520057A317 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,28 +736,28 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		48633BA216C040520057A317 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48633BA316C040520057A317 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		48633BA416C040520057A317 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48633BA516C040520057A317 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
 		6222BF2B16A037CE006ED538 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6222BF2C16A037CE006ED538 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		627E43BF169B0F050065C1F1 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				627E43C0169B0F050065C1F1 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		627E43CE169B0F050065C1F1 /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				627E43CF169B0F050065C1F1 /* en */,
-			);
-			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

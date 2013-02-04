@@ -32,6 +32,7 @@
 		48633BA016C03FCE0057A317 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9F16C03FCE0057A317 /* AppDelegate.m */; };
 		48633BA616C040520057A317 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48633BA216C040520057A317 /* InfoPlist.strings */; };
 		48633BA716C040520057A317 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48633BA416C040520057A317 /* MainStoryboard.storyboard */; };
+		48633BAA16C041150057A317 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48633BAC16C041150057A317 /* Localizable.strings */; };
 		48AC6D7016BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7116BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7216BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
@@ -133,6 +134,7 @@
 		48633B9F16C03FCE0057A317 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		48633BA316C040520057A317 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		48633BA516C040520057A317 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		48633BAB16C041150057A317 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		48AC6D6E16BF0964004C4AF4 /* StolpersteinSearchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinSearchData.h; sourceTree = "<group>"; };
 		48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinSearchData.m; sourceTree = "<group>"; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 			children = (
 				48633BA216C040520057A317 /* InfoPlist.strings */,
 				48633BA416C040520057A317 /* MainStoryboard.storyboard */,
+				48633BAC16C041150057A317 /* Localizable.strings */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				6243178D16BFDF2400055933 /* search-text-field-portrait@2x.png in Resources */,
 				48633BA616C040520057A317 /* InfoPlist.strings in Resources */,
 				48633BA716C040520057A317 /* MainStoryboard.storyboard in Resources */,
+				48633BAA16C041150057A317 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,6 +754,14 @@
 				48633BA516C040520057A317 /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		48633BAC16C041150057A317 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48633BAB16C041150057A317 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		6222BF2B16A037CE006ED538 /* InfoPlist.strings */ = {

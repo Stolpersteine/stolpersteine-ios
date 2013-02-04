@@ -9,6 +9,7 @@
 #import "StolpersteineNetworkServiceTests.h"
 
 #import "Stolperstein.h"
+#import "StolpersteinSearchData.h"
 #import "StolpersteineNetworkService.h"
 
 static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/api/";
@@ -61,6 +62,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
     [self.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:5 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
         self.done = TRUE;
         
+        STAssertNil(error, @"Error request");
         STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
             // Mandatory fields
@@ -95,6 +97,24 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
             if (stolperstein.text) {
                 STAssertTrue([stolperstein.text isKindOfClass:NSString.class], @"Wrong type for text");
             }
+        }
+    }];
+    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+}
+
+- (void)testRetrieveStolpersteineKeyword
+{
+    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+    searchData.keyword = @"Ern";
+    [self.networkService retrieveStolpersteineWithSearchData:searchData page:0 pageSize:5 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+        self.done = TRUE;
+        
+        STAssertNil(error, @"Error request");
+        STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
+        for (Stolperstein *stolperstein in stolpersteine) {
+            BOOL found = [stolperstein.personFirstName hasPrefix:searchData.keyword];
+            found |= [stolperstein.personLastName hasPrefix:searchData.keyword];
+            STAssertTrue(found, @"Wrong search result");
         }
     }];
     STAssertTrue([self waitForCompletion:5.0], @"Time out");

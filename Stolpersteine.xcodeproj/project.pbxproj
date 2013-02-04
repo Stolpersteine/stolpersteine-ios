@@ -282,18 +282,18 @@
 		48633B8616C03F690057A317 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				48633B8716C03F690057A317 /* CopyableImageView.h */,
-				48633B8816C03F690057A317 /* CopyableImageView.m */,
 				48633B8916C03F690057A317 /* MapViewController.h */,
 				48633B8A16C03F690057A317 /* MapViewController.m */,
 				48633B8B16C03F690057A317 /* SearchBar.h */,
 				48633B8C16C03F690057A317 /* SearchBar.m */,
 				48633B8D16C03F690057A317 /* SearchBarDelegate.h */,
+				48633B9116C03F690057A317 /* SearchTextField.h */,
+				48633B9216C03F690057A317 /* SearchTextField.m */,
 				48633B8E16C03F690057A317 /* SearchDisplayController.h */,
 				48633B8F16C03F690057A317 /* SearchDisplayController.m */,
 				48633B9016C03F690057A317 /* SearchDisplayDelegate.h */,
-				48633B9116C03F690057A317 /* SearchTextField.h */,
-				48633B9216C03F690057A317 /* SearchTextField.m */,
+				48633B8716C03F690057A317 /* CopyableImageView.h */,
+				48633B8816C03F690057A317 /* CopyableImageView.m */,
 				48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */,
 				48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */,
 				48633B9516C03F690057A317 /* StolpersteinListViewController.h */,

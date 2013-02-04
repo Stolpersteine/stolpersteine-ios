@@ -118,6 +118,7 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
     } else {
         barButtonItem = self.barButtonItem;
         self.barButtonItem = nil;
+        [self.searchBar resignFirstResponder];
     }
 
     [self.searchContentsController.navigationItem setRightBarButtonItem:barButtonItem animated:YES];
@@ -125,7 +126,6 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
 
 - (void)cancel:(UIBarButtonItem *)barButtonItem
 {
-    [self.searchBar resignFirstResponder];
     [self setActive:FALSE animated:TRUE];
 }
 
@@ -154,6 +154,16 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
 - (id<UITableViewDataSource>)searchResultsDataSource
 {
     return self.searchResultsDataSource;
+}
+
+- (void)setSearchResultsDelegate:(id<UITableViewDelegate>)searchResultsDelegate
+{
+    self.searchResultsTableView.delegate = searchResultsDelegate;
+}
+
+- (id<UITableViewDelegate>)searchResultsDelegate
+{
+    return self.searchResultsDelegate;
 }
 
 @end

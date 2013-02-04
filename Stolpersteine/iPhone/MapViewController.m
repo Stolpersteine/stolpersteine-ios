@@ -19,17 +19,18 @@
 #import "SearchDisplayController.h"
 #import "SearchDisplayDelegate.h"
 
-@interface MapViewController () <MKMapViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, SearchDisplayDelegate>
+@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SearchDisplayDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
-@property (nonatomic, assign) MKCoordinateRegion restoredRegion;
-@property (nonatomic, assign, getter = isRestoredRegionInvalid) BOOL restoredRegionInvalid;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
 @property (nonatomic, strong) SearchDisplayController *customSearchDisplayController;
 @property (nonatomic, strong) NSArray *searchedStolpersteine;
+@property (nonatomic, strong) Stolperstein *stolpersteinToSelect;
+@property (nonatomic, assign) MKCoordinateRegion regionToSet;
+@property (nonatomic, assign, getter = isRegionToSetInvalid) BOOL regionToSetInvalid;
 
 @end
 
@@ -45,6 +46,7 @@
     self.customSearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
     self.customSearchDisplayController.delegate = self;
     self.customSearchDisplayController.searchResultsDataSource = self;
+    self.customSearchDisplayController.searchResultsDelegate = self;
     UIBarButtonItem *barButtonItem = self.navigationItem.rightBarButtonItem;
     NSString *homeBarButtonItemTitle = NSLocalizedString(@"MapViewController.homeBarButtonItem", nil);
     NSString *cancelBarButtonItemTitle = NSLocalizedString(@"MapViewController.cancelBarButtonItem", nil);
@@ -61,7 +63,7 @@
     
     // Set map location to Berlin
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);
-    self.restoredRegion = MKCoordinateRegionMakeWithDistance(location, 12000, 12000);
+    self.regionToSet = MKCoordinateRegionMakeWithDistance(location, 12000, 12000);
 }
 
 - (void)viewDidUnload
@@ -82,8 +84,8 @@
     // Region is restored here to avoid problems when setting this property
     // while the map is off screen.
     if (!self.isRestoredRegionInvalid) {
-        self.mapView.region = self.restoredRegion;
-        self.restoredRegionInvalid = TRUE;
+        self.mapView.region = self.regionToSet;
+        self.regionToSetInvalid = TRUE;
     }
     
     [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
@@ -108,7 +110,7 @@
     region.center.longitude = [coder decodeDoubleForKey:@"mapView.region.center.longitude"];
     region.span.latitudeDelta = [coder decodeDoubleForKey:@"mapView.region.span.latitudeDelta"];
     region.span.longitudeDelta = [coder decodeDoubleForKey:@"mapView.region.span.longitudeDelta"];
-    self.restoredRegion = region;
+    self.regionToSet = region;
     
     [super decodeRestorableStateWithCoder:coder];
 }
@@ -125,6 +127,11 @@
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
+    if (self.stolpersteinToSelect) {
+//        [mapView selectAnnotation:self.stolpersteinToSelect animated:YES];
+        self.stolpersteinToSelect = nil;
+    }
+    
     [self.retrieveStolpersteineOperation cancel];
     self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
         NSLog(@"retrieveStolpersteineWithSearchData %d (%@)", stolpersteine.count, error);
@@ -147,13 +154,13 @@
             
             NSLog(@"%d added, %d removed", annotationsToAdd.count, annotationsToRemove.count);
             
-            // Test
-            if (annotationsToAdd.count > 1) {
-                StolpersteinGroup *stolpersteinGroup = [[StolpersteinGroup alloc] init];
-                stolpersteinGroup.stolpersteine = annotationsToAdd;
-                stolpersteinGroup.locationCoordinates = [[CLLocation alloc] initWithLatitude:52.54 longitude:13.35];
-                [self.mapView addAnnotation:stolpersteinGroup];
-            }
+//            // Test
+//            if (annotationsToAdd.count > 1) {
+//                StolpersteinGroup *stolpersteinGroup = [[StolpersteinGroup alloc] init];
+//                stolpersteinGroup.stolpersteine = annotationsToAdd;
+//                stolpersteinGroup.locationCoordinates = [[CLLocation alloc] initWithLatitude:52.54 longitude:13.35];
+//                [self.mapView addAnnotation:stolpersteinGroup];
+//            }
         }
     }];
 }
@@ -213,7 +220,7 @@
 {
     if (!self.isUserLocationMode && self.userLocation.location) {
         self.userLocationMode = TRUE;
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.userLocation.location.coordinate, 12000, 12000);
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.userLocation.location.coordinate, 1200, 1200);
         [self.mapView setRegion:region animated:YES];
     } else {
         self.userLocationMode = FALSE;
@@ -253,13 +260,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * const reuseIdentifier = @"cell";
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+    static NSString * const cellIdentifier = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    }
     
     Stolperstein *stolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];
     cell.textLabel.text = stolperstein.title;
     cell.detailTextLabel.text = stolperstein.subtitle;
-//    tableViewCell.imageView.image = [UIImage imageNamed:@"search-text-field-magnifier-portrait.png"];
 
     return cell;
 }
@@ -267,6 +277,24 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.searchedStolpersteine.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Stolperstein *stolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"class == %@ AND id == %@", Stolperstein.class, stolperstein.id];
+    NSArray *annotations = [self.mapView.annotations filteredArrayUsingPredicate:predicate];
+    if (annotations.count == 0) {
+        [self.mapView addAnnotation:stolperstein];
+    } else {
+        stolperstein = annotations.lastObject;
+    }
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(stolperstein.coordinate, 1200, 1200);
+    [self.mapView setRegion:region animated:YES];
+    
+    // Actual selection happens in mapView:regionDidChangeAnimated:
+    self.stolpersteinToSelect = stolperstein;
+    [self.customSearchDisplayController setActive:FALSE animated:TRUE];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

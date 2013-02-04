@@ -12,8 +12,14 @@
 
 - (NSString *)title
 {
-    NSString *person = self.stolpersteine.count <= 1 ? @"Mensch" : @"Menschen";
-    NSString *title = [NSString stringWithFormat:@"%d %@", self.stolpersteine.count, person];
+    NSString *personFormat;
+    if (self.stolpersteine.count == 1) {
+        personFormat = NSLocalizedString(@"%d individual", nil);
+    } else {
+        personFormat = NSLocalizedString(@"%d individuals", nil);
+    }
+    
+    NSString *title = [NSString stringWithFormat:personFormat, self.stolpersteine.count];
     return title;
 }
 

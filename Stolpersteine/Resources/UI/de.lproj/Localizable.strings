@@ -6,6 +6,8 @@
   Copyright (c) 2013 Option-U Software. All rights reserved.
 */
 
+"%d individual" = "%d Mensch";
+"%d individuals" = "%d Menschen";
 
 "MapViewController.homeBarButtonItem" = "Zentrieren";
 "MapViewController.cancelBarButtonItem" = "Abbrechen";

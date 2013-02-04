@@ -31,11 +31,11 @@
                     <navigationItem key="navigationItem" id="wB8-Ca-YR2">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" restorationIdentifier="" id="AgH-MU-KZc" customClass="SearchBar">
-                            <rect key="frame" x="11" y="7" width="242" height="30"/>
+                            <rect key="frame" x="6" y="7" width="242" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" title="Home" id="r98-E5-DRq">
+                        <barButtonItem key="rightBarButtonItem" title="Button" id="r98-E5-DRq">
                             <connections>
                                 <action selector="centerMap:" destination="2" id="rcB-IQ-lkv"/>
                             </connections>

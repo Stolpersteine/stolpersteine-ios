@@ -5,3 +5,8 @@
   Created by Claus on 04.02.13.
   Copyright (c) 2013 Option-U Software. All rights reserved.
 */
+
+
+"MapViewController.homeBarButtonItem" = "Center";
+"MapViewController.cancelBarButtonItem" = "Cancel";
+"MapViewController.searchBarPaddingRight" = "75";

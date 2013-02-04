@@ -12,6 +12,7 @@
 
 @interface SearchBar : UIView
 
+@property (nonatomic, assign) CGFloat paddingRight;
 @property (nonatomic, assign, getter = isPortraitModeEnabled) BOOL portraitModeEnabled;
 @property (nonatomic, weak) NSObject<SearchBarDelegate> *delegate;
 @property (nonatomic, strong) NSString *text;

@@ -41,14 +41,19 @@
     
     self.title = @"Map";
     
-    // Search
+    // Search bar
     self.customSearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
     self.customSearchDisplayController.delegate = self;
     self.customSearchDisplayController.searchResultsDataSource = self;
     UIBarButtonItem *barButtonItem = self.navigationItem.rightBarButtonItem;
-    barButtonItem.possibleTitles = [NSSet setWithArray:@[@"Cancel", @"Home"]];
+    NSString *homeBarButtonItemTitle = NSLocalizedString(@"MapViewController.homeBarButtonItem", nil);
+    NSString *cancelBarButtonItemTitle = NSLocalizedString(@"MapViewController.cancelBarButtonItem", nil);
+    barButtonItem.possibleTitles = [NSSet setWithArray:@[homeBarButtonItemTitle, cancelBarButtonItemTitle]];
+    barButtonItem.title = homeBarButtonItemTitle;
     self.navigationItem.rightBarButtonItem = nil;   // forces possible titles to take effect
     self.navigationItem.rightBarButtonItem = barButtonItem;
+    CGFloat paddingRight = NSLocalizedString(@"MapViewController.searchBarPaddingRight", nil).floatValue;
+    self.searchBar.paddingRight = paddingRight;
     
     // User location
     self.locationManager = [[CLLocationManager alloc] init];

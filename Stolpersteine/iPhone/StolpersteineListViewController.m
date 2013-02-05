@@ -26,11 +26,13 @@
 {
     [super viewWillAppear:animated];
     
-    [self.searchStolpersteineOperation cancel];
-    self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:self.searchData page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
-        self.stolpersteine = stolpersteine;
-        [self.tableView reloadData];
-    }];
+    if (!self.stolpersteine) {
+        [self.searchStolpersteineOperation cancel];
+        self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:self.searchData page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+            self.stolpersteine = stolpersteine;
+            [self.tableView reloadData];
+        }];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

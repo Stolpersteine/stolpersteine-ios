@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSString *sourceName;
 @property (nonatomic, strong) NSDate *sourceRetrievedAt;
 @property (nonatomic, strong) NSString *locationStreet;
+@property (nonatomic, readonly) NSString *locationStreetName;
 @property (nonatomic, strong) NSString *locationZipCode;
 @property (nonatomic, strong) NSString *locationCity;
 @property (nonatomic, strong) CLLocation *locationCoordinates;

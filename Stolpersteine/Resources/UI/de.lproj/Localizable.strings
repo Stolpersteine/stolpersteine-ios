@@ -10,6 +10,8 @@
 "%d individuals" = "%d Menschen";
 
 "MapViewController.title" = "Karte";
-"MapViewController.homeBarButtonItem" = "Zentrieren";
-"MapViewController.cancelBarButtonItem" = "Abbrechen";
+"MapViewController.home" = "Zentrieren";
+"MapViewController.cancel" = "Abbrechen";
 "MapViewController.searchBarPaddingRight" = "100";
+
+"StolpersteinDetailViewController.allInThisStreet" = "Alle in dieser Straße";

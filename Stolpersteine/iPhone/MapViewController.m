@@ -50,8 +50,8 @@
     self.customSearchDisplayController.searchResultsDataSource = self;
     self.customSearchDisplayController.searchResultsDelegate = self;
     UIBarButtonItem *barButtonItem = self.navigationItem.rightBarButtonItem;
-    NSString *homeBarButtonItemTitle = NSLocalizedString(@"MapViewController.homeBarButtonItem", nil);
-    NSString *cancelBarButtonItemTitle = NSLocalizedString(@"MapViewController.cancelBarButtonItem", nil);
+    NSString *homeBarButtonItemTitle = NSLocalizedString(@"MapViewController.home", nil);
+    NSString *cancelBarButtonItemTitle = NSLocalizedString(@"MapViewController.cancel", nil);
     barButtonItem.possibleTitles = [NSSet setWithArray:@[homeBarButtonItemTitle, cancelBarButtonItemTitle]];
     barButtonItem.title = homeBarButtonItemTitle;
     self.navigationItem.rightBarButtonItem = nil;   // forces possible titles to take effect
@@ -179,7 +179,7 @@
             annotationView.annotation = annotation;
         } else {
             MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
-            pinView.animatesDrop = YES;
+//            pinView.animatesDrop = YES;
             pinView.canShowCallout = YES;
             
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];

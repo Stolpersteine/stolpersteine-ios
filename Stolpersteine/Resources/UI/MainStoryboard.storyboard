@@ -74,7 +74,7 @@
             <objects>
                 <tableViewController id="S9Y-Yy-0sA" customClass="StolpersteineListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ii3-to-xuB">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -107,19 +107,19 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="hYk-hn-xCs"/>
                     <connections>
-                        <segue destination="Az3-JW-c4L" kind="push" identifier="stolpersteinListViewControllerToStolpersteinDetailViewController" id="Txc-mb-Q18"/>
+                        <segue destination="Az3-JW-c4L" kind="push" identifier="stolpersteineListViewControllerToStolpersteinDetailViewController" id="Txc-mb-Q18"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GeU-YR-f5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="582" y="-375"/>
+            <point key="canvasLocation" x="794" y="-341"/>
         </scene>
         <!--Stolperstein Detail View Controller-->
         <scene sceneID="osR-H4-E6h">
             <objects>
                 <viewController storyboardIdentifier="detailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Az3-JW-c4L" customClass="StolpersteinDetailViewController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="scrollView" id="lxM-gj-iBt">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </scrollView>
@@ -132,46 +132,21 @@
                     </navigationItem>
                     <connections>
                         <outlet property="scrollView" destination="lxM-gj-iBt" id="GMS-el-bx7"/>
+                        <segue destination="S9Y-Yy-0sA" kind="push" identifier="stolpersteinDetailViewControllerToStolpersteineListViewController" id="gzf-lt-1mR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgX-vg-RuV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1154" y="-11"/>
+            <point key="canvasLocation" x="794" y="319"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="MapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="centerMap:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="centerMapBarButtonItem" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="SearchBar"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SearchBar" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchBar.h"/>
-        </class>
-        <class className="StolpersteinDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StolpersteinDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showActivities:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="StolpersteineListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StolpersteineListViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hg1-Lc-53S"/>
+        <segue reference="Txc-mb-Q18"/>
+        <segue reference="gzf-lt-1mR"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,7 +8,10 @@
 
 #import "StolpersteinDetailViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
 #import "Stolperstein.h"
+#import "StolpersteinSearchData.h"
+#import "StolpersteineListViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "CopyableImageView.h"
 
@@ -19,6 +22,7 @@
 @property (strong, nonatomic) CopyableImageView *imageView;
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
 @property (strong, nonatomic) UILabel *addressLabel;
+@property (strong, nonatomic) UIButton *allInThisStreetButton;
 
 @end
 
@@ -27,6 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.title = self.stolperstein.title;
 
     // Image
     self.imageView = [[CopyableImageView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
@@ -70,9 +76,16 @@
     self.addressLabel.attributedText = addressText;
     self.addressLabel.numberOfLines = INT_MAX;
     [self.scrollView addSubview:self.addressLabel];
-
-    // Title
-    self.title = self.stolperstein.title;
+    
+    // Button
+    self.allInThisStreetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    NSString *allInThisStreetTitleFormat = NSLocalizedString(@"StolpersteinDetailViewController.allInThisStreet", nil);
+    NSString *allInThisStreetTitle = [NSString stringWithFormat:allInThisStreetTitleFormat, self.stolperstein.locationStreet];
+    self.allInThisStreetButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [self.allInThisStreetButton setTitle:allInThisStreetTitle forState:UIControlStateNormal];
+    [self.allInThisStreetButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [self.allInThisStreetButton addTarget:self action:@selector(showAllInThisStreet:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:self.allInThisStreetButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -149,9 +162,22 @@
     addressFrame.origin.y = self.imageView.frame.origin.y + self.imageView.frame.size.height + PADDING * 0.5;
     addressFrame.size = [self.addressLabel sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
     self.addressLabel.frame = addressFrame;
+
+    CGFloat height;
+    if (self.isAllInThisStreetButtonHidden) {
+        height = self.addressLabel.frame.origin.y + self.addressLabel.frame.size.height + PADDING;
+    } else {
+        // Button
+        CGRect buttonFrame;
+        buttonFrame.origin.x = PADDING;
+        buttonFrame.origin.y = addressFrame.origin.y + addressFrame.size.height + PADDING * 0.5;
+        buttonFrame.size = CGSizeMake(screenWidth - 2 * PADDING, 44);
+        self.allInThisStreetButton.frame = buttonFrame;
+        height = self.allInThisStreetButton.frame.origin.y + self.allInThisStreetButton.frame.size.height + PADDING;
+    }
     
     // Scroll view
-    self.scrollView.contentSize = CGSizeMake(screenWidth, self.addressLabel.frame.origin.y + self.addressLabel.frame.size.height + PADDING);
+    self.scrollView.contentSize = CGSizeMake(screenWidth, height);
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -168,6 +194,22 @@
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
     activityViewController.excludedActivityTypes = @[UIActivityTypeAssignToContact];
     [self presentViewController:activityViewController animated:YES completion:nil];
+}
+
+- (void)showAllInThisStreet:(UIButton *)sender
+{
+    [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToStolpersteineListViewController" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToStolpersteineListViewController"]) {
+        StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+        searchData.locationStreet = self.stolperstein.locationStreetName;
+        StolpersteineListViewController *listViewController = (StolpersteineListViewController *)segue.destinationViewController;
+        listViewController.searchData = searchData;
+        listViewController.title = searchData.locationStreet;
+    }
 }
 
 @end

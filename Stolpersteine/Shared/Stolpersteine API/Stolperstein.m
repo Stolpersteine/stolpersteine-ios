@@ -10,6 +10,17 @@
 
 @implementation Stolperstein
 
+- (NSString *)locationStreetName
+{
+    NSRange range = [self.locationStreet rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet];
+    NSString *locationStreetName = self.locationStreet;
+    if (range.location != NSNotFound) {
+        locationStreetName = [locationStreetName substringToIndex:range.location];
+        locationStreetName = [locationStreetName stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
+    }
+    return locationStreetName;
+}
+
 - (NSString *)title
 {
     NSString *title = [NSString stringWithFormat:@"%@ %@", self.personFirstName, self.personLastName];

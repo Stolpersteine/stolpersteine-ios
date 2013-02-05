@@ -7,6 +7,8 @@
 */
 
 "MapViewController.title" = "Map";
-"MapViewController.homeBarButtonItem" = "Center";
-"MapViewController.cancelBarButtonItem" = "Cancel";
+"MapViewController.home" = "Center";
+"MapViewController.cancel" = "Cancel";
 "MapViewController.searchBarPaddingRight" = "75";
+
+"StolpersteinDetailViewController.allInThisStreet" = "All in this street";

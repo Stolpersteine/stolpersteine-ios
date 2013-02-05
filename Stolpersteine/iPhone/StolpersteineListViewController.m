@@ -8,11 +8,30 @@
 
 #import "StolpersteineListViewController.h"
 
+#import "AppDelegate.h"
+#import "StolpersteineNetworkService.h"
 #import "Stolperstein.h"
 #import "StolpersteinGroup.h"
 #import "StolpersteinDetailViewController.h"
 
+@interface StolpersteineListViewController()
+
+@property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
+
+@end
+
 @implementation StolpersteineListViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.searchStolpersteineOperation cancel];
+    self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:self.searchData page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+        self.stolpersteine = stolpersteine;
+        [self.tableView reloadData];
+    }];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -33,15 +52,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"stolpersteinListViewControllerToStolpersteinDetailViewController" sender:self];
+    [self performSegueWithIdentifier:@"stolpersteineListViewControllerToStolpersteinDetailViewController" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"stolpersteinListViewControllerToStolpersteinDetailViewController"]) {
+    if ([segue.identifier isEqualToString:@"stolpersteineListViewControllerToStolpersteinDetailViewController"]) {
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
         Stolperstein *stolperstein = [self.stolpersteine objectAtIndex:self.tableView.indexPathForSelectedRow.row];
         detailViewController.stolperstein = stolperstein;
+        
+        if (self.searchData) {
+            // Stop endless navigation
+            detailViewController.allInThisStreetButtonHidden = YES;
+        }
     }
 }
 

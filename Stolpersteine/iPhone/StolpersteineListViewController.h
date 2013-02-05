@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class StolpersteinSearchData;
+
 @interface StolpersteineListViewController : UITableViewController
 
 @property (strong, nonatomic) NSArray *stolpersteine;
+@property (strong, nonatomic) StolpersteinSearchData *searchData;
 
 @end

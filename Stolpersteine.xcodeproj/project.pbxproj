@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4805808D16C19DF100C49272 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4805808C16C19DF100C49272 /* MainStoryboard.storyboard */; };
+		4805809316C1B46B00C49272 /* StolpersteinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4805809216C1B46B00C49272 /* StolpersteinTests.m */; };
 		480AF2E716BDBDC500232683 /* StolpersteinGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 480AF2E616BDBDC500232683 /* StolpersteinGroup.m */; };
 		480AF2E816BDBDC500232683 /* StolpersteinGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 480AF2E616BDBDC500232683 /* StolpersteinGroup.m */; };
 		480AF2E916BDBDC500232683 /* StolpersteinGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 480AF2E616BDBDC500232683 /* StolpersteinGroup.m */; };
@@ -106,6 +107,8 @@
 
 /* Begin PBXFileReference section */
 		4805808C16C19DF100C49272 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		4805809116C1B46B00C49272 /* StolpersteinTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinTests.h; sourceTree = "<group>"; };
+		4805809216C1B46B00C49272 /* StolpersteinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinTests.m; sourceTree = "<group>"; };
 		480AF2E516BDBDC500232683 /* StolpersteinGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinGroup.h; sourceTree = "<group>"; };
 		480AF2E616BDBDC500232683 /* StolpersteinGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinGroup.m; sourceTree = "<group>"; };
 		480FFF8616A0C6150012CCD5 /* Stolpersteine Integration Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stolpersteine Integration Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,6 +337,8 @@
 		6222BF3516A03E82006ED538 /* Stolpersteine API */ = {
 			isa = PBXGroup;
 			children = (
+				4805809116C1B46B00C49272 /* StolpersteinTests.h */,
+				4805809216C1B46B00C49272 /* StolpersteinTests.m */,
 			);
 			path = "Stolpersteine API";
 			sourceTree = "<group>";
@@ -699,6 +704,7 @@
 				627A0BA816BC037100CFA71E /* UIImageView+AFNetworking.m in Sources */,
 				480AF2E816BDBDC500232683 /* StolpersteinGroup.m in Sources */,
 				48AC6D7116BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */,
+				4805809316C1B46B00C49272 /* StolpersteinTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

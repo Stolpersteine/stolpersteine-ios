@@ -31,6 +31,7 @@
     self.borderStyle = UITextBorderStyleNone;
     self.accessibilityTraits = UIAccessibilityTraitSearchField;
     self.portraitModeEnabled = TRUE;
+    self.autocorrectionType = UITextAutocorrectionTypeNo;
 }
 
 - (void)layoutSubviews

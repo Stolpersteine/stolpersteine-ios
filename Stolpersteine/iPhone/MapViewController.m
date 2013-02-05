@@ -19,6 +19,8 @@
 #import "SearchDisplayController.h"
 #import "SearchDisplayDelegate.h"
 
+#define fequal(a,b) (fabs((a) - (b)) < FLT_EPSILON)
+
 @interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SearchDisplayDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
@@ -285,23 +287,34 @@
     UITableViewCell *tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
     [tableViewCell setSelected:FALSE animated:TRUE];
      
-    // Center on selected stolperstein
+    // Check if stolperstein already exists as annotation; otherwise, it gets
+    // added when selecting it
     Stolperstein *stolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"class == %@ AND id == %@", Stolperstein.class, stolperstein.id];
     NSArray *annotations = [self.mapView.annotations filteredArrayUsingPredicate:predicate];
-    if (annotations.count == 0) {
-        [self.mapView addAnnotation:stolperstein];
-    } else {
+    if (annotations.count != 0) {
         stolperstein = annotations.lastObject;
     }
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(stolperstein.coordinate, 1200, 1200);
-    [self.mapView setRegion:region animated:YES];
     
-    // Actual selection happens in mapView:regionDidChangeAnimated:
+    // Deselect all annotations
     for (id<MKAnnotation> selectedAnnotation in self.mapView.selectedAnnotations) {
         [self.mapView deselectAnnotation:selectedAnnotation animated:TRUE];
     }
-    self.stolpersteinToSelect = stolperstein;
+    
+    // Center on stolperstein and select it
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(stolperstein.coordinate, 1200, 1200);
+    BOOL isRegionUpToDate = fequal(region.center.latitude, self.mapView.region.center.latitude) && fequal(region.center.longitude, self.mapView.region.center.longitude);
+    
+    if (isRegionUpToDate) {
+        // Select immediately since annotation is already visible
+        [self.mapView setRegion:region animated:YES];
+        [self.mapView selectAnnotation:stolperstein animated:YES];
+    } else {
+        // Actual selection happens in mapView:regionDidChangeAnimated:
+        [self.mapView setRegion:region animated:YES];
+        self.stolpersteinToSelect = stolperstein;
+    }
+    
     [self.customSearchDisplayController setActive:FALSE animated:TRUE];
 }
 

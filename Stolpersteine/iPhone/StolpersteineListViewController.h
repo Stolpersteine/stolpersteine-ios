@@ -10,7 +10,6 @@
 
 @interface StolpersteineListViewController : UITableViewController
 
-@property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSArray *stolpersteine;
 
 @end

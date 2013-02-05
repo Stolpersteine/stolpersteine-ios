@@ -203,7 +203,7 @@
     if ([view.annotation isKindOfClass:Stolperstein.class]) {
         identifier = @"mapViewControllerToStolpersteinDetailViewController";
     } else {
-        identifier = @"mapViewControllerToStolpersteinListViewController";
+        identifier = @"mapViewControllerToStolpersteineListViewController";
     }
     [self performSegueWithIdentifier:identifier sender:view.annotation];
 }
@@ -324,7 +324,7 @@
     if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
         detailViewController.stolperstein = selectedAnnotation;
-    } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinListViewController"]) {
+    } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
         StolpersteineListViewController *listViewController = (StolpersteineListViewController *)segue.destinationViewController;
         StolpersteinGroup *stolpersteinGroup = (StolpersteinGroup *)selectedAnnotation;
         listViewController.stolpersteine = stolpersteinGroup.stolpersteine;

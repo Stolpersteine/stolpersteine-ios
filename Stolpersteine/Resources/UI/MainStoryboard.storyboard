@@ -46,7 +46,7 @@
                         <outlet property="mapView" destination="omQ-fz-cwh" id="JBd-Rf-WH9"/>
                         <outlet property="searchBar" destination="AgH-MU-KZc" id="Khr-cK-EUC"/>
                         <segue destination="Az3-JW-c4L" kind="push" identifier="mapViewControllerToStolpersteinDetailViewController" id="hg1-Lc-53S"/>
-                        <segue destination="S9Y-Yy-0sA" kind="push" identifier="mapViewControllerToStolpersteinListViewController" id="icL-Q6-suH"/>
+                        <segue destination="S9Y-Yy-0sA" kind="push" identifier="mapViewControllerToStolpersteineListViewController" id="icL-Q6-suH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -162,6 +162,9 @@
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
+        <class className="StolpersteineListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StolpersteineListViewController.h"/>
+        </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -169,6 +172,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Txc-mb-Q18"/>
+        <segue reference="hg1-Lc-53S"/>
     </inferredMetricsTieBreakers>
 </document>

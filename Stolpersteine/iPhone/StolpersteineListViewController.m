@@ -14,11 +14,6 @@
 
 @implementation StolpersteineListViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.stolpersteine.count;

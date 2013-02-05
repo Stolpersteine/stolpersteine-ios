@@ -51,10 +51,12 @@
 
 - (void)handleTap:(UIGestureRecognizer *)recognizer
 {
-    [self becomeFirstResponder];
     UIMenuController *menu = [UIMenuController sharedMenuController];
-    [menu setTargetRect:self.frame inView:self.superview];
-    [menu setMenuVisible:YES animated:YES];
+    if (!menu.isMenuVisible) {
+        [self becomeFirstResponder];
+        [menu setTargetRect:self.frame inView:self.superview];
+        [menu setMenuVisible:YES animated:YES];
+    }
 }
 
 @end

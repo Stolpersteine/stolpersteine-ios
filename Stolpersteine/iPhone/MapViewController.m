@@ -156,13 +156,13 @@
             
             NSLog(@"%d added, %d removed", annotationsToAdd.count, annotationsToRemove.count);
             
-            // Group test
-            if (annotationsToAdd.count > 1) {
-                StolpersteinGroup *stolpersteinGroup = [[StolpersteinGroup alloc] init];
-                stolpersteinGroup.stolpersteine = annotationsToAdd;
-                stolpersteinGroup.locationCoordinates = [[CLLocation alloc] initWithLatitude:52.54 longitude:13.35];
-                [self.mapView addAnnotation:stolpersteinGroup];
-            }
+//            // Group test
+//            if (annotationsToAdd.count > 1) {
+//                StolpersteinGroup *stolpersteinGroup = [[StolpersteinGroup alloc] init];
+//                stolpersteinGroup.stolpersteine = annotationsToAdd;
+//                stolpersteinGroup.locationCoordinates = [[CLLocation alloc] initWithLatitude:52.54 longitude:13.35];
+//                [self.mapView addAnnotation:stolpersteinGroup];
+//            }
         }
     }];
 }
@@ -179,7 +179,7 @@
             annotationView.annotation = annotation;
         } else {
             MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
-//            pinView.animatesDrop = YES;
+            pinView.animatesDrop = YES;
             pinView.canShowCallout = YES;
             
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];

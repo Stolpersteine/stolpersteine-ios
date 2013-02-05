@@ -50,10 +50,6 @@
     self.imageActivityIndicator.hidesWhenStopped = TRUE;
     [self.imageView addSubview:self.imageActivityIndicator];
     
-    if (self.stolperstein.imageURLString) {
-        [self loadImageWithURLString:self.stolperstein.imageURLString];
-    }
-    
     // Address
     NSMutableString *address = [NSMutableString stringWithCapacity:20];
     
@@ -91,6 +87,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if (self.stolperstein.imageURLString && !self.imageView.image) {
+        [self loadImageWithURLString:self.stolperstein.imageURLString];
+    }
     
     [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
 }

@@ -179,7 +179,7 @@
             annotationView.annotation = annotation;
         } else {
             MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
-            pinView.animatesDrop = YES;
+//            pinView.animatesDrop = YES;
             pinView.canShowCallout = YES;
             
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];

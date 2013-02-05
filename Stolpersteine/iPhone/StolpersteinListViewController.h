@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class StolpersteinGroup;
-
 @interface StolpersteinListViewController : UITableViewController
 
-@property (strong, nonatomic) StolpersteinGroup *stolpersteinGroup;
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSArray *stolpersteine;
 
 @end

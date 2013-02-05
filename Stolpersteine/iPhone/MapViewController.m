@@ -156,13 +156,13 @@
             
             NSLog(@"%d added, %d removed", annotationsToAdd.count, annotationsToRemove.count);
             
-//            // Test
-//            if (annotationsToAdd.count > 1) {
-//                StolpersteinGroup *stolpersteinGroup = [[StolpersteinGroup alloc] init];
-//                stolpersteinGroup.stolpersteine = annotationsToAdd;
-//                stolpersteinGroup.locationCoordinates = [[CLLocation alloc] initWithLatitude:52.54 longitude:13.35];
-//                [self.mapView addAnnotation:stolpersteinGroup];
-//            }
+            // Group test
+            if (annotationsToAdd.count > 1) {
+                StolpersteinGroup *stolpersteinGroup = [[StolpersteinGroup alloc] init];
+                stolpersteinGroup.stolpersteine = annotationsToAdd;
+                stolpersteinGroup.locationCoordinates = [[CLLocation alloc] initWithLatitude:52.54 longitude:13.35];
+                [self.mapView addAnnotation:stolpersteinGroup];
+            }
         }
     }];
 }
@@ -326,7 +326,9 @@
         detailViewController.stolperstein = selectedAnnotation;
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinListViewController"]) {
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
-        listViewController.stolpersteinGroup = selectedAnnotation;
+        StolpersteinGroup *stolpersteinGroup = (StolpersteinGroup *)selectedAnnotation;
+        listViewController.stolpersteine = stolpersteinGroup.stolpersteine;
+        listViewController.title = stolpersteinGroup.title;
     }
 }
 

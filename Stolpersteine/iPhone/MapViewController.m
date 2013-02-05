@@ -14,7 +14,7 @@
 #import "StolpersteinGroup.h"
 #import "StolpersteinSearchData.h"
 #import "StolpersteinDetailViewController.h"
-#import "StolpersteinListViewController.h"
+#import "StolpersteineListViewController.h"
 #import "SearchBar.h"
 #import "SearchDisplayController.h"
 #import "SearchDisplayDelegate.h"
@@ -325,7 +325,7 @@
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
         detailViewController.stolperstein = selectedAnnotation;
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinListViewController"]) {
-        StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
+        StolpersteineListViewController *listViewController = (StolpersteineListViewController *)segue.destinationViewController;
         StolpersteinGroup *stolpersteinGroup = (StolpersteinGroup *)selectedAnnotation;
         listViewController.stolpersteine = stolpersteinGroup.stolpersteine;
         listViewController.title = stolpersteinGroup.title;

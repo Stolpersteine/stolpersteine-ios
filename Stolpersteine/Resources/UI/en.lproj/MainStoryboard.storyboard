@@ -69,10 +69,10 @@
             </objects>
             <point key="canvasLocation" x="-534" y="-11"/>
         </scene>
-        <!--Stolperstein List View Controller-->
+        <!--Stolpersteine List View Controller-->
         <scene sceneID="Dfa-v8-Ogg">
             <objects>
-                <tableViewController id="S9Y-Yy-0sA" customClass="StolpersteinListViewController" sceneMemberID="viewController">
+                <tableViewController id="S9Y-Yy-0sA" customClass="StolpersteineListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ii3-to-xuB">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,9 +161,6 @@
                 <relationship kind="action" name="showActivities:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
-        </class>
-        <class className="StolpersteinListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StolpersteinListViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

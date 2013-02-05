@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "StolpersteinListViewController.h"
+#import "StolpersteineListViewController.h"
 
 #import "Stolperstein.h"
 #import "StolpersteinGroup.h"
 #import "StolpersteinDetailViewController.h"
 
-@implementation StolpersteinListViewController
+@implementation StolpersteineListViewController
 
 - (void)viewDidLoad
 {

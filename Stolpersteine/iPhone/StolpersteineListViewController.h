@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StolpersteinListViewController : UITableViewController
+@interface StolpersteineListViewController : UITableViewController
 
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSArray *stolpersteine;

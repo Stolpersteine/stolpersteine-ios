@@ -9,6 +9,7 @@
 "%d individual" = "%d Mensch";
 "%d individuals" = "%d Menschen";
 
+"MapViewController.title" = "Karte";
 "MapViewController.homeBarButtonItem" = "Zentrieren";
 "MapViewController.cancelBarButtonItem" = "Abbrechen";
 "MapViewController.searchBarPaddingRight" = "100";

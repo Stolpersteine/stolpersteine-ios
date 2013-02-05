@@ -42,7 +42,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Map";
+    self.title = NSLocalizedString(@"MapViewController.title", nil);
     
     // Search bar
     self.customSearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];

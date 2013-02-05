@@ -120,4 +120,21 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
     STAssertTrue([self waitForCompletion:5.0], @"Time out");
 }
 
+- (void)testRetrieveStolpersteineStreet
+{
+    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+    searchData.locationStreet = @"Turmstraße";
+    [self.networkService retrieveStolpersteineWithSearchData:searchData page:0 pageSize:5 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+        self.done = TRUE;
+        
+        STAssertNil(error, @"Error request");
+        STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
+        for (Stolperstein *stolperstein in stolpersteine) {
+            BOOL found = [stolperstein.locationStreet hasPrefix:searchData.locationStreet];
+            STAssertTrue(found, @"Wrong search result");
+        }
+    }];
+    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+}
+
 @end

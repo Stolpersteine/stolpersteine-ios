@@ -43,6 +43,9 @@
     if (searchData.keyword) {
         [parameters setObject:searchData.keyword forKey:@"q"];
     }
+    if (searchData.locationStreet) {
+        [parameters setObject:searchData.locationStreet forKey:@"street"];
+    }
     NSURLRequest *request = [self.httpClient requestWithMethod:@"GET" path:@"stolpersteine" parameters:parameters];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSArray *stolpersteineAsJSON) {
         NSMutableArray *stolpersteine = [NSMutableArray arrayWithCapacity:stolpersteineAsJSON.count];

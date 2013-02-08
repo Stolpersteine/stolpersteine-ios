@@ -32,6 +32,7 @@
     self.accessibilityTraits = UIAccessibilityTraitSearchField;
     self.portraitModeEnabled = TRUE;
     self.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.returnKeyType = UIReturnKeySearch;
 }
 
 - (void)layoutSubviews

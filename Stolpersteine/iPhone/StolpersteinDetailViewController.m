@@ -9,6 +9,8 @@
 #import "StolpersteinDetailViewController.h"
 
 #import <QuartzCore/QuartzCore.h>
+#import <AddressBook/AddressBook.h>
+
 #import "Stolperstein.h"
 #import "StolpersteinSearchData.h"
 #import "StolpersteineListViewController.h"
@@ -22,7 +24,8 @@
 @property (strong, nonatomic) CopyableImageView *imageView;
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
 @property (strong, nonatomic) UILabel *addressLabel;
-@property (strong, nonatomic) UIButton *allInThisStreetButton;
+@property (strong, nonatomic) UIButton *streetButton;
+@property (strong, nonatomic) UIButton *mapsButton;
 
 @end
 
@@ -73,15 +76,23 @@
     self.addressLabel.numberOfLines = INT_MAX;
     [self.scrollView addSubview:self.addressLabel];
     
-    // Button
-    self.allInThisStreetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    NSString *allInThisStreetTitleFormat = NSLocalizedString(@"StolpersteinDetailViewController.allInThisStreet", nil);
-    NSString *allInThisStreetTitle = [NSString stringWithFormat:allInThisStreetTitleFormat, self.stolperstein.locationStreet];
-    self.allInThisStreetButton.titleLabel.textAlignment = NSTextAlignmentLeft;
-    [self.allInThisStreetButton setTitle:allInThisStreetTitle forState:UIControlStateNormal];
-    [self.allInThisStreetButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-    [self.allInThisStreetButton addTarget:self action:@selector(showAllInThisStreet:) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:self.allInThisStreetButton];
+    // Street button
+    self.streetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    NSString *streetButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.street", nil);
+    self.streetButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [self.streetButton setTitle:streetButtonTitle forState:UIControlStateNormal];
+    [self.streetButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [self.streetButton addTarget:self action:@selector(showAllInThisStreet:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:self.streetButton];
+
+    // Maps button
+    self.mapsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    NSString *mapsButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.maps", nil);
+    self.mapsButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [self.mapsButton setTitle:mapsButtonTitle forState:UIControlStateNormal];
+    [self.mapsButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [self.mapsButton addTarget:self action:@selector(showInMapsApp:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:self.mapsButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -148,35 +159,36 @@
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     CGFloat screenWidth = self.view.frame.size.width;
+    CGFloat height = PADDING;
     
     // Image
-    self.imageView.frame = CGRectMake(PADDING, PADDING, screenWidth - 2 * PADDING, screenWidth - 2 * PADDING);
+    self.imageView.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, screenWidth - 2 * PADDING);
     CGRect imageActivityIndicatorFrame = self.imageActivityIndicator.frame;
     imageActivityIndicatorFrame.origin.x = (self.imageView.frame.size.width - self.imageActivityIndicator.frame.size.width) * 0.5;
     imageActivityIndicatorFrame.origin.y = (self.imageView.frame.size.height - self.imageActivityIndicator.frame.size.height) * 0.5;
     self.imageActivityIndicator.frame = imageActivityIndicatorFrame;
+    height += self.imageView.frame.size.height + PADDING * 0.5;
     
     // Address
     CGRect addressFrame;
     addressFrame.origin.x = PADDING;
-    addressFrame.origin.y = self.imageView.frame.origin.y + self.imageView.frame.size.height + PADDING * 0.5;
+    addressFrame.origin.y = height;
     addressFrame.size = [self.addressLabel sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
     self.addressLabel.frame = addressFrame;
+    height += addressFrame.size.height + PADDING * 0.5;
 
-    CGFloat height;
-    if (self.isAllInThisStreetButtonHidden) {
-        height = self.addressLabel.frame.origin.y + self.addressLabel.frame.size.height + PADDING;
-    } else {
-        // Button
-        CGRect buttonFrame;
-        buttonFrame.origin.x = PADDING;
-        buttonFrame.origin.y = addressFrame.origin.y + addressFrame.size.height + PADDING * 0.5;
-        buttonFrame.size = CGSizeMake(screenWidth - 2 * PADDING, 44);
-        self.allInThisStreetButton.frame = buttonFrame;
-        height = self.allInThisStreetButton.frame.origin.y + self.allInThisStreetButton.frame.size.height + PADDING;
+    // Street button
+    if (!self.isAllInThisStreetButtonHidden) {
+        self.streetButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
+        height += self.streetButton.frame.size.height + PADDING * 0.5;
     }
     
+    // Maps button
+    self.mapsButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
+    height += self.mapsButton.frame.size.height + PADDING * 0.5;
+    
     // Scroll view
+    height += PADDING * 0.5;
     self.scrollView.contentSize = CGSizeMake(screenWidth, height);
 }
 
@@ -199,6 +211,21 @@
 - (void)showAllInThisStreet:(UIButton *)sender
 {
     [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToStolpersteineListViewController" sender:self];
+}
+
+- (void)showInMapsApp:(UIButton *)sender
+{
+    // Create an MKMapItem to pass to the Maps app
+    CLLocationCoordinate2D coordinate = self.stolperstein.locationCoordinates.coordinate;
+    NSDictionary *addressDictionary = @{
+        (NSString *)kABPersonAddressStreetKey : self.stolperstein.locationStreet,
+        (NSString *)kABPersonAddressCityKey : self.stolperstein.locationCity,
+        (NSString *)kABPersonAddressZIPKey : self.stolperstein.locationZipCode
+    };
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:addressDictionary];
+    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+    mapItem.name = self.stolperstein.title;
+    [mapItem openInMapsWithLaunchOptions:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

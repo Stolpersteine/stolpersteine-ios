@@ -68,16 +68,12 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
             // Mandatory fields
             STAssertNotNil(stolperstein.id, @"Wrong ID");
             STAssertTrue([stolperstein.id isKindOfClass:NSString.class], @"Wrong type for ID");
-            STAssertNotNil(stolperstein.personFirstName, @"Wrong first name");
-            STAssertTrue([stolperstein.personFirstName isKindOfClass:NSString.class], @"Wrong type for first name");
-            STAssertNotNil(stolperstein.personLastName, @"Wrong last name");
-            STAssertTrue([stolperstein.personLastName isKindOfClass:NSString.class], @"Wrong type for last name");
+            STAssertNotNil(stolperstein.personName, @"Wrong name");
+            STAssertTrue([stolperstein.personName isKindOfClass:NSString.class], @"Wrong type for name");
             STAssertNotNil(stolperstein.locationStreet, @"Wrong street");
             STAssertTrue([stolperstein.locationStreet isKindOfClass:NSString.class], @"Wrong type for street");
             STAssertNotNil(stolperstein.locationCity, @"Wrong city");
             STAssertTrue([stolperstein.locationCity isKindOfClass:NSString.class], @"Wrong type for city");
-            STAssertNotNil(stolperstein.locationZipCode, @"Wrong zip code");
-            STAssertTrue([stolperstein.locationZipCode isKindOfClass:NSString.class], @"Wrong type for zip code");
             STAssertNotNil(stolperstein.locationCoordinates, @"Wrong coordinates");
             STAssertTrue([stolperstein.locationCoordinates isKindOfClass:CLLocation.class], @"Wrong type for coordinates");
             STAssertNotNil(stolperstein.sourceRetrievedAt, @"Wrong retrieved at date");
@@ -97,6 +93,10 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
             if (stolperstein.text) {
                 STAssertTrue([stolperstein.text isKindOfClass:NSString.class], @"Wrong type for text");
             }
+            
+            if (stolperstein.locationZipCode) {
+                STAssertTrue([stolperstein.locationZipCode isKindOfClass:NSString.class], @"Wrong type for zip code");
+            }
         }
     }];
     STAssertTrue([self waitForCompletion:5.0], @"Time out");
@@ -112,8 +112,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
         STAssertNil(error, @"Error request");
         STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
-            BOOL found = [stolperstein.personFirstName hasPrefix:searchData.keyword];
-            found |= [stolperstein.personLastName hasPrefix:searchData.keyword];
+            BOOL found = [stolperstein.personName hasPrefix:searchData.keyword];
             STAssertTrue(found, @"Wrong search result");
         }
     }];

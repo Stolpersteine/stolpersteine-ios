@@ -23,8 +23,7 @@
 
 - (NSString *)title
 {
-    NSString *title = [NSString stringWithFormat:@"%@ %@", self.personFirstName, self.personLastName];
-    return title;
+    return self.personName;
 }
 
 - (NSString *)subtitle

@@ -31,8 +31,7 @@
     stolperstein.id = [self valueForKeyPath:@"id"];
     stolperstein.imageURLString = [self valueForKeyPath:@"imageUrl"];
     stolperstein.text = [self valueForKeyPath:@"description"];
-    stolperstein.personFirstName = [self valueForKeyPath:@"person.firstName"];
-    stolperstein.personLastName = [self valueForKeyPath:@"person.lastName"];
+    stolperstein.personName = [self valueForKeyPath:@"person.name"];
     stolperstein.locationStreet = [self valueForKeyPath:@"location.street"];
     stolperstein.locationZipCode = [self valueForKeyPath:@"location.zipCode"];
     stolperstein.locationCity = [self valueForKeyPath:@"location.city"];

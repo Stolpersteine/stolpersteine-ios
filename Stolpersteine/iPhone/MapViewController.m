@@ -127,6 +127,46 @@
     [self layoutViewsForInterfaceOrientation:toInterfaceOrientation];
 }
 
+- (void)retrieveStolpersteineWithRange:(NSRange)range
+{
+    [self.retrieveStolpersteineOperation cancel];
+    self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil range:range completionHandler:^(NSArray *stolpersteine, NSError *error) {
+        NSLog(@"retrieveStolpersteineWithSearchData %d (%@)", stolpersteine.count, error);
+        
+        if (stolpersteine.count > 0) {
+//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"class == %@", Stolperstein.class];
+//            NSArray *annotations = [self.mapView.annotations filteredArrayUsingPredicate:predicate];
+//            
+//            // Annotations to be removed
+//            NSArray *stolpersteineIds = [stolpersteine valueForKey:@"id"];
+//            predicate = [NSPredicate predicateWithFormat:@"NOT (id IN %@)", stolpersteineIds];
+//            NSArray *annotationsToRemove = [annotations filteredArrayUsingPredicate:predicate];
+//            [self.mapView removeAnnotations:annotationsToRemove];
+//            
+//            // New annotations
+//            NSArray *annotationIds = [annotations valueForKey:@"id"];
+//            predicate = [NSPredicate predicateWithFormat:@"NOT (id IN %@)", annotationIds];
+//            NSArray *annotationsToAdd = [stolpersteine filteredArrayUsingPredicate:predicate];
+//            [self.mapView addAnnotations:annotationsToAdd];
+//            
+//            NSLog(@"%d added, %d removed", annotationsToAdd.count, annotationsToRemove.count);
+            [self.mapView addAnnotations:stolpersteine];
+            
+            // Next batch of data
+            NSRange nextRange = NSMakeRange(NSMaxRange(range), range.length);
+            [self retrieveStolpersteineWithRange:nextRange];
+            
+            //            // Group test
+            //            if (annotationsToAdd.count > 1) {
+            //                StolpersteinGroup *stolpersteinGroup = [[StolpersteinGroup alloc] init];
+            //                stolpersteinGroup.stolpersteine = annotationsToAdd;
+            //                stolpersteinGroup.locationCoordinates = [[CLLocation alloc] initWithLatitude:52.54 longitude:13.35];
+            //                [self.mapView addAnnotation:stolpersteinGroup];
+            //            }
+        }
+    }];
+}
+
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     if (self.stolpersteinToSelect) {
@@ -134,38 +174,8 @@
         self.stolpersteinToSelect = nil;
     }
     
-    [self.retrieveStolpersteineOperation cancel];
-    NSRange range = NSMakeRange(0, 10);
-    self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil range:range completionHandler:^(NSArray *stolpersteine, NSError *error) {
-        NSLog(@"retrieveStolpersteineWithSearchData %d (%@)", stolpersteine.count, error);
-        
-        if (stolpersteine.count > 0) {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"class == %@", Stolperstein.class];
-            NSArray *annotations = [mapView.annotations filteredArrayUsingPredicate:predicate];
-
-            // Annotations to be removed
-            NSArray *stolpersteineIds = [stolpersteine valueForKey:@"id"];
-            predicate = [NSPredicate predicateWithFormat:@"NOT (id IN %@)", stolpersteineIds];
-            NSArray *annotationsToRemove = [annotations filteredArrayUsingPredicate:predicate];
-            [mapView removeAnnotations:annotationsToRemove];
-            
-            // New annotations
-            NSArray *annotationIds = [annotations valueForKey:@"id"];
-            predicate = [NSPredicate predicateWithFormat:@"NOT (id IN %@)", annotationIds];
-            NSArray *annotationsToAdd = [stolpersteine filteredArrayUsingPredicate:predicate];
-            [mapView addAnnotations:annotationsToAdd];
-            
-            NSLog(@"%d added, %d removed", annotationsToAdd.count, annotationsToRemove.count);
-            
-//            // Group test
-//            if (annotationsToAdd.count > 1) {
-//                StolpersteinGroup *stolpersteinGroup = [[StolpersteinGroup alloc] init];
-//                stolpersteinGroup.stolpersteine = annotationsToAdd;
-//                stolpersteinGroup.locationCoordinates = [[CLLocation alloc] initWithLatitude:52.54 longitude:13.35];
-//                [self.mapView addAnnotation:stolpersteinGroup];
-//            }
-        }
-    }];
+    NSRange range = NSMakeRange(0, 100);
+    [self retrieveStolpersteineWithRange:range];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation

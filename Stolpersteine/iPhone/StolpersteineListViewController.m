@@ -28,7 +28,7 @@
     
     if (!self.stolpersteine) {
         [self.searchStolpersteineOperation cancel];
-        self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:self.searchData page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+        self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:self.searchData range:NSMakeRange(0, 0) completionHandler:^(NSArray *stolpersteine, NSError *error) {
             self.stolpersteine = stolpersteine;
             [self.tableView reloadData];
         }];

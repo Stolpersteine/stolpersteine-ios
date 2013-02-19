@@ -135,7 +135,8 @@
     }
     
     [self.retrieveStolpersteineOperation cancel];
-    self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+    NSRange range = NSMakeRange(0, 10);
+    self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil range:range completionHandler:^(NSArray *stolpersteine, NSError *error) {
         NSLog(@"retrieveStolpersteineWithSearchData %d (%@)", stolpersteine.count, error);
         
         if (stolpersteine.count > 0) {
@@ -250,7 +251,7 @@
     
     StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
     searchData.keyword = searchString;
-    self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:searchData page:0 pageSize:0 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+    self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 0) completionHandler:^(NSArray *stolpersteine, NSError *error) {
         NSLog(@"shouldReloadTableForSearchString %d (%@)", stolpersteine.count, error);
 
         self.searchedStolpersteine = stolpersteine;

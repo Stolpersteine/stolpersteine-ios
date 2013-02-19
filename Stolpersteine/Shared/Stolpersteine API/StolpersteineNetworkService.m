@@ -37,7 +37,7 @@
     return self;
 }
 
-- (NSOperation *)retrieveStolpersteineWithSearchData:(StolpersteinSearchData *)searchData page:(NSUInteger)page pageSize:(NSUInteger)pageSize completionHandler:(void (^)(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error))completionHandler
+- (NSOperation *)retrieveStolpersteineWithSearchData:(StolpersteinSearchData *)searchData range:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine, NSError *error))completionHandler
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     if (searchData.keyword) {
@@ -46,6 +46,8 @@
     if (searchData.locationStreet) {
         [parameters setObject:searchData.locationStreet forKey:@"street"];
     }
+    [parameters setObject:@(range.length) forKey:@"limit"];
+    [parameters setObject:@(range.location) forKey:@"offset"];
     NSURLRequest *request = [self.httpClient requestWithMethod:@"GET" path:@"stolpersteine" parameters:parameters];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSArray *stolpersteineAsJSON) {
         NSMutableArray *stolpersteine = [NSMutableArray arrayWithCapacity:stolpersteineAsJSON.count];
@@ -55,11 +57,11 @@
         }
         
         if (completionHandler) {
-            completionHandler(stolpersteine, 0, nil);
+            completionHandler(stolpersteine, nil);
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         if (completionHandler) {
-            completionHandler(nil, 0, error);
+            completionHandler(nil, error);
         }
     }];
 

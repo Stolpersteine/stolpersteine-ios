@@ -59,7 +59,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
 
 - (void)testRetrieveStolpersteine
 {
-    [self.networkService retrieveStolpersteineWithSearchData:nil page:0 pageSize:5 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+    [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 5) completionHandler:^(NSArray *stolpersteine, NSError *error) {
         self.done = TRUE;
         
         STAssertNil(error, @"Error request");
@@ -106,7 +106,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
 {
     StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
     searchData.keyword = @"Ern";
-    [self.networkService retrieveStolpersteineWithSearchData:searchData page:0 pageSize:5 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+    [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^(NSArray *stolpersteine, NSError *error) {
         self.done = TRUE;
         
         STAssertNil(error, @"Error request");
@@ -123,7 +123,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
 {
     StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
     searchData.locationStreet = @"Turmstraße";
-    [self.networkService retrieveStolpersteineWithSearchData:searchData page:0 pageSize:5 completionHandler:^(NSArray *stolpersteine, NSUInteger totalNumberOfItems, NSError *error) {
+    [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^(NSArray *stolpersteine, NSError *error) {
         self.done = TRUE;
         
         STAssertNil(error, @"Error request");
@@ -131,6 +131,49 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
         for (Stolperstein *stolperstein in stolpersteine) {
             BOOL found = [stolperstein.locationStreet hasPrefix:searchData.locationStreet];
             STAssertTrue(found, @"Wrong search result");
+        }
+    }];
+    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+}
+
+- (void)testRetrieveStolpersteinePaging
+{
+    // Load first two stolpersteine
+    __block NSString *stolpersteineID0, *stolpersteineID1;
+    [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 2) completionHandler:^(NSArray *stolpersteine, NSError *error) {
+        self.done = TRUE;
+        
+        STAssertNil(error, @"Error request");
+        STAssertEquals(stolpersteine.count, 2u, @"Wrong number of stolpersteine");
+        if (stolpersteine.count == 2) {
+            stolpersteineID0 = [stolpersteine[0] id];
+            stolpersteineID1 = [stolpersteine[1] id];
+        }
+    }];
+    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+
+    // First page
+    self.done = FALSE;
+    [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 1) completionHandler:^(NSArray *stolpersteine, NSError *error) {
+        self.done = TRUE;
+        
+        STAssertNil(error, @"Error request");
+        STAssertEquals(stolpersteine.count, 1u, @"Wrong number of stolpersteine");
+        if (stolpersteine.count == 1) {
+            STAssertEqualObjects(stolpersteineID0, [stolpersteine[0] id], @"Wrong stolpersteine ID");
+        }
+    }];
+    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+
+    // Second page
+    self.done = FALSE;
+    [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(1, 1) completionHandler:^(NSArray *stolpersteine, NSError *error) {
+        self.done = TRUE;
+        
+        STAssertNil(error, @"Error request");
+        STAssertEquals(stolpersteine.count, 1u, @"Wrong number of stolpersteine");
+        if (stolpersteine.count == 1) {
+            STAssertEqualObjects(stolpersteineID1, [stolpersteine[0] id], @"Wrong stolpersteine ID");
         }
     }];
     STAssertTrue([self waitForCompletion:5.0], @"Time out");

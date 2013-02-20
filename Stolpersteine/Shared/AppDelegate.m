@@ -41,16 +41,6 @@ static NSString * const GOOGLE_ANALYTICS_ID = @"UA-38166041-1";
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
-{
-    return NO;
-}
-
-- (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
-{
-    return NO;
-}
-
 + (StolpersteineNetworkService *)networkService
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];

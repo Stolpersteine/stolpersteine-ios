@@ -122,25 +122,6 @@
     [super viewDidUnload];
 }
 
-- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
-{
-    [coder encodeObject:self.stolperstein.imageURLString forKey:@"stolperstein.imageURLString"];
-    [coder encodeObject:self.title forKey:@"title"];
-    
-    [super encodeRestorableStateWithCoder:coder];
-}
-
-- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
-{
-    NSString *imageURLString = [coder decodeObjectForKey:@"stolperstein.imageURLString"];
-    if (imageURLString) {
-        [self loadImageWithURLString:imageURLString];
-    }
-    self.title = [coder decodeObjectForKey:@"title"];
-    
-    [super decodeRestorableStateWithCoder:coder];
-}
-
 - (void)loadImageWithURLString:(NSString *)URLString
 {
     NSURL *URL = [NSURL URLWithString:URLString];

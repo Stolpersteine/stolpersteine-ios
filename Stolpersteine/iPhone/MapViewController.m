@@ -93,30 +93,6 @@
     [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
 }
 
-- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
-{
-    [coder encodeObject:self.searchBar.text forKey:@"searchBar.text"];
-    [coder encodeDouble:self.mapView.region.center.latitude forKey:@"mapView.region.center.latitude"];
-    [coder encodeDouble:self.mapView.region.center.longitude forKey:@"mapView.region.center.longitude"];
-    [coder encodeDouble:self.mapView.region.span.latitudeDelta forKey:@"mapView.region.span.latitudeDelta"];
-    [coder encodeDouble:self.mapView.region.span.longitudeDelta forKey:@"mapView.region.span.longitudeDelta"];
-    
-    [super encodeRestorableStateWithCoder:coder];
-}
-
-- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
-{
-    self.searchBar.text = [coder decodeObjectForKey:@"searchBar.text"];
-    MKCoordinateRegion region;
-    region.center.latitude = [coder decodeDoubleForKey:@"mapView.region.center.latitude"];
-    region.center.longitude = [coder decodeDoubleForKey:@"mapView.region.center.longitude"];
-    region.span.latitudeDelta = [coder decodeDoubleForKey:@"mapView.region.span.latitudeDelta"];
-    region.span.longitudeDelta = [coder decodeDoubleForKey:@"mapView.region.span.longitudeDelta"];
-    self.regionToSet = region;
-    
-    [super decodeRestorableStateWithCoder:coder];
-}
-
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     self.searchBar.portraitModeEnabled = UIInterfaceOrientationIsPortrait(interfaceOrientation);

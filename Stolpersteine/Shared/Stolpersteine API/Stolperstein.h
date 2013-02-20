@@ -29,6 +29,10 @@
 // MKAnnotation properties
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
+
+// Clustering
+@property (nonatomic, strong) Stolperstein *clusterAnnotation;
+@property (nonatomic, strong) NSArray *containedAnnotations;
 
 @end

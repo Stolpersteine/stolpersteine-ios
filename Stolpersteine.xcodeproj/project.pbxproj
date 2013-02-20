@@ -38,6 +38,8 @@
 		48AC6D7016BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7116BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7216BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
+		48DA751616D57EA6004E0894 /* MapClusteringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DA751516D57EA6004E0894 /* MapClusteringController.m */; };
+		48DA751716D57EA6004E0894 /* MapClusteringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DA751516D57EA6004E0894 /* MapClusteringController.m */; };
 		6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		6222BF2516A037CE006ED538 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
 		6222BF2616A037CE006ED538 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
@@ -144,6 +146,8 @@
 		48633BB216C046180057A317 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		48AC6D6E16BF0964004C4AF4 /* StolpersteinSearchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinSearchData.h; sourceTree = "<group>"; };
 		48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinSearchData.m; sourceTree = "<group>"; };
+		48DA751416D57EA5004E0894 /* MapClusteringController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusteringController.h; sourceTree = "<group>"; };
+		48DA751516D57EA6004E0894 /* MapClusteringController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusteringController.m; sourceTree = "<group>"; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
 		6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Parsing.m"; sourceTree = "<group>"; };
 		6222BF2316A037CE006ED538 /* Stolpersteine Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stolpersteine Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,6 +294,8 @@
 			children = (
 				48633B8916C03F690057A317 /* MapViewController.h */,
 				48633B8A16C03F690057A317 /* MapViewController.m */,
+				48DA751416D57EA5004E0894 /* MapClusteringController.h */,
+				48DA751516D57EA6004E0894 /* MapClusteringController.m */,
 				48633B8B16C03F690057A317 /* SearchBar.h */,
 				48633B8C16C03F690057A317 /* SearchBar.m */,
 				48633B8D16C03F690057A317 /* SearchBarDelegate.h */,
@@ -709,6 +715,7 @@
 				480AF2E816BDBDC500232683 /* StolpersteinGroup.m in Sources */,
 				48AC6D7116BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */,
 				4805809316C1B46B00C49272 /* StolpersteinTests.m in Sources */,
+				48DA751716D57EA6004E0894 /* MapClusteringController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,6 +746,7 @@
 				48633B9C16C03F690057A317 /* StolpersteinDetailViewController.m in Sources */,
 				48633B9D16C03F690057A317 /* StolpersteineListViewController.m in Sources */,
 				48633BA016C03FCE0057A317 /* AppDelegate.m in Sources */,
+				48DA751616D57EA6004E0894 /* MapClusteringController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

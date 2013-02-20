@@ -48,4 +48,9 @@
     return self.locationCoordinates.coordinate;
 }
 
+- (void)setCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    self.locationCoordinates = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+}
+
 @end

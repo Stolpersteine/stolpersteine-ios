@@ -18,6 +18,7 @@
 #import "SearchBar.h"
 #import "SearchDisplayController.h"
 #import "SearchDisplayDelegate.h"
+#import "MapClusteringController.h"
 
 #define fequal(a,b) (fabs((a) - (b)) < FLT_EPSILON)
 
@@ -33,6 +34,7 @@
 @property (nonatomic, strong) Stolperstein *stolpersteinToSelect;
 @property (nonatomic, assign) MKCoordinateRegion regionToSet;
 @property (nonatomic, assign, getter = isRegionToSetInvalid) BOOL regionToSetInvalid;
+@property (nonatomic, strong) MapClusteringController *mapClusteringController;
 
 @end
 
@@ -66,6 +68,11 @@
     // Set map location to Berlin
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);
     self.regionToSet = MKCoordinateRegionMakeWithDistance(location, 12000, 12000);
+    
+    // Clustering
+    self.mapClusteringController = [[MapClusteringController alloc] initWithMapView:self.mapView];
+    NSRange range = NSMakeRange(0, 5000);
+    [self retrieveStolpersteineWithRange:range];
 }
 
 - (void)viewDidUnload
@@ -126,11 +133,15 @@
 //            [self.mapView addAnnotations:annotationsToAdd];
 //            
 //            NSLog(@"%d added, %d removed", annotationsToAdd.count, annotationsToRemove.count);
-            [self.mapView addAnnotations:stolpersteine];
+//            [self.mapView addAnnotations:stolpersteine];
             
-            // Next batch of data
-            NSRange nextRange = NSMakeRange(NSMaxRange(range), range.length);
-            [self retrieveStolpersteineWithRange:nextRange];
+            [self.mapClusteringController.allAnnotationsMapView addAnnotations:stolpersteine];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"AnnotationsAdded" object:self];
+
+            
+//            // Next batch of data
+//            NSRange nextRange = NSMakeRange(NSMaxRange(range), range.length);
+//            [self retrieveStolpersteineWithRange:nextRange];
             
             //            // Group test
             //            if (annotationsToAdd.count > 1) {
@@ -150,8 +161,7 @@
         self.stolpersteinToSelect = nil;
     }
     
-    NSRange range = NSMakeRange(0, 100);
-    [self retrieveStolpersteineWithRange:range];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AnnotationsAdded" object:self];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation

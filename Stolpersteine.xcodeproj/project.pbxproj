@@ -39,7 +39,6 @@
 		48AC6D7116BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7216BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48DA751616D57EA6004E0894 /* MapClusteringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DA751516D57EA6004E0894 /* MapClusteringController.m */; };
-		48DA751716D57EA6004E0894 /* MapClusteringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DA751516D57EA6004E0894 /* MapClusteringController.m */; };
 		6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		6222BF2516A037CE006ED538 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
 		6222BF2616A037CE006ED538 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
@@ -715,7 +714,6 @@
 				480AF2E816BDBDC500232683 /* StolpersteinGroup.m in Sources */,
 				48AC6D7116BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */,
 				4805809316C1B46B00C49272 /* StolpersteinTests.m in Sources */,
-				48DA751716D57EA6004E0894 /* MapClusteringController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

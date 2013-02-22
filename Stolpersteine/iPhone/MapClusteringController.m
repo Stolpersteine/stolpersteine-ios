@@ -80,8 +80,6 @@ static float bucketSize = 60.0;
 
 - (void)updateVisibleAnnotation
 {
-    NSLog(@"updateVisibleAnnotation");
-    
 	// fix performance and visual clutter by calling update when change map region
 	// it's called any time region changed on the map
 	

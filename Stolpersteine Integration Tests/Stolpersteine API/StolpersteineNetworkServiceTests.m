@@ -68,8 +68,10 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
             // Mandatory fields
             STAssertNotNil(stolperstein.id, @"Wrong ID");
             STAssertTrue([stolperstein.id isKindOfClass:NSString.class], @"Wrong type for ID");
-            STAssertNotNil(stolperstein.personName, @"Wrong name");
-            STAssertTrue([stolperstein.personName isKindOfClass:NSString.class], @"Wrong type for name");
+            STAssertNotNil(stolperstein.personFirstName, @"Wrong name");
+            STAssertTrue([stolperstein.personFirstName isKindOfClass:NSString.class], @"Wrong type for first name");
+            STAssertNotNil(stolperstein.personLastName, @"Wrong name");
+            STAssertTrue([stolperstein.personLastName isKindOfClass:NSString.class], @"Wrong type for last name");
             STAssertNotNil(stolperstein.locationStreet, @"Wrong street");
             STAssertTrue([stolperstein.locationStreet isKindOfClass:NSString.class], @"Wrong type for street");
             STAssertNotNil(stolperstein.locationCity, @"Wrong city");
@@ -112,7 +114,8 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
         STAssertNil(error, @"Error request");
         STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
-            BOOL found = [stolperstein.personName hasPrefix:searchData.keyword];
+            BOOL found = [stolperstein.personFirstName hasPrefix:searchData.keyword];
+            found |= [stolperstein.personLastName hasPrefix:searchData.keyword];
             STAssertTrue(found, @"Wrong search result");
         }
     }];

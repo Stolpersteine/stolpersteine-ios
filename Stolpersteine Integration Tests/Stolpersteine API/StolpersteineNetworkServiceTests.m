@@ -72,6 +72,8 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
             STAssertTrue([stolperstein.personFirstName isKindOfClass:NSString.class], @"Wrong type for first name");
             STAssertNotNil(stolperstein.personLastName, @"Wrong name");
             STAssertTrue([stolperstein.personLastName isKindOfClass:NSString.class], @"Wrong type for last name");
+            STAssertNotNil(stolperstein.personBiographyURLString, @"Wrong name");
+            STAssertTrue([stolperstein.personBiographyURLString isKindOfClass:NSString.class], @"Wrong type for biography URL");
             STAssertNotNil(stolperstein.locationStreet, @"Wrong street");
             STAssertTrue([stolperstein.locationStreet isKindOfClass:NSString.class], @"Wrong type for street");
             STAssertNotNil(stolperstein.locationCity, @"Wrong city");

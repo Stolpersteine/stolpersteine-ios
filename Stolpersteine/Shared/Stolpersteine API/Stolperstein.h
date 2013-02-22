@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) NSString *personFirstName;
 @property (nonatomic, strong) NSString *personLastName;
+@property (nonatomic, strong) NSString *personBiographyURLString;
 @property (nonatomic, strong) NSString *sourceURLString;
 @property (nonatomic, strong) NSString *sourceName;
 @property (nonatomic, strong) NSDate *sourceRetrievedAt;

@@ -71,7 +71,7 @@
     
     // Clustering
     self.mapClusteringController = [[MapClusteringController alloc] initWithMapView:self.mapView];
-    NSRange range = NSMakeRange(0, 5000);
+    NSRange range = NSMakeRange(0, 500);
     [self retrieveStolpersteineWithRange:range];
 }
 
@@ -116,6 +116,15 @@
     self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil range:range completionHandler:^(NSArray *stolpersteine, NSError *error) {
         NSLog(@"retrieveStolpersteineWithSearchData %d (%@)", stolpersteine.count, error);
         
+        [self.mapClusteringController.allAnnotationsMapView addAnnotations:stolpersteine];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"AnnotationsAdded" object:self];
+        
+        // Next batch of data
+        if (stolpersteine.count == range.length) {
+            NSRange nextRange = NSMakeRange(NSMaxRange(range), range.length);
+            [self retrieveStolpersteineWithRange:nextRange];
+        }
+
         if (stolpersteine.count > 0) {
 //            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"class == %@", Stolperstein.class];
 //            NSArray *annotations = [self.mapView.annotations filteredArrayUsingPredicate:predicate];
@@ -134,14 +143,6 @@
 //            
 //            NSLog(@"%d added, %d removed", annotationsToAdd.count, annotationsToRemove.count);
 //            [self.mapView addAnnotations:stolpersteine];
-            
-            [self.mapClusteringController.allAnnotationsMapView addAnnotations:stolpersteine];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"AnnotationsAdded" object:self];
-
-            
-//            // Next batch of data
-//            NSRange nextRange = NSMakeRange(NSMaxRange(range), range.length);
-//            [self retrieveStolpersteineWithRange:nextRange];
             
             //            // Group test
             //            if (annotationsToAdd.count > 1) {

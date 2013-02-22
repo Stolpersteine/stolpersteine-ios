@@ -27,7 +27,8 @@ static float bucketSize = 60.0;
 
 -(id)initWithMapView:(MKMapView *)aMapView
 {
-    if (self = [super init]) {
+    self = [super init];
+    if (self) {
 		self.mapView = aMapView;
 		self.allAnnotationsMapView = [[MKMapView alloc] initWithFrame:CGRectZero];
 		// adds an observer to start refresh annotations
@@ -106,7 +107,7 @@ static float bucketSize = 60.0;
 		gridMapRect.origin.x = startX;
 		
 		while (MKMapRectGetMinX(gridMapRect) <= endX) {
-			NSSet *allAnnotationsInBucket = [_allAnnotationsMapView annotationsInMapRect:gridMapRect];
+			NSSet *allAnnotationsInBucket = [self.allAnnotationsMapView annotationsInMapRect:gridMapRect];
 			NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:gridMapRect];
 			
 			// We only care about MSAnnotation

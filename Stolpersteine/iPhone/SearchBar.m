@@ -12,7 +12,6 @@
 #import "SearchBarDelegate.h"
 
 #define PADDING_LEFT 5
-#define PADDING_RIGHT 75
 
 @interface SearchBar() <UITextFieldDelegate>
 

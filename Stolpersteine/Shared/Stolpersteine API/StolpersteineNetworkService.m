@@ -26,7 +26,8 @@
 
 - (id)initWithURL:(NSURL *)url clientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword
 {
-    if (self = [super init]) {
+    self = [super init];
+    if (self) {
         self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
         self.httpClient.parameterEncoding = AFJSONParameterEncoding;
         [self.httpClient registerHTTPOperationClass:AFJSONRequestOperation.class];

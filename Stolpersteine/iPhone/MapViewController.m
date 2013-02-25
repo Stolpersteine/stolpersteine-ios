@@ -12,6 +12,7 @@
 #import "StolpersteineNetworkService.h"
 #import "Stolperstein.h"
 #import "StolpersteinAnnotation.h"
+#import "StolpersteinClusterAnnotation.h"
 #import "StolpersteinSearchData.h"
 #import "StolpersteinDetailViewController.h"
 #import "StolpersteineListViewController.h"
@@ -319,10 +320,10 @@
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
         detailViewController.stolperstein = stolpersteinAnnotation.stolperstein;
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
-//        StolpersteineListViewController *listViewController = (StolpersteineListViewController *)segue.destinationViewController;
-//        StolpersteinGroup *stolpersteinGroup = (StolpersteinGroup *)selectedAnnotation;
-//        listViewController.stolpersteine = stolpersteinGroup.stolpersteine;
-//        listViewController.title = stolpersteinGroup.title;
+        StolpersteinClusterAnnotation *stolpersteinAnnotation = (StolpersteinClusterAnnotation *)selectedAnnotation;
+        StolpersteineListViewController *listViewController = (StolpersteineListViewController *)segue.destinationViewController;
+        listViewController.stolpersteine = stolpersteinAnnotation.stolpersteine;
+        listViewController.title = stolpersteinAnnotation.title;
     }
 }
 

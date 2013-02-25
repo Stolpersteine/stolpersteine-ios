@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "StolpersteineNetworkService.h"
 #import "Stolperstein.h"
-#import "StolpersteinGroup.h"
+#import "StolpersteinAnnotation.h"
 #import "StolpersteinSearchData.h"
 #import "StolpersteinDetailViewController.h"
 #import "StolpersteineListViewController.h"
@@ -19,6 +19,7 @@
 #import "SearchDisplayController.h"
 #import "SearchDisplayDelegate.h"
 #import "MapClusteringController.h"
+#import "Localization.h"
 
 #define fequal(a,b) (fabs((a) - (b)) < FLT_EPSILON)
 
@@ -31,7 +32,7 @@
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
 @property (nonatomic, strong) SearchDisplayController *searchDisplayController;
 @property (nonatomic, strong) NSArray *searchedStolpersteine;
-@property (nonatomic, strong) Stolperstein *stolpersteinToSelect;
+@property (nonatomic, strong) StolpersteinAnnotation *stolpersteinAnnotationToSelect;
 @property (nonatomic, assign) MKCoordinateRegion regionToSet;
 @property (nonatomic, assign, getter = isRegionToSetInvalid) BOOL regionToSetInvalid;
 @property (nonatomic, strong) MapClusteringController *mapClusteringController;
@@ -118,8 +119,7 @@
     self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil range:range completionHandler:^(NSArray *stolpersteine, NSError *error) {
         NSLog(@"retrieveStolpersteineWithSearchData %d (%@)", stolpersteine.count, error);
         
-        [self.mapClusteringController.allAnnotationsMapView addAnnotations:stolpersteine];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"AnnotationsAdded" object:self];
+        [self.mapClusteringController addStolpersteine:stolpersteine];
         
         // Next batch of data
         if (stolpersteine.count == range.length) {
@@ -145,23 +145,15 @@
 //            
 //            NSLog(@"%d added, %d removed", annotationsToAdd.count, annotationsToRemove.count);
 //            [self.mapView addAnnotations:stolpersteine];
-            
-            //            // Group test
-            //            if (annotationsToAdd.count > 1) {
-            //                StolpersteinGroup *stolpersteinGroup = [[StolpersteinGroup alloc] init];
-            //                stolpersteinGroup.stolpersteine = annotationsToAdd;
-            //                stolpersteinGroup.locationCoordinates = [[CLLocation alloc] initWithLatitude:52.54 longitude:13.35];
-            //                [self.mapView addAnnotation:stolpersteinGroup];
-            //            }
         }
     }];
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    if (self.stolpersteinToSelect) {
-        [mapView selectAnnotation:self.stolpersteinToSelect animated:YES];
-        self.stolpersteinToSelect = nil;
+    if (self.stolpersteinAnnotationToSelect) {
+        [mapView selectAnnotation:self.stolpersteinAnnotationToSelect animated:YES];
+        self.stolpersteinAnnotationToSelect = nil;
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"AnnotationsAdded" object:self];
@@ -171,7 +163,7 @@
 {
     MKAnnotationView *annotationView;
     
-    if ([annotation isKindOfClass:Stolperstein.class] || [annotation isKindOfClass:StolpersteinGroup.class]) {
+    if ([annotation isKindOfClass:StolpersteinAnnotation.class]) {
         static NSString *stolpersteinIdentifier = @"stolpersteinIdentifier";
         
         annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
@@ -200,7 +192,7 @@
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     NSString *identifier;
-    if ([view.annotation isKindOfClass:Stolperstein.class]) {
+    if ([view.annotation isKindOfClass:StolpersteinAnnotation.class]) {
         identifier = @"mapViewControllerToStolpersteinDetailViewController";
     } else {
         identifier = @"mapViewControllerToStolpersteineListViewController";
@@ -270,8 +262,8 @@
     }
     
     Stolperstein *stolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];
-    cell.textLabel.text = stolperstein.title;
-    cell.detailTextLabel.text = stolperstein.subtitle;
+    cell.textLabel.text = [Localization newNameFromStolperstein:stolperstein];
+    cell.detailTextLabel.text = [Localization newAddressShortFromStolperstein:stolperstein];
 
     return cell;
 }
@@ -290,7 +282,8 @@
     // Check if stolperstein already exists as annotation; otherwise, it gets
     // added when selecting it
     Stolperstein *stolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"class == %@ AND id == %@", Stolperstein.class, stolperstein.id];
+    StolpersteinAnnotation *stolpersteinAnnotation = [[StolpersteinAnnotation alloc] initWithStolperstein:stolperstein];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"class == %@ AND stolperstein.id == %@", StolpersteinAnnotation.class, stolperstein.id];
     NSArray *annotations = [self.mapView.annotations filteredArrayUsingPredicate:predicate];
     if (annotations.count != 0) {
         stolperstein = annotations.lastObject;
@@ -302,17 +295,17 @@
     }
     
     // Center on stolperstein and select it
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(stolperstein.coordinate, 1200, 1200);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(stolpersteinAnnotation.coordinate, 1200, 1200);
     BOOL isRegionUpToDate = fequal(region.center.latitude, self.mapView.region.center.latitude) && fequal(region.center.longitude, self.mapView.region.center.longitude);
     
     if (isRegionUpToDate) {
         // Select immediately since annotation is already visible
         [self.mapView setRegion:region animated:YES];
-        [self.mapView selectAnnotation:stolperstein animated:YES];
+        [self.mapView selectAnnotation:stolpersteinAnnotation animated:YES];
     } else {
         // Actual selection happens in mapView:regionDidChangeAnimated:
         [self.mapView setRegion:region animated:YES];
-        self.stolpersteinToSelect = stolperstein;
+        self.stolpersteinAnnotationToSelect = stolpersteinAnnotation;
     }
     
     [self.searchDisplayController setActive:FALSE animated:TRUE];
@@ -322,13 +315,14 @@
 {
     id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
     if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
+        StolpersteinAnnotation *stolpersteinAnnotation = (StolpersteinAnnotation *)selectedAnnotation;
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
-        detailViewController.stolperstein = selectedAnnotation;
+        detailViewController.stolperstein = stolpersteinAnnotation.stolperstein;
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
-        StolpersteineListViewController *listViewController = (StolpersteineListViewController *)segue.destinationViewController;
-        StolpersteinGroup *stolpersteinGroup = (StolpersteinGroup *)selectedAnnotation;
-        listViewController.stolpersteine = stolpersteinGroup.stolpersteine;
-        listViewController.title = stolpersteinGroup.title;
+//        StolpersteineListViewController *listViewController = (StolpersteineListViewController *)segue.destinationViewController;
+//        StolpersteinGroup *stolpersteinGroup = (StolpersteinGroup *)selectedAnnotation;
+//        listViewController.stolpersteine = stolpersteinGroup.stolpersteine;
+//        listViewController.title = stolpersteinGroup.title;
     }
 }
 

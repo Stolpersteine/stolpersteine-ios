@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
 
-@interface Stolperstein : NSObject<MKAnnotation>
+@interface Stolperstein : NSObject
 
 // Original data
 @property (nonatomic, strong) NSString *id;
@@ -27,14 +26,5 @@
 @property (nonatomic, strong) NSString *locationZipCode;
 @property (nonatomic, strong) NSString *locationCity;
 @property (nonatomic, strong) CLLocation *locationCoordinates;
-
-// MKAnnotation properties
-@property (nonatomic, readonly, copy) NSString *title;
-@property (nonatomic, readonly, copy) NSString *subtitle;
-@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
-
-// Clustering
-@property (nonatomic, strong) Stolperstein *clusterAnnotation;
-@property (nonatomic, strong) NSArray *containedAnnotations;
 
 @end

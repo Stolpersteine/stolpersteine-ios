@@ -12,6 +12,8 @@
 
 @interface Localization : NSObject
 
-+ (NSString *)newAddressFromStolperstein:(Stolperstein *)stolperstein;
++ (NSString *)newNameFromStolperstein:(Stolperstein *)stolperstein;
++ (NSString *)newAddressShortFromStolperstein:(Stolperstein *)stolperstein;
++ (NSString *)newAddressLongFromStolperstein:(Stolperstein *)stolperstein;
 
 @end

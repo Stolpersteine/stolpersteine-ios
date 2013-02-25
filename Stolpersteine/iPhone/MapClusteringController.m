@@ -9,6 +9,7 @@
 #import "MapClusteringController.h"
 
 #import "Stolperstein.h"
+#import "StolpersteinAnnotation.h"
 
 @implementation MapClusteringController
 
@@ -40,6 +41,16 @@ static float bucketSize = 60.0;
     return nil;
 }
 
+- (void)addStolpersteine:(NSArray *)stolpersteine
+{
+    NSMutableArray *stolpersteinAnnotations = [NSMutableArray arrayWithCapacity:stolpersteine.count];
+    [stolpersteine enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        StolpersteinAnnotation *stolpersteinAnnotation = [[StolpersteinAnnotation alloc] initWithStolperstein:obj];
+        [stolpersteinAnnotations addObject:stolpersteinAnnotation];
+    }];
+    [self.allAnnotationsMapView addAnnotations:stolpersteinAnnotations];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AnnotationsAdded" object:self];
+}
 
 - (id<MKAnnotation>)annotationInGrid:(MKMapRect)gridMapRect usingAnnotations:(NSSet *)annotations
 {
@@ -112,11 +123,11 @@ static float bucketSize = 60.0;
 			
 			// We only care about MSAnnotation
 			NSMutableSet *filteredAnnotationsInBucket = [[allAnnotationsInBucket objectsPassingTest:^BOOL(id obj, BOOL *stop) {
-				return ([obj isKindOfClass:Stolperstein.class]);
+				return ([obj isKindOfClass:StolpersteinAnnotation.class]);
 			}] mutableCopy];
 			
 			if(filteredAnnotationsInBucket.count > 0) {
-				Stolperstein *annotationForGrid = (Stolperstein *)[self annotationInGrid:gridMapRect usingAnnotations:filteredAnnotationsInBucket];
+				StolpersteinAnnotation *annotationForGrid = (StolpersteinAnnotation *)[self annotationInGrid:gridMapRect usingAnnotations:filteredAnnotationsInBucket];
 				
 				[filteredAnnotationsInBucket removeObject:annotationForGrid];
 				
@@ -126,7 +137,7 @@ static float bucketSize = 60.0;
                 
 				[self.mapView addAnnotation:annotationForGrid];
 				
-				for (Stolperstein *annotation in filteredAnnotationsInBucket) {
+				for (StolpersteinAnnotation *annotation in filteredAnnotationsInBucket) {
 					// Give all the other annotations a reference to the one which is representing them
 					annotation.clusterAnnotation = annotationForGrid;
 					annotation.containedAnnotations = nil;

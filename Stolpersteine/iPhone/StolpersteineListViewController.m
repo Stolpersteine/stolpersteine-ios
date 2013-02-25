@@ -11,8 +11,8 @@
 #import "AppDelegate.h"
 #import "StolpersteineNetworkService.h"
 #import "Stolperstein.h"
-#import "StolpersteinGroup.h"
 #import "StolpersteinDetailViewController.h"
+#import "Localization.h"
 
 @interface StolpersteineListViewController()
 
@@ -53,8 +53,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     Stolperstein *stolperstein = [self.stolpersteine objectAtIndex:indexPath.row];
-    cell.textLabel.text = stolperstein.title;
-    cell.detailTextLabel.text = stolperstein.subtitle;
+    cell.textLabel.text = [Localization newNameFromStolperstein:stolperstein];
+    cell.detailTextLabel.text = [Localization newAddressShortFromStolperstein:stolperstein];
     
     return cell;
 }

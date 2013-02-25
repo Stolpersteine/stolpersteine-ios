@@ -14,6 +14,7 @@
 @property (strong, nonatomic) MKMapView *mapView;
 @property (strong, nonatomic) MKMapView *allAnnotationsMapView;
 
--(id)initWithMapView:(MKMapView *)aMapView;
+- (id)initWithMapView:(MKMapView *)aMapView;
+- (void)addStolpersteine:(NSArray *)stolpersteine;
 
 @end

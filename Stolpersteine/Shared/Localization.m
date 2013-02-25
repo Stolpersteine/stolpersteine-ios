@@ -12,7 +12,29 @@
 
 @implementation Localization
 
-+ (NSString *)newAddressFromStolperstein:(Stolperstein *)stolperstein
++ (NSString *)newNameFromStolperstein:(Stolperstein *)stolperstein
+{
+    return [NSString stringWithFormat:@"%@ %@", stolperstein.personFirstName, stolperstein.personLastName];
+}
+
++ (NSString *)newAddressShortFromStolperstein:(Stolperstein *)stolperstein
+{
+    NSMutableString *address = [NSMutableString stringWithString:stolperstein.locationStreet];
+    if (stolperstein.locationZipCode || stolperstein.locationCity) {
+        [address appendString:@","];
+        
+        if (stolperstein.locationZipCode) {
+            [address appendFormat:@" %@", stolperstein.locationZipCode];
+        }
+        if (stolperstein.locationCity) {
+            [address appendFormat:@" %@", stolperstein.locationCity];
+        }
+    }
+    
+    return address;
+}
+
++ (NSString *)newAddressLongFromStolperstein:(Stolperstein *)stolperstein
 {
     NSMutableString *address = [NSMutableString stringWithCapacity:20];
     

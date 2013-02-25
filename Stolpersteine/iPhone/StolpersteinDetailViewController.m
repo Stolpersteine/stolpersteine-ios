@@ -10,6 +10,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <AddressBook/AddressBook.h>
+#import <MapKit/MapKit.h>
 
 #import "Stolperstein.h"
 #import "StolpersteinSearchData.h"
@@ -36,7 +37,7 @@
 {
     [super viewDidLoad];
 
-    self.title = self.stolperstein.title;
+    self.title = [Localization newNameFromStolperstein:self.stolperstein];
 
     // Image
     self.imageView = [[CopyableImageView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
@@ -54,7 +55,7 @@
     self.imageActivityIndicator.hidesWhenStopped = TRUE;
     [self.imageView addSubview:self.imageActivityIndicator];
     
-    NSString *address = [Localization newAddressFromStolperstein:self.stolperstein];
+    NSString *address = [Localization newAddressLongFromStolperstein:self.stolperstein];
     NSAttributedString *addressText = [[NSAttributedString alloc] initWithString:address];
     self.addressLabel = [[UILabel alloc] init];
     self.addressLabel.attributedText = addressText;
@@ -200,7 +201,7 @@
     }
     MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:addressDictionary];
     MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
-    mapItem.name = self.stolperstein.title;
+    mapItem.name = [Localization newNameFromStolperstein:self.stolperstein];
     [mapItem openInMapsWithLaunchOptions:nil];
 }
 

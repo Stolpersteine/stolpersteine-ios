@@ -16,6 +16,7 @@
 #import "StolpersteineListViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "CopyableImageView.h"
+#import "Localization.h"
 
 #define PADDING 20
 
@@ -53,23 +54,7 @@
     self.imageActivityIndicator.hidesWhenStopped = TRUE;
     [self.imageView addSubview:self.imageActivityIndicator];
     
-    // Address
-    NSMutableString *address = [NSMutableString stringWithCapacity:20];
-    
-    if (self.stolperstein.locationStreet) {
-        [address appendString:self.stolperstein.locationStreet];
-    }
-    
-    if (self.stolperstein.locationZipCode || self.stolperstein.locationCity) {
-        [address appendString:@"\n"];
-        
-        if (self.stolperstein.locationZipCode) {
-            [address appendFormat:@"%@", self.stolperstein.locationZipCode];
-        }
-        if (self.stolperstein.locationCity) {
-            [address appendFormat:@" %@", self.stolperstein.locationCity];
-        }
-    }
+    NSString *address = [Localization newAddressFromStolperstein:self.stolperstein];
     NSAttributedString *addressText = [[NSAttributedString alloc] initWithString:address];
     self.addressLabel = [[UILabel alloc] init];
     self.addressLabel.attributedText = addressText;
@@ -144,12 +129,15 @@
     
     // Image
     if (self.stolperstein.imageURLString) {
+        self.imageView.hidden = NO;
         self.imageView.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, screenWidth - 2 * PADDING);
         CGRect imageActivityIndicatorFrame = self.imageActivityIndicator.frame;
         imageActivityIndicatorFrame.origin.x = (self.imageView.frame.size.width - self.imageActivityIndicator.frame.size.width) * 0.5;
         imageActivityIndicatorFrame.origin.y = (self.imageView.frame.size.height - self.imageActivityIndicator.frame.size.height) * 0.5;
         self.imageActivityIndicator.frame = imageActivityIndicatorFrame;
         height += self.imageView.frame.size.height + PADDING * 0.5;
+    } else {
+        self.imageView.hidden = YES;
     }
     
     // Address

@@ -29,7 +29,7 @@
 @property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
-@property (nonatomic, strong) SearchDisplayController *customSearchDisplayController;
+@property (nonatomic, strong) SearchDisplayController *searchDisplayController;
 @property (nonatomic, strong) NSArray *searchedStolpersteine;
 @property (nonatomic, strong) Stolperstein *stolpersteinToSelect;
 @property (nonatomic, assign) MKCoordinateRegion regionToSet;
@@ -40,6 +40,8 @@
 
 @implementation MapViewController
 
+@synthesize searchDisplayController;    // Duplicates orginal property with new type
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,10 +49,10 @@
     self.title = NSLocalizedString(@"MapViewController.title", nil);
     
     // Search bar
-    self.customSearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
-    self.customSearchDisplayController.delegate = self;
-    self.customSearchDisplayController.searchResultsDataSource = self;
-    self.customSearchDisplayController.searchResultsDelegate = self;
+    self.searchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+    self.searchDisplayController.delegate = self;
+    self.searchDisplayController.searchResultsDataSource = self;
+    self.searchDisplayController.searchResultsDelegate = self;
     UIBarButtonItem *barButtonItem = self.navigationItem.rightBarButtonItem;
     NSString *homeBarButtonItemTitle = NSLocalizedString(@"MapViewController.home", nil);
     NSString *cancelBarButtonItemTitle = NSLocalizedString(@"MapViewController.cancel", nil);
@@ -252,7 +254,7 @@
         NSLog(@"shouldReloadTableForSearchString %d (%@)", stolpersteine.count, error);
 
         self.searchedStolpersteine = stolpersteine;
-        [self.customSearchDisplayController.searchResultsTableView reloadData];
+        [self.searchDisplayController.searchResultsTableView reloadData];
     }];
                                            
     return FALSE;
@@ -313,7 +315,7 @@
         self.stolpersteinToSelect = stolperstein;
     }
     
-    [self.customSearchDisplayController setActive:FALSE animated:TRUE];
+    [self.searchDisplayController setActive:FALSE animated:TRUE];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

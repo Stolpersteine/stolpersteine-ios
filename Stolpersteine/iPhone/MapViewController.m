@@ -40,7 +40,7 @@
 
 @implementation MapViewController
 
-@synthesize searchDisplayController;    // Duplicates orginal property with new type
+@synthesize searchDisplayController;    // Duplicates original property with new type
 
 - (void)viewDidLoad
 {

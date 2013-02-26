@@ -14,5 +14,6 @@
 "MapViewController.cancel" = "Abbrechen";
 "MapViewController.searchBarPaddingRight" = "100";
 
+"StolpersteinDetailViewController.biography" = "Biographie anzeigen";
 "StolpersteinDetailViewController.street" = "Alle in dieser Straße";
 "StolpersteinDetailViewController.maps" = "In der Karten App anzeigen";

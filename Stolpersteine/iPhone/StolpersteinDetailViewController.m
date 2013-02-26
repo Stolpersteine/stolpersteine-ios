@@ -26,6 +26,7 @@
 @property (strong, nonatomic) CopyableImageView *imageView;
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
 @property (strong, nonatomic) UILabel *addressLabel;
+@property (strong, nonatomic) UIButton *biographyButton;
 @property (strong, nonatomic) UIButton *streetButton;
 @property (strong, nonatomic) UIButton *mapsButton;
 
@@ -62,6 +63,15 @@
     self.addressLabel.numberOfLines = INT_MAX;
     [self.scrollView addSubview:self.addressLabel];
     
+    // Biography button
+    self.biographyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    NSString *biographyButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.biography", nil);
+    self.biographyButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [self.biographyButton setTitle:biographyButtonTitle forState:UIControlStateNormal];
+    [self.biographyButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [self.biographyButton addTarget:self action:@selector(showBiography:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:self.biographyButton];
+
     // Street button
     self.streetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     NSString *streetButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.street", nil);
@@ -149,6 +159,12 @@
     self.addressLabel.frame = addressFrame;
     height += addressFrame.size.height + PADDING * 0.5;
 
+    // Biography button
+    if (self.stolperstein.personBiographyURLString) {
+        self.biographyButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
+        height += self.biographyButton.frame.size.height + PADDING * 0.5;
+    }
+
     // Street button
     if (!self.isAllInThisStreetButtonHidden) {
         self.streetButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
@@ -178,6 +194,12 @@
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
     activityViewController.excludedActivityTypes = @[UIActivityTypeAssignToContact];
     [self presentViewController:activityViewController animated:YES completion:nil];
+}
+
+- (void)showBiography:(UIButton *)sender
+{
+    NSURL *url = [[NSURL alloc] initWithString:self.stolperstein.personBiographyURLString];
+    [UIApplication.sharedApplication openURL:url];
 }
 
 - (void)showAllInThisStreet:(UIButton *)sender

@@ -11,5 +11,6 @@
 "MapViewController.cancel" = "Cancel";
 "MapViewController.searchBarPaddingRight" = "75";
 
+"StolpersteinDetailViewController.biography" = "Show biography";
 "StolpersteinDetailViewController.street" = "All in this street";
 "StolpersteinDetailViewController.maps" = "Show in Maps App";

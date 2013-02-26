@@ -126,7 +126,7 @@ static float bucketSize = 60.0;
 				return ([obj isKindOfClass:StolpersteinAnnotation.class]);
 			}] mutableCopy];
 			
-			if(filteredAnnotationsInBucket.count > 0) {
+			if (filteredAnnotationsInBucket.count > 0) {
 				StolpersteinAnnotation *annotationForGrid = (StolpersteinAnnotation *)[self annotationInGrid:gridMapRect usingAnnotations:filteredAnnotationsInBucket];
 				
 				[filteredAnnotationsInBucket removeObject:annotationForGrid];
@@ -143,7 +143,7 @@ static float bucketSize = 60.0;
 					annotation.containedAnnotations = nil;
 					
 					// Remove annotations (with animation) which we've decided to cluster
-					if([visibleAnnotationsInBucket containsObject:annotation]) {
+					if ([visibleAnnotationsInBucket containsObject:annotation]) {
 						CLLocationCoordinate2D actualCoordinate = annotation.coordinate;
 						[UIView animateWithDuration:0.3 animations:^{
 							annotation.coordinate = annotation.clusterAnnotation.coordinate;

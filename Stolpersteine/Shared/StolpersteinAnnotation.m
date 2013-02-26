@@ -49,4 +49,9 @@
     return self.stolperstein.locationCoordinates.coordinate;
 }
 
+- (void)setCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    self.stolperstein.locationCoordinates = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+}
+
 @end

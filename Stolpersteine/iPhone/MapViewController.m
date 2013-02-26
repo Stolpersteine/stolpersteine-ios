@@ -164,7 +164,7 @@
 {
     MKAnnotationView *annotationView;
     
-    if ([annotation isKindOfClass:StolpersteinAnnotation.class]) {
+    if ([annotation isKindOfClass:StolpersteinAnnotation.class] || [annotation isKindOfClass:StolpersteinClusterAnnotation.class]) {
         static NSString *stolpersteinIdentifier = @"stolpersteinIdentifier";
         
         annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];

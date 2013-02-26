@@ -187,9 +187,13 @@
 
 - (IBAction)showActivities:(UIBarButtonItem *)sender
 {
-    NSMutableArray *itemsToShare = [NSMutableArray arrayWithObject:self.title];
+    NSString *textItem = [Localization newDescriptionFromStolperstein:self.stolperstein];
+    NSMutableArray *itemsToShare = [NSMutableArray arrayWithObject:textItem];
     if (self.imageView.image) {
         [itemsToShare addObject:self.imageView.image];
+    }
+    if (self.stolperstein.personBiographyURLString) {
+        [itemsToShare addObject:[NSURL URLWithString:self.stolperstein.personBiographyURLString]];
     }
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
     activityViewController.excludedActivityTypes = @[UIActivityTypeAssignToContact];

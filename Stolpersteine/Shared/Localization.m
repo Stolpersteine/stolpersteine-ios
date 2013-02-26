@@ -63,4 +63,11 @@
     return address;
 }
 
++ (NSString *)newDescriptionFromStolperstein:(Stolperstein *)stolperstein
+{
+    NSString *name = [Localization newNameFromStolperstein:stolperstein];
+    NSString *address = [Localization newAddressShortFromStolperstein:stolperstein];
+    return [NSString stringWithFormat:@"%@, %@", name, address];
+}
+
 @end

@@ -320,10 +320,11 @@
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
         detailViewController.stolperstein = stolpersteinAnnotation.stolperstein;
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
-        StolpersteinClusterAnnotation *stolpersteinAnnotation = (StolpersteinClusterAnnotation *)selectedAnnotation;
+        StolpersteinClusterAnnotation *stolpersteinClusterAnnotation = (StolpersteinClusterAnnotation *)selectedAnnotation;
         StolpersteineListViewController *listViewController = (StolpersteineListViewController *)segue.destinationViewController;
-        listViewController.stolpersteine = stolpersteinAnnotation.stolpersteine;
-        listViewController.title = stolpersteinAnnotation.title;
+        NSArray *stolpersteine = [stolpersteinClusterAnnotation.stolpersteinAnnotations valueForKey:@"stolperstein"];
+        listViewController.stolpersteine = stolpersteine;
+        listViewController.title = stolpersteinClusterAnnotation.title;
     }
 }
 

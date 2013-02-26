@@ -15,6 +15,6 @@
 @property (nonatomic, readonly, copy) NSString *subtitle;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 
-@property (nonatomic, strong) NSArray *stolpersteine;   // NSObject<MKAnnotation>
+@property (nonatomic, strong) NSArray *stolpersteinAnnotations;   // NSObject<MKAnnotation>
 
 @end

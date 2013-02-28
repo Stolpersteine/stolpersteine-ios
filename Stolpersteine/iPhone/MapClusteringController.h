@@ -11,10 +11,7 @@
 
 @interface MapClusteringController : NSObject
 
-@property (strong, nonatomic) MKMapView *mapView;
-@property (strong, nonatomic) MKMapView *allAnnotationsMapView;
-
-- (id)initWithMapView:(MKMapView *)aMapView;
+- (id)initWithMapView:(MKMapView *)mapView;
 - (void)addStolpersteine:(NSArray *)stolpersteine;
 - (void)updateVisibleAnnotations;
 

@@ -11,6 +11,13 @@
 #import "Stolperstein.h"
 #import "StolpersteinAnnotation.h"
 
+@interface MapClusteringController()
+
+@property (strong, nonatomic) MKMapView *mapView;
+@property (strong, nonatomic) MKMapView *allAnnotationsMapView;
+
+@end
+
 @implementation MapClusteringController
 
 // This value controls the number of off screen annotations are displayed.
@@ -18,19 +25,18 @@
 // decreased performance.
 // A smaller number means fewer annotations, more chance of seeing annotations views pop in but
 // better performance.
-static float marginFactor = 2.0;
+static float marginFactor = 0.5;
 
 // Adjust this roughly based on the dimensions of your annotations views.
 // Bigger numbers more aggressively coalesce annotations (fewer annotations displayed but better performance)
 // Numbers too small result in overlapping annotations views and too many annotations in screen.
-static float bucketSize = 60.0;
+static float bucketSize = 40.0;
 
-
--(id)initWithMapView:(MKMapView *)aMapView
+- (id)initWithMapView:(MKMapView *)mapView
 {
     self = [super init];
     if (self) {
-		self.mapView = aMapView;
+		self.mapView = mapView;
 		self.allAnnotationsMapView = [[MKMapView alloc] initWithFrame:CGRectZero];
 		return self;
     }

@@ -157,7 +157,7 @@
         self.stolpersteinAnnotationToSelect = nil;
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"AnnotationsAdded" object:self];
+    [self.mapClusteringController updateVisibleAnnotations];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation

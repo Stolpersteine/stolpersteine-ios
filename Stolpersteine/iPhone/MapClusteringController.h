@@ -16,5 +16,6 @@
 
 - (id)initWithMapView:(MKMapView *)aMapView;
 - (void)addStolpersteine:(NSArray *)stolpersteine;
+- (void)updateVisibleAnnotations;
 
 @end

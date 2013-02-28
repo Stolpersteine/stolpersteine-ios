@@ -49,7 +49,7 @@ static float bucketSize = 60.0;
         [stolpersteinAnnotations addObject:stolpersteinAnnotation];
     }];
     [self.allAnnotationsMapView addAnnotations:stolpersteinAnnotations];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"AnnotationsAdded" object:self];
+    [self updateVisibleAnnotations];
 }
 
 - (id<MKAnnotation>)annotationInGrid:(MKMapRect)gridMapRect usingAnnotations:(NSSet *)annotations
@@ -90,7 +90,7 @@ static float bucketSize = 60.0;
 	
 }
 
-- (void)updateVisibleAnnotation
+- (void)updateVisibleAnnotations
 {
 	// fix performance and visual clutter by calling update when change map region
 	// it's called any time region changed on the map

@@ -13,10 +13,11 @@
 NSDateFormatter *dateFormatterJSON()
 {
     static NSDateFormatter *dateFormatter = nil;
-    if (dateFormatter) {
+    static dispatch_once_t onceToken = 0;
+    dispatch_once(&onceToken, ^{
         dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
-    }
+    });
     return dateFormatter;
 }
 

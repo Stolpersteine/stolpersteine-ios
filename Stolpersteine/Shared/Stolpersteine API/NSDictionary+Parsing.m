@@ -52,9 +52,7 @@ NSDateFormatter *dateFormatterJSON()
     
     NSString *latitudeAsString = [self valueForKeyPath:@"location.coordinates.latitude"];
     NSString *longitudeAsString = [self valueForKeyPath:@"location.coordinates.longitude"];
-    if (latitudeAsString && longitudeAsString) {
-        stolperstein.locationCoordinates = [[CLLocation alloc] initWithLatitude:latitudeAsString.doubleValue longitude:longitudeAsString.doubleValue];
-    }
+    stolperstein.locationCoordinate = CLLocationCoordinate2DMake(latitudeAsString.doubleValue, longitudeAsString.doubleValue);
     
     return stolperstein;
 }

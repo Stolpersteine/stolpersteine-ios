@@ -214,7 +214,6 @@
 - (void)showInMapsApp:(UIButton *)sender
 {
     // Create an MKMapItem to pass to the Maps app
-    CLLocationCoordinate2D coordinate = self.stolperstein.locationCoordinates.coordinate;
     NSMutableDictionary *addressDictionary = [NSMutableDictionary dictionaryWithCapacity:3];
     if (self.stolperstein.locationStreet) {
         [addressDictionary setObject:self.stolperstein.locationStreet forKey:(NSString *)kABPersonAddressStreetKey];
@@ -225,6 +224,7 @@
     if (self.stolperstein.locationZipCode) {
         [addressDictionary setObject:self.stolperstein.locationZipCode forKey:(NSString *)kABPersonAddressZIPKey];
     }
+    CLLocationCoordinate2D coordinate = self.stolperstein.locationCoordinate;
     MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:addressDictionary];
     MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
     mapItem.name = [Localization newNameFromStolperstein:self.stolperstein];

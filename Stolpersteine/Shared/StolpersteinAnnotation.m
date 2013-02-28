@@ -46,12 +46,12 @@
 
 - (CLLocationCoordinate2D)coordinate
 {
-    return self.stolperstein.locationCoordinates.coordinate;
+    return self.stolperstein.locationCoordinate;
 }
 
 - (void)setCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    self.stolperstein.locationCoordinates = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+    self.stolperstein.locationCoordinate = coordinate;
 }
 
 @end

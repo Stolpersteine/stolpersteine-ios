@@ -11,7 +11,6 @@
 
 @interface Stolperstein : NSObject
 
-// Original data
 @property (nonatomic, strong) NSString *id;
 @property (nonatomic, strong) NSString *imageURLString;
 @property (nonatomic, strong) NSString *text;
@@ -25,6 +24,6 @@
 @property (nonatomic, readonly) NSString *locationStreetName;
 @property (nonatomic, strong) NSString *locationZipCode;
 @property (nonatomic, strong) NSString *locationCity;
-@property (nonatomic, strong) CLLocation *locationCoordinates;
+@property (nonatomic, assign) CLLocationCoordinate2D locationCoordinate;
 
 @end

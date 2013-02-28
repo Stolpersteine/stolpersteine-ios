@@ -75,7 +75,7 @@
     
     // Clustering
     self.mapClusteringController = [[MapClusteringController alloc] initWithMapView:self.mapView];
-    NSRange range = NSMakeRange(0, 500);
+    NSRange range = NSMakeRange(0, 200);
     [self retrieveStolpersteineWithRange:range];
 }
 

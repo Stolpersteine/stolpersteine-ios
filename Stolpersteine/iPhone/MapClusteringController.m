@@ -120,10 +120,8 @@ static float bucketSize = 40.0;
 		gridMapRect.origin.x = startX;
 		
 		while (MKMapRectGetMinX(gridMapRect) <= endX) {
-			NSSet *allAnnotationsInBucket = [self.allAnnotationsMapView annotationsInMapRect:gridMapRect];
-			NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:gridMapRect];
-			
 			// We only care about MSAnnotation
+			NSSet *allAnnotationsInBucket = [self.allAnnotationsMapView annotationsInMapRect:gridMapRect];
 			NSMutableSet *filteredAnnotationsInBucket = [[allAnnotationsInBucket objectsPassingTest:^BOOL(id obj, BOOL *stop) {
 				return ([obj isKindOfClass:StolpersteinAnnotation.class]);
 			}] mutableCopy];
@@ -136,6 +134,7 @@ static float bucketSize = 40.0;
 				annotationForGrid.containedAnnotations = [filteredAnnotationsInBucket allObjects];
 				[self.mapView addAnnotation:annotationForGrid];
 				
+                NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:gridMapRect];
 				for (StolpersteinAnnotation *annotation in filteredAnnotationsInBucket) {
 					annotation.containedAnnotations = nil;
 					

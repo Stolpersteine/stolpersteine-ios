@@ -51,15 +51,20 @@
     [parameters setObject:@(range.location) forKey:@"offset"];
     NSURLRequest *request = [self.httpClient requestWithMethod:@"GET" path:@"stolpersteine" parameters:parameters];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSArray *stolpersteineAsJSON) {
-        NSMutableArray *stolpersteine = [NSMutableArray arrayWithCapacity:stolpersteineAsJSON.count];
-        for (NSDictionary *stolpersteinAsJSON in stolpersteineAsJSON) {
-            Stolperstein *stolperstein = [stolpersteinAsJSON newStolperstein];
-            [stolpersteine addObject:stolperstein];
-        }
-        
-        if (completionHandler) {
-            completionHandler(stolpersteine, nil);
-        }
+        // Parse on background thread
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            NSMutableArray *stolpersteine = [NSMutableArray arrayWithCapacity:stolpersteineAsJSON.count];
+            for (NSDictionary *stolpersteinAsJSON in stolpersteineAsJSON) {
+                Stolperstein *stolperstein = [stolpersteinAsJSON newStolperstein];
+                [stolpersteine addObject:stolperstein];
+            }
+
+            if (completionHandler) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionHandler(stolpersteine, nil);
+                });
+            }
+        });
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         if (completionHandler) {
             completionHandler(nil, error);

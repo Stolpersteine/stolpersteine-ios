@@ -32,10 +32,6 @@ static float bucketSize = 60.0;
     if (self) {
 		self.mapView = aMapView;
 		self.allAnnotationsMapView = [[MKMapView alloc] initWithFrame:CGRectZero];
-		// adds an observer to start refresh annotations
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(updateVisibleAnnotation)
-													 name:@"AnnotationsAdded" object:nil];
 		return self;
     }
     return nil;

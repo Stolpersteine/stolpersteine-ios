@@ -120,22 +120,17 @@ static float bucketSize = 40.0;
 		gridMapRect.origin.x = startX;
 		
 		while (MKMapRectGetMinX(gridMapRect) <= endX) {
-			// We only care about MSAnnotation
-			NSSet *allAnnotationsInBucket = [self.allAnnotationsMapView annotationsInMapRect:gridMapRect];
-			NSMutableSet *filteredAnnotationsInBucket = [[allAnnotationsInBucket objectsPassingTest:^BOOL(id obj, BOOL *stop) {
-				return ([obj isKindOfClass:StolpersteinAnnotation.class]);
-			}] mutableCopy];
-			
-			if (filteredAnnotationsInBucket.count > 0) {
-				StolpersteinAnnotation *annotationForGrid = (StolpersteinAnnotation *)[self annotationInGrid:gridMapRect usingAnnotations:filteredAnnotationsInBucket];
-				[filteredAnnotationsInBucket removeObject:annotationForGrid];
+			NSMutableSet *allAnnotationsInBucket = [NSMutableSet setWithSet:[self.allAnnotationsMapView annotationsInMapRect:gridMapRect]];
+			if (allAnnotationsInBucket.count > 0) {
+				StolpersteinAnnotation *annotationForGrid = (StolpersteinAnnotation *)[self annotationInGrid:gridMapRect usingAnnotations:allAnnotationsInBucket];
+				[allAnnotationsInBucket removeObject:annotationForGrid];
 				
 				// Give the annotationForGrid a reference to all the annotation it will represent
-				annotationForGrid.containedAnnotations = [filteredAnnotationsInBucket allObjects];
+				annotationForGrid.containedAnnotations = [allAnnotationsInBucket allObjects];
 				[self.mapView addAnnotation:annotationForGrid];
 				
                 NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:gridMapRect];
-				for (StolpersteinAnnotation *annotation in filteredAnnotationsInBucket) {
+				for (StolpersteinAnnotation *annotation in allAnnotationsInBucket) {
 					annotation.containedAnnotations = nil;
 					
 					// Remove annotations (with animation) which we've decided to cluster

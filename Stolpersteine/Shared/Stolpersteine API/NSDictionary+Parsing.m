@@ -10,6 +10,16 @@
 
 #import "Stolperstein.h"
 
+NSDateFormatter *dateFormatterJSON()
+{
+    static NSDateFormatter *dateFormatter = nil;
+    if (dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    }
+    return dateFormatter;
+}
+
 @implementation NSDictionary (Parsing)
 
 - (NSDate *)newDateForKeyPath:(NSString *)keyPath
@@ -19,8 +29,7 @@
         dateAsString = [[dateAsString substringToIndex:dateAsString.length - 1] stringByAppendingString:@"GMT"];
     }
 
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    NSDateFormatter *dateFormatter = dateFormatterJSON();
     NSDate *date = [dateFormatter dateFromString:dateAsString];
     return date;
 }

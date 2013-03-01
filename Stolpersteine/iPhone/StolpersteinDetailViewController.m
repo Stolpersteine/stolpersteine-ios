@@ -63,32 +63,38 @@
     self.addressLabel.numberOfLines = INT_MAX;
     [self.scrollView addSubview:self.addressLabel];
     
-    // Biography button
-    self.biographyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    NSString *biographyButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.biography", nil);
-    self.biographyButton.titleLabel.textAlignment = NSTextAlignmentLeft;
-    [self.biographyButton setTitle:biographyButtonTitle forState:UIControlStateNormal];
-    [self.biographyButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-    [self.biographyButton addTarget:self action:@selector(showBiography:) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:self.biographyButton];
-
     // Street button
-    self.streetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     NSString *streetButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.street", nil);
-    self.streetButton.titleLabel.textAlignment = NSTextAlignmentLeft;
-    [self.streetButton setTitle:streetButtonTitle forState:UIControlStateNormal];
-    [self.streetButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-    [self.streetButton addTarget:self action:@selector(showAllInThisStreet:) forControlEvents:UIControlEventTouchUpInside];
+    self.streetButton = [self newRoundedRectButtonWithTitle:streetButtonTitle action:@selector(showAllInThisStreet:) chevronEnabled:TRUE];
     [self.scrollView addSubview:self.streetButton];
 
+    // Biography button
+    NSString *biographyButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.biography", nil);
+    self.biographyButton = [self newRoundedRectButtonWithTitle:biographyButtonTitle action:@selector(showBiography:) chevronEnabled:FALSE];
+    [self.scrollView addSubview:self.biographyButton];
+
     // Maps button
-    self.mapsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     NSString *mapsButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.maps", nil);
-    self.mapsButton.titleLabel.textAlignment = NSTextAlignmentLeft;
-    [self.mapsButton setTitle:mapsButtonTitle forState:UIControlStateNormal];
-    [self.mapsButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-    [self.mapsButton addTarget:self action:@selector(showInMapsApp:) forControlEvents:UIControlEventTouchUpInside];
+    self.mapsButton = [self newRoundedRectButtonWithTitle:mapsButtonTitle action:@selector(showInMapsApp:) chevronEnabled:FALSE];
     [self.scrollView addSubview:self.mapsButton];
+}
+
+- (UIButton *)newRoundedRectButtonWithTitle:(NSString *)title action:(SEL)action chevronEnabled:(BOOL)chevronEnabled
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [button setTitle:title forState:UIControlStateNormal];
+    [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    
+    if (chevronEnabled) {
+        UIImage *chevron = [UIImage imageNamed:@"chevron.png"];
+        [button setImage:chevron forState:UIControlStateNormal];
+        [button sizeToFit];
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, -chevron.size.width, 0, 0);
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, button.titleLabel.frame.size.width + button.frame.size.width - 10, 0, 0);
+    }
+    
+    return button;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -159,18 +165,18 @@
     self.addressLabel.frame = addressFrame;
     height += addressFrame.size.height + PADDING * 0.5;
 
-    // Biography button
-    if (self.stolperstein.personBiographyURLString) {
-        self.biographyButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
-        height += self.biographyButton.frame.size.height + PADDING * 0.5;
-    }
-
     // Street button
     if (!self.isAllInThisStreetButtonHidden) {
         self.streetButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
         height += self.streetButton.frame.size.height + PADDING * 0.5;
     }
     
+    // Biography button
+    if (self.stolperstein.personBiographyURLString) {
+        self.biographyButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
+        height += self.biographyButton.frame.size.height + PADDING * 0.5;
+    }
+
     // Maps button
     self.mapsButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
     height += self.mapsButton.frame.size.height + PADDING * 0.5;

@@ -25,6 +25,7 @@
 
 @property (strong, nonatomic) CopyableImageView *imageView;
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
+@property (strong, nonatomic) UILabel *nameLabel;
 @property (strong, nonatomic) UILabel *addressLabel;
 @property (strong, nonatomic) UIButton *biographyButton;
 @property (strong, nonatomic) UIButton *streetButton;
@@ -38,8 +39,16 @@
 {
     [super viewDidLoad];
 
-    self.title = [Localization newNameFromStolperstein:self.stolperstein];
-
+    self.title = NSLocalizedString(@"StolpersteinDetailViewController.title", nil);
+    
+    // Name
+    self.nameLabel = [[UILabel alloc] init];
+    NSString *name = [Localization newNameFromStolperstein:self.stolperstein];
+    self.nameLabel.text = name;
+    self.nameLabel.font = [UIFont boldSystemFontOfSize:UIFont.labelFontSize + 3];
+    self.nameLabel.numberOfLines = INT_MAX;
+    [self.scrollView addSubview:self.nameLabel];
+    
     // Image
     self.imageView = [[CopyableImageView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -56,10 +65,10 @@
     self.imageActivityIndicator.hidesWhenStopped = TRUE;
     [self.imageView addSubview:self.imageActivityIndicator];
     
-    NSString *address = [Localization newAddressLongFromStolperstein:self.stolperstein];
-    NSAttributedString *addressText = [[NSAttributedString alloc] initWithString:address];
+    // Address
     self.addressLabel = [[UILabel alloc] init];
-    self.addressLabel.attributedText = addressText;
+    NSString *address = [Localization newAddressLongFromStolperstein:self.stolperstein];
+    self.addressLabel.text = address;
     self.addressLabel.numberOfLines = INT_MAX;
     [self.scrollView addSubview:self.addressLabel];
     
@@ -144,17 +153,23 @@
     CGFloat screenWidth = self.view.frame.size.width;
     CGFloat height = PADDING;
     
+    // Name
+    CGRect nameFrame;
+    nameFrame.origin.x = PADDING;
+    nameFrame.origin.y = height;
+    nameFrame.size = [self.nameLabel sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
+    self.nameLabel.frame = nameFrame;
+    height += nameFrame.size.height + PADDING * 0.5;
+
     // Image
+    self.imageView.hidden = !self.stolperstein.imageURLString;
     if (self.stolperstein.imageURLString) {
-        self.imageView.hidden = NO;
         self.imageView.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, screenWidth - 2 * PADDING);
         CGRect imageActivityIndicatorFrame = self.imageActivityIndicator.frame;
         imageActivityIndicatorFrame.origin.x = (self.imageView.frame.size.width - self.imageActivityIndicator.frame.size.width) * 0.5;
         imageActivityIndicatorFrame.origin.y = (self.imageView.frame.size.height - self.imageActivityIndicator.frame.size.height) * 0.5;
         self.imageActivityIndicator.frame = imageActivityIndicatorFrame;
         height += self.imageView.frame.size.height + PADDING * 0.5;
-    } else {
-        self.imageView.hidden = YES;
     }
     
     // Address
@@ -166,12 +181,14 @@
     height += addressFrame.size.height + PADDING * 0.5;
 
     // Street button
+    self.streetButton.hidden = self.isAllInThisStreetButtonHidden;
     if (!self.isAllInThisStreetButtonHidden) {
         self.streetButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
         height += self.streetButton.frame.size.height + PADDING * 0.5;
     }
     
     // Biography button
+    self.biographyButton.hidden = !self.stolperstein.personBiographyURLString;
     if (self.stolperstein.personBiographyURLString) {
         self.biographyButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
         height += self.biographyButton.frame.size.height + PADDING * 0.5;

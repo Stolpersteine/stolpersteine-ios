@@ -78,8 +78,8 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
             STAssertTrue([stolperstein.locationStreet isKindOfClass:NSString.class], @"Wrong type for street");
             STAssertNotNil(stolperstein.locationCity, @"Wrong city");
             STAssertTrue([stolperstein.locationCity isKindOfClass:NSString.class], @"Wrong type for city");
-            STAssertNotNil(stolperstein.locationCoordinates, @"Wrong coordinates");
-            STAssertTrue([stolperstein.locationCoordinates isKindOfClass:CLLocation.class], @"Wrong type for coordinates");
+            STAssertTrue(stolperstein.locationCoordinate.latitude != 0, @"Wrong coordinates");
+            STAssertTrue(stolperstein.locationCoordinate.longitude != 0, @"Wrong coordinates");
             STAssertNotNil(stolperstein.sourceRetrievedAt, @"Wrong retrieved at date");
             STAssertTrue([stolperstein.sourceRetrievedAt isKindOfClass:NSDate.class], @"Wrong type for retrieved at date");
             STAssertNotNil(stolperstein.sourceURLString, @"Wrong source URL string");

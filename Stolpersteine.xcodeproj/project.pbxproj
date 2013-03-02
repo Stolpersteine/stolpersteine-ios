@@ -35,6 +35,9 @@
 		4865313716E1253100E4A483 /* chevron@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865313316E1253100E4A483 /* chevron@2x.png */; };
 		4865313816E1253100E4A483 /* text-field-frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865313416E1253100E4A483 /* text-field-frame.png */; };
 		4865313916E1253100E4A483 /* text-field-frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865313516E1253100E4A483 /* text-field-frame@2x.png */; };
+		4879B6B016E25490006593D8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4879B6AD16E25490006593D8 /* Default-568h@2x.png */; };
+		4879B6B116E25490006593D8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4879B6AE16E25490006593D8 /* Default.png */; };
+		4879B6B216E25490006593D8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4879B6AF16E25490006593D8 /* Default@2x.png */; };
 		48A08C8C16DBF380000A2470 /* StolpersteinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8A16DBF380000A2470 /* StolpersteinTests.m */; };
 		48A08C9016DBF5A5000A2470 /* Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8F16DBF5A5000A2470 /* Localization.m */; };
 		48A08C9116DBF5A5000A2470 /* Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8F16DBF5A5000A2470 /* Localization.m */; };
@@ -103,9 +106,6 @@
 		627E43B9169B0F050065C1F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B8169B0F050065C1F1 /* Foundation.framework */; };
 		627E43BB169B0F050065C1F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43BA169B0F050065C1F1 /* CoreGraphics.framework */; };
 		627E43C3169B0F050065C1F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E43C2169B0F050065C1F1 /* main.m */; };
-		627E43C9169B0F050065C1F1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 627E43C8169B0F050065C1F1 /* Default.png */; };
-		627E43CB169B0F050065C1F1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 627E43CA169B0F050065C1F1 /* Default@2x.png */; };
-		627E43CD169B0F050065C1F1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 627E43CC169B0F050065C1F1 /* Default-568h@2x.png */; };
 		627E43DA169B0FFC0065C1F1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43D9169B0FFC0065C1F1 /* MapKit.framework */; };
 		627E4403169B27370065C1F1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E4402169B27360065C1F1 /* SystemConfiguration.framework */; };
 		627E4405169B273D0065C1F1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E4404169B273D0065C1F1 /* MobileCoreServices.framework */; };
@@ -149,6 +149,9 @@
 		4865313316E1253100E4A483 /* chevron@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chevron@2x.png"; sourceTree = "<group>"; };
 		4865313416E1253100E4A483 /* text-field-frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-field-frame.png"; sourceTree = "<group>"; };
 		4865313516E1253100E4A483 /* text-field-frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-field-frame@2x.png"; sourceTree = "<group>"; };
+		4879B6AD16E25490006593D8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4879B6AE16E25490006593D8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		4879B6AF16E25490006593D8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		48A08C8916DBF380000A2470 /* StolpersteinTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinTests.h; sourceTree = "<group>"; };
 		48A08C8A16DBF380000A2470 /* StolpersteinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinTests.m; sourceTree = "<group>"; };
 		48A08C8E16DBF5A5000A2470 /* Localization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localization.h; sourceTree = "<group>"; };
@@ -217,9 +220,6 @@
 		627E43BE169B0F050065C1F1 /* Stolpersteine-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Stolpersteine-Info.plist"; sourceTree = "<group>"; };
 		627E43C2169B0F050065C1F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		627E43C4169B0F050065C1F1 /* Stolpersteine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stolpersteine-Prefix.pch"; sourceTree = "<group>"; };
-		627E43C8169B0F050065C1F1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		627E43CA169B0F050065C1F1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		627E43CC169B0F050065C1F1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		627E43D9169B0FFC0065C1F1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		627E4402169B27360065C1F1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		627E4404169B273D0065C1F1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -339,6 +339,16 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		4879B6AC16E25490006593D8 /* Launch Images */ = {
+			isa = PBXGroup;
+			children = (
+				4879B6AD16E25490006593D8 /* Default-568h@2x.png */,
+				4879B6AE16E25490006593D8 /* Default.png */,
+				4879B6AF16E25490006593D8 /* Default@2x.png */,
+			);
+			path = "Launch Images";
+			sourceTree = "<group>";
+		};
 		48A08C8716DBF380000A2470 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +417,7 @@
 			children = (
 				48633BA116C040520057A317 /* UI */,
 				6243177116BFDF2400055933 /* Images */,
+				4879B6AC16E25490006593D8 /* Launch Images */,
 			);
 			name = Resources;
 			path = Stolpersteine/Resources;
@@ -506,9 +517,6 @@
 				627E43BE169B0F050065C1F1 /* Stolpersteine-Info.plist */,
 				627E43C2169B0F050065C1F1 /* main.m */,
 				627E43C4169B0F050065C1F1 /* Stolpersteine-Prefix.pch */,
-				627E43C8169B0F050065C1F1 /* Default.png */,
-				627E43CA169B0F050065C1F1 /* Default@2x.png */,
-				627E43CC169B0F050065C1F1 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -652,9 +660,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				627E43C9169B0F050065C1F1 /* Default.png in Resources */,
-				627E43CB169B0F050065C1F1 /* Default@2x.png in Resources */,
-				627E43CD169B0F050065C1F1 /* Default-568h@2x.png in Resources */,
 				6243178016BFDF2400055933 /* image-frame.png in Resources */,
 				6243178116BFDF2400055933 /* image-frame@2x.png in Resources */,
 				6243178216BFDF2400055933 /* search-text-field-clear-button-landscape.png in Resources */,
@@ -676,6 +681,9 @@
 				4865313716E1253100E4A483 /* chevron@2x.png in Resources */,
 				4865313816E1253100E4A483 /* text-field-frame.png in Resources */,
 				4865313916E1253100E4A483 /* text-field-frame@2x.png in Resources */,
+				4879B6B016E25490006593D8 /* Default-568h@2x.png in Resources */,
+				4879B6B116E25490006593D8 /* Default.png in Resources */,
+				4879B6B216E25490006593D8 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

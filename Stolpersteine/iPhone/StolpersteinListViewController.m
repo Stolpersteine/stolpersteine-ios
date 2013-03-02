@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "StolpersteineListViewController.h"
+#import "StolpersteinListViewController.h"
 
 #import "AppDelegate.h"
 #import "StolpersteineNetworkService.h"
@@ -14,13 +14,13 @@
 #import "StolpersteinDetailViewController.h"
 #import "Localization.h"
 
-@interface StolpersteineListViewController()
+@interface StolpersteinListViewController()
 
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
 
 @end
 
-@implementation StolpersteineListViewController
+@implementation StolpersteinListViewController
 
 - (void)viewWillAppear:(BOOL)animated
 {

@@ -10,7 +10,7 @@
 
 @class StolpersteinSearchData;
 
-@interface StolpersteineListViewController : UITableViewController
+@interface StolpersteinListViewController : UITableViewController
 
 @property (strong, nonatomic) NSArray *stolpersteine;
 @property (strong, nonatomic) StolpersteinSearchData *searchData;

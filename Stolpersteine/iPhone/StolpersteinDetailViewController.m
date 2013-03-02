@@ -14,7 +14,7 @@
 
 #import "Stolperstein.h"
 #import "StolpersteinSearchData.h"
-#import "StolpersteineListViewController.h"
+#import "StolpersteinListViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "CopyableImageView.h"
 #import "Localization.h"
@@ -259,7 +259,7 @@
     if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToStolpersteineListViewController"]) {
         StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
         searchData.locationStreet = self.stolperstein.locationStreetName;
-        StolpersteineListViewController *listViewController = (StolpersteineListViewController *)segue.destinationViewController;
+        StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
         listViewController.searchData = searchData;
         listViewController.title = searchData.locationStreet;
     }

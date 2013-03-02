@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "StolpersteineNetworkService.h"
+#import "StolpersteinNetworkService.h"
 #import "GAI.h"
 
 #ifdef DEBUG
@@ -25,7 +25,7 @@ static NSString * const GOOGLE_ANALYTICS_ID = @"UA-38166041-1";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSURL *url = [NSURL URLWithString:API_URL];
-    self.networkService = [[StolpersteineNetworkService alloc] initWithURL:url clientUser:nil clientPassword:nil];
+    self.networkService = [[StolpersteinNetworkService alloc] initWithURL:url clientUser:nil clientPassword:nil];
 #ifdef DEBUG
     // This allows invalid certificates so that proxies can decrypt the traffic.
     [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:url.host];
@@ -41,7 +41,7 @@ static NSString * const GOOGLE_ANALYTICS_ID = @"UA-38166041-1";
     return YES;
 }
 
-+ (StolpersteineNetworkService *)networkService
++ (StolpersteinNetworkService *)networkService
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     return appDelegate.networkService;

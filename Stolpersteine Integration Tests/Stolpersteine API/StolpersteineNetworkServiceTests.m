@@ -10,7 +10,7 @@
 
 #import "Stolperstein.h"
 #import "StolpersteinSearchData.h"
-#import "StolpersteineNetworkService.h"
+#import "StolpersteinNetworkService.h"
 
 static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/api/";
 
@@ -22,7 +22,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
 
 @interface StolpersteineNetworkServiceTests()
 
-@property (nonatomic, strong) StolpersteineNetworkService *networkService;
+@property (nonatomic, strong) StolpersteinNetworkService *networkService;
 @property (nonatomic, assign) BOOL done;
 
 @end
@@ -39,7 +39,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
     [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:url.host];
 #endif
     
-    self.networkService = [[StolpersteineNetworkService alloc] initWithURL:url clientUser:nil clientPassword:nil];
+    self.networkService = [[StolpersteinNetworkService alloc] initWithURL:url clientUser:nil clientPassword:nil];
     self.done = FALSE;
 }
 

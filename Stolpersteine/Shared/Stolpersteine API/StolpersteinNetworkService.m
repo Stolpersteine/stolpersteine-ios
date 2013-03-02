@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "StolpersteineNetworkService.h"
+#import "StolpersteinNetworkService.h"
 
 #import "AFJSONRequestOperation.h"
 #import "AFImageRequestOperation.h"
@@ -16,13 +16,13 @@
 #import "StolpersteinSearchData.h"
 #import "NSDictionary+Parsing.h"
 
-@interface StolpersteineNetworkService ()
+@interface StolpersteinNetworkService ()
 
 @property (nonatomic, strong) AFHTTPClient *httpClient;
 
 @end
 
-@implementation StolpersteineNetworkService
+@implementation StolpersteinNetworkService
 
 - (id)initWithURL:(NSURL *)url clientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword
 {

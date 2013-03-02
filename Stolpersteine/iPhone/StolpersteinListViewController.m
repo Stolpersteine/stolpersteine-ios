@@ -9,7 +9,7 @@
 #import "StolpersteinListViewController.h"
 
 #import "AppDelegate.h"
-#import "StolpersteineNetworkService.h"
+#import "StolpersteinNetworkService.h"
 #import "Stolperstein.h"
 #import "StolpersteinDetailViewController.h"
 #import "Localization.h"

@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class StolpersteineNetworkService;
+@class StolpersteinNetworkService;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) StolpersteineNetworkService *networkService;
+@property (strong, nonatomic) StolpersteinNetworkService *networkService;
 
-+ (StolpersteineNetworkService *)networkService;
++ (StolpersteinNetworkService *)networkService;
 
 @end

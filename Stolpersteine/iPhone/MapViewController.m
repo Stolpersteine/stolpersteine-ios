@@ -9,7 +9,7 @@
 #import "MapViewController.h"
 
 #import "AppDelegate.h"
-#import "StolpersteineNetworkService.h"
+#import "StolpersteinNetworkService.h"
 #import "Stolperstein.h"
 #import "StolpersteinAnnotation.h"
 #import "StolpersteinClusterAnnotation.h"

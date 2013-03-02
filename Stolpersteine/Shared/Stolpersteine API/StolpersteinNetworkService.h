@@ -10,7 +10,7 @@
 
 @class StolpersteinSearchData;
 
-@interface StolpersteineNetworkService : NSObject
+@interface StolpersteinNetworkService : NSObject
 
 - (id)initWithURL:(NSURL *)url clientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword;
 

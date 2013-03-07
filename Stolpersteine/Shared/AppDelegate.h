@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @class StolpersteinNetworkService;
+@class DiagnosticsService;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) StolpersteinNetworkService *networkService;
+@property (strong, nonatomic) DiagnosticsService *diagnosticsService;
 
 + (StolpersteinNetworkService *)networkService;
++ (DiagnosticsService *)diagnosticsService;
 
 @end

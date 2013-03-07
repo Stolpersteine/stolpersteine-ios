@@ -56,6 +56,7 @@
 		48AC6D7116BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7216BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48BAF38416E926DE007250A0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48BAF38316E926DE007250A0 /* Settings.bundle */; };
+		48BAF38816E9405C007250A0 /* DiagnosticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BAF38716E9405C007250A0 /* DiagnosticsService.m */; };
 		48DA751616D57EA6004E0894 /* MapClusteringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DA751516D57EA6004E0894 /* MapClusteringController.m */; };
 		6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		6222BF2516A037CE006ED538 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
@@ -182,6 +183,8 @@
 		48AC6D6E16BF0964004C4AF4 /* StolpersteinSearchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinSearchData.h; sourceTree = "<group>"; };
 		48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinSearchData.m; sourceTree = "<group>"; };
 		48BAF38316E926DE007250A0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		48BAF38616E9405C007250A0 /* DiagnosticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiagnosticsService.h; sourceTree = "<group>"; };
+		48BAF38716E9405C007250A0 /* DiagnosticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiagnosticsService.m; sourceTree = "<group>"; };
 		48DA751416D57EA5004E0894 /* MapClusteringController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusteringController.h; sourceTree = "<group>"; };
 		48DA751516D57EA6004E0894 /* MapClusteringController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusteringController.m; sourceTree = "<group>"; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
@@ -563,6 +566,8 @@
 				48633B9F16C03FCE0057A317 /* AppDelegate.m */,
 				48A08C8E16DBF5A5000A2470 /* Localization.h */,
 				48A08C8F16DBF5A5000A2470 /* Localization.m */,
+				48BAF38616E9405C007250A0 /* DiagnosticsService.h */,
+				48BAF38716E9405C007250A0 /* DiagnosticsService.m */,
 				48A08C9516DBFE2A000A2470 /* StolpersteinAnnotation.h */,
 				48A08C9616DBFE2B000A2470 /* StolpersteinAnnotation.m */,
 				48A08C9816DBFE4C000A2470 /* StolpersteinClusterAnnotation.h */,
@@ -759,7 +764,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy version information into Settings.bundle\nshortVersion=`/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $SRCROOT/$INFOPLIST_FILE`\nversion=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $SRCROOT/$INFOPLIST_FILE`\n/usr/libexec/PlistBuddy \"$SRCROOT/Stolpersteine/Resources/UI/Settings.bundle/Root.plist\" -c \"set PreferenceSpecifiers:0:DefaultValue $shortVersion ($version)\"";
+			shellScript = "# Copy version information into Settings.bundle\nshortVersion=`/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $SRCROOT/$INFOPLIST_FILE`\nversion=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $SRCROOT/$INFOPLIST_FILE`\n/usr/libexec/PlistBuddy \"$SRCROOT/Stolpersteine/Resources/UI/Settings.bundle/Root.plist\" -c \"set PreferenceSpecifiers:1:DefaultValue $shortVersion ($version)\"";
 		};
 		6222BF2116A037CE006ED538 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -851,6 +856,7 @@
 				48A08C9016DBF5A5000A2470 /* Localization.m in Sources */,
 				48A08C9716DBFE2B000A2470 /* StolpersteinAnnotation.m in Sources */,
 				48A08C9A16DBFE4D000A2470 /* StolpersteinClusterAnnotation.m in Sources */,
+				48BAF38816E9405C007250A0 /* DiagnosticsService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

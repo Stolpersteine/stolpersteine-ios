@@ -5,14 +5,36 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Title</key>
+			<string>Settings.about</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
 			<key>DefaultValue</key>
-			<string>1.0 (1)</string>
+			<string>1.0 (dev)</string>
 			<key>Key</key>
-			<string>version</string>
+			<string>Settings.version</string>
 			<key>Title</key>
 			<string>Settings.version</string>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Settings.diagnostics</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>Settings.sendDiagnostics</string>
+			<key>Title</key>
+			<string>Settings.sendDiagnostics</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

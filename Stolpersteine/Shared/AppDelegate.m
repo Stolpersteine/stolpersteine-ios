@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 
 #import "StolpersteinNetworkService.h"
-#import "GAI.h"
+#import "DiagnosticsService.h"
 
 #ifdef DEBUG
 @interface NSURLRequest (HTTPS)
@@ -32,11 +32,7 @@ static NSString * const GOOGLE_ANALYTICS_ID = @"UA-38166041-1";
 #endif
     
     // Google Analytics
-//    GAI.sharedInstance.trackUncaughtExceptions = YES;
-//    GAI.sharedInstance.dispatchInterval = 60;
-//    GAI.sharedInstance.debug = YES;
-//    id<GAITracker> tracker = [GAI.sharedInstance trackerWithTrackingId:GOOGLE_ANALYTICS_ID];
-//    [tracker sendView:@"MapView"];
+    self.diagnosticsService = [[DiagnosticsService alloc] initWithGoogleAnalyticsID:GOOGLE_ANALYTICS_ID];
     
     return YES;
 }
@@ -45,6 +41,12 @@ static NSString * const GOOGLE_ANALYTICS_ID = @"UA-38166041-1";
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     return appDelegate.networkService;
+}
+
++ (DiagnosticsService *)diagnosticsService
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return appDelegate.diagnosticsService;
 }
 							
 @end

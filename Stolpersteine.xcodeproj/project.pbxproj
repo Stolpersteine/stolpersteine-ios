@@ -55,6 +55,7 @@
 		48AC6D7016BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7116BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7216BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
+		48BAF38416E926DE007250A0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48BAF38316E926DE007250A0 /* Settings.bundle */; };
 		48DA751616D57EA6004E0894 /* MapClusteringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DA751516D57EA6004E0894 /* MapClusteringController.m */; };
 		6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		6222BF2516A037CE006ED538 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
@@ -180,6 +181,7 @@
 		48A08C9916DBFE4C000A2470 /* StolpersteinClusterAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinClusterAnnotation.m; sourceTree = "<group>"; };
 		48AC6D6E16BF0964004C4AF4 /* StolpersteinSearchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinSearchData.h; sourceTree = "<group>"; };
 		48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinSearchData.m; sourceTree = "<group>"; };
+		48BAF38316E926DE007250A0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		48DA751416D57EA5004E0894 /* MapClusteringController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusteringController.h; sourceTree = "<group>"; };
 		48DA751516D57EA6004E0894 /* MapClusteringController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusteringController.m; sourceTree = "<group>"; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				4805808C16C19DF100C49272 /* MainStoryboard.storyboard */,
 				48633BA216C040520057A317 /* InfoPlist.strings */,
 				48633BAC16C041150057A317 /* Localizable.strings */,
+				48BAF38316E926DE007250A0 /* Settings.bundle */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 627E43D6169B0F050065C1F1 /* Build configuration list for PBXNativeTarget "Stolpersteine" */;
 			buildPhases = (
+				48BAF38516E92AAB007250A0 /* ShellScript */,
 				627E43AE169B0F050065C1F1 /* Sources */,
 				627E43AF169B0F050065C1F1 /* Frameworks */,
 				627E43B0169B0F050065C1F1 /* Resources */,
@@ -724,6 +728,7 @@
 				4879B6C116E281D5006593D8 /* Icon-Small@2x.png in Resources */,
 				4879B6C216E281D5006593D8 /* Icon.png in Resources */,
 				4879B6C316E281D5006593D8 /* Icon@2x.png in Resources */,
+				48BAF38416E926DE007250A0 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,6 +747,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		48BAF38516E92AAB007250A0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Copy version information into Settings.bundle\nshortVersion=`/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $SRCROOT/$INFOPLIST_FILE`\nversion=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $SRCROOT/$INFOPLIST_FILE`\n/usr/libexec/PlistBuddy \"$SRCROOT/Stolpersteine/Resources/UI/Settings.bundle/Root.plist\" -c \"set PreferenceSpecifiers:0:DefaultValue $shortVersion ($version)\"";
 		};
 		6222BF2116A037CE006ED538 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

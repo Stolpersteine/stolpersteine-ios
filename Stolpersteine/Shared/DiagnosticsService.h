@@ -11,5 +11,6 @@
 @interface DiagnosticsService : NSObject
 
 - (id)initWithGoogleAnalyticsID:(NSString *)googleAnayticsID;
+- (void)trackViewController:(UIViewController *)viewController;
 
 @end

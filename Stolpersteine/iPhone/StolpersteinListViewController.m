@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "StolpersteinNetworkService.h"
+#import "DiagnosticsService.h"
 #import "Stolperstein.h"
 #import "StolpersteinDetailViewController.h"
 #import "Localization.h"
@@ -33,6 +34,13 @@
             [self.tableView reloadData];
         }];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [AppDelegate.diagnosticsService trackViewController:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

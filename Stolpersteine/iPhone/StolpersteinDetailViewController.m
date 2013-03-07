@@ -12,6 +12,8 @@
 #import <AddressBook/AddressBook.h>
 #import <MapKit/MapKit.h>
 
+#import "AppDelegate.h"
+#import "DiagnosticsService.h"
 #import "Stolperstein.h"
 #import "StolpersteinSearchData.h"
 #import "StolpersteinListViewController.h"
@@ -115,6 +117,13 @@
     }
     
     [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [AppDelegate.diagnosticsService trackViewController:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

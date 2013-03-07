@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "StolpersteinNetworkService.h"
+#import "DiagnosticsService.h"
 #import "Stolperstein.h"
 #import "StolpersteinAnnotation.h"
 #import "StolpersteinClusterAnnotation.h"
@@ -102,6 +103,13 @@
     }
     
     [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [AppDelegate.diagnosticsService trackViewController:self];
 }
 
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

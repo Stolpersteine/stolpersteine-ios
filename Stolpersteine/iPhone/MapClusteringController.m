@@ -10,6 +10,7 @@
 
 #import "Stolperstein.h"
 #import "StolpersteinAnnotation.h"
+#import "StolpersteinClusterAnnotation.h"
 
 @interface MapClusteringController()
 
@@ -54,12 +55,11 @@ static float bucketSize = 40.0;
     [self updateVisibleAnnotations];
 }
 
-- (id<MKAnnotation>)annotationInGrid:(MKMapRect)gridMapRect usingAnnotations:(NSSet *)annotations
+- (id<MKAnnotation>)annotationInGrid:(MKMapRect)gridMapRect usingAnnotations:(NSSet *)annotations visibleAnnotations:(NSSet *)visibleAnnotations
 {
 	// First, see if one of the annotations we were already showing is in this mapRect
-	NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:gridMapRect];
 	NSSet *annotationsForGridSet = [annotations objectsPassingTest:^BOOL(id obj, BOOL *stop) {
-		BOOL returnValue = ([visibleAnnotationsInBucket containsObject:obj]);
+		BOOL returnValue = ([visibleAnnotations containsObject:obj]);
 		if (returnValue) {
 			*stop = YES;
 		}
@@ -82,18 +82,18 @@ static float bucketSize = 40.0;
 		
 		if (distance1 < distance2) {
 			return NSOrderedAscending;
-		}
-		else {
+		} else {
 			return NSOrderedDescending;
 		}
 	}];
 	
 	return [sortedAnnotations objectAtIndex:0];
-	
 }
 
 - (void)updateVisibleAnnotations
 {
+//    NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
+    
 	// fix performance and visual clutter by calling update when change map region
 	// it's called any time region changed on the map
 	
@@ -114,6 +114,9 @@ static float bucketSize = 40.0;
 	double endX = floor(MKMapRectGetMaxX(adjustedVisibleMapRect) / gridSize) * gridSize;
 	double endY = floor(MKMapRectGetMaxY(adjustedVisibleMapRect) / gridSize) * gridSize;
 	
+//    NSTimeInterval duration = 0;
+//    [self.mapView removeAnnotations:self.mapView.annotations];
+
 	// For each square in grid, pick one annotation to show
 	gridMapRect.origin.y = startY;
 	while (MKMapRectGetMinY(gridMapRect) <= endY) {
@@ -122,16 +125,24 @@ static float bucketSize = 40.0;
 		while (MKMapRectGetMinX(gridMapRect) <= endX) {
 			NSMutableSet *allAnnotationsInBucket = [NSMutableSet setWithSet:[self.allAnnotationsMapView annotationsInMapRect:gridMapRect]];
 			if (allAnnotationsInBucket.count > 0) {
-				StolpersteinAnnotation *annotationForGrid = (StolpersteinAnnotation *)[self annotationInGrid:gridMapRect usingAnnotations:allAnnotationsInBucket];
-				[allAnnotationsInBucket removeObject:annotationForGrid];
-				
-				// Give the annotationForGrid a reference to all the annotation it will represent
-				annotationForGrid.containedAnnotations = [allAnnotationsInBucket allObjects];
-				[self.mapView addAnnotation:annotationForGrid];
-				
                 NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:gridMapRect];
-				for (StolpersteinAnnotation *annotation in allAnnotationsInBucket) {
-					annotation.containedAnnotations = nil;
+
+//                NSTimeInterval startDuration = [NSDate timeIntervalSinceReferenceDate];
+				StolpersteinAnnotation *annotationForGrid = (StolpersteinAnnotation *)[self annotationInGrid:gridMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
+//                duration += [NSDate timeIntervalSinceReferenceDate] - startDuration;
+                
+//                StolpersteinClusterAnnotation *clusterAnnotation = [[StolpersteinClusterAnnotation alloc] init];
+//                clusterAnnotation.coordinate = annotationForGrid.coordinate;
+//                clusterAnnotation.stolpersteinAnnotations = allAnnotationsInBucket.allObjects;
+//                [self.mapView addAnnotation:clusterAnnotation];
+				
+                [allAnnotationsInBucket removeObject:annotationForGrid];
+                // Give the annotationForGrid a reference to all the annotation it will represent
+                annotationForGrid.containedAnnotations = [allAnnotationsInBucket allObjects];
+                [self.mapView addAnnotation:annotationForGrid];
+				
+                for (StolpersteinAnnotation *annotation in allAnnotationsInBucket) {
+                    annotation.containedAnnotations = nil;
 					
 					// Remove annotations (with animation) which we've decided to cluster
 					if ([visibleAnnotationsInBucket containsObject:annotation]) {
@@ -149,6 +160,31 @@ static float bucketSize = 40.0;
 		}
 		gridMapRect.origin.y += gridSize;
 	}
+    
+//    NSLog(@"duration = %f", duration * 1000);
+//
+//    NSMutableSet *uniqueAnnotations = [[NSMutableSet alloc] initWithCapacity:self.mapView.annotations.count];
+//    NSUInteger numAnnotations = 0;
+//    for (id<MKAnnotation> annotation in self.mapView.annotations) {
+//        if ([annotation isKindOfClass:StolpersteinAnnotation.class]) {
+//            if ([uniqueAnnotations containsObject:annotation]) {
+//                NSLog(@"");
+//            }
+//            [uniqueAnnotations addObject:annotation];
+//            numAnnotations++;
+//            StolpersteinAnnotation *stolpersteinAnnotation = (StolpersteinAnnotation *)annotation;
+//            for (StolpersteinAnnotation *containedAnnotation in stolpersteinAnnotation.containedAnnotations) {
+//                if ([uniqueAnnotations containsObject:containedAnnotation]) {
+//                    NSLog(@"");
+//                }
+//                [uniqueAnnotations addObject:containedAnnotation];
+//                numAnnotations++;
+//            }
+//        }
+//    }
+//    
+//    duration = [NSDate timeIntervalSinceReferenceDate] - start;
+//    NSLog(@"duration = %f, mapAnnotations = %u, numAnnotations = %u, unique = %u", duration * 1000, self.mapView.annotations.count, numAnnotations, uniqueAnnotations.count);
 }
 
 @end

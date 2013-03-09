@@ -92,7 +92,7 @@ static float bucketSize = 40.0;
 
 - (void)updateVisibleAnnotations
 {
-//    NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
+    NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
     
     // fix performance and visual clutter by calling update when change map region
     // it's called any time region changed on the map
@@ -114,7 +114,7 @@ static float bucketSize = 40.0;
     double endX = floor(MKMapRectGetMaxX(adjustedVisibleMapRect) / gridSize) * gridSize;
     double endY = floor(MKMapRectGetMaxY(adjustedVisibleMapRect) / gridSize) * gridSize;
     
-//    NSTimeInterval duration = 0;
+//    NSTimeInterval durationTest = 0;
 //    [self.mapView removeAnnotations:self.mapView.annotations];
     
     // For each square in grid, pick one annotation to show
@@ -127,9 +127,9 @@ static float bucketSize = 40.0;
             if (allAnnotationsInBucket.count > 0) {
                 NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:gridMapRect];
                 
-//                NSTimeInterval startDuration = [NSDate timeIntervalSinceReferenceDate];
+//                NSTimeInterval startDurationTest = [NSDate timeIntervalSinceReferenceDate];
                 StolpersteinAnnotation *annotationForGrid = (StolpersteinAnnotation *)[self annotationInGrid:gridMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
-//                duration += [NSDate timeIntervalSinceReferenceDate] - startDuration;
+//                durationTest += [NSDate timeIntervalSinceReferenceDate] - startDurationTest;
 
 //                StolpersteinClusterAnnotation *clusterAnnotation = [[StolpersteinClusterAnnotation alloc] init];
 //                clusterAnnotation.coordinate = annotationForGrid.coordinate;
@@ -161,30 +161,30 @@ static float bucketSize = 40.0;
         gridMapRect.origin.y += gridSize;
     }
     
-//    NSLog(@"duration = %f", duration * 1000);
-//
-//    NSMutableSet *uniqueAnnotations = [[NSMutableSet alloc] initWithCapacity:self.mapView.annotations.count];
-//    NSUInteger numAnnotations = 0;
-//    for (id<MKAnnotation> annotation in self.mapView.annotations) {
-//        if ([annotation isKindOfClass:StolpersteinAnnotation.class]) {
-//            if ([uniqueAnnotations containsObject:annotation]) {
-//                NSLog(@"");
-//            }
-//            [uniqueAnnotations addObject:annotation];
-//            numAnnotations++;
-//            StolpersteinAnnotation *stolpersteinAnnotation = (StolpersteinAnnotation *)annotation;
-//            for (StolpersteinAnnotation *containedAnnotation in stolpersteinAnnotation.containedAnnotations) {
-//                if ([uniqueAnnotations containsObject:containedAnnotation]) {
-//                    NSLog(@"");
-//                }
-//                [uniqueAnnotations addObject:containedAnnotation];
-//                numAnnotations++;
-//            }
-//        }
-//    }
-//
-//    duration = [NSDate timeIntervalSinceReferenceDate] - start;
-//    NSLog(@"duration = %f, mapAnnotations = %u, numAnnotations = %u, unique = %u", duration * 1000, self.mapView.annotations.count, numAnnotations, uniqueAnnotations.count);
+//    NSLog(@"durationTest = %f", durationTest * 1000);
+
+    NSMutableSet *uniqueAnnotations = [[NSMutableSet alloc] initWithCapacity:self.mapView.annotations.count];
+    NSUInteger numAnnotations = 0;
+    for (id<MKAnnotation> annotation in self.mapView.annotations) {
+        if ([annotation isKindOfClass:StolpersteinAnnotation.class]) {
+            if ([uniqueAnnotations containsObject:annotation]) {
+                NSLog(@"");
+            }
+            [uniqueAnnotations addObject:annotation];
+            numAnnotations++;
+            StolpersteinAnnotation *stolpersteinAnnotation = (StolpersteinAnnotation *)annotation;
+            for (StolpersteinAnnotation *containedAnnotation in stolpersteinAnnotation.containedAnnotations) {
+                if ([uniqueAnnotations containsObject:containedAnnotation]) {
+                    NSLog(@"");
+                }
+                [uniqueAnnotations addObject:containedAnnotation];
+                numAnnotations++;
+            }
+        }
+    }
+
+    NSTimeInterval duration = [NSDate timeIntervalSinceReferenceDate] - start;
+    NSLog(@"duration = %f, mapAnnotations = %u, numAnnotations = %u, unique = %u", duration * 1000, self.mapView.annotations.count, numAnnotations, uniqueAnnotations.count);
 }
 
 @end

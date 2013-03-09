@@ -72,7 +72,7 @@
     
     // Set map location to Berlin
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);
-    self.regionToSet = MKCoordinateRegionMakeWithDistance(location, 12000, 12000);
+    self.regionToSet = MKCoordinateRegionMakeWithDistance(location, 36000, 36000);
     
     // Clustering
     self.mapClusteringController = [[MapClusteringController alloc] initWithMapView:self.mapView];

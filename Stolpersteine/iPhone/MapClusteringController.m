@@ -114,29 +114,19 @@ static float bucketSize = 40.0;
     double endX = floor(MKMapRectGetMaxX(adjustedVisibleMapRect) / gridSize) * gridSize;
     double endY = floor(MKMapRectGetMaxY(adjustedVisibleMapRect) / gridSize) * gridSize;
     
-//    NSTimeInterval durationTest = 0;
-//    [self.mapView removeAnnotations:self.mapView.annotations];
-    
     // For each square in grid, pick one annotation to show
     gridMapRect.origin.y = startY;
-    while (MKMapRectGetMinY(gridMapRect) <= endY) {
+    while (MKMapRectGetMinY(gridMapRect) < endY) {
         gridMapRect.origin.x = startX;
         
-        while (MKMapRectGetMinX(gridMapRect) <= endX) {
+        while (MKMapRectGetMinX(gridMapRect) < endX) {
             NSMutableSet *allAnnotationsInBucket = [NSMutableSet setWithSet:[self.allAnnotationsMapView annotationsInMapRect:gridMapRect]];
             if (allAnnotationsInBucket.count > 0) {
                 NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:gridMapRect];
                 
-//                NSTimeInterval startDurationTest = [NSDate timeIntervalSinceReferenceDate];
                 StolpersteinAnnotation *annotationForGrid = (StolpersteinAnnotation *)[self annotationInGrid:gridMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
-//                durationTest += [NSDate timeIntervalSinceReferenceDate] - startDurationTest;
-
-//                StolpersteinClusterAnnotation *clusterAnnotation = [[StolpersteinClusterAnnotation alloc] init];
-//                clusterAnnotation.coordinate = annotationForGrid.coordinate;
-//                clusterAnnotation.stolpersteinAnnotations = allAnnotationsInBucket.allObjects;
-//                [self.mapView addAnnotation:clusterAnnotation];
-                
                 [allAnnotationsInBucket removeObject:annotationForGrid];
+                
                 // Give the annotationForGrid a reference to all the annotation it will represent
                 annotationForGrid.containedAnnotations = [allAnnotationsInBucket allObjects];
                 [self.mapView addAnnotation:annotationForGrid];
@@ -161,8 +151,6 @@ static float bucketSize = 40.0;
         gridMapRect.origin.y += gridSize;
     }
     
-//    NSLog(@"durationTest = %f", durationTest * 1000);
-
     NSMutableSet *uniqueAnnotations = [[NSMutableSet alloc] initWithCapacity:self.mapView.annotations.count];
     NSUInteger numAnnotations = 0;
     for (id<MKAnnotation> annotation in self.mapView.annotations) {

@@ -17,7 +17,7 @@
 
 - (NSString *)subtitle
 {
-    return @"";
+    return [NSString stringWithFormat:@"%u", self.stolpersteinAnnotations.count];
 }
 
 @end

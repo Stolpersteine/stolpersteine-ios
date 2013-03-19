@@ -120,7 +120,7 @@ static float bucketSize = 40.0;
         gridMapRect.origin.x = startX;
         
         while (MKMapRectGetMinX(gridMapRect) < endX) {
-            NSMutableSet *allAnnotationsInBucket = [NSMutableSet setWithSet:[self.allAnnotationsMapView annotationsInMapRect:gridMapRect]];
+            NSMutableSet *allAnnotationsInBucket = [[self.allAnnotationsMapView annotationsInMapRect:gridMapRect] mutableCopy];
             if (allAnnotationsInBucket.count > 0) {
                 NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:gridMapRect];
                 

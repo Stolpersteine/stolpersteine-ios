@@ -27,7 +27,7 @@
 
 - (void)setup
 {
-    [self setUserInteractionEnabled:YES];
+    self.userInteractionEnabled = YES;
     UIGestureRecognizer *touchy = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [self addGestureRecognizer:touchy];
 }

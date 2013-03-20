@@ -180,7 +180,6 @@
             annotationView.annotation = annotation;
         } else {
             MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
-//            pinView.animatesDrop = YES;
             pinView.canShowCallout = YES;
             
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -191,6 +190,19 @@
     }
     
     return annotationView;
+}
+
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
+{
+    MKOverlayView *view;
+    if ([overlay isKindOfClass:MKPolygon.class]) {
+        MKPolygonView *polygonView = [[MKPolygonView alloc] initWithPolygon:(MKPolygon *)overlay];
+        polygonView.strokeColor = [UIColor.blueColor colorWithAlphaComponent:0.7];
+        polygonView.lineWidth = 1;
+        view = polygonView;
+    }
+    
+    return view;
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation

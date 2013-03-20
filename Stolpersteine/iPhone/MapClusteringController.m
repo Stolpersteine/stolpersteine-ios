@@ -26,12 +26,12 @@
 // decreased performance.
 // A smaller number means fewer annotations, more chance of seeing annotations views pop in but
 // better performance.
-static float marginFactor = 0.5;
+static double MARGIN_FACTOR = 0.5;
 
 // Adjust this roughly based on the dimensions of your annotations views.
 // Bigger numbers more aggressively coalesce annotations (fewer annotations displayed but better performance)
 // Numbers too small result in overlapping annotations views and too many annotations in screen.
-static float bucketSize = 40.0;
+static double CELL_SIZE = 40.0; // [points] 
 
 - (id)initWithMapView:(MKMapView *)mapView
 {
@@ -90,41 +90,51 @@ static float bucketSize = 40.0;
     return [sortedAnnotations objectAtIndex:0];
 }
 
++ (MKMapRect)mapView:(MKMapView *)mapView convertPointSize:(double)pointSize toMapRectFromView:(UIView *)view
+{
+    CLLocationCoordinate2D leftCoordinate = [mapView convertPoint:CGPointZero toCoordinateFromView:view];
+    CLLocationCoordinate2D rightCoordinate = [mapView convertPoint:CGPointMake(pointSize, 0) toCoordinateFromView:view];
+    double cellSize = MKMapPointForCoordinate(rightCoordinate).x - MKMapPointForCoordinate(leftCoordinate).x;
+    return MKMapRectMake(0, 0, cellSize, cellSize);
+}
+
++ (MKMapRect)adjustMapRect:(MKMapRect)mapRect withMarginFactor:(double)marginFactor cellSize:(double)cellSize
+{
+    MKMapRect adjustedMapRect = MKMapRectInset(mapRect, -marginFactor * mapRect.size.width, -marginFactor * mapRect.size.height);
+    double startX = floor(MKMapRectGetMinX(adjustedMapRect) / cellSize) * cellSize;
+    double startY = floor(MKMapRectGetMinY(adjustedMapRect) / cellSize) * cellSize;
+    double endX = floor(MKMapRectGetMaxX(adjustedMapRect) / cellSize) * cellSize;
+    double endY = floor(MKMapRectGetMaxY(adjustedMapRect) / cellSize) * cellSize;
+    return MKMapRectMake(startX, startY, endX - startX, endY - startY);
+}
+
 - (void)updateVisibleAnnotations
 {
     NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
     
-    // fix performance and visual clutter by calling update when change map region
-    // it's called any time region changed on the map
-    
-    // Find all the annotation in the visible area + a wide margin to avoid popping annotation
-    // views in and out while panning the map
-    MKMapRect visibleMapRect = [self.mapView visibleMapRect];
-    MKMapRect adjustedVisibleMapRect = MKMapRectInset(visibleMapRect, -marginFactor * visibleMapRect.size.width, -marginFactor * visibleMapRect.size.height);
-    
-    // Determine how wide each bucket will be, as a MapRect square
-    CLLocationCoordinate2D leftCoordinate = [self.mapView convertPoint:CGPointZero toCoordinateFromView:[self.mapView superview]];
-    CLLocationCoordinate2D rightCoordinate = [self.mapView convertPoint:CGPointMake(bucketSize, 0) toCoordinateFromView:[self.mapView superview]];
-    double gridSize = MKMapPointForCoordinate(rightCoordinate).x - MKMapPointForCoordinate(leftCoordinate).x;
-    MKMapRect gridMapRect = MKMapRectMake(0, 0, gridSize, gridSize);
-    
-    // Condense annotations with a padding of two squares, around the visibleMapRect
-    double startX = floor(MKMapRectGetMinX(adjustedVisibleMapRect) / gridSize) * gridSize;
-    double startY = floor(MKMapRectGetMinY(adjustedVisibleMapRect) / gridSize) * gridSize;
-    double endX = floor(MKMapRectGetMaxX(adjustedVisibleMapRect) / gridSize) * gridSize;
-    double endY = floor(MKMapRectGetMaxY(adjustedVisibleMapRect) / gridSize) * gridSize;
+    MKMapRect cellMapRect = [MapClusteringController mapView:self.mapView convertPointSize:CELL_SIZE toMapRectFromView:self.mapView.superview];
+    MKMapRect gridMapRect = [MapClusteringController adjustMapRect:self.mapView.visibleMapRect withMarginFactor:MARGIN_FACTOR cellSize:MKMapRectGetWidth(cellMapRect)];
     
     // For each square in grid, pick one annotation to show
-    gridMapRect.origin.y = startY;
-    while (MKMapRectGetMinY(gridMapRect) < endY) {
-        gridMapRect.origin.x = startX;
+//    [self.mapView removeOverlays:self.mapView.overlays];
+//    MKMapPoint points[4];
+    cellMapRect.origin.y = MKMapRectGetMinY(gridMapRect);
+    while (MKMapRectGetMinY(cellMapRect) < MKMapRectGetMaxY(gridMapRect)) {
+        cellMapRect.origin.x = MKMapRectGetMinX(gridMapRect);
         
-        while (MKMapRectGetMinX(gridMapRect) < endX) {
-            NSMutableSet *allAnnotationsInBucket = [[self.allAnnotationsMapView annotationsInMapRect:gridMapRect] mutableCopy];
+        while (MKMapRectGetMinX(cellMapRect) < MKMapRectGetMaxX(gridMapRect)) {
+//            points[0] = MKMapPointMake(MKMapRectGetMinX(cellMapRect), MKMapRectGetMinY(cellMapRect));
+//            points[1] = MKMapPointMake(MKMapRectGetMaxX(cellMapRect), MKMapRectGetMinY(cellMapRect));
+//            points[2] = MKMapPointMake(MKMapRectGetMaxX(cellMapRect), MKMapRectGetMaxY(cellMapRect));
+//            points[3] = MKMapPointMake(MKMapRectGetMinX(cellMapRect), MKMapRectGetMaxY(cellMapRect));
+//            MKPolygon* poly = [MKPolygon polygonWithPoints:points count:4];
+//            [self.mapView addOverlay:poly];
+
+            NSMutableSet *allAnnotationsInBucket = [[self.allAnnotationsMapView annotationsInMapRect:cellMapRect] mutableCopy];
             if (allAnnotationsInBucket.count > 0) {
-                NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:gridMapRect];
+                NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:cellMapRect];
                 
-                StolpersteinAnnotation *annotationForGrid = (StolpersteinAnnotation *)[self annotationInGrid:gridMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
+                StolpersteinAnnotation *annotationForGrid = (StolpersteinAnnotation *)[self annotationInGrid:cellMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
                 [allAnnotationsInBucket removeObject:annotationForGrid];
                 
                 // Give the annotationForGrid a reference to all the annotations it will represent
@@ -146,9 +156,9 @@ static float bucketSize = 40.0;
                     }
                 }
             }
-            gridMapRect.origin.x += gridSize;
+            cellMapRect.origin.x += MKMapRectGetWidth(cellMapRect);
         }
-        gridMapRect.origin.y += gridSize;
+        cellMapRect.origin.y += MKMapRectGetWidth(cellMapRect);
     }
     
     NSMutableSet *uniqueAnnotations = [[NSMutableSet alloc] initWithCapacity:self.mapView.annotations.count];

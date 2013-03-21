@@ -27,7 +27,7 @@
 // decreased performance.
 // A smaller number means fewer annotations, more chance of seeing annotations views pop in but
 // better performance.
-static double MARGIN_FACTOR = 0.5;
+static double MARGIN_FACTOR = 0.5;  // [width/height]
 
 // Adjust this roughly based on the dimensions of your annotations views.
 // Bigger numbers more aggressively coalesce annotations (fewer annotations displayed but better performance)
@@ -85,22 +85,12 @@ static double CELL_SIZE = 40.0; // [points]
     return MKMapRectMake(0, 0, cellSize, cellSize);
 }
 
-+ (MKMapRect)adjustMapRect:(MKMapRect)mapRect withMarginFactor:(double)marginFactor cellSize:(double)cellSize
-{
-    MKMapRect adjustedMapRect = MKMapRectInset(mapRect, -marginFactor * mapRect.size.width, -marginFactor * mapRect.size.height);
-    double startX = floor(MKMapRectGetMinX(adjustedMapRect) / cellSize) * cellSize;
-    double startY = floor(MKMapRectGetMinY(adjustedMapRect) / cellSize) * cellSize;
-    double endX = floor(MKMapRectGetMaxX(adjustedMapRect) / cellSize) * cellSize;
-    double endY = floor(MKMapRectGetMaxY(adjustedMapRect) / cellSize) * cellSize;
-    return MKMapRectMake(startX, startY, endX - startX, endY - startY);
-}
-
 - (void)updateVisibleAnnotations
 {
     NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
     
     MKMapRect cellMapRect = [MapClusteringController mapView:self.mapView convertPointSize:CELL_SIZE toMapRectFromView:self.mapView.superview];
-    MKMapRect gridMapRect = [MapClusteringController adjustMapRect:self.mapView.visibleMapRect withMarginFactor:MARGIN_FACTOR cellSize:MKMapRectGetWidth(cellMapRect)];
+    MKMapRect gridMapRect = MapClusteringControllerAdjustMapRect(self.mapView.visibleMapRect, MARGIN_FACTOR, MKMapRectGetWidth(cellMapRect));
     
     // For each square in grid, pick one annotation to show
 //    [self.mapView removeOverlays:self.mapView.overlays];

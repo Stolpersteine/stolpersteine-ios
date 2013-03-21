@@ -52,4 +52,38 @@
     STAssertEqualObjects(annotation, annotation2, @"Wrong annotation");
 }
 
+- (void)testAdjustMapRectNoMargin
+{
+    MKMapRect mapRect = MKMapRectMake(0, 0, 15, 15);
+    MKMapRect adjustedMapRect = MapClusteringControllerAdjustMapRect(mapRect, 0, 5);
+    STAssertEquals(adjustedMapRect.origin.x, 0.0, @"Wrong origin x");
+    STAssertEquals(adjustedMapRect.origin.y, 0.0, @"Wrong origin y");
+    STAssertEquals(adjustedMapRect.size.width, 15.0, @"Wrong size width");
+    STAssertEquals(adjustedMapRect.size.height, 15.0, @"Wrong size height");
+
+    mapRect = MKMapRectMake(8, 8, 15, 15);
+    adjustedMapRect = MapClusteringControllerAdjustMapRect(mapRect, 0, 6);
+    STAssertEquals(adjustedMapRect.origin.x, 6.0, @"Wrong origin x");
+    STAssertEquals(adjustedMapRect.origin.y, 6.0, @"Wrong origin y");
+    STAssertEquals(adjustedMapRect.size.width, 18.0, @"Wrong size width");
+    STAssertEquals(adjustedMapRect.size.height, 18.0, @"Wrong size height");
+}
+
+//- (void)testAdjustMapRectMargin
+//{
+//    MKMapRect mapRect = MKMapRectMake(7.5, 7.5, 7.5, 7.5);
+//    MKMapRect adjustedMapRect = MapClusteringControllerAdjustMapRect(mapRect, 1, 5);
+//    STAssertEquals(adjustedMapRect.origin.x, 0.0, @"Wrong origin x");
+//    STAssertEquals(adjustedMapRect.origin.y, 0.0, @"Wrong origin y");
+//    STAssertEquals(adjustedMapRect.size.width, 15.0, @"Wrong size width");
+//    STAssertEquals(adjustedMapRect.size.height, 15.0, @"Wrong size height");
+//    
+//    mapRect = MKMapRectMake(8, 8, 15, 15);
+//    adjustedMapRect = MapClusteringControllerAdjustMapRect(mapRect, 0, 6);
+//    STAssertEquals(adjustedMapRect.origin.x, 6.0, @"Wrong origin x");
+//    STAssertEquals(adjustedMapRect.origin.y, 6.0, @"Wrong origin y");
+//    STAssertEquals(adjustedMapRect.size.width, 18.0, @"Wrong size width");
+//    STAssertEquals(adjustedMapRect.size.height, 18.0, @"Wrong size height");
+//}
+
 @end

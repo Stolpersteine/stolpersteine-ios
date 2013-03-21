@@ -23,3 +23,16 @@ id<MKAnnotation> MapClusteringControllerFindClosestAnnotation(NSSet *annotations
     
     return closestAnnotation;
 }
+
+MKMapRect MapClusteringControllerAdjustMapRect(MKMapRect mapRect, double marginFactor, double cellSize)
+{
+    // Expand map rect
+    MKMapRect adjustedMapRect = MKMapRectInset(mapRect, -marginFactor * mapRect.size.width, -marginFactor * mapRect.size.height);
+    
+    // Align to cell size
+    double startX = floor(MKMapRectGetMinX(adjustedMapRect) / cellSize) * cellSize;
+    double startY = floor(MKMapRectGetMinY(adjustedMapRect) / cellSize) * cellSize;
+    double endX = ceil(MKMapRectGetMaxX(adjustedMapRect) / cellSize) * cellSize;
+    double endY = ceil(MKMapRectGetMaxY(adjustedMapRect) / cellSize) * cellSize;
+    return MKMapRectMake(startX, startY, endX - startX, endY - startY);
+}

@@ -112,6 +112,11 @@
 		627A0BAF16BC037200CFA71E /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627A0B8816BBFF5300CFA71E /* AFURLConnectionOperation.m */; };
 		627A0BB016BC037200CFA71E /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627A0B8A16BBFF5300CFA71E /* AFXMLRequestOperation.m */; };
 		627A0BB116BC037200CFA71E /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 627A0B8C16BBFF5300CFA71E /* UIImageView+AFNetworking.m */; };
+		627C1BED16FB338000097711 /* MapClusteringControllerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 627C1BEC16FB338000097711 /* MapClusteringControllerUtils.m */; };
+		627C1BEE16FB338000097711 /* MapClusteringControllerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 627C1BEC16FB338000097711 /* MapClusteringControllerUtils.m */; };
+		627C1BF216FB353100097711 /* MapClusteringControllerUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 627C1BF116FB353100097711 /* MapClusteringControllerUtilsTests.m */; };
+		627C1BF316FB35A000097711 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43D9169B0FFC0065C1F1 /* MapKit.framework */; };
+		627C1BF416FB3D5600097711 /* StolpersteinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C9616DBFE2B000A2470 /* StolpersteinAnnotation.m */; };
 		627E43B7169B0F050065C1F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
 		627E43B9169B0F050065C1F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B8169B0F050065C1F1 /* Foundation.framework */; };
 		627E43BB169B0F050065C1F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43BA169B0F050065C1F1 /* CoreGraphics.framework */; };
@@ -234,6 +239,10 @@
 		627A0B9B16BBFF7B00CFA71E /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
 		627A0B9C16BBFF7B00CFA71E /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		627A0B9E16BC007600CFA71E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		627C1BEB16FB338000097711 /* MapClusteringControllerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusteringControllerUtils.h; sourceTree = "<group>"; };
+		627C1BEC16FB338000097711 /* MapClusteringControllerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusteringControllerUtils.m; sourceTree = "<group>"; };
+		627C1BF016FB353100097711 /* MapClusteringControllerUtilsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusteringControllerUtilsTests.h; sourceTree = "<group>"; };
+		627C1BF116FB353100097711 /* MapClusteringControllerUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusteringControllerUtilsTests.m; sourceTree = "<group>"; };
 		627E43B2169B0F050065C1F1 /* Stolpersteine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stolpersteine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		627E43B6169B0F050065C1F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		627E43B8169B0F050065C1F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -268,6 +277,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				627C1BF316FB35A000097711 /* MapKit.framework in Frameworks */,
 				6222BF4716A04411006ED538 /* SystemConfiguration.framework in Frameworks */,
 				6222BF4616A0440A006ED538 /* MobileCoreServices.framework in Frameworks */,
 				6222BF4516A043F0006ED538 /* CoreLocation.framework in Frameworks */,
@@ -332,6 +342,8 @@
 				48633B8A16C03F690057A317 /* MapViewController.m */,
 				48DA751416D57EA5004E0894 /* MapClusteringController.h */,
 				48DA751516D57EA6004E0894 /* MapClusteringController.m */,
+				627C1BEB16FB338000097711 /* MapClusteringControllerUtils.h */,
+				627C1BEC16FB338000097711 /* MapClusteringControllerUtils.m */,
 				48633B8B16C03F690057A317 /* SearchBar.h */,
 				48633B8C16C03F690057A317 /* SearchBar.m */,
 				48633B8D16C03F690057A317 /* SearchBarDelegate.h */,
@@ -408,6 +420,7 @@
 		6222BF2816A037CE006ED538 /* Stolpersteine Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				627C1BEF16FB353100097711 /* iPhone */,
 				48A08C8716DBF380000A2470 /* Shared */,
 				6222BF2916A037CE006ED538 /* Supporting Files */,
 			);
@@ -498,6 +511,15 @@
 				627A0B9C16BBFF7B00CFA71E /* GAI.h */,
 			);
 			path = "Google Analytics 2.0beta4";
+			sourceTree = "<group>";
+		};
+		627C1BEF16FB353100097711 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				627C1BF016FB353100097711 /* MapClusteringControllerUtilsTests.h */,
+				627C1BF116FB353100097711 /* MapClusteringControllerUtilsTests.m */,
+			);
+			path = iPhone;
 			sourceTree = "<group>";
 		};
 		627E43A7169B0F040065C1F1 = {
@@ -823,6 +845,9 @@
 				48A08C8C16DBF380000A2470 /* StolpersteinTests.m in Sources */,
 				48A08C9116DBF5A5000A2470 /* Localization.m in Sources */,
 				48A08C9416DBF620000A2470 /* LocalizationTests.m in Sources */,
+				627C1BEE16FB338000097711 /* MapClusteringControllerUtils.m in Sources */,
+				627C1BF216FB353100097711 /* MapClusteringControllerUtilsTests.m in Sources */,
+				627C1BF416FB3D5600097711 /* StolpersteinAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,6 +882,7 @@
 				48A08C9716DBFE2B000A2470 /* StolpersteinAnnotation.m in Sources */,
 				48A08C9A16DBFE4D000A2470 /* StolpersteinClusterAnnotation.m in Sources */,
 				48BAF38816E9405C007250A0 /* DiagnosticsService.m in Sources */,
+				627C1BED16FB338000097711 /* MapClusteringControllerUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

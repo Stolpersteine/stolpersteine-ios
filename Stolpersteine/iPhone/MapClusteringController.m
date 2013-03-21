@@ -8,6 +8,7 @@
 
 #import "MapClusteringController.h"
 
+#import "MapClusteringControllerUtils.h"
 #import "Stolperstein.h"
 #import "StolpersteinAnnotation.h"
 #import "StolpersteinClusterAnnotation.h"
@@ -55,25 +56,6 @@ static double CELL_SIZE = 40.0; // [points]
     [self updateVisibleAnnotations];
 }
 
-+ (id<MKAnnotation>)annotations:(NSSet *)annotations findClosestAnnotationWithDistanceToMapPoint:(MKMapPoint)mapPoint
-{
-    NSArray *sortedAnnotations = [annotations.allObjects sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        MKMapPoint mapPoint1 = MKMapPointForCoordinate(((id<MKAnnotation>)obj1).coordinate);
-        MKMapPoint mapPoint2 = MKMapPointForCoordinate(((id<MKAnnotation>)obj2).coordinate);
-        
-        CLLocationDistance distance1 = MKMetersBetweenMapPoints(mapPoint1, mapPoint);
-        CLLocationDistance distance2 = MKMetersBetweenMapPoints(mapPoint2, mapPoint);
-        
-        if (distance1 < distance2) {
-            return NSOrderedAscending;
-        } else {
-            return NSOrderedDescending;
-        }
-    }];
-    
-    return [sortedAnnotations objectAtIndex:0];
-}
-
 - (id<MKAnnotation>)annotationInGrid:(MKMapRect)gridMapRect usingAnnotations:(NSSet *)annotations visibleAnnotations:(NSSet *)visibleAnnotations
 {
     // First, see if one of the annotations we were already showing is in this mapRect
@@ -92,7 +74,7 @@ static double CELL_SIZE = 40.0; // [points]
     // Otherwise, sort the annotations based on their distance from the center of the grid square,
     // then choose the one closest to the center to show
     MKMapPoint centerMapPoint = MKMapPointMake(MKMapRectGetMidX(gridMapRect), MKMapRectGetMidY(gridMapRect));
-    return [MapClusteringController annotations:annotations findClosestAnnotationWithDistanceToMapPoint:centerMapPoint];
+    return MapClusteringControllerFindClosestAnnotation(annotations, centerMapPoint);
 }
 
 + (MKMapRect)mapView:(MKMapView *)mapView convertPointSize:(double)pointSize toMapRectFromView:(UIView *)view

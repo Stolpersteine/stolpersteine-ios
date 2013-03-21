@@ -10,6 +10,7 @@
 
 #import "MapClusteringControllerUtils.h"
 #import "StolpersteinAnnotation.h"
+#import "Stolperstein.h"
 
 @implementation MapClusteringControllerUtilsTests
 
@@ -34,22 +35,18 @@
     MKMapPoint mapPoint = MKMapPointForCoordinate(coordinate);
 
     NSMutableSet *annotations = [[NSMutableSet alloc] initWithCapacity:5];
-    StolpersteinAnnotation *annotation0 = [[StolpersteinAnnotation alloc] init];
+    StolpersteinAnnotation *annotation0 = [[StolpersteinAnnotation alloc] initWithStolperstein:[[Stolperstein alloc] init]];
     annotation0.coordinate = CLLocationCoordinate2DMake(40, 40);
     [annotations addObject:annotation0];
-    StolpersteinAnnotation *annotation1 = [[StolpersteinAnnotation alloc] init];
+    StolpersteinAnnotation *annotation1 = [[StolpersteinAnnotation alloc] initWithStolperstein:[[Stolperstein alloc] init]];
     annotation1.coordinate = CLLocationCoordinate2DMake(47, 47);
     [annotations addObject:annotation1];
-    StolpersteinAnnotation *annotation2 = [[StolpersteinAnnotation alloc] init];
+    StolpersteinAnnotation *annotation2 = [[StolpersteinAnnotation alloc] initWithStolperstein:[[Stolperstein alloc] init]];
     annotation2.coordinate = CLLocationCoordinate2DMake(45.1, 44.9);
     [annotations addObject:annotation2];
-    StolpersteinAnnotation *annotation3 = [[StolpersteinAnnotation alloc] init];
+    StolpersteinAnnotation *annotation3 = [[StolpersteinAnnotation alloc] initWithStolperstein:[[Stolperstein alloc] init]];
     annotation3.coordinate = CLLocationCoordinate2DMake(42.1, 43.7);
     [annotations addObject:annotation3];
-    
-    MKMapPoint mapPoint1 = MKMapPointForCoordinate(annotation0.coordinate);
-    CLLocationDistance distance1 = MKMetersBetweenMapPoints(mapPoint, mapPoint1);
-    NSLog(@"distance = %f", distance1);
     
     id<MKAnnotation> annotation = MapClusteringControllerFindClosestAnnotation(annotations, mapPoint);
     STAssertEqualObjects(annotation, annotation2, @"Wrong annotation");

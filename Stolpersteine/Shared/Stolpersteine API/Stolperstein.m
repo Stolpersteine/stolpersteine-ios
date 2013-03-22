@@ -21,4 +21,31 @@
     return locationStreetName;
 }
 
+- (NSString *)title
+{
+    return [NSString stringWithFormat:@"%@ %@", self.personFirstName, self.personLastName];
+}
+
+- (NSString *)subtitle
+{
+    NSMutableString *subtitle = [NSMutableString stringWithString:self.locationStreet];
+    if (self.locationZipCode || self.locationCity) {
+        [subtitle appendString:@","];
+        
+        if (self.locationZipCode) {
+            [subtitle appendFormat:@" %@", self.locationZipCode];
+        }
+        if (self.locationCity) {
+            [subtitle appendFormat:@" %@", self.locationCity];
+        }
+    }
+    
+    return subtitle;
+}
+
+- (CLLocationCoordinate2D)coordinate
+{
+    return self.locationCoordinate;
+}
+
 @end

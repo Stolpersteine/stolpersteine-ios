@@ -50,7 +50,6 @@
 		48A08C9016DBF5A5000A2470 /* Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8F16DBF5A5000A2470 /* Localization.m */; };
 		48A08C9116DBF5A5000A2470 /* Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8F16DBF5A5000A2470 /* Localization.m */; };
 		48A08C9416DBF620000A2470 /* LocalizationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C9316DBF620000A2470 /* LocalizationTests.m */; };
-		48A08C9716DBFE2B000A2470 /* StolpersteinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C9616DBFE2B000A2470 /* StolpersteinAnnotation.m */; };
 		48AC6D7016BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7116BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7216BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
@@ -115,7 +114,6 @@
 		627C1BEE16FB338000097711 /* MapClusteringControllerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 627C1BEC16FB338000097711 /* MapClusteringControllerUtils.m */; };
 		627C1BF216FB353100097711 /* MapClusteringControllerUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 627C1BF116FB353100097711 /* MapClusteringControllerUtilsTests.m */; };
 		627C1BF316FB35A000097711 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43D9169B0FFC0065C1F1 /* MapKit.framework */; };
-		627C1BF416FB3D5600097711 /* StolpersteinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C9616DBFE2B000A2470 /* StolpersteinAnnotation.m */; };
 		627C1C0516FCC5D500097711 /* StolpersteinWrapperAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627C1C0416FCC5D500097711 /* StolpersteinWrapperAnnotation.m */; };
 		627E43B7169B0F050065C1F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
 		627E43B9169B0F050065C1F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B8169B0F050065C1F1 /* Foundation.framework */; };
@@ -181,8 +179,6 @@
 		48A08C8F16DBF5A5000A2470 /* Localization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localization.m; sourceTree = "<group>"; };
 		48A08C9216DBF620000A2470 /* LocalizationTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationTests.h; sourceTree = "<group>"; };
 		48A08C9316DBF620000A2470 /* LocalizationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationTests.m; sourceTree = "<group>"; };
-		48A08C9516DBFE2A000A2470 /* StolpersteinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinAnnotation.h; sourceTree = "<group>"; };
-		48A08C9616DBFE2B000A2470 /* StolpersteinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinAnnotation.m; sourceTree = "<group>"; };
 		48AC6D6E16BF0964004C4AF4 /* StolpersteinSearchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinSearchData.h; sourceTree = "<group>"; };
 		48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinSearchData.m; sourceTree = "<group>"; };
 		48BAF38316E926DE007250A0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -590,8 +586,6 @@
 				48A08C8F16DBF5A5000A2470 /* Localization.m */,
 				48BAF38616E9405C007250A0 /* DiagnosticsService.h */,
 				48BAF38716E9405C007250A0 /* DiagnosticsService.m */,
-				48A08C9516DBFE2A000A2470 /* StolpersteinAnnotation.h */,
-				48A08C9616DBFE2B000A2470 /* StolpersteinAnnotation.m */,
 				627C1C0316FCC5D500097711 /* StolpersteinWrapperAnnotation.h */,
 				627C1C0416FCC5D500097711 /* StolpersteinWrapperAnnotation.m */,
 				627E442F169C41EC0065C1F1 /* Stolpersteine API */,
@@ -847,7 +841,6 @@
 				48A08C9416DBF620000A2470 /* LocalizationTests.m in Sources */,
 				627C1BEE16FB338000097711 /* MapClusteringControllerUtils.m in Sources */,
 				627C1BF216FB353100097711 /* MapClusteringControllerUtilsTests.m in Sources */,
-				627C1BF416FB3D5600097711 /* StolpersteinAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -879,7 +872,6 @@
 				48633BA016C03FCE0057A317 /* AppDelegate.m in Sources */,
 				48DA751616D57EA6004E0894 /* MapClusteringController.m in Sources */,
 				48A08C9016DBF5A5000A2470 /* Localization.m in Sources */,
-				48A08C9716DBFE2B000A2470 /* StolpersteinAnnotation.m in Sources */,
 				48BAF38816E9405C007250A0 /* DiagnosticsService.m in Sources */,
 				627C1BED16FB338000097711 /* MapClusteringControllerUtils.m in Sources */,
 				627C1C0516FCC5D500097711 /* StolpersteinWrapperAnnotation.m in Sources */,

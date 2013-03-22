@@ -10,7 +10,6 @@
 
 #import "MapClusteringControllerUtils.h"
 #import "Stolperstein.h"
-#import "StolpersteinAnnotation.h"
 #import "StolpersteinWrapperAnnotation.h"
 
 @interface MapClusteringController()
@@ -47,21 +46,16 @@ static double CELL_SIZE = 40.0; // [points]
 
 - (void)addStolpersteine:(NSArray *)stolpersteine
 {
-    NSMutableArray *stolpersteinAnnotations = [NSMutableArray arrayWithCapacity:stolpersteine.count];
-    [stolpersteine enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        StolpersteinAnnotation *stolpersteinAnnotation = [[StolpersteinAnnotation alloc] initWithStolperstein:obj];
-        [stolpersteinAnnotations addObject:stolpersteinAnnotation];
-    }];
-    [self.allAnnotationsMapView addAnnotations:stolpersteinAnnotations];
+    [self.allAnnotationsMapView addAnnotations:stolpersteine];
     [self updateVisibleAnnotations];
 }
 
 - (StolpersteinWrapperAnnotation *)annotationInCell:(MKMapRect)cellMapRect usingAnnotations:(NSSet *)annotations visibleAnnotations:(NSSet *)visibleAnnotations
 {
     // First, see if there's already a visible annotation in this cell
-    for (StolpersteinAnnotation *annotation in annotations) {
+    for (Stolperstein *stolperstein in annotations) {
         for (StolpersteinWrapperAnnotation *wrapperAnnotation in visibleAnnotations) {
-            if ([wrapperAnnotation.annotations containsObject:annotation]) {
+            if ([wrapperAnnotation.annotations containsObject:stolperstein]) {
                 return wrapperAnnotation;
             }
         }

@@ -12,7 +12,6 @@
 #import "StolpersteinNetworkService.h"
 #import "DiagnosticsService.h"
 #import "Stolperstein.h"
-#import "StolpersteinAnnotation.h"
 #import "StolpersteinWrapperAnnotation.h"
 #import "StolpersteinSearchData.h"
 #import "StolpersteinDetailViewController.h"
@@ -34,7 +33,7 @@
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
 @property (nonatomic, strong) SearchDisplayController *searchDisplayController;
 @property (nonatomic, strong) NSArray *searchedStolpersteine;
-@property (nonatomic, strong) StolpersteinAnnotation *stolpersteinAnnotationToSelect;
+@property (nonatomic, strong) StolpersteinWrapperAnnotation *stolpersteinAnnotationToSelect;
 @property (nonatomic, assign) MKCoordinateRegion regionToSet;
 @property (nonatomic, assign, getter = isRegionToSetInvalid) BOOL regionToSetInvalid;
 @property (nonatomic, strong) MapClusteringController *mapClusteringController;
@@ -300,40 +299,48 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Deselect table row
-    UITableViewCell *tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
-    [tableViewCell setSelected:FALSE animated:TRUE];
-     
-    // Check if stolperstein already exists as annotation; otherwise, it gets
-    // added when selecting it
-    Stolperstein *stolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];
-    StolpersteinAnnotation *stolpersteinAnnotation = [[StolpersteinAnnotation alloc] initWithStolperstein:stolperstein];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"class == %@ AND stolperstein.id == %@", StolpersteinAnnotation.class, stolperstein.id];
-    NSArray *annotations = [self.mapView.annotations filteredArrayUsingPredicate:predicate];
-    if (annotations.count != 0) {
-        stolperstein = annotations.lastObject;
-    }
-    
-    // Deselect all annotations
-    for (id<MKAnnotation> selectedAnnotation in self.mapView.selectedAnnotations) {
-        [self.mapView deselectAnnotation:selectedAnnotation animated:TRUE];
-    }
-    
-    // Center on stolperstein and select it
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(stolpersteinAnnotation.coordinate, 1200, 1200);
-    BOOL isRegionUpToDate = fequal(region.center.latitude, self.mapView.region.center.latitude) && fequal(region.center.longitude, self.mapView.region.center.longitude);
-    
-    if (isRegionUpToDate) {
-        // Select immediately since annotation is already visible
-        [self.mapView setRegion:region animated:YES];
-        [self.mapView selectAnnotation:stolpersteinAnnotation animated:YES];
-    } else {
-        // Actual selection happens in mapView:regionDidChangeAnimated:
-        [self.mapView setRegion:region animated:YES];
-        self.stolpersteinAnnotationToSelect = stolpersteinAnnotation;
-    }
-    
-    [self.searchDisplayController setActive:FALSE animated:TRUE];
+//    // Deselect table row
+//    UITableViewCell *tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
+//    [tableViewCell setSelected:FALSE animated:TRUE];
+//     
+//    // Check if stolperstein already exists as annotation
+//    StolpersteinWrapperAnnotation *stolpersteinAnnotationToSelect;
+//    Stolperstein *stolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];
+//    for (StolpersteinWrapperAnnotation *annotation in self.mapView.annotations) {
+//        for (Stolperstein *stolpersteinInAnnotation in annotation.annotations) {
+//            if ([stolpersteinInAnnotation.id isEqualToString:stolperstein.id]) {
+//                stolpersteinAnnotationToSelect = annotation;
+//                break;
+//            }
+//        }
+//    }
+//    
+//    // Otherwise, create new annotation
+//    if (stolpersteinAnnotationToSelect == nil) {
+//        stolpersteinAnnotationToSelect = [[StolpersteinWrapperAnnotation alloc] init];
+//        stolpersteinAnnotationToSelect.annotations = @[stolperstein];
+//    }
+//    
+//    // Deselect all annotations
+//    for (id<MKAnnotation> selectedAnnotation in self.mapView.selectedAnnotations) {
+//        [self.mapView deselectAnnotation:selectedAnnotation animated:TRUE];
+//    }
+//    
+//    // Center on stolperstein and select it
+//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(stolpersteinAnnotationToSelect.coordinate, 1200, 1200);
+//    BOOL isRegionUpToDate = fequal(region.center.latitude, self.mapView.region.center.latitude) && fequal(region.center.longitude, self.mapView.region.center.longitude);
+//    
+//    if (isRegionUpToDate) {
+//        // Select immediately since annotation is already visible
+//        [self.mapView setRegion:region animated:YES];
+//        [self.mapView selectAnnotation:stolpersteinAnnotation animated:YES];
+//    } else {
+//        // Actual selection happens in mapView:regionDidChangeAnimated:
+//        [self.mapView setRegion:region animated:YES];
+//        self.stolpersteinAnnotationToSelect = stolpersteinAnnotation;
+//    }
+//    
+//    [self.searchDisplayController setActive:FALSE animated:TRUE];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

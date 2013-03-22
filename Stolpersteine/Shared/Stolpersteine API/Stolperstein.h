@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
-@interface Stolperstein : NSObject
+@interface Stolperstein : NSObject<MKAnnotation>
 
 @property (nonatomic, strong) NSString *id;
 @property (nonatomic, strong) NSString *imageURLString;
@@ -21,9 +21,13 @@
 @property (nonatomic, strong) NSString *sourceName;
 @property (nonatomic, strong) NSDate *sourceRetrievedAt;
 @property (nonatomic, strong) NSString *locationStreet;
-@property (nonatomic, readonly) NSString *locationStreetName;
+@property (nonatomic, readonly, copy) NSString *locationStreetName;
 @property (nonatomic, strong) NSString *locationZipCode;
 @property (nonatomic, strong) NSString *locationCity;
 @property (nonatomic, assign) CLLocationCoordinate2D locationCoordinate;
+
+@property (nonatomic, readonly, copy) NSString *title;
+@property (nonatomic, readonly, copy) NSString *subtitle;
+@property (nonatomic, readonly, assign) CLLocationCoordinate2D coordinate;
 
 @end

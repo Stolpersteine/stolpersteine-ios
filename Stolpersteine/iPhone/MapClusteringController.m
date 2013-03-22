@@ -70,6 +70,7 @@ static double CELL_SIZE = 40.0; // [points]
     }];
     
     if (annotationsForGridSet.count != 0) {
+        NSAssert(annotationsForGridSet.count == 1, @"Wrong number of objects");
         annotation = annotationsForGridSet.anyObject;
     } else {
         // Otherwise, choose the closest annotation to the center

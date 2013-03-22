@@ -95,10 +95,15 @@ static double CELL_SIZE = 40.0; // [points]
 //    [self.mapView removeOverlays:self.mapView.overlays];
 //    MKMapPoint points[4];
 
-    // For each cell in the grid, pick one annotation to show
     double cellSize = [self convertPointSize:CELL_SIZE toMapPointSizeFromView:self.mapView.superview];
-    MKMapRect gridMapRect = MapClusteringControllerAdjustMapRect(self.mapView.visibleMapRect, MARGIN_FACTOR, cellSize);
+
+    // Expand map rect and align to cell size to avoid popping when panning
+    MKMapRect visibleMapRect = self.mapView.visibleMapRect;
+    MKMapRect gridMapRect = MKMapRectInset(visibleMapRect, -MARGIN_FACTOR * visibleMapRect.size.width, -MARGIN_FACTOR * visibleMapRect.size.height);
+    gridMapRect = MapClusteringControllerAlign(gridMapRect, cellSize);
     MKMapRect cellMapRect = MKMapRectMake(0, MKMapRectGetMinY(gridMapRect), cellSize, cellSize);
+
+    // For each cell in the grid, pick one annotation to show
     while (MKMapRectGetMinY(cellMapRect) < MKMapRectGetMaxY(gridMapRect)) {
         cellMapRect.origin.x = MKMapRectGetMinX(gridMapRect);
         

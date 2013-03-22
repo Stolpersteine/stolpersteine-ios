@@ -10,4 +10,4 @@
 #import <MapKit/MapKit.h>
 
 id<MKAnnotation> MapClusteringControllerFindClosestAnnotation(NSSet *annotations, MKMapPoint mapPoint);
-MKMapRect MapClusteringControllerAdjustMapRect(MKMapRect mapRect, double marginFactor, double cellSize);
+MKMapRect MapClusteringControllerAlign(MKMapRect mapRect, double cellSize);

@@ -52,38 +52,21 @@
     STAssertEqualObjects(annotation, annotation2, @"Wrong annotation");
 }
 
-- (void)testAdjustMapRectNoMargin
+- (void)testAlign
 {
-    MKMapRect mapRect = MKMapRectMake(0, 0, 15, 15);
-    MKMapRect adjustedMapRect = MapClusteringControllerAdjustMapRect(mapRect, 0, 5);
+    MKMapRect mapRect = MKMapRectMake(0, 0, 15, 20);
+    MKMapRect adjustedMapRect = MapClusteringControllerAlign(mapRect, 5);
     STAssertEquals(adjustedMapRect.origin.x, 0.0, @"Wrong origin x");
     STAssertEquals(adjustedMapRect.origin.y, 0.0, @"Wrong origin y");
     STAssertEquals(adjustedMapRect.size.width, 15.0, @"Wrong size width");
-    STAssertEquals(adjustedMapRect.size.height, 15.0, @"Wrong size height");
+    STAssertEquals(adjustedMapRect.size.height, 20.0, @"Wrong size height");
 
-    mapRect = MKMapRectMake(8, 8, 15, 15);
-    adjustedMapRect = MapClusteringControllerAdjustMapRect(mapRect, 0, 6);
+    mapRect = MKMapRectMake(8, 8, 15, 20);
+    adjustedMapRect = MapClusteringControllerAlign(mapRect, 6);
     STAssertEquals(adjustedMapRect.origin.x, 6.0, @"Wrong origin x");
     STAssertEquals(adjustedMapRect.origin.y, 6.0, @"Wrong origin y");
     STAssertEquals(adjustedMapRect.size.width, 18.0, @"Wrong size width");
-    STAssertEquals(adjustedMapRect.size.height, 18.0, @"Wrong size height");
-}
-
-- (void)testAdjustMapRectMargin
-{
-    MKMapRect mapRect = MKMapRectMake(15, 15, 15, 15);
-    MKMapRect adjustedMapRect = MapClusteringControllerAdjustMapRect(mapRect, 1, 5);
-    STAssertEquals(adjustedMapRect.origin.x, 0.0, @"Wrong origin x");
-    STAssertEquals(adjustedMapRect.origin.y, 0.0, @"Wrong origin y");
-    STAssertEquals(adjustedMapRect.size.width, 3 * mapRect.size.width, @"Wrong size width");
-    STAssertEquals(adjustedMapRect.size.height, 3 * mapRect.size.height, @"Wrong size height");
-    
-    mapRect = MKMapRectMake(20, 20, 15, 15);
-    adjustedMapRect = MapClusteringControllerAdjustMapRect(mapRect, 1, 6);
-    STAssertEquals(adjustedMapRect.origin.x, 0.0, @"Wrong origin x");
-    STAssertEquals(adjustedMapRect.origin.y, 0.0, @"Wrong origin y");
-    STAssertEquals(adjustedMapRect.size.width, 54.0, @"Wrong size width");
-    STAssertEquals(adjustedMapRect.size.height, 54.0, @"Wrong size height");
+    STAssertEquals(adjustedMapRect.size.height, 24.0, @"Wrong size height");
 }
 
 @end

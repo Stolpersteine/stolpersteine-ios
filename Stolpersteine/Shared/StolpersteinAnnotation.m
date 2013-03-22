@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "StolpersteinWrapperAnnotation.h"
+#import "StolpersteinAnnotation.h"
 
-@implementation StolpersteinWrapperAnnotation
+@implementation StolpersteinAnnotation
 
 - (NSString *)title
 {
-    return @"StolpersteinWrapperAnnotation";
+    return @"StolpersteinAnnotation";
 }
 
 - (NSString *)subtitle

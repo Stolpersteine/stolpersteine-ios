@@ -10,7 +10,7 @@
 
 #import "MapClusteringControllerUtils.h"
 #import "Stolperstein.h"
-#import "StolpersteinWrapperAnnotation.h"
+#import "StolpersteinAnnotation.h"
 
 @interface MapClusteringController()
 
@@ -50,23 +50,23 @@ static double CELL_SIZE = 40.0; // [points]
     [self updateVisibleAnnotations];
 }
 
-- (StolpersteinWrapperAnnotation *)annotationInCell:(MKMapRect)cellMapRect usingAnnotations:(NSSet *)annotations visibleAnnotations:(NSSet *)visibleAnnotations
+- (StolpersteinAnnotation *)annotationInCell:(MKMapRect)cellMapRect usingAnnotations:(NSSet *)annotations visibleAnnotations:(NSSet *)visibleAnnotations
 {
     // First, see if there's already a visible annotation in this cell
     for (Stolperstein *stolperstein in annotations) {
-        for (StolpersteinWrapperAnnotation *wrapperAnnotation in visibleAnnotations) {
+        for (StolpersteinAnnotation *wrapperAnnotation in visibleAnnotations) {
             if ([wrapperAnnotation.annotations containsObject:stolperstein]) {
                 return wrapperAnnotation;
             }
         }
     }
     
-    StolpersteinWrapperAnnotation *annotation;
+    StolpersteinAnnotation *annotation;
 
     // Otherwise, choose the closest annotation to the center
     MKMapPoint centerMapPoint = MKMapPointMake(MKMapRectGetMidX(cellMapRect), MKMapRectGetMidY(cellMapRect));
     id<MKAnnotation> closestAnnotation = MapClusteringControllerFindClosestAnnotation(annotations, centerMapPoint);
-    annotation = [[StolpersteinWrapperAnnotation alloc] init];
+    annotation = [[StolpersteinAnnotation alloc] init];
     annotation.coordinate = closestAnnotation.coordinate;
     
     return annotation;
@@ -111,7 +111,7 @@ static double CELL_SIZE = 40.0; // [points]
             if (allAnnotationsInBucket.count > 0) {
                 NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:cellMapRect];
                 
-                StolpersteinWrapperAnnotation *annotationForGrid = [self annotationInCell:cellMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
+                StolpersteinAnnotation *annotationForGrid = [self annotationInCell:cellMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
                 annotationForGrid.annotations = allAnnotationsInBucket.allObjects;
                 [self.mapView removeAnnotations:visibleAnnotationsInBucket.allObjects];
                 [self.mapView addAnnotation:annotationForGrid];

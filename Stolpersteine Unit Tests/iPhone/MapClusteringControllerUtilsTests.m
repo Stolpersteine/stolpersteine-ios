@@ -9,7 +9,6 @@
 #import "MapClusteringControllerUtilsTests.h"
 
 #import "MapClusteringControllerUtils.h"
-#import "StolpersteinAnnotation.h"
 #import "Stolperstein.h"
 
 @implementation MapClusteringControllerUtilsTests
@@ -35,21 +34,21 @@
     MKMapPoint mapPoint = MKMapPointForCoordinate(coordinate);
 
     NSMutableSet *annotations = [[NSMutableSet alloc] initWithCapacity:5];
-    StolpersteinAnnotation *annotation0 = [[StolpersteinAnnotation alloc] initWithStolperstein:[[Stolperstein alloc] init]];
-    annotation0.coordinate = CLLocationCoordinate2DMake(40, 40);
-    [annotations addObject:annotation0];
-    StolpersteinAnnotation *annotation1 = [[StolpersteinAnnotation alloc] initWithStolperstein:[[Stolperstein alloc] init]];
-    annotation1.coordinate = CLLocationCoordinate2DMake(47, 47);
-    [annotations addObject:annotation1];
-    StolpersteinAnnotation *annotation2 = [[StolpersteinAnnotation alloc] initWithStolperstein:[[Stolperstein alloc] init]];
-    annotation2.coordinate = CLLocationCoordinate2DMake(45.1, 44.9);
-    [annotations addObject:annotation2];
-    StolpersteinAnnotation *annotation3 = [[StolpersteinAnnotation alloc] initWithStolperstein:[[Stolperstein alloc] init]];
-    annotation3.coordinate = CLLocationCoordinate2DMake(42.1, 43.7);
-    [annotations addObject:annotation3];
+    Stolperstein *stolperstein0 = [[Stolperstein alloc] init];
+    stolperstein0.locationCoordinate = CLLocationCoordinate2DMake(40, 40);
+    [annotations addObject:stolperstein0];
+    Stolperstein *stolperstein1 = [[Stolperstein alloc] init];
+    stolperstein1.locationCoordinate = CLLocationCoordinate2DMake(47, 47);
+    [annotations addObject:stolperstein1];
+    Stolperstein *stolperstein2 = [[Stolperstein alloc] init];
+    stolperstein2.locationCoordinate = CLLocationCoordinate2DMake(45.1, 44.9);
+    [annotations addObject:stolperstein2];
+    Stolperstein *stolperstein3 = [[Stolperstein alloc] init];
+    stolperstein3.locationCoordinate = CLLocationCoordinate2DMake(42.1, 43.7);
+    [annotations addObject:stolperstein3];
     
     id<MKAnnotation> annotation = MapClusteringControllerFindClosestAnnotation(annotations, mapPoint);
-    STAssertEqualObjects(annotation, annotation2, @"Wrong annotation");
+    STAssertEqualObjects(annotation, stolperstein2, @"Wrong annotation");
 }
 
 - (void)testAlign

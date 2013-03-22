@@ -17,7 +17,7 @@
     return [NSString stringWithFormat:@"%@ %@", stolperstein.personFirstName, stolperstein.personLastName];
 }
 
-+ (NSString *)newAddressShortFromStolperstein:(Stolperstein *)stolperstein
++ (NSString *)newShortAddressFromStolperstein:(Stolperstein *)stolperstein
 {
     NSMutableString *address = [NSMutableString stringWithString:stolperstein.locationStreet];
     if (stolperstein.locationZipCode || stolperstein.locationCity) {
@@ -34,7 +34,7 @@
     return address;
 }
 
-+ (NSString *)newAddressLongFromStolperstein:(Stolperstein *)stolperstein
++ (NSString *)newLongAddressFromStolperstein:(Stolperstein *)stolperstein
 {
     NSMutableString *address = [NSMutableString stringWithCapacity:20];
     
@@ -66,7 +66,7 @@
 + (NSString *)newDescriptionFromStolperstein:(Stolperstein *)stolperstein
 {
     NSString *name = [Localization newNameFromStolperstein:stolperstein];
-    NSString *address = [Localization newAddressShortFromStolperstein:stolperstein];
+    NSString *address = [Localization newShortAddressFromStolperstein:stolperstein];
     return [NSString stringWithFormat:@"%@, %@", name, address];
 }
 

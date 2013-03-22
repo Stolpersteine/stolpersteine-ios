@@ -16,35 +16,35 @@
 - (void)testNewAddressFromStolperstein
 {
     Stolperstein *stolperstein = [[Stolperstein alloc] init];
-    NSString *address = [Localization newAddressLongFromStolperstein:stolperstein];
+    NSString *address = [Localization newLongAddressFromStolperstein:stolperstein];
     STAssertEqualObjects(address, @"", @"Wrong address");
     
     // No street
     stolperstein.locationStreet = nil;
     stolperstein.locationCity = @"Stadt";
     stolperstein.locationZipCode = nil;
-    address = [Localization newAddressLongFromStolperstein:stolperstein];
+    address = [Localization newLongAddressFromStolperstein:stolperstein];
     STAssertEqualObjects(address, @"Stadt", @"Wrong address");
 
     // City, but no zip code
     stolperstein.locationStreet = @"Straße 1";
     stolperstein.locationCity = @"Stadt";
     stolperstein.locationZipCode = nil;
-    address = [Localization newAddressLongFromStolperstein:stolperstein];
+    address = [Localization newLongAddressFromStolperstein:stolperstein];
     STAssertEqualObjects(address, @"Straße 1\nStadt", @"Wrong address");
     
     // Zip code, but no city
     stolperstein.locationStreet = @"Straße 1";
     stolperstein.locationCity = nil;
     stolperstein.locationZipCode = @"12345";
-    address = [Localization newAddressLongFromStolperstein:stolperstein];
+    address = [Localization newLongAddressFromStolperstein:stolperstein];
     STAssertEqualObjects(address, @"Straße 1\n12345", @"Wrong address");
 
     // Both city and zip code
     stolperstein.locationStreet = @"Straße 1";
     stolperstein.locationCity = @"Stadt";
     stolperstein.locationZipCode = @"12345";
-    address = [Localization newAddressLongFromStolperstein:stolperstein];
+    address = [Localization newLongAddressFromStolperstein:stolperstein];
     STAssertEqualObjects(address, @"Straße 1\n12345 Stadt", @"Wrong address");
 }
 

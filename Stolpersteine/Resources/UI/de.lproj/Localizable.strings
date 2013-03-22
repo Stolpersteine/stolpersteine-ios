@@ -18,3 +18,5 @@
 "StolpersteinDetailViewController.biography" = "Biographie anzeigen";
 "StolpersteinDetailViewController.street" = "Alle in dieser Straße";
 "StolpersteinDetailViewController.maps" = "In der Karten App anzeigen";
+
+"StolpersteinAnnotation.title" = "%u Stolpersteine";

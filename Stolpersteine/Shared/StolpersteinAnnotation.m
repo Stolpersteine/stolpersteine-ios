@@ -8,21 +8,46 @@
 
 #import "StolpersteinAnnotation.h"
 
+#import "Stolperstein.h"
+#import "Localization.h"
+
 @implementation StolpersteinAnnotation
 
 - (NSString *)title
 {
-    return @"StolpersteinAnnotation";
+    NSString *title;
+    if (self.isCluster) {
+        NSUInteger numStolpersteine = MIN(self.stolpersteine.count, 5);
+        NSMutableArray *names = [NSMutableArray arrayWithCapacity:numStolpersteine];
+        for (Stolperstein *stolperstein in self.stolpersteine) {
+            [names addObject:[Localization newNameFromStolperstein:stolperstein]];
+        }
+        title = [names componentsJoinedByString:@", "];
+    } else {
+        Stolperstein *stolperstein = self.stolpersteine[0];
+        title = [Localization newNameFromStolperstein:stolperstein];
+    }
+    
+    return title;
 }
 
 - (NSString *)subtitle
 {
-    return [NSString stringWithFormat:@"%u", self.stolpersteine.count];
+    NSString *subtitle;
+    if (self.isCluster) {
+        NSString *titleFormat = NSLocalizedString(@"StolpersteinAnnotation.title", nil);
+        subtitle = [NSString stringWithFormat:titleFormat, self.stolpersteine.count];
+    } else {
+        Stolperstein *stolperstein = self.stolpersteine[0];
+        subtitle = [Localization newShortAddressFromStolperstein:stolperstein];
+    }
+    
+    return subtitle;
 }
 
 - (BOOL)isCluster
 {
-    return self.stolpersteine.count > 1;
+    return (self.stolpersteine.count > 1);
 }
 
 @end

@@ -285,7 +285,7 @@
     
     Stolperstein *stolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];
     cell.textLabel.text = [Localization newNameFromStolperstein:stolperstein];
-    cell.detailTextLabel.text = [Localization newAddressShortFromStolperstein:stolperstein];
+    cell.detailTextLabel.text = [Localization newShortAddressFromStolperstein:stolperstein];
 
     return cell;
 }
@@ -351,6 +351,7 @@
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
         listViewController.stolpersteine = stolpersteinAnnotation.stolpersteine;
+        listViewController.title = stolpersteinAnnotation.subtitle;
     }
 }
 

@@ -69,7 +69,7 @@
     
     // Address
     self.addressLabel = [[UILabel alloc] init];
-    NSString *address = [Localization newAddressLongFromStolperstein:self.stolperstein];
+    NSString *address = [Localization newLongAddressFromStolperstein:self.stolperstein];
     self.addressLabel.text = address;
     self.addressLabel.numberOfLines = INT_MAX;
     [self.scrollView addSubview:self.addressLabel];

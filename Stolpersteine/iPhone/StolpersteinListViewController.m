@@ -62,7 +62,7 @@
     
     Stolperstein *stolperstein = [self.stolpersteine objectAtIndex:indexPath.row];
     cell.textLabel.text = [Localization newNameFromStolperstein:stolperstein];
-    cell.detailTextLabel.text = [Localization newAddressShortFromStolperstein:stolperstein];
+    cell.detailTextLabel.text = [Localization newShortAddressFromStolperstein:stolperstein];
     
     return cell;
 }

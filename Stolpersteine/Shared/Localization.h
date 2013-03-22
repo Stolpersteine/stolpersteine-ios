@@ -13,8 +13,8 @@
 @interface Localization : NSObject
 
 + (NSString *)newNameFromStolperstein:(Stolperstein *)stolperstein;
-+ (NSString *)newAddressShortFromStolperstein:(Stolperstein *)stolperstein;
-+ (NSString *)newAddressLongFromStolperstein:(Stolperstein *)stolperstein;
++ (NSString *)newShortAddressFromStolperstein:(Stolperstein *)stolperstein;
++ (NSString *)newLongAddressFromStolperstein:(Stolperstein *)stolperstein;
 + (NSString *)newDescriptionFromStolperstein:(Stolperstein *)stolperstein;
 
 @end

@@ -267,8 +267,6 @@
     StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
     searchData.keyword = searchString;
     self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 100) completionHandler:^(NSArray *stolpersteine, NSError *error) {
-        NSLog(@"shouldReloadTableForSearchString %d (%@)", stolpersteine.count, error);
-
         self.searchedStolpersteine = stolpersteine;
         [self.searchDisplayController.searchResultsTableView reloadData];
     }];
@@ -348,13 +346,11 @@
     id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
     StolpersteinAnnotation *stolpersteinAnnotation = (StolpersteinAnnotation *)selectedAnnotation;
     if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
-//        StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
-//        detailViewController.stolpersteinAnn = stolpersteinAnnotation.stolperstein;
+        StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
+        detailViewController.stolperstein = [stolpersteinAnnotation.stolpersteine objectAtIndex:0];
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
-        NSArray *stolpersteine = [stolpersteinAnnotation.stolpersteine valueForKey:@"stolperstein"];
-        listViewController.stolpersteine = stolpersteine;
-        listViewController.title = stolpersteinAnnotation.title;
+        listViewController.stolpersteine = stolpersteinAnnotation.stolpersteine;
     }
 }
 

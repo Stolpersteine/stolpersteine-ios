@@ -19,8 +19,6 @@
 
 @property (nonatomic, strong) Stolperstein *stolperstein;
 
-@property (nonatomic, strong) NSArray *containedAnnotations;
-
 - (id)initWithStolperstein:(Stolperstein *)stolperstein;
 
 @end

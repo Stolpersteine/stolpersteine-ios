@@ -13,7 +13,7 @@
 #import "DiagnosticsService.h"
 #import "Stolperstein.h"
 #import "StolpersteinAnnotation.h"
-#import "StolpersteinClusterAnnotation.h"
+#import "StolpersteinWrapperAnnotation.h"
 #import "StolpersteinSearchData.h"
 #import "StolpersteinDetailViewController.h"
 #import "StolpersteinListViewController.h"
@@ -172,7 +172,7 @@
 {
     MKAnnotationView *annotationView;
     
-    if ([annotation isKindOfClass:StolpersteinAnnotation.class] || [annotation isKindOfClass:StolpersteinClusterAnnotation.class]) {
+    if ([annotation isKindOfClass:StolpersteinWrapperAnnotation.class]) {
         static NSString *stolpersteinIdentifier = @"stolpersteinIdentifier";
         
         annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
@@ -212,13 +212,17 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    NSString *identifier;
-    if ([view.annotation isKindOfClass:StolpersteinAnnotation.class]) {
-        identifier = @"mapViewControllerToStolpersteinDetailViewController";
-    } else {
-        identifier = @"mapViewControllerToStolpersteineListViewController";
+    if ([view.annotation isKindOfClass:StolpersteinWrapperAnnotation.class]) {
+        StolpersteinWrapperAnnotation *stolpersteinAnnotation = (StolpersteinWrapperAnnotation *)view.annotation;
+        NSString *identifier;
+        if (stolpersteinAnnotation.isCluster) {
+            identifier = @"mapViewControllerToStolpersteineListViewController";
+        } else {
+            identifier = @"mapViewControllerToStolpersteinDetailViewController";
+        }
+        
+        [self performSegueWithIdentifier:identifier sender:view.annotation];
     }
-    [self performSegueWithIdentifier:identifier sender:view.annotation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
@@ -335,16 +339,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
+    StolpersteinWrapperAnnotation *wrapperAnnotation = (StolpersteinWrapperAnnotation *)selectedAnnotation;
     if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
-        StolpersteinAnnotation *stolpersteinAnnotation = (StolpersteinAnnotation *)selectedAnnotation;
-        StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
-        detailViewController.stolperstein = stolpersteinAnnotation.stolperstein;
+//        StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
+//        detailViewController.stolpersteinAnn = stolpersteinAnnotation.stolperstein;
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
-        StolpersteinClusterAnnotation *stolpersteinClusterAnnotation = (StolpersteinClusterAnnotation *)selectedAnnotation;
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
-        NSArray *stolpersteine = [stolpersteinClusterAnnotation.stolpersteinAnnotations valueForKey:@"stolperstein"];
+        NSArray *stolpersteine = [wrapperAnnotation.annotations valueForKey:@"stolperstein"];
         listViewController.stolpersteine = stolpersteine;
-        listViewController.title = stolpersteinClusterAnnotation.title;
+        listViewController.title = wrapperAnnotation.title;
     }
 }
 

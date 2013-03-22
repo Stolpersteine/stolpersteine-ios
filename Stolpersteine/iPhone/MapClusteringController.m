@@ -11,7 +11,7 @@
 #import "MapClusteringControllerUtils.h"
 #import "Stolperstein.h"
 #import "StolpersteinAnnotation.h"
-#import "StolpersteinClusterAnnotation.h"
+#import "StolpersteinWrapperAnnotation.h"
 
 @interface MapClusteringController()
 
@@ -56,27 +56,24 @@ static double CELL_SIZE = 40.0; // [points]
     [self updateVisibleAnnotations];
 }
 
-- (id<MKAnnotation>)annotationInCell:(MKMapRect)cellMapRect usingAnnotations:(NSSet *)annotations visibleAnnotations:(NSSet *)visibleAnnotations
+- (StolpersteinWrapperAnnotation *)annotationInCell:(MKMapRect)cellMapRect usingAnnotations:(NSSet *)annotations visibleAnnotations:(NSSet *)visibleAnnotations
 {
-    id<MKAnnotation> annotation;
-    
     // First, see if there's already a visible annotation in this cell
-    NSSet *annotationsForGridSet = [annotations objectsPassingTest:^BOOL(id obj, BOOL *stop) {
-        BOOL returnValue = ([visibleAnnotations containsObject:obj]);
-        if (returnValue) {
-            *stop = YES;
+    for (StolpersteinAnnotation *annotation in annotations) {
+        for (StolpersteinWrapperAnnotation *wrapperAnnotation in visibleAnnotations) {
+            if ([wrapperAnnotation.annotations containsObject:annotation]) {
+                return wrapperAnnotation;
+            }
         }
-        return returnValue;
-    }];
-    
-    if (annotationsForGridSet.count != 0) {
-        NSAssert(annotationsForGridSet.count == 1, @"Wrong number of objects");
-        annotation = annotationsForGridSet.anyObject;
-    } else {
-        // Otherwise, choose the closest annotation to the center
-        MKMapPoint centerMapPoint = MKMapPointMake(MKMapRectGetMidX(cellMapRect), MKMapRectGetMidY(cellMapRect));
-        annotation = MapClusteringControllerFindClosestAnnotation(annotations, centerMapPoint);
     }
+    
+    StolpersteinWrapperAnnotation *annotation;
+
+    // Otherwise, choose the closest annotation to the center
+    MKMapPoint centerMapPoint = MKMapPointMake(MKMapRectGetMidX(cellMapRect), MKMapRectGetMidY(cellMapRect));
+    id<MKAnnotation> closestAnnotation = MapClusteringControllerFindClosestAnnotation(annotations, centerMapPoint);
+    annotation = [[StolpersteinWrapperAnnotation alloc] init];
+    annotation.coordinate = closestAnnotation.coordinate;
     
     return annotation;
 }
@@ -120,27 +117,25 @@ static double CELL_SIZE = 40.0; // [points]
             if (allAnnotationsInBucket.count > 0) {
                 NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:cellMapRect];
                 
-                StolpersteinAnnotation *annotationForGrid = (StolpersteinAnnotation *)[self annotationInCell:cellMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
-                [allAnnotationsInBucket removeObject:annotationForGrid];
-                
-                // Give the annotationForGrid a reference to all the annotations it will represent
-                annotationForGrid.containedAnnotations = [allAnnotationsInBucket allObjects];
+                StolpersteinWrapperAnnotation *annotationForGrid = [self annotationInCell:cellMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
+                annotationForGrid.annotations = allAnnotationsInBucket.allObjects;
+                [self.mapView removeAnnotations:visibleAnnotationsInBucket.allObjects];
                 [self.mapView addAnnotation:annotationForGrid];
                 
-                for (StolpersteinAnnotation *annotation in allAnnotationsInBucket) {
-                    annotation.containedAnnotations = nil;
-                    
-                    // Remove annotations (with animation), which we've decided to cluster
-                    if ([visibleAnnotationsInBucket containsObject:annotation]) {
-                        CLLocationCoordinate2D actualCoordinate = annotation.coordinate;
-                        [UIView animateWithDuration:0.3 animations:^{
-                            annotation.coordinate = annotationForGrid.coordinate;
-                        } completion:^(BOOL finished) {
-                            annotation.coordinate = actualCoordinate;
-                            [self.mapView removeAnnotation:annotation];
-                        }];
-                    }
-                }
+//                for (StolpersteinAnnotation *annotation in allAnnotationsInBucket) {
+//                    annotation.containedAnnotations = nil;
+//                    
+//                    // Remove annotations (with animation), which we've decided to cluster
+//                    if ([visibleAnnotationsInBucket containsObject:annotation]) {
+//                        CLLocationCoordinate2D actualCoordinate = annotation.coordinate;
+//                        [UIView animateWithDuration:0.3 animations:^{
+//                            annotation.coordinate = annotationForGrid.coordinate;
+//                        } completion:^(BOOL finished) {
+//                            annotation.coordinate = actualCoordinate;
+//                            [self.mapView removeAnnotation:annotation];
+//                        }];
+//                    }
+//                }
             }
             cellMapRect.origin.x += MKMapRectGetWidth(cellMapRect);
         }
@@ -149,23 +144,23 @@ static double CELL_SIZE = 40.0; // [points]
     
     NSMutableSet *uniqueAnnotations = [[NSMutableSet alloc] initWithCapacity:self.mapView.annotations.count];
     NSUInteger numAnnotations = 0;
-    for (id<MKAnnotation> annotation in self.mapView.annotations) {
-        if ([annotation isKindOfClass:StolpersteinAnnotation.class]) {
-            if ([uniqueAnnotations containsObject:annotation]) {
-                NSLog(@"");
-            }
-            [uniqueAnnotations addObject:annotation];
-            numAnnotations++;
-            StolpersteinAnnotation *stolpersteinAnnotation = (StolpersteinAnnotation *)annotation;
-            for (StolpersteinAnnotation *containedAnnotation in stolpersteinAnnotation.containedAnnotations) {
-                if ([uniqueAnnotations containsObject:containedAnnotation]) {
-                    NSLog(@"");
-                }
-                [uniqueAnnotations addObject:containedAnnotation];
-                numAnnotations++;
-            }
-        }
-    }
+//    for (id<MKAnnotation> annotation in self.mapView.annotations) {
+//        if ([annotation isKindOfClass:StolpersteinAnnotation.class]) {
+//            if ([uniqueAnnotations containsObject:annotation]) {
+//                NSLog(@"");
+//            }
+//            [uniqueAnnotations addObject:annotation];
+//            numAnnotations++;
+//            StolpersteinAnnotation *stolpersteinAnnotation = (StolpersteinAnnotation *)annotation;
+//            for (StolpersteinAnnotation *containedAnnotation in stolpersteinAnnotation.containedAnnotations) {
+//                if ([uniqueAnnotations containsObject:containedAnnotation]) {
+//                    NSLog(@"");
+//                }
+//                [uniqueAnnotations addObject:containedAnnotation];
+//                numAnnotations++;
+//            }
+//        }
+//    }
 
     NSTimeInterval duration = [NSDate timeIntervalSinceReferenceDate] - start;
     NSLog(@"duration = %f, mapAnnotations = %u, numAnnotations = %u, unique = %u", duration * 1000, self.mapView.annotations.count, numAnnotations, uniqueAnnotations.count);

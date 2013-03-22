@@ -352,7 +352,7 @@
 //        detailViewController.stolpersteinAnn = stolpersteinAnnotation.stolperstein;
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
-        NSArray *stolpersteine = [wrapperAnnotation.annotations valueForKey:@"stolperstein"];
+        NSArray *stolpersteine = [wrapperAnnotation.stolpersteine valueForKey:@"stolperstein"];
         listViewController.stolpersteine = stolpersteine;
         listViewController.title = wrapperAnnotation.title;
     }

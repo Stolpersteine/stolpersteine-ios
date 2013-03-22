@@ -15,7 +15,7 @@
 @property (nonatomic, readonly, copy) NSString *subtitle;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 
-@property (nonatomic, strong) NSArray *annotations;
+@property (nonatomic, strong) NSArray *stolpersteine;
 @property (nonatomic, assign, readonly, getter = isCluster) BOOL cluster;
 
 @end

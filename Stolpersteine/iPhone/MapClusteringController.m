@@ -55,7 +55,7 @@ static double CELL_SIZE = 40.0; // [points]
     // First, see if there's already a visible annotation in this cell
     for (Stolperstein *stolperstein in annotations) {
         for (StolpersteinAnnotation *wrapperAnnotation in visibleAnnotations) {
-            if ([wrapperAnnotation.annotations containsObject:stolperstein]) {
+            if ([wrapperAnnotation.stolpersteine containsObject:stolperstein]) {
                 return wrapperAnnotation;
             }
         }
@@ -112,7 +112,7 @@ static double CELL_SIZE = 40.0; // [points]
                 NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:cellMapRect];
                 
                 StolpersteinAnnotation *annotationForGrid = [self annotationInCell:cellMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
-                annotationForGrid.annotations = allAnnotationsInBucket.allObjects;
+                annotationForGrid.stolpersteine = allAnnotationsInBucket.allObjects;
                 [self.mapView removeAnnotations:visibleAnnotationsInBucket.allObjects];
                 [self.mapView addAnnotation:annotationForGrid];
                 

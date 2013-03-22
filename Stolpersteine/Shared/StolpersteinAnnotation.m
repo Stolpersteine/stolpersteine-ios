@@ -17,12 +17,12 @@
 
 - (NSString *)subtitle
 {
-    return [NSString stringWithFormat:@"%u", self.annotations.count];
+    return [NSString stringWithFormat:@"%u", self.stolpersteine.count];
 }
 
 - (BOOL)isCluster
 {
-    return self.annotations.count > 1;
+    return self.stolpersteine.count > 1;
 }
 
 @end

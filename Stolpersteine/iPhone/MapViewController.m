@@ -148,12 +148,12 @@
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    if (self.stolpersteinAnnotationToSelect) {
-        [mapView selectAnnotation:self.stolpersteinAnnotationToSelect animated:YES];
-        self.stolpersteinAnnotationToSelect = nil;
-    }
-    
-    [self.mapClusteringController updateVisibleAnnotations];
+    [self.mapClusteringController updateAnnotationsAnimated:TRUE completion:^{
+        if (self.stolpersteinAnnotationToSelect) {
+            [mapView selectAnnotation:self.stolpersteinAnnotationToSelect animated:YES];
+            self.stolpersteinAnnotationToSelect = nil;
+        }
+    }];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation

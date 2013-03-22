@@ -13,6 +13,6 @@
 
 - (id)initWithMapView:(MKMapView *)mapView;
 - (void)addStolpersteine:(NSArray *)stolpersteine;
-- (void)updateVisibleAnnotations;
+- (void)updateAnnotationsAnimated:(BOOL)animated completion:(void (^)())completion;
 
 @end

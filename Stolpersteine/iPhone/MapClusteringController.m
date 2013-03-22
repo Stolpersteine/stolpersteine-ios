@@ -47,7 +47,7 @@ static double CELL_SIZE = 40.0; // [points]
 - (void)addStolpersteine:(NSArray *)stolpersteine
 {
     [self.allAnnotationsMapView addAnnotations:stolpersteine];
-    [self updateVisibleAnnotations];
+    [self updateAnnotationsAnimated:TRUE completion:NULL];
 }
 
 - (StolpersteinAnnotation *)annotationInCell:(MKMapRect)cellMapRect usingAnnotations:(NSSet *)annotations visibleAnnotations:(NSSet *)visibleAnnotations
@@ -80,7 +80,7 @@ static double CELL_SIZE = 40.0; // [points]
     return cellSize;
 }
 
-- (void)updateVisibleAnnotations
+- (void)updateAnnotationsAnimated:(BOOL)animated completion:(void (^)())completion
 {
     NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
     
@@ -158,6 +158,10 @@ static double CELL_SIZE = 40.0; // [points]
 
     NSTimeInterval duration = [NSDate timeIntervalSinceReferenceDate] - start;
     NSLog(@"duration = %f, mapAnnotations = %u, numAnnotations = %u, unique = %u", duration * 1000, self.mapView.annotations.count, numAnnotations, uniqueAnnotations.count);
+    
+    if (completion) {
+        completion();
+    }
 }
 
 @end

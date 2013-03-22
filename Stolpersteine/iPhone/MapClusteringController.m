@@ -56,9 +56,11 @@ static double CELL_SIZE = 40.0; // [points]
     [self updateVisibleAnnotations];
 }
 
-- (id<MKAnnotation>)annotationInGrid:(MKMapRect)gridMapRect usingAnnotations:(NSSet *)annotations visibleAnnotations:(NSSet *)visibleAnnotations
+- (id<MKAnnotation>)annotationInCell:(MKMapRect)cellMapRect usingAnnotations:(NSSet *)annotations visibleAnnotations:(NSSet *)visibleAnnotations
 {
-    // First, see if one of the annotations we were already showing is in this mapRect
+    id<MKAnnotation> annotation;
+    
+    // First, see if there's already a visible annotation in this cell
     NSSet *annotationsForGridSet = [annotations objectsPassingTest:^BOOL(id obj, BOOL *stop) {
         BOOL returnValue = ([visibleAnnotations containsObject:obj]);
         if (returnValue) {
@@ -68,13 +70,14 @@ static double CELL_SIZE = 40.0; // [points]
     }];
     
     if (annotationsForGridSet.count != 0) {
-        return [annotationsForGridSet anyObject];
+        annotation = annotationsForGridSet.anyObject;
+    } else {
+        // Otherwise, choose the closest annotation to the center
+        MKMapPoint centerMapPoint = MKMapPointMake(MKMapRectGetMidX(cellMapRect), MKMapRectGetMidY(cellMapRect));
+        annotation = MapClusteringControllerFindClosestAnnotation(annotations, centerMapPoint);
     }
     
-    // Otherwise, sort the annotations based on their distance from the center of the grid square,
-    // then choose the one closest to the center to show
-    MKMapPoint centerMapPoint = MKMapPointMake(MKMapRectGetMidX(gridMapRect), MKMapRectGetMidY(gridMapRect));
-    return MapClusteringControllerFindClosestAnnotation(annotations, centerMapPoint);
+    return annotation;
 }
 
 - (double)convertPointSize:(double)pointSize toMapPointSizeFromView:(UIView *)view
@@ -111,7 +114,7 @@ static double CELL_SIZE = 40.0; // [points]
             if (allAnnotationsInBucket.count > 0) {
                 NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:cellMapRect];
                 
-                StolpersteinAnnotation *annotationForGrid = (StolpersteinAnnotation *)[self annotationInGrid:cellMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
+                StolpersteinAnnotation *annotationForGrid = (StolpersteinAnnotation *)[self annotationInCell:cellMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
                 [allAnnotationsInBucket removeObject:annotationForGrid];
                 
                 // Give the annotationForGrid a reference to all the annotations it will represent

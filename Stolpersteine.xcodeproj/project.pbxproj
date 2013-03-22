@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		4805808D16C19DF100C49272 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4805808C16C19DF100C49272 /* MainStoryboard.storyboard */; };
 		4805809516C5BD8800C49272 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4805809416C5BD8800C49272 /* AddressBook.framework */; };
+		4808CF3D16FCFE4C00E89E97 /* MapClusteringAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4808CF3816FCFE4C00E89E97 /* MapClusteringAnnotation.m */; };
+		4808CF3E16FCFE4C00E89E97 /* MapClusteringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4808CF3A16FCFE4C00E89E97 /* MapClusteringController.m */; };
+		4808CF3F16FCFE4C00E89E97 /* MapClusteringControllerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4808CF3C16FCFE4C00E89E97 /* MapClusteringControllerUtils.m */; };
+		4808CF4016FCFF1600E89E97 /* MapClusteringControllerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4808CF3C16FCFE4C00E89E97 /* MapClusteringControllerUtils.m */; };
 		480FFF8716A0C6160012CCD5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
 		480FFF8816A0C6160012CCD5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
 		480FFF8916A0C6160012CCD5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B8169B0F050065C1F1 /* Foundation.framework */; };
@@ -55,7 +59,6 @@
 		48AC6D7216BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48BAF38416E926DE007250A0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48BAF38316E926DE007250A0 /* Settings.bundle */; };
 		48BAF38816E9405C007250A0 /* DiagnosticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BAF38716E9405C007250A0 /* DiagnosticsService.m */; };
-		48DA751616D57EA6004E0894 /* MapClusteringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DA751516D57EA6004E0894 /* MapClusteringController.m */; };
 		6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		6222BF2516A037CE006ED538 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
 		6222BF2616A037CE006ED538 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
@@ -110,11 +113,8 @@
 		627A0BAF16BC037200CFA71E /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627A0B8816BBFF5300CFA71E /* AFURLConnectionOperation.m */; };
 		627A0BB016BC037200CFA71E /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627A0B8A16BBFF5300CFA71E /* AFXMLRequestOperation.m */; };
 		627A0BB116BC037200CFA71E /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 627A0B8C16BBFF5300CFA71E /* UIImageView+AFNetworking.m */; };
-		627C1BED16FB338000097711 /* MapClusteringControllerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 627C1BEC16FB338000097711 /* MapClusteringControllerUtils.m */; };
-		627C1BEE16FB338000097711 /* MapClusteringControllerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 627C1BEC16FB338000097711 /* MapClusteringControllerUtils.m */; };
 		627C1BF216FB353100097711 /* MapClusteringControllerUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 627C1BF116FB353100097711 /* MapClusteringControllerUtilsTests.m */; };
 		627C1BF316FB35A000097711 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43D9169B0FFC0065C1F1 /* MapKit.framework */; };
-		627C1C0516FCC5D500097711 /* StolpersteinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 627C1C0416FCC5D500097711 /* StolpersteinAnnotation.m */; };
 		627E43B7169B0F050065C1F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
 		627E43B9169B0F050065C1F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B8169B0F050065C1F1 /* Foundation.framework */; };
 		627E43BB169B0F050065C1F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43BA169B0F050065C1F1 /* CoreGraphics.framework */; };
@@ -129,6 +129,12 @@
 /* Begin PBXFileReference section */
 		4805808C16C19DF100C49272 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4805809416C5BD8800C49272 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		4808CF3716FCFE4C00E89E97 /* MapClusteringAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusteringAnnotation.h; sourceTree = "<group>"; };
+		4808CF3816FCFE4C00E89E97 /* MapClusteringAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusteringAnnotation.m; sourceTree = "<group>"; };
+		4808CF3916FCFE4C00E89E97 /* MapClusteringController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusteringController.h; sourceTree = "<group>"; };
+		4808CF3A16FCFE4C00E89E97 /* MapClusteringController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusteringController.m; sourceTree = "<group>"; };
+		4808CF3B16FCFE4C00E89E97 /* MapClusteringControllerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusteringControllerUtils.h; sourceTree = "<group>"; };
+		4808CF3C16FCFE4C00E89E97 /* MapClusteringControllerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusteringControllerUtils.m; sourceTree = "<group>"; };
 		480FFF8616A0C6150012CCD5 /* Stolpersteine Integration Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stolpersteine Integration Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		480FFF8C16A0C6160012CCD5 /* Stolpersteine Integration Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Stolpersteine Integration Tests-Info.plist"; sourceTree = "<group>"; };
 		480FFF8E16A0C6160012CCD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -184,8 +190,6 @@
 		48BAF38316E926DE007250A0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		48BAF38616E9405C007250A0 /* DiagnosticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiagnosticsService.h; sourceTree = "<group>"; };
 		48BAF38716E9405C007250A0 /* DiagnosticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiagnosticsService.m; sourceTree = "<group>"; };
-		48DA751416D57EA5004E0894 /* MapClusteringController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusteringController.h; sourceTree = "<group>"; };
-		48DA751516D57EA6004E0894 /* MapClusteringController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusteringController.m; sourceTree = "<group>"; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
 		6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Parsing.m"; sourceTree = "<group>"; };
 		6222BF2316A037CE006ED538 /* Stolpersteine Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stolpersteine Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,12 +237,8 @@
 		627A0B9B16BBFF7B00CFA71E /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
 		627A0B9C16BBFF7B00CFA71E /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		627A0B9E16BC007600CFA71E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		627C1BEB16FB338000097711 /* MapClusteringControllerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusteringControllerUtils.h; sourceTree = "<group>"; };
-		627C1BEC16FB338000097711 /* MapClusteringControllerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusteringControllerUtils.m; sourceTree = "<group>"; };
 		627C1BF016FB353100097711 /* MapClusteringControllerUtilsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusteringControllerUtilsTests.h; sourceTree = "<group>"; };
 		627C1BF116FB353100097711 /* MapClusteringControllerUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusteringControllerUtilsTests.m; sourceTree = "<group>"; };
-		627C1C0316FCC5D500097711 /* StolpersteinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinAnnotation.h; sourceTree = "<group>"; };
-		627C1C0416FCC5D500097711 /* StolpersteinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinAnnotation.m; sourceTree = "<group>"; };
 		627E43B2169B0F050065C1F1 /* Stolpersteine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stolpersteine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		627E43B6169B0F050065C1F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		627E43B8169B0F050065C1F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -303,6 +303,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4808CF3616FCFE4C00E89E97 /* Clustering */ = {
+			isa = PBXGroup;
+			children = (
+				4808CF3716FCFE4C00E89E97 /* MapClusteringAnnotation.h */,
+				4808CF3816FCFE4C00E89E97 /* MapClusteringAnnotation.m */,
+				4808CF3916FCFE4C00E89E97 /* MapClusteringController.h */,
+				4808CF3A16FCFE4C00E89E97 /* MapClusteringController.m */,
+				4808CF3B16FCFE4C00E89E97 /* MapClusteringControllerUtils.h */,
+				4808CF3C16FCFE4C00E89E97 /* MapClusteringControllerUtils.m */,
+			);
+			path = Clustering;
+			sourceTree = "<group>";
+		};
 		480FFF8A16A0C6160012CCD5 /* Stolpersteine Integration Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,10 +349,6 @@
 			children = (
 				48633B8916C03F690057A317 /* MapViewController.h */,
 				48633B8A16C03F690057A317 /* MapViewController.m */,
-				48DA751416D57EA5004E0894 /* MapClusteringController.h */,
-				48DA751516D57EA6004E0894 /* MapClusteringController.m */,
-				627C1BEB16FB338000097711 /* MapClusteringControllerUtils.h */,
-				627C1BEC16FB338000097711 /* MapClusteringControllerUtils.m */,
 				48633B8B16C03F690057A317 /* SearchBar.h */,
 				48633B8C16C03F690057A317 /* SearchBar.m */,
 				48633B8D16C03F690057A317 /* SearchBarDelegate.h */,
@@ -586,8 +595,7 @@
 				48A08C8F16DBF5A5000A2470 /* Localization.m */,
 				48BAF38616E9405C007250A0 /* DiagnosticsService.h */,
 				48BAF38716E9405C007250A0 /* DiagnosticsService.m */,
-				627C1C0316FCC5D500097711 /* StolpersteinAnnotation.h */,
-				627C1C0416FCC5D500097711 /* StolpersteinAnnotation.m */,
+				4808CF3616FCFE4C00E89E97 /* Clustering */,
 				627E442F169C41EC0065C1F1 /* Stolpersteine API */,
 				627A0B7916BBFF5300CFA71E /* AFNetworking 1.1.0 */,
 				627A0B9616BBFF5B00CFA71E /* Google Analytics 2.0beta4 */,
@@ -839,8 +847,8 @@
 				48A08C8C16DBF380000A2470 /* StolpersteinTests.m in Sources */,
 				48A08C9116DBF5A5000A2470 /* Localization.m in Sources */,
 				48A08C9416DBF620000A2470 /* LocalizationTests.m in Sources */,
-				627C1BEE16FB338000097711 /* MapClusteringControllerUtils.m in Sources */,
 				627C1BF216FB353100097711 /* MapClusteringControllerUtilsTests.m in Sources */,
+				4808CF4016FCFF1600E89E97 /* MapClusteringControllerUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,11 +878,11 @@
 				48633B9C16C03F690057A317 /* StolpersteinDetailViewController.m in Sources */,
 				48633B9D16C03F690057A317 /* StolpersteinListViewController.m in Sources */,
 				48633BA016C03FCE0057A317 /* AppDelegate.m in Sources */,
-				48DA751616D57EA6004E0894 /* MapClusteringController.m in Sources */,
 				48A08C9016DBF5A5000A2470 /* Localization.m in Sources */,
 				48BAF38816E9405C007250A0 /* DiagnosticsService.m in Sources */,
-				627C1BED16FB338000097711 /* MapClusteringControllerUtils.m in Sources */,
-				627C1C0516FCC5D500097711 /* StolpersteinAnnotation.m in Sources */,
+				4808CF3D16FCFE4C00E89E97 /* MapClusteringAnnotation.m in Sources */,
+				4808CF3E16FCFE4C00E89E97 /* MapClusteringController.m in Sources */,
+				4808CF3F16FCFE4C00E89E97 /* MapClusteringControllerUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

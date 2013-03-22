@@ -9,8 +9,7 @@
 #import "MapClusteringController.h"
 
 #import "MapClusteringControllerUtils.h"
-#import "Stolperstein.h"
-#import "StolpersteinAnnotation.h"
+#import "MapClusteringAnnotation.h"
 
 @interface MapClusteringController()
 
@@ -44,29 +43,29 @@ static double CELL_SIZE = 40.0; // [points]
     return nil;
 }
 
-- (void)addStolpersteine:(NSArray *)stolpersteine
+- (void)addAnnotations:(NSArray *)annotations
 {
-    [self.allAnnotationsMapView addAnnotations:stolpersteine];
+    [self.allAnnotationsMapView addAnnotations:annotations];
     [self updateAnnotationsAnimated:TRUE completion:NULL];
 }
 
-- (StolpersteinAnnotation *)annotationInCell:(MKMapRect)cellMapRect usingAnnotations:(NSSet *)annotations visibleAnnotations:(NSSet *)visibleAnnotations
+- (MapClusteringAnnotation *)annotationInCell:(MKMapRect)cellMapRect usingAnnotations:(NSSet *)annotations visibleAnnotations:(NSSet *)visibleAnnotations
 {
     // First, see if there's already a visible annotation in this cell
-    for (Stolperstein *stolperstein in annotations) {
-        for (StolpersteinAnnotation *visibleAnnotation in visibleAnnotations) {
-            if ([visibleAnnotation.stolpersteine containsObject:stolperstein]) {
+    for (id<MKAnnotation> annotation in annotations) {
+        for (MapClusteringAnnotation *visibleAnnotation in visibleAnnotations) {
+            if ([visibleAnnotation.stolpersteine containsObject:annotation]) {
                 return visibleAnnotation;
             }
         }
     }
     
-    StolpersteinAnnotation *annotation;
+    MapClusteringAnnotation *annotation;
 
     // Otherwise, choose the closest annotation to the center
     MKMapPoint centerMapPoint = MKMapPointMake(MKMapRectGetMidX(cellMapRect), MKMapRectGetMidY(cellMapRect));
     id<MKAnnotation> closestAnnotation = MapClusteringControllerFindClosestAnnotation(annotations, centerMapPoint);
-    annotation = [[StolpersteinAnnotation alloc] init];
+    annotation = [[MapClusteringAnnotation alloc] init];
     annotation.coordinate = closestAnnotation.coordinate;
     
     return annotation;
@@ -111,7 +110,7 @@ static double CELL_SIZE = 40.0; // [points]
             if (allAnnotationsInBucket.count > 0) {
                 NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:cellMapRect];
                 
-                StolpersteinAnnotation *annotationForGrid = [self annotationInCell:cellMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
+                MapClusteringAnnotation *annotationForGrid = [self annotationInCell:cellMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
                 annotationForGrid.stolpersteine = allAnnotationsInBucket.allObjects;
                 [self.mapView removeAnnotations:visibleAnnotationsInBucket.allObjects];
                 [self.mapView addAnnotation:annotationForGrid];

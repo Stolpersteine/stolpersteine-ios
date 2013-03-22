@@ -12,7 +12,6 @@
 #import "StolpersteinNetworkService.h"
 #import "DiagnosticsService.h"
 #import "Stolperstein.h"
-#import "StolpersteinAnnotation.h"
 #import "StolpersteinSearchData.h"
 #import "StolpersteinDetailViewController.h"
 #import "StolpersteinListViewController.h"
@@ -20,6 +19,7 @@
 #import "SearchDisplayController.h"
 #import "SearchDisplayDelegate.h"
 #import "MapClusteringController.h"
+#import "MapClusteringAnnotation.h"
 #import "Localization.h"
 
 #define fequal(a,b) (fabs((a) - (b)) < FLT_EPSILON)
@@ -33,7 +33,7 @@
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
 @property (nonatomic, strong) SearchDisplayController *searchDisplayController;
 @property (nonatomic, strong) NSArray *searchedStolpersteine;
-@property (nonatomic, strong) StolpersteinAnnotation *stolpersteinAnnotationToSelect;
+@property (nonatomic, strong) MapClusteringAnnotation *stolpersteinAnnotationToSelect;
 @property (nonatomic, assign) MKCoordinateRegion regionToSet;
 @property (nonatomic, assign, getter = isRegionToSetInvalid) BOOL regionToSetInvalid;
 @property (nonatomic, strong) MapClusteringController *mapClusteringController;
@@ -116,7 +116,7 @@
     self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil range:range completionHandler:^(NSArray *stolpersteine, NSError *error) {
         NSLog(@"retrieveStolpersteineWithSearchData %d (%@)", stolpersteine.count, error);
         
-        [self.mapClusteringController addStolpersteine:stolpersteine];
+        [self.mapClusteringController addAnnotations:stolpersteine];
         
         // Next batch of data
         if (stolpersteine.count == range.length) {
@@ -160,7 +160,7 @@
 {
     MKAnnotationView *annotationView;
     
-    if ([annotation isKindOfClass:StolpersteinAnnotation.class]) {
+    if ([annotation isKindOfClass:MapClusteringAnnotation.class]) {
         static NSString *stolpersteinIdentifier = @"stolpersteinIdentifier";
         
         annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
@@ -200,8 +200,8 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    if ([view.annotation isKindOfClass:StolpersteinAnnotation.class]) {
-        StolpersteinAnnotation *stolpersteinAnnotation = (StolpersteinAnnotation *)view.annotation;
+    if ([view.annotation isKindOfClass:MapClusteringAnnotation.class]) {
+        MapClusteringAnnotation *stolpersteinAnnotation = (MapClusteringAnnotation *)view.annotation;
         NSString *identifier;
         if (stolpersteinAnnotation.isCluster) {
             identifier = @"mapViewControllerToStolpersteineListViewController";
@@ -333,7 +333,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
-    StolpersteinAnnotation *stolpersteinAnnotation = (StolpersteinAnnotation *)selectedAnnotation;
+    MapClusteringAnnotation *stolpersteinAnnotation = (MapClusteringAnnotation *)selectedAnnotation;
     if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
         detailViewController.stolperstein = [stolpersteinAnnotation.stolpersteine objectAtIndex:0];

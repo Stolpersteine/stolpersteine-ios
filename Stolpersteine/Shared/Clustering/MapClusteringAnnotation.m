@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "StolpersteinAnnotation.h"
+#import "MapClusteringAnnotation.h"
 
 #import "Stolperstein.h"
 #import "Localization.h"
 
-@implementation StolpersteinAnnotation
+@implementation MapClusteringAnnotation
 
 - (NSString *)title
 {

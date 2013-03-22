@@ -12,7 +12,7 @@
 @interface MapClusteringController : NSObject
 
 - (id)initWithMapView:(MKMapView *)mapView;
-- (void)addStolpersteine:(NSArray *)stolpersteine;
+- (void)addAnnotations:(NSArray *)annotations;
 - (void)updateAnnotationsAnimated:(BOOL)animated completion:(void (^)())completion;
 
 @end

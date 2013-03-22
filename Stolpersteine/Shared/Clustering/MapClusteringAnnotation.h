@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface StolpersteinAnnotation : NSObject<MKAnnotation>
+@interface MapClusteringAnnotation : NSObject<MKAnnotation>
 
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;

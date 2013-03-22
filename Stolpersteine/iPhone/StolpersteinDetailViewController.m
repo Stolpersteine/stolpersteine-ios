@@ -133,15 +133,6 @@
     [self.imageView cancelImageRequestOperation];
 }
 
-- (void)viewDidUnload
-{
-    [self setImageView:nil];
-    [self setImageActivityIndicator:nil];
-    [self setScrollView:nil];
-
-    [super viewDidUnload];
-}
-
 - (void)loadImageWithURLString:(NSString *)URLString
 {
     NSURL *URL = [NSURL URLWithString:URLString];

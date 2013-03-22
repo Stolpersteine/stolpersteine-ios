@@ -79,17 +79,6 @@
     [self retrieveStolpersteineWithRange:range];
 }
 
-- (void)viewDidUnload
-{
-    self.locationManager.delegate = nil;
-
-    [self setMapView:nil];
-    [self setCenterMapBarButtonItem:nil];
-    [self setSearchBar:nil];
-    
-    [super viewDidUnload];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

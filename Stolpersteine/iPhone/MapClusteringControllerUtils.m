@@ -26,10 +26,14 @@ id<MKAnnotation> MapClusteringControllerFindClosestAnnotation(NSSet *annotations
 
 MKMapRect MapClusteringControllerAdjustMapRect(MKMapRect mapRect, double marginFactor, double cellSize)
 {
+    NSCAssert(mapRect.origin.x >= 0, @"Invalid origin");
+    NSCAssert(mapRect.origin.y >= 0, @"Invalid origin");
+    NSCAssert(cellSize != 0, @"Invalid cell size");
+    
     // Expand map rect
     MKMapRect adjustedMapRect = MKMapRectInset(mapRect, -marginFactor * mapRect.size.width, -marginFactor * mapRect.size.height);
     
-    // Align to cell size
+    // Align to grid based on cell size. Includes padding if necessary.
     double startX = floor(MKMapRectGetMinX(adjustedMapRect) / cellSize) * cellSize;
     double startY = floor(MKMapRectGetMinY(adjustedMapRect) / cellSize) * cellSize;
     double endX = ceil(MKMapRectGetMaxX(adjustedMapRect) / cellSize) * cellSize;

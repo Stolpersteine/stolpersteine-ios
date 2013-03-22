@@ -77,25 +77,25 @@ static double CELL_SIZE = 40.0; // [points]
     return MapClusteringControllerFindClosestAnnotation(annotations, centerMapPoint);
 }
 
-- (MKMapRect)convertPointSize:(double)pointSize toMapRectFromView:(UIView *)view
+- (double)convertPointSize:(double)pointSize toMapPointSizeFromView:(UIView *)view
 {
     CLLocationCoordinate2D leftCoordinate = [self.mapView convertPoint:CGPointZero toCoordinateFromView:view];
     CLLocationCoordinate2D rightCoordinate = [self.mapView convertPoint:CGPointMake(pointSize, 0) toCoordinateFromView:view];
     double cellSize = MKMapPointForCoordinate(rightCoordinate).x - MKMapPointForCoordinate(leftCoordinate).x;
-    return MKMapRectMake(0, 0, cellSize, cellSize);
+    return cellSize;
 }
 
 - (void)updateVisibleAnnotations
 {
     NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
     
-    MKMapRect cellMapRect = [self convertPointSize:CELL_SIZE toMapRectFromView:self.mapView.superview];
-    MKMapRect gridMapRect = MapClusteringControllerAdjustMapRect(self.mapView.visibleMapRect, MARGIN_FACTOR, MKMapRectGetWidth(cellMapRect));
-    
-    // For each square in grid, pick one annotation to show
 //    [self.mapView removeOverlays:self.mapView.overlays];
 //    MKMapPoint points[4];
-    cellMapRect.origin.y = MKMapRectGetMinY(gridMapRect);
+
+    // For each cell in the grid, pick one annotation to show
+    double cellSize = [self convertPointSize:CELL_SIZE toMapPointSizeFromView:self.mapView.superview];
+    MKMapRect gridMapRect = MapClusteringControllerAdjustMapRect(self.mapView.visibleMapRect, MARGIN_FACTOR, cellSize);
+    MKMapRect cellMapRect = MKMapRectMake(0, MKMapRectGetMinY(gridMapRect), cellSize, cellSize);
     while (MKMapRectGetMinY(cellMapRect) < MKMapRectGetMaxY(gridMapRect)) {
         cellMapRect.origin.x = MKMapRectGetMinX(gridMapRect);
         

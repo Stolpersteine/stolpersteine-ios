@@ -54,9 +54,9 @@ static double CELL_SIZE = 40.0; // [points]
 {
     // First, see if there's already a visible annotation in this cell
     for (Stolperstein *stolperstein in annotations) {
-        for (StolpersteinAnnotation *wrapperAnnotation in visibleAnnotations) {
-            if ([wrapperAnnotation.stolpersteine containsObject:stolperstein]) {
-                return wrapperAnnotation;
+        for (StolpersteinAnnotation *visibleAnnotation in visibleAnnotations) {
+            if ([visibleAnnotation.stolpersteine containsObject:stolperstein]) {
+                return visibleAnnotation;
             }
         }
     }

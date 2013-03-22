@@ -304,9 +304,9 @@
 //    [tableViewCell setSelected:FALSE animated:TRUE];
 //     
 //    // Check if stolperstein already exists as annotation
-//    StolpersteinWrapperAnnotation *stolpersteinAnnotationToSelect;
+//    StolpersteinAnnotation *stolpersteinAnnotationToSelect;
 //    Stolperstein *stolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];
-//    for (StolpersteinWrapperAnnotation *annotation in self.mapView.annotations) {
+//    for (StolpersteinAnnotation *annotation in self.mapView.annotations) {
 //        for (Stolperstein *stolpersteinInAnnotation in annotation.annotations) {
 //            if ([stolpersteinInAnnotation.id isEqualToString:stolperstein.id]) {
 //                stolpersteinAnnotationToSelect = annotation;
@@ -317,7 +317,7 @@
 //    
 //    // Otherwise, create new annotation
 //    if (stolpersteinAnnotationToSelect == nil) {
-//        stolpersteinAnnotationToSelect = [[StolpersteinWrapperAnnotation alloc] init];
+//        stolpersteinAnnotationToSelect = [[StolpersteinAnnotation alloc] init];
 //        stolpersteinAnnotationToSelect.annotations = @[stolperstein];
 //    }
 //    
@@ -346,15 +346,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
-    StolpersteinAnnotation *wrapperAnnotation = (StolpersteinAnnotation *)selectedAnnotation;
+    StolpersteinAnnotation *stolpersteinAnnotation = (StolpersteinAnnotation *)selectedAnnotation;
     if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
 //        StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
 //        detailViewController.stolpersteinAnn = stolpersteinAnnotation.stolperstein;
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
-        NSArray *stolpersteine = [wrapperAnnotation.stolpersteine valueForKey:@"stolperstein"];
+        NSArray *stolpersteine = [stolpersteinAnnotation.stolpersteine valueForKey:@"stolperstein"];
         listViewController.stolpersteine = stolpersteine;
-        listViewController.title = wrapperAnnotation.title;
+        listViewController.title = stolpersteinAnnotation.title;
     }
 }
 

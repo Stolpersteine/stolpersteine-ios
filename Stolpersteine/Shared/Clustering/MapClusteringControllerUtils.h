@@ -9,5 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
+@class MapClusteringAnnotation;
+
 id<MKAnnotation> MapClusteringControllerFindClosestAnnotation(NSSet *annotations, MKMapPoint mapPoint);
-MKMapRect MapClusteringControllerAlign(MKMapRect mapRect, double cellSize);
+MKMapRect MapClusteringControllerAlignToCellSize(MKMapRect mapRect, double cellSize);
+MapClusteringAnnotation *MapClusteringControllerFindAnnotation(MKMapRect cellMapRect, NSSet *annotations, NSSet *visibleAnnotations);

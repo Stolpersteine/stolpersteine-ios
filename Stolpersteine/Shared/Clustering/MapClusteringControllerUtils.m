@@ -8,6 +8,8 @@
 
 #import "MapClusteringControllerUtils.h"
 
+#import "MapClusteringAnnotation.h"
+
 id<MKAnnotation> MapClusteringControllerFindClosestAnnotation(NSSet *annotations, MKMapPoint mapPoint)
 {
     id<MKAnnotation> closestAnnotation;
@@ -24,7 +26,7 @@ id<MKAnnotation> MapClusteringControllerFindClosestAnnotation(NSSet *annotations
     return closestAnnotation;
 }
 
-MKMapRect MapClusteringControllerAlign(MKMapRect mapRect, double cellSize)
+MKMapRect MapClusteringControllerAlignToCellSize(MKMapRect mapRect, double cellSize)
 {
     NSCAssert(mapRect.origin.x >= 0, @"Invalid origin");
     NSCAssert(mapRect.origin.y >= 0, @"Invalid origin");
@@ -35,4 +37,24 @@ MKMapRect MapClusteringControllerAlign(MKMapRect mapRect, double cellSize)
     double endX = ceil(MKMapRectGetMaxX(mapRect) / cellSize) * cellSize;
     double endY = ceil(MKMapRectGetMaxY(mapRect) / cellSize) * cellSize;
     return MKMapRectMake(startX, startY, endX - startX, endY - startY);
+}
+
+MapClusteringAnnotation *MapClusteringControllerFindAnnotation(MKMapRect cellMapRect, NSSet *annotations, NSSet *visibleAnnotations)
+{
+    // See if there's already a visible annotation in this cell
+    for (id<MKAnnotation> annotation in annotations) {
+        for (MapClusteringAnnotation *visibleAnnotation in visibleAnnotations) {
+            if ([visibleAnnotation.stolpersteine containsObject:annotation]) {
+                return visibleAnnotation;
+            }
+        }
+    }
+    
+    // Otherwise, choose the closest annotation to the center
+    MKMapPoint centerMapPoint = MKMapPointMake(MKMapRectGetMidX(cellMapRect), MKMapRectGetMidY(cellMapRect));
+    id<MKAnnotation> closestAnnotation = MapClusteringControllerFindClosestAnnotation(annotations, centerMapPoint);
+    MapClusteringAnnotation *annotation = [[MapClusteringAnnotation alloc] init];
+    annotation.coordinate = closestAnnotation.coordinate;
+    
+    return annotation;
 }

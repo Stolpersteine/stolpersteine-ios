@@ -49,28 +49,6 @@ static double CELL_SIZE = 40.0; // [points]
     [self updateAnnotationsAnimated:TRUE completion:NULL];
 }
 
-- (MapClusteringAnnotation *)annotationInCell:(MKMapRect)cellMapRect usingAnnotations:(NSSet *)annotations visibleAnnotations:(NSSet *)visibleAnnotations
-{
-    // First, see if there's already a visible annotation in this cell
-    for (id<MKAnnotation> annotation in annotations) {
-        for (MapClusteringAnnotation *visibleAnnotation in visibleAnnotations) {
-            if ([visibleAnnotation.stolpersteine containsObject:annotation]) {
-                return visibleAnnotation;
-            }
-        }
-    }
-    
-    MapClusteringAnnotation *annotation;
-
-    // Otherwise, choose the closest annotation to the center
-    MKMapPoint centerMapPoint = MKMapPointMake(MKMapRectGetMidX(cellMapRect), MKMapRectGetMidY(cellMapRect));
-    id<MKAnnotation> closestAnnotation = MapClusteringControllerFindClosestAnnotation(annotations, centerMapPoint);
-    annotation = [[MapClusteringAnnotation alloc] init];
-    annotation.coordinate = closestAnnotation.coordinate;
-    
-    return annotation;
-}
-
 - (double)convertPointSize:(double)pointSize toMapPointSizeFromView:(UIView *)view
 {
     CLLocationCoordinate2D leftCoordinate = [self.mapView convertPoint:CGPointZero toCoordinateFromView:view];
@@ -91,7 +69,7 @@ static double CELL_SIZE = 40.0; // [points]
     // Expand map rect and align to cell size to avoid popping when panning
     MKMapRect visibleMapRect = self.mapView.visibleMapRect;
     MKMapRect gridMapRect = MKMapRectInset(visibleMapRect, -MARGIN_FACTOR * visibleMapRect.size.width, -MARGIN_FACTOR * visibleMapRect.size.height);
-    gridMapRect = MapClusteringControllerAlign(gridMapRect, cellSize);
+    gridMapRect = MapClusteringControllerAlignToCellSize(gridMapRect, cellSize);
     MKMapRect cellMapRect = MKMapRectMake(0, MKMapRectGetMinY(gridMapRect), cellSize, cellSize);
 
     // For each cell in the grid, pick one annotation to show
@@ -106,14 +84,14 @@ static double CELL_SIZE = 40.0; // [points]
 //            MKPolygon* poly = [MKPolygon polygonWithPoints:points count:4];
 //            [self.mapView addOverlay:poly];
 
-            NSMutableSet *allAnnotationsInBucket = [[self.allAnnotationsMapView annotationsInMapRect:cellMapRect] mutableCopy];
-            if (allAnnotationsInBucket.count > 0) {
-                NSSet *visibleAnnotationsInBucket = [self.mapView annotationsInMapRect:cellMapRect];
+            NSMutableSet *allAnnotationsInCell = [[self.allAnnotationsMapView annotationsInMapRect:cellMapRect] mutableCopy];
+            if (allAnnotationsInCell.count > 0) {
+                NSSet *visibleAnnotationsInCell = [self.mapView annotationsInMapRect:cellMapRect];
                 
-                MapClusteringAnnotation *annotationForGrid = [self annotationInCell:cellMapRect usingAnnotations:allAnnotationsInBucket visibleAnnotations:visibleAnnotationsInBucket];
-                annotationForGrid.stolpersteine = allAnnotationsInBucket.allObjects;
-                [self.mapView removeAnnotations:visibleAnnotationsInBucket.allObjects];
-                [self.mapView addAnnotation:annotationForGrid];
+                MapClusteringAnnotation *annotationForCell = MapClusteringControllerFindAnnotation(cellMapRect, allAnnotationsInCell, visibleAnnotationsInCell);
+                annotationForCell.stolpersteine = allAnnotationsInCell.allObjects;
+                [self.mapView removeAnnotations:visibleAnnotationsInCell.allObjects];
+                [self.mapView addAnnotation:annotationForCell];
                 
 //                for (StolpersteinAnnotation *annotation in allAnnotationsInBucket) {
 //                    annotation.containedAnnotations = nil;

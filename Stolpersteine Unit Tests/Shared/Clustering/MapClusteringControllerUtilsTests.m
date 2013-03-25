@@ -54,14 +54,14 @@
 - (void)testAlign
 {
     MKMapRect mapRect = MKMapRectMake(0, 0, 15, 20);
-    MKMapRect adjustedMapRect = MapClusteringControllerAlign(mapRect, 5);
+    MKMapRect adjustedMapRect = MapClusteringControllerAlignToCellSize(mapRect, 5);
     STAssertEquals(adjustedMapRect.origin.x, 0.0, @"Wrong origin x");
     STAssertEquals(adjustedMapRect.origin.y, 0.0, @"Wrong origin y");
     STAssertEquals(adjustedMapRect.size.width, 15.0, @"Wrong size width");
     STAssertEquals(adjustedMapRect.size.height, 20.0, @"Wrong size height");
 
     mapRect = MKMapRectMake(8, 8, 15, 20);
-    adjustedMapRect = MapClusteringControllerAlign(mapRect, 6);
+    adjustedMapRect = MapClusteringControllerAlignToCellSize(mapRect, 6);
     STAssertEquals(adjustedMapRect.origin.x, 6.0, @"Wrong origin x");
     STAssertEquals(adjustedMapRect.origin.y, 6.0, @"Wrong origin y");
     STAssertEquals(adjustedMapRect.size.width, 18.0, @"Wrong size width");

@@ -17,6 +17,17 @@
     return [NSString stringWithFormat:@"%@ %@", stolperstein.personFirstName, stolperstein.personLastName];
 }
 
++ (NSString *)newStreetNameFromStolperstein:(Stolperstein *)stolperstein
+{
+    NSRange range = [stolperstein.locationStreet rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet];
+    NSString *locationStreetName = stolperstein.locationStreet;
+    if (range.location != NSNotFound) {
+        locationStreetName = [locationStreetName substringToIndex:range.location];
+        locationStreetName = [locationStreetName stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
+    }
+    return locationStreetName;
+}
+
 + (NSString *)newShortAddressFromStolperstein:(Stolperstein *)stolperstein
 {
     NSMutableString *address = [NSMutableString stringWithString:stolperstein.locationStreet];

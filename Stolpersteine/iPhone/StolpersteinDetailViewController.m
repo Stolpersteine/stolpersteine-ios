@@ -258,7 +258,7 @@
 {
     if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToStolpersteineListViewController"]) {
         StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
-        searchData.locationStreet = self.stolperstein.locationStreetName;
+        searchData.locationStreet = [Localization newStreetNameFromStolperstein:self.stolperstein];
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
         listViewController.searchData = searchData;
         listViewController.title = searchData.locationStreet;

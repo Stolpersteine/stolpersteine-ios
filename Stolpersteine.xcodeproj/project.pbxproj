@@ -52,7 +52,6 @@
 		4879B6C116E281D5006593D8 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4879B6B916E281D5006593D8 /* Icon-Small@2x.png */; };
 		4879B6C216E281D5006593D8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4879B6BA16E281D5006593D8 /* Icon.png */; };
 		4879B6C316E281D5006593D8 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4879B6BB16E281D5006593D8 /* Icon@2x.png */; };
-		48A08C8C16DBF380000A2470 /* StolpersteinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8A16DBF380000A2470 /* StolpersteinTests.m */; };
 		48A08C9016DBF5A5000A2470 /* Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8F16DBF5A5000A2470 /* Localization.m */; };
 		48A08C9116DBF5A5000A2470 /* Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8F16DBF5A5000A2470 /* Localization.m */; };
 		48A08C9416DBF620000A2470 /* LocalizationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C9316DBF620000A2470 /* LocalizationTests.m */; };
@@ -182,8 +181,6 @@
 		4879B6B916E281D5006593D8 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		4879B6BA16E281D5006593D8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		4879B6BB16E281D5006593D8 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		48A08C8916DBF380000A2470 /* StolpersteinTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinTests.h; sourceTree = "<group>"; };
-		48A08C8A16DBF380000A2470 /* StolpersteinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinTests.m; sourceTree = "<group>"; };
 		48A08C8E16DBF5A5000A2470 /* Localization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localization.h; sourceTree = "<group>"; };
 		48A08C8F16DBF5A5000A2470 /* Localization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localization.m; sourceTree = "<group>"; };
 		48A08C9216DBF620000A2470 /* LocalizationTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationTests.h; sourceTree = "<group>"; };
@@ -417,20 +414,10 @@
 			isa = PBXGroup;
 			children = (
 				4808CF411700C1E000E89E97 /* Clustering */,
-				48A08C8816DBF380000A2470 /* Stolpersteine API */,
 				48A08C9216DBF620000A2470 /* LocalizationTests.h */,
 				48A08C9316DBF620000A2470 /* LocalizationTests.m */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		48A08C8816DBF380000A2470 /* Stolpersteine API */ = {
-			isa = PBXGroup;
-			children = (
-				48A08C8916DBF380000A2470 /* StolpersteinTests.h */,
-				48A08C8A16DBF380000A2470 /* StolpersteinTests.m */,
-			);
-			path = "Stolpersteine API";
 			sourceTree = "<group>";
 		};
 		6222BF2816A037CE006ED538 /* Stolpersteine Unit Tests */ = {
@@ -845,7 +832,6 @@
 				627A0BA716BC037100CFA71E /* AFXMLRequestOperation.m in Sources */,
 				627A0BA816BC037100CFA71E /* UIImageView+AFNetworking.m in Sources */,
 				48AC6D7116BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */,
-				48A08C8C16DBF380000A2470 /* StolpersteinTests.m in Sources */,
 				48A08C9116DBF5A5000A2470 /* Localization.m in Sources */,
 				48A08C9416DBF620000A2470 /* LocalizationTests.m in Sources */,
 				4808CF4016FCFF1600E89E97 /* MapClusteringControllerUtils.m in Sources */,

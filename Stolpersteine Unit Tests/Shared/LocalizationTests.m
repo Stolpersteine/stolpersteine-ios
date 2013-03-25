@@ -13,6 +13,23 @@
 
 @implementation LocalizationTests
 
+- (void)testNewStreetName
+{
+    Stolperstein *stolperstein = [[Stolperstein alloc] init];
+    
+    stolperstein.locationStreet = @"Turmstraße 76a";
+    STAssertEqualObjects([Localization newStreetNameFromStolperstein:stolperstein], @"Turmstraße", @"Wrong street name");
+    
+    stolperstein.locationStreet = @"Turmstraße 10";
+    STAssertEqualObjects([Localization newStreetNameFromStolperstein:stolperstein], @"Turmstraße", @"Wrong street name");
+    
+    stolperstein.locationStreet = @"Turmstraße";
+    STAssertEqualObjects([Localization newStreetNameFromStolperstein:stolperstein], @"Turmstraße", @"Wrong street name");
+    
+    stolperstein.locationStreet = @"Alt-Moabit 11";
+    STAssertEqualObjects([Localization newStreetNameFromStolperstein:stolperstein], @"Alt-Moabit", @"Wrong street name");
+}
+
 - (void)testNewAddressFromStolperstein
 {
     Stolperstein *stolperstein = [[Stolperstein alloc] init];

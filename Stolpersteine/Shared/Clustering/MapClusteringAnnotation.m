@@ -20,7 +20,7 @@
         NSUInteger numStolpersteine = MIN(self.stolpersteine.count, 5);
         NSMutableArray *names = [NSMutableArray arrayWithCapacity:numStolpersteine];
         for (Stolperstein *stolperstein in self.stolpersteine) {
-            [names addObject:[Localization newNameFromStolperstein:stolperstein]];
+            [names addObject:[Localization newShortNameFromStolperstein:stolperstein]];
         }
         title = [names componentsJoinedByString:@", "];
     } else {

@@ -14,7 +14,39 @@
 
 + (NSString *)newNameFromStolperstein:(Stolperstein *)stolperstein
 {
-    return [NSString stringWithFormat:@"%@ %@", stolperstein.personFirstName, stolperstein.personLastName];
+    NSMutableString *firstName = [NSMutableString stringWithCapacity:stolperstein.personFirstName.length + stolperstein.personLastName.length + 1];
+    if (stolperstein.personFirstName.length > 0) {
+        if (stolperstein.personLastName.length > 0) {
+            [firstName appendFormat:@"%@ ", stolperstein.personFirstName];
+        } else {
+            [firstName appendString:stolperstein.personFirstName];
+        }
+    }
+    
+    if (stolperstein.personLastName) {
+        [firstName appendString:stolperstein.personLastName];
+    }
+    
+    return firstName;
+}
+
++ (NSString *)newShortNameFromStolperstein:(Stolperstein *)stolperstein
+{
+    NSMutableString *firstNameShort = [NSMutableString stringWithCapacity:stolperstein.personLastName.length + 3];
+    BOOL hasFirstLetter = (stolperstein.personFirstName.length > 0);
+    if (hasFirstLetter) {
+        if (stolperstein.personLastName.length > 0) {
+            [firstNameShort appendFormat:@"%@. ", [stolperstein.personFirstName substringToIndex:1]];
+        } else {
+            [firstNameShort appendFormat:@"%@.", [stolperstein.personFirstName substringToIndex:1]];
+        }
+    }
+    
+    if (stolperstein.personLastName) {
+        [firstNameShort appendString:stolperstein.personLastName];
+    }
+    
+    return firstNameShort;
 }
 
 + (NSString *)newStreetNameFromStolperstein:(Stolperstein *)stolperstein

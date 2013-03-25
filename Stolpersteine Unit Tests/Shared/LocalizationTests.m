@@ -13,6 +13,80 @@
 
 @implementation LocalizationTests
 
+- (void)testNewName
+{
+    Stolperstein *stolperstein = [[Stolperstein alloc] init];
+    
+    stolperstein.personFirstName = @"Erna";
+    stolperstein.personLastName = @"Müller";
+    STAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Erna Müller", @"Wrong name");
+    
+    stolperstein.personFirstName = @"Erna Therese";
+    stolperstein.personLastName = @"Müller";
+    STAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Erna Therese Müller", @"Wrong name");
+    
+    stolperstein.personFirstName = @"Erna";
+    stolperstein.personLastName = @"von Müller";
+    STAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Erna von Müller", @"Wrong name");
+    
+    stolperstein.personFirstName = nil;
+    stolperstein.personLastName = @"Müller";
+    STAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Müller", @"Wrong name");
+    
+    stolperstein.personFirstName = @"";
+    stolperstein.personLastName = @"Müller";
+    STAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Müller", @"Wrong name");
+
+    stolperstein.personFirstName = @"Erna";
+    stolperstein.personLastName = nil;
+    STAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Erna", @"Wrong name");
+    
+    stolperstein.personFirstName = @"Erna";
+    stolperstein.personLastName = @"";
+    STAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Erna", @"Wrong name");
+}
+
+- (void)testNewShortName
+{
+    Stolperstein *stolperstein = [[Stolperstein alloc] init];
+    
+    stolperstein.personFirstName = @"Erna";
+    stolperstein.personLastName = @"Müller";
+    STAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E. Müller", @"Wrong name");
+    
+    stolperstein.personFirstName = @"Erna Therese";
+    stolperstein.personLastName = @"Müller";
+    STAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E. Müller", @"Wrong name");
+    
+    stolperstein.personFirstName = @"Erna";
+    stolperstein.personLastName = @"von Müller";
+    STAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E. von Müller", @"Wrong name");
+
+    stolperstein.personFirstName = nil;
+    stolperstein.personLastName = @"Müller";
+    STAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"Müller", @"Wrong name");
+
+    stolperstein.personFirstName = @"";
+    stolperstein.personLastName = @"Müller";
+    STAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"Müller", @"Wrong name");
+
+    stolperstein.personFirstName = @"Erna";
+    stolperstein.personLastName = nil;
+    STAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E.", @"Wrong name");
+
+    stolperstein.personFirstName = @"Erna";
+    stolperstein.personLastName = @"";
+    STAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E.", @"Wrong name");
+
+    stolperstein.personFirstName = @"E.";
+    stolperstein.personLastName = @"Müller";
+    STAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E. Müller", @"Wrong name");
+
+    stolperstein.personFirstName = @"E";
+    stolperstein.personLastName = @"Müller";
+    STAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E. Müller", @"Wrong name");
+}
+
 - (void)testNewStreetName
 {
     Stolperstein *stolperstein = [[Stolperstein alloc] init];

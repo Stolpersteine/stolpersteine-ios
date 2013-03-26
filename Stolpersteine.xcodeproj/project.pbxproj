@@ -124,6 +124,10 @@
 		62F147C4170202A1003E7DAA /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F147BD170202A1003E7DAA /* SearchBar.m */; };
 		62F147C5170202A1003E7DAA /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F147C0170202A1003E7DAA /* SearchDisplayController.m */; };
 		62F147C6170202A1003E7DAA /* SearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F147C3170202A1003E7DAA /* SearchTextField.m */; };
+		62F147CB17020B19003E7DAA /* navigation-bar-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F147C717020B18003E7DAA /* navigation-bar-landscape.png */; };
+		62F147CC17020B19003E7DAA /* navigation-bar-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F147C817020B19003E7DAA /* navigation-bar-landscape@2x.png */; };
+		62F147CD17020B19003E7DAA /* navigation-bar-portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F147C917020B19003E7DAA /* navigation-bar-portrait.png */; };
+		62F147CE17020B19003E7DAA /* navigation-bar-portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F147CA17020B19003E7DAA /* navigation-bar-portrait@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -251,6 +255,10 @@
 		62F147C1170202A1003E7DAA /* SearchDisplayDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayDelegate.h; sourceTree = "<group>"; };
 		62F147C2170202A1003E7DAA /* SearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTextField.h; sourceTree = "<group>"; };
 		62F147C3170202A1003E7DAA /* SearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTextField.m; sourceTree = "<group>"; };
+		62F147C717020B18003E7DAA /* navigation-bar-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation-bar-landscape.png"; sourceTree = "<group>"; };
+		62F147C817020B19003E7DAA /* navigation-bar-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation-bar-landscape@2x.png"; sourceTree = "<group>"; };
+		62F147C917020B19003E7DAA /* navigation-bar-portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation-bar-portrait.png"; sourceTree = "<group>"; };
+		62F147CA17020B19003E7DAA /* navigation-bar-portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation-bar-portrait@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -440,6 +448,10 @@
 				4865313516E1253100E4A483 /* text-field-frame@2x.png */,
 				6243177216BFDF2400055933 /* image-frame.png */,
 				6243177316BFDF2400055933 /* image-frame@2x.png */,
+				62F147C717020B18003E7DAA /* navigation-bar-landscape.png */,
+				62F147C817020B19003E7DAA /* navigation-bar-landscape@2x.png */,
+				62F147C917020B19003E7DAA /* navigation-bar-portrait.png */,
+				62F147CA17020B19003E7DAA /* navigation-bar-portrait@2x.png */,
 				6243177416BFDF2400055933 /* search-text-field-clear-button-landscape.png */,
 				6243177516BFDF2400055933 /* search-text-field-clear-button-landscape@2x.png */,
 				6243177616BFDF2400055933 /* search-text-field-clear-button-portrait.png */,
@@ -754,6 +766,10 @@
 				4879B6C216E281D5006593D8 /* Icon.png in Resources */,
 				4879B6C316E281D5006593D8 /* Icon@2x.png in Resources */,
 				48BAF38416E926DE007250A0 /* Settings.bundle in Resources */,
+				62F147CB17020B19003E7DAA /* navigation-bar-landscape.png in Resources */,
+				62F147CC17020B19003E7DAA /* navigation-bar-landscape@2x.png in Resources */,
+				62F147CD17020B19003E7DAA /* navigation-bar-portrait.png in Resources */,
+				62F147CE17020B19003E7DAA /* navigation-bar-portrait@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

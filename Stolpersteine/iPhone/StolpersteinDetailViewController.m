@@ -102,7 +102,6 @@
         [button setImage:chevron forState:UIControlStateNormal];
         [button sizeToFit];
         button.titleEdgeInsets = UIEdgeInsetsMake(0, -chevron.size.width, 0, 0);
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, button.titleLabel.frame.size.width + button.frame.size.width - 10, 0, 0);
     }
     
     return button;
@@ -185,6 +184,7 @@
     if (!self.isAllInThisStreetButtonHidden) {
         self.streetButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
         height += self.streetButton.frame.size.height + PADDING * 0.5;
+        self.streetButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -self.streetButton.titleLabel.frame.size.width - self.streetButton.frame.size.width + 30);
     }
     
     // Biography button

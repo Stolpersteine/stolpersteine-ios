@@ -23,6 +23,7 @@
 #import "Localization.h"
 
 #define fequal(a,b) (fabs((a) - (b)) < FLT_EPSILON)
+static const MKCoordinateRegion BERLIN_REGION = { 52.5233, 13.4127, 0.4493, 0.7366 };
 
 @interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SearchDisplayDelegate>
 
@@ -69,9 +70,8 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
-    // Set map location to Berlin
-    CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.5233, 13.4127);
-    self.regionToSet = MKCoordinateRegionMakeWithDistance(location, 36000, 36000);
+    // Initialize map region
+    self.regionToSet = BERLIN_REGION;
     
     // Clustering
     self.mapClusteringController = [[MapClusteringController alloc] initWithMapView:self.mapView];
@@ -231,21 +231,7 @@
         [self.mapView setRegion:region animated:YES];
     } else {
         self.userLocationMode = FALSE;
-        MKMapRect zoomRect = MKMapRectNull;
-        for (id<MKAnnotation> annotation in self.mapView.annotations) {
-            if (annotation != self.mapView.userLocation) {
-                MKMapPoint annotationPoint = MKMapPointForCoordinate(annotation.coordinate);
-                MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.1, 0.1);
-                if (MKMapRectIsNull(zoomRect)) {
-                    zoomRect = pointRect;
-                } else {
-                    zoomRect = MKMapRectUnion(zoomRect, pointRect);
-                }
-            }
-        }
-        
-        UIEdgeInsets edgePadding = UIEdgeInsetsMake(100, 100, 100, 100);
-        [self.mapView setVisibleMapRect:zoomRect edgePadding:edgePadding animated:YES];
+        [self.mapView setRegion:BERLIN_REGION animated:YES];
     }
 }
 

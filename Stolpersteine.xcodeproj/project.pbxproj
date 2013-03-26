@@ -29,9 +29,6 @@
 		484C8EE5169B609F001CEA59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484C8EE4169B609F001CEA59 /* CoreLocation.framework */; };
 		48633B9716C03F690057A317 /* CopyableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B8816C03F690057A317 /* CopyableImageView.m */; };
 		48633B9816C03F690057A317 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B8A16C03F690057A317 /* MapViewController.m */; };
-		48633B9916C03F690057A317 /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B8C16C03F690057A317 /* SearchBar.m */; };
-		48633B9A16C03F690057A317 /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B8F16C03F690057A317 /* SearchDisplayController.m */; };
-		48633B9B16C03F690057A317 /* SearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9216C03F690057A317 /* SearchTextField.m */; };
 		48633B9C16C03F690057A317 /* StolpersteinDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */; };
 		48633B9D16C03F690057A317 /* StolpersteinListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9616C03F690057A317 /* StolpersteinListViewController.m */; };
 		48633BA016C03FCE0057A317 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9F16C03FCE0057A317 /* AppDelegate.m */; };
@@ -124,6 +121,9 @@
 		627E4405169B273D0065C1F1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E4404169B273D0065C1F1 /* MobileCoreServices.framework */; };
 		627E4432169C420A0065C1F1 /* StolpersteinNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4431169C420A0065C1F1 /* StolpersteinNetworkService.m */; };
 		627E4438169C43970065C1F1 /* Stolperstein.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4437169C43970065C1F1 /* Stolperstein.m */; };
+		62F147C4170202A1003E7DAA /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F147BD170202A1003E7DAA /* SearchBar.m */; };
+		62F147C5170202A1003E7DAA /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F147C0170202A1003E7DAA /* SearchDisplayController.m */; };
+		62F147C6170202A1003E7DAA /* SearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F147C3170202A1003E7DAA /* SearchTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,14 +148,6 @@
 		48633B8816C03F690057A317 /* CopyableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyableImageView.m; sourceTree = "<group>"; };
 		48633B8916C03F690057A317 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		48633B8A16C03F690057A317 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		48633B8B16C03F690057A317 /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
-		48633B8C16C03F690057A317 /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
-		48633B8D16C03F690057A317 /* SearchBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarDelegate.h; sourceTree = "<group>"; };
-		48633B8E16C03F690057A317 /* SearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayController.h; sourceTree = "<group>"; };
-		48633B8F16C03F690057A317 /* SearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDisplayController.m; sourceTree = "<group>"; };
-		48633B9016C03F690057A317 /* SearchDisplayDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayDelegate.h; sourceTree = "<group>"; };
-		48633B9116C03F690057A317 /* SearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTextField.h; sourceTree = "<group>"; };
-		48633B9216C03F690057A317 /* SearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTextField.m; sourceTree = "<group>"; };
 		48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinDetailViewController.h; sourceTree = "<group>"; };
 		48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinDetailViewController.m; sourceTree = "<group>"; };
 		48633B9516C03F690057A317 /* StolpersteinListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinListViewController.h; sourceTree = "<group>"; };
@@ -251,6 +243,14 @@
 		627E4431169C420A0065C1F1 /* StolpersteinNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinNetworkService.m; sourceTree = "<group>"; };
 		627E4436169C43970065C1F1 /* Stolperstein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stolperstein.h; sourceTree = "<group>"; };
 		627E4437169C43970065C1F1 /* Stolperstein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stolperstein.m; sourceTree = "<group>"; };
+		62F147BC170202A1003E7DAA /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
+		62F147BD170202A1003E7DAA /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
+		62F147BE170202A1003E7DAA /* SearchBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarDelegate.h; sourceTree = "<group>"; };
+		62F147BF170202A1003E7DAA /* SearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayController.h; sourceTree = "<group>"; };
+		62F147C0170202A1003E7DAA /* SearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDisplayController.m; sourceTree = "<group>"; };
+		62F147C1170202A1003E7DAA /* SearchDisplayDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayDelegate.h; sourceTree = "<group>"; };
+		62F147C2170202A1003E7DAA /* SearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTextField.h; sourceTree = "<group>"; };
+		62F147C3170202A1003E7DAA /* SearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,14 +356,6 @@
 			children = (
 				48633B8916C03F690057A317 /* MapViewController.h */,
 				48633B8A16C03F690057A317 /* MapViewController.m */,
-				48633B8B16C03F690057A317 /* SearchBar.h */,
-				48633B8C16C03F690057A317 /* SearchBar.m */,
-				48633B8D16C03F690057A317 /* SearchBarDelegate.h */,
-				48633B9116C03F690057A317 /* SearchTextField.h */,
-				48633B9216C03F690057A317 /* SearchTextField.m */,
-				48633B8E16C03F690057A317 /* SearchDisplayController.h */,
-				48633B8F16C03F690057A317 /* SearchDisplayController.m */,
-				48633B9016C03F690057A317 /* SearchDisplayDelegate.h */,
 				48633B8716C03F690057A317 /* CopyableImageView.h */,
 				48633B8816C03F690057A317 /* CopyableImageView.m */,
 				48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */,
@@ -583,6 +575,7 @@
 				48A08C8F16DBF5A5000A2470 /* Localization.m */,
 				48BAF38616E9405C007250A0 /* DiagnosticsService.h */,
 				48BAF38716E9405C007250A0 /* DiagnosticsService.m */,
+				62F147BB170202A1003E7DAA /* Search Bar */,
 				4808CF3616FCFE4C00E89E97 /* Clustering */,
 				627E442F169C41EC0065C1F1 /* Stolpersteine API */,
 				627A0B7916BBFF5300CFA71E /* AFNetworking 1.1.0 */,
@@ -604,6 +597,21 @@
 				48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */,
 			);
 			path = "Stolpersteine API";
+			sourceTree = "<group>";
+		};
+		62F147BB170202A1003E7DAA /* Search Bar */ = {
+			isa = PBXGroup;
+			children = (
+				62F147BC170202A1003E7DAA /* SearchBar.h */,
+				62F147BD170202A1003E7DAA /* SearchBar.m */,
+				62F147BE170202A1003E7DAA /* SearchBarDelegate.h */,
+				62F147BF170202A1003E7DAA /* SearchDisplayController.h */,
+				62F147C0170202A1003E7DAA /* SearchDisplayController.m */,
+				62F147C1170202A1003E7DAA /* SearchDisplayDelegate.h */,
+				62F147C2170202A1003E7DAA /* SearchTextField.h */,
+				62F147C3170202A1003E7DAA /* SearchTextField.m */,
+			);
+			path = "Search Bar";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -860,9 +868,6 @@
 				48AC6D7016BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */,
 				48633B9716C03F690057A317 /* CopyableImageView.m in Sources */,
 				48633B9816C03F690057A317 /* MapViewController.m in Sources */,
-				48633B9916C03F690057A317 /* SearchBar.m in Sources */,
-				48633B9A16C03F690057A317 /* SearchDisplayController.m in Sources */,
-				48633B9B16C03F690057A317 /* SearchTextField.m in Sources */,
 				48633B9C16C03F690057A317 /* StolpersteinDetailViewController.m in Sources */,
 				48633B9D16C03F690057A317 /* StolpersteinListViewController.m in Sources */,
 				48633BA016C03FCE0057A317 /* AppDelegate.m in Sources */,
@@ -871,6 +876,9 @@
 				4808CF3D16FCFE4C00E89E97 /* MapClusteringAnnotation.m in Sources */,
 				4808CF3E16FCFE4C00E89E97 /* MapClusteringController.m in Sources */,
 				4808CF3F16FCFE4C00E89E97 /* MapClusteringControllerUtils.m in Sources */,
+				62F147C4170202A1003E7DAA /* SearchBar.m in Sources */,
+				62F147C5170202A1003E7DAA /* SearchDisplayController.m in Sources */,
+				62F147C6170202A1003E7DAA /* SearchTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

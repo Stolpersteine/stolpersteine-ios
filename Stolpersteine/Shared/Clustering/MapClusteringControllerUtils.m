@@ -28,8 +28,6 @@ id<MKAnnotation> MapClusteringControllerFindClosestAnnotation(NSSet *annotations
 
 MKMapRect MapClusteringControllerAlignToCellSize(MKMapRect mapRect, double cellSize)
 {
-    NSCAssert(mapRect.origin.x >= 0, @"Invalid origin");
-    NSCAssert(mapRect.origin.y >= 0, @"Invalid origin");
     NSCAssert(cellSize != 0, @"Invalid cell size");
     
     double startX = floor(MKMapRectGetMinX(mapRect) / cellSize) * cellSize;

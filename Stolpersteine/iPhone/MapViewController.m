@@ -123,26 +123,6 @@ static const MKCoordinateRegion BERLIN_REGION = { 52.5233, 13.4127, 0.4493, 0.73
             NSRange nextRange = NSMakeRange(NSMaxRange(range), range.length);
             [self retrieveStolpersteineWithRange:nextRange];
         }
-
-        if (stolpersteine.count > 0) {
-//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"class == %@", Stolperstein.class];
-//            NSArray *annotations = [self.mapView.annotations filteredArrayUsingPredicate:predicate];
-//            
-//            // Annotations to be removed
-//            NSArray *stolpersteineIds = [stolpersteine valueForKey:@"id"];
-//            predicate = [NSPredicate predicateWithFormat:@"NOT (id IN %@)", stolpersteineIds];
-//            NSArray *annotationsToRemove = [annotations filteredArrayUsingPredicate:predicate];
-//            [self.mapView removeAnnotations:annotationsToRemove];
-//            
-//            // New annotations
-//            NSArray *annotationIds = [annotations valueForKey:@"id"];
-//            predicate = [NSPredicate predicateWithFormat:@"NOT (id IN %@)", annotationIds];
-//            NSArray *annotationsToAdd = [stolpersteine filteredArrayUsingPredicate:predicate];
-//            [self.mapView addAnnotations:annotationsToAdd];
-//            
-//            NSLog(@"%d added, %d removed", annotationsToAdd.count, annotationsToRemove.count);
-//            [self.mapView addAnnotations:stolpersteine];
-        }
     }];
 }
 

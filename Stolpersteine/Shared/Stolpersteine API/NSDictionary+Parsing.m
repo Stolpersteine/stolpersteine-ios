@@ -10,7 +10,7 @@
 
 #import "Stolperstein.h"
 
-NSDateFormatter *dateFormatterJSON()
+static NSDateFormatter *dateFormatterJSON()
 {
     static NSDateFormatter *dateFormatter = nil;
     static dispatch_once_t onceToken = 0;

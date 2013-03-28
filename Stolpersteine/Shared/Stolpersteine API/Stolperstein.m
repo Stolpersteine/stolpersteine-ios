@@ -10,16 +10,6 @@
 
 @implementation Stolperstein
 
-- (NSString *)title
-{
-    return nil;
-}
-
-- (NSString *)subtitle
-{
-    return nil;
-}
-
 - (CLLocationCoordinate2D)coordinate
 {
     return self.locationCoordinate;

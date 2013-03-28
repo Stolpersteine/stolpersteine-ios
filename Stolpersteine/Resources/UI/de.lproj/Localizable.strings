@@ -6,9 +6,6 @@
   Copyright (c) 2013 Option-U Software. All rights reserved.
 */
 
-"%d individual" = "%d Mensch";
-"%d individuals" = "%d Menschen";
-
 "MapViewController.title" = "Karte";
 "MapViewController.home" = "Zentrieren";
 "MapViewController.cancel" = "Abbrechen";
@@ -18,5 +15,3 @@
 "StolpersteinDetailViewController.biography" = "Biographie anzeigen";
 "StolpersteinDetailViewController.street" = "Alle in dieser Straße";
 "StolpersteinDetailViewController.maps" = "In der Karten App anzeigen";
-
-"StolpersteinAnnotation.title" = "%u Stolpersteine";

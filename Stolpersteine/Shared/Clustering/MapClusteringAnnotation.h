@@ -11,8 +11,8 @@
 
 @interface MapClusteringAnnotation : NSObject<MKAnnotation>
 
-@property (nonatomic, readonly, copy) NSString *title;
-@property (nonatomic, readonly, copy) NSString *subtitle;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *subtitle;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 
 @property (nonatomic, strong) NSArray *annotations;

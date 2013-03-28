@@ -9,7 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
+@protocol MapClusteringControllerDelegate;
+
 @interface MapClusteringController : NSObject
+
+@property (nonatomic, weak) id<MapClusteringControllerDelegate> delegate;
 
 - (id)initWithMapView:(MKMapView *)mapView;
 - (void)addAnnotations:(NSArray *)annotations;

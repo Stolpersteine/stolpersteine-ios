@@ -10,6 +10,7 @@
 
 #import "MapClusteringControllerUtils.h"
 #import "MapClusteringAnnotation.h"
+#import "MapClusteringControllerDelegate.h"
 
 @interface MapClusteringController()
 
@@ -90,6 +91,13 @@ static double CELL_SIZE = 40.0; // [points]
                 
                 MapClusteringAnnotation *annotationForCell = MapClusteringControllerFindAnnotation(cellMapRect, allAnnotationsInCell, visibleAnnotationsInCell);
                 annotationForCell.annotations = allAnnotationsInCell.allObjects;
+                if ([self.delegate respondsToSelector:@selector(mapClusteringController:titleForClusterAnnotation:)]) {
+                    annotationForCell.title = [self.delegate mapClusteringController:self titleForClusterAnnotation:annotationForCell];
+                }
+                if ([self.delegate respondsToSelector:@selector(mapClusteringController:subtitleForClusterAnnotation:)]) {
+                    annotationForCell.subtitle = [self.delegate mapClusteringController:self subtitleForClusterAnnotation:annotationForCell];
+                }
+                
                 [visibleAnnotationsInCell removeObject:annotationForCell];
                 [self.mapView removeAnnotations:visibleAnnotationsInCell.allObjects];
                 [self.mapView addAnnotation:annotationForCell];

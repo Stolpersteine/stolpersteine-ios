@@ -147,6 +147,7 @@
 		480FFF9316A0C6160012CCD5 /* Stolpersteine Integration Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stolpersteine Integration Tests-Prefix.pch"; sourceTree = "<group>"; };
 		480FFF9916A0C6890012CCD5 /* StolpersteineNetworkServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteineNetworkServiceTests.h; sourceTree = "<group>"; };
 		480FFF9A16A0C6890012CCD5 /* StolpersteineNetworkServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteineNetworkServiceTests.m; sourceTree = "<group>"; };
+		481CBC861704CD2700695499 /* MapClusteringControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusteringControllerDelegate.h; sourceTree = "<group>"; };
 		484C8EE4169B609F001CEA59 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		48633B8716C03F690057A317 /* CopyableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyableImageView.h; sourceTree = "<group>"; };
 		48633B8816C03F690057A317 /* CopyableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyableImageView.m; sourceTree = "<group>"; };
@@ -316,6 +317,7 @@
 				4808CF3816FCFE4C00E89E97 /* MapClusteringAnnotation.m */,
 				4808CF3916FCFE4C00E89E97 /* MapClusteringController.h */,
 				4808CF3A16FCFE4C00E89E97 /* MapClusteringController.m */,
+				481CBC861704CD2700695499 /* MapClusteringControllerDelegate.h */,
 				4808CF3B16FCFE4C00E89E97 /* MapClusteringControllerUtils.h */,
 				4808CF3C16FCFE4C00E89E97 /* MapClusteringControllerUtils.m */,
 			);

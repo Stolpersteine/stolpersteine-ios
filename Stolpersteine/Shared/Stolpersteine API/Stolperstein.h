@@ -25,8 +25,8 @@
 @property (nonatomic, strong) NSString *locationCity;
 @property (nonatomic, assign) CLLocationCoordinate2D locationCoordinate;
 
-@property (nonatomic, readonly, copy) NSString *title;
-@property (nonatomic, readonly, copy) NSString *subtitle;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *subtitle;
 @property (nonatomic, readonly, assign) CLLocationCoordinate2D coordinate;
 
 @end

@@ -8,7 +8,29 @@
 
 #import "MapClusteringAnnotation.h"
 
+#import "MapClusteringControllerDelegate.h"
+
 @implementation MapClusteringAnnotation
+
+- (NSString *)title
+{
+    NSString *title;
+    if ([self.delegate respondsToSelector:@selector(mapClusteringController:titleForClusterAnnotation:)]) {
+        title = [self.delegate mapClusteringController:nil titleForClusterAnnotation:self];
+    }
+    
+    return title;
+}
+
+- (NSString *)subtitle
+{
+    NSString *subtitle;
+    if ([self.delegate respondsToSelector:@selector(mapClusteringController:subtitleForClusterAnnotation:)]) {
+        subtitle = [self.delegate mapClusteringController:nil subtitleForClusterAnnotation:self];
+    }
+
+    return subtitle;
+}
 
 - (BOOL)isCluster
 {

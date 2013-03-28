@@ -39,7 +39,6 @@ static NSDateFormatter *dateFormatterJSON()
 {
     Stolperstein *stolperstein = [[Stolperstein alloc] init];
     stolperstein.id = [self valueForKeyPath:@"id"];
-    stolperstein.imageURLString = [self valueForKeyPath:@"imageUrl"];
     stolperstein.text = [self valueForKeyPath:@"description"];
     stolperstein.personFirstName = [self valueForKeyPath:@"person.firstName"];
     stolperstein.personLastName = [self valueForKeyPath:@"person.lastName"];

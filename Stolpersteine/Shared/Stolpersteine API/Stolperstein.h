@@ -12,7 +12,6 @@
 @interface Stolperstein : NSObject<MKAnnotation>
 
 @property (nonatomic, strong) NSString *id;
-@property (nonatomic, strong) NSString *imageURLString;
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) NSString *personFirstName;
 @property (nonatomic, strong) NSString *personLastName;

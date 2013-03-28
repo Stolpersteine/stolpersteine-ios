@@ -111,10 +111,6 @@
 {
     [super viewWillAppear:animated];
     
-    if (self.stolperstein.imageURLString && !self.imageView.image) {
-        [self loadImageWithURLString:self.stolperstein.imageURLString];
-    }
-    
     [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
 }
 
@@ -160,17 +156,6 @@
     self.nameLabel.frame = nameFrame;
     height += nameFrame.size.height + PADDING * 0.5;
 
-    // Image
-    self.imageView.hidden = !self.stolperstein.imageURLString;
-    if (self.stolperstein.imageURLString) {
-        self.imageView.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, screenWidth - 2 * PADDING);
-        CGRect imageActivityIndicatorFrame = self.imageActivityIndicator.frame;
-        imageActivityIndicatorFrame.origin.x = (self.imageView.frame.size.width - self.imageActivityIndicator.frame.size.width) * 0.5;
-        imageActivityIndicatorFrame.origin.y = (self.imageView.frame.size.height - self.imageActivityIndicator.frame.size.height) * 0.5;
-        self.imageActivityIndicator.frame = imageActivityIndicatorFrame;
-        height += self.imageView.frame.size.height + PADDING * 0.5;
-    }
-    
     // Address
     CGRect addressFrame;
     addressFrame.origin.x = PADDING;

@@ -89,11 +89,6 @@ static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/a
             STAssertTrue([stolperstein.sourceName isKindOfClass:NSString.class], @"Wrong type for source name");
             
             // Optional fields
-            if (stolperstein.imageURLString) {
-                STAssertTrue([stolperstein.imageURLString isKindOfClass:NSString.class], @"Wrong type for image URL string");
-                STAssertTrue([stolperstein.imageURLString hasPrefix:@"http"], @"Wrong content image URL string");
-            }
-            
             if (stolperstein.text) {
                 STAssertTrue([stolperstein.text isKindOfClass:NSString.class], @"Wrong type for text");
             }

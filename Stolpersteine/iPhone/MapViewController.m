@@ -133,7 +133,7 @@ static const double ZOOM_DISTANCE = 1200;
         if (self.stolpersteinToSelect) {
             MapClusteringAnnotation *annotationToSelect;
             for (MapClusteringAnnotation *annotation in self.mapView.annotations) {
-                for (Stolperstein *stolperstein in annotation.stolpersteine) {
+                for (Stolperstein *stolperstein in annotation.annotations) {
                     if ([stolperstein.id isEqualToString:self.stolpersteinToSelect.id]) {
                         annotationToSelect = annotation;
                         break;
@@ -271,7 +271,7 @@ static const double ZOOM_DISTANCE = 1200;
     Stolperstein *selectedStolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];
     MapClusteringAnnotation *annotationToSelect;
     for (MapClusteringAnnotation *annotation in self.mapView.annotations) {
-        for (Stolperstein *stolperstein in annotation.stolpersteine) {
+        for (Stolperstein *stolperstein in annotation.annotations) {
             if ([stolperstein.id isEqualToString:selectedStolperstein.id]) {
                 annotationToSelect = annotation;
                 break;
@@ -315,10 +315,10 @@ static const double ZOOM_DISTANCE = 1200;
     MapClusteringAnnotation *stolpersteinAnnotation = (MapClusteringAnnotation *)selectedAnnotation;
     if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
-        detailViewController.stolperstein = [stolpersteinAnnotation.stolpersteine objectAtIndex:0];
+        detailViewController.stolperstein = stolpersteinAnnotation.annotations[0];
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
-        listViewController.stolpersteine = stolpersteinAnnotation.stolpersteine;
+        listViewController.stolpersteine = stolpersteinAnnotation.annotations;
         listViewController.title = stolpersteinAnnotation.subtitle;
     }
 }

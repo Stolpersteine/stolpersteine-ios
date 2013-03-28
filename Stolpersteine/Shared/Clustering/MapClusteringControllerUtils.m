@@ -42,7 +42,7 @@ MapClusteringAnnotation *MapClusteringControllerFindAnnotation(MKMapRect cellMap
     // See if there's already a visible annotation in this cell
     for (id<MKAnnotation> annotation in annotations) {
         for (MapClusteringAnnotation *visibleAnnotation in visibleAnnotations) {
-            if ([visibleAnnotation.stolpersteine containsObject:annotation]) {
+            if ([visibleAnnotation.annotations containsObject:annotation]) {
                 return visibleAnnotation;
             }
         }

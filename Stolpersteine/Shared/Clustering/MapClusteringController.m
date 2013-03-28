@@ -89,7 +89,7 @@ static double CELL_SIZE = 40.0; // [points]
                 NSMutableSet *visibleAnnotationsInCell = [self.mapView annotationsInMapRect:cellMapRect].mutableCopy;
                 
                 MapClusteringAnnotation *annotationForCell = MapClusteringControllerFindAnnotation(cellMapRect, allAnnotationsInCell, visibleAnnotationsInCell);
-                annotationForCell.stolpersteine = allAnnotationsInCell.allObjects;
+                annotationForCell.annotations = allAnnotationsInCell.allObjects;
                 [visibleAnnotationsInCell removeObject:annotationForCell];
                 [self.mapView removeAnnotations:visibleAnnotationsInCell.allObjects];
                 [self.mapView addAnnotation:annotationForCell];

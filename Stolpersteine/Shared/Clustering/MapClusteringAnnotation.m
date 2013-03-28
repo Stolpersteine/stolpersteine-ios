@@ -17,14 +17,14 @@
 {
     NSString *title;
     if (self.isCluster) {
-        NSUInteger numStolpersteine = MIN(self.stolpersteine.count, 5);
+        NSUInteger numStolpersteine = MIN(self.annotations.count, 5);
         NSMutableArray *names = [NSMutableArray arrayWithCapacity:numStolpersteine];
-        for (Stolperstein *stolperstein in self.stolpersteine) {
+        for (Stolperstein *stolperstein in self.annotations) {
             [names addObject:[Localization newShortNameFromStolperstein:stolperstein]];
         }
         title = [names componentsJoinedByString:@", "];
     } else {
-        Stolperstein *stolperstein = self.stolpersteine[0];
+        Stolperstein *stolperstein = self.annotations[0];
         title = [Localization newNameFromStolperstein:stolperstein];
     }
     
@@ -36,9 +36,9 @@
     NSString *subtitle;
     if (self.isCluster) {
         NSString *titleFormat = NSLocalizedString(@"StolpersteinAnnotation.title", nil);
-        subtitle = [NSString stringWithFormat:titleFormat, self.stolpersteine.count];
+        subtitle = [NSString stringWithFormat:titleFormat, self.annotations.count];
     } else {
-        Stolperstein *stolperstein = self.stolpersteine[0];
+        Stolperstein *stolperstein = self.annotations[0];
         subtitle = [Localization newShortAddressFromStolperstein:stolperstein];
     }
     
@@ -47,7 +47,7 @@
 
 - (BOOL)isCluster
 {
-    return (self.stolpersteine.count > 1);
+    return (self.annotations.count > 1);
 }
 
 @end

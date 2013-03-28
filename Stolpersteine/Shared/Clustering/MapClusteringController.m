@@ -91,6 +91,7 @@ static double CELL_SIZE = 40.0; // [points]
                 
                 MapClusteringAnnotation *annotationForCell = MapClusteringControllerFindAnnotation(cellMapRect, allAnnotationsInCell, visibleAnnotationsInCell);
                 annotationForCell.annotations = allAnnotationsInCell.allObjects;
+                annotationForCell.delegate = self.delegate;
                 
                 [visibleAnnotationsInCell removeObject:annotationForCell];
                 [self.mapView removeAnnotations:visibleAnnotationsInCell.allObjects];

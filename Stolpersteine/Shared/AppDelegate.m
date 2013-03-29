@@ -25,7 +25,9 @@ static NSString * const GOOGLE_ANALYTICS_ID = @"UA-38166041-1";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Works around bug on iPad when app is started in landscape mode
+    UIInterfaceOrientation orientation = application.statusBarOrientation;
     application.statusBarOrientation = UIInterfaceOrientationPortrait;
+    application.statusBarOrientation = orientation;
     
     NSURL *url = [NSURL URLWithString:API_URL];
     self.networkService = [[StolpersteinNetworkService alloc] initWithURL:url clientUser:nil clientPassword:nil];

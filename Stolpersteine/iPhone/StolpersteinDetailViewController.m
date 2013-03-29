@@ -18,14 +18,12 @@
 #import "StolpersteinSearchData.h"
 #import "StolpersteinListViewController.h"
 #import "UIImageView+AFNetworking.h"
-#import "CopyableImageView.h"
 #import "Localization.h"
 
 #define PADDING 20
 
 @interface StolpersteinDetailViewController()
 
-@property (strong, nonatomic) CopyableImageView *imageView;
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
 @property (strong, nonatomic) UILabel *nameLabel;
 @property (strong, nonatomic) UILabel *addressLabel;
@@ -50,22 +48,6 @@
     self.nameLabel.font = [UIFont boldSystemFontOfSize:UIFont.labelFontSize + 3];
     self.nameLabel.numberOfLines = INT_MAX;
     [self.scrollView addSubview:self.nameLabel];
-    
-    // Image
-    self.imageView = [[CopyableImageView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.imageView.clipsToBounds = YES;
-    [self.scrollView addSubview:self.imageView];
-
-    UIEdgeInsets frameEdgeInsets = UIEdgeInsetsMake(1, 1, 1, 1);
-    UIImage *frameImage = [[UIImage imageNamed:@"image-frame.png"] resizableImageWithCapInsets:frameEdgeInsets];
-    UIImageView *frameImageView = [[UIImageView alloc] initWithImage:frameImage];
-    frameImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.imageView addSubview:frameImageView];
-    
-    self.imageActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.imageActivityIndicator.hidesWhenStopped = TRUE;
-    [self.imageView addSubview:self.imageActivityIndicator];
     
     // Address
     self.addressLabel = [[UILabel alloc] init];
@@ -119,28 +101,6 @@
     [super viewDidAppear:animated];
     
     [AppDelegate.diagnosticsService trackViewController:self];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    [self.imageView cancelImageRequestOperation];
-}
-
-- (void)loadImageWithURLString:(NSString *)URLString
-{
-    NSURL *URL = [NSURL URLWithString:URLString];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:URL];
-    [self.imageActivityIndicator startAnimating];
-    
-    __weak StolpersteinDetailViewController *weakSelf = self;
-    [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-        weakSelf.imageView.image = image;
-        [weakSelf.imageActivityIndicator stopAnimating];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        [weakSelf.imageActivityIndicator stopAnimating];
-    }];
 }
 
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -197,9 +157,6 @@
 {
     NSString *textItem = [Localization newDescriptionFromStolperstein:self.stolperstein];
     NSMutableArray *itemsToShare = [NSMutableArray arrayWithObject:textItem];
-    if (self.imageView.image) {
-        [itemsToShare addObject:self.imageView.image];
-    }
     if (self.stolperstein.personBiographyURLString) {
         [itemsToShare addObject:[NSURL URLWithString:self.stolperstein.personBiographyURLString]];
     }

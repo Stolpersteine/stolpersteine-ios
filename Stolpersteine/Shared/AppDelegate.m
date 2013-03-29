@@ -24,10 +24,13 @@ static NSString * const GOOGLE_ANALYTICS_ID = @"UA-38166041-1";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Works around bug on iPad when app is started in landscape mode
+    application.statusBarOrientation = UIInterfaceOrientationPortrait;
+    
     NSURL *url = [NSURL URLWithString:API_URL];
     self.networkService = [[StolpersteinNetworkService alloc] initWithURL:url clientUser:nil clientPassword:nil];
 #ifdef DEBUG
-    // This allows invalid certificates so that proxies can decrypt the traffic.
+    // This allows invalid certificates so that proxies can decrypt the network traffic
     [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:url.host];
 #endif
     

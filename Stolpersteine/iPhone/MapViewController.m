@@ -117,8 +117,6 @@ static const double ZOOM_DISTANCE = 1200;
 {
     [self.retrieveStolpersteineOperation cancel];
     self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil range:range completionHandler:^(NSArray *stolpersteine, NSError *error) {
-        NSLog(@"retrieveStolpersteineWithSearchData %d (%@)", stolpersteine.count, error);
-        
         [self.mapClusteringController addAnnotations:stolpersteine];
         
         // Next batch of data

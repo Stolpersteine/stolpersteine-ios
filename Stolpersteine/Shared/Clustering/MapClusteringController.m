@@ -60,7 +60,7 @@ static double CELL_SIZE = 40.0; // [points]
 
 - (void)updateAnnotationsAnimated:(BOOL)animated completion:(void (^)())completion
 {
-    NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
+//    NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
     
 //    [self.mapView removeOverlays:self.mapView.overlays];
 //    MKMapPoint points[4];
@@ -117,28 +117,8 @@ static double CELL_SIZE = 40.0; // [points]
         cellMapRect.origin.y += MKMapRectGetWidth(cellMapRect);
     }
     
-    NSMutableSet *uniqueAnnotations = [[NSMutableSet alloc] initWithCapacity:self.mapView.annotations.count];
-    NSUInteger numAnnotations = 0;
-//    for (id<MKAnnotation> annotation in self.mapView.annotations) {
-//        if ([annotation isKindOfClass:StolpersteinAnnotation.class]) {
-//            if ([uniqueAnnotations containsObject:annotation]) {
-//                NSLog(@"");
-//            }
-//            [uniqueAnnotations addObject:annotation];
-//            numAnnotations++;
-//            StolpersteinAnnotation *stolpersteinAnnotation = (StolpersteinAnnotation *)annotation;
-//            for (StolpersteinAnnotation *containedAnnotation in stolpersteinAnnotation.containedAnnotations) {
-//                if ([uniqueAnnotations containsObject:containedAnnotation]) {
-//                    NSLog(@"");
-//                }
-//                [uniqueAnnotations addObject:containedAnnotation];
-//                numAnnotations++;
-//            }
-//        }
-//    }
-
-    NSTimeInterval duration = [NSDate timeIntervalSinceReferenceDate] - start;
-    NSLog(@"duration = %f, mapAnnotations = %u, numAnnotations = %u, unique = %u", duration * 1000, self.mapView.annotations.count, numAnnotations, uniqueAnnotations.count);
+//    NSTimeInterval duration = [NSDate timeIntervalSinceReferenceDate] - start;
+//    NSLog(@"duration = %f, mapAnnotations = %u", duration * 1000, self.mapView.annotations.count);
     
     if (completion) {
         completion();

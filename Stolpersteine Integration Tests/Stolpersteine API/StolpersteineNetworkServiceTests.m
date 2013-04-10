@@ -12,7 +12,7 @@
 #import "StolpersteinSearchData.h"
 #import "StolpersteinNetworkService.h"
 
-static NSString * const BASE_URL = @"https://stolpersteine-optionu.rhcloud.com/api/";
+static NSString * const BASE_URL = @"https://stolpersteine.eu01.aws.af.cm/api/";
 
 #ifdef DEBUG
 @interface NSURLRequest (HTTPS)

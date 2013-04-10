@@ -1,2 +1,3 @@
 language: objective-c
-test: xcodebuild -target "Stolpersteine Unit Tests" -sdk iphonesimulator -configuration Debug TEST_AFTER_BUILD=YES
+script: 
+  - xcodebuild -target "Stolpersteine Unit Tests" -sdk iphonesimulator -configuration Debug TEST_AFTER_BUILD=YES

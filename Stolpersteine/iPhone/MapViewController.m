@@ -152,6 +152,17 @@ static const double ZOOM_DISTANCE = 1200;
     return isRegionUpToDate;
 }
 
+//Annotation tests:
+//
+//- didSelectRowAtIndexPath, !isRegionUpToDate
+//  - annotation, !isRegionUpToDate: start app, Johanna Pawlewicz, Hertha Hirsch
+//  - annotation, isRegionUpToDate
+//- didSelectRowAtIndexPath, !isRegionUpToDate
+//  - annotation, !isRegionUpToDate
+//  - annotation, isRegionUpToDate
+//
+//annotation not found?
+
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     [self.mapClusteringController updateAnnotationsAnimated:TRUE completion:^{
@@ -163,18 +174,20 @@ static const double ZOOM_DISTANCE = 1200;
             [self.mapView setRegion:region animated:NO];
             
             if ([self isRegionUpToDate:region]) {
+                NSLog(@"annotation, isRegionUpToDate");
                 // Select immediately since region won't change
-                [self.mapView selectAnnotation:self.annotationToSelect animated:YES];
+                [self.mapView selectAnnotation:annotation animated:YES];
             } else {
+                NSLog(@"annotation, !isRegionUpToDate");
                 // Actual selection happens in next mapView:regionDidChangeAnimated:
-//                self.annotationToSelect = annotation;
+                self.annotationToSelect = annotation;
             }
         } else if (self.annotationToSelect) {
             NSLog(@"2 %p", self.annotationToSelect);
             for (Stolperstein *stolperstein in self.annotationToSelect.annotations) {
                 NSLog(@"%@", stolperstein.id);
             }
-            [self.mapView selectAnnotation:self.annotationToSelect animated:NO];
+            [self.mapView selectAnnotation:self.annotationToSelect animated:YES];
             self.annotationToSelect = nil;
         }
     }];

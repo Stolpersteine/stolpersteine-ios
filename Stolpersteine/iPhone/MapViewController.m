@@ -128,16 +128,20 @@ static const double ZOOM_DISTANCE = 1200;
     }];
 }
 
-- (id<MKAnnotation>)annotationForStolperstein:(Stolperstein *)stolperstein
+- (id<MKAnnotation>)annotationForStolperstein:(Stolperstein *)stolperstein inMapRect:(MKMapRect)mapRect
 {
-    for (MapClusteringAnnotation *annotation in self.mapView.annotations) {
-        for (Stolperstein *stolpersteinAnnotation in annotation.annotations) {
-            if ([stolpersteinAnnotation.id isEqualToString:stolperstein.id]) {
-                NSLog(@"Found annotation %p %@ %f/%f", annotation, stolperstein.id, annotation.coordinate.latitude, annotation.coordinate.longitude);
-                return annotation;
+    NSSet *annotations = [self.mapView annotationsInMapRect:mapRect];
+    for (MapClusteringAnnotation *annotation in annotations) {
+        if ([annotation isKindOfClass:MapClusteringAnnotation.class]) {
+            for (Stolperstein *stolpersteinAnnotation in annotation.annotations) {
+                if ([stolpersteinAnnotation.id isEqualToString:stolperstein.id]) {
+                    NSLog(@"Found annotation %p %@ %f/%f", annotation, stolperstein.id, annotation.coordinate.latitude, annotation.coordinate.longitude);
+                    return annotation;
+                }
             }
         }
     }
+    
     NSLog(@"Didn't find annotation");
     return nil;
 }
@@ -153,10 +157,10 @@ static const double ZOOM_DISTANCE = 1200;
     [self.mapClusteringController updateAnnotationsAnimated:TRUE completion:^{
         NSLog(@"Updated");
         if (self.stolpersteinToSelect) {
-            id<MKAnnotation> annotation = [self annotationForStolperstein:self.stolpersteinToSelect];
+            id<MKAnnotation> annotation = [self annotationForStolperstein:self.stolpersteinToSelect inMapRect:mapView.visibleMapRect];
             self.stolpersteinToSelect = nil;
             MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ZOOM_DISTANCE * 0.5, ZOOM_DISTANCE * 0.5);
-            [self.mapView setRegion:region animated:YES];
+            [self.mapView setRegion:region animated:NO];
             
             if ([self isRegionUpToDate:region]) {
                 // Select immediately since region won't change
@@ -170,7 +174,7 @@ static const double ZOOM_DISTANCE = 1200;
             for (Stolperstein *stolperstein in self.annotationToSelect.annotations) {
                 NSLog(@"%@", stolperstein.id);
             }
-            [self.mapView selectAnnotation:self.annotationToSelect animated:YES];
+            [self.mapView selectAnnotation:self.annotationToSelect animated:NO];
             self.annotationToSelect = nil;
         }
     }];
@@ -340,20 +344,20 @@ static const double ZOOM_DISTANCE = 1200;
     [self.mapView setRegion:region animated:YES];
     BOOL isRegionUpToDate = [self isRegionUpToDate:region];
     if (isRegionUpToDate) {
-        NSLog(@"isRegionUpToDate stolperstein");
-        id<MKAnnotation> annotation = [self annotationForStolperstein:selectedStolperstein];
-        region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ZOOM_DISTANCE * 0.5, ZOOM_DISTANCE * 0.5);
-        [self.mapView setRegion:region animated:YES];
-        isRegionUpToDate = [self isRegionUpToDate:region];
-        if (isRegionUpToDate) {
-            NSLog(@"isRegionUpToDate annotation");
-            // Select immediately since region won't change
-            [self.mapView selectAnnotation:self.annotationToSelect animated:YES];
-        } else {
-            NSLog(@"!isRegionUpToDate annotation");
-            // Actual selection happens in mapView:regionDidChangeAnimated:
-            self.annotationToSelect = annotation;
-        }
+//        NSLog(@"isRegionUpToDate stolperstein");
+//        id<MKAnnotation> annotation = [self annotationForStolperstein:selectedStolperstein];
+//        region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ZOOM_DISTANCE * 0.5, ZOOM_DISTANCE * 0.5);
+//        [self.mapView setRegion:region animated:YES];
+//        isRegionUpToDate = [self isRegionUpToDate:region];
+//        if (isRegionUpToDate) {
+//            NSLog(@"isRegionUpToDate annotation");
+//            // Select immediately since region won't change
+//            [self.mapView selectAnnotation:self.annotationToSelect animated:YES];
+//        } else {
+//            NSLog(@"!isRegionUpToDate annotation");
+//            // Actual selection happens in mapView:regionDidChangeAnimated:
+//            self.annotationToSelect = annotation;
+//        }
     } else {
         NSLog(@"!isRegionUpToDate stolperstein");
         // Actual selection happens in mapView:regionDidChangeAnimated:

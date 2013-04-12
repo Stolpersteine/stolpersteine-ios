@@ -1,0 +1,9 @@
+//
+//  buildnumber_fixed.xcconfig
+//  Stolpersteine
+//
+//  Created by Hoefele, Claus(choefele) on 12.04.13.
+//  Copyright (c) 2013 Option-U Software. All rights reserved.
+//
+
+BUILD_NUMBER = dev

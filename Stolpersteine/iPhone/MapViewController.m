@@ -81,8 +81,9 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     // Clustering
     self.mapClusteringController = [[MapClusteringController alloc] initWithMapView:self.mapView];
     self.mapClusteringController.delegate = self;
-    NSRange range = NSMakeRange(0, 0);
-    [self retrieveStolpersteineWithRange:range];
+    
+    // Start loading data
+    [self retrieveStolpersteine];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -104,6 +105,16 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [super viewDidAppear:animated];
     
     [AppDelegate.diagnosticsService trackViewController:self];
+
+    // Update data when app becomes active
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(retrieveStolpersteine) name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -114,6 +125,12 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [self layoutViewsForInterfaceOrientation:toInterfaceOrientation];
+}
+
+- (void)retrieveStolpersteine
+{
+    NSRange range = NSMakeRange(0, 0);
+    [self retrieveStolpersteineWithRange:range];
 }
 
 - (void)retrieveStolpersteineWithRange:(NSRange)range

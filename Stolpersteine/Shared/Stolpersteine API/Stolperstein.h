@@ -28,4 +28,6 @@
 @property (nonatomic, strong) NSString *subtitle;
 @property (nonatomic, readonly, assign) CLLocationCoordinate2D coordinate;
 
+- (BOOL)isEqualToStolperstein:(Stolperstein *)stolperstein;
+
 @end

@@ -41,6 +41,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 @property (nonatomic, strong) MapClusteringAnnotation *annotationToSelect;
 @property (nonatomic, assign) MKCoordinateRegion regionToSet;
 @property (nonatomic, assign, getter = isRegionToSetInvalid) BOOL regionToSetInvalid;
+@property (nonatomic, assign) MKCoordinateSpan regionSpanBeforeChange;
 @property (nonatomic, strong) MapClusteringController *mapClusteringController;
 
 @end
@@ -153,6 +154,14 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     return isRegionUpToDate;
 }
 
+- (void)deselectAllAnnotations
+{
+    NSArray *selectedAnnotations = self.mapView.selectedAnnotations;
+    for (id<MKAnnotation> selectedAnnotation in selectedAnnotations) {
+        [self.mapView deselectAnnotation:selectedAnnotation animated:TRUE];
+    }
+}
+
 //Annotation tests:
 //
 //- didSelectRowAtIndexPath, !isRegionUpToDate
@@ -164,8 +173,21 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 //
 //annotation not found?
 
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+    self.regionSpanBeforeChange = mapView.region.span;
+}
+
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
+    // Deselect all annotations when zooming in/out. Longitude delta will not change
+    // unless zoom changes (in contrast to latitude delta).
+    BOOL hasZoomed = !fequal(mapView.region.span.longitudeDelta, self.regionSpanBeforeChange.longitudeDelta);
+    if (hasZoomed) {
+        [self deselectAllAnnotations];
+    }
+
+    // Update annotations
     [self.mapClusteringController updateAnnotationsAnimated:TRUE completion:^{
         NSLog(@"Updated");
         if (self.stolpersteinToSelect) {
@@ -346,10 +368,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     UITableViewCell *tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
     [tableViewCell setSelected:FALSE animated:TRUE];
      
-    // Deselect all annotations
-    for (id<MKAnnotation> selectedAnnotation in self.mapView.selectedAnnotations) {
-        [self.mapView deselectAnnotation:selectedAnnotation animated:TRUE];
-    }
+    // Deselect annotations
+    [self deselectAllAnnotations];
     
     // Center on stolperstein and select it
     Stolperstein *selectedStolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];

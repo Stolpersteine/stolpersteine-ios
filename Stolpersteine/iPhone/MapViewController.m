@@ -194,9 +194,9 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
             NSLog(@"stolpersteinToSelect");
             id<MKAnnotation> annotation = [self annotationForStolperstein:self.stolpersteinToSelect inMapRect:mapView.visibleMapRect];
             self.stolpersteinToSelect = nil;
-            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ZOOM_DISTANCE_STOLPERSTEIN, ZOOM_DISTANCE_STOLPERSTEIN);
             
             // Dispatch async to avoid calling regionDidChangeAnimated immediately
+            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ZOOM_DISTANCE_STOLPERSTEIN, ZOOM_DISTANCE_STOLPERSTEIN);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.mapView setRegion:region animated:NO];
             });
@@ -212,9 +212,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
             }
         } else if (self.annotationToSelect) {
             NSLog(@"annotationToSelect");
-            for (Stolperstein *stolperstein in self.annotationToSelect.annotations) {
-                NSLog(@"%@", stolperstein.id);
-            }
             [self.mapView selectAnnotation:self.annotationToSelect animated:YES];
             self.annotationToSelect = nil;
         }

@@ -195,7 +195,11 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
             id<MKAnnotation> annotation = [self annotationForStolperstein:self.stolpersteinToSelect inMapRect:mapView.visibleMapRect];
             self.stolpersteinToSelect = nil;
             MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ZOOM_DISTANCE_STOLPERSTEIN, ZOOM_DISTANCE_STOLPERSTEIN);
-            [self.mapView setRegion:region animated:YES];
+            
+            // Dispatch async to avoid calling regionDidChangeAnimated immediately
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.mapView setRegion:region animated:NO];
+            });
             
             if ([self isRegionUpToDate:region]) {
                 NSLog(@"isRegionUpToDate annotation");

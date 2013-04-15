@@ -129,7 +129,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)retrieveStolpersteine
 {
-    NSRange range = NSMakeRange(0, 1);
+    NSRange range = NSMakeRange(0, 500);
     [self retrieveStolpersteineWithRange:range];
 }
 
@@ -142,7 +142,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         // Next batch of data
         if (stolpersteine.count == range.length) {
             NSRange nextRange = NSMakeRange(NSMaxRange(range), range.length);
-//            [self retrieveStolpersteineWithRange:nextRange];
+            [self retrieveStolpersteineWithRange:nextRange];
         }
     }];
 }

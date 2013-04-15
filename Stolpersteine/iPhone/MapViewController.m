@@ -377,8 +377,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.stolpersteinToSelect = [self.searchedStolpersteine objectAtIndex:indexPath.row];
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.stolpersteinToSelect.coordinate, ZOOM_DISTANCE_STOLPERSTEIN, ZOOM_DISTANCE_STOLPERSTEIN);
     [self.mapView setRegion:region animated:YES];
-    BOOL isRegionUpToDate = [self isRegionUpToDate:region];
-    if (isRegionUpToDate) {
+    if ([self isRegionUpToDate:region]) {
         // Manually call update methods because region won't change
         [self mapView:self.mapView regionWillChangeAnimated:TRUE];
         [self mapView:self.mapView regionDidChangeAnimated:TRUE];

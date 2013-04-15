@@ -390,14 +390,14 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
-    MapClusteringAnnotation *stolpersteinAnnotation = (MapClusteringAnnotation *)selectedAnnotation;
+    MapClusteringAnnotation *clusteringAnnotation = (MapClusteringAnnotation *)selectedAnnotation;
     if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
-        detailViewController.stolperstein = stolpersteinAnnotation.annotations[0];
+        detailViewController.stolperstein = clusteringAnnotation.annotations[0];
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
-        listViewController.stolpersteine = stolpersteinAnnotation.annotations;
-        listViewController.title = stolpersteinAnnotation.subtitle;
+        listViewController.stolpersteine = clusteringAnnotation.annotations;
+        listViewController.title = clusteringAnnotation.subtitle;
     }
 }
 

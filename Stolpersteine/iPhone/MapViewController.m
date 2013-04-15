@@ -129,7 +129,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)retrieveStolpersteine
 {
-    NSRange range = NSMakeRange(0, 0);
+    NSRange range = NSMakeRange(0, 1);
     [self retrieveStolpersteineWithRange:range];
 }
 
@@ -142,7 +142,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         // Next batch of data
         if (stolpersteine.count == range.length) {
             NSRange nextRange = NSMakeRange(NSMaxRange(range), range.length);
-            [self retrieveStolpersteineWithRange:nextRange];
+//            [self retrieveStolpersteineWithRange:nextRange];
         }
     }];
 }
@@ -372,9 +372,12 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
      
     // Deselect annotations
     [self deselectAllAnnotations];
-    
-    // Zoom in to selected stolperstein
+
+    // Force selected stolperstein to be on map
     self.stolpersteinToSelect = [self.searchedStolpersteine objectAtIndex:indexPath.row];
+    [self.mapClusteringController addAnnotations:@[self.stolpersteinToSelect]];
+
+    // Zoom in to selected stolperstein
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.stolpersteinToSelect.coordinate, ZOOM_DISTANCE_STOLPERSTEIN, ZOOM_DISTANCE_STOLPERSTEIN);
     [self.mapView setRegion:region animated:YES];
     if ([self isRegionUpToDate:region]) {

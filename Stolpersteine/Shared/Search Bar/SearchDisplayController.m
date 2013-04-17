@@ -67,22 +67,30 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {
-    NSValue *keyboardFrameAsValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardFrame = [self.searchContentsController.view convertRect:keyboardFrameAsValue.CGRectValue toView:nil];
     NSTimeInterval animationDuration;
     [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
     UIViewAnimationCurve animationCurve;
     [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
     UIViewAnimationOptions animationOptions = UIViewAnimationOptionsFromCurve(animationCurve);
 
+    CGSize screenSize = UIApplication.sharedApplication.keyWindow.bounds.size;
     CGRect frame = self.searchResultsTableView.frame;
-    frame.size.width = 480;
+    frame.size.width = screenSize.height;
     self.searchResultsTableView.frame = frame;
+
     [UIView animateWithDuration:animationDuration delay:0.0 options:animationOptions animations:^{
+        NSValue *keyboardFrameEndAsValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+        CGRect keyboardFrameEnd = [self.searchContentsController.view convertRect:keyboardFrameEndAsValue.CGRectValue toView:nil];
         CGRect frame = self.searchResultsTableView.frame;
-        frame.size.height -= keyboardFrame.size.height;
+        frame.size.height -= keyboardFrameEnd.size.height;
         self.searchResultsTableView.frame = frame;
-    } completion:NULL];
+    } completion:^(BOOL finished) {
+        if (UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication.statusBarOrientation)) {
+            CGRect frame = self.searchResultsTableView.frame;
+            frame.size.width = screenSize.width;
+            self.searchResultsTableView.frame = frame;
+        }
+    }];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification

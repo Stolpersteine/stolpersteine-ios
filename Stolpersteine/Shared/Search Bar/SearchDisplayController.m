@@ -79,20 +79,14 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
     CGRect frame = self.searchResultsTableView.frame;
     frame.size.width = screenSize.height;
     self.searchResultsTableView.frame = frame;
-
+    
     [UIView animateWithDuration:animationDuration delay:0.0 options:animationOptions animations:^{
         NSValue *keyboardFrameEndAsValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
         CGRect keyboardFrameEnd = [self.searchContentsController.view convertRect:keyboardFrameEndAsValue.CGRectValue toView:nil];
         CGRect frame = self.searchResultsTableView.frame;
         frame.size.height -= keyboardFrameEnd.size.height;
         self.searchResultsTableView.frame = frame;
-    } completion:^(BOOL finished) {
-        if (UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication.statusBarOrientation)) {
-            CGRect frame = self.searchResultsTableView.frame;
-            frame.size.width = screenSize.width;
-            self.searchResultsTableView.frame = frame;
-        }
-    }];
+    } completion:NULL];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification

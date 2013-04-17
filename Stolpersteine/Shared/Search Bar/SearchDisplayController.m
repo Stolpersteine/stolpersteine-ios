@@ -148,6 +148,12 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
     }
 }
 
+- (BOOL)searchBarShouldReturn:(SearchBar *)searchBar
+{
+    [self.searchBar resignFirstResponder];
+    return TRUE;
+}
+
 - (void)setSearchResultsDataSource:(id<UITableViewDataSource>)searchResultsDataSource
 {
     self.searchResultsTableView.dataSource = searchResultsDataSource;

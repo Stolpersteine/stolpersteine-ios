@@ -78,6 +78,8 @@
     [button setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     [button setTitle:title forState:UIControlStateNormal];
     [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    UIImage *backgroundImage = [[UIImage imageNamed:@"rounded-rect-frame.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
+    [button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     
     if (chevronEnabled) {
         UIImage *chevron = [UIImage imageNamed:@"chevron.png"];

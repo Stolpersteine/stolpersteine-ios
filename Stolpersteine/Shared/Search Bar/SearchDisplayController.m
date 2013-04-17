@@ -11,6 +11,8 @@
 #import "SearchBar.h"
 #import "SearchDisplayDelegate.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @interface SearchDisplayController()
 
 @property (nonatomic, weak) UIViewController *searchContentsController;
@@ -108,40 +110,57 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
     } completion:NULL];
 }
 
-- (void)setActive:(BOOL)active
+- (void)setBarButtonItemVisible:(BOOL)barButtonItemVisible
 {
-    [self setActive:active animated:NO];
-}
-
-- (void)setActive:(BOOL)active animated:(BOOL)animated
-{
-    _active = active;
-    
     UIBarButtonItem *barButtonItem;
-    if (active) {
+    if (barButtonItemVisible) {
         self.barButtonItem = self.searchContentsController.navigationItem.rightBarButtonItem;
         barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
-        self.searchResultsTableView.hidden = FALSE;
-        self.searchResultsTableView.alpha = 1.0;
     } else {
         barButtonItem = self.barButtonItem;
         self.barButtonItem = nil;
-        [self.searchBar resignFirstResponder];
-        self.searchResultsTableView.hidden = TRUE;
-        self.searchResultsTableView.alpha = 0;
     }
-
     [self.searchContentsController.navigationItem setRightBarButtonItem:barButtonItem animated:YES];
+}
+
+- (void)setSearchResultsTableViewVisible:(BOOL)searchResultsTableViewVisible
+{
+    [self.searchResultsTableView.layer removeAllAnimations];
+    if (searchResultsTableViewVisible) {
+        self.searchResultsTableView.hidden = FALSE;
+        [UIView animateWithDuration:0.25 animations:^{
+            self.searchResultsTableView.alpha = 1.0;
+        }];
+    } else {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.searchResultsTableView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            if (finished) {
+                self.searchResultsTableView.hidden = TRUE;
+            }
+        }];
+    }
+}
+
+- (void)setActive:(BOOL)active
+{
+    _active = active;
+    
+    self.barButtonItemVisible = active;
+    self.searchResultsTableViewVisible = active;
+    if (!active) {
+        [self.searchBar resignFirstResponder];
+    }
 }
 
 - (void)cancel:(UIBarButtonItem *)barButtonItem
 {
-    [self setActive:FALSE animated:TRUE];
+    self.active = FALSE;
 }
 
 - (void)searchBarTextDidBeginEditing:(SearchBar *)searchBar
 {
-    [self setActive:TRUE animated:TRUE];
+    self.active = TRUE;
 }
 
 - (void)searchBar:(SearchBar *)searchBar textDidChange:(NSString *)searchText

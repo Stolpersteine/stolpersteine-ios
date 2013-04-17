@@ -390,7 +390,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     }
     
     // Dismiss search display controller
-    [self.searchDisplayController setActive:FALSE animated:TRUE];
+    self.searchDisplayController.active = FALSE;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

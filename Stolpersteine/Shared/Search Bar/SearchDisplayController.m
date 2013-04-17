@@ -144,12 +144,14 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
 
 - (void)setActive:(BOOL)active
 {
-    _active = active;
-    
-    self.barButtonItemVisible = active;
-    self.searchResultsTableViewVisible = active;
-    if (!active) {
-        [self.searchBar resignFirstResponder];
+    if (active != _active) {
+        _active = active;
+        
+        self.barButtonItemVisible = active;
+        self.searchResultsTableViewVisible = active;
+        if (!active) {
+            [self.searchBar resignFirstResponder];
+        }
     }
 }
 

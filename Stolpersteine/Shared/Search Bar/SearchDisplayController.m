@@ -75,12 +75,13 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
     [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
     UIViewAnimationOptions animationOptions = UIViewAnimationOptionsFromCurve(animationCurve);
 
-    self.searchResultsTableView.hidden = FALSE;
+    CGRect frame = self.searchResultsTableView.frame;
+    frame.size.width = 480;
+    self.searchResultsTableView.frame = frame;
     [UIView animateWithDuration:animationDuration delay:0.0 options:animationOptions animations:^{
         CGRect frame = self.searchResultsTableView.frame;
         frame.size.height -= keyboardFrame.size.height;
         self.searchResultsTableView.frame = frame;
-        self.searchResultsTableView.alpha = 1;
     } completion:NULL];
 }
 
@@ -96,10 +97,7 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
         CGRect frame = self.searchResultsTableView.frame;
         frame.size.height = self.searchContentsController.view.frame.size.height;
         self.searchResultsTableView.frame = frame;
-        self.searchResultsTableView.alpha = 0;
-    } completion:^(BOOL finished) {
-        self.searchResultsTableView.hidden = TRUE;
-    }];
+    } completion:NULL];
 }
 
 - (void)setActive:(BOOL)active
@@ -115,10 +113,14 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
     if (active) {
         self.barButtonItem = self.searchContentsController.navigationItem.rightBarButtonItem;
         barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+        self.searchResultsTableView.hidden = FALSE;
+        self.searchResultsTableView.alpha = 1.0;
     } else {
         barButtonItem = self.barButtonItem;
         self.barButtonItem = nil;
         [self.searchBar resignFirstResponder];
+        self.searchResultsTableView.hidden = TRUE;
+        self.searchResultsTableView.alpha = 0;
     }
 
     [self.searchContentsController.navigationItem setRightBarButtonItem:barButtonItem animated:YES];

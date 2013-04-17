@@ -24,6 +24,6 @@
 @property (nonatomic, readonly, strong) UITableView *searchResultsTableView;
 
 - (id)initWithSearchBar:(SearchBar *)searchBar contentsController:(UIViewController *)viewController;
-- (void)setActive:(BOOL)active animated:(BOOL)animated;
+- (void)setActive:(BOOL)active;
 
 @end

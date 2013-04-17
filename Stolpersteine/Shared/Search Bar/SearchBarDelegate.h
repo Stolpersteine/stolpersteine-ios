@@ -15,5 +15,6 @@
 @optional
 - (void)searchBarTextDidBeginEditing:(SearchBar *)searchBar;
 - (void)searchBar:(SearchBar *)searchBar textDidChange:(NSString *)searchText;
+- (BOOL)searchBarShouldReturn:(SearchBar *)searchBar;
 
 @end

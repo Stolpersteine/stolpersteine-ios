@@ -11,6 +11,8 @@
 #import "SearchBar.h"
 #import "SearchDisplayDelegate.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @interface SearchDisplayController()
 
 @property (nonatomic, weak) UIViewController *searchContentsController;
@@ -67,20 +69,23 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {
-    NSValue *keyboardFrameAsValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardFrame = [self.searchContentsController.view convertRect:keyboardFrameAsValue.CGRectValue toView:nil];
     NSTimeInterval animationDuration;
     [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
     UIViewAnimationCurve animationCurve;
     [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
     UIViewAnimationOptions animationOptions = UIViewAnimationOptionsFromCurve(animationCurve);
 
-    self.searchResultsTableView.hidden = FALSE;
+    CGSize screenSize = UIApplication.sharedApplication.keyWindow.bounds.size;
+    CGRect frame = self.searchResultsTableView.frame;
+    frame.size.width = screenSize.height;
+    self.searchResultsTableView.frame = frame;
+    
     [UIView animateWithDuration:animationDuration delay:0.0 options:animationOptions animations:^{
+        NSValue *keyboardFrameEndAsValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+        CGRect keyboardFrameEnd = [self.searchContentsController.view convertRect:keyboardFrameEndAsValue.CGRectValue toView:nil];
         CGRect frame = self.searchResultsTableView.frame;
-        frame.size.height -= keyboardFrame.size.height;
+        frame.size.height -= keyboardFrameEnd.size.height;
         self.searchResultsTableView.frame = frame;
-        self.searchResultsTableView.alpha = 1;
     } completion:NULL];
 }
 
@@ -96,42 +101,62 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
         CGRect frame = self.searchResultsTableView.frame;
         frame.size.height = self.searchContentsController.view.frame.size.height;
         self.searchResultsTableView.frame = frame;
-        self.searchResultsTableView.alpha = 0;
-    } completion:^(BOOL finished) {
-        self.searchResultsTableView.hidden = TRUE;
-    }];
+    } completion:NULL];
 }
 
-- (void)setActive:(BOOL)active
+- (void)setBarButtonItemVisible:(BOOL)barButtonItemVisible
 {
-    [self setActive:active animated:NO];
-}
-
-- (void)setActive:(BOOL)active animated:(BOOL)animated
-{
-    _active = active;
-    
     UIBarButtonItem *barButtonItem;
-    if (active) {
+    if (barButtonItemVisible) {
         self.barButtonItem = self.searchContentsController.navigationItem.rightBarButtonItem;
         barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
     } else {
         barButtonItem = self.barButtonItem;
         self.barButtonItem = nil;
-        [self.searchBar resignFirstResponder];
     }
-
     [self.searchContentsController.navigationItem setRightBarButtonItem:barButtonItem animated:YES];
+}
+
+- (void)setSearchResultsTableViewVisible:(BOOL)searchResultsTableViewVisible
+{
+    [self.searchResultsTableView.layer removeAllAnimations];
+    if (searchResultsTableViewVisible) {
+        self.searchResultsTableView.hidden = FALSE;
+        [UIView animateWithDuration:0.25 animations:^{
+            self.searchResultsTableView.alpha = 1.0;
+        }];
+    } else {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.searchResultsTableView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            if (finished) {
+                self.searchResultsTableView.hidden = TRUE;
+            }
+        }];
+    }
+}
+
+- (void)setActive:(BOOL)active
+{
+    if (active != _active) {
+        _active = active;
+        
+        self.barButtonItemVisible = active;
+        self.searchResultsTableViewVisible = active;
+        if (!active) {
+            [self.searchBar resignFirstResponder];
+        }
+    }
 }
 
 - (void)cancel:(UIBarButtonItem *)barButtonItem
 {
-    [self setActive:FALSE animated:TRUE];
+    self.active = FALSE;
 }
 
 - (void)searchBarTextDidBeginEditing:(SearchBar *)searchBar
 {
-    [self setActive:TRUE animated:TRUE];
+    self.active = TRUE;
 }
 
 - (void)searchBar:(SearchBar *)searchBar textDidChange:(NSString *)searchText
@@ -144,6 +169,12 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
     if (shouldReloadData) {
         [self.searchResultsTableView reloadData];
     }
+}
+
+- (BOOL)searchBarShouldReturn:(SearchBar *)searchBar
+{
+    [self.searchBar resignFirstResponder];
+    return TRUE;
 }
 
 - (void)setSearchResultsDataSource:(id<UITableViewDataSource>)searchResultsDataSource

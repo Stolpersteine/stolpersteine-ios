@@ -91,6 +91,16 @@
     return TRUE;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    BOOL result = TRUE;
+    if ([self.delegate respondsToSelector:@selector(searchBarShouldReturn:)]) {
+        result = [self.delegate searchBarShouldReturn:self];
+    }
+    
+    return result;
+}
+
 - (void)editingDidBegin:(UITextField *)textField
 {
     if ([self.delegate respondsToSelector:@selector(searchBarTextDidBeginEditing:)]) {

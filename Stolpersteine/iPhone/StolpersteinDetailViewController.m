@@ -30,6 +30,7 @@
 @property (strong, nonatomic) UIButton *biographyButton;
 @property (strong, nonatomic) UIButton *streetButton;
 @property (strong, nonatomic) UIButton *mapsButton;
+@property (strong, nonatomic) UILabel *sourceLabel;
 
 @end
 
@@ -70,6 +71,14 @@
     NSString *mapsButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.maps", nil);
     self.mapsButton = [self newRoundedRectButtonWithTitle:mapsButtonTitle action:@selector(showInMapsApp:) chevronEnabled:FALSE];
     [self.scrollView addSubview:self.mapsButton];
+    
+    // Source
+    self.sourceLabel = [[UILabel alloc] init];
+    self.sourceLabel.text = @"Source: Kooperationsstelle Stolpersteine Berlin";
+    self.sourceLabel.font = [UIFont systemFontOfSize:UIFont.labelFontSize - 2];
+    self.sourceLabel.numberOfLines = INT_MAX;
+    self.sourceLabel.textAlignment = NSTextAlignmentCenter;
+    [self.scrollView addSubview:self.sourceLabel];
 }
 
 - (UIButton *)newRoundedRectButtonWithTitle:(NSString *)title action:(SEL)action chevronEnabled:(BOOL)chevronEnabled
@@ -145,6 +154,15 @@
     self.mapsButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
     height += self.mapsButton.frame.size.height + PADDING * 0.5;
     
+    // Source
+    CGRect sourceFrame;
+    sourceFrame.origin.x = PADDING;
+    sourceFrame.origin.y = height;
+    sourceFrame.size = [self.sourceLabel sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
+    sourceFrame.size.width = screenWidth - 2 * PADDING;
+    self.sourceLabel.frame = sourceFrame;
+    height += sourceFrame.size.height + PADDING * 0.5;
+
     // Scroll view
     height += PADDING * 0.5;
     self.scrollView.contentSize = CGSizeMake(screenWidth, height);

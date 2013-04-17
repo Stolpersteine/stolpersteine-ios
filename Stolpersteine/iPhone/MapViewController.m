@@ -149,18 +149,21 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (id<MKAnnotation>)annotationForStolperstein:(Stolperstein *)stolperstein inMapRect:(MKMapRect)mapRect
 {
+    id<MKAnnotation> annotationResult = nil;
+    
     NSSet *annotations = [self.mapView annotationsInMapRect:mapRect];
-    for (MapClusteringAnnotation *annotation in annotations) {
+    for (id<MKAnnotation> annotation in annotations) {
         if ([annotation isKindOfClass:MapClusteringAnnotation.class]) {
-            for (Stolperstein *stolpersteinAnnotation in annotation.annotations) {
-                if ([stolpersteinAnnotation.id isEqualToString:stolperstein.id]) {
-                    return annotation;
-                }
+            MapClusteringAnnotation *clusteringAnnotation = (MapClusteringAnnotation *)annotation;
+            NSUInteger index = [clusteringAnnotation.annotations indexOfObject:stolperstein];
+            if (index != NSNotFound) {
+                annotationResult = annotation;
+                break;
             }
         }
     }
     
-    return nil;
+    return annotationResult;
 }
 
 - (BOOL)isRegionUpToDate:(MKCoordinateRegion)region

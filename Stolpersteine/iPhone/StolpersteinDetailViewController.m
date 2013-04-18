@@ -30,7 +30,7 @@
 @property (strong, nonatomic) UIButton *biographyButton;
 @property (strong, nonatomic) UIButton *streetButton;
 @property (strong, nonatomic) UIButton *mapsButton;
-@property (strong, nonatomic) UILabel *sourceLabel;
+@property (strong, nonatomic) UITextView *sourceTextView;
 
 @end
 
@@ -73,12 +73,26 @@
     [self.scrollView addSubview:self.mapsButton];
     
     // Source
-    self.sourceLabel = [[UILabel alloc] init];
-    self.sourceLabel.text = @"Source: Kooperationsstelle Stolpersteine Berlin";
-    self.sourceLabel.font = [UIFont systemFontOfSize:UIFont.labelFontSize - 2];
-    self.sourceLabel.numberOfLines = INT_MAX;
-    self.sourceLabel.textAlignment = NSTextAlignmentCenter;
-    [self.scrollView addSubview:self.sourceLabel];
+    self.sourceTextView = [[UITextView alloc] init];
+    self.sourceTextView.text = @"Source: Kooperationsstelle Stolpersteine Berlin";
+    self.sourceTextView.font = [UIFont systemFontOfSize:UIFont.labelFontSize - 4];
+    self.sourceTextView.editable = FALSE;
+    self.sourceTextView.contentInset = UIEdgeInsetsMake(-8, -8, -8, -8);
+    [self.scrollView addSubview:self.sourceTextView];
+    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    recognizer.numberOfTapsRequired = 1;
+    recognizer.numberOfTouchesRequired = 1;
+    [self.sourceTextView addGestureRecognizer:recognizer];
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint point = [sender locationInView:self.sourceTextView];
+        UITextRange *range = [self.sourceTextView characterRangeAtPoint:point];
+        NSLog(@"handleTap %@", [self.sourceTextView textInRange:range]);
+    }
 }
 
 - (UIButton *)newRoundedRectButtonWithTitle:(NSString *)title action:(SEL)action chevronEnabled:(BOOL)chevronEnabled
@@ -158,9 +172,9 @@
     CGRect sourceFrame;
     sourceFrame.origin.x = PADDING;
     sourceFrame.origin.y = height;
-    sourceFrame.size = [self.sourceLabel sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
+    sourceFrame.size = [self.sourceTextView sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
     sourceFrame.size.width = screenWidth - 2 * PADDING;
-    self.sourceLabel.frame = sourceFrame;
+    self.sourceTextView.frame = sourceFrame;
     height += sourceFrame.size.height + PADDING * 0.5;
 
     // Scroll view

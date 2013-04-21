@@ -17,7 +17,7 @@
 @end
 #endif
 
-static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1/";
+static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1";
 static NSString * const GOOGLE_ANALYTICS_ID = @"UA-38166041-1";
 
 @implementation AppDelegate

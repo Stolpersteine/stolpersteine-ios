@@ -8,11 +8,9 @@
 
 #import "LinkedTextLabel.h"
 
-#import "LinkedTextView.h"
-
 @interface LinkedTextLabel()
 
-@property (nonatomic, strong) LinkedTextView *textView;
+@property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) NSMutableDictionary *links;
 
 @end
@@ -23,8 +21,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.textView = [[LinkedTextView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        self.textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         self.textView.editable = FALSE;
+        self.textView.userInteractionEnabled = FALSE;
         self.textView.contentInset = UIEdgeInsetsMake(-8, -8, -8, -8);
         self.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:self.textView];
@@ -32,7 +31,7 @@
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         recognizer.numberOfTapsRequired = 1;
         recognizer.numberOfTouchesRequired = 1;
-        [self.textView addGestureRecognizer:recognizer];
+        [self addGestureRecognizer:recognizer];
         
         self.links = [[NSMutableDictionary alloc] init];
     }

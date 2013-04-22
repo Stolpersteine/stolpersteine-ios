@@ -19,6 +19,7 @@
 #import "StolpersteinListViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "Localization.h"
+#import "LinkedTextLabel.h"
 
 #define PADDING 20
 
@@ -30,7 +31,7 @@
 @property (strong, nonatomic) UIButton *biographyButton;
 @property (strong, nonatomic) UIButton *streetButton;
 @property (strong, nonatomic) UIButton *mapsButton;
-@property (strong, nonatomic) UITextView *sourceTextView;
+@property (strong, nonatomic) LinkedTextLabel *sourceLinkedTextLabel;
 
 @end
 
@@ -73,26 +74,8 @@
     [self.scrollView addSubview:self.mapsButton];
     
     // Source
-    self.sourceTextView = [[UITextView alloc] init];
-    self.sourceTextView.text = @"Source: Kooperationsstelle Stolpersteine Berlin";
-    self.sourceTextView.font = [UIFont systemFontOfSize:UIFont.labelFontSize - 4];
-    self.sourceTextView.editable = FALSE;
-    self.sourceTextView.contentInset = UIEdgeInsetsMake(-8, -8, -8, -8);
-    [self.scrollView addSubview:self.sourceTextView];
-    
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    recognizer.numberOfTapsRequired = 1;
-    recognizer.numberOfTouchesRequired = 1;
-    [self.sourceTextView addGestureRecognizer:recognizer];
-}
-
-- (void)handleTap:(UITapGestureRecognizer *)sender
-{
-    if (sender.state == UIGestureRecognizerStateEnded) {
-        CGPoint point = [sender locationInView:self.sourceTextView];
-        UITextRange *range = [self.sourceTextView characterRangeAtPoint:point];
-        NSLog(@"handleTap %@", [self.sourceTextView textInRange:range]);
-    }
+    self.sourceLinkedTextLabel = [[LinkedTextLabel alloc] init];
+    [self.scrollView addSubview:self.sourceLinkedTextLabel];
 }
 
 - (UIButton *)newRoundedRectButtonWithTitle:(NSString *)title action:(SEL)action chevronEnabled:(BOOL)chevronEnabled
@@ -172,9 +155,9 @@
     CGRect sourceFrame;
     sourceFrame.origin.x = PADDING;
     sourceFrame.origin.y = height;
-    sourceFrame.size = [self.sourceTextView sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
+    sourceFrame.size = [self.sourceLinkedTextLabel sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
     sourceFrame.size.width = screenWidth - 2 * PADDING;
-    self.sourceTextView.frame = sourceFrame;
+    self.sourceLinkedTextLabel.frame = sourceFrame;
     height += sourceFrame.size.height + PADDING * 0.5;
 
     // Scroll view

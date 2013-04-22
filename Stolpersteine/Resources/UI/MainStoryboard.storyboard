@@ -19,12 +19,27 @@
                                     <outlet property="delegate" destination="2" id="cmn-I6-Sfx"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDp-xd-q2d">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="4fB-TH-sgB" kind="modal" id="KY2-yq-MR0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="omQ-fz-cwh" firstAttribute="trailing" secondItem="nic-0c-bX8" secondAttribute="trailing" type="default" id="7VZ-2t-xJb"/>
+                            <constraint firstAttribute="trailing" secondItem="zDp-xd-q2d" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="CCF-vb-aGQ"/>
                             <constraint firstItem="omQ-fz-cwh" firstAttribute="leading" secondItem="nic-0c-bX8" secondAttribute="leading" type="default" id="LIi-NL-Vxc"/>
                             <constraint firstItem="omQ-fz-cwh" firstAttribute="bottom" secondItem="nic-0c-bX8" secondAttribute="bottom" type="default" id="TXt-KN-KII"/>
+                            <constraint firstAttribute="bottom" secondItem="zDp-xd-q2d" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="u0h-3W-m7J"/>
                             <constraint firstItem="omQ-fz-cwh" firstAttribute="top" secondItem="nic-0c-bX8" secondAttribute="top" type="default" id="yRN-JE-o6b"/>
                         </constraints>
                     </view>
@@ -138,12 +153,50 @@
             </objects>
             <point key="canvasLocation" x="794" y="319"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Iki-ML-OD2">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="4fB-TH-sgB" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="g8r-sr-oyB">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Bdp-sJ-dRr" kind="relationship" relationship="rootViewController" id="Oev-9g-6j8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wKb-ct-N1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="794" y="991"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="loS-aj-7ZV">
+            <objects>
+                <viewController id="Bdp-sJ-dRr" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5JV-vt-jsN">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EHj-gk-GMB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="63j-J9-QYK">
+                            <connections>
+                                <segue destination="jFd-oo-zCA" kind="unwind" unwindAction="done:" id="uVe-YT-OtR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3N4-92-The" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="jFd-oo-zCA" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1365" y="991"/>
+        </scene>
     </scenes>
     <classes>
         <class className="MapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
             <relationships>
                 <relationship kind="action" name="centerMap:" candidateClass="UIButton"/>
+                <relationship kind="action" name="done:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="outlet" name="centerMapBarButtonItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="SearchBar"/>
@@ -164,6 +217,9 @@
         </class>
         <class className="StolpersteinListViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StolpersteinListViewController.h"/>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -393,6 +393,11 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.searchDisplayController.active = FALSE;
 }
 
+- (IBAction)done:(UIStoryboardSegue *)segue
+{
+    // Back from InfoViewController
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;

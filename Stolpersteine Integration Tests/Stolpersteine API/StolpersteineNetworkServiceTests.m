@@ -80,13 +80,6 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
             STAssertTrue([stolperstein.locationCity isKindOfClass:NSString.class], @"Wrong type for city");
             STAssertTrue(stolperstein.locationCoordinate.latitude != 0, @"Wrong coordinates");
             STAssertTrue(stolperstein.locationCoordinate.longitude != 0, @"Wrong coordinates");
-            STAssertNotNil(stolperstein.sourceRetrievedAt, @"Wrong retrieved at date");
-            STAssertTrue([stolperstein.sourceRetrievedAt isKindOfClass:NSDate.class], @"Wrong type for retrieved at date");
-            STAssertNotNil(stolperstein.sourceURLString, @"Wrong source URL string");
-            STAssertTrue([stolperstein.sourceURLString isKindOfClass:NSString.class], @"Wrong type for source URL string");
-            STAssertTrue([stolperstein.sourceURLString hasPrefix:@"http"], @"Wrong content source URL string");
-            STAssertNotNil(stolperstein.sourceName, @"Wrong source name");
-            STAssertTrue([stolperstein.sourceName isKindOfClass:NSString.class], @"Wrong type for source name");
             
             // Optional fields
             if (stolperstein.text) {

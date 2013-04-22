@@ -74,14 +74,17 @@
     [self.scrollView addSubview:self.mapsButton];
     
     // Source
+    NSString *linkText = @"Koordinierungsstelle Stolpersteine Berlin";
+    NSURL *linkURL = [NSURL URLWithString:@"http://www.stolpersteine-berlin.de/"];
+
     self.sourceLinkedTextLabel = [[LinkedTextLabel alloc] init];
-    NSString *sourceText = @"Source: Kooperationsstelle";
+    NSString *localizedSourceText = NSLocalizedString(@"StolpersteinDetailViewController.source", nil);
+    NSString *sourceText = [NSString stringWithFormat:localizedSourceText, linkText];
+    NSRange linkRange = NSMakeRange(sourceText.length - linkText.length, linkText.length);
     NSMutableAttributedString *sourceAttributedString = [[NSMutableAttributedString alloc] initWithString:sourceText];
-    NSRange linkRange0 = NSMakeRange(0, 10);
-    NSURL *linkURL0 = [NSURL URLWithString:@"http://www.google.com"];
-    [sourceAttributedString setAttributes:@{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) } range:linkRange0];
+    [sourceAttributedString setAttributes:@{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) } range:linkRange];
     self.sourceLinkedTextLabel.attributedText = sourceAttributedString;
-    [self.sourceLinkedTextLabel setLink:linkURL0 range:linkRange0];
+    [self.sourceLinkedTextLabel setLink:linkURL range:linkRange];
     [self.scrollView addSubview:self.sourceLinkedTextLabel];
 }
 
@@ -137,7 +140,7 @@
     addressFrame.origin.y = height;
     addressFrame.size = [self.addressLabel sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
     self.addressLabel.frame = addressFrame;
-    height += addressFrame.size.height + PADDING * 0.5;
+    height += addressFrame.size.height + PADDING;
 
     // Street button
     self.streetButton.hidden = self.isAllInThisStreetButtonHidden;
@@ -156,7 +159,7 @@
 
     // Maps button
     self.mapsButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
-    height += self.mapsButton.frame.size.height + PADDING * 0.5;
+    height += self.mapsButton.frame.size.height + PADDING;
     
     // Source
     CGRect sourceFrame;

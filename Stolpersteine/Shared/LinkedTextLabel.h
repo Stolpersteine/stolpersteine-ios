@@ -10,4 +10,8 @@
 
 @interface LinkedTextLabel : UIView
 
+@property (nonatomic, copy) NSAttributedString *attributedText;
+
+- (void)setLink:(NSURL *)link range:(NSRange)range;
+
 @end

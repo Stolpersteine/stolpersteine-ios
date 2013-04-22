@@ -75,6 +75,13 @@
     
     // Source
     self.sourceLinkedTextLabel = [[LinkedTextLabel alloc] init];
+    NSString *sourceText = @"Source: Kooperationsstelle";
+    NSMutableAttributedString *sourceAttributedString = [[NSMutableAttributedString alloc] initWithString:sourceText];
+    NSRange linkRange0 = NSMakeRange(0, 10);
+    NSURL *linkURL0 = [NSURL URLWithString:@"http://www.google.com"];
+    [sourceAttributedString setAttributes:@{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) } range:linkRange0];
+    self.sourceLinkedTextLabel.attributedText = sourceAttributedString;
+    [self.sourceLinkedTextLabel setLink:linkURL0 range:linkRange0];
     [self.scrollView addSubview:self.sourceLinkedTextLabel];
 }
 

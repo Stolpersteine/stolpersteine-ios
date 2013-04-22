@@ -8,9 +8,12 @@
 
 #import "LinkedTextLabel.h"
 
+#import "LinkedTextView.h"
+
 @interface LinkedTextLabel()
 
-@property (nonatomic, strong) UITextView *textView;
+@property (nonatomic, strong) LinkedTextView *textView;
+@property (nonatomic, strong) NSMutableDictionary *links;
 
 @end
 
@@ -20,20 +23,41 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        [self addSubview:self.textView];
+        self.textView = [[LinkedTextView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         self.textView.editable = FALSE;
         self.textView.contentInset = UIEdgeInsetsMake(-8, -8, -8, -8);
         self.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        self.textView.text = @"Source: Kooperationsstelle Stolpersteine Berlin";
-        self.textView.font = [UIFont systemFontOfSize:UIFont.labelFontSize - 4];
-
+        [self addSubview:self.textView];
+        
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         recognizer.numberOfTapsRequired = 1;
         recognizer.numberOfTouchesRequired = 1;
         [self.textView addGestureRecognizer:recognizer];
+        
+        self.links = [[NSMutableDictionary alloc] init];
     }
     return self;
+}
+
+- (void)setAttributedText:(NSAttributedString *)attributedText
+{
+    // Fixes alignment issue when using attributedText
+    self.textView.text = nil;
+    self.textView.font = nil;
+    self.textView.textColor = nil;
+    self.textView.textAlignment = NSTextAlignmentLeft;
+
+    self.textView.attributedText = attributedText;
+}
+
+- (NSAttributedString *)attributedText
+{
+    return self.textView.attributedText;
+}
+
+- (void)setLink:(NSURL *)link range:(NSRange)range
+{
+    [self.links setObject:link forKey:NSStringFromRange(range)];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size
@@ -47,7 +71,27 @@
     if (sender.state == UIGestureRecognizerStateEnded) {
         CGPoint point = [sender locationInView:self.textView];
         UITextRange *range = [self.textView characterRangeAtPoint:point];
-        NSLog(@"handleTap %@", [self.textView textInRange:range]);
+        
+        NSURL *url;
+        if (range && !range.empty) {
+            NSInteger startOffset = [self.textView offsetFromPosition:self.textView.beginningOfDocument toPosition:range.start];
+            NSInteger endOffset = [self.textView offsetFromPosition:self.textView.beginningOfDocument toPosition:range.end];
+            NSRange rangeTap = NSMakeRange(startOffset, endOffset - startOffset);
+            
+            for (NSString *rangeAsString in self.links.allKeys) {
+                NSRange rangeLink = NSRangeFromString(rangeAsString);
+                NSRange intersection = NSIntersectionRange(rangeTap, rangeLink);
+                BOOL intersect = (intersection.length != 0);
+                if (intersect) {
+                    url = [self.links valueForKey:rangeAsString];
+                    break;
+                }
+            }
+            
+            if (url) {
+                [UIApplication.sharedApplication openURL:url];
+            }
+        }
     }
 }
 

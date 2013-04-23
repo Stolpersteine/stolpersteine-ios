@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet SearchBar *searchBar;
 
 - (IBAction)centerMap:(UIButton *)sender;
+- (IBAction)showImprint:(UIButton *)sender;
 
 @end

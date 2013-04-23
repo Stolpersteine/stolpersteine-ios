@@ -29,7 +29,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="4fB-TH-sgB" kind="modal" id="KY2-yq-MR0"/>
+                                    <action selector="showImprint:" destination="2" eventType="touchUpInside" id="yjG-WX-T2W"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -153,50 +153,13 @@
             </objects>
             <point key="canvasLocation" x="794" y="319"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Iki-ML-OD2">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="4fB-TH-sgB" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="g8r-sr-oyB">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Bdp-sJ-dRr" kind="relationship" relationship="rootViewController" id="Oev-9g-6j8"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wKb-ct-N1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="794" y="991"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="loS-aj-7ZV">
-            <objects>
-                <viewController id="Bdp-sJ-dRr" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5JV-vt-jsN">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="EHj-gk-GMB">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="63j-J9-QYK">
-                            <connections>
-                                <segue destination="jFd-oo-zCA" kind="unwind" unwindAction="done:" id="uVe-YT-OtR"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3N4-92-The" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="jFd-oo-zCA" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1365" y="991"/>
-        </scene>
     </scenes>
     <classes>
         <class className="MapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
             <relationships>
                 <relationship kind="action" name="centerMap:" candidateClass="UIButton"/>
-                <relationship kind="action" name="done:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="showImprint:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="centerMapBarButtonItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="SearchBar"/>
@@ -217,9 +180,6 @@
         </class>
         <class className="StolpersteinListViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StolpersteinListViewController.h"/>
-        </class>
-        <class className="UIStoryboardSegue" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

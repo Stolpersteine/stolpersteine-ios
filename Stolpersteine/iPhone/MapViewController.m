@@ -301,6 +301,12 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     }
 }
 
+- (IBAction)showImprint:(UIButton *)sender
+{
+    NSURL *url = [NSURL URLWithString:@"http://www.option-u.com/stolpersteine/imprint-ios-app-de/"];
+    [UIApplication.sharedApplication openURL:url];
+}
+
 - (BOOL)searchDisplayController:(SearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     [self.searchStolpersteineOperation cancel];
@@ -391,11 +397,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     
     // Dismiss search display controller
     self.searchDisplayController.active = FALSE;
-}
-
-- (IBAction)done:(UIStoryboardSegue *)segue
-{
-    // Back from InfoViewController
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

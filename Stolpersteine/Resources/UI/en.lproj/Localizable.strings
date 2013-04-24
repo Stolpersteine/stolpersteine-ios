@@ -10,6 +10,8 @@
 "MapViewController.home" = "Center";
 "MapViewController.cancel" = "Cancel";
 "MapViewController.searchBarPaddingRight" = "75";
+"MapViewController.imprint" = "Imprint";
+"MapViewController.imprintURL" = "http://www.option-u.com/stolpersteine/imprint-ios-app-en/";
 
 "StolpersteinDetailViewController.title" = "Info";
 "StolpersteinDetailViewController.biography" = "Show biography";

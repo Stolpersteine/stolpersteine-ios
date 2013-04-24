@@ -82,6 +82,13 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.mapClusteringController = [[MapClusteringController alloc] initWithMapView:self.mapView];
     self.mapClusteringController.delegate = self;
     
+    // Imprint link
+    NSString *imprint = NSLocalizedString(@"MapViewController.imprint", nil);
+    NSMutableAttributedString *attributedString = [[self.imprintButton attributedTitleForState:UIControlStateNormal] mutableCopy];
+    attributedString.mutableString.string = imprint;
+    [attributedString addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:NSMakeRange(0, attributedString.length)];
+    [self.imprintButton setAttributedTitle:attributedString forState:UIControlStateNormal];
+    
     // Start loading data
     [self retrieveStolpersteine];
 }
@@ -303,7 +310,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (IBAction)showImprint:(UIButton *)sender
 {
-    NSURL *url = [NSURL URLWithString:@"http://www.option-u.com/stolpersteine/imprint-ios-app-de/"];
+    NSString *imprintURLAsString = NSLocalizedString(@"MapViewController.imprintURL", nil);
+    NSURL *url = [NSURL URLWithString:imprintURLAsString];
     [UIApplication.sharedApplication openURL:url];
 }
 

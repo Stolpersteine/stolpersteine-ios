@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "MapClusteringControllerUtilsTests.h"
+#import "MapClusterControllerUtilsTests.h"
 
-#import "MapClusteringControllerUtils.h"
+#import "MapClusterControllerUtils.h"
 #import "Stolperstein.h"
 
-@implementation MapClusteringControllerUtilsTests
+@implementation MapClusterControllerUtilsTests
 
 - (void)testFindClosestAnnotationNil
 {
     MKMapPoint mapPoint = MKMapPointMake(0, 0);
-    id<MKAnnotation> annotation = MapClusteringControllerFindClosestAnnotation(nil, mapPoint);
+    id<MKAnnotation> annotation = MapClusterControllerFindClosestAnnotation(nil, mapPoint);
     STAssertNil(annotation, @"Wrong annotation");
 }
 
@@ -24,7 +24,7 @@
 {
     NSMutableSet *annotations = [[NSMutableSet alloc] init];
     MKMapPoint mapPoint = MKMapPointMake(0, 0);
-    id<MKAnnotation> annotation = MapClusteringControllerFindClosestAnnotation(annotations, mapPoint);
+    id<MKAnnotation> annotation = MapClusterControllerFindClosestAnnotation(annotations, mapPoint);
     STAssertNil(annotation, @"Wrong annotation");
 }
 
@@ -47,21 +47,21 @@
     stolperstein3.locationCoordinate = CLLocationCoordinate2DMake(42.1, 43.7);
     [annotations addObject:stolperstein3];
     
-    id<MKAnnotation> annotation = MapClusteringControllerFindClosestAnnotation(annotations, mapPoint);
+    id<MKAnnotation> annotation = MapClusterControllerFindClosestAnnotation(annotations, mapPoint);
     STAssertEqualObjects(annotation, stolperstein2, @"Wrong annotation");
 }
 
 - (void)testAlign
 {
     MKMapRect mapRect = MKMapRectMake(0, 0, 15, 20);
-    MKMapRect adjustedMapRect = MapClusteringControllerAlignToCellSize(mapRect, 5);
+    MKMapRect adjustedMapRect = MapClusterControllerAlignToCellSize(mapRect, 5);
     STAssertEquals(adjustedMapRect.origin.x, 0.0, @"Wrong origin x");
     STAssertEquals(adjustedMapRect.origin.y, 0.0, @"Wrong origin y");
     STAssertEquals(adjustedMapRect.size.width, 15.0, @"Wrong size width");
     STAssertEquals(adjustedMapRect.size.height, 20.0, @"Wrong size height");
 
     mapRect = MKMapRectMake(8, 8, 15, 20);
-    adjustedMapRect = MapClusteringControllerAlignToCellSize(mapRect, 6);
+    adjustedMapRect = MapClusterControllerAlignToCellSize(mapRect, 6);
     STAssertEquals(adjustedMapRect.origin.x, 6.0, @"Wrong origin x");
     STAssertEquals(adjustedMapRect.origin.y, 6.0, @"Wrong origin y");
     STAssertEquals(adjustedMapRect.size.width, 18.0, @"Wrong size width");

@@ -1,16 +1,16 @@
 //
-//  MapClusteringControllerUtils.m
+//  MapClusterControllerUtils.m
 //  Stolpersteine
 //
 //  Created by Hoefele, Claus(choefele) on 21.03.13.
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "MapClusteringControllerUtils.h"
+#import "MapClusterControllerUtils.h"
 
-#import "MapClusteringAnnotation.h"
+#import "MapClusterAnnotation.h"
 
-id<MKAnnotation> MapClusteringControllerFindClosestAnnotation(NSSet *annotations, MKMapPoint mapPoint)
+id<MKAnnotation> MapClusterControllerFindClosestAnnotation(NSSet *annotations, MKMapPoint mapPoint)
 {
     id<MKAnnotation> closestAnnotation;
     CLLocationDistance closestDistance = DBL_MAX;
@@ -26,7 +26,7 @@ id<MKAnnotation> MapClusteringControllerFindClosestAnnotation(NSSet *annotations
     return closestAnnotation;
 }
 
-MKMapRect MapClusteringControllerAlignToCellSize(MKMapRect mapRect, double cellSize)
+MKMapRect MapClusterControllerAlignToCellSize(MKMapRect mapRect, double cellSize)
 {
     NSCAssert(cellSize != 0, @"Invalid cell size");
     
@@ -37,11 +37,11 @@ MKMapRect MapClusteringControllerAlignToCellSize(MKMapRect mapRect, double cellS
     return MKMapRectMake(startX, startY, endX - startX, endY - startY);
 }
 
-MapClusteringAnnotation *MapClusteringControllerFindAnnotation(MKMapRect cellMapRect, NSSet *annotations, NSSet *visibleAnnotations)
+MapClusterAnnotation *MapClusterControllerFindAnnotation(MKMapRect cellMapRect, NSSet *annotations, NSSet *visibleAnnotations)
 {
     // See if there's already a visible annotation in this cell
     for (id<MKAnnotation> annotation in annotations) {
-        for (MapClusteringAnnotation *visibleAnnotation in visibleAnnotations) {
+        for (MapClusterAnnotation *visibleAnnotation in visibleAnnotations) {
             if ([visibleAnnotation.annotations containsObject:annotation]) {
                 return visibleAnnotation;
             }
@@ -50,8 +50,8 @@ MapClusteringAnnotation *MapClusteringControllerFindAnnotation(MKMapRect cellMap
     
     // Otherwise, choose the closest annotation to the center
     MKMapPoint centerMapPoint = MKMapPointMake(MKMapRectGetMidX(cellMapRect), MKMapRectGetMidY(cellMapRect));
-    id<MKAnnotation> closestAnnotation = MapClusteringControllerFindClosestAnnotation(annotations, centerMapPoint);
-    MapClusteringAnnotation *annotation = [[MapClusteringAnnotation alloc] init];
+    id<MKAnnotation> closestAnnotation = MapClusterControllerFindClosestAnnotation(annotations, centerMapPoint);
+    MapClusterAnnotation *annotation = [[MapClusterAnnotation alloc] init];
     annotation.coordinate = closestAnnotation.coordinate;
     
     return annotation;

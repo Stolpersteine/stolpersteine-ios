@@ -18,9 +18,9 @@
 #import "SearchBar.h"
 #import "SearchDisplayController.h"
 #import "SearchDisplayDelegate.h"
-#import "MapClusteringController.h"
-#import "MapClusteringControllerDelegate.h"
-#import "MapClusteringAnnotation.h"
+#import "MapClusterController.h"
+#import "MapClusterControllerDelegate.h"
+#import "MapClusterAnnotation.h"
 #import "Localization.h"
 
 #define fequal(a,b) (fabs((a) - (b)) < FLT_EPSILON)
@@ -28,7 +28,7 @@ static const MKCoordinateRegion BERLIN_REGION = { 52.5233, 13.4127, 0.4493, 0.73
 static const double ZOOM_DISTANCE_USER = 1200;
 static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
-@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SearchDisplayDelegate, MapClusteringControllerDelegate>
+@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SearchDisplayDelegate, MapClusterControllerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -38,11 +38,11 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 @property (nonatomic, strong) SearchDisplayController *searchDisplayController;
 @property (nonatomic, strong) NSArray *searchedStolpersteine;
 @property (nonatomic, strong) Stolperstein *stolpersteinToSelect;
-@property (nonatomic, strong) MapClusteringAnnotation *annotationToSelect;
+@property (nonatomic, strong) MapClusterAnnotation *annotationToSelect;
 @property (nonatomic, assign) MKCoordinateRegion regionToSet;
 @property (nonatomic, assign, getter = isRegionToSetInvalid) BOOL regionToSetInvalid;
 @property (nonatomic, assign) MKCoordinateSpan regionSpanBeforeChange;
-@property (nonatomic, strong) MapClusteringController *mapClusteringController;
+@property (nonatomic, strong) MapClusterController *mapClusterController;
 
 @end
 
@@ -79,8 +79,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.regionToSet = BERLIN_REGION;
     
     // Clustering
-    self.mapClusteringController = [[MapClusteringController alloc] initWithMapView:self.mapView];
-    self.mapClusteringController.delegate = self;
+    self.mapClusterController = [[MapClusterController alloc] initWithMapView:self.mapView];
+    self.mapClusterController.delegate = self;
     
     // Imprint link
     NSString *imprint = NSLocalizedString(@"MapViewController.imprint", nil);
@@ -144,7 +144,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 {
     [self.retrieveStolpersteineOperation cancel];
     self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil range:range completionHandler:^(NSArray *stolpersteine, NSError *error) {
-        [self.mapClusteringController addAnnotations:stolpersteine];
+        [self.mapClusterController addAnnotations:stolpersteine];
         
         // Next batch of data
         if (stolpersteine.count == range.length) {
@@ -160,8 +160,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     
     NSSet *annotations = [self.mapView annotationsInMapRect:mapRect];
     for (id<MKAnnotation> annotation in annotations) {
-        if ([annotation isKindOfClass:MapClusteringAnnotation.class]) {
-            MapClusteringAnnotation *clusteringAnnotation = (MapClusteringAnnotation *)annotation;
+        if ([annotation isKindOfClass:MapClusterAnnotation.class]) {
+            MapClusterAnnotation *clusteringAnnotation = (MapClusterAnnotation *)annotation;
             NSUInteger index = [clusteringAnnotation.annotations indexOfObject:stolperstein];
             if (index != NSNotFound) {
                 annotationResult = annotation;
@@ -202,7 +202,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     }
 
     // Update annotations
-    [self.mapClusteringController updateAnnotationsAnimated:TRUE completion:^{
+    [self.mapClusterController updateAnnotationsAnimated:TRUE completion:^{
         if (self.stolpersteinToSelect) {
             // Map has zoomed to selected stolperstein; search for cluster annotation that contains this stolperstein
             id<MKAnnotation> annotation = [self annotationForStolperstein:self.stolpersteinToSelect inMapRect:mapView.visibleMapRect];
@@ -233,7 +233,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 {
     MKAnnotationView *annotationView;
     
-    if ([annotation isKindOfClass:MapClusteringAnnotation.class]) {
+    if ([annotation isKindOfClass:MapClusterAnnotation.class]) {
         static NSString *stolpersteinIdentifier = @"stolpersteinIdentifier";
         
         annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
@@ -273,8 +273,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    if ([view.annotation isKindOfClass:MapClusteringAnnotation.class]) {
-        MapClusteringAnnotation *stolpersteinAnnotation = (MapClusteringAnnotation *)view.annotation;
+    if ([view.annotation isKindOfClass:MapClusterAnnotation.class]) {
+        MapClusterAnnotation *stolpersteinAnnotation = (MapClusterAnnotation *)view.annotation;
         NSString *identifier;
         if (stolpersteinAnnotation.isCluster) {
             identifier = @"mapViewControllerToStolpersteineListViewController";
@@ -329,14 +329,14 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     return FALSE;
 }
 
-- (NSString *)mapClusteringController:(MapClusteringController *)mapClusteringController titleForClusterAnnotation:(MapClusteringAnnotation *)mapClusteringAnnotation
+- (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
-    return [Localization newTitleFromMapCulsteringAnnotation:mapClusteringAnnotation];
+    return [Localization newTitleFromMapClusterAnnotation:mapClusterAnnotation];
 }
 
-- (NSString *)mapClusteringController:(MapClusteringController *)mapClusteringController subtitleForClusterAnnotation:(MapClusteringAnnotation *)mapClusteringAnnotation
+- (NSString *)mapClusterController:(MapClusterController *)mapClusterController subtitleForClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
-    return [Localization newSubtitleFromMapCulsteringAnnotation:mapClusteringAnnotation];
+    return [Localization newSubtitleFromMapClusterAnnotation:mapClusterAnnotation];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -371,7 +371,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
     // Force selected stolperstein to be on map
     self.stolpersteinToSelect = [self.searchedStolpersteine objectAtIndex:indexPath.row];
-    [self.mapClusteringController addAnnotations:@[self.stolpersteinToSelect]];
+    [self.mapClusterController addAnnotations:@[self.stolpersteinToSelect]];
 
     // Zoom in to selected stolperstein
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.stolpersteinToSelect.coordinate, ZOOM_DISTANCE_STOLPERSTEIN, ZOOM_DISTANCE_STOLPERSTEIN);
@@ -389,7 +389,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
-    MapClusteringAnnotation *clusteringAnnotation = (MapClusteringAnnotation *)selectedAnnotation;
+    MapClusterAnnotation *clusteringAnnotation = (MapClusterAnnotation *)selectedAnnotation;
     if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
         detailViewController.stolperstein = clusteringAnnotation.annotations[0];

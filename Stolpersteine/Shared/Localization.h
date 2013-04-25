@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class Stolperstein;
-@class MapClusteringAnnotation;
+@class MapClusterAnnotation;
 
 @interface Localization : NSObject
 
@@ -19,7 +19,7 @@
 + (NSString *)newShortAddressFromStolperstein:(Stolperstein *)stolperstein;
 + (NSString *)newLongAddressFromStolperstein:(Stolperstein *)stolperstein;
 + (NSString *)newDescriptionFromStolperstein:(Stolperstein *)stolperstein;
-+ (NSString *)newTitleFromMapCulsteringAnnotation:(MapClusteringAnnotation *)mapClusteringAnnotation;
-+ (NSString *)newSubtitleFromMapCulsteringAnnotation:(MapClusteringAnnotation *)mapClusteringAnnotation;
++ (NSString *)newTitleFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
++ (NSString *)newSubtitleFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
 
 @end

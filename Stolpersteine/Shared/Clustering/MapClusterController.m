@@ -1,25 +1,25 @@
 //
-//  MapClusteringController.m
+//  MapClusterController.m
 //  Stolpersteine
 //
 //  Created by Claus on 20.02.13.
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "MapClusteringController.h"
+#import "MapClusterController.h"
 
-#import "MapClusteringControllerUtils.h"
-#import "MapClusteringAnnotation.h"
-#import "MapClusteringControllerDelegate.h"
+#import "MapClusterControllerUtils.h"
+#import "MapClusterAnnotation.h"
+#import "MapClusterControllerDelegate.h"
 
-@interface MapClusteringController()
+@interface MapClusterController()
 
 @property (strong, nonatomic) MKMapView *mapView;
 @property (strong, nonatomic) MKMapView *allAnnotationsMapView;
 
 @end
 
-@implementation MapClusteringController
+@implementation MapClusterController
 
 // This value controls the number of off screen annotations are displayed.
 // A bigger number means more annotations, less chance of seeing annotations views pop in but
@@ -70,7 +70,7 @@ static double CELL_SIZE = 40.0; // [points]
     // Expand map rect and align to cell size to avoid popping when panning
     MKMapRect visibleMapRect = self.mapView.visibleMapRect;
     MKMapRect gridMapRect = MKMapRectInset(visibleMapRect, -MARGIN_FACTOR * visibleMapRect.size.width, -MARGIN_FACTOR * visibleMapRect.size.height);
-    gridMapRect = MapClusteringControllerAlignToCellSize(gridMapRect, cellSize);
+    gridMapRect = MapClusterControllerAlignToCellSize(gridMapRect, cellSize);
     MKMapRect cellMapRect = MKMapRectMake(0, MKMapRectGetMinY(gridMapRect), cellSize, cellSize);
 
     // For each cell in the grid, pick one annotation to show
@@ -89,7 +89,7 @@ static double CELL_SIZE = 40.0; // [points]
             if (allAnnotationsInCell.count > 0) {
                 NSMutableSet *visibleAnnotationsInCell = [self.mapView annotationsInMapRect:cellMapRect].mutableCopy;
                 
-                MapClusteringAnnotation *annotationForCell = MapClusteringControllerFindAnnotation(cellMapRect, allAnnotationsInCell, visibleAnnotationsInCell);
+                MapClusterAnnotation *annotationForCell = MapClusterControllerFindAnnotation(cellMapRect, allAnnotationsInCell, visibleAnnotationsInCell);
                 annotationForCell.annotations = allAnnotationsInCell.allObjects;
                 annotationForCell.delegate = self.delegate;
                 

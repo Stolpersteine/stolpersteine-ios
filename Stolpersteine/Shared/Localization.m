@@ -9,7 +9,7 @@
 #import "Localization.h"
 
 #import "Stolperstein.h"
-#import "MapClusteringAnnotation.h"
+#import "MapClusterAnnotation.h"
 
 @implementation Localization
 
@@ -114,32 +114,32 @@
     return [NSString stringWithFormat:@"%@, %@", name, address];
 }
 
-+ (NSString *)newTitleFromMapCulsteringAnnotation:(MapClusteringAnnotation *)mapClusteringAnnotation
++ (NSString *)newTitleFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
     NSString *title;
-    if (mapClusteringAnnotation.isCluster) {
-        NSUInteger numStolpersteine = MIN(mapClusteringAnnotation.annotations.count, 5);
-        NSArray *stolpersteine = [mapClusteringAnnotation.annotations subarrayWithRange:NSMakeRange(0, numStolpersteine)];
+    if (mapClusterAnnotation.isCluster) {
+        NSUInteger numStolpersteine = MIN(mapClusterAnnotation.annotations.count, 5);
+        NSArray *stolpersteine = [mapClusterAnnotation.annotations subarrayWithRange:NSMakeRange(0, numStolpersteine)];
         NSMutableArray *names = [NSMutableArray arrayWithCapacity:numStolpersteine];
         for (Stolperstein *stolperstein in stolpersteine) {
             [names addObject:[Localization newShortNameFromStolperstein:stolperstein]];
         }
         title = [names componentsJoinedByString:@", "];
     } else {
-        Stolperstein *stolperstein = mapClusteringAnnotation.annotations[0];
+        Stolperstein *stolperstein = mapClusterAnnotation.annotations[0];
         title = [Localization newNameFromStolperstein:stolperstein];
     }
     
     return title;
 }
 
-+ (NSString *)newSubtitleFromMapCulsteringAnnotation:(MapClusteringAnnotation *)mapClusteringAnnotation
++ (NSString *)newSubtitleFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
     NSString *subtitle;
-    if (mapClusteringAnnotation.isCluster) {
-        subtitle = [NSString stringWithFormat:@"%u Stolpersteine", mapClusteringAnnotation.annotations.count];
+    if (mapClusterAnnotation.isCluster) {
+        subtitle = [NSString stringWithFormat:@"%u Stolpersteine", mapClusterAnnotation.annotations.count];
     } else {
-        Stolperstein *stolperstein = mapClusteringAnnotation.annotations[0];
+        Stolperstein *stolperstein = mapClusterAnnotation.annotations[0];
         subtitle = [Localization newShortAddressFromStolperstein:stolperstein];
     }
     

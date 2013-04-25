@@ -1,5 +1,5 @@
 //
-//  MapClusteringController.h
+//  MapClusterController.h
 //  Stolpersteine
 //
 //  Created by Claus on 20.02.13.
@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@protocol MapClusteringControllerDelegate;
+@protocol MapClusterControllerDelegate;
 
-@interface MapClusteringController : NSObject
+@interface MapClusterController : NSObject
 
-@property (nonatomic, weak) id<MapClusteringControllerDelegate> delegate;
+@property (nonatomic, weak) id<MapClusterControllerDelegate> delegate;
 
 - (id)initWithMapView:(MKMapView *)mapView;
 - (void)addAnnotations:(NSArray *)annotations;

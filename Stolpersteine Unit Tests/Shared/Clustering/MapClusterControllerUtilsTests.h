@@ -8,6 +8,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface MapClusteringControllerUtilsTests : SenTestCase
+@interface MapClusterControllerUtilsTests : SenTestCase
 
 @end

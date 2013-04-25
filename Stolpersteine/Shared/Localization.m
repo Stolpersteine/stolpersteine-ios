@@ -122,7 +122,7 @@
         NSArray *stolpersteine = [mapClusterAnnotation.annotations subarrayWithRange:NSMakeRange(0, numStolpersteine)];
         NSMutableArray *names = [NSMutableArray arrayWithCapacity:numStolpersteine];
         for (Stolperstein *stolperstein in stolpersteine) {
-            [names addObject:[Localization newShortNameFromStolperstein:stolperstein]];
+            [names addObject:[Localization newNameFromStolperstein:stolperstein]];
         }
         title = [names componentsJoinedByString:@", "];
     } else {
@@ -136,11 +136,20 @@
 + (NSString *)newSubtitleFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
     NSString *subtitle;
-    if (mapClusterAnnotation.isCluster) {
+    
+    // Check if all stolpersteine have a common address
+    for (Stolperstein *stolperstein in mapClusterAnnotation.annotations) {
+        NSString *address = [Localization newShortAddressFromStolperstein:stolperstein];
+        if (subtitle == nil || [subtitle isEqualToString:address]) {
+            subtitle = address;
+        } else {
+            subtitle = nil;
+            break;
+        }
+    }
+    
+    if (subtitle == nil) {
         subtitle = [NSString stringWithFormat:@"%u Stolpersteine", mapClusterAnnotation.annotations.count];
-    } else {
-        Stolperstein *stolperstein = mapClusterAnnotation.annotations[0];
-        subtitle = [Localization newShortAddressFromStolperstein:stolperstein];
     }
     
     return subtitle;

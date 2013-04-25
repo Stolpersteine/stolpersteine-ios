@@ -334,8 +334,9 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     NSString *title;
     if (mapClusteringAnnotation.isCluster) {
         NSUInteger numStolpersteine = MIN(mapClusteringAnnotation.annotations.count, 5);
+        NSArray *stolpersteine = [mapClusteringAnnotation.annotations subarrayWithRange:NSMakeRange(0, numStolpersteine)];
         NSMutableArray *names = [NSMutableArray arrayWithCapacity:numStolpersteine];
-        for (Stolperstein *stolperstein in mapClusteringAnnotation.annotations) {
+        for (Stolperstein *stolperstein in stolpersteine) {
             [names addObject:[Localization newShortNameFromStolperstein:stolperstein]];
         }
         title = [names componentsJoinedByString:@", "];

@@ -29,9 +29,8 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="Copyright">
                                             <attributes>
-                                                <color key="NSColor" red="0.5215686559677124" green="0.54117649793624878" blue="0.47843140363693237" alpha="1" colorSpace="deviceRGB"/>
-                                                <font key="NSFont" size="10" name="Helvetica-Bold"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                <color key="NSColor" red="0.44459410391164167" green="0.46130816605839414" blue="0.4078231671887862" alpha="1" colorSpace="deviceRGB"/>
+                                                <font key="NSFont" size="9" name="Helvetica"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>

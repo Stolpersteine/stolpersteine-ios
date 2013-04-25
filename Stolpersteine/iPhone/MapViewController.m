@@ -161,8 +161,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     NSSet *annotations = [self.mapView annotationsInMapRect:mapRect];
     for (id<MKAnnotation> annotation in annotations) {
         if ([annotation isKindOfClass:MapClusterAnnotation.class]) {
-            MapClusterAnnotation *clusteringAnnotation = (MapClusterAnnotation *)annotation;
-            NSUInteger index = [clusteringAnnotation.annotations indexOfObject:stolperstein];
+            MapClusterAnnotation *clusterAnnotation = (MapClusterAnnotation *)annotation;
+            NSUInteger index = [clusterAnnotation.annotations indexOfObject:stolperstein];
             if (index != NSNotFound) {
                 annotationResult = annotation;
                 break;
@@ -389,14 +389,14 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
-    MapClusterAnnotation *clusteringAnnotation = (MapClusterAnnotation *)selectedAnnotation;
+    MapClusterAnnotation *clusterAnnotation = (MapClusterAnnotation *)selectedAnnotation;
     if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
-        detailViewController.stolperstein = clusteringAnnotation.annotations[0];
+        detailViewController.stolperstein = clusterAnnotation.annotations[0];
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
-        listViewController.stolpersteine = clusteringAnnotation.annotations;
-        listViewController.title = clusteringAnnotation.subtitle;
+        listViewController.stolpersteine = clusterAnnotation.annotations;
+        listViewController.title = clusterAnnotation.subtitle;
     }
 }
 

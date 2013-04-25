@@ -173,10 +173,10 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     return annotationResult;
 }
 
-- (BOOL)isRegionUpToDate:(MKCoordinateRegion)region
+- (BOOL)isCoordinateUpToDate:(CLLocationCoordinate2D)coordinate
 {
-    BOOL isRegionUpToDate = fequal(region.center.latitude, self.mapView.region.center.latitude) && fequal(region.center.longitude, self.mapView.region.center.longitude);
-    return isRegionUpToDate;
+    BOOL isCoordinateUpToDate = fequal(coordinate.latitude, self.mapView.region.center.latitude) && fequal(coordinate.longitude, self.mapView.region.center.longitude);
+    return isCoordinateUpToDate;
 }
 
 - (void)deselectAllAnnotations
@@ -204,17 +204,17 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     // Update annotations
     [self.mapClusteringController updateAnnotationsAnimated:TRUE completion:^{
         if (self.stolpersteinToSelect) {
-            // Map has zoomed to selected stolperstein; search for annoation that contains this stolperstein
+            // Map has zoomed to selected stolperstein; search for cluster annotation that contains this stolperstein
             id<MKAnnotation> annotation = [self annotationForStolperstein:self.stolpersteinToSelect inMapRect:mapView.visibleMapRect];
             self.stolpersteinToSelect = nil;
             
             // Dispatch async to avoid calling regionDidChangeAnimated immediately
-            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ZOOM_DISTANCE_STOLPERSTEIN, ZOOM_DISTANCE_STOLPERSTEIN);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.mapView setRegion:region animated:NO];
+                // No zooming, only panning. Otherwise, stolperstein might change to a different cluster annotation
+                [self.mapView setCenterCoordinate:annotation.coordinate animated:FALSE];
             });
             
-            if ([self isRegionUpToDate:region]) {
+            if ([self isCoordinateUpToDate:annotation.coordinate]) {
                 // Select immediately since region won't change
                 [self.mapView selectAnnotation:annotation animated:YES];
             } else {
@@ -397,7 +397,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     // Zoom in to selected stolperstein
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.stolpersteinToSelect.coordinate, ZOOM_DISTANCE_STOLPERSTEIN, ZOOM_DISTANCE_STOLPERSTEIN);
     [self.mapView setRegion:region animated:YES];
-    if ([self isRegionUpToDate:region]) {
+    if ([self isCoordinateUpToDate:region.center]) {
         // Manually call update methods because region won't change
         [self mapView:self.mapView regionWillChangeAnimated:TRUE];
         [self mapView:self.mapView regionDidChangeAnimated:TRUE];

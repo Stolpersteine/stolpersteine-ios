@@ -149,10 +149,15 @@
     }
     
     if (subtitle == nil) {
-        subtitle = [NSString stringWithFormat:@"%u Stolpersteine", mapClusterAnnotation.annotations.count];
+        subtitle = [Localization newStolpersteineCountFromMapClusterAnnotation:mapClusterAnnotation];
     }
     
     return subtitle;
+}
+
++ (NSString *)newStolpersteineCountFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
+{
+    return [NSString stringWithFormat:@"%u Stolpersteine", mapClusterAnnotation.annotations.count];
 }
 
 @end

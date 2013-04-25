@@ -396,7 +396,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
         listViewController.stolpersteine = clusterAnnotation.annotations;
-        listViewController.title = clusterAnnotation.subtitle;
+        listViewController.title = [Localization newStolpersteineCountFromMapClusterAnnotation:clusterAnnotation];
     }
 }
 

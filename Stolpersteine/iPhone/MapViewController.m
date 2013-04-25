@@ -331,34 +331,12 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (NSString *)mapClusteringController:(MapClusteringController *)mapClusteringController titleForClusterAnnotation:(MapClusteringAnnotation *)mapClusteringAnnotation
 {
-    NSString *title;
-    if (mapClusteringAnnotation.isCluster) {
-        NSUInteger numStolpersteine = MIN(mapClusteringAnnotation.annotations.count, 5);
-        NSArray *stolpersteine = [mapClusteringAnnotation.annotations subarrayWithRange:NSMakeRange(0, numStolpersteine)];
-        NSMutableArray *names = [NSMutableArray arrayWithCapacity:numStolpersteine];
-        for (Stolperstein *stolperstein in stolpersteine) {
-            [names addObject:[Localization newShortNameFromStolperstein:stolperstein]];
-        }
-        title = [names componentsJoinedByString:@", "];
-    } else {
-        Stolperstein *stolperstein = mapClusteringAnnotation.annotations[0];
-        title = [Localization newNameFromStolperstein:stolperstein];
-    }
-    
-    return title;
+    return [Localization newTitleFromMapCulsteringAnnotation:mapClusteringAnnotation];
 }
 
 - (NSString *)mapClusteringController:(MapClusteringController *)mapClusteringController subtitleForClusterAnnotation:(MapClusteringAnnotation *)mapClusteringAnnotation
 {
-    NSString *subtitle;
-    if (mapClusteringAnnotation.isCluster) {
-        subtitle = [NSString stringWithFormat:@"%u Stolpersteine", mapClusteringAnnotation.annotations.count];
-    } else {
-        Stolperstein *stolperstein = mapClusteringAnnotation.annotations[0];
-        subtitle = [Localization newShortAddressFromStolperstein:stolperstein];
-    }
-    
-    return subtitle;
+    return [Localization newSubtitleFromMapCulsteringAnnotation:mapClusteringAnnotation];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

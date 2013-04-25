@@ -9,6 +9,7 @@
 #import "Localization.h"
 
 #import "Stolperstein.h"
+#import "MapClusteringAnnotation.h"
 
 @implementation Localization
 
@@ -111,6 +112,38 @@
     NSString *name = [Localization newNameFromStolperstein:stolperstein];
     NSString *address = [Localization newShortAddressFromStolperstein:stolperstein];
     return [NSString stringWithFormat:@"%@, %@", name, address];
+}
+
++ (NSString *)newTitleFromMapCulsteringAnnotation:(MapClusteringAnnotation *)mapClusteringAnnotation
+{
+    NSString *title;
+    if (mapClusteringAnnotation.isCluster) {
+        NSUInteger numStolpersteine = MIN(mapClusteringAnnotation.annotations.count, 5);
+        NSArray *stolpersteine = [mapClusteringAnnotation.annotations subarrayWithRange:NSMakeRange(0, numStolpersteine)];
+        NSMutableArray *names = [NSMutableArray arrayWithCapacity:numStolpersteine];
+        for (Stolperstein *stolperstein in stolpersteine) {
+            [names addObject:[Localization newShortNameFromStolperstein:stolperstein]];
+        }
+        title = [names componentsJoinedByString:@", "];
+    } else {
+        Stolperstein *stolperstein = mapClusteringAnnotation.annotations[0];
+        title = [Localization newNameFromStolperstein:stolperstein];
+    }
+    
+    return title;
+}
+
++ (NSString *)newSubtitleFromMapCulsteringAnnotation:(MapClusteringAnnotation *)mapClusteringAnnotation
+{
+    NSString *subtitle;
+    if (mapClusteringAnnotation.isCluster) {
+        subtitle = [NSString stringWithFormat:@"%u Stolpersteine", mapClusteringAnnotation.annotations.count];
+    } else {
+        Stolperstein *stolperstein = mapClusteringAnnotation.annotations[0];
+        subtitle = [Localization newShortAddressFromStolperstein:stolperstein];
+    }
+    
+    return subtitle;
 }
 
 @end

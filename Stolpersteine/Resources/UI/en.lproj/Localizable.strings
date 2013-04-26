@@ -7,7 +7,7 @@
 */
 
 "MapViewController.title" = "Map";
-"MapViewController.home" = "Center";
+"MapViewController.home" = "Centre";
 "MapViewController.cancel" = "Cancel";
 "MapViewController.searchBarPaddingRight" = "75";
 "MapViewController.imprint" = "Contact";

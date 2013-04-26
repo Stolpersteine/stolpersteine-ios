@@ -26,6 +26,10 @@
     application.statusBarOrientation = UIInterfaceOrientationPortrait;
     application.statusBarOrientation = orientation;
     
+    NSString *version = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSString *shortVersion = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSLog(@"Stolpersteine %@ (%@)", shortVersion, version);
+    
     // Configurations file
     NSString *configurationsFile = [NSBundle.mainBundle pathForResource:@"Stolpersteine-Config" ofType:@"plist"];
     NSDictionary *configurations = [NSDictionary dictionaryWithContentsOfFile:configurationsFile];

@@ -32,14 +32,13 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 - (void)setUp
 {
     [super setUp];
-    
-    NSURL *url = [NSURL URLWithString:BASE_URL];
+
+    self.networkService = [[StolpersteinNetworkService alloc] initWithClientUser:nil clientPassword:nil];
 #ifdef DEBUG
     // This allows invalid certificates so that proxies can decrypt the traffic.
-    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:url.host];
+    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:self.networkService.baseURL.host];
 #endif
     
-    self.networkService = [[StolpersteinNetworkService alloc] initWithURL:url clientUser:nil clientPassword:nil];
     self.done = FALSE;
 }
 

@@ -17,7 +17,6 @@
 @end
 #endif
 
-static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1";
 static NSString * const GOOGLE_ANALYTICS_ID = @"UA-38166041-1";
 static NSString * const CLIENT_USER = nil;
 static NSString * const CLIENT_PASSWORD = nil;
@@ -31,11 +30,10 @@ static NSString * const CLIENT_PASSWORD = nil;
     application.statusBarOrientation = UIInterfaceOrientationPortrait;
     application.statusBarOrientation = orientation;
     
-    NSURL *url = [NSURL URLWithString:API_URL];
-    self.networkService = [[StolpersteinNetworkService alloc] initWithURL:url clientUser:CLIENT_USER clientPassword:CLIENT_PASSWORD];
+    self.networkService = [[StolpersteinNetworkService alloc] initWithClientUser:CLIENT_USER clientPassword:CLIENT_PASSWORD];
 #ifdef DEBUG
     // This allows invalid certificates so that proxies can decrypt the network traffic
-    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:url.host];
+    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:self.networkService.baseURL.host];
 #endif
     
     // Google Analytics

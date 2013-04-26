@@ -17,6 +17,8 @@
 #import "NSDictionary+Parsing.h"
 #import "Base64.h"
 
+static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1";
+
 @interface StolpersteinNetworkService ()
 
 @property (nonatomic, strong) AFHTTPClient *httpClient;
@@ -26,11 +28,11 @@
 
 @implementation StolpersteinNetworkService
 
-- (id)initWithURL:(NSURL *)url clientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword
+- (id)initWithClientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword
 {
     self = [super init];
     if (self) {
-        self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+        self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:API_URL]];
         self.httpClient.parameterEncoding = AFJSONParameterEncoding;
         [self.httpClient registerHTTPOperationClass:AFJSONRequestOperation.class];
         
@@ -42,6 +44,11 @@
     }
     
     return self;
+}
+
+- (NSURL *)baseURL
+{
+    return self.httpClient.baseURL;
 }
 
 - (void)addBasicAuthHeaderToRequest:(NSMutableURLRequest *)request

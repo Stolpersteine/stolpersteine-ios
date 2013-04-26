@@ -12,7 +12,9 @@
 
 @interface StolpersteinNetworkService : NSObject
 
-- (id)initWithURL:(NSURL *)url clientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword;
+@property (nonatomic, readonly, copy) NSURL *baseURL;
+
+- (id)initWithClientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword;
 
 - (NSOperation *)retrieveStolpersteineWithSearchData:(StolpersteinSearchData *)searchData range:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine, NSError *error))completionHandler;
 

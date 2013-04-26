@@ -17,27 +17,34 @@
 @end
 #endif
 
-static NSString * const GOOGLE_ANALYTICS_ID = @"UA-38166041-1";
-static NSString * const CLIENT_USER = nil;
-static NSString * const CLIENT_PASSWORD = nil;
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Works around bug on iPad when app is started in landscape mode
+    // Works around bug on iPad when app is started in landscape orientation
     UIInterfaceOrientation orientation = application.statusBarOrientation;
     application.statusBarOrientation = UIInterfaceOrientationPortrait;
     application.statusBarOrientation = orientation;
     
-    self.networkService = [[StolpersteinNetworkService alloc] initWithClientUser:CLIENT_USER clientPassword:CLIENT_PASSWORD];
+    // Configurations file
+    NSString *configurationsFile = [NSBundle.mainBundle pathForResource:@"Stolpersteine-Config" ofType:@"plist"];
+    NSDictionary *configurations = [NSDictionary dictionaryWithContentsOfFile:configurationsFile];
+    NSString *clientUser = [configurations objectForKey:@"API client user"];
+    clientUser = clientUser.length > 0 ? clientUser : nil;
+    NSString *clientPassword = [configurations objectForKey:@"API client password"];
+    clientPassword = clientPassword.length > 0 ? clientPassword : nil;
+    NSString *googleAnalyticsID = [configurations objectForKey:@"Google Analytics ID"];
+    googleAnalyticsID = googleAnalyticsID.length > 0 ? googleAnalyticsID : nil;
+    
+    // Network service
+    self.networkService = [[StolpersteinNetworkService alloc] initWithClientUser:clientUser clientPassword:clientPassword];
 #ifdef DEBUG
     // This allows invalid certificates so that proxies can decrypt the network traffic
     [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:self.networkService.baseURL.host];
 #endif
     
     // Google Analytics
-    self.diagnosticsService = [[DiagnosticsService alloc] initWithGoogleAnalyticsID:GOOGLE_ANALYTICS_ID];
+    self.diagnosticsService = [[DiagnosticsService alloc] initWithGoogleAnalyticsID:googleAnalyticsID];
     
     // Appearance
     UINavigationBar *navigationBar = UINavigationBar.appearance;

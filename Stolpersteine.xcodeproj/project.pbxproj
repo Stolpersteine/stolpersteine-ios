@@ -57,6 +57,7 @@
 		48AC6D7216BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48BAF38416E926DE007250A0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48BAF38316E926DE007250A0 /* Settings.bundle */; };
 		48BAF38816E9405C007250A0 /* DiagnosticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BAF38716E9405C007250A0 /* DiagnosticsService.m */; };
+		6206F9E3172A96EA009F7A13 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 6206F9E2172A96EA009F7A13 /* Base64.m */; };
 		6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		6222BF2516A037CE006ED538 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
 		6222BF2616A037CE006ED538 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
@@ -188,6 +189,8 @@
 		48BAF38316E926DE007250A0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		48BAF38616E9405C007250A0 /* DiagnosticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiagnosticsService.h; sourceTree = "<group>"; };
 		48BAF38716E9405C007250A0 /* DiagnosticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiagnosticsService.m; sourceTree = "<group>"; };
+		6206F9E1172A96EA009F7A13 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		6206F9E2172A96EA009F7A13 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		620B6C44171847550035C2AC /* buildnumber_dynamic.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = buildnumber_dynamic.xcconfig; sourceTree = "<group>"; };
 		620B6C46171848E30035C2AC /* buildnumber_fixed.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = buildnumber_fixed.xcconfig; sourceTree = "<group>"; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
@@ -435,6 +438,15 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		6206F9E0172A96E9009F7A13 /* Base64 1.1 */ = {
+			isa = PBXGroup;
+			children = (
+				6206F9E1172A96EA009F7A13 /* Base64.h */,
+				6206F9E2172A96EA009F7A13 /* Base64.m */,
+			);
+			path = "Base64 1.1";
+			sourceTree = "<group>";
+		};
 		6222BF2816A037CE006ED538 /* Stolpersteine Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -611,6 +623,7 @@
 				627E442F169C41EC0065C1F1 /* Stolpersteine API */,
 				627A0B7916BBFF5300CFA71E /* AFNetworking 1.1.0 */,
 				627A0B9616BBFF5B00CFA71E /* Google Analytics 2.0beta4 */,
+				6206F9E0172A96E9009F7A13 /* Base64 1.1 */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -929,6 +942,7 @@
 				62F147C5170202A1003E7DAA /* SearchDisplayController.m in Sources */,
 				62F147C6170202A1003E7DAA /* SearchTextField.m in Sources */,
 				62895FED1725492300F16AE2 /* LinkedTextLabel.m in Sources */,
+				6206F9E3172A96EA009F7A13 /* Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

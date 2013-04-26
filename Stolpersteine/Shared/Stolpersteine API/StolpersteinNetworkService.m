@@ -15,10 +15,12 @@
 #import "Stolperstein.h"
 #import "StolpersteinSearchData.h"
 #import "NSDictionary+Parsing.h"
+#import "Base64.h"
 
 @interface StolpersteinNetworkService ()
 
 @property (nonatomic, strong) AFHTTPClient *httpClient;
+@property (nonatomic, strong) NSString *encodedCredentials;
 
 @end
 
@@ -32,10 +34,22 @@
         self.httpClient.parameterEncoding = AFJSONParameterEncoding;
         [self.httpClient registerHTTPOperationClass:AFJSONRequestOperation.class];
         
-        [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+        if (clientUser && clientPassword) {
+            self.encodedCredentials = [[[NSString stringWithFormat:@"%@:%@", clientUser, clientPassword] dataUsingEncoding:NSUTF8StringEncoding] base64EncodedString];
+        }
+        
+        AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     }
     
     return self;
+}
+
+- (void)addBasicAuthHeaderToRequest:(NSMutableURLRequest *)request
+{
+    if (self.encodedCredentials) {
+        NSString *basicHeader = [NSString stringWithFormat:@"Basic %@", self.encodedCredentials];
+        [request setValue:basicHeader forHTTPHeaderField:@"Authorization"];
+    }
 }
 
 - (NSOperation *)retrieveStolpersteineWithSearchData:(StolpersteinSearchData *)searchData range:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine, NSError *error))completionHandler
@@ -49,7 +63,8 @@
     }
     [parameters setObject:@(range.length) forKey:@"limit"];
     [parameters setObject:@(range.location) forKey:@"offset"];
-    NSURLRequest *request = [self.httpClient requestWithMethod:@"GET" path:@"stolpersteine" parameters:parameters];
+    NSMutableURLRequest *request = [self.httpClient requestWithMethod:@"GET" path:@"stolpersteine" parameters:parameters];
+    [self addBasicAuthHeaderToRequest:request];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSArray *stolpersteineAsJSON) {
         // Parse on background thread
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{

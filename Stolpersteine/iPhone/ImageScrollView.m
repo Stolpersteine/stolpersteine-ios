@@ -57,30 +57,30 @@
 {
     [super setFrame:frame];
     
-    CGRect imageFrame = CGRectMake(0, 0, frame.size.height, frame.size.height);
+    CGRect imageFrame = CGRectMake(PADDING, 0, frame.size.height, frame.size.height);
     for (ProgressImageView *progressImageView in self.imageViews) {
         progressImageView.frame = imageFrame;
         imageFrame.origin.x += imageFrame.size.width + PADDING;
     }
-    self.contentSize = CGSizeMake(imageFrame.origin.x - PADDING, imageFrame.size.height);
+    self.contentSize = CGSizeMake(imageFrame.origin.x, imageFrame.size.height);
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    // Snap to image views
-    NSLog(@"scrollViewWillEndDragging %f", targetContentOffset->x);
-
-    CGFloat unguidedOffsetX = targetContentOffset->x;
-    CGFloat guidedOffsetX;
-    CGFloat pageWidth = self.frame.size.height + PADDING;
-    int remainder = lroundf(unguidedOffsetX) % lroundf(pageWidth);
-    NSLog(@"remainder %u", remainder);
-    if (remainder < (pageWidth * 0.5)) {
-        guidedOffsetX = unguidedOffsetX - remainder;
-    } else {
-        guidedOffsetX = unguidedOffsetX - remainder + pageWidth;
-    }
-    targetContentOffset->x = guidedOffsetX;
+//    // Snap to image views
+//    NSLog(@"scrollViewWillEndDragging %f", targetContentOffset->x);
+//
+//    CGFloat unguidedOffsetX = targetContentOffset->x;
+//    CGFloat guidedOffsetX;
+//    CGFloat pageWidth = self.frame.size.height + PADDING;
+//    int remainder = lroundf(unguidedOffsetX) % lroundf(pageWidth);
+//    NSLog(@"remainder %u", remainder);
+//    if (remainder < (pageWidth * 0.5)) {
+//        guidedOffsetX = unguidedOffsetX - remainder;
+//    } else {
+//        guidedOffsetX = unguidedOffsetX - remainder + pageWidth;
+//    }
+//    targetContentOffset->x = guidedOffsetX;
 }
 
 @end

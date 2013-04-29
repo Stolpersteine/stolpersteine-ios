@@ -45,8 +45,8 @@
 
     self.title = NSLocalizedString(@"StolpersteinDetailViewController.title", nil);
     
-//    NSURL *url = [NSURL URLWithString:@"https://ssl.gstatic.com/apps/cpanel/resources/img/security-150.png"];
-//    self.stolperstein.imageURLStrings = @[url, url, url];
+    NSURL *url = [NSURL URLWithString:@"https://ssl.gstatic.com/apps/cpanel/resources/img/security-150.png"];
+    self.stolperstein.imageURLStrings = @[url, url, url];
     
     // Name
     self.nameLabel = [[UILabel alloc] init];
@@ -160,9 +160,9 @@
     // Images
     if (self.imageScrollView) {
         CGRect imagesFrame;
-        imagesFrame.origin.x = PADDING;
+        imagesFrame.origin.x = 0;
         imagesFrame.origin.y = height;
-        imagesFrame.size = CGSizeMake(screenWidth - PADDING, 150);
+        imagesFrame.size = CGSizeMake(screenWidth, 150);
         self.imageScrollView.frame = imagesFrame;
         height += imagesFrame.size.height + PADDING;
     }

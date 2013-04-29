@@ -58,7 +58,9 @@
 		48BAF38416E926DE007250A0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48BAF38316E926DE007250A0 /* Settings.bundle */; };
 		48BAF38816E9405C007250A0 /* DiagnosticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BAF38716E9405C007250A0 /* DiagnosticsService.m */; };
 		48C0272D172B024F0053B8E9 /* Stolpersteine-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48C0272C172B024F0053B8E9 /* Stolpersteine-Config.plist */; };
+		48C02730172EF0A10053B8E9 /* ProgressImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C0272F172EF0A10053B8E9 /* ProgressImageView.m */; };
 		48C02733172F05A50053B8E9 /* LinkedTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C02732172F05A50053B8E9 /* LinkedTextLabel.m */; };
+		48C02736172F07E50053B8E9 /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C02735172F07E50053B8E9 /* ImageScrollView.m */; };
 		6206F9E3172A96EA009F7A13 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 6206F9E2172A96EA009F7A13 /* Base64.m */; };
 		6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		6222BF2516A037CE006ED538 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
@@ -191,8 +193,12 @@
 		48BAF38616E9405C007250A0 /* DiagnosticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiagnosticsService.h; sourceTree = "<group>"; };
 		48BAF38716E9405C007250A0 /* DiagnosticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiagnosticsService.m; sourceTree = "<group>"; };
 		48C0272C172B024F0053B8E9 /* Stolpersteine-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Stolpersteine-Config.plist"; sourceTree = "<group>"; };
+		48C0272E172EF0A10053B8E9 /* ProgressImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressImageView.h; sourceTree = "<group>"; };
+		48C0272F172EF0A10053B8E9 /* ProgressImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressImageView.m; sourceTree = "<group>"; };
 		48C02731172F05A50053B8E9 /* LinkedTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedTextLabel.h; sourceTree = "<group>"; };
 		48C02732172F05A50053B8E9 /* LinkedTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedTextLabel.m; sourceTree = "<group>"; };
+		48C02734172F07E50053B8E9 /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
+		48C02735172F07E50053B8E9 /* ImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollView.m; sourceTree = "<group>"; };
 		6206F9E1172A96EA009F7A13 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		6206F9E2172A96EA009F7A13 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		620B6C44171847550035C2AC /* buildnumber_dynamic.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = buildnumber_dynamic.xcconfig; sourceTree = "<group>"; };
@@ -385,10 +391,14 @@
 			children = (
 				48633B8916C03F690057A317 /* MapViewController.h */,
 				48633B8A16C03F690057A317 /* MapViewController.m */,
-				48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */,
-				48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */,
 				48633B9516C03F690057A317 /* StolpersteinListViewController.h */,
 				48633B9616C03F690057A317 /* StolpersteinListViewController.m */,
+				48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */,
+				48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */,
+				48C02734172F07E50053B8E9 /* ImageScrollView.h */,
+				48C02735172F07E50053B8E9 /* ImageScrollView.m */,
+				48C0272E172EF0A10053B8E9 /* ProgressImageView.h */,
+				48C0272F172EF0A10053B8E9 /* ProgressImageView.m */,
 				48C02731172F05A50053B8E9 /* LinkedTextLabel.h */,
 				48C02732172F05A50053B8E9 /* LinkedTextLabel.m */,
 			);
@@ -947,6 +957,8 @@
 				62F147C6170202A1003E7DAA /* SearchTextField.m in Sources */,
 				6206F9E3172A96EA009F7A13 /* Base64.m in Sources */,
 				48C02733172F05A50053B8E9 /* LinkedTextLabel.m in Sources */,
+				48C02730172EF0A10053B8E9 /* ProgressImageView.m in Sources */,
+				48C02736172F07E50053B8E9 /* ImageScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

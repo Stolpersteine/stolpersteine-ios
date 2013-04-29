@@ -20,6 +20,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "Localization.h"
 #import "LinkedTextLabel.h"
+#import "ImageScrollView.h"
 
 #define PADDING 20
 
@@ -27,6 +28,7 @@
 
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
 @property (strong, nonatomic) UILabel *nameLabel;
+@property (strong, nonatomic) ImageScrollView *imageScrollView;
 @property (strong, nonatomic) UILabel *addressLabel;
 @property (strong, nonatomic) UIButton *biographyButton;
 @property (strong, nonatomic) UIButton *streetButton;
@@ -43,6 +45,9 @@
 
     self.title = NSLocalizedString(@"StolpersteinDetailViewController.title", nil);
     
+//    NSURL *url = [NSURL URLWithString:@"https://ssl.gstatic.com/apps/cpanel/resources/img/security-150.png"];
+//    self.stolperstein.imageURLStrings = @[url, url, url];
+    
     // Name
     self.nameLabel = [[UILabel alloc] init];
     NSString *name = [Localization newNameFromStolperstein:self.stolperstein];
@@ -50,6 +55,13 @@
     self.nameLabel.font = [UIFont boldSystemFontOfSize:UIFont.labelFontSize + 3];
     self.nameLabel.numberOfLines = INT_MAX;
     [self.scrollView addSubview:self.nameLabel];
+    
+    // Images
+    if (self.stolperstein.imageURLStrings.count > 0) {
+        self.imageScrollView = [[ImageScrollView alloc] init];
+        [self.imageScrollView setImagesWithURLs:self.stolperstein.imageURLStrings];
+        [self.scrollView addSubview:self.imageScrollView];
+    }
     
     // Address
     self.addressLabel = [[UILabel alloc] init];
@@ -136,7 +148,17 @@
     nameFrame.origin.y = height;
     nameFrame.size = [self.nameLabel sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
     self.nameLabel.frame = nameFrame;
-    height += nameFrame.size.height + PADDING * 0.5;
+    height += nameFrame.size.height + PADDING;
+    
+    // Images
+    if (self.imageScrollView) {
+        CGRect imagesFrame;
+        imagesFrame.origin.x = PADDING;
+        imagesFrame.origin.y = height;
+        imagesFrame.size = CGSizeMake(screenWidth - 2 * PADDING, 150);
+        self.imageScrollView.frame = imagesFrame;
+        height += imagesFrame.size.height + PADDING;
+    }
 
     // Address
     CGRect addressFrame;

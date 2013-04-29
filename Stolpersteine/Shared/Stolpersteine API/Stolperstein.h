@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) NSString *id;
 @property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) NSArray *imageURLStrings;
 @property (nonatomic, strong) NSString *personFirstName;
 @property (nonatomic, strong) NSString *personLastName;
 @property (nonatomic, strong) NSString *personBiographyURLString;

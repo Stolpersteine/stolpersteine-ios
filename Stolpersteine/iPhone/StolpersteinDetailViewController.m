@@ -59,15 +59,19 @@
     [self.scrollView addSubview:self.addressLabel];
     
     // Street button
-    NSString *streetButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.street", nil);
-    self.streetButton = [self newRoundedRectButtonWithTitle:streetButtonTitle action:@selector(showAllInThisStreet:) chevronEnabled:TRUE];
-    [self.scrollView addSubview:self.streetButton];
+    if (!self.isAllInThisStreetButtonHidden) {
+        NSString *streetButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.street", nil);
+        self.streetButton = [self newRoundedRectButtonWithTitle:streetButtonTitle action:@selector(showAllInThisStreet:) chevronEnabled:TRUE];
+        [self.scrollView addSubview:self.streetButton];
+    }
 
     // Biography button
-    NSString *biographyButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.biography", nil);
-    self.biographyButton = [self newRoundedRectButtonWithTitle:biographyButtonTitle action:@selector(showBiography:) chevronEnabled:FALSE];
-    [self.scrollView addSubview:self.biographyButton];
-
+    if (self.stolperstein.personBiographyURLString) {
+        NSString *biographyButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.biography", nil);
+        self.biographyButton = [self newRoundedRectButtonWithTitle:biographyButtonTitle action:@selector(showBiography:) chevronEnabled:FALSE];
+        [self.scrollView addSubview:self.biographyButton];
+    }
+    
     // Maps button
     NSString *mapsButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.maps", nil);
     self.mapsButton = [self newRoundedRectButtonWithTitle:mapsButtonTitle action:@selector(showInMapsApp:) chevronEnabled:FALSE];
@@ -143,16 +147,14 @@
     height += addressFrame.size.height + PADDING;
 
     // Street button
-    self.streetButton.hidden = self.isAllInThisStreetButtonHidden;
-    if (!self.isAllInThisStreetButtonHidden) {
+    if (self.streetButton) {
         self.streetButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
         height += self.streetButton.frame.size.height + PADDING * 0.5;
         self.streetButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -self.streetButton.titleLabel.frame.size.width - self.streetButton.frame.size.width + 30);
     }
     
     // Biography button
-    self.biographyButton.hidden = !self.stolperstein.personBiographyURLString;
-    if (self.stolperstein.personBiographyURLString) {
+    if (self.biographyButton) {
         self.biographyButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
         height += self.biographyButton.frame.size.height + PADDING * 0.5;
     }

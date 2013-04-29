@@ -10,7 +10,7 @@
 
 #import "ProgressImageView.h"
 
-#define PADDING 10
+#define PADDING 20
 
 @interface ImageScrollView()
 
@@ -46,6 +46,13 @@
     self.imageViews = imageViews;
 }
 
+- (void)cancelImageRequests
+{
+    for (ProgressImageView *progressImageView in self.imageViews) {
+        [progressImageView cancelImageRequest];
+    }
+}
+
 - (void)setFrame:(CGRect)frame
 {
     [super setFrame:frame];
@@ -60,7 +67,20 @@
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    NSLog(@"scrollViewWillEndDragging");
+    // Snap to image views
+    NSLog(@"scrollViewWillEndDragging %f", targetContentOffset->x);
+
+    CGFloat unguidedOffsetX = targetContentOffset->x;
+    CGFloat guidedOffsetX;
+    CGFloat pageWidth = self.frame.size.height + PADDING;
+    int remainder = lroundf(unguidedOffsetX) % lroundf(pageWidth);
+    NSLog(@"remainder %u", remainder);
+    if (remainder < (pageWidth * 0.5)) {
+        guidedOffsetX = unguidedOffsetX - remainder;
+    } else {
+        guidedOffsetX = unguidedOffsetX - remainder + pageWidth;
+    }
+    targetContentOffset->x = guidedOffsetX;
 }
 
 @end

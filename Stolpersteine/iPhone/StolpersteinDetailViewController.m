@@ -137,6 +137,13 @@
     [AppDelegate.diagnosticsService trackViewController:self];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.imageScrollView cancelImageRequests];
+}
+
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     CGFloat screenWidth = self.view.frame.size.width;
@@ -155,7 +162,7 @@
         CGRect imagesFrame;
         imagesFrame.origin.x = PADDING;
         imagesFrame.origin.y = height;
-        imagesFrame.size = CGSizeMake(screenWidth - 2 * PADDING, 150);
+        imagesFrame.size = CGSizeMake(screenWidth - PADDING, 150);
         self.imageScrollView.frame = imagesFrame;
         height += imagesFrame.size.height + PADDING;
     }

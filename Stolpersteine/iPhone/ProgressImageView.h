@@ -11,6 +11,6 @@
 @interface ProgressImageView : UIImageView
 
 - (void)setImageWithURL:(NSURL *)url;
-- (void)cancelImageRequestOperation;
+- (void)cancelImageRequest;
 
 @end

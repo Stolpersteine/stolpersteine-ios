@@ -55,7 +55,7 @@
     [[self.class sharedImageRequestOperationQueue] addOperation:self.imageRequestOperation];
 }
 
-- (void)cancelImageRequestOperation
+- (void)cancelImageRequest
 {
     [self.imageRequestOperation cancel];
     self.imageRequestOperation = nil;

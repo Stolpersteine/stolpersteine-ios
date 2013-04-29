@@ -11,5 +11,6 @@
 @interface ImageScrollView : UIScrollView<UIScrollViewDelegate>
 
 - (void)setImagesWithURLs:(NSArray *)urls;
+- (void)cancelImageRequests;
 
 @end

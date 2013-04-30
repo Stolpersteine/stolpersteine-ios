@@ -21,10 +21,11 @@
 #import "Localization.h"
 #import "LinkedTextLabel.h"
 #import "ImageScrollView.h"
+#import "ImageScrollViewDelegate.h"
 
 #define PADDING 20
 
-@interface StolpersteinDetailViewController()
+@interface StolpersteinDetailViewController() <ImageScrollViewDelegate>
 
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
 @property (strong, nonatomic) UILabel *nameLabel;
@@ -61,6 +62,7 @@
     // Images
     if (self.stolperstein.imageURLStrings.count > 0) {
         self.imageScrollView = [[ImageScrollView alloc] init];
+        self.imageScrollView.imageScrollViewDelegate = self;
         [self.imageScrollView setImagesWithURLs:self.stolperstein.imageURLStrings];
         [self.scrollView addSubview:self.imageScrollView];
     }
@@ -234,6 +236,11 @@
 - (void)showAllInThisStreet:(UIButton *)sender
 {
     [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToStolpersteineListViewController" sender:self];
+}
+
+- (void)imageScrollView:(ImageScrollView *)imageScrollView didTapImageAtIndex:(NSUInteger)index
+{
+    [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToFullScreenImageGalleryViewController" sender:self];
 }
 
 - (void)showInMapsApp:(UIButton *)sender

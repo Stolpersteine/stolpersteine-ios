@@ -88,6 +88,7 @@
 		48C0276317303CC80053B8E9 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C0274A17303CC80053B8E9 /* UIImageView+AFNetworking.m */; };
 		48C0276417303CC80053B8E9 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C0274A17303CC80053B8E9 /* UIImageView+AFNetworking.m */; };
 		48C0276517303CC80053B8E9 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C0274A17303CC80053B8E9 /* UIImageView+AFNetworking.m */; };
+		48C02769173063210053B8E9 /* FullScreenImagGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C027681730631F0053B8E9 /* FullScreenImagGalleryViewController.m */; };
 		6206F9E3172A96EA009F7A13 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 6206F9E2172A96EA009F7A13 /* Base64.m */; };
 		6222BF0116A030E5006ED538 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		6222BF2516A037CE006ED538 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222BF2416A037CE006ED538 /* SenTestingKit.framework */; };
@@ -219,6 +220,8 @@
 		48C0274917303CC80053B8E9 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		48C0274A17303CC80053B8E9 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		48C02766173054D10053B8E9 /* ImageScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageScrollViewDelegate.h; sourceTree = "<group>"; };
+		48C027671730631E0053B8E9 /* FullScreenImagGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenImagGalleryViewController.h; sourceTree = "<group>"; };
+		48C027681730631F0053B8E9 /* FullScreenImagGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenImagGalleryViewController.m; sourceTree = "<group>"; };
 		6206F9E1172A96EA009F7A13 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		6206F9E2172A96EA009F7A13 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		620B6C44171847550035C2AC /* buildnumber_dynamic.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = buildnumber_dynamic.xcconfig; sourceTree = "<group>"; };
@@ -396,6 +399,8 @@
 				48633B9616C03F690057A317 /* StolpersteinListViewController.m */,
 				48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */,
 				48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */,
+				48C027671730631E0053B8E9 /* FullScreenImagGalleryViewController.h */,
+				48C027681730631F0053B8E9 /* FullScreenImagGalleryViewController.m */,
 				48C02734172F07E50053B8E9 /* ImageScrollView.h */,
 				48C02735172F07E50053B8E9 /* ImageScrollView.m */,
 				48C02766173054D10053B8E9 /* ImageScrollViewDelegate.h */,
@@ -962,6 +967,7 @@
 				48C0275D17303CC80053B8E9 /* AFURLConnectionOperation.m in Sources */,
 				48C0276017303CC80053B8E9 /* AFXMLRequestOperation.m in Sources */,
 				48C0276317303CC80053B8E9 /* UIImageView+AFNetworking.m in Sources */,
+				48C02769173063210053B8E9 /* FullScreenImagGalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

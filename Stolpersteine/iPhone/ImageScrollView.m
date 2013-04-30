@@ -72,10 +72,8 @@
     if ((self.contentSize.width - unguidedOffsetX) > self.frame.size.width) {
         CGFloat pageWidth = self.frame.size.height + PADDING;
         CGFloat remainder = fmod(unguidedOffsetX, pageWidth);
-        NSLog(@"remainder %f", remainder);
         CGFloat guidedOffsetX;
         if (remainder < (self.frame.size.height * 0.5 + PADDING)) {
-            NSLog(@"<");
             guidedOffsetX = unguidedOffsetX - remainder;
         } else {
             guidedOffsetX = unguidedOffsetX - remainder + pageWidth;

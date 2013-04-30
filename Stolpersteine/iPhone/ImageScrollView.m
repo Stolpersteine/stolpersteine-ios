@@ -37,7 +37,6 @@
     NSMutableArray *imageViews = [[NSMutableArray alloc] initWithCapacity:urls.count];
     for (NSURL *url in urls) {
         ProgressImageView *progressImageView = [[ProgressImageView alloc] init];
-        progressImageView.backgroundColor = UIColor.grayColor;
         [progressImageView setImageWithURL:url];
         
         [self addSubview:progressImageView];

@@ -45,8 +45,8 @@
 
     self.title = NSLocalizedString(@"StolpersteinDetailViewController.title", nil);
     
-    NSURL *url = [NSURL URLWithString:@"https://ssl.gstatic.com/apps/cpanel/resources/img/security-150.png"];
-    self.stolperstein.imageURLStrings = @[url, url, url, url];
+//    NSURL *url = [NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg/700px-Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg"];
+//    self.stolperstein.imageURLStrings = @[url, url, url];
     
     // Name
     self.nameLabel = [[UILabel alloc] init];

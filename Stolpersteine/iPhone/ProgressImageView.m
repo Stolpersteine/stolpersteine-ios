@@ -29,6 +29,12 @@
         self.progressView.progressTintColor = UIColor.lightGrayColor;
         [self addSubview:self.progressView];
         
+        UIImage *frameImage = [[UIImage imageNamed:@"image-frame.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 1, 1, 1)];
+        UIImageView *frameImageView = [[UIImageView alloc] initWithImage:frameImage];
+        frameImageView.frame = frame;
+        frameImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [self addSubview:frameImageView];
+        
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleFullScreen:)];
         [self addGestureRecognizer:tapGestureRecognizer];
         self.userInteractionEnabled = YES;

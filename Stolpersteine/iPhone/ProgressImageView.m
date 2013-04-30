@@ -67,7 +67,6 @@
         float totalBytes = totalBytesExpectedToRead > 0 ? totalBytesExpectedToRead : FLT_MAX;
         float progress = (float)totalBytesRead / totalBytes;
         weakSelf.progressView.progress = progress;
-        NSLog(@"%u, %lld, %lld %f", bytesRead, totalBytesRead, totalBytesExpectedToRead, progress);
     }];
     
     [self.imageRequestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, UIImage *responseObject) {

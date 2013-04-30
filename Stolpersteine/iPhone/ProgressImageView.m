@@ -67,6 +67,8 @@
 
 - (void)setImageWithURL:(NSURL *)url
 {
+    [self cancelImageRequest];
+    
     self.image = nil;
     self.progressView.hidden = NO;
 

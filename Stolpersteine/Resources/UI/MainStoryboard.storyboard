@@ -155,11 +155,26 @@
                     <connections>
                         <outlet property="scrollView" destination="lxM-gj-iBt" id="GMS-el-bx7"/>
                         <segue destination="S9Y-Yy-0sA" kind="push" identifier="stolpersteinDetailViewControllerToStolpersteineListViewController" id="gzf-lt-1mR"/>
+                        <segue destination="Ret-YS-mOD" kind="modal" id="AN3-MO-qCA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgX-vg-RuV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="794" y="319"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bLZ-vR-nH4">
+            <objects>
+                <viewController wantsFullScreenLayout="YES" modalTransitionStyle="crossDissolve" id="Ret-YS-mOD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="78Q-lN-WJu">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Yb-bB-MVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1443" y="319"/>
         </scene>
     </scenes>
     <classes>
@@ -197,7 +212,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="icL-Q6-suH"/>
         <segue reference="hg1-Lc-53S"/>
+        <segue reference="gzf-lt-1mR"/>
     </inferredMetricsTieBreakers>
 </document>

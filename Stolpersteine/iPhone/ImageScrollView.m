@@ -37,6 +37,9 @@
     NSMutableArray *imageViews = [[NSMutableArray alloc] initWithCapacity:urls.count];
     for (NSURL *url in urls) {
         ProgressImageView *progressImageView = [[ProgressImageView alloc] init];
+        progressImageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImageView:)];
+        [progressImageView addGestureRecognizer:tapGestureRecognizer];
         [progressImageView setImageWithURL:url];
         
         [self addSubview:progressImageView];
@@ -79,6 +82,12 @@
         }
         targetContentOffset->x = guidedOffsetX;
     }
+}
+
+- (void)didTapImageView:(UITapGestureRecognizer *)sender
+{
+    NSUInteger index = [self.imageViews indexOfObject:sender.view];
+    NSLog(@"toggleFullScreen %u", index);
 }
 
 @end

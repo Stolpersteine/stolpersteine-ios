@@ -34,10 +34,6 @@
         frameImageView.frame = frame;
         frameImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:frameImageView];
-        
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleFullScreen:)];
-        [self addGestureRecognizer:tapGestureRecognizer];
-        self.userInteractionEnabled = YES;
     }
     return self;
 }
@@ -98,11 +94,6 @@
 {
     [self.imageRequestOperation cancel];
     self.imageRequestOperation = nil;
-}
-
-- (void)toggleFullScreen:(UITapGestureRecognizer *)sender
-{
-    NSLog(@"toggleFullScreen");
 }
 
 @end

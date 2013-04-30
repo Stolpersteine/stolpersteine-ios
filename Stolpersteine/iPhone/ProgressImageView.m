@@ -28,6 +28,10 @@
         self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
         self.progressView.progressTintColor = UIColor.lightGrayColor;
         [self addSubview:self.progressView];
+        
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleFullScreen:)];
+        [self addGestureRecognizer:tapGestureRecognizer];
+        self.userInteractionEnabled = YES;
     }
     return self;
 }
@@ -86,6 +90,11 @@
 {
     [self.imageRequestOperation cancel];
     self.imageRequestOperation = nil;
+}
+
+- (void)toggleFullScreen:(UITapGestureRecognizer *)sender
+{
+    NSLog(@"toggleFullScreen");
 }
 
 @end

@@ -26,6 +26,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+        self.progressView.progressTintColor = UIColor.lightGrayColor;
         [self addSubview:self.progressView];
     }
     return self;

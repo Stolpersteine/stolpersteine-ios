@@ -9,6 +9,7 @@
 #import "ImageScrollView.h"
 
 #import "ProgressImageView.h"
+#import "ImageScrollViewDelegate.h"
 
 #define PADDING 20
 
@@ -86,8 +87,10 @@
 
 - (void)didTapImageView:(UITapGestureRecognizer *)sender
 {
-    NSUInteger index = [self.imageViews indexOfObject:sender.view];
-    NSLog(@"toggleFullScreen %u", index);
+    if ([self.imageScrollViewDelegate respondsToSelector:@selector(imageScrollView:didTapImageAtIndex:)]) {
+        NSUInteger index = [self.imageViews indexOfObject:sender.view];
+        [self.imageScrollViewDelegate imageScrollView:self didTapImageAtIndex:index];
+    }
 }
 
 @end

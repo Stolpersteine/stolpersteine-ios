@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ImageScrollViewDelegate;
+
 @interface ImageScrollView : UIScrollView<UIScrollViewDelegate>
+
+@property (nonatomic, weak) id<ImageScrollViewDelegate> imageScrollViewDelegate;
 
 - (void)setImagesWithURLs:(NSArray *)urls;
 - (void)cancelImageRequests;

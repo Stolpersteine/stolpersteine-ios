@@ -35,6 +35,7 @@
         
         self.links = [[NSMutableDictionary alloc] init];
     }
+    
     return self;
 }
 

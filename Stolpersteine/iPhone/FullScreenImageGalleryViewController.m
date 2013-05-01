@@ -14,16 +14,23 @@
 
 @implementation FullScreenImageGalleryViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)awakeFromNib
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
+    self.view.backgroundColor = UIColor.blackColor;
 }
 
-- (IBAction)done:(UIButton *)sender
+- (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(done)];
+    self.view.userInteractionEnabled = YES;
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+}
+
+- (void)done
+{
+    [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 

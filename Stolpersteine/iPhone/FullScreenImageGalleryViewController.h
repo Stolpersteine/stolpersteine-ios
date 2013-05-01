@@ -10,6 +10,4 @@
 
 @interface FullScreenImageGalleryViewController : UIViewController
 
-- (IBAction)done:(UIButton *)sender;
-
 @end

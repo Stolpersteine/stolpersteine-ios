@@ -22,6 +22,7 @@
 #import "LinkedTextLabel.h"
 #import "ImageScrollView.h"
 #import "ImageScrollViewDelegate.h"
+#import "FullScreenImageGalleryViewController.h"
 
 #define PADDING 20
 
@@ -43,7 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.title = NSLocalizedString(@"StolpersteinDetailViewController.title", nil);
     
     NSURL *url0 = [NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg/300px-Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg"];
@@ -236,7 +237,7 @@
 
 - (void)showAllInThisStreet:(UIButton *)sender
 {
-    [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToStolpersteineListViewController" sender:self];
+    [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToStolpersteinListViewController" sender:self];
 }
 
 - (void)imageScrollView:(ImageScrollView *)imageScrollView didTapImageAtIndex:(NSUInteger)index
@@ -266,7 +267,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToStolpersteineListViewController"]) {
+    if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToStolpersteinListViewController"]) {
         StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
         searchData.locationStreet = [Localization newStreetNameFromStolperstein:self.stolperstein];
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;

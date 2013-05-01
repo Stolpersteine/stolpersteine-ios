@@ -28,6 +28,7 @@
 		480FFFA116A0C79D0012CCD5 /* Stolperstein.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4437169C43970065C1F1 /* Stolperstein.m */; };
 		48383814171A036D00141F46 /* StolpersteinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48383813171A036D00141F46 /* StolpersteinTests.m */; };
 		484C8EE5169B609F001CEA59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484C8EE4169B609F001CEA59 /* CoreLocation.framework */; };
+		485639C91731ABDA00891142 /* FullScreenImageGallerySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 485639C81731ABDA00891142 /* FullScreenImageGallerySegue.m */; };
 		48633B9816C03F690057A317 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B8A16C03F690057A317 /* MapViewController.m */; };
 		48633B9C16C03F690057A317 /* StolpersteinDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */; };
 		48633B9D16C03F690057A317 /* StolpersteinListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9616C03F690057A317 /* StolpersteinListViewController.m */; };
@@ -157,6 +158,8 @@
 		48383812171A036D00141F46 /* StolpersteinTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinTests.h; sourceTree = "<group>"; };
 		48383813171A036D00141F46 /* StolpersteinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinTests.m; sourceTree = "<group>"; };
 		484C8EE4169B609F001CEA59 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		485639C71731ABDA00891142 /* FullScreenImageGallerySegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenImageGallerySegue.h; sourceTree = "<group>"; };
+		485639C81731ABDA00891142 /* FullScreenImageGallerySegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenImageGallerySegue.m; sourceTree = "<group>"; };
 		48633B8916C03F690057A317 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		48633B8A16C03F690057A317 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinDetailViewController.h; sourceTree = "<group>"; };
@@ -399,6 +402,8 @@
 				48633B9616C03F690057A317 /* StolpersteinListViewController.m */,
 				48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */,
 				48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */,
+				485639C71731ABDA00891142 /* FullScreenImageGallerySegue.h */,
+				485639C81731ABDA00891142 /* FullScreenImageGallerySegue.m */,
 				48C027671730631E0053B8E9 /* FullScreenImageGalleryViewController.h */,
 				48C027681730631F0053B8E9 /* FullScreenImageGalleryViewController.m */,
 				48C02734172F07E50053B8E9 /* ImageScrollView.h */,
@@ -968,6 +973,7 @@
 				48C0276017303CC80053B8E9 /* AFXMLRequestOperation.m in Sources */,
 				48C0276317303CC80053B8E9 /* UIImageView+AFNetworking.m in Sources */,
 				48C02769173063210053B8E9 /* FullScreenImageGalleryViewController.m in Sources */,
+				485639C91731ABDA00891142 /* FullScreenImageGallerySegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -96,7 +96,7 @@
             <objects>
                 <tableViewController id="S9Y-Yy-0sA" customClass="StolpersteinListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ii3-to-xuB">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -141,7 +141,7 @@
             <objects>
                 <viewController storyboardIdentifier="detailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Az3-JW-c4L" customClass="StolpersteinDetailViewController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="scrollView" alwaysBounceVertical="YES" id="lxM-gj-iBt">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </scrollView>
@@ -154,8 +154,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="scrollView" destination="lxM-gj-iBt" id="GMS-el-bx7"/>
-                        <segue destination="S9Y-Yy-0sA" kind="push" identifier="stolpersteinDetailViewControllerToStolpersteineListViewController" id="gzf-lt-1mR"/>
-                        <segue destination="Ret-YS-mOD" kind="modal" identifier="stolpersteinDetailViewControllerToFullScreenImageGalleryViewController" modalTransitionStyle="crossDissolve" id="AN3-MO-qCA"/>
+                        <segue destination="S9Y-Yy-0sA" kind="push" identifier="stolpersteinDetailViewControllerToStolpersteinListViewController" id="gzf-lt-1mR"/>
+                        <segue destination="uIU-Ct-UaT" kind="custom" identifier="stolpersteinDetailViewControllerToFullScreenImageGalleryViewController" customClass="FullScreenImageGallerySegue" id="dUj-xi-F6q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgX-vg-RuV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -163,14 +163,14 @@
             <point key="canvasLocation" x="794" y="319"/>
         </scene>
         <!--Full Screen Image Gallery View Controller-->
-        <scene sceneID="bLZ-vR-nH4">
+        <scene sceneID="ZHB-zv-Xaq">
             <objects>
-                <viewController wantsFullScreenLayout="YES" id="Ret-YS-mOD" customClass="FullScreenImageGalleryViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="78Q-lN-WJu">
+                <viewController id="uIU-Ct-UaT" customClass="FullScreenImageGalleryViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oSU-Hw-GVc">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCT-WF-DX5">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHj-Z1-QYH">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -179,24 +179,24 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="done:" destination="Ret-YS-mOD" eventType="touchUpInside" id="NrB-kB-s6h"/>
-                                </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pCT-WF-DX5" firstAttribute="top" secondItem="78Q-lN-WJu" secondAttribute="top" constant="208" id="Jin-Ph-T8N"/>
-                            <constraint firstItem="pCT-WF-DX5" firstAttribute="centerX" secondItem="78Q-lN-WJu" secondAttribute="centerX" type="default" id="eyf-nC-Z3j"/>
+                            <constraint firstItem="AHj-Z1-QYH" firstAttribute="top" secondItem="oSU-Hw-GVc" secondAttribute="top" constant="213" id="5QS-Fl-Bb3"/>
+                            <constraint firstItem="AHj-Z1-QYH" firstAttribute="centerX" secondItem="oSU-Hw-GVc" secondAttribute="centerX" type="default" id="bR4-Zc-9oq"/>
                         </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Yb-bB-MVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zi9-za-zWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1443" y="319"/>
+            <point key="canvasLocation" x="1437" y="319"/>
         </scene>
     </scenes>
     <classes>
+        <class className="FullScreenImageGalleryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FullScreenImageGalleryViewController.h"/>
+        </class>
         <class className="MapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
             <relationships>
@@ -231,7 +231,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hg1-Lc-53S"/>
+        <segue reference="Txc-mb-Q18"/>
         <segue reference="gzf-lt-1mR"/>
     </inferredMetricsTieBreakers>
 </document>

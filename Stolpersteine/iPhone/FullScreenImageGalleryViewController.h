@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FullScreenImagGalleryViewController : UIViewController
+@interface FullScreenImageGalleryViewController : UIViewController
 
 - (IBAction)done:(UIButton *)sender;
 

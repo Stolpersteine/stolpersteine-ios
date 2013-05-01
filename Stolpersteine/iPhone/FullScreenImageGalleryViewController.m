@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "FullScreenImagGalleryViewController.h"
+#import "FullScreenImageGalleryViewController.h"
 
-@interface FullScreenImagGalleryViewController ()
+@interface FullScreenImageGalleryViewController ()
 
 @end
 
-@implementation FullScreenImagGalleryViewController
+@implementation FullScreenImageGalleryViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

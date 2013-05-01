@@ -28,6 +28,7 @@
         self.alwaysBounceHorizontal = YES;
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
+        self.scrollsToTop = NO;
         self.delegate = self;
     }
     return self;

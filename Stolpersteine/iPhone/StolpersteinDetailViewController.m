@@ -108,6 +108,28 @@
     [self.scrollView addSubview:self.sourceLinkedTextLabel];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
+    [self.scrollView flashScrollIndicators];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [AppDelegate.diagnosticsService trackViewController:self];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.imageScrollView cancelImageRequests];
+}
+
 - (UIButton *)newRoundedRectButtonWithTitle:(NSString *)title action:(SEL)action chevronEnabled:(BOOL)chevronEnabled
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -125,27 +147,6 @@
     }
     
     return button;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    [AppDelegate.diagnosticsService trackViewController:self];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    [self.imageScrollView cancelImageRequests];
 }
 
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

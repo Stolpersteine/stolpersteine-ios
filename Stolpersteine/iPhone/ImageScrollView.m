@@ -30,8 +30,20 @@
         self.showsVerticalScrollIndicator = NO;
         self.scrollsToTop = NO;
         self.delegate = self;
+        
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(scrollToTop) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
+- (void)scrollToTop
+{
+    [self setContentOffset:CGPointZero animated:NO];
 }
 
 - (void)setImagesWithURLs:(NSArray *)urls
@@ -69,21 +81,28 @@
     self.contentSize = CGSizeMake(imageFrame.origin.x, imageFrame.size.height);
 }
 
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+- (CGFloat)offsetForTargetOffset:(CGFloat)targetOffset
 {
     // Snap to image views
-    CGFloat unguidedOffsetX = targetContentOffset->x;
-    if ((self.contentSize.width - unguidedOffsetX) > self.frame.size.width) {
+    CGFloat offset = targetOffset;
+    if ((self.contentSize.width - targetOffset) > self.frame.size.width) {
         CGFloat pageWidth = self.frame.size.height + PADDING;
-        CGFloat remainder = fmod(unguidedOffsetX, pageWidth);
+        CGFloat remainder = fmod(targetOffset, pageWidth);
         CGFloat guidedOffsetX;
         if (remainder < (self.frame.size.height * 0.5 + PADDING)) {
-            guidedOffsetX = unguidedOffsetX - remainder;
+            guidedOffsetX = targetOffset - remainder;
         } else {
-            guidedOffsetX = unguidedOffsetX - remainder + pageWidth;
+            guidedOffsetX = targetOffset - remainder + pageWidth;
         }
-        targetContentOffset->x = guidedOffsetX;
+        offset = guidedOffsetX;
     }
+    
+    return offset;
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    targetContentOffset->x = [self offsetForTargetOffset:targetContentOffset->x];
 }
 
 - (void)didTapImageView:(UITapGestureRecognizer *)sender

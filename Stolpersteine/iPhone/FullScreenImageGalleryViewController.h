@@ -10,4 +10,6 @@
 
 @interface FullScreenImageGalleryViewController : UIViewController
 
+@property (nonatomic, copy) void (^completionBlock)();
+
 @end

@@ -24,14 +24,15 @@
     [super viewDidLoad];
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(done)];
-    self.view.userInteractionEnabled = YES;
     [self.view addGestureRecognizer:tapGestureRecognizer];
+    self.view.userInteractionEnabled = YES;
 }
 
 - (void)done
 {
-    [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    if (self.completionBlock) {
+        self.completionBlock();
+    }
 }
 
 @end

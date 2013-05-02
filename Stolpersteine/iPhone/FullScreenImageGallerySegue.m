@@ -21,21 +21,18 @@
 
     // Animations to present the view controller
     destinationViewController.view.frame = UIApplication.sharedApplication.keyWindow.rootViewController.view.bounds;
-    [UIView transitionWithView:sourceViewController.navigationController.view duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationOptionAllowUserInteraction animations:^(void) {
+    [UIView transitionWithView:sourceViewController.navigationController.view duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
         [sourceViewController.view removeFromSuperview];
         [sourceViewController.navigationController.view addSubview:destinationViewController.view];
         [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     } completion:^(BOOL finished) {
-        if (finished) {
-            [sourceViewController presentViewController:destinationViewController animated:NO completion:NULL];
-        } else {
-            NSLog(@"canceled");
-        }
+        [sourceViewController presentViewController:destinationViewController animated:NO completion:NULL];
     }];
     
     // Animations to dismiss the view controller
+    __weak FullScreenImageGalleryViewController *weakDestinationViewController = self.destinationViewController;
     destinationViewController.completionBlock = ^() {
-        [sourceViewController.navigationController.view.layer removeAllAnimations];
+        weakDestinationViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
         [sourceViewController dismissViewControllerAnimated:YES completion:NULL];
     };

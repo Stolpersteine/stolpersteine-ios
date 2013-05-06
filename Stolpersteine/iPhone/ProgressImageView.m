@@ -10,6 +10,8 @@
 
 #import "AFImageRequestOperation.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #define PROGRESS_VIEW_WIDTH 60
 
 @interface ProgressImageView()
@@ -29,11 +31,8 @@
         self.progressView.progressTintColor = UIColor.lightGrayColor;
         [self addSubview:self.progressView];
         
-        UIImage *frameImage = [[UIImage imageNamed:@"image-frame.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 1, 1, 1)];
-        UIImageView *frameImageView = [[UIImageView alloc] initWithImage:frameImage];
-        frameImageView.frame = frame;
-        frameImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [self addSubview:frameImageView];
+        self.layer.borderColor = UIColor.lightGrayColor.CGColor;
+        self.layer.borderWidth = 1;
     }
     return self;
 }

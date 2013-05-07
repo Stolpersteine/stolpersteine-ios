@@ -18,16 +18,24 @@
 {
     UIViewController *sourceViewController = self.sourceViewController;
     FullScreenImageGalleryViewController *destinationViewController = self.destinationViewController;
-    UIViewController *rootViewController = UIApplication.sharedApplication.keyWindow.rootViewController;
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    UIViewController *rootViewController = window.rootViewController;
 
     // Animations to present the view controller
-    destinationViewController.view.frame = UIApplication.sharedApplication.keyWindow.rootViewController.view.bounds;
-    [UIView transitionWithView:UIApplication.sharedApplication.keyWindow duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
-        // Animate transition
-        UIApplication.sharedApplication.keyWindow.rootViewController = destinationViewController;
+    destinationViewController.view.frame = rootViewController.view.bounds;
+    [UIView transitionWithView:window duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
+        // Animate view controller transition
+        window.rootViewController = destinationViewController;
         [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
-    } completion:^(BOOL finished) {
-    }];
+    } completion:NULL];
+
+    // View animations
+//    CGRect windowFrame = [window convertRect:self.animationView.frame fromView:self.animationView.superview];
+//    [window addSubview:self.animationView];
+//    self.animationView.frame = windowFrame;
+//    [UIView animateWithDuration:2 animations:^{
+//        self.animationView.transform = CGAffineTransformMakeTranslation(100, 100);
+//    }];
     
     // Animations to dismiss the view controller
     __weak FullScreenImageGalleryViewController *weakDestinationViewController = self.destinationViewController;
@@ -36,19 +44,18 @@
         
         // Forward current interface orientation to offscreen view controller
         [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-        UIApplication.sharedApplication.keyWindow.rootViewController = rootViewController;
+        window.rootViewController = rootViewController;
         [sourceViewController willRotateToInterfaceOrientation:strongDestinationViewController.interfaceOrientation duration:0];
         [sourceViewController willAnimateRotationToInterfaceOrientation:strongDestinationViewController.interfaceOrientation duration:0];
         [sourceViewController didRotateFromInterfaceOrientation:strongDestinationViewController.interfaceOrientation];
-        UIApplication.sharedApplication.keyWindow.rootViewController = strongDestinationViewController;
+        window.rootViewController = strongDestinationViewController;
         [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 
-        // Animate transition
+        // Animate view controller transition
         [UIView transitionWithView:UIApplication.sharedApplication.keyWindow duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
             [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-            UIApplication.sharedApplication.keyWindow.rootViewController = rootViewController;
-        } completion:^(BOOL finished) {
-        }];
+            window.rootViewController = rootViewController;
+        } completion:NULL];
     };
 }
 

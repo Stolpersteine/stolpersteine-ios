@@ -30,11 +30,12 @@
     }];
     
     // Animations to dismiss the view controller
-    __weak FullScreenImageGalleryViewController *weakDestinationViewController = self.destinationViewController;
     destinationViewController.completionBlock = ^() {
-        weakDestinationViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-        [sourceViewController dismissViewControllerAnimated:YES completion:NULL];
+        [UIView transitionWithView:UIApplication.sharedApplication.keyWindow duration:2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
+            [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+            [sourceViewController dismissViewControllerAnimated:NO completion:NULL];
+        } completion:^(BOOL finished) {
+        }];
     };
 }
 

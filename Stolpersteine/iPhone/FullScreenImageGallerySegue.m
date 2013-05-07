@@ -31,7 +31,7 @@
     
     // Animations to dismiss the view controller
     destinationViewController.completionBlock = ^() {
-        [UIView transitionWithView:UIApplication.sharedApplication.keyWindow duration:2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
+        [UIView transitionWithView:UIApplication.sharedApplication.keyWindow duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
             [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
             [sourceViewController dismissViewControllerAnimated:NO completion:NULL];
         } completion:^(BOOL finished) {

@@ -8,6 +8,9 @@
 
 #import "FullScreenImageGalleryViewController.h"
 
+#import "AppDelegate.h"
+#import "DiagnosticsService.h"
+
 @interface FullScreenImageGalleryViewController ()
 
 @end
@@ -26,6 +29,13 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(done)];
     [self.view addGestureRecognizer:tapGestureRecognizer];
     self.view.userInteractionEnabled = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [AppDelegate.diagnosticsService trackViewController:self];
 }
 
 - (void)done

@@ -31,9 +31,9 @@
 //        self.gai.debug = YES;
         self.gaiTracker = [self.gai trackerWithTrackingId:googleAnayticsID];
         self.gaiTracker.anonymize = TRUE;
-        NSDictionary* infoDictionary = [NSBundle.mainBundle infoDictionary];
-        NSString* version = [infoDictionary objectForKey:@"CFBundleVersion"];
-        NSString* shortVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+        NSDictionary *infoDictionary = [NSBundle.mainBundle infoDictionary];
+        NSString *version = [infoDictionary objectForKey:@"CFBundleVersion"];
+        NSString *shortVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
         self.gaiTracker.appVersion = [NSString stringWithFormat:@"%@ (%@)", shortVersion, version];
         
         // Name maping
@@ -41,6 +41,7 @@
             @"MapViewController": @"Map",
             @"StolpersteinDetailViewController": @"StolpersteinDetail",
             @"StolpersteinListViewController": @"StolpersteinList",
+            @"FullScreenImageGalleryViewController": @"FullScreenImageGallery"
         };
         
         // Register for changes to user settings

@@ -23,14 +23,27 @@
     // Animations to present the view controller
     destinationViewController.view.frame = UIApplication.sharedApplication.keyWindow.rootViewController.view.bounds;
     [UIView transitionWithView:UIApplication.sharedApplication.keyWindow duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
+        // Animate transition
         UIApplication.sharedApplication.keyWindow.rootViewController = destinationViewController;
         [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     } completion:^(BOOL finished) {
     }];
     
     // Animations to dismiss the view controller
+    __weak FullScreenImageGalleryViewController *weakDestinationViewController = self.destinationViewController;
     destinationViewController.completionBlock = ^() {
-        sourceViewController.view.frame = UIApplication.sharedApplication.keyWindow.rootViewController.view.bounds;
+        FullScreenImageGalleryViewController *strongDestinationViewController = weakDestinationViewController;
+        
+        // Forward current interface orientation to offscreen view controller
+        [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+        UIApplication.sharedApplication.keyWindow.rootViewController = rootViewController;
+        [sourceViewController willRotateToInterfaceOrientation:strongDestinationViewController.interfaceOrientation duration:0];
+        [sourceViewController willAnimateRotationToInterfaceOrientation:strongDestinationViewController.interfaceOrientation duration:0];
+        [sourceViewController didRotateFromInterfaceOrientation:strongDestinationViewController.interfaceOrientation];
+        UIApplication.sharedApplication.keyWindow.rootViewController = strongDestinationViewController;
+        [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+
+        // Animate transition
         [UIView transitionWithView:UIApplication.sharedApplication.keyWindow duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
             [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
             UIApplication.sharedApplication.keyWindow.rootViewController = rootViewController;

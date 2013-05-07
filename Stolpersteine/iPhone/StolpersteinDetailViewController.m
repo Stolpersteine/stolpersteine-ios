@@ -22,6 +22,7 @@
 #import "LinkedTextLabel.h"
 #import "ImageScrollView.h"
 #import "ImageScrollViewDelegate.h"
+#import "FullScreenImageGallerySegue.h"
 #import "FullScreenImageGalleryViewController.h"
 
 #define PADDING 20
@@ -240,7 +241,7 @@
     [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToStolpersteinListViewController" sender:self];
 }
 
-- (void)imageScrollView:(ImageScrollView *)imageScrollView didTapImageAtIndex:(NSUInteger)index
+- (void)imageScrollView:(ImageScrollView *)imageScrollView didSelectImageAtIndex:(NSInteger)index
 {
     [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToFullScreenImageGalleryViewController" sender:self];
 }
@@ -273,6 +274,10 @@
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
         listViewController.searchData = searchData;
         listViewController.title = searchData.locationStreet;
+    } else if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToFullScreenImageGalleryViewController"]) {
+        FullScreenImageGallerySegue *gallerySegue = (FullScreenImageGallerySegue *)segue;
+//        FullScreenImageGalleryViewController *galleryViewController = (FullScreenImageGalleryViewController *)segue.destinationViewController;
+        gallerySegue.animationView = [self.imageScrollView viewForIndex:self.imageScrollView.indexForSelectedImage];
     }
 }
 

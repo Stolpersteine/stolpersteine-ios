@@ -16,6 +16,7 @@
 @interface ImageScrollView()
 
 @property (strong, nonatomic) NSArray *imageViews;
+@property (nonatomic, assign) NSInteger indexForSelectedImage;
 
 @end
 
@@ -30,6 +31,7 @@
         self.showsVerticalScrollIndicator = NO;
         self.scrollsToTop = NO;
         self.delegate = self;
+        self.indexForSelectedImage = -1;
         
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(scrollToTop) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     }
@@ -67,6 +69,16 @@
     for (ProgressImageView *progressImageView in self.imageViews) {
         [progressImageView cancelImageRequest];
     }
+}
+
+- (UIView *)viewForIndex:(NSInteger)index
+{
+    UIView *view = nil;
+    if (self.imageViews.count > 0 && index >= 0 && index < self.imageViews.count) {
+        view = self.imageViews[index];
+    }
+    
+    return view;
 }
 
 - (void)setFrame:(CGRect)frame
@@ -107,9 +119,9 @@
 
 - (void)didTapImageView:(UITapGestureRecognizer *)sender
 {
-    if ([self.imageScrollViewDelegate respondsToSelector:@selector(imageScrollView:didTapImageAtIndex:)]) {
-        NSUInteger index = [self.imageViews indexOfObject:sender.view];
-        [self.imageScrollViewDelegate imageScrollView:self didTapImageAtIndex:index];
+    self.indexForSelectedImage = [self.imageViews indexOfObject:sender.view];
+    if ([self.imageScrollViewDelegate respondsToSelector:@selector(imageScrollView:didSelectImageAtIndex:)]) {
+        [self.imageScrollViewDelegate imageScrollView:self didSelectImageAtIndex:self.indexForSelectedImage];
     }
 }
 

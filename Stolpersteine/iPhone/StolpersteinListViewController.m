@@ -76,7 +76,7 @@
 {
     if ([segue.identifier isEqualToString:@"stolpersteineListViewControllerToStolpersteinDetailViewController"]) {
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
-        Stolperstein *stolperstein = [self.stolpersteine objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        Stolperstein *stolperstein = self.stolpersteine[self.tableView.indexPathForSelectedRow.row];
         detailViewController.stolperstein = stolperstein;
         
         if (self.searchData) {

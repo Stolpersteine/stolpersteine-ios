@@ -10,4 +10,6 @@
 
 @interface FullScreenImageGallerySegue : UIStoryboardSegue
 
+@property (nonatomic, strong) UIView *animationView;
+
 @end

@@ -12,9 +12,11 @@
 
 @interface ImageScrollView : UIScrollView<UIScrollViewDelegate>
 
+@property (nonatomic, assign, readonly) NSInteger indexForSelectedImage;
 @property (nonatomic, weak) id<ImageScrollViewDelegate> imageScrollViewDelegate;
 
 - (void)setImagesWithURLs:(NSArray *)urls;
 - (void)cancelImageRequests;
+- (UIView *)viewForIndex:(NSInteger)index;
 
 @end

@@ -13,6 +13,6 @@
 @protocol ImageScrollViewDelegate <NSObject>
 
 @optional
-- (void)imageScrollView:(ImageScrollView *)imageScrollView didTapImageAtIndex:(NSUInteger)index;
+- (void)imageScrollView:(ImageScrollView *)imageScrollView didSelectImageAtIndex:(NSInteger)index;
 
 @end

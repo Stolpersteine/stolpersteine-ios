@@ -31,7 +31,7 @@
 
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
 @property (strong, nonatomic) UILabel *nameLabel;
-@property (strong, nonatomic) ImageGalleryView *imageScrollView;
+@property (strong, nonatomic) ImageGalleryView *imageGalleryView;
 @property (strong, nonatomic) UILabel *addressLabel;
 @property (strong, nonatomic) UIButton *biographyButton;
 @property (strong, nonatomic) UIButton *streetButton;
@@ -63,10 +63,10 @@
     
     // Images
     if (self.stolperstein.imageURLStrings.count > 0) {
-        self.imageScrollView = [[ImageGalleryView alloc] init];
-        self.imageScrollView.imageScrollViewDelegate = self;
-        [self.imageScrollView setImagesWithURLs:self.stolperstein.imageURLStrings];
-        [self.scrollView addSubview:self.imageScrollView];
+        self.imageGalleryView = [[ImageGalleryView alloc] init];
+        self.imageGalleryView.delegate = self;
+        [self.imageGalleryView setImagesWithURLs:self.stolperstein.imageURLStrings];
+        [self.scrollView addSubview:self.imageGalleryView];
     }
     
     // Address
@@ -129,7 +129,7 @@
 {
     [super viewWillDisappear:animated];
     
-    [self.imageScrollView cancelImageRequests];
+    [self.imageGalleryView cancelImageRequests];
 }
 
 - (UIButton *)newRoundedRectButtonWithTitle:(NSString *)title action:(SEL)action chevronEnabled:(BOOL)chevronEnabled
@@ -165,12 +165,12 @@
     height += nameFrame.size.height + PADDING;
     
     // Images
-    if (self.imageScrollView) {
+    if (self.imageGalleryView) {
         CGRect imagesFrame;
         imagesFrame.origin.x = 0;
         imagesFrame.origin.y = height;
         imagesFrame.size = CGSizeMake(screenWidth, 150);
-        self.imageScrollView.frame = imagesFrame;
+        self.imageGalleryView.frame = imagesFrame;
         height += imagesFrame.size.height + PADDING;
     }
 
@@ -277,7 +277,7 @@
     } else if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToFullScreenImageGalleryViewController"]) {
         FullScreenImageGallerySegue *gallerySegue = (FullScreenImageGallerySegue *)segue;
 //        FullScreenImageGalleryViewController *galleryViewController = (FullScreenImageGalleryViewController *)segue.destinationViewController;
-        gallerySegue.animationView = [self.imageScrollView viewForIndex:self.imageScrollView.indexForSelectedImage];
+        gallerySegue.animationView = [self.imageGalleryView viewForIndex:self.imageGalleryView.indexForSelectedImage];
     }
 }
 

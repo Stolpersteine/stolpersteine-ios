@@ -125,8 +125,8 @@
 - (void)didTapImageView:(UITapGestureRecognizer *)sender
 {
     self.indexForSelectedImage = [self.imageViews indexOfObject:sender.view];
-    if ([self.imageScrollViewDelegate respondsToSelector:@selector(imageScrollView:didSelectImageAtIndex:)]) {
-        [self.imageScrollViewDelegate imageScrollView:self didSelectImageAtIndex:self.indexForSelectedImage];
+    if ([self.delegate respondsToSelector:@selector(imageScrollView:didSelectImageAtIndex:)]) {
+        [self.delegate imageScrollView:self didSelectImageAtIndex:self.indexForSelectedImage];
     }
 }
 

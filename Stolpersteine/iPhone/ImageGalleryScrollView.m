@@ -12,8 +12,6 @@
 
 @interface ImageGalleryScrollView()<UIScrollViewDelegate>
 
-@property (nonatomic, strong) ProgressImageView *imageView;
-
 @end
 
 @implementation ImageGalleryScrollView
@@ -23,6 +21,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.imageView = [[ProgressImageView alloc] initWithFrame:frame];
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:self.imageView];
         
         self.delegate = self;

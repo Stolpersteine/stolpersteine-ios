@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class ProgressImageView;
+
 @interface ImageGalleryScrollView : UIScrollView
+
+@property (nonatomic, strong) ProgressImageView *imageView;
 
 @end

@@ -21,6 +21,14 @@
 			<string>PSTitleValueSpecifier</string>
 		</dict>
 		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Settings.acknowledgements</string>
+			<key>File</key>
+			<string>Acknowledgements</string>
+		</dict>
+		<dict>
 			<key>Title</key>
 			<string>Settings.diagnostics</string>
 			<key>Type</key>

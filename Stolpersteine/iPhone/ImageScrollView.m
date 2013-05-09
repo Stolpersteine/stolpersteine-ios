@@ -13,9 +13,10 @@
 
 #define PADDING 20
 
-@interface ImageScrollView()
+@interface ImageScrollView()<UIScrollViewDelegate>
 
-@property (strong, nonatomic) NSArray *imageViews;
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) NSArray *imageViews;
 @property (nonatomic, assign) NSInteger indexForSelectedImage;
 
 @end
@@ -26,11 +27,15 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.alwaysBounceHorizontal = YES;
-        self.showsHorizontalScrollIndicator = NO;
-        self.showsVerticalScrollIndicator = NO;
-        self.scrollsToTop = NO;
-        self.delegate = self;
+        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        self.scrollView.alwaysBounceHorizontal = YES;
+        self.scrollView.showsHorizontalScrollIndicator = NO;
+        self.scrollView.showsVerticalScrollIndicator = NO;
+        self.scrollView.scrollsToTop = NO;
+        self.scrollView.delegate = self;
+        [self addSubview:self.scrollView];
+        
         self.indexForSelectedImage = -1;
         
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(scrollToTop) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
@@ -45,7 +50,7 @@
 
 - (void)scrollToTop
 {
-    [self setContentOffset:CGPointZero animated:NO];
+    [self.scrollView setContentOffset:CGPointZero animated:NO];
 }
 
 - (void)setImagesWithURLs:(NSArray *)urls
@@ -58,7 +63,7 @@
         [progressImageView addGestureRecognizer:tapGestureRecognizer];
         [progressImageView setImageWithURL:url];
         
-        [self addSubview:progressImageView];
+        [self.scrollView addSubview:progressImageView];
         [imageViews addObject:progressImageView];
     }
     self.imageViews = imageViews;
@@ -90,14 +95,14 @@
         progressImageView.frame = imageFrame;
         imageFrame.origin.x += imageFrame.size.width + PADDING;
     }
-    self.contentSize = CGSizeMake(imageFrame.origin.x, imageFrame.size.height);
+    self.scrollView.contentSize = CGSizeMake(imageFrame.origin.x, imageFrame.size.height);
 }
 
 - (CGFloat)offsetForTargetOffset:(CGFloat)targetOffset
 {
     // Snap to image views
     CGFloat offset = targetOffset;
-    if ((self.contentSize.width - targetOffset) > self.frame.size.width) {
+    if ((self.scrollView.contentSize.width - targetOffset) > self.frame.size.width) {
         CGFloat pageWidth = self.frame.size.height + PADDING;
         CGFloat remainder = fmod(targetOffset, pageWidth);
         CGFloat guidedOffsetX;

@@ -10,7 +10,7 @@
 
 @protocol ImageScrollViewDelegate;
 
-@interface ImageScrollView : UIScrollView<UIScrollViewDelegate>
+@interface ImageScrollView : UIView
 
 @property (nonatomic, assign, readonly) NSInteger indexForSelectedImage;
 @property (nonatomic, weak) id<ImageScrollViewDelegate> imageScrollViewDelegate;

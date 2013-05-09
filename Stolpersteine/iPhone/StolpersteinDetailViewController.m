@@ -20,18 +20,18 @@
 #import "UIImageView+AFNetworking.h"
 #import "Localization.h"
 #import "LinkedTextLabel.h"
-#import "ImageScrollView.h"
-#import "ImageScrollViewDelegate.h"
+#import "ImageGalleryView.h"
+#import "ImageGalleryViewDelegate.h"
 #import "FullScreenImageGallerySegue.h"
 #import "FullScreenImageGalleryViewController.h"
 
 #define PADDING 20
 
-@interface StolpersteinDetailViewController() <ImageScrollViewDelegate>
+@interface StolpersteinDetailViewController() <ImageGalleryViewDelegate>
 
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
 @property (strong, nonatomic) UILabel *nameLabel;
-@property (strong, nonatomic) ImageScrollView *imageScrollView;
+@property (strong, nonatomic) ImageGalleryView *imageScrollView;
 @property (strong, nonatomic) UILabel *addressLabel;
 @property (strong, nonatomic) UIButton *biographyButton;
 @property (strong, nonatomic) UIButton *streetButton;
@@ -63,7 +63,7 @@
     
     // Images
     if (self.stolperstein.imageURLStrings.count > 0) {
-        self.imageScrollView = [[ImageScrollView alloc] init];
+        self.imageScrollView = [[ImageGalleryView alloc] init];
         self.imageScrollView.imageScrollViewDelegate = self;
         [self.imageScrollView setImagesWithURLs:self.stolperstein.imageURLStrings];
         [self.scrollView addSubview:self.imageScrollView];
@@ -241,7 +241,7 @@
     [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToStolpersteinListViewController" sender:self];
 }
 
-- (void)imageScrollView:(ImageScrollView *)imageScrollView didSelectImageAtIndex:(NSInteger)index
+- (void)imageScrollView:(ImageGalleryView *)imageScrollView didSelectImageAtIndex:(NSInteger)index
 {
     [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToFullScreenImageGalleryViewController" sender:self];
 }

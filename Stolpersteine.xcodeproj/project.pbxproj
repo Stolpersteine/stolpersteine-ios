@@ -61,7 +61,7 @@
 		48C0272D172B024F0053B8E9 /* Stolpersteine-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48C0272C172B024F0053B8E9 /* Stolpersteine-Config.plist */; };
 		48C02730172EF0A10053B8E9 /* ProgressImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C0272F172EF0A10053B8E9 /* ProgressImageView.m */; };
 		48C02733172F05A50053B8E9 /* LinkedTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C02732172F05A50053B8E9 /* LinkedTextLabel.m */; };
-		48C02736172F07E50053B8E9 /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C02735172F07E50053B8E9 /* ImageScrollView.m */; };
+		48C02736172F07E50053B8E9 /* ImageGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C02735172F07E50053B8E9 /* ImageGalleryView.m */; };
 		48C0274B17303CC80053B8E9 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C0273917303CC80053B8E9 /* AFHTTPClient.m */; };
 		48C0274C17303CC80053B8E9 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C0273917303CC80053B8E9 /* AFHTTPClient.m */; };
 		48C0274D17303CC80053B8E9 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C0273917303CC80053B8E9 /* AFHTTPClient.m */; };
@@ -201,8 +201,8 @@
 		48C0272F172EF0A10053B8E9 /* ProgressImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressImageView.m; sourceTree = "<group>"; };
 		48C02731172F05A50053B8E9 /* LinkedTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedTextLabel.h; sourceTree = "<group>"; };
 		48C02732172F05A50053B8E9 /* LinkedTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedTextLabel.m; sourceTree = "<group>"; };
-		48C02734172F07E50053B8E9 /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
-		48C02735172F07E50053B8E9 /* ImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollView.m; sourceTree = "<group>"; };
+		48C02734172F07E50053B8E9 /* ImageGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryView.h; sourceTree = "<group>"; };
+		48C02735172F07E50053B8E9 /* ImageGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGalleryView.m; sourceTree = "<group>"; };
 		48C0273817303CC80053B8E9 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		48C0273917303CC80053B8E9 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		48C0273A17303CC80053B8E9 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 		48C0274817303CC80053B8E9 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		48C0274917303CC80053B8E9 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		48C0274A17303CC80053B8E9 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		48C02766173054D10053B8E9 /* ImageScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageScrollViewDelegate.h; sourceTree = "<group>"; };
+		48C02766173054D10053B8E9 /* ImageGalleryViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageGalleryViewDelegate.h; sourceTree = "<group>"; };
 		48C027671730631E0053B8E9 /* FullScreenImageGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenImageGalleryViewController.h; sourceTree = "<group>"; };
 		48C027681730631F0053B8E9 /* FullScreenImageGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenImageGalleryViewController.m; sourceTree = "<group>"; };
 		6206F9E1172A96EA009F7A13 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
@@ -406,9 +406,9 @@
 				485639C81731ABDA00891142 /* FullScreenImageGallerySegue.m */,
 				48C027671730631E0053B8E9 /* FullScreenImageGalleryViewController.h */,
 				48C027681730631F0053B8E9 /* FullScreenImageGalleryViewController.m */,
-				48C02734172F07E50053B8E9 /* ImageScrollView.h */,
-				48C02735172F07E50053B8E9 /* ImageScrollView.m */,
-				48C02766173054D10053B8E9 /* ImageScrollViewDelegate.h */,
+				48C02734172F07E50053B8E9 /* ImageGalleryView.h */,
+				48C02735172F07E50053B8E9 /* ImageGalleryView.m */,
+				48C02766173054D10053B8E9 /* ImageGalleryViewDelegate.h */,
 				48C0272E172EF0A10053B8E9 /* ProgressImageView.h */,
 				48C0272F172EF0A10053B8E9 /* ProgressImageView.m */,
 				48C02731172F05A50053B8E9 /* LinkedTextLabel.h */,
@@ -962,7 +962,7 @@
 				6206F9E3172A96EA009F7A13 /* Base64.m in Sources */,
 				48C02733172F05A50053B8E9 /* LinkedTextLabel.m in Sources */,
 				48C02730172EF0A10053B8E9 /* ProgressImageView.m in Sources */,
-				48C02736172F07E50053B8E9 /* ImageScrollView.m in Sources */,
+				48C02736172F07E50053B8E9 /* ImageGalleryView.m in Sources */,
 				48C0274B17303CC80053B8E9 /* AFHTTPClient.m in Sources */,
 				48C0274E17303CC80053B8E9 /* AFHTTPRequestOperation.m in Sources */,
 				48C0275117303CC80053B8E9 /* AFImageRequestOperation.m in Sources */,

@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class ImageScrollView;
+@class ImageGalleryView;
 
-@protocol ImageScrollViewDelegate <NSObject>
+@protocol ImageGalleryViewDelegate <NSObject>
 
 @optional
-- (void)imageScrollView:(ImageScrollView *)imageScrollView didSelectImageAtIndex:(NSInteger)index;
+- (void)imageScrollView:(ImageGalleryView *)imageScrollView didSelectImageAtIndex:(NSInteger)index;
 
 @end

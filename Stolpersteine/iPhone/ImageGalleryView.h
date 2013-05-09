@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol ImageScrollViewDelegate;
+@protocol ImageGalleryViewDelegate;
 
-@interface ImageScrollView : UIView
+@interface ImageGalleryView : UIView
 
 @property (nonatomic, assign, readonly) NSInteger indexForSelectedImage;
-@property (nonatomic, weak) id<ImageScrollViewDelegate> imageScrollViewDelegate;
+@property (nonatomic, weak) id<ImageGalleryViewDelegate> imageScrollViewDelegate;
 
 - (void)setImagesWithURLs:(NSArray *)urls;
 - (void)cancelImageRequests;

@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "ImageScrollView.h"
+#import "ImageGalleryView.h"
 
 #import "ProgressImageView.h"
-#import "ImageScrollViewDelegate.h"
+#import "ImageGalleryViewDelegate.h"
 
 #define PADDING 20
 
-@interface ImageScrollView()<UIScrollViewDelegate>
+@interface ImageGalleryView()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *imageViews;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation ImageScrollView
+@implementation ImageGalleryView
 
 - (id)initWithFrame:(CGRect)frame
 {

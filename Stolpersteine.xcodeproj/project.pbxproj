@@ -26,6 +26,7 @@
 		480FFF9F16A0C79D0012CCD5 /* StolpersteinNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4431169C420A0065C1F1 /* StolpersteinNetworkService.m */; };
 		480FFFA016A0C79D0012CCD5 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		480FFFA116A0C79D0012CCD5 /* Stolperstein.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4437169C43970065C1F1 /* Stolperstein.m */; };
+		48112CB8173C4C9E004E6ADD /* ImageGalleryScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48112CB7173C4C9E004E6ADD /* ImageGalleryScrollView.m */; };
 		48383814171A036D00141F46 /* StolpersteinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48383813171A036D00141F46 /* StolpersteinTests.m */; };
 		484C8EE5169B609F001CEA59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484C8EE4169B609F001CEA59 /* CoreLocation.framework */; };
 		485639C91731ABDA00891142 /* FullScreenImageGallerySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 485639C81731ABDA00891142 /* FullScreenImageGallerySegue.m */; };
@@ -154,6 +155,8 @@
 		480FFF9316A0C6160012CCD5 /* Stolpersteine Integration Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stolpersteine Integration Tests-Prefix.pch"; sourceTree = "<group>"; };
 		480FFF9916A0C6890012CCD5 /* StolpersteineNetworkServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteineNetworkServiceTests.h; sourceTree = "<group>"; };
 		480FFF9A16A0C6890012CCD5 /* StolpersteineNetworkServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteineNetworkServiceTests.m; sourceTree = "<group>"; };
+		48112CB6173C4C9E004E6ADD /* ImageGalleryScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryScrollView.h; sourceTree = "<group>"; };
+		48112CB7173C4C9E004E6ADD /* ImageGalleryScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGalleryScrollView.m; sourceTree = "<group>"; };
 		481CBC861704CD2700695499 /* MapClusterControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusterControllerDelegate.h; sourceTree = "<group>"; };
 		48383812171A036D00141F46 /* StolpersteinTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinTests.h; sourceTree = "<group>"; };
 		48383813171A036D00141F46 /* StolpersteinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinTests.m; sourceTree = "<group>"; };
@@ -409,6 +412,8 @@
 				48C02734172F07E50053B8E9 /* ImageGalleryView.h */,
 				48C02735172F07E50053B8E9 /* ImageGalleryView.m */,
 				48C02766173054D10053B8E9 /* ImageGalleryViewDelegate.h */,
+				48112CB6173C4C9E004E6ADD /* ImageGalleryScrollView.h */,
+				48112CB7173C4C9E004E6ADD /* ImageGalleryScrollView.m */,
 				48C0272E172EF0A10053B8E9 /* ProgressImageView.h */,
 				48C0272F172EF0A10053B8E9 /* ProgressImageView.m */,
 				48C02731172F05A50053B8E9 /* LinkedTextLabel.h */,
@@ -974,6 +979,7 @@
 				48C0276317303CC80053B8E9 /* UIImageView+AFNetworking.m in Sources */,
 				48C02769173063210053B8E9 /* FullScreenImageGalleryViewController.m in Sources */,
 				485639C91731ABDA00891142 /* FullScreenImageGallerySegue.m in Sources */,
+				48112CB8173C4C9E004E6ADD /* ImageGalleryScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

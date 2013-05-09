@@ -12,6 +12,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#define ANIMATION_DURATION 0.3f
+
 @implementation FullScreenImageGallerySegue
 
 - (void)perform
@@ -23,10 +25,10 @@
 
     // Animations to present the view controller
     destinationViewController.view.frame = rootViewController.view.bounds;
-    [UIView transitionWithView:window duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
+    [UIView transitionWithView:window duration:ANIMATION_DURATION options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
         // Animate view controller transition
-        window.rootViewController = destinationViewController;
         [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+        window.rootViewController = destinationViewController;
     } completion:NULL];
 
     // View animations
@@ -52,7 +54,7 @@
         [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 
         // Animate view controller transition
-        [UIView transitionWithView:UIApplication.sharedApplication.keyWindow duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
+        [UIView transitionWithView:UIApplication.sharedApplication.keyWindow duration:ANIMATION_DURATION options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
             [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
             window.rootViewController = rootViewController;
         } completion:NULL];

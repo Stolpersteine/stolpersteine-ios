@@ -58,6 +58,7 @@
     NSMutableArray *imageViews = [[NSMutableArray alloc] initWithCapacity:urls.count];
     for (NSURL *url in urls) {
         ProgressImageView *progressImageView = [[ProgressImageView alloc] init];
+        progressImageView.frameColor = UIColor.lightGrayColor;
         progressImageView.userInteractionEnabled = YES;
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImageView:)];
         [progressImageView addGestureRecognizer:tapGestureRecognizer];

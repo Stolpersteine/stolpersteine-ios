@@ -31,10 +31,9 @@
         self.progressView.progressTintColor = UIColor.lightGrayColor;
         [self addSubview:self.progressView];
         
-        self.layer.borderColor = UIColor.lightGrayColor.CGColor;
-        self.layer.borderWidth = 1;
         self.contentMode = UIViewContentModeScaleAspectFill;
         self.clipsToBounds = YES;
+        self.layer.borderWidth = 1;
     }
     return self;
 }
@@ -48,6 +47,26 @@
     progressViewRect.origin.y = roundf((self.frame.size.height - progressViewRect.size.height) * 0.5);
     progressViewRect.size.width = PROGRESS_VIEW_WIDTH;
     self.progressView.frame = progressViewRect;
+}
+
+- (void)setFrameColor:(UIColor *)frameColor
+{
+    if (frameColor == nil) {
+        frameColor = [UIColor colorWithWhite:0 alpha:0];
+    }
+    self.layer.borderColor = frameColor.CGColor;
+}
+
+- (UIColor *)frameColor
+{
+    UIColor *frameColor = [UIColor colorWithCGColor:self.layer.borderColor];
+    CGFloat white, alpha;
+    [frameColor getWhite:&white alpha:&alpha];
+    if (white == 0 && alpha == 0) {
+        frameColor = nil;
+    }
+    
+    return frameColor;
 }
 
 + (NSOperationQueue *)sharedImageRequestOperationQueue

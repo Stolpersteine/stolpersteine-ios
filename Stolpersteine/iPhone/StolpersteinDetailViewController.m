@@ -48,8 +48,8 @@
     
     self.title = NSLocalizedString(@"StolpersteinDetailViewController.title", nil);
     
-    NSURL *url0 = [NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg/300px-Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg"];
-    NSURL *url1 = [NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg/300px-Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg"];
+    NSURL *url0 = [NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Stolperstein_Robert_Remak%2C_Berlin_01.jpg/640px-Stolperstein_Robert_Remak%2C_Berlin_01.jpg"];
+    NSURL *url1 = [NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Wismar_St._Marien_2008-06-10.jpg/450px-Wismar_St._Marien_2008-06-10.jpg"];
     NSURL *url2 = [NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg/300px-Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg"];
     self.stolperstein.imageURLStrings = @[url0, url1, url2];
     

@@ -57,14 +57,9 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" title="Button" id="r98-E5-DRq">
-                            <connections>
-                                <action selector="centerMap:" destination="2" id="rcB-IQ-lkv"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Button" id="r98-E5-DRq"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="centerMapBarButtonItem" destination="r98-E5-DRq" id="sGL-oC-sIQ"/>
                         <outlet property="imprintButton" destination="zDp-xd-q2d" id="rFh-9b-55r"/>
                         <outlet property="mapView" destination="omQ-fz-cwh" id="JBd-Rf-WH9"/>
                         <outlet property="searchBar" destination="AgH-MU-KZc" id="Khr-cK-EUC"/>

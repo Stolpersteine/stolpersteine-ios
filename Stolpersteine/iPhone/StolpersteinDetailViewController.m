@@ -142,7 +142,7 @@
     [button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     
     if (chevronEnabled) {
-        UIImage *chevron = [UIImage imageNamed:@"chevron.png"];
+        UIImage *chevron = [UIImage imageNamed:@"icon-chevron.png"];
         [button setImage:chevron forState:UIControlStateNormal];
         [button sizeToFit];
         button.titleEdgeInsets = UIEdgeInsetsMake(0, -chevron.size.width, 0, 0);

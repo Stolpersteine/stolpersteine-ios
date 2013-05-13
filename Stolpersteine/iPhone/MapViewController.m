@@ -61,15 +61,15 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.searchDisplayController.delegate = self;
     self.searchDisplayController.searchResultsDataSource = self;
     self.searchDisplayController.searchResultsDelegate = self;
-    UIBarButtonItem *barButtonItem = self.navigationItem.rightBarButtonItem;
-    NSString *homeBarButtonItemTitle = NSLocalizedString(@"MapViewController.home", nil);
-    NSString *cancelBarButtonItemTitle = NSLocalizedString(@"MapViewController.cancel", nil);
-    barButtonItem.possibleTitles = [NSSet setWithArray:@[homeBarButtonItemTitle, cancelBarButtonItemTitle]];
-    barButtonItem.title = homeBarButtonItemTitle;
-    self.navigationItem.rightBarButtonItem = nil;   // forces possible titles to take effect
-    self.navigationItem.rightBarButtonItem = barButtonItem;
     CGFloat paddingRight = NSLocalizedString(@"MapViewController.searchBarPaddingRight", nil).floatValue;
     self.searchBar.paddingRight = paddingRight;
+
+    // Navigation bar
+    UIImage *userLocationImage = [UIImage imageNamed:@"icon-target-portrait.png"];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [button setImage:userLocationImage forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(centerMap:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem.customView = button;
     
     // User location
     self.locationManager = [[CLLocationManager alloc] init];

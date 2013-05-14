@@ -61,15 +61,11 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.searchDisplayController.delegate = self;
     self.searchDisplayController.searchResultsDataSource = self;
     self.searchDisplayController.searchResultsDelegate = self;
-    CGFloat paddingRight = NSLocalizedString(@"MapViewController.searchBarPaddingRight", nil).floatValue;
-    self.searchBar.paddingRight = paddingRight;
 
     // Navigation bar
-    UIImage *userLocationImage = [UIImage imageNamed:@"icon-target-portrait.png"];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    [button setImage:userLocationImage forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(centerMap:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem.customView = button;
+    self.locationButton = [[UIButton alloc] init];
+    [self.locationButton addTarget:self action:@selector(centerMap:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem.customView = self.locationButton;
     
     // User location
     self.locationManager = [[CLLocationManager alloc] init];
@@ -127,6 +123,38 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     self.searchBar.portraitModeEnabled = UIInterfaceOrientationIsPortrait(interfaceOrientation);
+    [self layoutNavigationBarButtonsForInterfaceOrientation:interfaceOrientation];
+}
+
+- (void)layoutNavigationBarButtonsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    UIImage *image, *backgroundImage;
+    CGRect frame = self.locationButton.frame;
+    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+        if (self.userLocationMode) {
+            image = [UIImage imageNamed:@"icon-target-landscape.png"];
+        } else {
+            image = [UIImage imageNamed:@"icon-location-landscape.png"];
+        }
+        frame.size = CGSizeMake(24, 24);
+        backgroundImage = [UIImage imageNamed:@"bar-button-landscape.png"];
+        backgroundImage = [backgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(15, 5, 15, 5)];
+    } else {
+        if (self.userLocationMode) {
+            image = [UIImage imageNamed:@"icon-target-portrait.png"];
+        } else {
+            image = [UIImage imageNamed:@"icon-location-portrait.png"];
+        }
+        frame.size = CGSizeMake(30, 30);
+        backgroundImage = [UIImage imageNamed:@"bar-button-portrait.png"];
+        backgroundImage = [backgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(12, 4, 12, 4)];
+    }
+    [self.locationButton setImage:image forState:UIControlStateNormal];
+    self.locationButton.frame = frame;
+    [self.locationButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+    
+    // Hack to avoid wrong width when changing the orientation while the search bar is not visible.
+    self.searchBar.paddingRight = frame.size.width + 15;
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -306,6 +334,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         self.userLocationMode = FALSE;
         [self.mapView setRegion:BERLIN_REGION animated:YES];
     }
+    [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation];
 }
 
 - (IBAction)showImprint:(UIButton *)sender

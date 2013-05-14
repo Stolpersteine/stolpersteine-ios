@@ -9,7 +9,6 @@
 "MapViewController.title" = "Map";
 "MapViewController.home" = "Centre";
 "MapViewController.cancel" = "Cancel";
-"MapViewController.searchBarPaddingRight" = "75";
 "MapViewController.imprint" = "Contact";
 "MapViewController.imprintURL" = "http://www.option-u.com/stolpersteine/imprint-ios-app-en/";
 

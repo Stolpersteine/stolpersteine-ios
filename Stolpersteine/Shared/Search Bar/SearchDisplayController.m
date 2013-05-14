@@ -19,6 +19,7 @@
 @property (nonatomic, strong) SearchBar *searchBar;
 @property (nonatomic, strong) UITableView *searchResultsTableView;
 @property (nonatomic, strong) UIBarButtonItem *barButtonItem;
+@property (nonatomic, assign) CGFloat searchBarPadding;
 
 @end
 
@@ -110,9 +111,12 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
     if (barButtonItemVisible) {
         self.barButtonItem = self.searchContentsController.navigationItem.rightBarButtonItem;
         barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+        self.searchBarPadding = self.searchBar.paddingRight;
+//        self.searchBar.paddingRight = 75;   // 100
     } else {
         barButtonItem = self.barButtonItem;
         self.barButtonItem = nil;
+        self.searchBar.paddingRight = self.searchBarPadding;
     }
     [self.searchContentsController.navigationItem setRightBarButtonItem:barButtonItem animated:YES];
 }

@@ -61,8 +61,6 @@
 
 - (void)setFrame:(CGRect)frame
 {
-    // Hack to avoid wrong width when changing the orientation while the search
-    // bar is not visible.
     CGFloat y = (self.superview.frame.size.height - self.frame.size.height) * 0.5;
     [super setFrame:CGRectMake(PADDING_LEFT, y, self.superview.frame.size.width - self.paddingRight, frame.size.height)];
 }

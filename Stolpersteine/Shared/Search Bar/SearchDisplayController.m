@@ -112,12 +112,16 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
         self.barButtonItem = self.searchContentsController.navigationItem.rightBarButtonItem;
         barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
         self.searchBarPadding = self.searchBar.paddingRight;
-//        self.searchBar.paddingRight = 75;   // 100
+        self.searchBar.paddingRight = 75;   // 100
     } else {
         barButtonItem = self.barButtonItem;
         self.barButtonItem = nil;
         self.searchBar.paddingRight = self.searchBarPadding;
     }
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.searchBar.frame = self.searchBar.frame;
+    }];
     [self.searchContentsController.navigationItem setRightBarButtonItem:barButtonItem animated:YES];
 }
 

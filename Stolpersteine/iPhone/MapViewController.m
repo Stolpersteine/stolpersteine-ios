@@ -154,7 +154,9 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [self.locationButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     
     // Hack to avoid wrong width when changing the orientation while the search bar is not visible.
-    self.searchBar.paddingRight = frame.size.width + 15;
+    if (self.navigationItem.rightBarButtonItem.customView == self.locationButton) {
+        self.searchBar.paddingRight = frame.size.width + 15;
+    }
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

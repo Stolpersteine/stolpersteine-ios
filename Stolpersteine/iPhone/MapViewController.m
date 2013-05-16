@@ -132,7 +132,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     CGRect frame = self.locationButton.frame;
     if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
         if (self.userLocationMode) {
-            image = [UIImage imageNamed:@"icon-target-landscape.png"];
+            image = [UIImage imageNamed:@"icon-region-landscape.png"];
         } else {
             image = [UIImage imageNamed:@"icon-location-landscape.png"];
         }
@@ -141,7 +141,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         backgroundImage = [backgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(15, 5, 15, 5)];
     } else {
         if (self.userLocationMode) {
-            image = [UIImage imageNamed:@"icon-target-portrait.png"];
+            image = [UIImage imageNamed:@"icon-region-portrait.png"];
         } else {
             image = [UIImage imageNamed:@"icon-location-portrait.png"];
         }

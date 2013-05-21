@@ -11,12 +11,12 @@
 #import "SearchBarDelegate.h"
 
 @class SearchBar;
-@protocol SearchDisplayDelegate;
+@protocol SearchDisplayControllerDelegate;
 
 @interface SearchDisplayController : NSObject<SearchBarDelegate>
 
 @property (nonatomic, assign, getter = isActive) BOOL active;
-@property (nonatomic, weak) NSObject<SearchDisplayDelegate> *delegate;
+@property (nonatomic, weak) NSObject<SearchDisplayControllerDelegate> *delegate;
 @property (nonatomic, readonly, strong) SearchBar *searchBar;
 @property (nonatomic, readonly) UIViewController *searchContentsController;
 @property (nonatomic, weak) id<UITableViewDataSource> searchResultsDataSource;

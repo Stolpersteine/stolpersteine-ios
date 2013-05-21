@@ -303,7 +303,7 @@
 		62F147BE170202A1003E7DAA /* SearchBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarDelegate.h; sourceTree = "<group>"; };
 		62F147BF170202A1003E7DAA /* SearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayController.h; sourceTree = "<group>"; };
 		62F147C0170202A1003E7DAA /* SearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDisplayController.m; sourceTree = "<group>"; };
-		62F147C1170202A1003E7DAA /* SearchDisplayDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayDelegate.h; sourceTree = "<group>"; };
+		62F147C1170202A1003E7DAA /* SearchDisplayControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayControllerDelegate.h; sourceTree = "<group>"; };
 		62F147C2170202A1003E7DAA /* SearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTextField.h; sourceTree = "<group>"; };
 		62F147C3170202A1003E7DAA /* SearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTextField.m; sourceTree = "<group>"; };
 		62F147C717020B18003E7DAA /* navigation-bar-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation-bar-landscape.png"; sourceTree = "<group>"; };
@@ -718,7 +718,7 @@
 				62F147BE170202A1003E7DAA /* SearchBarDelegate.h */,
 				62F147BF170202A1003E7DAA /* SearchDisplayController.h */,
 				62F147C0170202A1003E7DAA /* SearchDisplayController.m */,
-				62F147C1170202A1003E7DAA /* SearchDisplayDelegate.h */,
+				62F147C1170202A1003E7DAA /* SearchDisplayControllerDelegate.h */,
 				62F147C2170202A1003E7DAA /* SearchTextField.h */,
 				62F147C3170202A1003E7DAA /* SearchTextField.m */,
 			);

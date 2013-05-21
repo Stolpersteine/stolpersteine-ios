@@ -17,7 +17,7 @@
 #import "StolpersteinListViewController.h"
 #import "SearchBar.h"
 #import "SearchDisplayController.h"
-#import "SearchDisplayDelegate.h"
+#import "SearchDisplayControllerDelegate.h"
 #import "MapClusterController.h"
 #import "MapClusterControllerDelegate.h"
 #import "MapClusterAnnotation.h"
@@ -28,7 +28,7 @@ static const MKCoordinateRegion BERLIN_REGION = { {52.5233, 13.4127}, {0.4493, 0
 static const double ZOOM_DISTANCE_USER = 1200;
 static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
-@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SearchDisplayDelegate, MapClusterControllerDelegate>
+@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SearchDisplayControllerDelegate, MapClusterControllerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;

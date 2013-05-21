@@ -10,7 +10,7 @@
 
 @class SearchDisplayController;
 
-@protocol SearchDisplayDelegate <NSObject>
+@protocol SearchDisplayControllerDelegate <NSObject>
 
 @optional
 - (BOOL)searchDisplayController:(SearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString;

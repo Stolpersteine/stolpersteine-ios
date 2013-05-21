@@ -9,7 +9,7 @@
 #import "SearchDisplayController.h"
 
 #import "SearchBar.h"
-#import "SearchDisplayDelegate.h"
+#import "SearchDisplayControllerDelegate.h"
 
 #import <QuartzCore/QuartzCore.h>
 

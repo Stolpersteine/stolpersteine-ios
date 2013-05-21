@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define DIAGNOSTICS_SERVICE_EVENT_ACTION_ORIENTATION_CHANGED @"OrientationChanged"
+
 @interface DiagnosticsService : NSObject
 
 - (id)initWithGoogleAnalyticsID:(NSString *)googleAnayticsID;

@@ -156,7 +156,13 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     // Hack to avoid wrong width when changing the orientation while the search bar is not visible.
     if (self.navigationItem.rightBarButtonItem.customView == self.locationButton) {
         self.searchBar.paddingRight = frame.size.width + 15;
+    } else {
+        NSString *paddingRightAsString = NSLocalizedString(@"MapViewController.paddingRight", nil);
+        self.searchBar.paddingRight = paddingRightAsString.floatValue;
     }
+    [UIView animateWithDuration:0.25 animations:^{
+        self.searchBar.frame = self.searchBar.frame;
+    }];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -359,6 +365,11 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     }];
                                            
     return FALSE;
+}
+
+- (void)searchDisplayController:(SearchDisplayController *)controller willChangeNavigationItem:(UINavigationItem *)navigationItem
+{
+    [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation];
 }
 
 - (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation

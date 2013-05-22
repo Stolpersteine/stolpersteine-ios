@@ -14,5 +14,6 @@
 
 @optional
 - (BOOL)searchDisplayController:(SearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString;
+- (void)searchDisplayController:(SearchDisplayController *)controller willChangeNavigationItem:(UINavigationItem *)navigationItem;
 
 @end

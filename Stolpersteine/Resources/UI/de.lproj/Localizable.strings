@@ -7,10 +7,9 @@
 */
 
 "MapViewController.title" = "Karte";
-"MapViewController.home" = "Zentrieren";
-"MapViewController.cancel" = "Abbrechen";
 "MapViewController.imprint" = "Impressum";
 "MapViewController.imprintURL" = "http://www.option-u.com/stolpersteine/imprint-ios-app-de/";
+"MapViewController.paddingRight" = "100";   // Abbrechen
 
 "StolpersteinDetailViewController.title" = "Info";
 "StolpersteinDetailViewController.biography" = "Biographie anzeigen";

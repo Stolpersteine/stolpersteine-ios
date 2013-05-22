@@ -7,10 +7,9 @@
 */
 
 "MapViewController.title" = "Map";
-"MapViewController.home" = "Centre";
-"MapViewController.cancel" = "Cancel";
 "MapViewController.imprint" = "Contact";
 "MapViewController.imprintURL" = "http://www.option-u.com/stolpersteine/imprint-ios-app-en/";
+"MapViewController.paddingRight" = "75";    // Cancel
 
 "StolpersteinDetailViewController.title" = "Info";
 "StolpersteinDetailViewController.biography" = "Show biography";

@@ -28,12 +28,13 @@
     // Steps to present the view controller
     fullScreenImageGalleryViewController.view.frame = rootViewController.view.bounds;
     fullScreenImageGalleryViewController.imageGalleryView = self.imageGalleryView;
-    [fullScreenImageGalleryViewController.view addSubview:self.imageGalleryView];
     [UIView transitionWithView:window duration:ANIMATION_DURATION options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
         // Animate view controller transition
         [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
         window.rootViewController = fullScreenImageGalleryViewController;
-    } completion:NULL];
+    } completion:^(BOOL finished) {
+        [fullScreenImageGalleryViewController.view addSubview:self.imageGalleryView];
+    }];
 
     // View animations
 //    CGRect windowFrame = [window convertRect:self.animationView.frame fromView:self.animationView.superview];

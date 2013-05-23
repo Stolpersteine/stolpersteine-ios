@@ -10,7 +10,7 @@
 
 @class ProgressImageView;
 
-@interface ImageGalleryScrollView : UIScrollView
+@interface ImageGalleryItemView : UIScrollView
 
 @property (nonatomic, strong) ProgressImageView *imageView;
 

@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "ImageGalleryScrollView.h"
+#import "ImageGalleryItemView.h"
 
 #import "ProgressImageView.h"
 
-@interface ImageGalleryScrollView()<UIScrollViewDelegate>
+@interface ImageGalleryItemView()<UIScrollViewDelegate>
 
 @end
 
-@implementation ImageGalleryScrollView
+@implementation ImageGalleryItemView
 
 - (id)initWithFrame:(CGRect)frame
 {

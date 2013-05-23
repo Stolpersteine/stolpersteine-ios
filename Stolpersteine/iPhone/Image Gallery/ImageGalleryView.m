@@ -10,7 +10,7 @@
 
 #import "ProgressImageView.h"
 #import "ImageGalleryViewDelegate.h"
-#import "ImageGalleryScrollView.h"
+#import "ImageGalleryItemView.h"
 
 #define PADDING 20
 
@@ -58,7 +58,7 @@
 {
     NSMutableArray *scrollViews = [[NSMutableArray alloc] initWithCapacity:urls.count];
     for (NSURL *url in urls) {
-        ImageGalleryScrollView *imageGalleryScrollView = [[ImageGalleryScrollView alloc] init];
+        ImageGalleryItemView *imageGalleryScrollView = [[ImageGalleryItemView alloc] init];
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImageView:)];
         [imageGalleryScrollView addGestureRecognizer:tapGestureRecognizer];
 
@@ -74,7 +74,7 @@
 
 - (void)cancelImageRequests
 {
-    for (ImageGalleryScrollView *scrollView in self.imageGalleryScrollViews) {
+    for (ImageGalleryItemView *scrollView in self.imageGalleryScrollViews) {
         [scrollView.imageView cancelImageRequest];
     }
 }

@@ -28,7 +28,7 @@
 		480FFFA116A0C79D0012CCD5 /* Stolperstein.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4437169C43970065C1F1 /* Stolperstein.m */; };
 		4825F935174E8F7C0058B811 /* FullScreenImageGallerySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F92B174E8F7C0058B811 /* FullScreenImageGallerySegue.m */; };
 		4825F936174E8F7C0058B811 /* FullScreenImageGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F92D174E8F7C0058B811 /* FullScreenImageGalleryViewController.m */; };
-		4825F937174E8F7C0058B811 /* ImageGalleryScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F92F174E8F7C0058B811 /* ImageGalleryScrollView.m */; };
+		4825F937174E8F7C0058B811 /* ImageGalleryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F92F174E8F7C0058B811 /* ImageGalleryItemView.m */; };
 		4825F938174E8F7C0058B811 /* ImageGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F931174E8F7C0058B811 /* ImageGalleryView.m */; };
 		4825F939174E8F7C0058B811 /* ProgressImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F934174E8F7C0058B811 /* ProgressImageView.m */; };
 		48383814171A036D00141F46 /* StolpersteinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48383813171A036D00141F46 /* StolpersteinTests.m */; };
@@ -172,8 +172,8 @@
 		4825F92B174E8F7C0058B811 /* FullScreenImageGallerySegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenImageGallerySegue.m; sourceTree = "<group>"; };
 		4825F92C174E8F7C0058B811 /* FullScreenImageGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenImageGalleryViewController.h; sourceTree = "<group>"; };
 		4825F92D174E8F7C0058B811 /* FullScreenImageGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenImageGalleryViewController.m; sourceTree = "<group>"; };
-		4825F92E174E8F7C0058B811 /* ImageGalleryScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryScrollView.h; sourceTree = "<group>"; };
-		4825F92F174E8F7C0058B811 /* ImageGalleryScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGalleryScrollView.m; sourceTree = "<group>"; };
+		4825F92E174E8F7C0058B811 /* ImageGalleryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryItemView.h; sourceTree = "<group>"; };
+		4825F92F174E8F7C0058B811 /* ImageGalleryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGalleryItemView.m; sourceTree = "<group>"; };
 		4825F930174E8F7C0058B811 /* ImageGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryView.h; sourceTree = "<group>"; };
 		4825F931174E8F7C0058B811 /* ImageGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGalleryView.m; sourceTree = "<group>"; };
 		4825F932174E8F7C0058B811 /* ImageGalleryViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryViewDelegate.h; sourceTree = "<group>"; };
@@ -418,11 +418,11 @@
 				4825F92B174E8F7C0058B811 /* FullScreenImageGallerySegue.m */,
 				4825F92C174E8F7C0058B811 /* FullScreenImageGalleryViewController.h */,
 				4825F92D174E8F7C0058B811 /* FullScreenImageGalleryViewController.m */,
-				4825F92E174E8F7C0058B811 /* ImageGalleryScrollView.h */,
-				4825F92F174E8F7C0058B811 /* ImageGalleryScrollView.m */,
 				4825F930174E8F7C0058B811 /* ImageGalleryView.h */,
 				4825F931174E8F7C0058B811 /* ImageGalleryView.m */,
 				4825F932174E8F7C0058B811 /* ImageGalleryViewDelegate.h */,
+				4825F92E174E8F7C0058B811 /* ImageGalleryItemView.h */,
+				4825F92F174E8F7C0058B811 /* ImageGalleryItemView.m */,
 				4825F933174E8F7C0058B811 /* ProgressImageView.h */,
 				4825F934174E8F7C0058B811 /* ProgressImageView.m */,
 			);
@@ -1033,7 +1033,7 @@
 				48C0276317303CC80053B8E9 /* UIImageView+AFNetworking.m in Sources */,
 				4825F935174E8F7C0058B811 /* FullScreenImageGallerySegue.m in Sources */,
 				4825F936174E8F7C0058B811 /* FullScreenImageGalleryViewController.m in Sources */,
-				4825F937174E8F7C0058B811 /* ImageGalleryScrollView.m in Sources */,
+				4825F937174E8F7C0058B811 /* ImageGalleryItemView.m in Sources */,
 				4825F938174E8F7C0058B811 /* ImageGalleryView.m in Sources */,
 				4825F939174E8F7C0058B811 /* ProgressImageView.m in Sources */,
 			);

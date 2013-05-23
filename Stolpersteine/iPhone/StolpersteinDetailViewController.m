@@ -276,8 +276,8 @@
         listViewController.title = searchData.locationStreet;
     } else if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToFullScreenImageGalleryViewController"]) {
         FullScreenImageGallerySegue *gallerySegue = (FullScreenImageGallerySegue *)segue;
-//        FullScreenImageGalleryViewController *galleryViewController = (FullScreenImageGalleryViewController *)segue.destinationViewController;
         gallerySegue.animationView = [self.imageGalleryView viewForIndex:self.imageGalleryView.selectedIndex];
+        gallerySegue.imageGalleryView = self.imageGalleryView;
     }
 }
 

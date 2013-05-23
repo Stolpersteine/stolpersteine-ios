@@ -9,26 +9,30 @@
 #import "FullScreenImageGallerySegue.h"
 
 #import "FullScreenImageGalleryViewController.h"
+#import "ImageGalleryView.h"
 
 #import <QuartzCore/QuartzCore.h>
 
-#define ANIMATION_DURATION 0.3f
+#define ANIMATION_DURATION 0.25f
 
 @implementation FullScreenImageGallerySegue
 
 - (void)perform
 {
     UIViewController *sourceViewController = self.sourceViewController;
-    FullScreenImageGalleryViewController *destinationViewController = self.destinationViewController;
+    FullScreenImageGalleryViewController *fullScreenImageGalleryViewController = self.destinationViewController;
     UIWindow *window = UIApplication.sharedApplication.keyWindow;
     UIViewController *rootViewController = window.rootViewController;
+    UIView *imageGalleryViewSuperView = self.imageGalleryView.superview;
 
-    // Animations to present the view controller
-    destinationViewController.view.frame = rootViewController.view.bounds;
+    // Steps to present the view controller
+    fullScreenImageGalleryViewController.view.frame = rootViewController.view.bounds;
+    fullScreenImageGalleryViewController.imageGalleryView = self.imageGalleryView;
+    [fullScreenImageGalleryViewController.view addSubview:self.imageGalleryView];
     [UIView transitionWithView:window duration:ANIMATION_DURATION options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
         // Animate view controller transition
         [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
-        window.rootViewController = destinationViewController;
+        window.rootViewController = fullScreenImageGalleryViewController;
     } completion:NULL];
 
     // View animations
@@ -39,19 +43,22 @@
 //        self.animationView.transform = CGAffineTransformMakeTranslation(100, 100);
 //    }];
     
-    // Animations to dismiss the view controller
-    __weak FullScreenImageGalleryViewController *weakDestinationViewController = self.destinationViewController;
-    destinationViewController.completionBlock = ^() {
-        FullScreenImageGalleryViewController *strongDestinationViewController = weakDestinationViewController;
+    // Steps to dismiss the view controller
+    __weak FullScreenImageGalleryViewController *weakFullScreenImageGalleryViewController = self.destinationViewController;
+    fullScreenImageGalleryViewController.completionBlock = ^() {
+        FullScreenImageGalleryViewController *strongFullScreenImageGalleryViewController = weakFullScreenImageGalleryViewController;
         
         // Forward current interface orientation to offscreen view controller
         [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
         window.rootViewController = rootViewController;
-        [sourceViewController willRotateToInterfaceOrientation:strongDestinationViewController.interfaceOrientation duration:0];
-        [sourceViewController willAnimateRotationToInterfaceOrientation:strongDestinationViewController.interfaceOrientation duration:0];
-        [sourceViewController didRotateFromInterfaceOrientation:strongDestinationViewController.interfaceOrientation];
-        window.rootViewController = strongDestinationViewController;
+        [sourceViewController willRotateToInterfaceOrientation:strongFullScreenImageGalleryViewController.interfaceOrientation duration:0];
+        [sourceViewController willAnimateRotationToInterfaceOrientation:strongFullScreenImageGalleryViewController.interfaceOrientation duration:0];
+        [sourceViewController didRotateFromInterfaceOrientation:strongFullScreenImageGalleryViewController.interfaceOrientation];
+        window.rootViewController = strongFullScreenImageGalleryViewController;
         [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+
+        // Add gallery view back
+        [imageGalleryViewSuperView addSubview:strongFullScreenImageGalleryViewController.imageGalleryView];
 
         // Animate view controller transition
         [UIView transitionWithView:UIApplication.sharedApplication.keyWindow duration:ANIMATION_DURATION options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {

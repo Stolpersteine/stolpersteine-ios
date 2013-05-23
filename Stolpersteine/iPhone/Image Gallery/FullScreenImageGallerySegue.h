@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class ImageGalleryView;
+
 @interface FullScreenImageGallerySegue : UIStoryboardSegue
 
 @property (nonatomic, strong) UIView *animationView;
+@property (nonatomic, strong) ImageGalleryView *imageGalleryView;
 
 @end

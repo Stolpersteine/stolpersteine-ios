@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class ImageGalleryView;
+
 @interface FullScreenImageGalleryViewController : UIViewController
 
+@property (nonatomic, strong) ImageGalleryView *imageGalleryView;
 @property (nonatomic, copy) void (^completionBlock)();
 
 @end

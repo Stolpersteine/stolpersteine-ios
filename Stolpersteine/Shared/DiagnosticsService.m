@@ -11,13 +11,21 @@
 #import "GAI.h"
 #import "GAITracker.h"
 
+#import "MapViewController.h"
+#import "SearchDisplayController.h"
+#import "StolpersteinDetailViewController.h"
+#import "StolpersteinListViewController.h"
+#import "FullScreenImageGalleryViewController.h"
+
 #define CUSTOM_DIMENSION_INTERFACE_ORIENTATION 1
+#define CUSTOM_DIMENSION_LOCATION_SERVICES 2
 
 @interface DiagnosticsService()
 
 @property (nonatomic, strong) GAI *gai;
 @property (nonatomic, strong) id<GAITracker> gaiTracker;
-@property (nonatomic, strong) NSDictionary *viewControllerToViewName;
+@property (nonatomic, strong) NSDictionary *classToViewNameMapping;
+@property (nonatomic, strong) NSDictionary *eventToActionNameMapping;
 
 @end
 
@@ -38,12 +46,16 @@
         NSString *shortVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
         self.gaiTracker.appVersion = [NSString stringWithFormat:@"%@ (%@)", shortVersion, version];
         
-        // Name maping
-        self.viewControllerToViewName = @{
-            @"MapViewController": @"Map",
-            @"StolpersteinDetailViewController": @"StolpersteinDetail",
-            @"StolpersteinListViewController": @"StolpersteinList",
-            @"FullScreenImageGalleryViewController": @"FullScreenImageGallery"
+        // Mappings
+        self.classToViewNameMapping = @{
+           NSStringFromClass(MapViewController.class): @"Map",
+           NSStringFromClass(SearchDisplayController.class): @"SearchDisplay",
+           NSStringFromClass(StolpersteinDetailViewController.class): @"StolpersteinDetail",
+           NSStringFromClass(StolpersteinListViewController.class): @"StolpersteinList",
+           NSStringFromClass(FullScreenImageGalleryViewController.class): @"FullScreenImageGallery"
+        };
+        self.eventToActionNameMapping = @{
+            @(DiagnosticsServiceEventOrientationChanged): @"orientationChanged"
         };
         
         // Register for changes to user settings
@@ -69,43 +81,40 @@
     self.gai.optOut = !sendDiagnostics;
 }
 
-- (NSString *)viewNameForViewController:(UIViewController *)viewController
+- (NSString *)stringForClass:(Class)class
 {
-    NSString *className = NSStringFromClass(viewController.class);
-    NSString *viewName = [self.viewControllerToViewName objectForKey:className];
-    NSAssert(viewName != nil, @"Unknown view controller for tracking");
+    NSString *className = NSStringFromClass(class);
+    NSString *string = [self.classToViewNameMapping objectForKey:className];
+    NSAssert(string != nil, @"Unknown class for tracking: %@", className);
     
-    return viewName;
+    return string;
 }
 
-+ (NSString *)orientationNameForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (NSString *)stringForEvent:(DiagnosticsServiceEvent)event
+{
+    NSString *string = [self.eventToActionNameMapping objectForKey:@(event)];
+    NSAssert(string != nil, @"Unknown event for tracking: %d", event);
+    
+    return string;
+}
+
++ (NSString *)stringForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return UIInterfaceOrientationIsLandscape(interfaceOrientation) ? @"landscape" : @"portrait";
 }
 
-+ (UIViewController *)topMostViewControllerForRootViewController:(UIViewController *)rootViewController
++ (NSString *)stringForAuthorizationStatus:(CLAuthorizationStatus)authorizationStatus
 {
-    UIViewController *viewController = rootViewController;
-    while (viewController.childViewControllers.count > 0) {
-        if ([viewController isKindOfClass:UINavigationController.class]) {
-            UINavigationController *navigationController = (UINavigationController *)viewController;
-            viewController = navigationController.topViewController;
-        } else {
-            NSAssert(FALSE, @"Unknown container view controller");
-        }
+    NSString *string;
+    if (authorizationStatus == kCLAuthorizationStatusAuthorized) {
+        string = @"on";
+    } else if (authorizationStatus == kCLAuthorizationStatusDenied || authorizationStatus == kCLAuthorizationStatusRestricted) {
+        string = @"off";
+    } else {
+        string = @"unknown";
     }
     
-    return viewController;
-}
-
-+ (UIViewController *)topMostRootViewController
-{
-    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    while (rootViewController.presentedViewController) {
-        rootViewController = rootViewController.presentedViewController;
-    }
-    
-    return rootViewController;
+    return string;
 }
 
 - (void)applicationDidChangeStatusBarOrientationWithNotification:(NSNotification *)note
@@ -115,12 +124,12 @@
     UIInterfaceOrientation interfaceOrientationNew = UIApplication.sharedApplication.statusBarOrientation;
     BOOL isLandscapeNew = UIInterfaceOrientationIsLandscape(interfaceOrientationNew);
     if (isLandscapeOld != isLandscapeNew) {
-        UIViewController *topMostViewController = [DiagnosticsService topMostRootViewController];
-        topMostViewController = [DiagnosticsService topMostViewControllerForRootViewController:topMostViewController];
-        NSString *viewName = [self viewNameForViewController:topMostViewController];
-        if (viewName) {
-            NSString *interfaceOrientationAsString = [DiagnosticsService orientationNameForInterfaceOrientation:interfaceOrientationNew];
-            [self.gaiTracker sendEventWithCategory:viewName withAction:DIAGNOSTICS_SERVICE_EVENT_ACTION_ORIENTATION_CHANGED withLabel:interfaceOrientationAsString withValue:nil];
+        NSString *actionName = [self stringForEvent:DiagnosticsServiceEventOrientationChanged];
+        NSString *viewName = self.gaiTracker.appScreen; // last used view name
+        NSString *interfaceOrientationAsString = [DiagnosticsService stringForInterfaceOrientation:interfaceOrientationNew];
+        if (actionName && viewName) {
+            [self addCustomDimensions];
+            [self.gaiTracker sendEventWithCategory:viewName withAction:actionName withLabel:interfaceOrientationAsString withValue:nil];
         }
     }
 }
@@ -128,16 +137,30 @@
 - (void)addCustomDimensions
 {
     UIInterfaceOrientation interfaceOrientation = UIApplication.sharedApplication.statusBarOrientation;
-    NSString *interfaceOrientationAsString = [DiagnosticsService orientationNameForInterfaceOrientation:interfaceOrientation];
+    NSString *interfaceOrientationAsString = [DiagnosticsService stringForInterfaceOrientation:interfaceOrientation];
     [self.gaiTracker setCustom:CUSTOM_DIMENSION_INTERFACE_ORIENTATION dimension:interfaceOrientationAsString];
+    
+    CLAuthorizationStatus authorizationStatus = CLLocationManager.authorizationStatus;
+    NSString *authorizationStatusAsString = [DiagnosticsService stringForAuthorizationStatus:authorizationStatus];
+    [self.gaiTracker setCustom:CUSTOM_DIMENSION_LOCATION_SERVICES dimension:authorizationStatusAsString];
 }
 
-- (void)trackViewController:(UIViewController *)viewController
+- (void)trackViewWithClass:(Class)class
 {
-    NSString *viewName = [self viewNameForViewController:viewController];
+    NSString *viewName = [self stringForClass:class];
     if (viewName) {
         [self addCustomDimensions];
         [self.gaiTracker sendView:viewName];
+    }
+}
+
+- (void)trackEvent:(DiagnosticsServiceEvent)event withClass:(Class)class
+{
+    NSString *actionName = [self stringForEvent:event];
+    NSString *viewName = [self stringForClass:class];
+    if (actionName && viewName) {
+        [self addCustomDimensions];
+        [self.gaiTracker sendEventWithCategory:viewName withAction:actionName withLabel:nil withValue:nil];
     }
 }
 

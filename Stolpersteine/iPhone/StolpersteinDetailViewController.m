@@ -122,7 +122,7 @@
 {
     [super viewDidAppear:animated];
     
-    [AppDelegate.diagnosticsService trackViewController:self];
+    [AppDelegate.diagnosticsService trackViewWithClass:self.class];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -277,7 +277,7 @@
     } else if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToFullScreenImageGalleryViewController"]) {
         FullScreenImageGallerySegue *gallerySegue = (FullScreenImageGallerySegue *)segue;
 //        FullScreenImageGalleryViewController *galleryViewController = (FullScreenImageGalleryViewController *)segue.destinationViewController;
-        gallerySegue.animationView = [self.imageGalleryView viewForIndex:self.imageGalleryView.indexForSelectedImage];
+        gallerySegue.animationView = [self.imageGalleryView viewForIndex:self.imageGalleryView.selectedIndex];
     }
 }
 

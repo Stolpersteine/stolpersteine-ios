@@ -35,7 +35,7 @@
 {
     [super viewDidAppear:animated];
     
-    [AppDelegate.diagnosticsService trackViewController:self];
+    [AppDelegate.diagnosticsService trackViewWithClass:self.class];
 }
 
 - (void)done

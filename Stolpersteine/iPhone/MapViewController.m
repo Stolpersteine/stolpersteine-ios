@@ -107,7 +107,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 {
     [super viewDidAppear:animated];
     
-    [AppDelegate.diagnosticsService trackViewController:self];
+    [AppDelegate.diagnosticsService trackViewWithClass:self.class];
 
     // Update data when app becomes active
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(retrieveStolpersteine) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -370,6 +370,16 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)searchDisplayController:(SearchDisplayController *)controller willChangeNavigationItem:(UINavigationItem *)navigationItem
 {
     [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation];
+}
+
+- (void)searchDisplayControllerDidAppear:(SearchDisplayController *)controller
+{
+    [AppDelegate.diagnosticsService trackViewWithClass:self.searchDisplayController.class];
+}
+
+- (void)searchDisplayControllerDidDisappear:(SearchDisplayController *)controller
+{
+    [AppDelegate.diagnosticsService trackViewWithClass:self.class];
 }
 
 - (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation

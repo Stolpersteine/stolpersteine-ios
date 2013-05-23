@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-#define DIAGNOSTICS_SERVICE_EVENT_ACTION_ORIENTATION_CHANGED @"OrientationChanged"
+typedef enum {
+    DiagnosticsServiceEventOrientationChanged
+} DiagnosticsServiceEvent;
 
 @interface DiagnosticsService : NSObject
 
 - (id)initWithGoogleAnalyticsID:(NSString *)googleAnayticsID;
-- (void)trackViewController:(UIViewController *)viewController;
+
+- (void)trackViewWithClass:(Class)class;
+- (void)trackEvent:(DiagnosticsServiceEvent)event withClass:(Class)class;
 
 @end

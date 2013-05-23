@@ -148,8 +148,16 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
         
         self.barButtonItemVisible = active;
         self.searchResultsTableViewVisible = active;
-        if (!active) {
+        
+        if (active) {
+            if ([self.delegate respondsToSelector:@selector(searchDisplayControllerDidAppear:)]) {
+                [self.delegate searchDisplayControllerDidAppear:self];
+            }
+        } else {
             [self.searchBar resignFirstResponder];
+            if ([self.delegate respondsToSelector:@selector(searchDisplayControllerDidDisappear:)]) {
+                [self.delegate searchDisplayControllerDidDisappear:self];
+            }
         }
     }
 }

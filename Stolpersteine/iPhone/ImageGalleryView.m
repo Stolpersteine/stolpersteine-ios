@@ -10,14 +10,15 @@
 
 #import "ProgressImageView.h"
 #import "ImageGalleryViewDelegate.h"
+#import "ImageGalleryScrollView.h"
 
 #define PADDING 20
 
 @interface ImageGalleryView()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) NSArray *imageViews;
-@property (nonatomic, assign) NSInteger indexForSelectedImage;
+@property (nonatomic, strong) NSArray *imageGalleryScrollViews;
+@property (nonatomic, assign) NSInteger selectedIndex;
 
 @end
 
@@ -36,7 +37,7 @@
         self.scrollView.delegate = self;
         [self addSubview:self.scrollView];
         
-        self.indexForSelectedImage = -1;
+        self.selectedIndex = -1;
         
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(scrollToTop) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     }
@@ -55,33 +56,34 @@
 
 - (void)setImagesWithURLs:(NSArray *)urls
 {
-    NSMutableArray *imageViews = [[NSMutableArray alloc] initWithCapacity:urls.count];
+    NSMutableArray *scrollViews = [[NSMutableArray alloc] initWithCapacity:urls.count];
     for (NSURL *url in urls) {
-        ProgressImageView *progressImageView = [[ProgressImageView alloc] init];
-        progressImageView.frameColor = UIColor.lightGrayColor;
-        progressImageView.userInteractionEnabled = YES;
+        ImageGalleryScrollView *imageGalleryScrollView = [[ImageGalleryScrollView alloc] init];
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImageView:)];
-        [progressImageView addGestureRecognizer:tapGestureRecognizer];
+        [imageGalleryScrollView addGestureRecognizer:tapGestureRecognizer];
+
+        ProgressImageView *progressImageView = imageGalleryScrollView.imageView;
+        progressImageView.frameColor = UIColor.lightGrayColor;
         [progressImageView setImageWithURL:url];
         
-        [self.scrollView addSubview:progressImageView];
-        [imageViews addObject:progressImageView];
+        [self.scrollView addSubview:imageGalleryScrollView];
+        [scrollViews addObject:imageGalleryScrollView];
     }
-    self.imageViews = imageViews;
+    self.imageGalleryScrollViews = scrollViews;
 }
 
 - (void)cancelImageRequests
 {
-    for (ProgressImageView *progressImageView in self.imageViews) {
-        [progressImageView cancelImageRequest];
+    for (ImageGalleryScrollView *scrollView in self.imageGalleryScrollViews) {
+        [scrollView.imageView cancelImageRequest];
     }
 }
 
 - (UIView *)viewForIndex:(NSInteger)index
 {
     UIView *view = nil;
-    if (self.imageViews.count > 0 && index >= 0 && index < self.imageViews.count) {
-        view = self.imageViews[index];
+    if (self.imageGalleryScrollViews.count > 0 && index >= 0 && index < self.imageGalleryScrollViews.count) {
+        view = self.imageGalleryScrollViews[index];
     }
     
     return view;
@@ -92,8 +94,8 @@
     [super setFrame:frame];
     
     CGRect imageFrame = CGRectMake(PADDING, 0, frame.size.height, frame.size.height);
-    for (ProgressImageView *progressImageView in self.imageViews) {
-        progressImageView.frame = imageFrame;
+    for (UIView *imageView in self.imageGalleryScrollViews) {
+        imageView.frame = imageFrame;
         imageFrame.origin.x += imageFrame.size.width + PADDING;
     }
     self.scrollView.contentSize = CGSizeMake(imageFrame.origin.x, imageFrame.size.height);
@@ -125,9 +127,9 @@
 
 - (void)didTapImageView:(UITapGestureRecognizer *)sender
 {
-    self.indexForSelectedImage = [self.imageViews indexOfObject:sender.view];
+    self.selectedIndex = [self.imageGalleryScrollViews indexOfObject:sender.view];
     if ([self.delegate respondsToSelector:@selector(imageScrollView:didSelectImageAtIndex:)]) {
-        [self.delegate imageScrollView:self didSelectImageAtIndex:self.indexForSelectedImage];
+        [self.delegate imageScrollView:self didSelectImageAtIndex:self.selectedIndex];
     }
 }
 

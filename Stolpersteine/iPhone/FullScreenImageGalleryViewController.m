@@ -28,7 +28,6 @@
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(done)];
     [self.view addGestureRecognizer:tapGestureRecognizer];
-    self.view.userInteractionEnabled = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -55,52 +55,9 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
         self.searchResultsTableView.hidden = TRUE;
         self.searchResultsTableView.alpha = 0;
         [contentsController.view addSubview:self.searchResultsTableView];
-        
-        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
     
     return self;
-}
-
-- (void)dealloc
-{
-    [NSNotificationCenter.defaultCenter removeObserver:self];
-}
-
-- (void)keyboardWillShow:(NSNotification *)notification
-{
-    NSTimeInterval animationDuration;
-    [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-    UIViewAnimationCurve animationCurve;
-    [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
-    UIViewAnimationOptions animationOptions = UIViewAnimationOptionsFromCurve(animationCurve);
-    
-//    self.searchResultsTableView.contentOffset = self.searchResultsTableView.contentOffset;
-//    self.searchResultsTableView.contentOffset = CGPointZero;
-
-    [UIView animateWithDuration:animationDuration delay:0.0 options:animationOptions animations:^{
-        NSValue *keyboardFrameEndAsValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-        CGRect keyboardFrameEnd = [self.searchContentsController.view convertRect:keyboardFrameEndAsValue.CGRectValue toView:nil];
-        CGRect frame = self.searchResultsTableView.frame;
-        frame.size.height -= keyboardFrameEnd.size.height;
-        self.searchResultsTableView.frame = frame;
-    } completion:NULL];
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification
-{
-    NSTimeInterval animationDuration;
-    [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-    UIViewAnimationCurve animationCurve;
-    [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
-    UIViewAnimationOptions animationOptions = UIViewAnimationOptionsFromCurve(animationCurve);
-    
-    [UIView animateWithDuration:animationDuration delay:0.0 options:animationOptions animations:^{
-        CGRect frame = self.searchResultsTableView.frame;
-        frame.size.height = self.searchContentsController.view.frame.size.height;
-        self.searchResultsTableView.frame = frame;
-    } completion:NULL];
 }
 
 - (void)setBarButtonItemVisible:(BOOL)barButtonItemVisible

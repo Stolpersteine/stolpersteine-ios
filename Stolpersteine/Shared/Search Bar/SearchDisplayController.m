@@ -75,12 +75,10 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
     UIViewAnimationCurve animationCurve;
     [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
     UIViewAnimationOptions animationOptions = UIViewAnimationOptionsFromCurve(animationCurve);
-
-    CGSize screenSize = UIApplication.sharedApplication.keyWindow.bounds.size;
-    CGRect frame = self.searchResultsTableView.frame;
-    frame.size.width = screenSize.height;
-    self.searchResultsTableView.frame = frame;
     
+//    self.searchResultsTableView.contentOffset = self.searchResultsTableView.contentOffset;
+//    self.searchResultsTableView.contentOffset = CGPointZero;
+
     [UIView animateWithDuration:animationDuration delay:0.0 options:animationOptions animations:^{
         NSValue *keyboardFrameEndAsValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
         CGRect keyboardFrameEnd = [self.searchContentsController.view convertRect:keyboardFrameEndAsValue.CGRectValue toView:nil];

@@ -123,10 +123,10 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     self.searchBar.portraitModeEnabled = UIInterfaceOrientationIsPortrait(interfaceOrientation);
-    [self layoutNavigationBarButtonsForInterfaceOrientation:interfaceOrientation];
+    [self layoutNavigationBarButtonsForInterfaceOrientation:interfaceOrientation animated:NO];
 }
 
-- (void)layoutNavigationBarButtonsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)layoutNavigationBarButtonsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation animated:(BOOL)animated
 {
     UIImage *image, *backgroundImage;
     CGRect frame = self.locationButton.frame;
@@ -160,9 +160,15 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         NSString *paddingRightAsString = NSLocalizedString(@"MapViewController.paddingRight", nil);
         self.searchBar.paddingRight = paddingRightAsString.floatValue;
     }
-    [UIView animateWithDuration:0.25 animations:^{
+    
+    void (^changeUI)() = ^() {
         self.searchBar.frame = self.searchBar.frame;
-    }];
+    };
+    if (animated) {
+        [UIView animateWithDuration:0.25 animations:changeUI];
+    } else {
+        changeUI();
+    }
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -342,7 +348,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         self.userLocationMode = FALSE;
         [self.mapView setRegion:BERLIN_REGION animated:YES];
     }
-    [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation];
+    [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation animated:NO];
 }
 
 - (IBAction)showImprint:(UIButton *)sender
@@ -369,7 +375,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)searchDisplayController:(SearchDisplayController *)controller willChangeNavigationItem:(UINavigationItem *)navigationItem
 {
-    [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation];
+    [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation animated:YES];
 }
 
 - (void)searchDisplayControllerDidAppear:(SearchDisplayController *)controller
@@ -416,8 +422,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Deselect table row
-    UITableViewCell *tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
-    [tableViewCell setSelected:FALSE animated:TRUE];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
      
     // Deselect annotations
     [self deselectAllAnnotations];
@@ -437,6 +442,11 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     
     // Dismiss search display controller
     self.searchDisplayController.active = FALSE;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.searchBar resignFirstResponder];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

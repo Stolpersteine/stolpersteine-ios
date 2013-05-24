@@ -172,6 +172,37 @@
             <point key="canvasLocation" x="1437" y="319"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="FullScreenImageGalleryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FullScreenImageGalleryViewController.h"/>
+        </class>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="centerMap:" candidateClass="UIButton"/>
+                <relationship kind="action" name="showImprint:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imprintButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="SearchBar"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SearchBar" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchBar.h"/>
+        </class>
+        <class className="StolpersteinDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StolpersteinDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showActivities:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="StolpersteinListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StolpersteinListViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

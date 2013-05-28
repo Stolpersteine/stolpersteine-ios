@@ -31,7 +31,7 @@
 
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
 @property (strong, nonatomic) UILabel *nameLabel;
-@property (strong, nonatomic) ImageGalleryView *imageGalleryView;
+@property (strong, nonatomic) UIView *imageGalleryContainerView;
 @property (strong, nonatomic) UILabel *addressLabel;
 @property (strong, nonatomic) UIButton *biographyButton;
 @property (strong, nonatomic) UIButton *streetButton;
@@ -63,10 +63,14 @@
     
     // Images
     if (self.stolperstein.imageURLStrings.count > 0) {
+        self.imageGalleryContainerView = [[UIView alloc] init];
+        [self.scrollView addSubview:self.imageGalleryContainerView];
+
         self.imageGalleryView = [[ImageGalleryView alloc] init];
+        self.imageGalleryView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         self.imageGalleryView.delegate = self;
         [self.imageGalleryView setImagesWithURLs:self.stolperstein.imageURLStrings];
-        [self.scrollView addSubview:self.imageGalleryView];
+        [self.imageGalleryContainerView addSubview:self.imageGalleryView];
     }
     
     // Address
@@ -165,12 +169,12 @@
     height += nameFrame.size.height + PADDING;
     
     // Images
-    if (self.imageGalleryView) {
+    if (self.imageGalleryContainerView) {
         CGRect imagesFrame;
         imagesFrame.origin.x = 0;
         imagesFrame.origin.y = height;
         imagesFrame.size = CGSizeMake(screenWidth, 150);
-        self.imageGalleryView.frame = imagesFrame;
+        self.imageGalleryContainerView.frame = imagesFrame;
         height += imagesFrame.size.height + PADDING;
     }
 
@@ -278,6 +282,7 @@
         FullScreenImageGallerySegue *gallerySegue = (FullScreenImageGallerySegue *)segue;
         gallerySegue.animationView = [self.imageGalleryView viewForIndex:self.imageGalleryView.selectedIndex];
         gallerySegue.imageGalleryView = self.imageGalleryView;
+        self.imageGalleryView = nil;
     }
 }
 

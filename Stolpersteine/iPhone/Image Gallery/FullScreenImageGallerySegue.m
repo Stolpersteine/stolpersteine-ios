@@ -11,74 +11,74 @@
 #import "StolpersteinDetailViewController.h"
 #import "FullScreenImageGalleryViewController.h"
 #import "ImageGalleryView.h"
+#import "AGWindowView.h"
 
 #import <QuartzCore/QuartzCore.h>
 
 #define ANIMATION_DURATION 0.3f
 
+@interface FullScreenImageGallerySegue()
+
+@property (nonatomic, strong) FullScreenImageGallerySegue *cycle;
+@property (nonatomic, strong) UIView *backgroundView;
+@property (nonatomic, strong) UIView *imageGalleryViewSuperView;
+@property (nonatomic, assign) CGRect imageGalleryViewWindowFrame;
+
+
+@end
+
 @implementation FullScreenImageGallerySegue
 
 - (void)perform
 {
-    StolpersteinDetailViewController *stolpersteinDetailViewController = self.sourceViewController;
-    FullScreenImageGalleryViewController *fullScreenImageGalleryViewController = self.destinationViewController;
-    UIWindow *window = UIApplication.sharedApplication.keyWindow;
-    UIViewController *rootViewController = window.rootViewController;
-    UIView *imageGalleryViewSuperView = self.imageGalleryView.superview;
-    CGRect imageGalleryViewWindowFrame = [window convertRect:self.imageGalleryView.frame fromView:self.imageGalleryView.superview];
-
     // Steps to present the view controller
     [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-    fullScreenImageGalleryViewController.view.frame = rootViewController.view.bounds;
-    fullScreenImageGalleryViewController.imageGalleryView = self.imageGalleryView;
+    self.cycle = self;
     
-    UIView *backgroundView = [[UIView alloc] initWithFrame:window.frame];
-    backgroundView.backgroundColor = UIColor.blackColor;
-    backgroundView.alpha = 0;
-    [window addSubview:backgroundView];
+    AGWindowView *windowView = [[AGWindowView alloc] initAndAddToKeyWindow];
+    windowView.supportedInterfaceOrientations = UIInterfaceOrientationMaskAll;
 
-    CGRect windowFrame = [window convertRect:self.imageGalleryView.frame fromView:self.imageGalleryView.superview];
-    self.imageGalleryView.frame = windowFrame;
-    [window addSubview:self.imageGalleryView];
+    self.imageGalleryViewSuperView = self.imageGalleryView.superview;
+    self.imageGalleryViewWindowFrame = [windowView convertRect:self.imageGalleryView.frame fromView:self.imageGalleryView.superview];
+    
+    self.backgroundView = [[UIView alloc] initWithFrame:windowView.bounds];
+    self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.backgroundView.backgroundColor = UIColor.blackColor;
+    self.backgroundView.alpha = 0;
+    [windowView addSubview:self.backgroundView];
+    [windowView addSubViewAndKeepSamePosition:self.imageGalleryView];
     
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-        backgroundView.alpha = 1;
-        self.imageGalleryView.frame = fullScreenImageGalleryViewController.view.frame;
+        self.backgroundView.alpha = 1;
+        self.imageGalleryView.frame = windowView.bounds;
     } completion:^(BOOL finished) {
-        [backgroundView removeFromSuperview];
-        
-        CGRect fullScreenFrame = [fullScreenImageGalleryViewController.view convertRect:self.imageGalleryView.frame fromView:self.imageGalleryView.superview];
-        self.imageGalleryView.frame = fullScreenFrame;
-        [fullScreenImageGalleryViewController.view addSubview:self.imageGalleryView];
-        [stolpersteinDetailViewController presentViewController:fullScreenImageGalleryViewController animated:NO completion:NULL];
     }];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(done)];
+    [self.imageGalleryView addGestureRecognizer:tapGestureRecognizer];
+}
 
-    // Steps to dismiss the view controller
-    fullScreenImageGalleryViewController.completionBlock = ^() {
-        [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-        [stolpersteinDetailViewController dismissViewControllerAnimated:NO completion:NULL];
+- (void)done
+{
+    [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    StolpersteinDetailViewController *stolpersteinDetailViewController = self.sourceViewController;
+    
+    [stolpersteinDetailViewController.navigationController setNavigationBarHidden:YES];
+    [stolpersteinDetailViewController.navigationController setNavigationBarHidden:NO];
+    
+    AGWindowView *windowView = [AGWindowView activeWindowViewContainingView:self.imageGalleryView];
+    
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+        self.backgroundView.alpha = 0;
+        self.imageGalleryView.frame = self.imageGalleryViewWindowFrame;
+    } completion:^(BOOL finished) {
+        [windowView removeFromSuperview];
 
-        UIView *backgroundView = [[UIView alloc] initWithFrame:window.frame];
-        backgroundView.backgroundColor = UIColor.blackColor;
-        backgroundView.alpha = 1;
-        [window addSubview:backgroundView];
-
-        CGRect windowFrame = [window convertRect:self.imageGalleryView.frame fromView:self.imageGalleryView.superview];
-        self.imageGalleryView.frame = windowFrame;
-        [window addSubview:self.imageGalleryView];
-        
-        [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-            backgroundView.alpha = 0;
-            self.imageGalleryView.frame = imageGalleryViewWindowFrame;
-        } completion:^(BOOL finished) {
-            [backgroundView removeFromSuperview];
-            
-            CGRect fullScreenFrame = [imageGalleryViewSuperView convertRect:self.imageGalleryView.frame fromView:self.imageGalleryView.superview];
-            self.imageGalleryView.frame = fullScreenFrame;
-            [imageGalleryViewSuperView addSubview:self.imageGalleryView];
-            stolpersteinDetailViewController.imageGalleryView = self.imageGalleryView;
-        }];
-    };
+        CGRect fullScreenFrame = [self.imageGalleryViewSuperView convertRect:self.imageGalleryView.frame fromView:self.imageGalleryView.superview];
+        self.imageGalleryView.frame = fullScreenFrame;
+        [self.imageGalleryViewSuperView addSubview:self.imageGalleryView];
+        stolpersteinDetailViewController.imageGalleryView = self.imageGalleryView;
+    }];
 }
 
 @end

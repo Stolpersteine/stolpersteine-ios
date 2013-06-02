@@ -89,11 +89,11 @@
     return view;
 }
 
-- (void)setFrame:(CGRect)frame
+- (void)layoutSubviews
 {
-    [super setFrame:frame];
+    [super layoutSubviews];
     
-    CGRect imageFrame = CGRectMake(PADDING, 0, frame.size.height, frame.size.height);
+    CGRect imageFrame = CGRectMake(PADDING, 0, self.frame.size.height, self.frame.size.height);
     for (UIView *imageView in self.imageGalleryScrollViews) {
         imageView.frame = imageFrame;
         imageFrame.origin.x += imageFrame.size.width + PADDING;

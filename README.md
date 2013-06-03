@@ -11,7 +11,7 @@ iOS app to display the locations of [Stolpersteine](http://en.wikipedia.org/wiki
 [Claus Höfele](http://github.com/choefele)  
 [@claushoefele](https://twitter.com/claushoefele)
 
-## Licence
+## License
 
 Copyright (C) 2013 Option-U Software
 

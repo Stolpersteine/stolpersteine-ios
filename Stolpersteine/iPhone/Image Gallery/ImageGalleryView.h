@@ -12,7 +12,6 @@
 
 @interface ImageGalleryView : UIView
 
-@property (nonatomic, assign, readonly) NSInteger selectedIndex;
 @property (nonatomic, weak) id<ImageGalleryViewDelegate> delegate;
 
 - (void)setImagesWithURLs:(NSArray *)urls;

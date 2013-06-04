@@ -145,7 +145,6 @@
 		4825F92F174E8F7C0058B811 /* ImageGalleryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGalleryItemView.m; sourceTree = "<group>"; };
 		4825F930174E8F7C0058B811 /* ImageGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryView.h; sourceTree = "<group>"; };
 		4825F931174E8F7C0058B811 /* ImageGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGalleryView.m; sourceTree = "<group>"; };
-		4825F932174E8F7C0058B811 /* ImageGalleryViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryViewDelegate.h; sourceTree = "<group>"; };
 		4825F933174E8F7C0058B811 /* ProgressImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressImageView.h; sourceTree = "<group>"; };
 		4825F934174E8F7C0058B811 /* ProgressImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressImageView.m; sourceTree = "<group>"; };
 		48383812171A036D00141F46 /* StolpersteinTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinTests.h; sourceTree = "<group>"; };
@@ -363,7 +362,6 @@
 			children = (
 				4825F930174E8F7C0058B811 /* ImageGalleryView.h */,
 				4825F931174E8F7C0058B811 /* ImageGalleryView.m */,
-				4825F932174E8F7C0058B811 /* ImageGalleryViewDelegate.h */,
 				4825F92E174E8F7C0058B811 /* ImageGalleryItemView.h */,
 				4825F92F174E8F7C0058B811 /* ImageGalleryItemView.m */,
 				4825F933174E8F7C0058B811 /* ProgressImageView.h */,

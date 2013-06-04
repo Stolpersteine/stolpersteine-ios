@@ -184,12 +184,12 @@
         CGRect frame = [windowView convertRect:self.imageGalleryViewSuperView.bounds fromView:self.imageGalleryViewSuperView];
         self.frame = frame;
     } completion:^(BOOL finished) {
-        [windowView removeFromSuperview];
-        self.backgroundView = nil;
-        
         CGRect frame = [self.imageGalleryViewSuperView convertRect:self.frame fromView:self.superview];
         self.frame = frame;
         [self.imageGalleryViewSuperView addSubview:self];
+        
+        [windowView removeFromSuperview];
+        self.backgroundView = nil;
     }];
 }
 

@@ -21,11 +21,10 @@
 #import "Localization.h"
 #import "LinkedTextLabel.h"
 #import "ImageGalleryView.h"
-#import "ImageGalleryViewDelegate.h"
 
 #define PADDING 20
 
-@interface StolpersteinDetailViewController() <ImageGalleryViewDelegate>
+@interface StolpersteinDetailViewController()
 
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
 @property (strong, nonatomic) UILabel *nameLabel;
@@ -241,11 +240,6 @@
 - (void)showAllInThisStreet:(UIButton *)sender
 {
     [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToStolpersteinListViewController" sender:self];
-}
-
-- (void)imageScrollView:(ImageGalleryView *)imageScrollView didSelectImageAtIndex:(NSInteger)index
-{
-    [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToFullScreenImageGalleryViewController" sender:self];
 }
 
 - (void)showInMapsApp:(UIButton *)sender

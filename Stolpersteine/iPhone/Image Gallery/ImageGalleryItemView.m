@@ -24,6 +24,7 @@
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:self.imageView];
         
+        self.scrollsToTop = NO;
         self.delegate = self;
         self.maximumZoomScale = 3.0;
         self.minimumZoomScale = 0.5;

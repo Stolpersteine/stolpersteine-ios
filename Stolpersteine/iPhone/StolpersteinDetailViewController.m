@@ -65,7 +65,6 @@
 
         self.imageGalleryView = [[ImageGalleryView alloc] init];
         self.imageGalleryView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        self.imageGalleryView.delegate = self;
         [self.imageGalleryView setImagesWithURLs:self.stolperstein.imageURLStrings];
         [self.imageGalleryContainerView addSubview:self.imageGalleryView];
     }

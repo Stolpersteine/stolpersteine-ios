@@ -28,7 +28,6 @@
 		480FFFA016A0C79D0012CCD5 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		480FFFA116A0C79D0012CCD5 /* Stolperstein.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4437169C43970065C1F1 /* Stolperstein.m */; };
 		4825F935174E8F7C0058B811 /* FullScreenImageGallerySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F92B174E8F7C0058B811 /* FullScreenImageGallerySegue.m */; };
-		4825F936174E8F7C0058B811 /* FullScreenImageGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F92D174E8F7C0058B811 /* FullScreenImageGalleryViewController.m */; };
 		4825F937174E8F7C0058B811 /* ImageGalleryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F92F174E8F7C0058B811 /* ImageGalleryItemView.m */; };
 		4825F938174E8F7C0058B811 /* ImageGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F931174E8F7C0058B811 /* ImageGalleryView.m */; };
 		4825F939174E8F7C0058B811 /* ProgressImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F934174E8F7C0058B811 /* ProgressImageView.m */; };
@@ -145,8 +144,6 @@
 		481CBC861704CD2700695499 /* MapClusterControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusterControllerDelegate.h; sourceTree = "<group>"; };
 		4825F92A174E8F7C0058B811 /* FullScreenImageGallerySegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenImageGallerySegue.h; sourceTree = "<group>"; };
 		4825F92B174E8F7C0058B811 /* FullScreenImageGallerySegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenImageGallerySegue.m; sourceTree = "<group>"; };
-		4825F92C174E8F7C0058B811 /* FullScreenImageGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenImageGalleryViewController.h; sourceTree = "<group>"; };
-		4825F92D174E8F7C0058B811 /* FullScreenImageGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenImageGalleryViewController.m; sourceTree = "<group>"; };
 		4825F92E174E8F7C0058B811 /* ImageGalleryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryItemView.h; sourceTree = "<group>"; };
 		4825F92F174E8F7C0058B811 /* ImageGalleryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGalleryItemView.m; sourceTree = "<group>"; };
 		4825F930174E8F7C0058B811 /* ImageGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryView.h; sourceTree = "<group>"; };
@@ -208,8 +205,8 @@
 		48C0272C172B024F0053B8E9 /* Stolpersteine-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Stolpersteine-Config.plist"; sourceTree = "<group>"; };
 		48C02731172F05A50053B8E9 /* LinkedTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedTextLabel.h; sourceTree = "<group>"; };
 		48C02732172F05A50053B8E9 /* LinkedTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedTextLabel.m; sourceTree = "<group>"; };
-		6205ED93175E021D00482DF9 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
-		6205ED95175E023000482DF9 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		6205ED93175E021D00482DF9 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		6205ED95175E023000482DF9 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		620B6C44171847550035C2AC /* buildnumber_dynamic.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = buildnumber_dynamic.xcconfig; sourceTree = "<group>"; };
 		620B6C46171848E30035C2AC /* buildnumber_fixed.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = buildnumber_fixed.xcconfig; sourceTree = "<group>"; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Parsing.h"; sourceTree = "<group>"; };
@@ -369,8 +366,6 @@
 			children = (
 				4825F92A174E8F7C0058B811 /* FullScreenImageGallerySegue.h */,
 				4825F92B174E8F7C0058B811 /* FullScreenImageGallerySegue.m */,
-				4825F92C174E8F7C0058B811 /* FullScreenImageGalleryViewController.h */,
-				4825F92D174E8F7C0058B811 /* FullScreenImageGalleryViewController.m */,
 				4825F930174E8F7C0058B811 /* ImageGalleryView.h */,
 				4825F931174E8F7C0058B811 /* ImageGalleryView.m */,
 				4825F932174E8F7C0058B811 /* ImageGalleryViewDelegate.h */,
@@ -939,7 +934,6 @@
 				62F147C6170202A1003E7DAA /* SearchTextField.m in Sources */,
 				48C02733172F05A50053B8E9 /* LinkedTextLabel.m in Sources */,
 				4825F935174E8F7C0058B811 /* FullScreenImageGallerySegue.m in Sources */,
-				4825F936174E8F7C0058B811 /* FullScreenImageGalleryViewController.m in Sources */,
 				4825F937174E8F7C0058B811 /* ImageGalleryItemView.m in Sources */,
 				4825F938174E8F7C0058B811 /* ImageGalleryView.m in Sources */,
 				4825F939174E8F7C0058B811 /* ProgressImageView.m in Sources */,

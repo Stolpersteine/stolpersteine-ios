@@ -9,7 +9,6 @@
 #import "FullScreenImageGallerySegue.h"
 
 #import "StolpersteinDetailViewController.h"
-#import "FullScreenImageGalleryViewController.h"
 #import "ImageGalleryView.h"
 #import "AGWindowView.h"
 
@@ -23,7 +22,6 @@
 @property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) UIView *imageGalleryViewSuperView;
 @property (nonatomic, assign) CGRect imageGalleryViewWindowFrame;
-
 
 @end
 

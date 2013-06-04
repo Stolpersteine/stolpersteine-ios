@@ -23,7 +23,6 @@
 #import "ImageGalleryView.h"
 #import "ImageGalleryViewDelegate.h"
 #import "FullScreenImageGallerySegue.h"
-#import "FullScreenImageGalleryViewController.h"
 
 #define PADDING 20
 

@@ -11,14 +11,20 @@
 #import "ProgressImageView.h"
 #import "ImageGalleryViewDelegate.h"
 #import "ImageGalleryItemView.h"
+#import "AGWindowView.h"
 
 #define PADDING 20
+#define ANIMATION_DURATION 0.3f
 
 @interface ImageGalleryView()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *imageGalleryScrollViews;
 @property (nonatomic, assign) NSInteger selectedIndex;
+
+@property (nonatomic, strong) UIView *backgroundView;
+@property (nonatomic, strong) UIView *imageGalleryViewSuperView;
+@property (nonatomic, assign) BOOL showsFullScreenGallery;
 
 @end
 
@@ -128,9 +134,63 @@
 - (void)didTapImageView:(UITapGestureRecognizer *)sender
 {
     self.selectedIndex = [self.imageGalleryScrollViews indexOfObject:sender.view];
-    if ([self.delegate respondsToSelector:@selector(imageScrollView:didSelectImageAtIndex:)]) {
-        [self.delegate imageScrollView:self didSelectImageAtIndex:self.selectedIndex];
+//    if ([self.delegate respondsToSelector:@selector(imageScrollView:didSelectImageAtIndex:)]) {
+//        [self.delegate imageScrollView:self didSelectImageAtIndex:self.selectedIndex];
+//    }
+    
+    if (self.showsFullScreenGallery) {
+        [self hideFullScreenGallery];
+    } else {
+        [self showFullScreenGallery];
     }
+    self.showsFullScreenGallery = !self.showsFullScreenGallery;
+}
+
+- (void)showFullScreenGallery
+{
+    [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    self.imageGalleryViewSuperView = self.superview;
+    
+    AGWindowView *windowView = [[AGWindowView alloc] initAndAddToKeyWindow];
+    windowView.supportedInterfaceOrientations = UIInterfaceOrientationMaskAll;
+    self.backgroundView = [[UIView alloc] initWithFrame:windowView.bounds];
+    self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.backgroundView.backgroundColor = UIColor.blackColor;
+    self.backgroundView.alpha = 0;
+    [windowView addSubview:self.backgroundView];
+    [windowView addSubViewAndKeepSamePosition:self];
+    
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+        self.backgroundView.alpha = 1;
+        self.frame = windowView.bounds;
+    } completion:NULL];
+}
+
+- (void)hideFullScreenGallery
+{
+    [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+
+    // Hack to fix layout after the status bar was hidden
+    UIViewController *rootViewController = self.window.rootViewController;
+    if ([rootViewController isKindOfClass:UINavigationController.class]) {
+        UINavigationController *navigationController = (UINavigationController *)rootViewController;
+        [navigationController setNavigationBarHidden:YES];
+        [navigationController setNavigationBarHidden:NO];
+    }
+    
+    AGWindowView *windowView = [AGWindowView activeWindowViewContainingView:self];
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+        self.backgroundView.alpha = 0;
+        CGRect frame = [windowView convertRect:self.imageGalleryViewSuperView.bounds fromView:self.imageGalleryViewSuperView];
+        self.frame = frame;
+    } completion:^(BOOL finished) {
+        [windowView removeFromSuperview];
+        self.backgroundView = nil;
+        
+        CGRect frame = [self.imageGalleryViewSuperView convertRect:self.frame fromView:self.superview];
+        self.frame = frame;
+        [self.imageGalleryViewSuperView addSubview:self];
+    }];
 }
 
 @end

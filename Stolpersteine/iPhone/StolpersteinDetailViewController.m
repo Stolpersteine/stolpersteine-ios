@@ -22,7 +22,6 @@
 #import "LinkedTextLabel.h"
 #import "ImageGalleryView.h"
 #import "ImageGalleryViewDelegate.h"
-#import "FullScreenImageGallerySegue.h"
 
 #define PADDING 20
 
@@ -277,11 +276,6 @@
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
         listViewController.searchData = searchData;
         listViewController.title = searchData.locationStreet;
-    } else if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToFullScreenImageGalleryViewController"]) {
-        FullScreenImageGallerySegue *gallerySegue = (FullScreenImageGallerySegue *)segue;
-        gallerySegue.animationView = [self.imageGalleryView viewForIndex:self.imageGalleryView.selectedIndex];
-        gallerySegue.imageGalleryView = self.imageGalleryView;
-        self.imageGalleryView = nil;
     }
 }
 

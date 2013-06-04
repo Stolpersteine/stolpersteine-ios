@@ -27,7 +27,6 @@
 		480FFF9F16A0C79D0012CCD5 /* StolpersteinNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4431169C420A0065C1F1 /* StolpersteinNetworkService.m */; };
 		480FFFA016A0C79D0012CCD5 /* NSDictionary+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */; };
 		480FFFA116A0C79D0012CCD5 /* Stolperstein.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4437169C43970065C1F1 /* Stolperstein.m */; };
-		4825F935174E8F7C0058B811 /* FullScreenImageGallerySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F92B174E8F7C0058B811 /* FullScreenImageGallerySegue.m */; };
 		4825F937174E8F7C0058B811 /* ImageGalleryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F92F174E8F7C0058B811 /* ImageGalleryItemView.m */; };
 		4825F938174E8F7C0058B811 /* ImageGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F931174E8F7C0058B811 /* ImageGalleryView.m */; };
 		4825F939174E8F7C0058B811 /* ProgressImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F934174E8F7C0058B811 /* ProgressImageView.m */; };
@@ -142,8 +141,6 @@
 		480FFF9916A0C6890012CCD5 /* StolpersteineNetworkServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteineNetworkServiceTests.h; sourceTree = "<group>"; };
 		480FFF9A16A0C6890012CCD5 /* StolpersteineNetworkServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteineNetworkServiceTests.m; sourceTree = "<group>"; };
 		481CBC861704CD2700695499 /* MapClusterControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusterControllerDelegate.h; sourceTree = "<group>"; };
-		4825F92A174E8F7C0058B811 /* FullScreenImageGallerySegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenImageGallerySegue.h; sourceTree = "<group>"; };
-		4825F92B174E8F7C0058B811 /* FullScreenImageGallerySegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenImageGallerySegue.m; sourceTree = "<group>"; };
 		4825F92E174E8F7C0058B811 /* ImageGalleryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryItemView.h; sourceTree = "<group>"; };
 		4825F92F174E8F7C0058B811 /* ImageGalleryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGalleryItemView.m; sourceTree = "<group>"; };
 		4825F930174E8F7C0058B811 /* ImageGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryView.h; sourceTree = "<group>"; };
@@ -364,8 +361,6 @@
 		4825F929174E8F7C0058B811 /* Image Gallery */ = {
 			isa = PBXGroup;
 			children = (
-				4825F92A174E8F7C0058B811 /* FullScreenImageGallerySegue.h */,
-				4825F92B174E8F7C0058B811 /* FullScreenImageGallerySegue.m */,
 				4825F930174E8F7C0058B811 /* ImageGalleryView.h */,
 				4825F931174E8F7C0058B811 /* ImageGalleryView.m */,
 				4825F932174E8F7C0058B811 /* ImageGalleryViewDelegate.h */,
@@ -933,7 +928,6 @@
 				62F147C5170202A1003E7DAA /* SearchDisplayController.m in Sources */,
 				62F147C6170202A1003E7DAA /* SearchTextField.m in Sources */,
 				48C02733172F05A50053B8E9 /* LinkedTextLabel.m in Sources */,
-				4825F935174E8F7C0058B811 /* FullScreenImageGallerySegue.m in Sources */,
 				4825F937174E8F7C0058B811 /* ImageGalleryItemView.m in Sources */,
 				4825F938174E8F7C0058B811 /* ImageGalleryView.m in Sources */,
 				4825F939174E8F7C0058B811 /* ProgressImageView.m in Sources */,

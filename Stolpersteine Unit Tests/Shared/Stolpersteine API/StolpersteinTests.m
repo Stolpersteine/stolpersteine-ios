@@ -20,7 +20,6 @@
     // IDs match
     stolperstein0.id = @"123";
     stolperstein1.id = @"123";
-    STAssertTrue(FALSE, @"Test");
     STAssertTrue([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
     STAssertTrue([stolperstein1 isEqual:stolperstein0], @"Wrong equality");
     STAssertTrue(stolperstein0.hash == stolperstein1.hash, @"Wrong hash");

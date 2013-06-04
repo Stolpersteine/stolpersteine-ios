@@ -49,6 +49,8 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 
 - (void)testRetrieveStolpersteine
 {
+    STAssertTrue(FALSE, @"Test 2");
+
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 5) completionHandler:^(NSArray *stolpersteine, NSError *error) {
         self.done = TRUE;
         

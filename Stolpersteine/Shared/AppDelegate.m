@@ -11,12 +11,6 @@
 #import "StolpersteinNetworkService.h"
 #import "DiagnosticsService.h"
 
-#ifdef DEBUG
-@interface NSURLRequest (HTTPS)
-+ (void)setAllowsAnyHTTPSCertificate:(BOOL)allow forHost:(NSString *)host;
-@end
-#endif
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -44,7 +38,7 @@
     self.networkService = [[StolpersteinNetworkService alloc] initWithClientUser:clientUser clientPassword:clientPassword];
 #ifdef DEBUG
     // This allows invalid certificates so that proxies can decrypt the network traffic
-    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:self.networkService.baseURL.host];
+    self.networkService.allowsInvalidSSLCertificate = YES;
 #endif
     
     // Google Analytics

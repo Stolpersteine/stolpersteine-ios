@@ -14,12 +14,6 @@
 
 static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1";
 
-#ifdef DEBUG
-@interface NSURLRequest (HTTPS)
-+ (void)setAllowsAnyHTTPSCertificate:(BOOL)allow forHost:(NSString *)host;
-@end
-#endif
-
 @interface StolpersteineNetworkServiceTests()
 
 @property (nonatomic, strong) StolpersteinNetworkService *networkService;
@@ -34,10 +28,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     [super setUp];
 
     self.networkService = [[StolpersteinNetworkService alloc] initWithClientUser:nil clientPassword:nil];
-#ifdef DEBUG
-    // This allows invalid certificates so that proxies can decrypt the traffic.
-    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:self.networkService.baseURL.host];
-#endif
+    self.networkService.allowsInvalidSSLCertificate = YES;
     
     self.done = FALSE;
 }

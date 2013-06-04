@@ -75,17 +75,19 @@ static dispatch_queue_t image_request_operation_processing_queue() {
 										 success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image))success
 										 failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure
 {
-    AFImageRequestOperation *requestOperation = [[AFImageRequestOperation alloc] initWithRequest:urlRequest];
+    AFImageRequestOperation *requestOperation = [(AFImageRequestOperation *)[self alloc] initWithRequest:urlRequest];
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (success) {
             UIImage *image = responseObject;
             if (imageProcessingBlock) {
                 dispatch_async(image_request_operation_processing_queue(), ^(void) {
                     UIImage *processedImage = imageProcessingBlock(image);
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu"
                     dispatch_async(operation.successCallbackQueue ?: dispatch_get_main_queue(), ^(void) {
                         success(operation.request, operation.response, processedImage);
                     });
+#pragma clang diagnostic pop
                 });
             } else {
                 success(operation.request, operation.response, image);
@@ -106,7 +108,7 @@ static dispatch_queue_t image_request_operation_processing_queue() {
 										 success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image))success
 										 failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure
 {
-    AFImageRequestOperation *requestOperation = [[AFImageRequestOperation alloc] initWithRequest:urlRequest];
+    AFImageRequestOperation *requestOperation = [(AFImageRequestOperation *)[self alloc] initWithRequest:urlRequest];
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (success) {
             NSImage *image = responseObject;
@@ -203,6 +205,8 @@ static dispatch_queue_t image_request_operation_processing_queue() {
 {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
+#pragma clang diagnostic ignored "-Wgnu"
+
     self.completionBlock = ^ {
         dispatch_async(image_request_operation_processing_queue(), ^(void) {
             if (self.error) {
@@ -226,7 +230,7 @@ static dispatch_queue_t image_request_operation_processing_queue() {
                     });
                 }
             }
-        });        
+        });
     };
 #pragma clang diagnostic pop
 }

@@ -12,7 +12,7 @@
 
 @interface StolpersteinNetworkService : NSObject
 
-@property (nonatomic, readonly, copy) NSURL *baseURL;
+@property (nonatomic, assign) BOOL allowsInvalidSSLCertificate;
 
 - (id)initWithClientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword;
 

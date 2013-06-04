@@ -46,9 +46,14 @@ static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1"
     return self;
 }
 
-- (NSURL *)baseURL
+- (void)setAllowsInvalidSSLCertificate:(BOOL)allowsInvalidSSLCertificate
 {
-    return self.httpClient.baseURL;
+    self.httpClient.allowsInvalidSSLCertificate = allowsInvalidSSLCertificate;
+}
+
+- (BOOL)allowsInvalidSSLCertificate
+{
+    return self.httpClient.allowsInvalidSSLCertificate;
 }
 
 - (void)addBasicAuthHeaderToRequest:(NSMutableURLRequest *)request
@@ -93,6 +98,7 @@ static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1"
         }
     }];
 
+    operation.allowsInvalidSSLCertificate = self.httpClient.allowsInvalidSSLCertificate;
     [self.httpClient enqueueHTTPRequestOperation:operation];
     
     return operation;

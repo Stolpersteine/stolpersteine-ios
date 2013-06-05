@@ -14,6 +14,7 @@
 
 #define PADDING 20
 #define ANIMATION_DURATION 0.3f
+#define FRAME_COLOR UIColor.lightGrayColor
 
 @interface ImageGalleryView()<UIScrollViewDelegate>
 
@@ -53,7 +54,7 @@
 
 - (void)scrollToTop
 {
-    [self.scrollView setContentOffset:CGPointZero animated:NO];
+    self.scrollView.contentOffset = CGPointZero;
 }
 
 - (void)setImagesWithURLs:(NSArray *)urls
@@ -65,7 +66,7 @@
         [imageGalleryItemView addGestureRecognizer:tapGestureRecognizer];
 
         ProgressImageView *progressImageView = imageGalleryItemView.imageView;
-        progressImageView.frameColor = UIColor.lightGrayColor;
+        progressImageView.frameColor = FRAME_COLOR;
         [progressImageView setImageWithURL:url];
         
         [self.scrollView addSubview:imageGalleryItemView];
@@ -76,8 +77,8 @@
 
 - (void)cancelImageRequests
 {
-    for (ImageGalleryItemView *scrollView in self.imageGalleryItemViews) {
-        [scrollView.imageView cancelImageRequest];
+    for (ImageGalleryItemView *imageGalleryItemView in self.imageGalleryItemViews) {
+        [imageGalleryItemView.imageView cancelImageRequest];
     }
 }
 
@@ -91,14 +92,30 @@
     return view;
 }
 
+- (void)setFrameColor:(UIColor *)color
+{
+    for (ImageGalleryItemView *imageGalleryItemView in self.imageGalleryItemViews) {
+        imageGalleryItemView.imageView.frameColor = color;
+    }
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    CGRect imageFrame = CGRectMake(PADDING, 0, self.frame.size.height, self.frame.size.height);
+    CGRect imageFrame;
+    CGFloat stepSizeX;
+    if (self.showsFullScreenGallery) {
+        imageFrame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+        stepSizeX = imageFrame.size.width;
+    } else {
+        imageFrame = CGRectMake(PADDING, 0, self.frame.size.height, self.frame.size.height);
+        stepSizeX = imageFrame.size.width + PADDING;
+    }
+    
     for (UIView *imageView in self.imageGalleryItemViews) {
         imageView.frame = imageFrame;
-        imageFrame.origin.x += imageFrame.size.width + PADDING;
+        imageFrame.origin.x += stepSizeX;
     }
     self.scrollView.contentSize = CGSizeMake(imageFrame.origin.x, imageFrame.size.height);
 }
@@ -141,6 +158,7 @@
 {
     [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     self.imageGalleryViewSuperView = self.superview;
+    self.scrollView.pagingEnabled = YES;
     
     AGWindowView *windowView = [[AGWindowView alloc] initAndAddToKeyWindow];
     windowView.supportedInterfaceOrientations = UIInterfaceOrientationMaskAll;
@@ -152,6 +170,7 @@
     [windowView addSubViewAndKeepSamePosition:self];
     
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+        [self setFrameColor:nil];
         self.backgroundView.alpha = 1;
         self.frame = windowView.bounds;
     } completion:NULL];
@@ -171,6 +190,7 @@
     
     AGWindowView *windowView = [AGWindowView activeWindowViewContainingView:self];
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+        [self setFrameColor:FRAME_COLOR];
         self.backgroundView.alpha = 0;
         CGRect frame = [windowView convertRect:self.imageGalleryViewSuperView.bounds fromView:self.imageGalleryViewSuperView];
         self.frame = frame;
@@ -181,6 +201,7 @@
         
         [windowView removeFromSuperview];
         self.backgroundView = nil;
+        self.scrollView.pagingEnabled = NO;
     }];
 }
 

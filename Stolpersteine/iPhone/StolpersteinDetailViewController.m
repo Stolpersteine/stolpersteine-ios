@@ -65,6 +65,7 @@
     // Images
     if (self.stolperstein.imageURLStrings.count > 0) {
         self.imageGalleryContainerView = [[UIView alloc] init];
+        self.imageGalleryContainerView.clipsToBounds = NO;
         [self.scrollView addSubview:self.imageGalleryContainerView];
         
         self.imageGalleryViewController = [[ImageGalleryViewController alloc] init];
@@ -73,6 +74,8 @@
         self.imageGalleryViewController.frameColor = UIColor.lightGrayColor;
         self.imageGalleryViewController.imageURLStrings = self.stolperstein.imageURLStrings;
         [self.imageGalleryViewController addToParentViewController:self inView:self.imageGalleryContainerView];
+        self.imageGalleryViewController.view.clipsToBounds = NO;
+        self.imageGalleryViewController.collectionView.clipsToBounds = NO;
     }
     
     // Address
@@ -166,9 +169,9 @@
     // Images
     if (self.imageGalleryContainerView) {
         CGRect imagesFrame;
-        imagesFrame.origin.x = 0;
+        imagesFrame.origin.x = PADDING;
         imagesFrame.origin.y = height;
-        imagesFrame.size = CGSizeMake(screenWidth, 150);
+        imagesFrame.size = CGSizeMake(150, 150);
         self.imageGalleryContainerView.frame = imagesFrame;
         height += imagesFrame.size.height + PADDING;
     }

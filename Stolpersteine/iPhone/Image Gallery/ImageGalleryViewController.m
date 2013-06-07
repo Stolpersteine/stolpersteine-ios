@@ -150,10 +150,10 @@
     [windowView addSubViewAndKeepSamePosition:self.view];
     
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+        [self.collectionView.collectionViewLayout invalidateLayout];
+
         self.backgroundView.alpha = 1;
         self.view.frame = windowView.bounds;
-        
-        [self.collectionView.collectionViewLayout invalidateLayout];
     } completion:NULL];
 }
 
@@ -171,11 +171,11 @@
     
     AGWindowView *windowView = [AGWindowView activeWindowViewContainingView:self.view];
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+        [self.collectionView.collectionViewLayout invalidateLayout];
+
         self.backgroundView.alpha = 0;
         CGRect frame = [windowView convertRect:self.imageGalleryViewSuperView.bounds fromView:self.imageGalleryViewSuperView];
         self.view.frame = frame;
-        
-        [self.collectionView.collectionViewLayout invalidateLayout];
     } completion:^(BOOL finished) {
         CGRect frame = [self.imageGalleryViewSuperView convertRect:self.view.frame fromView:self.view.superview];
         self.view.frame = frame;

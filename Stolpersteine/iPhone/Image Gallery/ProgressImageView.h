@@ -10,8 +10,6 @@
 
 @interface ProgressImageView : UIImageView
 
-@property (nonatomic, strong) UIColor *frameColor;  // nil disables frame
-
 - (void)setImageWithURL:(NSURL *)url;
 - (void)cancelImageRequest;
 

@@ -20,7 +20,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "Localization.h"
 #import "LinkedTextLabel.h"
-#import "ImageGalleryView.h"
+#import "ImageGalleryViewController.h"
 
 #define PADDING 20
 
@@ -29,6 +29,7 @@
 @property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
 @property (strong, nonatomic) UILabel *nameLabel;
 @property (strong, nonatomic) UIView *imageGalleryContainerView;
+@property (strong, nonatomic) ImageGalleryViewController *imageGalleryViewController;
 @property (strong, nonatomic) UILabel *addressLabel;
 @property (strong, nonatomic) UIButton *biographyButton;
 @property (strong, nonatomic) UIButton *streetButton;
@@ -45,10 +46,13 @@
     
     self.title = NSLocalizedString(@"StolpersteinDetailViewController.title", nil);
     
-    NSURL *url0 = [NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Stolperstein_Robert_Remak%2C_Berlin_01.jpg/640px-Stolperstein_Robert_Remak%2C_Berlin_01.jpg"];
-    NSURL *url1 = [NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Wismar_St._Marien_2008-06-10.jpg/450px-Wismar_St._Marien_2008-06-10.jpg"];
-    NSURL *url2 = [NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg/300px-Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg"];
-    self.stolperstein.imageURLStrings = @[url0, url1, url2];
+    if (self.stolperstein == nil) {
+        self.stolperstein = [[Stolperstein alloc] init];
+    }
+    NSString *urlString0 = @"http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Stolperstein_Robert_Remak%2C_Berlin_01.jpg/640px-Stolperstein_Robert_Remak%2C_Berlin_01.jpg";
+    NSString *urlString1 = @"http://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Wismar_St._Marien_2008-06-10.jpg/450px-Wismar_St._Marien_2008-06-10.jpg";
+    NSString *urlString2 = @"http://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg/300px-Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg";
+    self.stolperstein.imageURLStrings = @[urlString0, urlString1, urlString2];
     
     // Name
     self.nameLabel = [[UILabel alloc] init];
@@ -62,11 +66,13 @@
     if (self.stolperstein.imageURLStrings.count > 0) {
         self.imageGalleryContainerView = [[UIView alloc] init];
         [self.scrollView addSubview:self.imageGalleryContainerView];
-
-        self.imageGalleryView = [[ImageGalleryView alloc] init];
-        self.imageGalleryView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        [self.imageGalleryView setImagesWithURLs:self.stolperstein.imageURLStrings];
-        [self.imageGalleryContainerView addSubview:self.imageGalleryView];
+        
+        self.imageGalleryViewController = [[ImageGalleryViewController alloc] init];
+        self.imageGalleryViewController.spacing = PADDING;
+        self.imageGalleryViewController.frameWidth = 1;
+        self.imageGalleryViewController.frameColor = UIColor.lightGrayColor;
+        self.imageGalleryViewController.imageURLStrings = self.stolperstein.imageURLStrings;
+        [self.imageGalleryViewController addToParentViewController:self inView:self.imageGalleryContainerView];
     }
     
     // Address
@@ -123,13 +129,6 @@
     [super viewDidAppear:animated];
     
     [AppDelegate.diagnosticsService trackViewWithClass:self.class];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    [self.imageGalleryView cancelImageRequests];
 }
 
 - (UIButton *)newRoundedRectButtonWithTitle:(NSString *)title action:(SEL)action chevronEnabled:(BOOL)chevronEnabled

@@ -39,9 +39,8 @@ static double CELL_SIZE = 40.0; // [points]
     if (self) {
         self.mapView = mapView;
         self.allAnnotationsMapView = [[MKMapView alloc] initWithFrame:CGRectZero];
-        return self;
     }
-    return nil;
+    return self;
 }
 
 - (void)addAnnotations:(NSArray *)annotations

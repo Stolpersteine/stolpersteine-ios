@@ -36,8 +36,11 @@
         
         [self.collectionView registerClass:ImageGalleryViewCell.class forCellWithReuseIdentifier:ITEM_IDENTIFIER];
         self.collectionView.pagingEnabled = YES;
-        self.collectionView.backgroundColor = UIColor.whiteColor;
+        self.collectionView.backgroundColor = UIColor.clearColor;
         self.collectionView.showsHorizontalScrollIndicator = NO;
+        
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImageView:)];
+        [self.collectionView addGestureRecognizer:tapGestureRecognizer];
         
         self.spacing = layout.minimumLineSpacing;
     }
@@ -96,8 +99,15 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat height = self.view.frame.size.height;
-    return CGSizeMake(height, height);
+    CGSize size;
+    if (self.showsFullScreenGallery) {
+        size = self.view.frame.size;
+    } else {
+        CGFloat height = self.view.frame.size.height;
+        size = CGSizeMake(height, height);
+    }
+    
+    return size;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
@@ -111,8 +121,6 @@
     imageGalleryViewCell.progressImageView = self.progressImageViews[indexPath.row];
     imageGalleryViewCell.frameWidth = self.frameWidth;
     imageGalleryViewCell.frameColor = self.frameColor;
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImageView:)];
-    [imageGalleryViewCell addGestureRecognizer:tapGestureRecognizer];
 
     return imageGalleryViewCell;
 }
@@ -144,6 +152,8 @@
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
         self.backgroundView.alpha = 1;
         self.view.frame = windowView.bounds;
+        
+        [self.collectionView.collectionViewLayout invalidateLayout];
     } completion:NULL];
 }
 
@@ -164,6 +174,8 @@
         self.backgroundView.alpha = 0;
         CGRect frame = [windowView convertRect:self.imageGalleryViewSuperView.bounds fromView:self.imageGalleryViewSuperView];
         self.view.frame = frame;
+        
+        [self.collectionView.collectionViewLayout invalidateLayout];
     } completion:^(BOOL finished) {
         CGRect frame = [self.imageGalleryViewSuperView convertRect:self.view.frame fromView:self.view.superview];
         self.view.frame = frame;

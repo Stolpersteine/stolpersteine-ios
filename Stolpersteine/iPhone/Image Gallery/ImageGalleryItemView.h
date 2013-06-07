@@ -10,7 +10,7 @@
 
 @class ProgressImageView;
 
-@interface ImageGalleryViewCell : UICollectionViewCell
+@interface ImageGalleryItemView : UIScrollView<UIScrollViewDelegate>
 
 @property (nonatomic, assign) CGFloat frameWidth;
 @property (nonatomic, strong) UIColor *frameColor;  // nil disables frame

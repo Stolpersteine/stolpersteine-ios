@@ -9,15 +9,16 @@
 #import "ImageGalleryViewController.h"
 
 #import "ProgressImageView.h"
-#import "ImageGalleryViewCell.h"
+#import "ImageGalleryView.h"
+#import "ImageGalleryItemView.h"
 #import "AGWindowView.h"
 
 #define ITEM_IDENTIFIER @"item"
 #define ANIMATION_DURATION 0.3f
 
-@interface ImageGalleryViewController()
+@interface ImageGalleryViewController()<UIScrollViewDelegate>
 
-@property (nonatomic, strong) NSArray *progressImageViews;
+@property (nonatomic, strong) ImageGalleryView *imageGalleryView;
 
 @property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) UIView *imageGalleryViewSuperView;
@@ -29,20 +30,14 @@
 
 - (id)init
 {
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    self = [super initWithCollectionViewLayout:layout];
+    self = [super init];
     if (self) {
-        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        self.imageGalleryView = [[ImageGalleryView alloc] init];
+        self.imageGalleryView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [self.view addSubview:self.imageGalleryView];
         
-        [self.collectionView registerClass:ImageGalleryViewCell.class forCellWithReuseIdentifier:ITEM_IDENTIFIER];
-        self.collectionView.pagingEnabled = YES;
-        self.collectionView.backgroundColor = UIColor.clearColor;
-        self.collectionView.showsHorizontalScrollIndicator = NO;
-        
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImageView:)];
-        [self.collectionView addGestureRecognizer:tapGestureRecognizer];
-        
-        self.spacing = layout.minimumLineSpacing;
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImageGalleryView:)];
+        [self.imageGalleryView addGestureRecognizer:tapGestureRecognizer];
     }
 
     return self;
@@ -50,38 +45,16 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    // Load images before calling super's viewWillAppear: to ensure that all items are ready to be displayed
-    if (self.progressImageViews == nil) {
-        [self loadImages];
-    }
-
     [super viewWillAppear:animated];
+    
+    [self.imageGalleryView setImagesWithURLStrings:self.imageURLStrings];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
-    [self cancelImageRequests];
-}
-
-- (void)loadImages
-{
-    NSMutableArray *progressImageViews = [[NSMutableArray alloc] initWithCapacity:self.imageURLStrings.count];
-    for (NSString *urlString in self.imageURLStrings) {
-        ProgressImageView *progressImageView = [[ProgressImageView alloc] init];
-        [progressImageView setImageWithURL:[NSURL URLWithString:urlString]];
-        [progressImageViews addObject:progressImageView];
-    }
-    self.progressImageViews = progressImageViews;
-}
-
-- (void)cancelImageRequests
-{
-    for (ImageGalleryViewCell *imageGalleryItemView in self.progressImageViews) {
-        [imageGalleryItemView.progressImageView cancelImageRequest];
-    }
-    self.progressImageViews = nil;
+    [self.imageGalleryView cancelImageRequests];
 }
 
 - (void)addToParentViewController:(UIViewController *)parentViewController inView:(UIView *)view
@@ -92,40 +65,7 @@
     [self didMoveToParentViewController:parentViewController];
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return self.progressImageViews.count;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGSize size;
-    if (self.showsFullScreenGallery) {
-        size = self.view.frame.size;
-    } else {
-        CGFloat height = self.view.frame.size.height;
-        size = CGSizeMake(height, height);
-    }
-    
-    return size;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return self.spacing;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    ImageGalleryViewCell *imageGalleryViewCell = [self.collectionView dequeueReusableCellWithReuseIdentifier:ITEM_IDENTIFIER forIndexPath:indexPath];
-    imageGalleryViewCell.progressImageView = self.progressImageViews[indexPath.row];
-    imageGalleryViewCell.frameWidth = self.frameWidth;
-    imageGalleryViewCell.frameColor = self.frameColor;
-
-    return imageGalleryViewCell;
-}
-
-- (void)didTapImageView:(UITapGestureRecognizer *)sender
+- (void)didTapImageGalleryView:(UITapGestureRecognizer *)sender
 {
     if (self.showsFullScreenGallery) {
         [self hideFullScreenGallery];
@@ -133,6 +73,43 @@
         [self showFullScreenGallery];
     }
     self.showsFullScreenGallery = !self.showsFullScreenGallery;
+}
+
+- (void)setFrameColor:(UIColor *)frameColor
+{
+    self.imageGalleryView.frameColor = frameColor;
+}
+
+- (UIColor *)frameColor
+{
+    return self.imageGalleryView.frameColor;
+}
+
+- (void)setFrameWidth:(CGFloat)frameWidth
+{
+    self.imageGalleryView.frameWidth = frameWidth;
+}
+
+- (CGFloat)frameWidth
+{
+    return self.imageGalleryView.frameWidth;
+}
+
+- (void)setSpacing:(CGFloat)spacing
+{
+    self.imageGalleryView.spacing = spacing;
+}
+
+- (CGFloat)spacing
+{
+    return self.imageGalleryView.spacing;
+}
+
+- (void)setClipsToBounds:(BOOL)clipsToBounds
+{
+    _clipsToBounds = clipsToBounds;
+    self.view.clipsToBounds = clipsToBounds;
+    self.imageGalleryView.clipsToBounds = clipsToBounds;
 }
 
 - (void)showFullScreenGallery
@@ -150,8 +127,6 @@
     [windowView addSubViewAndKeepSamePosition:self.view];
     
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-        [self.collectionView.collectionViewLayout invalidateLayout];
-
         self.backgroundView.alpha = 1;
         self.view.frame = windowView.bounds;
     } completion:NULL];
@@ -171,8 +146,6 @@
     
     AGWindowView *windowView = [AGWindowView activeWindowViewContainingView:self.view];
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-        [self.collectionView.collectionViewLayout invalidateLayout];
-
         self.backgroundView.alpha = 0;
         CGRect frame = [windowView convertRect:self.imageGalleryViewSuperView.bounds fromView:self.imageGalleryViewSuperView];
         self.view.frame = frame;

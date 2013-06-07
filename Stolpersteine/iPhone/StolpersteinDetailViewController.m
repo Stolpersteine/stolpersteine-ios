@@ -72,10 +72,9 @@
         self.imageGalleryViewController.spacing = PADDING;
         self.imageGalleryViewController.frameWidth = 1;
         self.imageGalleryViewController.frameColor = UIColor.lightGrayColor;
+        self.imageGalleryViewController.clipsToBounds = NO;
         self.imageGalleryViewController.imageURLStrings = self.stolperstein.imageURLStrings;
         [self.imageGalleryViewController addToParentViewController:self inView:self.imageGalleryContainerView];
-        self.imageGalleryViewController.view.clipsToBounds = NO;
-        self.imageGalleryViewController.collectionView.clipsToBounds = NO;
     }
     
     // Address
@@ -171,7 +170,7 @@
         CGRect imagesFrame;
         imagesFrame.origin.x = PADDING;
         imagesFrame.origin.y = height;
-        imagesFrame.size = CGSizeMake(150, 150);
+        imagesFrame.size = CGSizeMake(150 + PADDING, 150);
         self.imageGalleryContainerView.frame = imagesFrame;
         height += imagesFrame.size.height + PADDING;
     }

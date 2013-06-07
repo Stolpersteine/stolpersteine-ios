@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ImageGalleryViewController : UICollectionViewController
+@interface ImageGalleryViewController : UIViewController
 
 @property (nonatomic, assign) CGFloat spacing;
 @property (nonatomic, assign) CGFloat frameWidth;
 @property (nonatomic, retain) UIColor *frameColor;
+@property (nonatomic, assign) BOOL clipsToBounds;
 @property (nonatomic, retain) NSArray *imageURLStrings;
 
 - (void)addToParentViewController:(UIViewController *)parentViewController inView:(UIView *)view;

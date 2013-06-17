@@ -35,7 +35,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 @property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
-@property (nonatomic, strong) SearchDisplayController *searchDisplayController;
+@property (nonatomic, strong) SearchDisplayController *mySearchDisplayController;
 @property (nonatomic, strong) NSArray *searchedStolpersteine;
 @property (nonatomic, strong) Stolperstein *stolpersteinToSelect;
 @property (nonatomic, strong) MapClusterAnnotation *annotationToSelect;
@@ -48,8 +48,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 @implementation MapViewController
 
-@synthesize searchDisplayController;    // Duplicates original property with new type
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,10 +55,10 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.title = NSLocalizedString(@"MapViewController.title", nil);
     
     // Search bar
-    self.searchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
-    self.searchDisplayController.delegate = self;
-    self.searchDisplayController.searchResultsDataSource = self;
-    self.searchDisplayController.searchResultsDelegate = self;
+    self.mySearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+    self.mySearchDisplayController.delegate = self;
+    self.mySearchDisplayController.searchResultsDataSource = self;
+    self.mySearchDisplayController.searchResultsDelegate = self;
 
     // Navigation bar
     self.locationButton = [[UIButton alloc] init];
@@ -366,8 +364,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     searchData.keyword = searchString;
     self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 100) completionHandler:^(NSArray *stolpersteine, NSError *error) {
         self.searchedStolpersteine = stolpersteine;
-        [self.searchDisplayController.searchResultsTableView reloadData];
-        [self.searchDisplayController.searchResultsTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+        [self.mySearchDisplayController.searchResultsTableView reloadData];
+        [self.mySearchDisplayController.searchResultsTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
     }];
                                            
     return FALSE;
@@ -380,7 +378,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)searchDisplayControllerDidAppear:(SearchDisplayController *)controller
 {
-    [AppDelegate.diagnosticsService trackViewWithClass:self.searchDisplayController.class];
+    [AppDelegate.diagnosticsService trackViewWithClass:self.mySearchDisplayController.class];
 }
 
 - (void)searchDisplayControllerDidDisappear:(SearchDisplayController *)controller
@@ -441,7 +439,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     }
     
     // Dismiss search display controller
-    self.searchDisplayController.active = FALSE;
+    self.mySearchDisplayController.active = FALSE;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView

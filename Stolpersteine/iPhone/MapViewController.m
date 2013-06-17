@@ -407,7 +407,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
-    Stolperstein *stolperstein = [self.searchedStolpersteine objectAtIndex:indexPath.row];
+    Stolperstein *stolperstein = self.searchedStolpersteine[indexPath.row];
     cell.textLabel.text = [Localization newNameFromStolperstein:stolperstein];
     cell.detailTextLabel.text = [Localization newShortAddressFromStolperstein:stolperstein];
 
@@ -428,7 +428,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [self deselectAllAnnotations];
 
     // Force selected stolperstein to be on map
-    self.stolpersteinToSelect = [self.searchedStolpersteine objectAtIndex:indexPath.row];
+    self.stolpersteinToSelect = self.searchedStolpersteine[indexPath.row];
     [self.mapClusterController addAnnotations:@[self.stolpersteinToSelect]];
 
     // Zoom in to selected stolperstein

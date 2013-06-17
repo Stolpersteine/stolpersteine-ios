@@ -60,7 +60,7 @@
     static NSString * const cellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    Stolperstein *stolperstein = [self.stolpersteine objectAtIndex:indexPath.row];
+    Stolperstein *stolperstein = self.stolpersteine[indexPath.row];
     cell.textLabel.text = [Localization newNameFromStolperstein:stolperstein];
     cell.detailTextLabel.text = [Localization newShortAddressFromStolperstein:stolperstein];
     

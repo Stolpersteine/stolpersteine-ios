@@ -37,7 +37,7 @@
         self.gai = GAI.sharedInstance;
         self.gai.trackUncaughtExceptions = YES;
         self.gai.dispatchInterval = 30;
-        self.gai.debug = YES;
+//        self.gai.debug = YES;
         self.gaiTracker = [self.gai trackerWithTrackingId:googleAnayticsID];
         self.gaiTracker.anonymize = TRUE;
         NSDictionary *infoDictionary = [NSBundle.mainBundle infoDictionary];

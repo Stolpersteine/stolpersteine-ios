@@ -333,6 +333,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     } else {
         self.userLocation = nil;
         self.mapView.showsUserLocation = FALSE;
+        self.userLocationMode = TRUE;
+        [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation animated:NO];
     }
 }
 
@@ -343,7 +345,9 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.userLocation.location.coordinate, ZOOM_DISTANCE_USER, ZOOM_DISTANCE_USER);
         [self.mapView setRegion:region animated:YES];
     } else {
-        self.userLocationMode = FALSE;
+        if (self.userLocation.location) {
+            self.userLocationMode = FALSE;
+        }
         [self.mapView setRegion:BERLIN_REGION animated:YES];
     }
     [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation animated:NO];

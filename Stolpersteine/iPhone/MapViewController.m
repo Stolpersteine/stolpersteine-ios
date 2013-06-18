@@ -118,6 +118,11 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self layoutViewsForInterfaceOrientation:toInterfaceOrientation];
+}
+
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     self.searchBar.portraitModeEnabled = UIInterfaceOrientationIsPortrait(interfaceOrientation);
@@ -167,11 +172,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     } else {
         changeUI();
     }
-}
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [self layoutViewsForInterfaceOrientation:toInterfaceOrientation];
 }
 
 - (void)retrieveStolpersteine
@@ -226,6 +226,44 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         [self.mapView deselectAnnotation:selectedAnnotation animated:TRUE];
     }
 }
+
+- (IBAction)centerMap:(UIButton *)sender
+{
+    if (!self.isUserLocationMode && self.userLocation.location) {
+        self.userLocationMode = TRUE;
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.userLocation.location.coordinate, ZOOM_DISTANCE_USER, ZOOM_DISTANCE_USER);
+        [self.mapView setRegion:region animated:YES];
+    } else {
+        if (self.userLocation.location) {
+            self.userLocationMode = FALSE;
+        }
+        [self.mapView setRegion:BERLIN_REGION animated:YES];
+    }
+    [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation animated:NO];
+}
+
+- (IBAction)showImprint:(UIButton *)sender
+{
+    NSString *imprintURLAsString = NSLocalizedString(@"MapViewController.imprintURL", nil);
+    NSURL *url = [NSURL URLWithString:imprintURLAsString];
+    [UIApplication.sharedApplication openURL:url];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
+    MapClusterAnnotation *clusterAnnotation = (MapClusterAnnotation *)selectedAnnotation;
+    if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
+        StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
+        detailViewController.stolperstein = clusterAnnotation.annotations[0];
+    } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
+        StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
+        listViewController.stolpersteine = clusterAnnotation.annotations;
+        listViewController.title = [Localization newStolpersteineCountFromMapClusterAnnotation:clusterAnnotation];
+    }
+}
+
+#pragma mark - Map view
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
@@ -326,6 +364,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     }
 }
 
+#pragma mark - Location manager
+
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
     if (status == kCLAuthorizationStatusAuthorized) {
@@ -338,27 +378,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     }
 }
 
-- (IBAction)centerMap:(UIButton *)sender
-{
-    if (!self.isUserLocationMode && self.userLocation.location) {
-        self.userLocationMode = TRUE;
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.userLocation.location.coordinate, ZOOM_DISTANCE_USER, ZOOM_DISTANCE_USER);
-        [self.mapView setRegion:region animated:YES];
-    } else {
-        if (self.userLocation.location) {
-            self.userLocationMode = FALSE;
-        }
-        [self.mapView setRegion:BERLIN_REGION animated:YES];
-    }
-    [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation animated:NO];
-}
-
-- (IBAction)showImprint:(UIButton *)sender
-{
-    NSString *imprintURLAsString = NSLocalizedString(@"MapViewController.imprintURL", nil);
-    NSURL *url = [NSURL URLWithString:imprintURLAsString];
-    [UIApplication.sharedApplication openURL:url];
-}
+#pragma mark - Search display controller
 
 - (BOOL)searchDisplayController:(SearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
@@ -390,6 +410,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [AppDelegate.diagnosticsService trackViewWithClass:self.class];
 }
 
+#pragma mark - Map cluster controller
+
 - (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
     return [Localization newTitleFromMapClusterAnnotation:mapClusterAnnotation];
@@ -399,6 +421,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 {
     return [Localization newSubtitleFromMapClusterAnnotation:mapClusterAnnotation];
 }
+
+#pragma mark - Table view
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -446,23 +470,11 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.mySearchDisplayController.active = FALSE;
 }
 
+#pragma mark - Scroll view
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.searchBar resignFirstResponder];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
-    MapClusterAnnotation *clusterAnnotation = (MapClusterAnnotation *)selectedAnnotation;
-    if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
-        StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
-        detailViewController.stolperstein = clusterAnnotation.annotations[0];
-    } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
-        StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
-        listViewController.stolpersteine = clusterAnnotation.annotations;
-        listViewController.title = [Localization newStolpersteineCountFromMapClusterAnnotation:clusterAnnotation];
-    }
 }
 
 @end

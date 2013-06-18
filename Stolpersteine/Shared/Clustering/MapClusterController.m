@@ -87,6 +87,10 @@ static double CELL_SIZE = 40.0; // [points]
             NSMutableSet *allAnnotationsInCell = [[self.allAnnotationsMapView annotationsInMapRect:cellMapRect] mutableCopy];
             if (allAnnotationsInCell.count > 0) {
                 NSMutableSet *visibleAnnotationsInCell = [self.mapView annotationsInMapRect:cellMapRect].mutableCopy;
+                MKUserLocation *userLocation = self.mapView.userLocation;
+                if (userLocation) {
+                    [visibleAnnotationsInCell removeObject:userLocation];
+                }
                 
                 MapClusterAnnotation *annotationForCell = MapClusterControllerFindAnnotation(cellMapRect, allAnnotationsInCell, visibleAnnotationsInCell);
                 annotationForCell.annotations = allAnnotationsInCell.allObjects;

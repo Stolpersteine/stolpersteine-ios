@@ -12,8 +12,6 @@
 
 @interface ImageGalleryView : UIScrollView
 
-@property (nonatomic, assign) CGFloat frameWidth;
-@property (nonatomic, strong) UIColor *frameColor;
 @property (nonatomic, assign) CGFloat spacing;
 
 - (void)setImagesWithURLStrings:(NSArray *)urlStrings;

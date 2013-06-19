@@ -22,19 +22,9 @@
 #import "LinkedTextLabel.h"
 #import "ImageGalleryViewController.h"
 
-#define PADDING 20
-
 @interface StolpersteinDetailViewController()
 
-@property (strong, nonatomic) UIActivityIndicatorView *imageActivityIndicator;
-@property (strong, nonatomic) UILabel *nameLabel;
-@property (strong, nonatomic) UIView *imageGalleryContainerView;
-@property (strong, nonatomic) ImageGalleryViewController *imageGalleryViewController;
-@property (strong, nonatomic) UILabel *addressLabel;
-@property (strong, nonatomic) UIButton *biographyButton;
-@property (strong, nonatomic) UIButton *streetButton;
-@property (strong, nonatomic) UIButton *mapsButton;
-@property (strong, nonatomic) LinkedTextLabel *sourceLinkedTextLabel;
+@property (nonatomic, strong) ImageGalleryViewController *imageGalleryViewController;
 
 @end
 
@@ -49,87 +39,63 @@
     if (self.stolperstein == nil) {
         self.stolperstein = [[Stolperstein alloc] init];
     }
-//    NSString *urlString0 = @"http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Stolperstein_Robert_Remak%2C_Berlin_01.jpg/640px-Stolperstein_Robert_Remak%2C_Berlin_01.jpg";
-//    NSString *urlString1 = @"http://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Wismar_St._Marien_2008-06-10.jpg/450px-Wismar_St._Marien_2008-06-10.jpg";
-//    NSString *urlString2 = @"http://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg/300px-Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg";
-//    self.stolperstein.imageURLStrings = @[urlString0, urlString1, urlString2];
+    NSString *urlString0 = @"http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Stolperstein_Robert_Remak%2C_Berlin_01.jpg/640px-Stolperstein_Robert_Remak%2C_Berlin_01.jpg";
+    NSString *urlString1 = @"http://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Wismar_St._Marien_2008-06-10.jpg/450px-Wismar_St._Marien_2008-06-10.jpg";
+    NSString *urlString2 = @"http://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg/300px-Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg";
+    self.stolperstein.imageURLStrings = @[urlString0, urlString1, urlString2];
     
-    // Name
-    self.nameLabel = [[UILabel alloc] init];
-    NSString *name = [Localization newNameFromStolperstein:self.stolperstein];
+    Stolperstein *stolperstein = self.stolperstein;
+    NSString *name = [Localization newNameFromStolperstein:stolperstein];
     self.nameLabel.text = name;
     self.nameLabel.font = [UIFont boldSystemFontOfSize:UIFont.labelFontSize + 3];
-    self.nameLabel.numberOfLines = INT_MAX;
-    [self.scrollView addSubview:self.nameLabel];
-    
-    // Images
-    if (self.stolperstein.imageURLStrings.count > 0) {
-        self.imageGalleryContainerView = [[UIView alloc] init];
-        self.imageGalleryContainerView.clipsToBounds = NO;
-        [self.scrollView addSubview:self.imageGalleryContainerView];
-        
-        self.imageGalleryViewController = [[ImageGalleryViewController alloc] init];
-        self.imageGalleryViewController.spacing = PADDING;
-        self.imageGalleryViewController.frameWidth = 1;
-        self.imageGalleryViewController.frameColor = UIColor.lightGrayColor;
-        self.imageGalleryViewController.clipsToBounds = NO;
-        self.imageGalleryViewController.imageURLStrings = self.stolperstein.imageURLStrings;
-        [self.imageGalleryViewController addToParentViewController:self inView:self.imageGalleryContainerView];
-    }
-    
-    // Address
-    self.addressLabel = [[UILabel alloc] init];
-    NSString *address = [Localization newLongAddressFromStolperstein:self.stolperstein];
+    NSString *address = [Localization newLongAddressFromStolperstein:stolperstein];
     self.addressLabel.text = address;
-    self.addressLabel.numberOfLines = INT_MAX;
-    [self.scrollView addSubview:self.addressLabel];
-    
-    // Street button
-    if (!self.isAllInThisStreetButtonHidden) {
-        NSString *streetButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.street", nil);
-        self.streetButton = [self newRoundedRectButtonWithTitle:streetButtonTitle action:@selector(showAllInThisStreet:) chevronEnabled:TRUE];
-        [self.scrollView addSubview:self.streetButton];
-    }
 
-    // Biography button
-    if (self.stolperstein.personBiographyURLString) {
-        NSString *biographyButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.biography", nil);
-        self.biographyButton = [self newRoundedRectButtonWithTitle:biographyButtonTitle action:@selector(showBiography:) chevronEnabled:FALSE];
-        [self.scrollView addSubview:self.biographyButton];
+    if (stolperstein.imageURLStrings.count == 0) {
+        [self.imageGalleryView removeFromSuperview];
+    } else {
+        self.imageGalleryViewController.imageURLStrings = stolperstein.imageURLStrings;
     }
     
-    // Maps button
-    NSString *mapsButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.maps", nil);
-    self.mapsButton = [self newRoundedRectButtonWithTitle:mapsButtonTitle action:@selector(showInMapsApp:) chevronEnabled:FALSE];
-    [self.scrollView addSubview:self.mapsButton];
-    
-    // Source
-    NSString *linkText = @"Koordinierungsstelle Stolpersteine Berlin";
-    NSURL *linkURL = [NSURL URLWithString:@"http://www.stolpersteine-berlin.de/"];
-
-    self.sourceLinkedTextLabel = [[LinkedTextLabel alloc] init];
-    NSString *localizedSourceText = NSLocalizedString(@"StolpersteinDetailViewController.source", nil);
-    NSString *sourceText = [NSString stringWithFormat:localizedSourceText, linkText];
-    NSRange linkRange = NSMakeRange(sourceText.length - linkText.length, linkText.length);
-    NSMutableAttributedString *sourceAttributedString = [[NSMutableAttributedString alloc] initWithString:sourceText];
-    [sourceAttributedString setAttributes:@{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) } range:linkRange];
-    self.sourceLinkedTextLabel.attributedText = sourceAttributedString;
-    [self.sourceLinkedTextLabel setLink:linkURL range:linkRange];
-    [self.scrollView addSubview:self.sourceLinkedTextLabel];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
-    [self.scrollView flashScrollIndicators];
+//    // Street button
+//    if (!self.isAllInThisStreetButtonHidden) {
+//        NSString *streetButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.street", nil);
+//        self.streetButton = [self newRoundedRectButtonWithTitle:streetButtonTitle action:@selector(showAllInThisStreet:) chevronEnabled:TRUE];
+//        [self.scrollView addSubview:self.streetButton];
+//    }
+//
+//    // Biography button
+//    if (self.stolperstein.personBiographyURLString) {
+//        NSString *biographyButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.biography", nil);
+//        self.biographyButton = [self newRoundedRectButtonWithTitle:biographyButtonTitle action:@selector(showBiography:) chevronEnabled:FALSE];
+//        [self.scrollView addSubview:self.biographyButton];
+//    }
+//    
+//    // Maps button
+//    NSString *mapsButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.maps", nil);
+//    self.mapsButton = [self newRoundedRectButtonWithTitle:mapsButtonTitle action:@selector(showInMapsApp:) chevronEnabled:FALSE];
+//    [self.scrollView addSubview:self.mapsButton];
+//    
+//    // Source
+//    NSString *linkText = @"Koordinierungsstelle Stolpersteine Berlin";
+//    NSURL *linkURL = [NSURL URLWithString:@"http://www.stolpersteine-berlin.de/"];
+//
+//    self.sourceLinkedTextLabel = [[LinkedTextLabel alloc] init];
+//    NSString *localizedSourceText = NSLocalizedString(@"StolpersteinDetailViewController.source", nil);
+//    NSString *sourceText = [NSString stringWithFormat:localizedSourceText, linkText];
+//    NSRange linkRange = NSMakeRange(sourceText.length - linkText.length, linkText.length);
+//    NSMutableAttributedString *sourceAttributedString = [[NSMutableAttributedString alloc] initWithString:sourceText];
+//    [sourceAttributedString setAttributes:@{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) } range:linkRange];
+//    self.sourceLinkedTextLabel.attributedText = sourceAttributedString;
+//    [self.sourceLinkedTextLabel setLink:linkURL range:linkRange];
+//    [self.scrollView addSubview:self.sourceLinkedTextLabel];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
+    [self.scrollView flashScrollIndicators];
     [AppDelegate.diagnosticsService trackViewWithClass:self.class];
 }
 
@@ -150,73 +116,6 @@
     }
     
     return button;
-}
-
-- (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    CGFloat screenWidth = self.view.frame.size.width;
-    CGFloat height = PADDING;
-    
-    // Name
-    CGRect nameFrame;
-    nameFrame.origin.x = PADDING;
-    nameFrame.origin.y = height;
-    nameFrame.size = [self.nameLabel sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
-    self.nameLabel.frame = nameFrame;
-    height += nameFrame.size.height + PADDING;
-    
-    // Images
-    if (self.imageGalleryContainerView) {
-        CGRect imagesFrame;
-        imagesFrame.origin.x = PADDING;
-        imagesFrame.origin.y = height;
-        imagesFrame.size = CGSizeMake(150 + PADDING, 150);
-        self.imageGalleryContainerView.frame = imagesFrame;
-        height += imagesFrame.size.height + PADDING;
-    }
-
-    // Address
-    CGRect addressFrame;
-    addressFrame.origin.x = PADDING;
-    addressFrame.origin.y = height;
-    addressFrame.size = [self.addressLabel sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
-    self.addressLabel.frame = addressFrame;
-    height += addressFrame.size.height + PADDING;
-
-    // Street button
-    if (self.streetButton) {
-        self.streetButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
-        height += self.streetButton.frame.size.height + PADDING * 0.5;
-        self.streetButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -self.streetButton.titleLabel.frame.size.width - self.streetButton.frame.size.width + 30);
-    }
-    
-    // Biography button
-    if (self.biographyButton) {
-        self.biographyButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
-        height += self.biographyButton.frame.size.height + PADDING * 0.5;
-    }
-
-    // Maps button
-    self.mapsButton.frame = CGRectMake(PADDING, height, screenWidth - 2 * PADDING, 44);
-    height += self.mapsButton.frame.size.height + PADDING;
-    
-    // Source
-    CGRect sourceFrame;
-    sourceFrame.origin.x = PADDING;
-    sourceFrame.origin.y = height;
-    sourceFrame.size = [self.sourceLinkedTextLabel sizeThatFits:CGSizeMake(screenWidth - 2 * PADDING, FLT_MAX)];
-    sourceFrame.size.width = screenWidth - 2 * PADDING;
-    self.sourceLinkedTextLabel.frame = sourceFrame;
-    height += sourceFrame.size.height + PADDING * 0.5;
-
-    // Scroll view
-    height += PADDING * 0.5;
-    self.scrollView.contentSize = CGSizeMake(screenWidth, height);
-}
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [self layoutViewsForInterfaceOrientation:toInterfaceOrientation];
 }
 
 - (IBAction)showActivities:(UIBarButtonItem *)sender
@@ -264,7 +163,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToStolpersteinListViewController"]) {
+    if ([segue.identifier isEqualToString:@"imageGalleryViewController"]) {
+        ImageGalleryViewController *imageGalleryViewController = (ImageGalleryViewController *)segue.destinationViewController;
+        imageGalleryViewController.spacing = 20;
+        imageGalleryViewController.clipsToBounds = NO;
+        self.imageGalleryViewController = imageGalleryViewController;
+    } else if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToStolpersteinListViewController"]) {
         StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
         searchData.locationStreet = [Localization newStreetNameFromStolperstein:self.stolperstein];
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;

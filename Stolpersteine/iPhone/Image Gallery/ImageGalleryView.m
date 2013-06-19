@@ -42,8 +42,6 @@
     NSMutableArray *imageGalleryItemViews = [[NSMutableArray alloc] initWithCapacity:urlStrings.count];
     for (NSString *urlString in urlStrings) {
         ImageGalleryItemView *imageGalleryItemView = [[ImageGalleryItemView alloc] init];
-        imageGalleryItemView.frameWidth = self.frameWidth;
-        imageGalleryItemView.frameColor = self.frameColor;
 
         ProgressImageView *progressImageView = imageGalleryItemView.progressImageView;
         progressImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

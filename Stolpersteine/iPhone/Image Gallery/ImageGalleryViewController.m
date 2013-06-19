@@ -28,19 +28,17 @@
 
 @implementation ImageGalleryViewController
 
-- (id)init
+- (void)viewDidLoad
 {
-    self = [super init];
-    if (self) {
-        self.imageGalleryView = [[ImageGalleryView alloc] init];
-        self.imageGalleryView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [self.view addSubview:self.imageGalleryView];
-        
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImageGalleryView:)];
-        [self.imageGalleryView addGestureRecognizer:tapGestureRecognizer];
-    }
-
-    return self;
+    [super viewDidLoad];
+    
+    self.imageGalleryView = [[ImageGalleryView alloc] init];
+    self.imageGalleryView.spacing = self.spacing;
+    self.imageGalleryView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:self.imageGalleryView];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImageGalleryView:)];
+    [self.imageGalleryView addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -75,34 +73,10 @@
     self.showsFullScreenGallery = !self.showsFullScreenGallery;
 }
 
-- (void)setFrameColor:(UIColor *)frameColor
-{
-    self.imageGalleryView.frameColor = frameColor;
-}
-
-- (UIColor *)frameColor
-{
-    return self.imageGalleryView.frameColor;
-}
-
-- (void)setFrameWidth:(CGFloat)frameWidth
-{
-    self.imageGalleryView.frameWidth = frameWidth;
-}
-
-- (CGFloat)frameWidth
-{
-    return self.imageGalleryView.frameWidth;
-}
-
 - (void)setSpacing:(CGFloat)spacing
 {
+    _spacing = spacing;
     self.imageGalleryView.spacing = spacing;
-}
-
-- (CGFloat)spacing
-{
-    return self.imageGalleryView.spacing;
 }
 
 - (void)setClipsToBounds:(BOOL)clipsToBounds

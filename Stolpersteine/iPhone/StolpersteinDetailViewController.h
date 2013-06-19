@@ -14,8 +14,12 @@
 @interface StolpersteinDetailViewController : UIViewController
 
 @property (nonatomic, strong) Stolperstein *stolperstein;
+
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) ImageGalleryView *imageGalleryView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIView *imageGalleryView;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+
 @property (nonatomic, assign, getter = isAllInThisStreetButtonHidden) BOOL allInThisStreetButtonHidden;
 
 - (IBAction)showActivities:(UIBarButtonItem *)sender;

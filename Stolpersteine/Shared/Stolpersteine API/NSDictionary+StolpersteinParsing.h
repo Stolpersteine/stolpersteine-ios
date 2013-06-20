@@ -10,7 +10,7 @@
 
 @class Stolperstein;
 
-@interface NSDictionary (Parsing)
+@interface NSDictionary (StolpersteinParsing)
 
 - (Stolperstein *)newStolperstein;
 

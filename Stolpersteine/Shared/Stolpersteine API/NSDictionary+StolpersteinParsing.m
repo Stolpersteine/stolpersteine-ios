@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "NSDictionary+Parsing.h"
+#import "NSDictionary+StolpersteinParsing.h"
 
 #import "Stolperstein.h"
 

@@ -20,10 +20,6 @@
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDp-xd-q2d">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="JSO-E2-ymu"/>
-                                    <constraint firstAttribute="width" constant="70" id="rtn-oJ-ClL"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -43,10 +39,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="omQ-fz-cwh" firstAttribute="trailing" secondItem="nic-0c-bX8" secondAttribute="trailing" type="default" id="7VZ-2t-xJb"/>
-                            <constraint firstItem="zDp-xd-q2d" firstAttribute="trailing" secondItem="nic-0c-bX8" secondAttribute="trailing" type="default" id="FWz-tU-iKB"/>
                             <constraint firstItem="omQ-fz-cwh" firstAttribute="leading" secondItem="nic-0c-bX8" secondAttribute="leading" type="default" id="LIi-NL-Vxc"/>
                             <constraint firstItem="omQ-fz-cwh" firstAttribute="bottom" secondItem="nic-0c-bX8" secondAttribute="bottom" type="default" id="TXt-KN-KII"/>
-                            <constraint firstAttribute="bottom" secondItem="zDp-xd-q2d" secondAttribute="bottom" constant="3" id="xrg-QS-eeE"/>
+                            <constraint firstAttribute="trailing" secondItem="zDp-xd-q2d" secondAttribute="trailing" constant="10" type="user" id="UdW-yk-rLs"/>
+                            <constraint firstAttribute="bottom" secondItem="zDp-xd-q2d" secondAttribute="bottom" constant="8" type="user" id="gtD-5z-Qb4"/>
                             <constraint firstItem="omQ-fz-cwh" firstAttribute="top" secondItem="nic-0c-bX8" secondAttribute="top" type="default" id="yRN-JE-o6b"/>
                         </constraints>
                     </view>
@@ -275,7 +271,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="icL-Q6-suH"/>
         <segue reference="hg1-Lc-53S"/>
-        <segue reference="gzf-lt-1mR"/>
     </inferredMetricsTieBreakers>
 </document>

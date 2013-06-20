@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
-#import "StolpersteineNetworkServiceTests.h"
+#import "StolpersteinNetworkServiceTests.h"
 
 #import "Stolperstein.h"
 #import "StolpersteinSearchData.h"
@@ -14,14 +14,14 @@
 
 static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1";
 
-@interface StolpersteineNetworkServiceTests()
+@interface StolpersteinNetworkServiceTests()
 
 @property (nonatomic, strong) StolpersteinNetworkService *networkService;
 @property (nonatomic, assign) BOOL done;
 
 @end
 
-@implementation StolpersteineNetworkServiceTests
+@implementation StolpersteinNetworkServiceTests
 
 - (void)setUp
 {

@@ -15,7 +15,7 @@
 #import "Stolperstein.h"
 #import "StolpersteinSearchData.h"
 #import "StolpersteinNetworkServiceDelegate.h"
-#import "NSDictionary+Parsing.h"
+#import "NSDictionary+StolpersteinParsing.h"
 #import "Base64.h"
 
 static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1";

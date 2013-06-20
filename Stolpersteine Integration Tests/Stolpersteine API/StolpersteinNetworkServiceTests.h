@@ -8,6 +8,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface StolpersteineNetworkServiceTests : SenTestCase
+@interface StolpersteinNetworkServiceTests : SenTestCase
 
 @end

@@ -256,6 +256,7 @@
 		62F147C817020B19003E7DAA /* navigation-bar-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation-bar-landscape@2x.png"; sourceTree = "<group>"; };
 		62F147C917020B19003E7DAA /* navigation-bar-portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation-bar-portrait.png"; sourceTree = "<group>"; };
 		62F147CA17020B19003E7DAA /* navigation-bar-portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation-bar-portrait@2x.png"; sourceTree = "<group>"; };
+		62F18DF917736A4200E2FAF9 /* StolpersteinNetworkServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinNetworkServiceDelegate.h; sourceTree = "<group>"; };
 		90D265056EBE417F95BF08CA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -606,6 +607,7 @@
 			children = (
 				627E4430169C420A0065C1F1 /* StolpersteinNetworkService.h */,
 				627E4431169C420A0065C1F1 /* StolpersteinNetworkService.m */,
+				62F18DF917736A4200E2FAF9 /* StolpersteinNetworkServiceDelegate.h */,
 				6222BEFF16A030E5006ED538 /* NSDictionary+Parsing.h */,
 				6222BF0016A030E5006ED538 /* NSDictionary+Parsing.m */,
 				627E4436169C43970065C1F1 /* Stolperstein.h */,

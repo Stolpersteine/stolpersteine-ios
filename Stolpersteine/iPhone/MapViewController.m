@@ -183,7 +183,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)retrieveStolpersteineWithRange:(NSRange)range
 {
     [self.retrieveStolpersteineOperation cancel];
-    self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil range:range completionHandler:^(NSArray *stolpersteine, NSError *error) {
+    self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil range:range completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         [self.mapClusterController addAnnotations:stolpersteine];
         
         // Next batch of data
@@ -191,6 +191,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
             NSRange nextRange = NSMakeRange(NSMaxRange(range), range.length);
             [self retrieveStolpersteineWithRange:nextRange];
         }
+        
+        return YES;
     }];
 }
 
@@ -386,10 +388,12 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     
     StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
     searchData.keyword = searchString;
-    self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 100) completionHandler:^(NSArray *stolpersteine, NSError *error) {
+    self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 100) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.searchedStolpersteine = stolpersteine;
         [self.mySearchDisplayController.searchResultsTableView reloadData];
         [self.mySearchDisplayController.searchResultsTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+        
+        return YES;
     }];
                                            
     return FALSE;

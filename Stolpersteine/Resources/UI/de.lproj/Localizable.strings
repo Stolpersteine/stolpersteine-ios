@@ -6,10 +6,14 @@
   Copyright (c) 2013 Option-U Software. All rights reserved.
 */
 
+"AppDelegate.errorTitle" = "Netzwerkfehler";
+"AppDelegate.errorMessage" = "Bitte versuchen Sie es später noch einmal.";
+"AppDelegate.errorButtonTitle" = "OK";
+
 "MapViewController.title" = "Karte";
 "MapViewController.imprint" = "Impressum";
 "MapViewController.imprintURL" = "http://www.option-u.com/stolpersteine/imprint-ios-app-de/";
-"MapViewController.paddingRight" = "100";   // Abbrechen
+"MapViewController.paddingRight" = "100";   // "Abbrechen"
 
 "StolpersteinDetailViewController.title" = "Info";
 "StolpersteinDetailViewController.biography" = "Biographie anzeigen";

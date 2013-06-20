@@ -13,6 +13,20 @@
 
 @implementation AppDelegate
 
++ (StolpersteinNetworkService *)networkService
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return appDelegate.networkService;
+}
+
++ (DiagnosticsService *)diagnosticsService
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return appDelegate.diagnosticsService;
+}
+
+#pragma mark - Application
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Works around bug on iPad when app is started in landscape orientation
@@ -36,6 +50,7 @@
     
     // Network service
     self.networkService = [[StolpersteinNetworkService alloc] initWithClientUser:clientUser clientPassword:clientPassword];
+    self.networkService.delegate = self;
 #ifdef DEBUG
     // This allows invalid certificates so that proxies can decrypt the network traffic
     self.networkService.allowsInvalidSSLCertificate = YES;
@@ -58,16 +73,15 @@
     return YES;
 }
 
-+ (StolpersteinNetworkService *)networkService
+#pragma mark - Stolperstein network service
+
+- (void)stolpersteinNetworkService:(StolpersteinNetworkService *)stolpersteinNetworkService handleError:(NSError *)error
 {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    return appDelegate.networkService;
+    NSString *errorTitle = NSLocalizedString(@"AppDelegate.errorTitle", nil);
+    NSString *errorMessage = NSLocalizedString(@"AppDelegate.errorMessage", nil);
+    NSString *errorButtonTitle = NSLocalizedString(@"AppDelegate.errorButtonTitle", nil);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:errorTitle message:errorMessage delegate:nil cancelButtonTitle:errorButtonTitle otherButtonTitles:nil];
+    [alert show];
 }
 
-+ (DiagnosticsService *)diagnosticsService
-{
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    return appDelegate.diagnosticsService;
-}
-							
 @end

@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @class StolpersteinSearchData;
+@protocol StolpersteinNetworkServiceDelegate;
 
 @interface StolpersteinNetworkService : NSObject
 
+@property (nonatomic, weak) id<StolpersteinNetworkServiceDelegate> delegate;
 @property (nonatomic, assign) BOOL allowsInvalidSSLCertificate;
 
 - (id)initWithClientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword;
 
-- (NSOperation *)retrieveStolpersteineWithSearchData:(StolpersteinSearchData *)searchData range:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine, NSError *error))completionHandler;
+- (NSOperation *)retrieveStolpersteineWithSearchData:(StolpersteinSearchData *)searchData range:(NSRange)range completionHandler:(BOOL (^)(NSArray *stolpersteine, NSError *error))completionHandler;
 
 @end

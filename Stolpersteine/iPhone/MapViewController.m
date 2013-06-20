@@ -13,6 +13,8 @@
 #import "DiagnosticsService.h"
 #import "Stolperstein.h"
 #import "StolpersteinSearchData.h"
+#import "StolpersteinSyncControllerDelegate.h"
+#import "StolpersteinSyncController.h"
 #import "StolpersteinDetailViewController.h"
 #import "StolpersteinListViewController.h"
 #import "SearchBar.h"
@@ -28,12 +30,12 @@ static const MKCoordinateRegion BERLIN_REGION = { {52.5233, 13.4127}, {0.4493, 0
 static const double ZOOM_DISTANCE_USER = 1200;
 static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
-@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SearchDisplayControllerDelegate, MapClusterControllerDelegate>
+@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SearchDisplayControllerDelegate, MapClusterControllerDelegate, StolpersteinSyncControllerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
-@property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
+@property (nonatomic, strong) StolpersteinSyncController *stolpersteinSyncController;
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
 @property (nonatomic, strong) SearchDisplayController *mySearchDisplayController;
 @property (nonatomic, strong) NSArray *searchedStolpersteine;
@@ -84,7 +86,9 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [self.imprintButton setAttributedTitle:attributedString forState:UIControlStateNormal];
     
     // Start loading data
-    [self retrieveStolpersteine];
+    self.stolpersteinSyncController = [[StolpersteinSyncController alloc] initWithNetworkService:AppDelegate.networkService];
+    self.stolpersteinSyncController.delegate = self;
+    [self.stolpersteinSyncController syncStolpersteine];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -108,7 +112,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [AppDelegate.diagnosticsService trackViewWithClass:self.class];
 
     // Update data when app becomes active
-    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(retrieveStolpersteine) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self.stolpersteinSyncController selector:@selector(syncStolpersteine) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -172,28 +176,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     } else {
         changeUI();
     }
-}
-
-- (void)retrieveStolpersteine
-{
-    NSRange range = NSMakeRange(0, 500);
-    [self retrieveStolpersteineWithRange:range];
-}
-
-- (void)retrieveStolpersteineWithRange:(NSRange)range
-{
-    [self.retrieveStolpersteineOperation cancel];
-    self.retrieveStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:nil range:range completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        [self.mapClusterController addAnnotations:stolpersteine];
-        
-        // Next batch of data
-        if (stolpersteine.count == range.length) {
-            NSRange nextRange = NSMakeRange(NSMaxRange(range), range.length);
-            [self retrieveStolpersteineWithRange:nextRange];
-        }
-        
-        return YES;
-    }];
 }
 
 - (id<MKAnnotation>)annotationForStolperstein:(Stolperstein *)stolperstein inMapRect:(MKMapRect)mapRect
@@ -263,6 +245,18 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         listViewController.stolpersteine = clusterAnnotation.annotations;
         listViewController.title = [Localization newStolpersteineCountFromMapClusterAnnotation:clusterAnnotation];
     }
+}
+
+#pragma mark - Stolpersteine sync controller
+
+- (void)stolpersteinSyncController:(StolpersteinSyncController *)stolpersteinSyncController didAddStolpersteine:(NSArray *)stolpersteine
+{
+    [self.mapClusterController addAnnotations:stolpersteine];   
+}
+
+- (void)stolpersteinSyncController:(StolpersteinSyncController *)stolpersteinSyncController didRemoveStolpersteine:(NSArray *)stolpersteine
+{
+    
 }
 
 #pragma mark - Map view

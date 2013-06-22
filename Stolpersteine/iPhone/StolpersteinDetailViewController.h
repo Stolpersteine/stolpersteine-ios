@@ -10,6 +10,7 @@
 
 @class Stolperstein;
 @class ImageGalleryView;
+@class LinkedTextLabel;
 
 @interface StolpersteinDetailViewController : UIViewController
 
@@ -19,9 +20,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIView *imageGalleryView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UIButton *allInThisStreetButton;
+@property (weak, nonatomic) IBOutlet UIButton *biographyButton;
+@property (weak, nonatomic) IBOutlet UIButton *mapsAppButton;
+@property (weak, nonatomic) IBOutlet LinkedTextLabel *sourceLinkedTextLabel;
+
 
 @property (nonatomic, assign, getter = isAllInThisStreetButtonHidden) BOOL allInThisStreetButtonHidden;
 
 - (IBAction)showActivities:(UIBarButtonItem *)sender;
+- (IBAction)showAllInThisStreet:(UIButton *)sender;
+- (IBAction)showBiography:(UIButton *)sender;
+- (IBAction)showInMapsApp:(UIButton *)sender;
 
 @end

@@ -44,6 +44,7 @@
     NSString *urlString2 = @"http://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg/300px-Stolperstein_Elberfelder_Str_20_%28Moab%29_Margarete_Alexander.jpg";
     self.stolperstein.imageURLStrings = @[urlString0, urlString1, urlString2];
     
+    // Name and address
     Stolperstein *stolperstein = self.stolperstein;
     NSString *name = [Localization newNameFromStolperstein:stolperstein];
     self.nameLabel.text = name;
@@ -51,44 +52,44 @@
     NSString *address = [Localization newLongAddressFromStolperstein:stolperstein];
     self.addressLabel.text = address;
 
+    // Image gallery
     if (stolperstein.imageURLStrings.count == 0) {
         [self.imageGalleryView removeFromSuperview];
     } else {
         self.imageGalleryViewController.imageURLStrings = stolperstein.imageURLStrings;
     }
     
-//    // Street button
-//    if (!self.isAllInThisStreetButtonHidden) {
-//        NSString *streetButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.street", nil);
-//        self.streetButton = [self newRoundedRectButtonWithTitle:streetButtonTitle action:@selector(showAllInThisStreet:) chevronEnabled:TRUE];
-//        [self.scrollView addSubview:self.streetButton];
-//    }
-//
-//    // Biography button
-//    if (self.stolperstein.personBiographyURLString) {
-//        NSString *biographyButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.biography", nil);
-//        self.biographyButton = [self newRoundedRectButtonWithTitle:biographyButtonTitle action:@selector(showBiography:) chevronEnabled:FALSE];
-//        [self.scrollView addSubview:self.biographyButton];
-//    }
-//    
-//    // Maps button
-//    NSString *mapsButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.maps", nil);
-//    self.mapsButton = [self newRoundedRectButtonWithTitle:mapsButtonTitle action:@selector(showInMapsApp:) chevronEnabled:FALSE];
-//    [self.scrollView addSubview:self.mapsButton];
-//    
-//    // Source
-//    NSString *linkText = @"Koordinierungsstelle Stolpersteine Berlin";
-//    NSURL *linkURL = [NSURL URLWithString:@"http://www.stolpersteine-berlin.de/"];
-//
-//    self.sourceLinkedTextLabel = [[LinkedTextLabel alloc] init];
-//    NSString *localizedSourceText = NSLocalizedString(@"StolpersteinDetailViewController.source", nil);
-//    NSString *sourceText = [NSString stringWithFormat:localizedSourceText, linkText];
-//    NSRange linkRange = NSMakeRange(sourceText.length - linkText.length, linkText.length);
-//    NSMutableAttributedString *sourceAttributedString = [[NSMutableAttributedString alloc] initWithString:sourceText];
-//    [sourceAttributedString setAttributes:@{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) } range:linkRange];
-//    self.sourceLinkedTextLabel.attributedText = sourceAttributedString;
-//    [self.sourceLinkedTextLabel setLink:linkURL range:linkRange];
-//    [self.scrollView addSubview:self.sourceLinkedTextLabel];
+    // Street button
+    if (self.isAllInThisStreetButtonHidden) {
+        [self.allInThisStreetButton removeFromSuperview];
+    } else {
+        NSString *streetButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.street", nil);
+        [self.allInThisStreetButton setTitle:streetButtonTitle forState:UIControlStateNormal];
+    }
+
+    // Biography button
+    if (self.stolperstein.personBiographyURLString) {
+        NSString *biographyButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.biography", nil);
+        [self.biographyButton setTitle:biographyButtonTitle forState:UIControlStateNormal];
+    } else {
+        [self.biographyButton removeFromSuperview];
+    }
+    
+    // Maps button
+    NSString *mapsButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.maps", nil);
+    [self.mapsAppButton setTitle:mapsButtonTitle forState:UIControlStateNormal];
+
+    // Source
+    NSString *linkText = @"Koordinierungsstelle Stolpersteine Berlin";
+    NSURL *linkURL = [NSURL URLWithString:@"http://www.stolpersteine-berlin.de/"];
+
+    NSString *localizedSourceText = NSLocalizedString(@"StolpersteinDetailViewController.source", nil);
+    NSString *sourceText = [NSString stringWithFormat:localizedSourceText, linkText];
+    NSRange linkRange = NSMakeRange(sourceText.length - linkText.length, linkText.length);
+    NSMutableAttributedString *sourceAttributedString = [[NSMutableAttributedString alloc] initWithString:sourceText];
+    [sourceAttributedString setAttributes:@{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) } range:linkRange];
+    self.sourceLinkedTextLabel.attributedText = sourceAttributedString;
+    [self.sourceLinkedTextLabel setLink:linkURL range:linkRange];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -130,15 +131,15 @@
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
+- (void)showAllInThisStreet:(UIButton *)sender
+{
+    [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToStolpersteinListViewController" sender:self];
+}
+
 - (void)showBiography:(UIButton *)sender
 {
     NSURL *url = [[NSURL alloc] initWithString:self.stolperstein.personBiographyURLString];
     [UIApplication.sharedApplication openURL:url];
-}
-
-- (void)showAllInThisStreet:(UIButton *)sender
-{
-    [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToStolpersteinListViewController" sender:self];
 }
 
 - (void)showInMapsApp:(UIButton *)sender

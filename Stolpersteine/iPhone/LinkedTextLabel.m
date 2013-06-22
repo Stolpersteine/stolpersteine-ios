@@ -72,12 +72,12 @@
         CGPoint point = [sender locationInView:self.textView];
         UITextRange *range = [self.textView characterRangeAtPoint:point];
         
-        NSURL *url;
         if (range && !range.empty) {
             NSInteger startOffset = [self.textView offsetFromPosition:self.textView.beginningOfDocument toPosition:range.start];
             NSInteger endOffset = [self.textView offsetFromPosition:self.textView.beginningOfDocument toPosition:range.end];
             NSRange rangeTap = NSMakeRange(startOffset, endOffset - startOffset);
             
+            NSURL *url;
             for (NSString *rangeAsString in self.links.allKeys) {
                 NSRange rangeLink = NSRangeFromString(rangeAsString);
                 NSRange intersection = NSIntersectionRange(rangeTap, rangeLink);

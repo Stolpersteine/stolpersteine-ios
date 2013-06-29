@@ -19,10 +19,10 @@
 #import "StolpersteinListViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "Localization.h"
-#import "LinkedTextLabel.h"
 #import "ImageGalleryViewController.h"
+#import "TTTAttributedLabel.h"
 
-@interface StolpersteinDetailViewController()
+@interface StolpersteinDetailViewController()<TTTAttributedLabelDelegate>
 
 @property (nonatomic, strong) ImageGalleryViewController *imageGalleryViewController;
 
@@ -80,16 +80,20 @@
     [self.mapsAppButton setTitle:mapsButtonTitle forState:UIControlStateNormal];
 
     // Source
+    NSMutableDictionary *mutableLinkAttributes = [NSMutableDictionary dictionary];
+    [mutableLinkAttributes setObject:[NSNumber numberWithBool:YES] forKey:(NSString *)kCTUnderlineStyleAttributeName];
+    self.sourceLabel.linkAttributes = mutableLinkAttributes;
+    self.sourceLabel.activeLinkAttributes = mutableLinkAttributes;
+    self.sourceLabel.delegate = self;
+
     NSString *linkText = @"Koordinierungsstelle Stolpersteine Berlin";
     NSURL *linkURL = [NSURL URLWithString:@"http://www.stolpersteine-berlin.de/"];
 
     NSString *localizedSourceText = NSLocalizedString(@"StolpersteinDetailViewController.source", nil);
     NSString *sourceText = [NSString stringWithFormat:localizedSourceText, linkText];
+    self.sourceLabel.attributedText = [[NSAttributedString alloc] initWithString:sourceText];
     NSRange linkRange = NSMakeRange(sourceText.length - linkText.length, linkText.length);
-    NSMutableAttributedString *sourceAttributedString = [[NSMutableAttributedString alloc] initWithString:sourceText];
-    [sourceAttributedString setAttributes:@{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) } range:linkRange];
-    self.sourceLinkedTextLabel.attributedText = sourceAttributedString;
-    [self.sourceLinkedTextLabel setLink:linkURL range:linkRange];
+    [self.sourceLabel addLinkToURL:linkURL withRange:linkRange];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -176,6 +180,13 @@
         listViewController.searchData = searchData;
         listViewController.title = searchData.locationStreet;
     }
+}
+
+#pragma mark - Attributed Label
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
+{
+    [UIApplication.sharedApplication openURL:url];
 }
 
 @end

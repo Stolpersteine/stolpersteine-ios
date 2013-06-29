@@ -87,7 +87,7 @@
             <objects>
                 <tableViewController id="S9Y-Yy-0sA" customClass="StolpersteinListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ii3-to-xuB">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -132,7 +132,7 @@
             <objects>
                 <viewController storyboardIdentifier="detailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Az3-JW-c4L" customClass="StolpersteinDetailViewController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="scrollView" alwaysBounceVertical="YES" id="lxM-gj-iBt">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6i7-Lc-dC1">
@@ -143,8 +143,8 @@
                             </label>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUv-ks-uNY">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="180" type="user" id="CbZ-w9-JY6"/>
                                     <constraint firstAttribute="height" constant="160" type="user" id="O1b-Pm-08K"/>
+                                    <constraint firstAttribute="width" constant="180" type="user" id="a7p-K5-bFK"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="1F8-OG-UAt" kind="embed" identifier="imageGalleryViewController" id="fCj-4l-XqO"/>
@@ -195,10 +195,15 @@
                                     <action selector="showInMapsApp:" destination="Az3-JW-c4L" eventType="touchUpInside" id="RvO-g3-liI"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfV-6D-qib" customClass="TTTAttributedLabel">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="hj3-Gr-CcF" secondAttribute="bottom" constant="77" id="7jY-LZ-x9S"/>
+                            <constraint firstItem="dfV-6D-qib" firstAttribute="top" secondItem="hj3-Gr-CcF" secondAttribute="bottom" constant="20" type="user" id="3Oi-0a-z2a"/>
                             <constraint firstAttribute="trailing" secondItem="T3R-yr-byf" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="BQs-nf-Nzw"/>
                             <constraint firstItem="hj3-Gr-CcF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="T3R-yr-byf" secondAttribute="bottom" priority="999" constant="8" symbolic="YES" type="user" id="C3g-ZJ-3uT"/>
                             <constraint firstAttribute="centerX" secondItem="Ehs-e2-S0O" secondAttribute="centerX" type="user" id="C3p-ue-6TR"/>
@@ -208,9 +213,11 @@
                             <constraint firstItem="T3R-yr-byf" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GLq-VQ-jOC"/>
                             <constraint firstItem="6i7-Lc-dC1" firstAttribute="top" secondItem="lxM-gj-iBt" secondAttribute="top" constant="20" symbolic="YES" type="user" id="Gc3-8L-j76"/>
                             <constraint firstItem="T3R-yr-byf" firstAttribute="top" secondItem="G7e-z7-0LY" secondAttribute="bottom" constant="20" type="user" id="ISg-PR-yvd"/>
+                            <constraint firstAttribute="bottom" secondItem="dfV-6D-qib" secondAttribute="bottom" constant="20" type="user" id="Ifc-rF-kyV"/>
                             <constraint firstItem="G7e-z7-0LY" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Kim-gQ-Z8k"/>
                             <constraint firstItem="hj3-Gr-CcF" firstAttribute="top" secondItem="Ehs-e2-S0O" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="M61-us-D1B"/>
                             <constraint firstItem="Ehs-e2-S0O" firstAttribute="top" secondItem="T3R-yr-byf" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="NR6-Cu-EVU"/>
+                            <constraint firstItem="dfV-6D-qib" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Vjw-Qo-P8e"/>
                             <constraint firstItem="OUv-ks-uNY" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="aeT-cO-rUP"/>
                             <constraint firstItem="hj3-Gr-CcF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G7e-z7-0LY" secondAttribute="bottom" priority="998" constant="20" type="user" id="c2D-Hn-maM"/>
                             <constraint firstItem="G7e-z7-0LY" firstAttribute="top" secondItem="6i7-Lc-dC1" secondAttribute="bottom" priority="999" constant="20" type="user" id="gYU-3n-eeP"/>
@@ -229,6 +236,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="addressLabel" destination="G7e-z7-0LY" id="iD0-NE-Y9d"/>
                         <outlet property="allInThisStreetButton" destination="T3R-yr-byf" id="1wy-L5-QE4"/>
@@ -237,6 +245,7 @@
                         <outlet property="mapsAppButton" destination="hj3-Gr-CcF" id="G1I-PE-not"/>
                         <outlet property="nameLabel" destination="6i7-Lc-dC1" id="5Hl-UB-lLb"/>
                         <outlet property="scrollView" destination="lxM-gj-iBt" id="5Ym-tm-6b1"/>
+                        <outlet property="sourceLabel" destination="dfV-6D-qib" id="V6y-aO-Eng"/>
                         <segue destination="S9Y-Yy-0sA" kind="push" identifier="stolpersteinDetailViewControllerToStolpersteinListViewController" id="gzf-lt-1mR"/>
                     </connections>
                 </viewController>
@@ -263,9 +272,6 @@
     <classes>
         <class className="ImageGalleryViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageGalleryViewController.h"/>
-        </class>
-        <class className="LinkedTextLabel" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LinkedTextLabel.h"/>
         </class>
         <class className="MapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
@@ -297,11 +303,17 @@
                 <relationship kind="outlet" name="mapsAppButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="sourceLinkedTextLabel" candidateClass="LinkedTextLabel"/>
+                <relationship kind="outlet" name="sourceLabel" candidateClass="TTTAttributedLabel"/>
             </relationships>
         </class>
         <class className="StolpersteinListViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StolpersteinListViewController.h"/>
+        </class>
+        <class className="TTTAttributedLabel" superclassName="UILabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTTAttributedLabel.h"/>
+            <relationships>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

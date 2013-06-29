@@ -76,7 +76,6 @@
 		48BAF38416E926DE007250A0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48BAF38316E926DE007250A0 /* Settings.bundle */; };
 		48BAF38816E9405C007250A0 /* DiagnosticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BAF38716E9405C007250A0 /* DiagnosticsService.m */; };
 		48C0272D172B024F0053B8E9 /* Stolpersteine-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48C0272C172B024F0053B8E9 /* Stolpersteine-Config.plist */; };
-		48C02733172F05A50053B8E9 /* LinkedTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C02732172F05A50053B8E9 /* LinkedTextLabel.m */; };
 		6205ED94175E021D00482DF9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6205ED93175E021D00482DF9 /* libPods.a */; };
 		6205ED96175E023000482DF9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6205ED95175E023000482DF9 /* libPods.a */; };
 		621CB6141760978E00796E18 /* ImageGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 621CB6131760978E00796E18 /* ImageGalleryViewController.m */; };
@@ -204,8 +203,6 @@
 		48BAF38616E9405C007250A0 /* DiagnosticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiagnosticsService.h; sourceTree = "<group>"; };
 		48BAF38716E9405C007250A0 /* DiagnosticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiagnosticsService.m; sourceTree = "<group>"; };
 		48C0272C172B024F0053B8E9 /* Stolpersteine-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Stolpersteine-Config.plist"; sourceTree = "<group>"; };
-		48C02731172F05A50053B8E9 /* LinkedTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedTextLabel.h; sourceTree = "<group>"; };
-		48C02732172F05A50053B8E9 /* LinkedTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedTextLabel.m; sourceTree = "<group>"; };
 		6205ED93175E021D00482DF9 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		6205ED95175E023000482DF9 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		620B6C44171847550035C2AC /* buildnumber_dynamic.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = buildnumber_dynamic.xcconfig; sourceTree = "<group>"; };
@@ -400,8 +397,6 @@
 				48633B9616C03F690057A317 /* StolpersteinListViewController.m */,
 				48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */,
 				48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */,
-				48C02731172F05A50053B8E9 /* LinkedTextLabel.h */,
-				48C02732172F05A50053B8E9 /* LinkedTextLabel.m */,
 				4825F929174E8F7C0058B811 /* Image Gallery */,
 			);
 			path = iPhone;
@@ -943,7 +938,6 @@
 				62F147C4170202A1003E7DAA /* SearchBar.m in Sources */,
 				62F147C5170202A1003E7DAA /* SearchDisplayController.m in Sources */,
 				62F147C6170202A1003E7DAA /* SearchTextField.m in Sources */,
-				48C02733172F05A50053B8E9 /* LinkedTextLabel.m in Sources */,
 				4825F937174E8F7C0058B811 /* ImageGalleryItemView.m in Sources */,
 				4825F939174E8F7C0058B811 /* ProgressImageView.m in Sources */,
 				621CB6141760978E00796E18 /* ImageGalleryViewController.m in Sources */,

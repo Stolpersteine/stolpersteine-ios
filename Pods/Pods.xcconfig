@@ -2,8 +2,8 @@ ALWAYS_SEARCH_USER_PATHS = YES
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = ${PODS_HEADERS_SEARCH_PATHS}
 LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAnalytics-iOS-SDK/Library"
-OTHER_LDFLAGS = -ObjC -lGoogleAnalytics -framework CFNetwork -framework CoreData -framework CoreGraphics -framework IOKit -framework MobileCoreServices -framework QuartzCore -framework Security -framework SystemConfiguration -framework UIKit
-PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/AFNetworking" "${PODS_ROOT}/BuildHeaders/AGWindowView" "${PODS_ROOT}/BuildHeaders/Base64nl" "${PODS_ROOT}/BuildHeaders/GoogleAnalytics-iOS-SDK"
+OTHER_LDFLAGS = -ObjC -lGoogleAnalytics -framework CFNetwork -framework CoreData -framework CoreGraphics -framework CoreText -framework IOKit -framework MobileCoreServices -framework QuartzCore -framework Security -framework SystemConfiguration -framework UIKit
+PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/AFNetworking" "${PODS_ROOT}/BuildHeaders/AGWindowView" "${PODS_ROOT}/BuildHeaders/Base64nl" "${PODS_ROOT}/BuildHeaders/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/BuildHeaders/TTTAttributedLabel"
 PODS_HEADERS_SEARCH_PATHS = ${PODS_PUBLIC_HEADERS_SEARCH_PATHS}
-PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/AGWindowView" "${PODS_ROOT}/Headers/Base64nl" "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK"
+PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/AGWindowView" "${PODS_ROOT}/Headers/Base64nl" "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/TTTAttributedLabel"
 PODS_ROOT = ${SRCROOT}/Pods

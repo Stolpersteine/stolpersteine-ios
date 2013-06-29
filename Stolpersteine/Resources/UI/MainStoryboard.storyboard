@@ -195,7 +195,8 @@
                                     <action selector="showInMapsApp:" destination="Az3-JW-c4L" eventType="touchUpInside" id="RvO-g3-liI"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfV-6D-qib" customClass="TTTAttributedLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Source" lineBreakMode="tailTruncation" numberOfLines="999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="dfV-6D-qib" customClass="TTTAttributedLabel">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -213,15 +214,16 @@
                             <constraint firstItem="T3R-yr-byf" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GLq-VQ-jOC"/>
                             <constraint firstItem="6i7-Lc-dC1" firstAttribute="top" secondItem="lxM-gj-iBt" secondAttribute="top" constant="20" symbolic="YES" type="user" id="Gc3-8L-j76"/>
                             <constraint firstItem="T3R-yr-byf" firstAttribute="top" secondItem="G7e-z7-0LY" secondAttribute="bottom" constant="20" type="user" id="ISg-PR-yvd"/>
-                            <constraint firstAttribute="bottom" secondItem="dfV-6D-qib" secondAttribute="bottom" constant="20" type="user" id="Ifc-rF-kyV"/>
                             <constraint firstItem="G7e-z7-0LY" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Kim-gQ-Z8k"/>
                             <constraint firstItem="hj3-Gr-CcF" firstAttribute="top" secondItem="Ehs-e2-S0O" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="M61-us-D1B"/>
                             <constraint firstItem="Ehs-e2-S0O" firstAttribute="top" secondItem="T3R-yr-byf" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="NR6-Cu-EVU"/>
+                            <constraint firstAttribute="bottom" secondItem="dfV-6D-qib" secondAttribute="bottom" constant="20" symbolic="YES" type="user" id="Pwp-EO-UYx"/>
                             <constraint firstItem="dfV-6D-qib" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Vjw-Qo-P8e"/>
                             <constraint firstItem="OUv-ks-uNY" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="aeT-cO-rUP"/>
                             <constraint firstItem="hj3-Gr-CcF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G7e-z7-0LY" secondAttribute="bottom" priority="998" constant="20" type="user" id="c2D-Hn-maM"/>
                             <constraint firstItem="G7e-z7-0LY" firstAttribute="top" secondItem="6i7-Lc-dC1" secondAttribute="bottom" priority="999" constant="20" type="user" id="gYU-3n-eeP"/>
                             <constraint firstAttribute="centerX" secondItem="T3R-yr-byf" secondAttribute="centerX" type="user" id="h4Z-c7-TQU"/>
+                            <constraint firstAttribute="trailing" secondItem="dfV-6D-qib" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="iPG-ni-rTP"/>
                             <constraint firstAttribute="trailing" secondItem="G7e-z7-0LY" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="j4A-ZS-WtO"/>
                             <constraint firstItem="Ehs-e2-S0O" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="jAu-I3-muU"/>
                             <constraint firstItem="Ehs-e2-S0O" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G7e-z7-0LY" secondAttribute="bottom" priority="999" constant="20" type="user" id="lMC-Cl-LQg"/>

@@ -10,6 +10,7 @@
 
 @class Stolperstein;
 @class TTTAttributedLabel;
+@class RoundedRectButton;
 
 @interface StolpersteinDetailViewController : UIViewController
 
@@ -19,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIView *imageGalleryView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UIButton *allInThisStreetButton;
+@property (weak, nonatomic) IBOutlet RoundedRectButton *allInThisStreetButton;
 @property (weak, nonatomic) IBOutlet UIButton *biographyButton;
 @property (weak, nonatomic) IBOutlet UIButton *mapsAppButton;
 @property (strong, nonatomic) IBOutlet TTTAttributedLabel *sourceLabel;

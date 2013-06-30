@@ -21,6 +21,7 @@
 #import "Localization.h"
 #import "ImageGalleryViewController.h"
 #import "TTTAttributedLabel.h"
+#import "RoundedRectButton.h"
 
 @interface StolpersteinDetailViewController()<TTTAttributedLabelDelegate>
 
@@ -65,6 +66,7 @@
     } else {
         NSString *streetButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.street", nil);
         [self.allInThisStreetButton setTitle:streetButtonTitle forState:UIControlStateNormal];
+        self.allInThisStreetButton.chevronEnabled = YES;
     }
 
     // Biography button
@@ -102,25 +104,6 @@
     
     [self.scrollView flashScrollIndicators];
     [AppDelegate.diagnosticsService trackViewWithClass:self.class];
-}
-
-- (UIButton *)newRoundedRectButtonWithTitle:(NSString *)title action:(SEL)action chevronEnabled:(BOOL)chevronEnabled
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-    [button setTitle:title forState:UIControlStateNormal];
-    [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    UIImage *backgroundImage = [[UIImage imageNamed:@"rounded-rect-frame.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
-    [button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
-    
-    if (chevronEnabled) {
-        UIImage *chevron = [UIImage imageNamed:@"icon-chevron.png"];
-        [button setImage:chevron forState:UIControlStateNormal];
-        [button sizeToFit];
-        button.titleEdgeInsets = UIEdgeInsetsMake(0, -chevron.size.width, 0, 0);
-    }
-    
-    return button;
 }
 
 - (IBAction)showActivities:(UIBarButtonItem *)sender

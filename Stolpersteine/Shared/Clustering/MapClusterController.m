@@ -46,7 +46,7 @@ static double CELL_SIZE = 40.0; // [points]
 - (void)addAnnotations:(NSArray *)annotations
 {
     [self.allAnnotationsMapView addAnnotations:annotations];
-    [self updateAnnotationsAnimated:TRUE completion:NULL];
+    [self updateAnnotationsAnimated:YES completion:NULL];
 }
 
 - (double)convertPointSize:(double)pointSize toMapPointSizeFromView:(UIView *)view

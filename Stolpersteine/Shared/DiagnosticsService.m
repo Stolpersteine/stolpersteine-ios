@@ -39,7 +39,7 @@
         self.gai.dispatchInterval = 30;
 //        self.gai.debug = YES;
         self.gaiTracker = [self.gai trackerWithTrackingId:googleAnayticsID];
-        self.gaiTracker.anonymize = TRUE;
+        self.gaiTracker.anonymize = YES;
         NSDictionary *infoDictionary = [NSBundle.mainBundle infoDictionary];
         NSString *version = [infoDictionary objectForKey:@"CFBundleVersion"];
         NSString *shortVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];

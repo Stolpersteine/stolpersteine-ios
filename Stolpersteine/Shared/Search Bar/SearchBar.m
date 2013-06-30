@@ -88,12 +88,12 @@
     NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
     textField.rightViewMode = text.length > 0 ? UITextFieldViewModeAlways : UITextFieldViewModeNever;
     
-    return TRUE;
+    return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    BOOL result = TRUE;
+    BOOL result = YES;
     if ([self.delegate respondsToSelector:@selector(searchBarShouldReturn:)]) {
         result = [self.delegate searchBarShouldReturn:self];
     }

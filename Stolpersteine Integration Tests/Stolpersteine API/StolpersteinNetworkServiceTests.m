@@ -30,7 +30,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     self.networkService = [[StolpersteinNetworkService alloc] initWithClientUser:nil clientPassword:nil];
     self.networkService.allowsInvalidSSLCertificate = YES;
     
-    self.done = FALSE;
+    self.done = NO;
 }
 
 - (BOOL)waitForCompletion:(NSTimeInterval)timeoutSecs
@@ -50,7 +50,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 - (void)testRetrieveStolpersteine
 {
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = TRUE;
+        self.done = YES;
         
         STAssertNil(error, @"Error request");
         STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
@@ -91,7 +91,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
     searchData.keyword = @"Ern";
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = TRUE;
+        self.done = YES;
         
         STAssertNil(error, @"Error request");
         STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
@@ -111,7 +111,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
     searchData.locationStreet = @"Turmstraße";
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = TRUE;
+        self.done = YES;
         
         STAssertNil(error, @"Error request");
         STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
@@ -130,7 +130,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     // Load first two stolpersteine
     __block NSString *stolpersteineID0, *stolpersteineID1;
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 2) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = TRUE;
+        self.done = YES;
         
         STAssertNil(error, @"Error request");
         STAssertEquals(stolpersteine.count, 2u, @"Wrong number of stolpersteine");
@@ -144,9 +144,9 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     STAssertTrue([self waitForCompletion:5.0], @"Time out");
 
     // First page
-    self.done = FALSE;
+    self.done = NO;
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 1) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = TRUE;
+        self.done = YES;
         
         STAssertNil(error, @"Error request");
         STAssertEquals(stolpersteine.count, 1u, @"Wrong number of stolpersteine");
@@ -159,9 +159,9 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     STAssertTrue([self waitForCompletion:5.0], @"Time out");
 
     // Second page
-    self.done = FALSE;
+    self.done = NO;
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(1, 1) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = TRUE;
+        self.done = YES;
         
         STAssertNil(error, @"Error request");
         STAssertEquals(stolpersteine.count, 1u, @"Wrong number of stolpersteine");

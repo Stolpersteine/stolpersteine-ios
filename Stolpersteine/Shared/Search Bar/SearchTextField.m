@@ -32,7 +32,7 @@
     self.clearButtonMode = UITextFieldViewModeNever;
     self.borderStyle = UITextBorderStyleNone;
     self.accessibilityTraits = UIAccessibilityTraitSearchField;
-    self.portraitModeEnabled = TRUE;
+    self.portraitModeEnabled = YES;
     self.autocorrectionType = UITextAutocorrectionTypeNo;
     self.returnKeyType = UIReturnKeySearch;
 }

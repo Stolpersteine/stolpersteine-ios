@@ -52,7 +52,7 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
         CGRect frame = CGRectMake(0, 0, contentsController.view.frame.size.width, contentsController.view.frame.size.height);
         self.searchResultsTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
         self.searchResultsTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        self.searchResultsTableView.hidden = TRUE;
+        self.searchResultsTableView.hidden = YES;
         self.searchResultsTableView.alpha = 0;
         [contentsController.view addSubview:self.searchResultsTableView];
     }
@@ -81,7 +81,7 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
 {
     [self.searchResultsTableView.layer removeAllAnimations];
     if (searchResultsTableViewVisible) {
-        self.searchResultsTableView.hidden = FALSE;
+        self.searchResultsTableView.hidden = NO;
         [UIView animateWithDuration:0.25 animations:^{
             self.searchResultsTableView.alpha = 1.0;
         }];
@@ -90,7 +90,7 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
             self.searchResultsTableView.alpha = 0.0;
         } completion:^(BOOL finished) {
             if (finished) {
-                self.searchResultsTableView.hidden = TRUE;
+                self.searchResultsTableView.hidden = YES;
             }
         }];
     }
@@ -119,17 +119,17 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
 
 - (void)cancel:(UIBarButtonItem *)barButtonItem
 {
-    self.active = FALSE;
+    self.active = NO;
 }
 
 - (void)searchBarTextDidBeginEditing:(SearchBar *)searchBar
 {
-    self.active = TRUE;
+    self.active = YES;
 }
 
 - (void)searchBar:(SearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    BOOL shouldReloadData = TRUE;
+    BOOL shouldReloadData = YES;
     if ([self.delegate respondsToSelector:@selector(searchDisplayController:shouldReloadTableForSearchString:)]) {
         shouldReloadData = [self.delegate searchDisplayController:self shouldReloadTableForSearchString:searchText];
     }
@@ -142,7 +142,7 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnima
 - (BOOL)searchBarShouldReturn:(SearchBar *)searchBar
 {
     [self.searchBar resignFirstResponder];
-    return TRUE;
+    return YES;
 }
 
 - (void)setSearchResultsDataSource:(id<UITableViewDataSource>)searchResultsDataSource

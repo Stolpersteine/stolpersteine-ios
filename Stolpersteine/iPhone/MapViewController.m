@@ -99,7 +99,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     // while the map is off screen.
     if (!self.isRegionToSetInvalid) {
         self.mapView.region = self.regionToSet;
-        self.regionToSetInvalid = TRUE;
+        self.regionToSetInvalid = YES;
     }
     
     [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
@@ -207,19 +207,19 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 {
     NSArray *selectedAnnotations = self.mapView.selectedAnnotations;
     for (id<MKAnnotation> selectedAnnotation in selectedAnnotations) {
-        [self.mapView deselectAnnotation:selectedAnnotation animated:TRUE];
+        [self.mapView deselectAnnotation:selectedAnnotation animated:YES];
     }
 }
 
 - (IBAction)centerMap:(UIButton *)sender
 {
     if (!self.isUserLocationMode && self.userLocation.location) {
-        self.userLocationMode = TRUE;
+        self.userLocationMode = YES;
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.userLocation.location.coordinate, ZOOM_DISTANCE_USER, ZOOM_DISTANCE_USER);
         [self.mapView setRegion:region animated:YES];
     } else {
         if (self.userLocation.location) {
-            self.userLocationMode = FALSE;
+            self.userLocationMode = NO;
         }
         [self.mapView setRegion:BERLIN_REGION animated:YES];
     }
@@ -276,7 +276,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     }
 
     // Update annotations
-    [self.mapClusterController updateAnnotationsAnimated:TRUE completion:^{
+    [self.mapClusterController updateAnnotationsAnimated:YES completion:^{
         if (self.stolpersteinToSelect) {
             // Map has zoomed to selected stolperstein; search for cluster annotation that contains this stolperstein
             id<MKAnnotation> annotation = [self annotationForStolperstein:self.stolpersteinToSelect inMapRect:mapView.visibleMapRect];
@@ -285,7 +285,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
             // Dispatch async to avoid calling regionDidChangeAnimated immediately
             dispatch_async(dispatch_get_main_queue(), ^{
                 // No zooming, only panning. Otherwise, stolperstein might change to a different cluster annotation
-                [self.mapView setCenterCoordinate:annotation.coordinate animated:FALSE];
+                [self.mapView setCenterCoordinate:annotation.coordinate animated:NO];
             });
             
             if ([self isCoordinateUpToDate:annotation.coordinate]) {
@@ -365,11 +365,11 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
     if (status == kCLAuthorizationStatusAuthorized) {
-        self.mapView.showsUserLocation = TRUE;
+        self.mapView.showsUserLocation = YES;
     } else {
         self.userLocation = nil;
-        self.mapView.showsUserLocation = FALSE;
-        self.userLocationMode = TRUE;
+        self.mapView.showsUserLocation = NO;
+        self.userLocationMode = YES;
         [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation animated:NO];
     }
 }
@@ -390,7 +390,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         return YES;
     }];
                                            
-    return FALSE;
+    return NO;
 }
 
 - (void)searchDisplayController:(SearchDisplayController *)controller willChangeNavigationItem:(UINavigationItem *)navigationItem
@@ -460,12 +460,12 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [self.mapView setRegion:region animated:YES];
     if ([self isCoordinateUpToDate:region.center]) {
         // Manually call update methods because region won't change
-        [self mapView:self.mapView regionWillChangeAnimated:TRUE];
-        [self mapView:self.mapView regionDidChangeAnimated:TRUE];
+        [self mapView:self.mapView regionWillChangeAnimated:YES];
+        [self mapView:self.mapView regionDidChangeAnimated:YES];
     }
     
     // Dismiss search display controller
-    self.mySearchDisplayController.active = FALSE;
+    self.mySearchDisplayController.active = NO;
 }
 
 #pragma mark - Scroll view

@@ -22,6 +22,7 @@
 #import "ImageGalleryViewController.h"
 #import "TTTAttributedLabel.h"
 #import "RoundedRectButton.h"
+#import "WebViewController.h"
 
 @interface StolpersteinDetailViewController()<TTTAttributedLabelDelegate>
 
@@ -73,6 +74,7 @@
     if (self.stolperstein.personBiographyURLString) {
         NSString *biographyButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.biography", nil);
         [self.biographyButton setTitle:biographyButtonTitle forState:UIControlStateNormal];
+        self.biographyButton.chevronEnabled = YES;
     } else {
         [self.biographyButton removeFromSuperview];
     }
@@ -118,17 +120,6 @@
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
-- (void)showAllInThisStreet:(UIButton *)sender
-{
-    [self performSegueWithIdentifier:@"stolpersteinDetailViewControllerToStolpersteinListViewController" sender:self];
-}
-
-- (void)showBiography:(UIButton *)sender
-{
-    NSURL *url = [[NSURL alloc] initWithString:self.stolperstein.personBiographyURLString];
-    [UIApplication.sharedApplication openURL:url];
-}
-
 - (void)showInMapsApp:(UIButton *)sender
 {
     // Create an MKMapItem to pass to the Maps app
@@ -162,6 +153,10 @@
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
         listViewController.searchData = searchData;
         listViewController.title = searchData.locationStreet;
+    } else if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToWebViewController"]) {
+        NSURL *url = [[NSURL alloc] initWithString:self.stolperstein.personBiographyURLString];
+        WebViewController *webViewController = (WebViewController *)segue.destinationViewController;
+        webViewController.url = url;
     }
 }
 

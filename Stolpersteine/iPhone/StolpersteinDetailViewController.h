@@ -21,15 +21,13 @@
 @property (weak, nonatomic) IBOutlet UIView *imageGalleryView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet RoundedRectButton *allInThisStreetButton;
-@property (weak, nonatomic) IBOutlet UIButton *biographyButton;
-@property (weak, nonatomic) IBOutlet UIButton *mapsAppButton;
+@property (weak, nonatomic) IBOutlet RoundedRectButton *biographyButton;
+@property (weak, nonatomic) IBOutlet RoundedRectButton *mapsAppButton;
 @property (strong, nonatomic) IBOutlet TTTAttributedLabel *sourceLabel;
 
 @property (nonatomic, assign, getter = isAllInThisStreetButtonHidden) BOOL allInThisStreetButtonHidden;
 
 - (IBAction)showActivities:(UIBarButtonItem *)sender;
-- (IBAction)showAllInThisStreet:(UIButton *)sender;
-- (IBAction)showBiography:(UIButton *)sender;
 - (IBAction)showInMapsApp:(UIButton *)sender;
 
 @end

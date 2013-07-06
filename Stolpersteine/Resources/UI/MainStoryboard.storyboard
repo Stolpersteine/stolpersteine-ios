@@ -300,7 +300,13 @@
                             <constraint firstItem="mdx-kd-zb2" firstAttribute="bottom" secondItem="ScY-bK-aUx" secondAttribute="bottom" type="default" id="sfh-32-QRX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="MW0-Yl-0Kb"/>
+                    <navigationItem key="navigationItem" id="MW0-Yl-0Kb">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="XVh-R8-mSf">
+                            <connections>
+                                <action selector="showActivities:" destination="ZbI-TV-s7f" id="vme-rg-mBl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="webView" destination="mdx-kd-zb2" id="dAg-JV-D1z"/>
                     </connections>
@@ -360,6 +366,8 @@
         <class className="WebViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
             <relationships>
+                <relationship kind="action" name="showActivities:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="showActivities" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>

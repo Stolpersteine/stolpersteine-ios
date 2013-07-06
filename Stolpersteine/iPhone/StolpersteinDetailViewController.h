@@ -15,6 +15,7 @@
 @interface StolpersteinDetailViewController : UIViewController
 
 @property (nonatomic, strong) Stolperstein *stolperstein;
+@property (nonatomic, assign, getter = isAllInThisStreetButtonHidden) BOOL allInThisStreetButtonHidden;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -24,8 +25,6 @@
 @property (weak, nonatomic) IBOutlet RoundedRectButton *biographyButton;
 @property (weak, nonatomic) IBOutlet RoundedRectButton *mapsAppButton;
 @property (strong, nonatomic) IBOutlet TTTAttributedLabel *sourceLabel;
-
-@property (nonatomic, assign, getter = isAllInThisStreetButtonHidden) BOOL allInThisStreetButtonHidden;
 
 - (IBAction)showActivities:(UIBarButtonItem *)sender;
 - (IBAction)showInMapsApp:(UIButton *)sender;

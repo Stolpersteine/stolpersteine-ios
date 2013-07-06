@@ -28,6 +28,29 @@ install_resource()
       ;;
   esac
 }
+install_resource 'TUSafariActivity/TUSafariActivity/Safari.png'
+install_resource 'TUSafariActivity/TUSafariActivity/Safari@2x.png'
+install_resource 'TUSafariActivity/TUSafariActivity/Safari@2x~ipad.png'
+install_resource 'TUSafariActivity/TUSafariActivity/Safari~ipad.png'
+install_resource 'TUSafariActivity/TUSafariActivity/cs.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/de.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/en.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/es.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/eu.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/fi.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/fr.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/it.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/ja.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/ko.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/nl.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/no.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/pl.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/pt.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/ru.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/sk.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/sv.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/vi.lproj'
+install_resource 'TUSafariActivity/TUSafariActivity/zh_CN.lproj'
 
 rsync -avr --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 rm "$RESOURCES_TO_COPY"

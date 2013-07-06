@@ -108,14 +108,19 @@
     [AppDelegate.diagnosticsService trackViewWithClass:self.class];
 }
 
-- (IBAction)showActivities:(UIBarButtonItem *)sender
+- (NSArray *)itemsToShare
 {
     NSString *textItem = [Localization newDescriptionFromStolperstein:self.stolperstein];
     NSMutableArray *itemsToShare = [NSMutableArray arrayWithObject:textItem];
     if (self.stolperstein.personBiographyURLString) {
         [itemsToShare addObject:[NSURL URLWithString:self.stolperstein.personBiographyURLString]];
     }
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+    return itemsToShare;
+}
+
+- (IBAction)showActivities:(UIBarButtonItem *)sender
+{
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:self.itemsToShare applicationActivities:nil];
     activityViewController.excludedActivityTypes = @[UIActivityTypeAssignToContact];
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
@@ -157,6 +162,7 @@
         NSURL *url = [[NSURL alloc] initWithString:self.stolperstein.personBiographyURLString];
         WebViewController *webViewController = (WebViewController *)segue.destinationViewController;
         webViewController.url = url;
+        webViewController.itemsToShare = self.itemsToShare;
     }
 }
 

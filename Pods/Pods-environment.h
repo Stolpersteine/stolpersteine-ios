@@ -37,3 +37,9 @@
 #define COCOAPODS_VERSION_MINOR_TTTAttributedLabel 7
 #define COCOAPODS_VERSION_PATCH_TTTAttributedLabel 1
 
+// TUSafariActivity
+#define COCOAPODS_POD_AVAILABLE_TUSafariActivity
+#define COCOAPODS_VERSION_MAJOR_TUSafariActivity 1
+#define COCOAPODS_VERSION_MINOR_TUSafariActivity 0
+#define COCOAPODS_VERSION_PATCH_TUSafariActivity 0
+

@@ -35,4 +35,9 @@
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
+- (IBAction)dismissDialog:(UIBarButtonItem *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 @end

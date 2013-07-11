@@ -16,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 - (IBAction)showActivities:(UIBarButtonItem *)sender;
+- (IBAction)dismissDialog:(UIBarButtonItem *)sender;
+
 
 @end

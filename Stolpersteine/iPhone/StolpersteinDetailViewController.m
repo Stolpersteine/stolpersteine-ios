@@ -74,7 +74,6 @@
     if (self.stolperstein.personBiographyURLString) {
         NSString *biographyButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.biography", nil);
         [self.biographyButton setTitle:biographyButtonTitle forState:UIControlStateNormal];
-        self.biographyButton.chevronEnabled = YES;
     } else {
         [self.biographyButton removeFromSuperview];
     }

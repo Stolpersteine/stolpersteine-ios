@@ -30,7 +30,6 @@
         self.progressView.progressTintColor = UIColor.lightGrayColor;
         [self addSubview:self.progressView];
         
-        self.backgroundColor = UIColor.lightGrayColor;
         self.contentMode = UIViewContentModeScaleAspectFill;
     }
     return self;

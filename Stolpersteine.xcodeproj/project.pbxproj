@@ -1083,10 +1083,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine/Stolpersteine-Prefix.pch";
 				INFOPLIST_FILE = "Stolpersteine/Stolpersteine-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Stolpersteine/Shared/Google Analytics 2.0beta4\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1227,10 +1223,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine/Stolpersteine-Prefix.pch";
 				INFOPLIST_FILE = "Stolpersteine/Stolpersteine-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Stolpersteine/Shared/Google Analytics 2.0beta4\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1243,10 +1235,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine/Stolpersteine-Prefix.pch";
 				INFOPLIST_FILE = "Stolpersteine/Stolpersteine-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Stolpersteine/Shared/Google Analytics 2.0beta4\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

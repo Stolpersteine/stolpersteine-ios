@@ -165,7 +165,10 @@
         WebViewController *webViewController = (WebViewController *)segue.destinationViewController;
         webViewController.url = url;
         webViewController.itemsToShare = self.itemsToShare;
-        webViewController.title = [Localization newNameFromStolperstein:self.stolperstein];
+        webViewController.title = NSLocalizedString(@"StolpersteinDetailViewController.webViewTitle", nil);
+        NSString *name = [Localization newNameFromStolperstein:self.stolperstein];
+        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:name style:UIBarButtonItemStyleBordered target:nil action:nil];
+        self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
 }
 

@@ -20,3 +20,4 @@
 "StolpersteinDetailViewController.street" = "All in this street";
 "StolpersteinDetailViewController.maps" = "Show in Maps App";
 "StolpersteinDetailViewController.source" = "Source: %@";
+"StolpersteinDetailViewController.webViewTitle" = "Biography";

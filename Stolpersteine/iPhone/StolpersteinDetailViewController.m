@@ -76,6 +76,7 @@
     if (self.stolperstein.personBiographyURLString) {
         NSString *biographyButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.biography", nil);
         [self.biographyButton setTitle:biographyButtonTitle forState:UIControlStateNormal];
+        self.biographyButton.chevronEnabled = YES;
     } else {
         [self.biographyButton removeFromSuperview];
     }
@@ -164,6 +165,7 @@
         WebViewController *webViewController = (WebViewController *)segue.destinationViewController;
         webViewController.url = url;
         webViewController.itemsToShare = self.itemsToShare;
+        webViewController.title = [Localization newNameFromStolperstein:self.stolperstein];
     }
 }
 

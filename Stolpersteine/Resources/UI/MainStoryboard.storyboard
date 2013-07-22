@@ -185,7 +185,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ZbI-TV-s7f" kind="modal" identifier="stolpersteinDetailViewControllerToWebViewController" id="FXf-H8-4ZM"/>
+                                    <segue destination="ZbI-TV-s7f" kind="push" identifier="stolpersteinDetailViewControllerToWebViewController" id="FXf-H8-4ZM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hj3-Gr-CcF" customClass="RoundedRectButton">
@@ -282,7 +282,7 @@
             <objects>
                 <viewController id="ZbI-TV-s7f" customClass="WebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ScY-bK-aUx">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdx-kd-zb2">
@@ -291,31 +291,21 @@
                                     <outlet property="delegate" destination="ZbI-TV-s7f" id="FEu-aw-YNd"/>
                                 </connections>
                             </webView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A5g-0P-Qsb">
-                                <items>
-                                    <navigationItem title="Title" id="HC6-su-Bfq">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="jbe-S0-o4A">
-                                            <connections>
-                                                <action selector="dismissDialog:" destination="ZbI-TV-s7f" id="c8N-DG-Fmo"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="mdx-kd-zb2" firstAttribute="top" secondItem="ScY-bK-aUx" secondAttribute="top" type="default" id="65V-u6-oHm"/>
                             <constraint firstItem="mdx-kd-zb2" firstAttribute="leading" secondItem="ScY-bK-aUx" secondAttribute="leading" type="default" id="6vN-cQ-6jU"/>
-                            <constraint firstItem="A5g-0P-Qsb" firstAttribute="trailing" secondItem="ScY-bK-aUx" secondAttribute="trailing" type="default" id="ECk-Yc-SSD"/>
                             <constraint firstItem="mdx-kd-zb2" firstAttribute="trailing" secondItem="ScY-bK-aUx" secondAttribute="trailing" type="default" id="Z9A-4K-G78"/>
-                            <constraint firstItem="A5g-0P-Qsb" firstAttribute="top" secondItem="ScY-bK-aUx" secondAttribute="top" type="default" id="dWt-l3-1n9"/>
-                            <constraint firstItem="A5g-0P-Qsb" firstAttribute="leading" secondItem="ScY-bK-aUx" secondAttribute="leading" type="default" id="hJ2-v5-96M"/>
-                            <constraint firstItem="mdx-kd-zb2" firstAttribute="top" secondItem="A5g-0P-Qsb" secondAttribute="bottom" type="default" id="kOO-jk-l4q"/>
                             <constraint firstItem="mdx-kd-zb2" firstAttribute="bottom" secondItem="ScY-bK-aUx" secondAttribute="bottom" type="default" id="sfh-32-QRX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MW0-Yl-0Kb">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="XVh-R8-mSf"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="XVh-R8-mSf">
+                            <connections>
+                                <action selector="showActivities:" destination="ZbI-TV-s7f" id="Suq-xQ-rAn"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="webView" destination="mdx-kd-zb2" id="dAg-JV-D1z"/>

@@ -9,9 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
+typedef enum {
+    StolpersteinTypeStolperstein,
+    StolpersteinTypeStolperschwelle
+} StolpersteinType;
+
 @interface Stolperstein : NSObject<MKAnnotation>
 
 @property (nonatomic, strong) NSString *id;
+@property (nonatomic, assign) StolpersteinType type;
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) NSArray *imageURLStrings;
 @property (nonatomic, strong) NSString *personFirstName;

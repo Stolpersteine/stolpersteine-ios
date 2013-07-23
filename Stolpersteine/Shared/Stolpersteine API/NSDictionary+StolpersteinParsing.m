@@ -24,6 +24,13 @@
     stolperstein.locationZipCode = [self valueForKeyPath:@"location.zipCode"];
     stolperstein.locationCity = [self valueForKeyPath:@"location.city"];
     
+    NSString *typeAsString = [self valueForKeyPath:@"type"];
+    if ([typeAsString isEqualToString:@"stolperschwelle"]) {
+        stolperstein.type = StolpersteinTypeStolperschwelle;
+    } else {
+        stolperstein.type = StolpersteinTypeStolperstein;
+    }
+    
     NSString *latitudeAsString = [self valueForKeyPath:@"location.coordinates.latitude"];
     NSString *longitudeAsString = [self valueForKeyPath:@"location.coordinates.longitude"];
     stolperstein.locationCoordinate = CLLocationCoordinate2DMake(latitudeAsString.doubleValue, longitudeAsString.doubleValue);

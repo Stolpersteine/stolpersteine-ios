@@ -47,6 +47,7 @@
 //    self.stolperstein.imageURLStrings = @[urlString0, urlString1, urlString2];
     
 //    self.stolperstein.personBiographyURLString = @"http://www.bochum.de/C12571A3001D56CE/vwContentByKey/W287J9EG297BOLDDE/$FILE/016_018_Simons_Ellen_Sophie_und_Hermann.pdf";
+//    self.stolperstein.personBiographyURLString = @"http://asd";
     
     // Name and address
     Stolperstein *stolperstein = self.stolperstein;

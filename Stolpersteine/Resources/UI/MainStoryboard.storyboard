@@ -135,7 +135,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6i7-Lc-dC1">
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="6i7-Lc-dC1">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -150,7 +150,7 @@
                                     <segue destination="1F8-OG-UAt" kind="embed" identifier="imageGalleryViewController" id="fCj-4l-XqO"/>
                                 </connections>
                             </containerView>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Address" lineBreakMode="tailTruncation" numberOfLines="999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-z7-0LY">
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Address" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-z7-0LY">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -227,6 +227,8 @@
                             <constraint firstItem="hj3-Gr-CcF" firstAttribute="top" secondItem="Ehs-e2-S0O" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="M61-us-D1B"/>
                             <constraint firstItem="Ehs-e2-S0O" firstAttribute="top" secondItem="T3R-yr-byf" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="NR6-Cu-EVU"/>
                             <constraint firstItem="dfV-6D-qib" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Vjw-Qo-P8e"/>
+                            <constraint firstAttribute="trailing" secondItem="6i7-Lc-dC1" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Wpp-EX-kVw"/>
+                            <constraint firstAttribute="bottom" secondItem="hj3-Gr-CcF" secondAttribute="bottom" constant="-14" id="Ywx-Zm-iRb"/>
                             <constraint firstItem="OUv-ks-uNY" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="aeT-cO-rUP"/>
                             <constraint firstItem="hj3-Gr-CcF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G7e-z7-0LY" secondAttribute="bottom" priority="998" constant="20" type="user" id="c2D-Hn-maM"/>
                             <constraint firstItem="G7e-z7-0LY" firstAttribute="top" secondItem="6i7-Lc-dC1" secondAttribute="bottom" priority="999" constant="20" type="user" id="gYU-3n-eeP"/>
@@ -237,7 +239,6 @@
                             <constraint firstItem="Ehs-e2-S0O" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G7e-z7-0LY" secondAttribute="bottom" priority="999" constant="20" type="user" id="lMC-Cl-LQg"/>
                             <constraint firstItem="hj3-Gr-CcF" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="oVX-vb-hF8"/>
                             <constraint firstItem="G7e-z7-0LY" firstAttribute="top" secondItem="OUv-ks-uNY" secondAttribute="bottom" constant="20" type="user" id="pQ1-KU-82e"/>
-                            <constraint firstAttribute="bottom" secondItem="dfV-6D-qib" secondAttribute="bottom" constant="33" id="reN-X2-2Y6"/>
                         </constraints>
                     </scrollView>
                     <navigationItem key="navigationItem" id="kTu-o1-owI">
@@ -366,7 +367,6 @@
         <class className="WebViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
             <relationships>
-                <relationship kind="action" name="dismissDialog:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="showActivities:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>

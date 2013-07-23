@@ -13,7 +13,6 @@
 + (void)apply
 {
     [Appearance applyCustomNavigationBarAppearance];
-    [Appearance applyCustomButtonAppearance];
 }
 
 + (void)applyCustomNavigationBarAppearance
@@ -28,24 +27,6 @@
                                                         UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0, 1)] };
     navigationBar.titleTextAttributes = navigationBarTitleTextAttributes;
     navigationBar.tintColor = [UIColor colorWithRed:143.0f/255.0f green:147.0f/255.0f blue:155.0f/255.0f alpha:1.0f];;
-}
-
-+ (void)applyCustomButtonAppearance
-{
-//    UIButton *button = [UIButton appearanceWhenContainedIn:UIScrollView.class, nil];
-//    [button setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-//    [button setTitle:title forState:UIControlStateNormal];
-//    [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-//    UIImage *backgroundImage = [[UIImage imageNamed:@"rounded-rect-frame.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
-//    [button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
-//    [button setTintColor:UIColor.orangeColor];
-    
-//    if (chevronEnabled) {
-//        UIImage *chevron = [UIImage imageNamed:@"icon-chevron.png"];
-//        [button setImage:chevron forState:UIControlStateNormal];
-//        [button sizeToFit];
-//        button.titleEdgeInsets = UIEdgeInsetsMake(0, -chevron.size.width, 0, 0);
-//    }
 }
 
 @end

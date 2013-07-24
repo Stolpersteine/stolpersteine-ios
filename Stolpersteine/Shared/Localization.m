@@ -15,39 +15,45 @@
 
 + (NSString *)newNameFromStolperstein:(Stolperstein *)stolperstein
 {
-    NSMutableString *firstName = [NSMutableString stringWithCapacity:stolperstein.personFirstName.length + stolperstein.personLastName.length + 1];
+    NSMutableString *name = [NSMutableString stringWithCapacity:stolperstein.personFirstName.length + stolperstein.personLastName.length + 1];
     if (stolperstein.personFirstName.length > 0) {
-        if (stolperstein.personLastName.length > 0) {
-            [firstName appendFormat:@"%@ ", stolperstein.personFirstName];
-        } else {
-            [firstName appendString:stolperstein.personFirstName];
+        [name appendString:stolperstein.personFirstName];
+    }
+    
+    if (stolperstein.personLastName.length > 0) {
+        if (name.length > 0) {
+            [name appendString:@" "];
         }
+        [name appendString:stolperstein.personLastName];
     }
     
-    if (stolperstein.personLastName) {
-        [firstName appendString:stolperstein.personLastName];
+    if (stolperstein.type == StolpersteinTypeStolperschwelle) {
+        if (name.length > 0) {
+            [name appendString:@" "];
+        }
+        [name appendString:@"(Stolperschwelle)"];
     }
     
-    return firstName;
+    return name;
 }
 
 + (NSString *)newShortNameFromStolperstein:(Stolperstein *)stolperstein
 {
-    NSMutableString *firstNameShort = [NSMutableString stringWithCapacity:stolperstein.personLastName.length + 3];
+    NSMutableString *shortName = [NSMutableString stringWithCapacity:stolperstein.personLastName.length + 3];
     BOOL hasFirstLetter = (stolperstein.personFirstName.length > 0);
     if (hasFirstLetter) {
-        if (stolperstein.personLastName.length > 0) {
-            [firstNameShort appendFormat:@"%@. ", [stolperstein.personFirstName substringToIndex:1]];
-        } else {
-            [firstNameShort appendFormat:@"%@.", [stolperstein.personFirstName substringToIndex:1]];
+        [shortName appendFormat:@"%@.", [stolperstein.personFirstName substringToIndex:1]];
+    }
+    
+    if (stolperstein.personLastName.length > 0) {
+        if (shortName.length > 0) {
+            [shortName appendString:@" "];
         }
+        
+        [shortName appendString:stolperstein.personLastName];
     }
     
-    if (stolperstein.personLastName) {
-        [firstNameShort appendString:stolperstein.personLastName];
-    }
-    
-    return firstNameShort;
+    return shortName;
 }
 
 + (NSString *)newStreetNameFromStolperstein:(Stolperstein *)stolperstein

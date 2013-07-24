@@ -44,6 +44,11 @@
     stolperstein.personFirstName = @"Erna";
     stolperstein.personLastName = @"";
     STAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Erna", @"Wrong name");
+
+    stolperstein.personFirstName = nil;
+    stolperstein.personLastName = @"Gossner-Mission";
+    stolperstein.type = StolpersteinTypeStolperschwelle;
+    STAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Gossner-Mission (Stolperschwelle)", @"Wrong name");
 }
 
 - (void)testNewShortName

@@ -40,6 +40,8 @@ static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1"
         if (clientUser && clientPassword) {
             self.encodedClientCredentials = [[[NSString stringWithFormat:@"%@:%@", clientUser, clientPassword] dataUsingEncoding:NSUTF8StringEncoding] base64EncodedString];
         }
+
+        self.defaultSearchData = [[StolpersteinSearchData alloc] init];
         
         AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     }
@@ -77,14 +79,26 @@ static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1"
 - (NSOperation *)retrieveStolpersteineWithSearchData:(StolpersteinSearchData *)searchData range:(NSRange)range completionHandler:(BOOL (^)(NSArray *stolpersteine, NSError *error))completionHandler
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    if (searchData.keyword) {
-        [parameters setObject:searchData.keyword forKey:@"q"];
+    
+    // Optional parameters
+    NSString *keyword = searchData.keyword ? searchData.keyword : self.defaultSearchData.keyword;
+    if (keyword) {
+        [parameters setObject:keyword forKey:@"q"];
     }
-    if (searchData.locationStreet) {
-        [parameters setObject:searchData.locationStreet forKey:@"street"];
+    NSString *street = searchData.street ? searchData.street : self.defaultSearchData.street;
+    if (street) {
+        [parameters setObject:street forKey:@"street"];
     }
+    NSString *city = searchData.city ? searchData.city : self.defaultSearchData.city;
+    if (city) {
+        [parameters setObject:city forKey:@"city"];
+    }
+    
+    // Mandatory parameters
     [parameters setObject:@(range.length) forKey:@"limit"];
     [parameters setObject:@(range.location) forKey:@"offset"];
+    
+    // Issue request
     NSMutableURLRequest *request = [self.httpClient requestWithMethod:@"GET" path:@"stolpersteine" parameters:parameters];
     [self addBasicAuthHeaderToRequest:request];
     

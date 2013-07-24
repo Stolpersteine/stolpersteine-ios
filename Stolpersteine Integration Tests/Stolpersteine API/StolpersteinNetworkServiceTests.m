@@ -110,16 +110,66 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 - (void)testRetrieveStolpersteineStreet
 {
     StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
-    searchData.locationStreet = @"Turmstraße";
+    searchData.street = @"Turmstraße";
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
         STAssertNil(error, @"Error request");
         STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
-            BOOL found = [stolperstein.locationStreet hasPrefix:searchData.locationStreet];
+            BOOL found = [stolperstein.locationStreet hasPrefix:searchData.street];
             STAssertTrue(found, @"Wrong search result");
         }
+        
+        return NO;
+    }];
+    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+}
+
+- (void)testRetrieveStolpersteineCity
+{
+    self.networkService.defaultSearchData.city = @"xyz";    // will be overridden by specific search data
+    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+    searchData.city = @"Berlin";
+    [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
+        self.done = YES;
+        
+        STAssertNil(error, @"Error request");
+        STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
+        for (Stolperstein *stolperstein in stolpersteine) {
+            BOOL found = [stolperstein.locationCity hasPrefix:searchData.city];
+            STAssertTrue(found, @"Wrong search result");
+        }
+        
+        return NO;
+    }];
+    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+}
+
+- (void)testRetrieveStolpersteineCityInvalid
+{
+    self.networkService.defaultSearchData.city = @"Berlin";    // will be overridden by specific search data
+    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+    searchData.city = @"xyz";
+    [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
+        self.done = YES;
+        
+        STAssertNil(error, @"Error request");
+        STAssertEquals(stolpersteine.count, 0u, @"Wrong number of stolpersteine");
+        
+        return NO;
+    }];
+    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+}
+
+- (void)testRetrieveStolpersteineCityDefaultInvalid
+{
+    self.networkService.defaultSearchData.city = @"xyz";
+    [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
+        self.done = YES;
+        
+        STAssertNil(error, @"Error request");
+        STAssertEquals(stolpersteine.count, 0u, @"Wrong number of stolpersteine");
         
         return NO;
     }];

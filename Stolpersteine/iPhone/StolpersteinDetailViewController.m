@@ -157,10 +157,10 @@
         self.imageGalleryViewController = imageGalleryViewController;
     } else if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToStolpersteinListViewController"]) {
         StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
-        searchData.locationStreet = [Localization newStreetNameFromStolperstein:self.stolperstein];
+        searchData.street = [Localization newStreetNameFromStolperstein:self.stolperstein];
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
         listViewController.searchData = searchData;
-        listViewController.title = searchData.locationStreet;
+        listViewController.title = searchData.street;
     } else if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToWebViewController"]) {
         NSURL *url = [[NSURL alloc] initWithString:self.stolperstein.personBiographyURLString];
         WebViewController *webViewController = (WebViewController *)segue.destinationViewController;

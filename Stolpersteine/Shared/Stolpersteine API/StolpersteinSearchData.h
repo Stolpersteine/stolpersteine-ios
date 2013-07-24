@@ -11,6 +11,7 @@
 @interface StolpersteinSearchData : NSObject
 
 @property (nonatomic, strong) NSString *keyword;
-@property (nonatomic, strong) NSString *locationStreet;
+@property (nonatomic, strong) NSString *street;
+@property (nonatomic, strong) NSString *city;
 
 @end

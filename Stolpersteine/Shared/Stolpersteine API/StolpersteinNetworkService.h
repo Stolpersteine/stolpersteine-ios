@@ -15,6 +15,7 @@
 
 @property (nonatomic, weak) id<StolpersteinNetworkServiceDelegate> delegate;
 @property (nonatomic, assign) BOOL allowsInvalidSSLCertificate;
+@property (nonatomic, strong) StolpersteinSearchData *defaultSearchData;
 
 - (id)initWithClientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword;
 

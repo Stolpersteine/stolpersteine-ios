@@ -1,0 +1,2 @@
+PODS_GOOGLEANALYTICS_IOS_SDK_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAnalytics-iOS-SDK/Library"
+PODS_GOOGLEANALYTICS_IOS_SDK_OTHER_LDFLAGS = -lGoogleAnalytics -framework CFNetwork -framework CoreData -framework SystemConfiguration

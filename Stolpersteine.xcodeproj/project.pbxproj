@@ -79,7 +79,6 @@
 		48BAF38416E926DE007250A0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48BAF38316E926DE007250A0 /* Settings.bundle */; };
 		48BAF38816E9405C007250A0 /* DiagnosticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BAF38716E9405C007250A0 /* DiagnosticsService.m */; };
 		48C0272D172B024F0053B8E9 /* Stolpersteine-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48C0272C172B024F0053B8E9 /* Stolpersteine-Config.plist */; };
-		6205ED94175E021D00482DF9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6205ED93175E021D00482DF9 /* libPods.a */; };
 		6205ED96175E023000482DF9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6205ED95175E023000482DF9 /* libPods.a */; };
 		621CB6141760978E00796E18 /* ImageGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 621CB6131760978E00796E18 /* ImageGalleryViewController.m */; };
 		6222BF0116A030E5006ED538 /* NSDictionary+StolpersteinParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6222BF0016A030E5006ED538 /* NSDictionary+StolpersteinParsing.m */; };
@@ -126,9 +125,11 @@
 		62F147CC17020B19003E7DAA /* navigation-bar-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F147C817020B19003E7DAA /* navigation-bar-landscape@2x.png */; };
 		62F147CD17020B19003E7DAA /* navigation-bar-portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F147C917020B19003E7DAA /* navigation-bar-portrait.png */; };
 		62F147CE17020B19003E7DAA /* navigation-bar-portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F147CA17020B19003E7DAA /* navigation-bar-portrait@2x.png */; };
+		FD4FA27022B24161ABCD3E5F /* libPods-Stolpersteine Unit Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE0DCC63AF534AF3826ADCFF /* libPods-Stolpersteine Unit Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1452BF759A36498F9CF18EA1 /* Pods-Stolpersteine Unit Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stolpersteine Unit Tests.xcconfig"; path = "Pods/Pods-Stolpersteine Unit Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		195B6404122D49D18523AE52 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4805808C16C19DF100C49272 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4805809416C5BD8800C49272 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -270,6 +271,7 @@
 		62F147CA17020B19003E7DAA /* navigation-bar-portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation-bar-portrait@2x.png"; sourceTree = "<group>"; };
 		62F18DF917736A4200E2FAF9 /* StolpersteinNetworkServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinNetworkServiceDelegate.h; sourceTree = "<group>"; };
 		90D265056EBE417F95BF08CA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		AE0DCC63AF534AF3826ADCFF /* libPods-Stolpersteine Unit Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stolpersteine Unit Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,7 +293,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6205ED94175E021D00482DF9 /* libPods.a in Frameworks */,
 				627C1BF316FB35A000097711 /* MapKit.framework in Frameworks */,
 				6222BF4716A04411006ED538 /* SystemConfiguration.framework in Frameworks */,
 				6222BF4616A0440A006ED538 /* MobileCoreServices.framework in Frameworks */,
@@ -299,6 +300,7 @@
 				6222BF2516A037CE006ED538 /* SenTestingKit.framework in Frameworks */,
 				6222BF2616A037CE006ED538 /* UIKit.framework in Frameworks */,
 				6222BF2716A037CE006ED538 /* Foundation.framework in Frameworks */,
+				FD4FA27022B24161ABCD3E5F /* libPods-Stolpersteine Unit Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +554,7 @@
 				627E43B5169B0F050065C1F1 /* Frameworks */,
 				627E43B3169B0F050065C1F1 /* Products */,
 				90D265056EBE417F95BF08CA /* Pods.xcconfig */,
+				1452BF759A36498F9CF18EA1 /* Pods-Stolpersteine Unit Tests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -581,6 +584,7 @@
 				195B6404122D49D18523AE52 /* libPods.a */,
 				6205ED95175E023000482DF9 /* libPods.a */,
 				6205ED93175E021D00482DF9 /* libPods.a */,
+				AE0DCC63AF534AF3826ADCFF /* libPods-Stolpersteine Unit Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -685,10 +689,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6222BF3216A037CE006ED538 /* Build configuration list for PBXNativeTarget "Stolpersteine Unit Tests" */;
 			buildPhases = (
+				6746151FADC1422DB74C41E1 /* Check Pods Manifest.lock */,
 				6222BF1E16A037CE006ED538 /* Sources */,
 				6222BF1F16A037CE006ED538 /* Frameworks */,
 				6222BF2016A037CE006ED538 /* Resources */,
 				6222BF2116A037CE006ED538 /* ShellScript */,
+				523E77ECF4254FF1A6FA62F1 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -880,6 +886,20 @@
 			shellPath = /bin/sh;
 			shellScript = "# Copy version information into Settings.bundle\nshortVersion=`/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $SRCROOT/$INFOPLIST_FILE`\n#version=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $SRCROOT/$INFOPLIST_FILE`\nversion=$BUILD_NUMBER\necho \"Stolpersteine \"$shortVersion\" (\"$version\")\"\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $shortVersion ($version)\" \"$BUILT_PRODUCTS_DIR/Stolpersteine.app/Settings.bundle/Root.plist\"\n\n# Copy version information into Info.plist\n/usr/libexec/PlistBuddy \"$BUILT_PRODUCTS_DIR/$INFOPLIST_PATH\" -c \"set :CFBundleVersion $BUILD_NUMBER\"";
 		};
+		523E77ECF4254FF1A6FA62F1 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Stolpersteine Unit Tests-resources.sh\"\n";
+		};
 		6222BF2116A037CE006ED538 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -905,6 +925,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"$CONFIGURATION\" == \"Distribution\" ]\n    # Increment version number\n    then /usr/bin/perl -pe 's/(BUILD_NUMBER = )(\\d+)/$1.($2+1)/eg' -i $SRCROOT/Stolpersteine/buildnumber_dynamic.xcconfig\nfi";
+		};
+		6746151FADC1422DB74C41E1 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1090,7 +1124,7 @@
 		};
 		485E564617286B800038783C /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90D265056EBE417F95BF08CA /* Pods.xcconfig */;
+			baseConfigurationReference = 1452BF759A36498F9CF18EA1 /* Pods-Stolpersteine Unit Tests.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
@@ -1122,7 +1156,7 @@
 		};
 		6222BF3316A037CE006ED538 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90D265056EBE417F95BF08CA /* Pods.xcconfig */;
+			baseConfigurationReference = 1452BF759A36498F9CF18EA1 /* Pods-Stolpersteine Unit Tests.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
@@ -1138,7 +1172,7 @@
 		};
 		6222BF3416A037CE006ED538 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90D265056EBE417F95BF08CA /* Pods.xcconfig */;
+			baseConfigurationReference = 1452BF759A36498F9CF18EA1 /* Pods-Stolpersteine Unit Tests.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",

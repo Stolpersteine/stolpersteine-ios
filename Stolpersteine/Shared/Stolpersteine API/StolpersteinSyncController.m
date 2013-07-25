@@ -60,19 +60,50 @@
     [self.retrieveStolpersteineOperation cancel];
     self.retrieveStolpersteineOperation = [self.networkService retrieveStolpersteineWithSearchData:nil range:range completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         if (error == nil) {
-            if ([self.delegate respondsToSelector:@selector(stolpersteinSyncController:didAddStolpersteine:)]) {
-                [self.delegate stolpersteinSyncController:self didAddStolpersteine:stolpersteine];
-            }
+            [self didAddStolpersteine:stolpersteine];
             
-            // Next batch of data
             if (stolpersteine.count == range.length) {
+                // Next batch of data
                 NSRange nextRange = NSMakeRange(NSMaxRange(range), range.length);
                 [self retrieveStolpersteineWithRange:nextRange];
+            } else {
+                [self didEndSynchronisation];
             }
+        } else {
+            [self didFailSynchronisation];
         }
         
         return YES;
     }];
+}
+
+- (void)didAddStolpersteine:(NSArray *)stolpersteine
+{
+    if ([self.delegate respondsToSelector:@selector(stolpersteinSyncController:didAddStolpersteine:)]) {
+        [self.delegate stolpersteinSyncController:self didAddStolpersteine:stolpersteine];
+    }
+}
+
+- (void)didRemoveStolpersteine:(NSArray *)stolpersteine
+{
+    if ([self.delegate respondsToSelector:@selector(stolpersteinSyncController:didRemoveStolpersteine:)]) {
+        [self.delegate stolpersteinSyncController:self didRemoveStolpersteine:stolpersteine];
+    }    
+}
+
+- (void)didStartSynchronisation
+{
+    
+}
+
+- (void)didEndSynchronisation
+{
+    
+}
+
+- (void)didFailSynchronisation
+{
+    
 }
 
 @end

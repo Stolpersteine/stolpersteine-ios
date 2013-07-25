@@ -28,6 +28,8 @@
 #import "Localization.h"
 #import "Stolperstein.h"
 
+#import "OCMock.h"
+
 @implementation LocalizationTests
 
 - (void)testNewName

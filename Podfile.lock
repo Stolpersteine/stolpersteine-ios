@@ -4,6 +4,7 @@ PODS:
   - Base64nl (1.1)
   - GoogleAnalytics-iOS-SDK (2.0beta4)
   - NJKWebViewProgress (0.1.6)
+  - OCMock (2.2)
   - TTTAttributedLabel (1.7.1)
   - TUSafariActivity (1.0.0)
 
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - Base64nl (>= 1.1)
   - GoogleAnalytics-iOS-SDK (>= 2.0beta4)
   - NJKWebViewProgress (>= 0.1.6)
+  - OCMock (>= 2.2)
   - TTTAttributedLabel (>= 1.7.1)
   - TUSafariActivity (>= 1.0.0)
 
@@ -22,6 +24,7 @@ SPEC CHECKSUMS:
   Base64nl: 1ca185984ee5507199b5c515d3083c554e15f06e
   GoogleAnalytics-iOS-SDK: ae8e58e771b6dec84c0047154cc0e550a15e6f54
   NJKWebViewProgress: 5181e8af629e60e8dd48c8b738b39e89eeecb351
+  OCMock: 5300ae6b75398fc3ae6cbf9102191333d35f6852
   TTTAttributedLabel: e504133915a9b11de63cb470ffa2790383a3eb23
   TUSafariActivity: bd9da588f5f9136ba445d89f8f86b6dccf4d46ba
 

@@ -17,6 +17,7 @@
 
 "StolpersteinDetailViewController.title" = "Info";
 "StolpersteinDetailViewController.biography" = "Show biography";
+"StolpersteinDetailViewController.description" = "Show description";
 "StolpersteinDetailViewController.street" = "All in this street";
 "StolpersteinDetailViewController.maps" = "Show in Maps App";
 "StolpersteinDetailViewController.source" = "Source: %@";

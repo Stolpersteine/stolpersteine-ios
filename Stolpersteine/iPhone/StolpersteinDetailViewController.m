@@ -92,7 +92,8 @@
 
     // Biography button
     if (self.stolperstein.personBiographyURLString) {
-        NSString *biographyButtonTitle = NSLocalizedString(@"StolpersteinDetailViewController.biography", nil);
+        NSString *key = (self.stolperstein.type == StolpersteinTypeStolperschwelle) ? @"StolpersteinDetailViewController.description" : @"StolpersteinDetailViewController.biography";
+        NSString *biographyButtonTitle = NSLocalizedString(key, nil);
         [self.biographyButton setTitle:biographyButtonTitle forState:UIControlStateNormal];
         self.biographyButton.chevronEnabled = YES;
     } else {

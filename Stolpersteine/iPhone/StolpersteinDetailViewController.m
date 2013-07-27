@@ -183,7 +183,6 @@
         NSURL *url = [[NSURL alloc] initWithString:self.stolperstein.personBiographyURLString];
         WebViewController *webViewController = (WebViewController *)segue.destinationViewController;
         webViewController.url = url;
-        webViewController.itemsToShare = self.itemsToShare;
         webViewController.title = NSLocalizedString(@"StolpersteinDetailViewController.webViewTitle", nil);
         NSString *name = [Localization newNameFromStolperstein:self.stolperstein];
         UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:name style:UIBarButtonItemStyleBordered target:nil action:nil];

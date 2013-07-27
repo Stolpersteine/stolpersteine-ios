@@ -28,9 +28,9 @@
 @interface WebViewController : UIViewController<UIWebViewDelegate>
 
 @property (nonatomic, strong) NSURL *url;
-@property (nonatomic, strong) NSArray *itemsToShare;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *activityBarButtonItem;
 
 - (IBAction)showActivities:(UIBarButtonItem *)sender;
 

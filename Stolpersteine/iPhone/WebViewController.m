@@ -34,6 +34,7 @@
 @property (nonatomic, strong) NJKWebViewProgress *webViewProgress;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, assign, getter = isNetworkActivityIndicatorVisible) BOOL networkActivityIndicatorVisible;
+@property (nonatomic, strong) NSString *webViewTitle;
 
 @end
 
@@ -59,6 +60,13 @@
     self.webView.scalesPageToFit = YES;
     NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:request];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self updateActivityButton];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -98,15 +106,32 @@
     self.progressView.progress = progress;
 }
 
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    self.webViewTitle = nil;
+    [self updateActivityButton];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    self.webViewTitle = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    [self updateActivityButton];
+}
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     self.networkActivityIndicatorVisible = NO;
     self.navigationItem.titleView = nil;
 }
 
+- (void)updateActivityButton
+{
+    self.activityBarButtonItem.enabled = (self.webViewTitle && self.webView.request.URL);
+}
+
 - (IBAction)showActivities:(UIBarButtonItem *)sender
 {
-    NSArray *itemsToShare = self.itemsToShare.count > 0 ? self.itemsToShare : @[self.url];
+    NSArray *itemsToShare = @[self.webViewTitle, self.webView.request.URL];
     TUSafariActivity *activity = [[TUSafariActivity alloc] init];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:@[activity]];
     [self presentViewController:activityViewController animated:YES completion:nil];

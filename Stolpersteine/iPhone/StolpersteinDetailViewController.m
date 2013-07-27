@@ -39,7 +39,7 @@
 #import "ImageGalleryViewController.h"
 #import "TTTAttributedLabel.h"
 #import "RoundedRectButton.h"
-#import "WebViewController.h"
+#import "StolpersteinDescriptionViewController.h"
 
 @interface StolpersteinDetailViewController()<TTTAttributedLabelDelegate>
 
@@ -181,7 +181,7 @@
         listViewController.title = searchData.street;
     } else if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToWebViewController"]) {
         NSURL *url = [[NSURL alloc] initWithString:self.stolperstein.personBiographyURLString];
-        WebViewController *webViewController = (WebViewController *)segue.destinationViewController;
+        StolpersteinDescriptionViewController *webViewController = (StolpersteinDescriptionViewController *)segue.destinationViewController;
         webViewController.url = url;
         webViewController.title = NSLocalizedString(@"StolpersteinDetailViewController.webViewTitle", nil);
         NSString *name = [Localization newNameFromStolperstein:self.stolperstein];

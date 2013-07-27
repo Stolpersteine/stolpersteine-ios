@@ -278,10 +278,10 @@
             </objects>
             <point key="canvasLocation" x="1211" y="639"/>
         </scene>
-        <!--Web View Controller-->
+        <!--Stolperstein Description View Controller-->
         <scene sceneID="bQI-pg-hfM">
             <objects>
-                <viewController id="ZbI-TV-s7f" customClass="WebViewController" sceneMemberID="viewController">
+                <viewController id="ZbI-TV-s7f" customClass="StolpersteinDescriptionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ScY-bK-aUx">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -363,14 +363,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTTAttributedLabel.h"/>
             <relationships>
                 <relationship kind="outlet" name="delegate"/>
-            </relationships>
-        </class>
-        <class className="WebViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showActivities:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="activityBarButtonItem" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>
     </classes>

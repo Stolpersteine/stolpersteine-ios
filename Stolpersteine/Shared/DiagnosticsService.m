@@ -32,6 +32,7 @@
 #import "SearchDisplayController.h"
 #import "StolpersteinDetailViewController.h"
 #import "StolpersteinListViewController.h"
+#import "StolpersteinDescriptionViewController.h"
 
 #define CUSTOM_DIMENSION_INTERFACE_ORIENTATION 1
 #define CUSTOM_DIMENSION_LOCATION_SERVICES 2
@@ -67,7 +68,8 @@
            NSStringFromClass(MapViewController.class): @"Map",
            NSStringFromClass(SearchDisplayController.class): @"SearchDisplay",
            NSStringFromClass(StolpersteinDetailViewController.class): @"StolpersteinDetail",
-           NSStringFromClass(StolpersteinListViewController.class): @"StolpersteinList"
+           NSStringFromClass(StolpersteinListViewController.class): @"StolpersteinList",
+           NSStringFromClass(StolpersteinDescriptionViewController.class): @"StolpersteinDescription"
         };
         self.eventToActionNameMapping = @{
             @(DiagnosticsServiceEventOrientationChanged): @"orientationChanged"

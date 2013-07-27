@@ -23,13 +23,15 @@
 //  THE SOFTWARE.
 //
 
-#import "WebViewController.h"
+#import "StolpersteinDescriptionViewController.h"
 
 #import "TUSafariActivity.h"
 #import "NJKWebViewProgress.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "AppDelegate.h"
+#import "DiagnosticsService.h"
 
-@interface WebViewController() <NJKWebViewProgressDelegate>
+@interface StolpersteinDescriptionViewController() <NJKWebViewProgressDelegate>
 
 @property (nonatomic, strong) NJKWebViewProgress *webViewProgress;
 @property (nonatomic, strong) UIProgressView *progressView;
@@ -38,7 +40,7 @@
 
 @end
 
-@implementation WebViewController
+@implementation StolpersteinDescriptionViewController
 
 - (void)viewDidLoad
 {
@@ -67,6 +69,13 @@
     [super viewWillAppear:animated];
     
     [self updateActivityButton];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [AppDelegate.diagnosticsService trackViewWithClass:self.class];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

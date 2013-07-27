@@ -25,7 +25,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WebViewController : UIViewController<UIWebViewDelegate>
+@interface StolpersteinDescriptionViewController : UIViewController<UIWebViewDelegate>
 
 @property (nonatomic, strong) NSURL *url;
 

@@ -41,7 +41,7 @@
 		4865313916E1253100E4A483 /* rounded-rect-frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4865313516E1253100E4A483 /* rounded-rect-frame@2x.png */; };
 		4877716E1780AA7C00789F32 /* Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877716D1780AA7C00789F32 /* Appearance.m */; };
 		487771711780AE7100789F32 /* RoundedRectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 487771701780AE7100789F32 /* RoundedRectButton.m */; };
-		4877717517861A4400789F32 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877717417861A4400789F32 /* WebViewController.m */; };
+		4877717517861A4400789F32 /* StolpersteinDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877717417861A4400789F32 /* StolpersteinDescriptionViewController.m */; };
 		4879B6B016E25490006593D8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4879B6AD16E25490006593D8 /* Default-568h@2x.png */; };
 		4879B6B116E25490006593D8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4879B6AE16E25490006593D8 /* Default.png */; };
 		4879B6B216E25490006593D8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4879B6AF16E25490006593D8 /* Default@2x.png */; };
@@ -173,8 +173,8 @@
 		4877716D1780AA7C00789F32 /* Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appearance.m; sourceTree = "<group>"; };
 		4877716F1780AE7100789F32 /* RoundedRectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedRectButton.h; sourceTree = "<group>"; };
 		487771701780AE7100789F32 /* RoundedRectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedRectButton.m; sourceTree = "<group>"; };
-		4877717317861A4400789F32 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		4877717417861A4400789F32 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		4877717317861A4400789F32 /* StolpersteinDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinDescriptionViewController.h; sourceTree = "<group>"; };
+		4877717417861A4400789F32 /* StolpersteinDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinDescriptionViewController.m; sourceTree = "<group>"; };
 		4879B6AD16E25490006593D8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4879B6AE16E25490006593D8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4879B6AF16E25490006593D8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -408,8 +408,8 @@
 				48633B9616C03F690057A317 /* StolpersteinListViewController.m */,
 				48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */,
 				48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */,
-				4877717317861A4400789F32 /* WebViewController.h */,
-				4877717417861A4400789F32 /* WebViewController.m */,
+				4877717317861A4400789F32 /* StolpersteinDescriptionViewController.h */,
+				4877717417861A4400789F32 /* StolpersteinDescriptionViewController.m */,
 				4825F929174E8F7C0058B811 /* Image Gallery */,
 			);
 			path = iPhone;
@@ -1002,7 +1002,7 @@
 				489B682917739342000803C2 /* StolpersteinSyncController.m in Sources */,
 				4877716E1780AA7C00789F32 /* Appearance.m in Sources */,
 				487771711780AE7100789F32 /* RoundedRectButton.m in Sources */,
-				4877717517861A4400789F32 /* WebViewController.m in Sources */,
+				4877717517861A4400789F32 /* StolpersteinDescriptionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

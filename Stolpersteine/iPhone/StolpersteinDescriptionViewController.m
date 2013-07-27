@@ -35,6 +35,7 @@
 
 @property (nonatomic, strong) NJKWebViewProgress *webViewProgress;
 @property (nonatomic, strong) UIProgressView *progressView;
+@property (nonatomic, assign, getter = isProgressViewVisible) BOOL progressViewVisible;
 @property (nonatomic, assign, getter = isNetworkActivityIndicatorVisible) BOOL networkActivityIndicatorVisible;
 @property (nonatomic, strong) NSString *webViewTitle;
 
@@ -56,7 +57,7 @@
     UIProgressView *progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     progressView.progressTintColor = UIColor.grayColor;
     self.progressView = progressView;
-    self.navigationItem.titleView = self.progressView;
+    self.progressViewVisible = YES;
 
     // Load web site
     self.webView.scalesPageToFit = YES;
@@ -85,6 +86,21 @@
     self.networkActivityIndicatorVisible = NO;
 }
 
+- (void)setProgressViewVisible:(BOOL)progressViewVisible
+{
+    if (progressViewVisible) {
+        self.navigationItem.titleView = self.progressView;
+        self.progressView.frame = CGRectMake(0, 0, 20, 20);
+    } else {
+        self.navigationItem.titleView = nil;
+    }
+}
+
+- (BOOL)isProgressViewVisible
+{
+    return (self.navigationItem.titleView == self.progressView);
+}
+
 - (void)setNetworkActivityIndicatorVisible:(BOOL)networkActivityIndicatorVisible
 {
     if (networkActivityIndicatorVisible != _networkActivityIndicatorVisible) {
@@ -101,13 +117,13 @@
 {
     if (progress == 0.0) {
         self.networkActivityIndicatorVisible = YES;
-        self.navigationItem.titleView = self.progressView;
+        self.progressViewVisible = YES;
     } else if (progress == 1.0) {
         self.networkActivityIndicatorVisible = NO;
         [UIView animateWithDuration:0.3 animations:^{
             self.progressView.alpha = 0.0;
         } completion:^(BOOL finished) {
-            self.navigationItem.titleView = nil;
+            self.progressViewVisible = NO;
             self.progressView.alpha = 1.0;
         }];
     }
@@ -130,7 +146,7 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     self.networkActivityIndicatorVisible = NO;
-    self.navigationItem.titleView = nil;
+    self.progressViewVisible = NO;
 }
 
 - (void)updateActivityButton

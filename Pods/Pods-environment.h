@@ -31,12 +31,6 @@
 // Please contact the author.
 // Version: 2.0beta4.
 
-// NJKWebViewProgress
-#define COCOAPODS_POD_AVAILABLE_NJKWebViewProgress
-#define COCOAPODS_VERSION_MAJOR_NJKWebViewProgress 0
-#define COCOAPODS_VERSION_MINOR_NJKWebViewProgress 1
-#define COCOAPODS_VERSION_PATCH_NJKWebViewProgress 6
-
 // TTTAttributedLabel
 #define COCOAPODS_POD_AVAILABLE_TTTAttributedLabel
 #define COCOAPODS_VERSION_MAJOR_TTTAttributedLabel 1

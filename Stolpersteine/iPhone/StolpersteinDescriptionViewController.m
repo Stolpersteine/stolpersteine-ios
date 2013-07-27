@@ -26,16 +26,14 @@
 #import "StolpersteinDescriptionViewController.h"
 
 #import "TUSafariActivity.h"
-#import "NJKWebViewProgress.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AppDelegate.h"
 #import "DiagnosticsService.h"
 
-@interface StolpersteinDescriptionViewController() <NJKWebViewProgressDelegate>
+@interface StolpersteinDescriptionViewController()
 
-@property (nonatomic, strong) NJKWebViewProgress *webViewProgress;
-@property (nonatomic, strong) UIProgressView *progressView;
-@property (nonatomic, assign, getter = isProgressViewVisible) BOOL progressViewVisible;
+@property (nonatomic, strong) UIBarButtonItem *activityIndicatorBarButtonItem;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, assign, getter = isNetworkActivityIndicatorVisible) BOOL networkActivityIndicatorVisible;
 @property (nonatomic, strong) NSString *webViewTitle;
 
@@ -47,19 +45,18 @@
 {
     [super viewDidLoad];
     
-    // Receive progress updates for content loading
-    self.webViewProgress = [[NJKWebViewProgress alloc] init];
-    self.webView.delegate = self.webViewProgress;
-    self.webViewProgress.progressDelegate = self;
-    self.webViewProgress.webViewProxyDelegate = self;
-
-    // Display progress in navigation bar
-    UIProgressView *progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-    progressView.progressTintColor = UIColor.grayColor;
-    self.progressView = progressView;
+    // Display progress in navigation bar    
+    UIActivityIndicatorView * activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    CGRect frame = activityIndicatorView.frame;
+    frame.size.width = 47;
+    activityIndicatorView.frame = frame;
+    self.activityIndicatorView = activityIndicatorView;
+    self.activityIndicatorBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView];
+    [self.activityIndicatorBarButtonItem setStyle:UIBarButtonItemStyleBordered];
     self.progressViewVisible = YES;
 
     // Load web site
+    self.webView.delegate = self;
     self.webView.scalesPageToFit = YES;
     NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:request];
@@ -89,15 +86,12 @@
 - (void)setProgressViewVisible:(BOOL)progressViewVisible
 {
     if (progressViewVisible) {
-        self.navigationItem.titleView = self.progressView;
+        [self.activityIndicatorView startAnimating];
+        self.navigationItem.rightBarButtonItem = self.activityIndicatorBarButtonItem;
     } else {
-        self.navigationItem.titleView = nil;
+        [self.activityIndicatorView stopAnimating];
+        self.navigationItem.rightBarButtonItem = self.activityBarButtonItem;
     }
-}
-
-- (BOOL)isProgressViewVisible
-{
-    return (self.navigationItem.titleView == self.progressView);
 }
 
 - (void)setNetworkActivityIndicatorVisible:(BOOL)networkActivityIndicatorVisible
@@ -112,34 +106,18 @@
     }
 }
 
-- (void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
-{
-    if (progress == 0.0) {
-        self.networkActivityIndicatorVisible = YES;
-        self.progressViewVisible = YES;
-    } else if (progress == 1.0) {
-        self.networkActivityIndicatorVisible = NO;
-        [UIView animateWithDuration:0.3 animations:^{
-            self.progressView.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            self.progressViewVisible = NO;
-            self.progressView.alpha = 1.0;
-        }];
-    }
-    
-    self.progressView.progress = progress;
-}
-
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     self.webViewTitle = nil;
     [self updateActivityButton];
+    self.progressViewVisible = YES;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     self.webViewTitle = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     [self updateActivityButton];
+    self.progressViewVisible = NO;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error

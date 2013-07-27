@@ -30,7 +30,7 @@
 @property (nonatomic, strong) NSURL *url;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *activityBarButtonItem;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *activityBarButtonItem;
 
 - (IBAction)showActivities:(UIBarButtonItem *)sender;
 

@@ -111,8 +111,8 @@
     self.sourceLabel.activeLinkAttributes = mutableLinkAttributes;
     self.sourceLabel.delegate = self;
 
-    NSString *linkText = @"Koordinierungsstelle Stolpersteine Berlin";
-    NSURL *linkURL = [NSURL URLWithString:@"http://www.stolpersteine-berlin.de/"];
+    NSString *linkText = self.stolperstein.sourceName;
+    NSURL *linkURL = [NSURL URLWithString:self.stolperstein.sourceURLString];
 
     NSString *localizedSourceText = NSLocalizedString(@"StolpersteinDetailViewController.source", nil);
     NSString *sourceText = [NSString stringWithFormat:localizedSourceText, linkText];

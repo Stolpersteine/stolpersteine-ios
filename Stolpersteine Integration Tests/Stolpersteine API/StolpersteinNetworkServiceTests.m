@@ -76,11 +76,11 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
             STAssertNotNil(stolperstein.id, @"Wrong ID");
             STAssertTrue([stolperstein.id isKindOfClass:NSString.class], @"Wrong type for ID");
             STAssertTrue(stolperstein.type == StolpersteinTypeStolperstein || stolperstein.type == StolpersteinTypeStolperschwelle, @"Wrong type");
-            STAssertNotNil(stolperstein.personFirstName, @"Wrong name");
+            STAssertNotNil(stolperstein.personFirstName, @"Wrong first name");
             STAssertTrue([stolperstein.personFirstName isKindOfClass:NSString.class], @"Wrong type for first name");
-            STAssertNotNil(stolperstein.personLastName, @"Wrong name");
+            STAssertNotNil(stolperstein.personLastName, @"Wrong last name");
             STAssertTrue([stolperstein.personLastName isKindOfClass:NSString.class], @"Wrong type for last name");
-            STAssertNotNil(stolperstein.personBiographyURLString, @"Wrong name");
+            STAssertNotNil(stolperstein.personBiographyURLString, @"Wrong biography url");
             STAssertTrue([stolperstein.personBiographyURLString isKindOfClass:NSString.class], @"Wrong type for biography URL");
             STAssertNotNil(stolperstein.locationStreet, @"Wrong street");
             STAssertTrue([stolperstein.locationStreet isKindOfClass:NSString.class], @"Wrong type for street");
@@ -88,6 +88,10 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
             STAssertTrue([stolperstein.locationCity isKindOfClass:NSString.class], @"Wrong type for city");
             STAssertTrue(stolperstein.locationCoordinate.latitude != 0, @"Wrong coordinates");
             STAssertTrue(stolperstein.locationCoordinate.longitude != 0, @"Wrong coordinates");
+            STAssertNotNil(stolperstein.sourceName, @"Wrong source name");
+            STAssertTrue([stolperstein.sourceName isKindOfClass:NSString.class], @"Wrong type for source name");
+            STAssertNotNil(stolperstein.sourceURLString, @"Wrong source url");
+            STAssertTrue([stolperstein.sourceURLString isKindOfClass:NSString.class], @"Wrong type for source url");
             
             // Optional fields
             if (stolperstein.text) {

@@ -40,6 +40,8 @@
     stolperstein.locationStreet = [self valueForKeyPath:@"location.street"];
     stolperstein.locationZipCode = [self valueForKeyPath:@"location.zipCode"];
     stolperstein.locationCity = [self valueForKeyPath:@"location.city"];
+    stolperstein.sourceName = [self valueForKeyPath:@"source.name"];
+    stolperstein.sourceURLString = [self valueForKeyPath:@"source.url"];
     
     NSString *typeAsString = [self valueForKeyPath:@"type"];
     if ([typeAsString isEqualToString:@"stolperschwelle"]) {

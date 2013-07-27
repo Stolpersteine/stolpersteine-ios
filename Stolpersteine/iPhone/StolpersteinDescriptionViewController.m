@@ -90,7 +90,6 @@
 {
     if (progressViewVisible) {
         self.navigationItem.titleView = self.progressView;
-        self.progressView.frame = CGRectMake(0, 0, 20, 20);
     } else {
         self.navigationItem.titleView = nil;
     }

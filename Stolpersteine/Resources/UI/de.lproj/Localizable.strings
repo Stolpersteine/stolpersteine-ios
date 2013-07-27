@@ -21,4 +21,5 @@
 "StolpersteinDetailViewController.street" = "Alle in dieser Straße";
 "StolpersteinDetailViewController.maps" = "In der Karten App anzeigen";
 "StolpersteinDetailViewController.source" = "Quelle: %@";
-"StolpersteinDetailViewController.webViewTitle" = "Biographie";
+"StolpersteinDetailViewController.webViewTitleBiography" = "Biographie";
+"StolpersteinDetailViewController.webViewTitleDescription" = "Beschreibung";

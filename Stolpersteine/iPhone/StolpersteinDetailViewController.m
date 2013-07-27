@@ -183,7 +183,8 @@
         NSURL *url = [[NSURL alloc] initWithString:self.stolperstein.personBiographyURLString];
         StolpersteinDescriptionViewController *webViewController = (StolpersteinDescriptionViewController *)segue.destinationViewController;
         webViewController.url = url;
-        webViewController.title = NSLocalizedString(@"StolpersteinDetailViewController.webViewTitle", nil);
+        NSString *localizedTitle = (self.stolperstein.type == StolpersteinTypeStolperschwelle) ? @"StolpersteinDetailViewController.webViewTitleDescription" : @"StolpersteinDetailViewController.webViewTitleBiography";
+        webViewController.title = NSLocalizedString(localizedTitle, nil);
         NSString *name = [Localization newNameFromStolperstein:self.stolperstein];
         UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:name style:UIBarButtonItemStyleBordered target:nil action:nil];
         self.navigationItem.backBarButtonItem = backBarButtonItem;

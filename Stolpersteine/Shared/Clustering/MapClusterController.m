@@ -66,6 +66,11 @@ static double CELL_SIZE = 40.0; // [points]
     [self updateAnnotationsAnimated:YES completion:NULL];
 }
 
+- (NSUInteger)numberOfAnnotations
+{
+    return self.allAnnotationsMapView.annotations.count;
+}
+
 - (double)convertPointSize:(double)pointSize toMapPointSizeFromView:(UIView *)view
 {
     CLLocationCoordinate2D leftCoordinate = [self.mapView convertPoint:CGPointZero toCoordinateFromView:view];

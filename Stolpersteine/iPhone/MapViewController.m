@@ -105,12 +105,15 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     // Start loading data
     self.stolpersteinSyncController = [[StolpersteinSyncController alloc] initWithNetworkService:AppDelegate.networkService];
     self.stolpersteinSyncController.delegate = self;
-    [self.stolpersteinSyncController syncStolpersteine];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    if (self.mapClusterController.numberOfAnnotations == 0) {
+        [self.stolpersteinSyncController syncStolpersteine];
+    }
     
     // Region is restored here to avoid problems when setting this property
     // while the map is off screen.

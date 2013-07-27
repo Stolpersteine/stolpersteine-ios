@@ -31,6 +31,7 @@
 @interface MapClusterController : NSObject
 
 @property (nonatomic, weak) id<MapClusterControllerDelegate> delegate;
+@property (nonatomic, assign, readonly) NSUInteger numberOfAnnotations;
 
 - (id)initWithMapView:(MKMapView *)mapView;
 - (void)addAnnotations:(NSArray *)annotations;

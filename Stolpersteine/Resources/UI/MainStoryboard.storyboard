@@ -204,7 +204,7 @@
                                     <action selector="showInMapsApp:" destination="Az3-JW-c4L" eventType="touchUpInside" id="RvO-g3-liI"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Source" lineBreakMode="tailTruncation" numberOfLines="999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="dfV-6D-qib" customClass="TTTAttributedLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Source" lineBreakMode="tailTruncation" numberOfLines="999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="dfV-6D-qib">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -340,6 +340,14 @@
         </class>
         <class className="SearchBar" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchBar.h"/>
+        </class>
+        <class className="StolpersteinDescriptionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StolpersteinDescriptionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showActivities:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="activityBarButtonItem" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
         </class>
         <class className="StolpersteinDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StolpersteinDetailViewController.h"/>

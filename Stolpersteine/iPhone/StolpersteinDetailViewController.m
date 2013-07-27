@@ -105,20 +105,18 @@
     [self.mapsAppButton setTitle:mapsButtonTitle forState:UIControlStateNormal];
 
     // Source
-    NSMutableDictionary *mutableLinkAttributes = [NSMutableDictionary dictionary];
-    [mutableLinkAttributes setObject:[NSNumber numberWithBool:YES] forKey:(NSString *)kCTUnderlineStyleAttributeName];
-    self.sourceLabel.linkAttributes = mutableLinkAttributes;
-    self.sourceLabel.activeLinkAttributes = mutableLinkAttributes;
-    self.sourceLabel.delegate = self;
-
     NSString *linkText = self.stolperstein.sourceName;
-    NSURL *linkURL = [NSURL URLWithString:self.stolperstein.sourceURLString];
-
     NSString *localizedSourceText = NSLocalizedString(@"StolpersteinDetailViewController.source", nil);
     NSString *sourceText = [NSString stringWithFormat:localizedSourceText, linkText];
-    self.sourceLabel.attributedText = [[NSAttributedString alloc] initWithString:sourceText];
     NSRange linkRange = NSMakeRange(sourceText.length - linkText.length, linkText.length);
-    [self.sourceLabel addLinkToURL:linkURL withRange:linkRange];
+    NSMutableAttributedString *sourceAttributedString = [[NSMutableAttributedString alloc] initWithString:sourceText];
+    [sourceAttributedString setAttributes:@{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) } range:linkRange];
+    self.sourceLabel.attributedText = sourceAttributedString;
+    self.sourceLabel.font = [UIFont systemFontOfSize:UIFont.labelFontSize - 5];
+
+    UIGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showSourceURL)];
+    [self.sourceLabel addGestureRecognizer:tapGestureRecognizer];
+    self.sourceLabel.userInteractionEnabled = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -127,6 +125,12 @@
     
     [self.scrollView flashScrollIndicators];
     [AppDelegate.diagnosticsService trackViewWithClass:self.class];
+}
+
+- (void)showSourceURL
+{
+    NSURL *sourceURL = [NSURL URLWithString:self.stolperstein.sourceURLString];
+    [UIApplication.sharedApplication openURL:sourceURL];
 }
 
 - (NSArray *)itemsToShare

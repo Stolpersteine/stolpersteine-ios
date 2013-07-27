@@ -26,7 +26,6 @@
 #import <UIKit/UIKit.h>
 
 @class Stolperstein;
-@class TTTAttributedLabel;
 @class RoundedRectButton;
 
 @interface StolpersteinDetailViewController : UIViewController
@@ -41,7 +40,7 @@
 @property (weak, nonatomic) IBOutlet RoundedRectButton *allInThisStreetButton;
 @property (weak, nonatomic) IBOutlet RoundedRectButton *biographyButton;
 @property (weak, nonatomic) IBOutlet RoundedRectButton *mapsAppButton;
-@property (strong, nonatomic) IBOutlet TTTAttributedLabel *sourceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *sourceLabel;
 
 - (IBAction)showActivities:(UIBarButtonItem *)sender;
 - (IBAction)showInMapsApp:(UIButton *)sender;

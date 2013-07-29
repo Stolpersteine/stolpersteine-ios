@@ -34,6 +34,7 @@
 
 @property (nonatomic, strong) StolpersteinNetworkService *networkService;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
+@property (nonatomic, assign, getter = isSynchronizing) BOOL synchronizing;
 
 @end
 
@@ -51,8 +52,12 @@
 
 - (void)synchronize
 {
-    NSRange range = NSMakeRange(0, NETWORK_BATCH_SIZE);
-    [self retrieveStolpersteineWithRange:range];
+    if (!self.isSynchronizing) {
+        [self didStartSynchronization];
+        
+        NSRange range = NSMakeRange(0, NETWORK_BATCH_SIZE);
+        [self retrieveStolpersteineWithRange:range];
+    }
 }
 
 - (void)retrieveStolpersteineWithRange:(NSRange)range
@@ -67,10 +72,10 @@
                 NSRange nextRange = NSMakeRange(NSMaxRange(range), range.length);
                 [self retrieveStolpersteineWithRange:nextRange];
             } else {
-                [self didEndSynchronisation];
+                [self didEndSynchronization];
             }
         } else {
-            [self didFailSynchronisation];
+            [self didFailSynchronization];
         }
         
         return YES;
@@ -91,19 +96,19 @@
     }    
 }
 
-- (void)didStartSynchronisation
+- (void)didStartSynchronization
 {
-    
+    self.synchronizing = YES;
 }
 
-- (void)didEndSynchronisation
+- (void)didEndSynchronization
 {
-    
+    self.synchronizing = NO;
 }
 
-- (void)didFailSynchronisation
+- (void)didFailSynchronization
 {
-    
+    self.synchronizing = NO;
 }
 
 @end

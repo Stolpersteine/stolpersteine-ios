@@ -87,7 +87,7 @@
             <objects>
                 <tableViewController id="S9Y-Yy-0sA" customClass="StolpersteinListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ii3-to-xuB">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -132,7 +132,7 @@
             <objects>
                 <viewController storyboardIdentifier="detailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Az3-JW-c4L" customClass="StolpersteinDetailViewController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="scrollView" alwaysBounceVertical="YES" id="lxM-gj-iBt">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="6i7-Lc-dC1">
@@ -204,8 +204,11 @@
                                     <action selector="showInMapsApp:" destination="Az3-JW-c4L" eventType="touchUpInside" id="RvO-g3-liI"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Source" lineBreakMode="tailTruncation" numberOfLines="999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="dfV-6D-qib">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYZ-d0-Zp5">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" type="user" id="YHP-b1-LUm"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -213,32 +216,31 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dfV-6D-qib" firstAttribute="top" secondItem="hj3-Gr-CcF" secondAttribute="bottom" constant="20" type="user" id="3Oi-0a-z2a"/>
-                            <constraint firstAttribute="trailing" secondItem="T3R-yr-byf" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="BQs-nf-Nzw"/>
+                            <constraint firstItem="RYZ-d0-Zp5" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="8sz-BZ-bZA"/>
+                            <constraint firstAttribute="trailing" secondItem="T3R-yr-byf" secondAttribute="trailing" constant="20" symbolic="YES" type="user" id="BQs-nf-Nzw"/>
                             <constraint firstItem="hj3-Gr-CcF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="T3R-yr-byf" secondAttribute="bottom" priority="999" constant="8" symbolic="YES" type="user" id="C3g-ZJ-3uT"/>
                             <constraint firstAttribute="centerX" secondItem="Ehs-e2-S0O" secondAttribute="centerX" type="user" id="C3p-ue-6TR"/>
                             <constraint firstItem="OUv-ks-uNY" firstAttribute="top" secondItem="6i7-Lc-dC1" secondAttribute="bottom" constant="20" type="user" id="DHk-ct-pw2"/>
                             <constraint firstItem="6i7-Lc-dC1" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="FD8-Al-eeb"/>
                             <constraint firstAttribute="centerX" secondItem="hj3-Gr-CcF" secondAttribute="centerX" type="user" id="FHp-EJ-Abs"/>
-                            <constraint firstItem="T3R-yr-byf" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GLq-VQ-jOC"/>
+                            <constraint firstItem="T3R-yr-byf" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="user" id="GLq-VQ-jOC"/>
                             <constraint firstItem="6i7-Lc-dC1" firstAttribute="top" secondItem="lxM-gj-iBt" secondAttribute="top" constant="20" symbolic="YES" type="user" id="Gc3-8L-j76"/>
                             <constraint firstItem="T3R-yr-byf" firstAttribute="top" secondItem="G7e-z7-0LY" secondAttribute="bottom" constant="20" type="user" id="ISg-PR-yvd"/>
                             <constraint firstItem="G7e-z7-0LY" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Kim-gQ-Z8k"/>
                             <constraint firstItem="hj3-Gr-CcF" firstAttribute="top" secondItem="Ehs-e2-S0O" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="M61-us-D1B"/>
                             <constraint firstItem="Ehs-e2-S0O" firstAttribute="top" secondItem="T3R-yr-byf" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="NR6-Cu-EVU"/>
-                            <constraint firstItem="dfV-6D-qib" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Vjw-Qo-P8e"/>
                             <constraint firstAttribute="trailing" secondItem="6i7-Lc-dC1" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Wpp-EX-kVw"/>
+                            <constraint firstItem="RYZ-d0-Zp5" firstAttribute="top" secondItem="hj3-Gr-CcF" secondAttribute="bottom" constant="10" type="user" id="XAe-DH-Nsv"/>
                             <constraint firstItem="OUv-ks-uNY" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="aeT-cO-rUP"/>
                             <constraint firstItem="hj3-Gr-CcF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G7e-z7-0LY" secondAttribute="bottom" priority="998" constant="20" type="user" id="c2D-Hn-maM"/>
                             <constraint firstItem="G7e-z7-0LY" firstAttribute="top" secondItem="6i7-Lc-dC1" secondAttribute="bottom" priority="999" constant="20" type="user" id="gYU-3n-eeP"/>
                             <constraint firstAttribute="centerX" secondItem="T3R-yr-byf" secondAttribute="centerX" type="user" id="h4Z-c7-TQU"/>
-                            <constraint firstAttribute="trailing" secondItem="dfV-6D-qib" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="iPG-ni-rTP"/>
                             <constraint firstAttribute="trailing" secondItem="G7e-z7-0LY" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="j4A-ZS-WtO"/>
                             <constraint firstItem="Ehs-e2-S0O" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="jAu-I3-muU"/>
                             <constraint firstItem="Ehs-e2-S0O" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G7e-z7-0LY" secondAttribute="bottom" priority="999" constant="20" type="user" id="lMC-Cl-LQg"/>
                             <constraint firstItem="hj3-Gr-CcF" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="oVX-vb-hF8"/>
                             <constraint firstItem="G7e-z7-0LY" firstAttribute="top" secondItem="OUv-ks-uNY" secondAttribute="bottom" constant="20" type="user" id="pQ1-KU-82e"/>
-                            <constraint firstAttribute="bottom" secondItem="dfV-6D-qib" secondAttribute="bottom" constant="20" symbolic="YES" type="user" id="xel-ja-mv6"/>
+                            <constraint firstAttribute="bottom" secondItem="RYZ-d0-Zp5" secondAttribute="bottom" constant="10" type="user" id="qG5-R4-unq"/>
                         </constraints>
                     </scrollView>
                     <navigationItem key="navigationItem" id="kTu-o1-owI">
@@ -248,7 +250,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="addressLabel" destination="G7e-z7-0LY" id="iD0-NE-Y9d"/>
                         <outlet property="allInThisStreetButton" destination="T3R-yr-byf" id="1wy-L5-QE4"/>
@@ -257,7 +259,7 @@
                         <outlet property="mapsAppButton" destination="hj3-Gr-CcF" id="G1I-PE-not"/>
                         <outlet property="nameLabel" destination="6i7-Lc-dC1" id="5Hl-UB-lLb"/>
                         <outlet property="scrollView" destination="lxM-gj-iBt" id="5Ym-tm-6b1"/>
-                        <outlet property="sourceLabel" destination="dfV-6D-qib" id="V6y-aO-Eng"/>
+                        <outlet property="sourceLabel" destination="RYZ-d0-Zp5" id="67Z-Zp-xQw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgX-vg-RuV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -277,14 +279,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xeY-RB-BFn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1211" y="639"/>
+            <point key="canvasLocation" x="1195" y="727"/>
         </scene>
         <!--Stolperstein Description View Controller-->
         <scene sceneID="bQI-pg-hfM">
             <objects>
                 <viewController id="ZbI-TV-s7f" customClass="StolpersteinDescriptionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ScY-bK-aUx">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdx-kd-zb2">

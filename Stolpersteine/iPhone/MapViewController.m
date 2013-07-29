@@ -111,7 +111,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 {
     [super viewWillAppear:animated];
 
-    if (self.mapClusterController.numberOfAnnotations == 0) {
+    if (self.mapClusterController.numberOfAnnotations < 4600) {
         [self.stolpersteinSyncController synchronize];
     }
     

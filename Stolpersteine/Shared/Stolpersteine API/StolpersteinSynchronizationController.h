@@ -1,5 +1,5 @@
 //
-//  StolpersteinSyncController.h
+//  StolpersteinSynchronizationController.h
 //  Stolpersteine
 //
 //  Copyright (C) 2013 Option-U Software
@@ -26,14 +26,14 @@
 #import <Foundation/Foundation.h>
 
 @class StolpersteinNetworkService;
-@protocol StolpersteinSyncControllerDelegate;
+@protocol StolpersteinSynchronizationControllerDelegate;
 
-@interface StolpersteinSyncController : NSObject
+@interface StolpersteinSynchronizationController : NSObject
 
 @property (nonatomic, strong, readonly) StolpersteinNetworkService *networkService;
-@property (nonatomic, weak) id<StolpersteinSyncControllerDelegate> delegate;
+@property (nonatomic, weak) id<StolpersteinSynchronizationControllerDelegate> delegate;
 
 - (id)initWithNetworkService:(StolpersteinNetworkService *)networkService;
-- (void)syncStolpersteine;
+- (void)synchronize;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  StolpersteinSyncControllerDelegate.h
+//  StolpersteinSynchronizationControllerDelegate.h
 //  Stolpersteine
 //
 //  Copyright (C) 2013 Option-U Software
@@ -25,12 +25,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class StolpersteinSyncController;
+@class StolpersteinSynchronizationController;
 
-@protocol StolpersteinSyncControllerDelegate <NSObject>
+@protocol StolpersteinSynchronizationControllerDelegate <NSObject>
 
 @optional
-- (void)stolpersteinSyncController:(StolpersteinSyncController *)stolpersteinSyncController didAddStolpersteine:(NSArray *)stolpersteine;
-- (void)stolpersteinSyncController:(StolpersteinSyncController *)stolpersteinSyncController didRemoveStolpersteine:(NSArray *)stolpersteine;
+- (void)stolpersteinSynchronizationController:(StolpersteinSynchronizationController *)stolpersteinSynchronizationController didAddStolpersteine:(NSArray *)stolpersteine;
+- (void)stolpersteinSynchronizationController:(StolpersteinSynchronizationController *)stolpersteinSynchronizationController didRemoveStolpersteine:(NSArray *)stolpersteine;
 
 @end

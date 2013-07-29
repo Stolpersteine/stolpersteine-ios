@@ -1,5 +1,5 @@
 //
-//  StolpersteinSyncController.m
+//  StolpersteinSynchronizationController.m
 //  Stolpersteine
 //
 //  Copyright (C) 2013 Option-U Software
@@ -23,21 +23,21 @@
 //  THE SOFTWARE.
 //
 
-#import "StolpersteinSyncController.h"
+#import "StolpersteinSynchronizationController.h"
 
 #import "StolpersteinNetworkService.h"
-#import "StolpersteinSyncControllerDelegate.h"
+#import "StolpersteinSynchronizationControllerDelegate.h"
 
 #define NETWORK_BATCH_SIZE 500
 
-@interface StolpersteinSyncController()
+@interface StolpersteinSynchronizationController()
 
 @property (nonatomic, strong) StolpersteinNetworkService *networkService;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
 
 @end
 
-@implementation StolpersteinSyncController
+@implementation StolpersteinSynchronizationController
 
 - (id)initWithNetworkService:(StolpersteinNetworkService *)networkService
 {
@@ -49,7 +49,7 @@
     return self;
 }
 
-- (void)syncStolpersteine
+- (void)synchronize
 {
     NSRange range = NSMakeRange(0, NETWORK_BATCH_SIZE);
     [self retrieveStolpersteineWithRange:range];
@@ -79,15 +79,15 @@
 
 - (void)didAddStolpersteine:(NSArray *)stolpersteine
 {
-    if ([self.delegate respondsToSelector:@selector(stolpersteinSyncController:didAddStolpersteine:)]) {
-        [self.delegate stolpersteinSyncController:self didAddStolpersteine:stolpersteine];
+    if ([self.delegate respondsToSelector:@selector(stolpersteinSynchronizationController:didAddStolpersteine:)]) {
+        [self.delegate stolpersteinSynchronizationController:self didAddStolpersteine:stolpersteine];
     }
 }
 
 - (void)didRemoveStolpersteine:(NSArray *)stolpersteine
 {
-    if ([self.delegate respondsToSelector:@selector(stolpersteinSyncController:didRemoveStolpersteine:)]) {
-        [self.delegate stolpersteinSyncController:self didRemoveStolpersteine:stolpersteine];
+    if ([self.delegate respondsToSelector:@selector(stolpersteinSynchronizationController:didRemoveStolpersteine:)]) {
+        [self.delegate stolpersteinSynchronizationController:self didRemoveStolpersteine:stolpersteine];
     }    
 }
 

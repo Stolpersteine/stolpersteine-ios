@@ -16,10 +16,10 @@
 "MapViewController.paddingRight" = "100";   // "Abbrechen"
 
 "StolpersteinDetailViewController.title" = "Info";
-"StolpersteinDetailViewController.biography" = "Biographie anzeigen";
+"StolpersteinDetailViewController.biography" = "Biografie anzeigen";
 "StolpersteinDetailViewController.description" = "Beschreibung anzeigen";
 "StolpersteinDetailViewController.street" = "Alle in dieser Straße";
 "StolpersteinDetailViewController.maps" = "In der Karten App anzeigen";
 "StolpersteinDetailViewController.source" = "Quelle: %@";
-"StolpersteinDetailViewController.webViewTitleBiography" = "Biographie";
+"StolpersteinDetailViewController.webViewTitleBiography" = "Biografie";
 "StolpersteinDetailViewController.webViewTitleDescription" = "Beschreibung";

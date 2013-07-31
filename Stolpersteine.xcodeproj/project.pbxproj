@@ -1080,7 +1080,6 @@
 		};
 		485E564417286B800038783C /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 620B6C44171847550035C2AC /* buildnumber_dynamic.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1112,7 +1111,7 @@
 		};
 		485E564517286B800038783C /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90D265056EBE417F95BF08CA /* Pods.xcconfig */;
+			baseConfigurationReference = 620B6C44171847550035C2AC /* buildnumber_dynamic.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine/Stolpersteine-Prefix.pch";
@@ -1188,7 +1187,6 @@
 		};
 		627E43D4169B0F050065C1F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 620B6C46171848E30035C2AC /* buildnumber_fixed.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1223,7 +1221,6 @@
 		};
 		627E43D5169B0F050065C1F1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 620B6C46171848E30035C2AC /* buildnumber_fixed.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1252,7 +1249,7 @@
 		};
 		627E43D7169B0F050065C1F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90D265056EBE417F95BF08CA /* Pods.xcconfig */;
+			baseConfigurationReference = 620B6C46171848E30035C2AC /* buildnumber_fixed.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine/Stolpersteine-Prefix.pch";
@@ -1264,7 +1261,7 @@
 		};
 		627E43D8169B0F050065C1F1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90D265056EBE417F95BF08CA /* Pods.xcconfig */;
+			baseConfigurationReference = 620B6C46171848E30035C2AC /* buildnumber_fixed.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine/Stolpersteine-Prefix.pch";

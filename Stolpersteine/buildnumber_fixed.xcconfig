@@ -6,4 +6,5 @@
 //  Copyright (c) 2013 Option-U Software. All rights reserved.
 //
 
+#include "../Pods/Pods.xcconfig"
 BUILD_NUMBER = dev

@@ -29,20 +29,23 @@
 
 - (BOOL)isEqual:(id)other
 {
-    if (other == self)
-        return YES;
-    if (!other || ![other isKindOfClass:self.class])
-        return NO;
-    return [self isEqualToStolperstein:other];
+    BOOL isEqual;
+    
+    if (other == self) {
+        isEqual = YES;
+    } else if (!other || ![other isKindOfClass:self.class]) {
+        isEqual = NO;
+    } else {
+        isEqual = [self isEqualToStolperstein:other];
+    }
+    
+    return isEqual;
 }
 
 - (BOOL)isEqualToStolperstein:(Stolperstein *)stolperstein
 {
-    if (self == stolperstein)
-        return YES;
-    if (![self.id isEqualToString:stolperstein.id])
-        return NO;
-    return YES;
+    BOOL isEqual = [self.id isEqualToString:stolperstein.id];
+    return isEqual;
 }
 
 - (NSUInteger)hash

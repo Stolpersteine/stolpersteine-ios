@@ -78,6 +78,16 @@
     return self.searchTextField.text;
 }
 
+- (void)setPlaceholder:(NSString *)placeholder
+{
+    self.searchTextField.placeholder = placeholder;
+}
+
+- (NSString *)placeholder
+{
+    return self.searchTextField.placeholder;
+}
+
 - (void)setFrame:(CGRect)frame
 {
     CGFloat y = (self.superview.frame.size.height - self.frame.size.height) * 0.5;

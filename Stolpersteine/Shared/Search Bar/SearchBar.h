@@ -33,5 +33,6 @@
 @property (nonatomic, assign, getter = isPortraitModeEnabled) BOOL portraitModeEnabled;
 @property (nonatomic, weak) NSObject<SearchBarDelegate> *delegate;
 @property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) NSString *placeholder;
 
 @end

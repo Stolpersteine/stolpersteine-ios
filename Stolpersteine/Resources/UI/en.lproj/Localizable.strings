@@ -11,6 +11,7 @@
 "AppDelegate.errorButtonTitle" = "OK";
 
 "MapViewController.title" = "Map";
+"MapViewController.searchBarPlaceholder" = "Name or address";
 "MapViewController.imprint" = "Contact";
 "MapViewController.imprintURL" = "http://www.option-u.com/stolpersteine/imprint-ios-app-en/";
 "MapViewController.paddingRight" = "75";    // "Cancel"

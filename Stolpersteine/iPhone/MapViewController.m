@@ -74,6 +74,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.title = NSLocalizedString(@"MapViewController.title", nil);
     
     // Search bar
+    self.searchBar.placeholder = NSLocalizedString(@"MapViewController.searchBarPlaceholder", nil);
     self.mySearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
     self.mySearchDisplayController.delegate = self;
     self.mySearchDisplayController.searchResultsDataSource = self;

@@ -40,22 +40,6 @@
 
 @end
 
-static inline UIViewAnimationOptions UIViewAnimationOptionsFromCurve(UIViewAnimationCurve animationCurve)
-{
-    UIViewAnimationOptions animationOptions;
-    
-    switch (animationCurve) {
-        case UIViewAnimationCurveEaseInOut: animationOptions = UIViewAnimationOptionCurveEaseInOut; break;
-        case UIViewAnimationCurveEaseIn: animationOptions = UIViewAnimationOptionCurveEaseIn; break;
-        case UIViewAnimationCurveEaseOut: animationOptions = UIViewAnimationOptionCurveEaseOut; break;
-        case UIViewAnimationCurveLinear: animationOptions = UIViewAnimationOptionCurveLinear; break;
-        // no default
-    }
-    
-    return animationOptions;
-}
-
-
 @implementation SearchDisplayController
 
 - (id)initWithSearchBar:(SearchBar *)searchBar contentsController:(UIViewController *)contentsController

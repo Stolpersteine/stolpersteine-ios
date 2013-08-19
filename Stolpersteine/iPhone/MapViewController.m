@@ -206,8 +206,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     NSSet *annotations = [self.mapView annotationsInMapRect:mapRect];
     for (id<MKAnnotation> annotation in annotations) {
         if ([annotation isKindOfClass:MapClusterAnnotation.class]) {
-            MapClusterAnnotation *clusterAnnotation = (MapClusterAnnotation *)annotation;
-            NSUInteger index = [clusterAnnotation.annotations indexOfObject:stolperstein];
+            MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)annotation;
+            NSUInteger index = [mapClusterAnnotation.annotations indexOfObject:stolperstein];
             if (index != NSNotFound) {
                 annotationResult = annotation;
                 break;
@@ -257,14 +257,14 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
-    MapClusterAnnotation *clusterAnnotation = (MapClusterAnnotation *)selectedAnnotation;
+    MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)selectedAnnotation;
     if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
-        detailViewController.stolperstein = clusterAnnotation.annotations[0];
+        detailViewController.stolperstein = mapClusterAnnotation.annotations[0];
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
         StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
-        listViewController.stolpersteine = clusterAnnotation.annotations;
-        listViewController.title = [Localization newStolpersteineCountFromMapClusterAnnotation:clusterAnnotation];
+        listViewController.stolpersteine = mapClusterAnnotation.annotations;
+        listViewController.title = [Localization newStolpersteineCountFromMapClusterAnnotation:mapClusterAnnotation];
     }
 }
 
@@ -339,9 +339,9 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
             pinAnnotationView = pinView;
         }
         
-        MapClusterAnnotation *clusterAnnotation = (MapClusterAnnotation *)annotation;
-        if ([clusterAnnotation isCluster]) {
-            if ([clusterAnnotation isOneLocation]) {
+        MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)annotation;
+        if ([mapClusterAnnotation isCluster]) {
+            if ([mapClusterAnnotation isOneLocation]) {
                 pinAnnotationView.pinColor = MKPinAnnotationColorPurple;
             } else {
                 pinAnnotationView.pinColor = MKPinAnnotationColorGreen;
@@ -377,9 +377,9 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     if ([view.annotation isKindOfClass:MapClusterAnnotation.class]) {
-        MapClusterAnnotation *clusterAnnotation = (MapClusterAnnotation *)view.annotation;
+        MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)view.annotation;
         NSString *identifier;
-        if (clusterAnnotation.isCluster) {
+        if (mapClusterAnnotation.isCluster) {
             identifier = @"mapViewControllerToStolpersteineListViewController";
         } else {
             identifier = @"mapViewControllerToStolpersteinDetailViewController";
@@ -439,14 +439,14 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 #pragma mark - Map cluster controller
 
-- (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForClusterAnnotation:(MapClusterAnnotation *)clusterAnnotation
+- (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
-    return [Localization newTitleFromMapClusterAnnotation:clusterAnnotation];
+    return [Localization newTitleFromMapClusterAnnotation:mapClusterAnnotation];
 }
 
-- (NSString *)mapClusterController:(MapClusterController *)mapClusterController subtitleForClusterAnnotation:(MapClusterAnnotation *)clusterAnnotation
+- (NSString *)mapClusterController:(MapClusterController *)mapClusterController subtitleForClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
-    return [Localization newSubtitleFromMapClusterAnnotation:clusterAnnotation];
+    return [Localization newSubtitleFromMapClusterAnnotation:mapClusterAnnotation];
 }
 
 #pragma mark - Table view

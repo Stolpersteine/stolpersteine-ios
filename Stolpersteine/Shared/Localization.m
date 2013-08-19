@@ -159,19 +159,10 @@
 + (NSString *)newSubtitleFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
     NSString *subtitle;
-    
-    // Check if all stolpersteine have a common address
-    for (Stolperstein *stolperstein in mapClusterAnnotation.annotations) {
-        NSString *address = [Localization newShortAddressFromStolperstein:stolperstein];
-        if (subtitle == nil || [subtitle isEqualToString:address]) {
-            subtitle = address;
-        } else {
-            subtitle = nil;
-            break;
-        }
-    }
-    
-    if (subtitle == nil) {
+    if ([mapClusterAnnotation isOneLocation]) {
+        Stolperstein *stolperstein = (Stolperstein *)mapClusterAnnotation.annotations[0];
+        subtitle = [Localization newShortAddressFromStolperstein:stolperstein];
+    } else {
         subtitle = [Localization newStolpersteineCountFromMapClusterAnnotation:mapClusterAnnotation];
     }
     

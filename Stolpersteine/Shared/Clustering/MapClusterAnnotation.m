@@ -27,6 +27,8 @@
 
 #import "MapClusterControllerDelegate.h"
 
+#define fequal(a, b) (fabs((a) - (b)) < FLT_EPSILON)
+
 @implementation MapClusterAnnotation
 
 - (NSString *)title
@@ -52,6 +54,22 @@
 - (BOOL)isCluster
 {
     return (self.annotations.count > 1);
+}
+
+- (BOOL)isOneLocation
+{
+    
+    CLLocationCoordinate2D coordinate = kCLLocationCoordinate2DInvalid;
+    for (id<MKAnnotation> annotation in self.annotations) {
+        if (!CLLocationCoordinate2DIsValid(coordinate) || (fequal(coordinate.latitude, annotation.coordinate.latitude) && fequal(coordinate.longitude, annotation.coordinate.longitude))) {
+            coordinate = annotation.coordinate;
+        } else {
+            coordinate = kCLLocationCoordinate2DInvalid;
+            break;
+        }
+    }
+    
+    return CLLocationCoordinate2DIsValid(coordinate);
 }
 
 @end

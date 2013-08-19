@@ -36,6 +36,8 @@
 
 @property (nonatomic, weak) id<MapClusterControllerDelegate> delegate;
 @property (nonatomic, strong) NSArray *annotations;
-@property (nonatomic, assign, readonly, getter = isCluster) BOOL cluster;
+
+- (BOOL)isCluster;
+- (BOOL)isOneLocation;
 
 @end

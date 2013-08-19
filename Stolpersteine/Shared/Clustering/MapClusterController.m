@@ -23,6 +23,8 @@
 //  THE SOFTWARE.
 //
 
+// Based on https://github.com/MarcoSero/MSMapClustering by MarcoSero
+
 #import "MapClusterController.h"
 
 #import "MapClusterControllerUtils.h"
@@ -81,11 +83,6 @@ static double CELL_SIZE = 40.0; // [points]
 
 - (void)updateAnnotationsAnimated:(BOOL)animated completion:(void (^)())completion
 {
-//    NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
-    
-//    [self.mapView removeOverlays:self.mapView.overlays];
-//    MKMapPoint points[4];
-
     double cellSize = [self convertPointSize:CELL_SIZE toMapPointSizeFromView:self.mapView.superview];
 
     // Expand map rect and align to cell size to avoid popping when panning
@@ -99,13 +96,6 @@ static double CELL_SIZE = 40.0; // [points]
         cellMapRect.origin.x = MKMapRectGetMinX(gridMapRect);
         
         while (MKMapRectGetMinX(cellMapRect) < MKMapRectGetMaxX(gridMapRect)) {
-//            points[0] = MKMapPointMake(MKMapRectGetMinX(cellMapRect), MKMapRectGetMinY(cellMapRect));
-//            points[1] = MKMapPointMake(MKMapRectGetMaxX(cellMapRect), MKMapRectGetMinY(cellMapRect));
-//            points[2] = MKMapPointMake(MKMapRectGetMaxX(cellMapRect), MKMapRectGetMaxY(cellMapRect));
-//            points[3] = MKMapPointMake(MKMapRectGetMinX(cellMapRect), MKMapRectGetMaxY(cellMapRect));
-//            MKPolygon* poly = [MKPolygon polygonWithPoints:points count:4];
-//            [self.mapView addOverlay:poly];
-
             NSMutableSet *allAnnotationsInCell = [[self.allAnnotationsMapView annotationsInMapRect:cellMapRect] mutableCopy];
             if (allAnnotationsInCell.count > 0) {
                 NSMutableSet *visibleAnnotationsInCell = [self.mapView annotationsInMapRect:cellMapRect].mutableCopy;
@@ -120,30 +110,13 @@ static double CELL_SIZE = 40.0; // [points]
                 
                 [visibleAnnotationsInCell removeObject:annotationForCell];
                 [self.mapView removeAnnotations:visibleAnnotationsInCell.allObjects];
+                [self.mapView removeAnnotation:annotationForCell];  // trigger mapView:viewForAnnotation:
                 [self.mapView addAnnotation:annotationForCell];
-                
-//                for (StolpersteinAnnotation *annotation in allAnnotationsInBucket) {
-//                    annotation.containedAnnotations = nil;
-//                    
-//                    // Remove annotations (with animation), which we've decided to cluster
-//                    if ([visibleAnnotationsInBucket containsObject:annotation]) {
-//                        CLLocationCoordinate2D actualCoordinate = annotation.coordinate;
-//                        [UIView animateWithDuration:0.3 animations:^{
-//                            annotation.coordinate = annotationForGrid.coordinate;
-//                        } completion:^(BOOL finished) {
-//                            annotation.coordinate = actualCoordinate;
-//                            [self.mapView removeAnnotation:annotation];
-//                        }];
-//                    }
-//                }
             }
             cellMapRect.origin.x += MKMapRectGetWidth(cellMapRect);
         }
         cellMapRect.origin.y += MKMapRectGetWidth(cellMapRect);
     }
-    
-//    NSTimeInterval duration = [NSDate timeIntervalSinceReferenceDate] - start;
-//    NSLog(@"duration = %f, mapAnnotations = %u", duration * 1000, self.mapView.annotations.count);
     
     if (completion) {
         completion();

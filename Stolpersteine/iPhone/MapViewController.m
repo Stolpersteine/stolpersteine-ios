@@ -42,7 +42,7 @@
 #import "MapClusterAnnotation.h"
 #import "Localization.h"
 
-#define fequal(a,b) (fabs((a) - (b)) < FLT_EPSILON)
+#define fequal(a, b) (fabs((a) - (b)) < FLT_EPSILON)
 static const MKCoordinateRegion BERLIN_REGION = { {52.5233, 13.4127}, {0.4493, 0.7366} };
 static const double ZOOM_DISTANCE_USER = 1200;
 static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
@@ -326,9 +326,9 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     if ([annotation isKindOfClass:MapClusterAnnotation.class]) {
         static NSString *stolpersteinIdentifier = @"stolpersteinIdentifier";
         
-        annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
-        if (annotationView) {
-            annotationView.annotation = annotation;
+        MKPinAnnotationView *pinAnnotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
+        if (pinAnnotationView) {
+            pinAnnotationView.annotation = annotation;
         } else {
             MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
             pinView.canShowCallout = YES;
@@ -336,8 +336,21 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             pinView.rightCalloutAccessoryView = rightButton;
             
-            annotationView = pinView;
+            pinAnnotationView = pinView;
         }
+        
+        MapClusterAnnotation *clusterAnnotation = (MapClusterAnnotation *)annotation;
+        if ([clusterAnnotation isCluster]) {
+            if ([clusterAnnotation isOneLocation]) {
+                pinAnnotationView.pinColor = MKPinAnnotationColorPurple;
+            } else {
+                pinAnnotationView.pinColor = MKPinAnnotationColorGreen;
+            }
+        } else {
+            pinAnnotationView.pinColor = MKPinAnnotationColorRed;
+        }
+        
+        annotationView = pinAnnotationView;
     }
     
     return annotationView;
@@ -364,9 +377,9 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     if ([view.annotation isKindOfClass:MapClusterAnnotation.class]) {
-        MapClusterAnnotation *stolpersteinAnnotation = (MapClusterAnnotation *)view.annotation;
+        MapClusterAnnotation *clusterAnnotation = (MapClusterAnnotation *)view.annotation;
         NSString *identifier;
-        if (stolpersteinAnnotation.isCluster) {
+        if (clusterAnnotation.isCluster) {
             identifier = @"mapViewControllerToStolpersteineListViewController";
         } else {
             identifier = @"mapViewControllerToStolpersteinDetailViewController";
@@ -426,14 +439,14 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 #pragma mark - Map cluster controller
 
-- (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
+- (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForClusterAnnotation:(MapClusterAnnotation *)clusterAnnotation
 {
-    return [Localization newTitleFromMapClusterAnnotation:mapClusterAnnotation];
+    return [Localization newTitleFromMapClusterAnnotation:clusterAnnotation];
 }
 
-- (NSString *)mapClusterController:(MapClusterController *)mapClusterController subtitleForClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
+- (NSString *)mapClusterController:(MapClusterController *)mapClusterController subtitleForClusterAnnotation:(MapClusterAnnotation *)clusterAnnotation
 {
-    return [Localization newSubtitleFromMapClusterAnnotation:mapClusterAnnotation];
+    return [Localization newSubtitleFromMapClusterAnnotation:clusterAnnotation];
 }
 
 #pragma mark - Table view

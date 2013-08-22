@@ -30,6 +30,8 @@
 
 @interface MapClusterController : NSObject
 
+@property (nonatomic, assign) CGFloat marginFactor;
+@property (nonatomic, assign) CGFloat cellSize;
 @property (nonatomic, weak) id<MapClusterControllerDelegate> delegate;
 @property (nonatomic, assign, readonly) NSUInteger numberOfAnnotations;
 

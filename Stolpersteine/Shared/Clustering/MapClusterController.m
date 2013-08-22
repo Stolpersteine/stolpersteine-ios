@@ -40,22 +40,12 @@
 
 @implementation MapClusterController
 
-// This value controls the number of off screen annotations are displayed.
-// A bigger number means more annotations, less chance of seeing annotations views pop in but
-// decreased performance.
-// A smaller number means fewer annotations, more chance of seeing annotations views pop in but
-// better performance.
-static double MARGIN_FACTOR = 0.5;  // [width/height]
-
-// Adjust this roughly based on the dimensions of your annotations views.
-// Bigger numbers more aggressively coalesce annotations (fewer annotations displayed but better performance)
-// Numbers too small result in overlapping annotations views and too many annotations in screen.
-static double CELL_SIZE = 40.0; // [points] 
-
 - (id)initWithMapView:(MKMapView *)mapView
 {
     self = [super init];
     if (self) {
+        self.marginFactor = 0.5;
+        self.cellSize = 40;
         self.mapView = mapView;
         self.allAnnotationsMapView = [[MKMapView alloc] initWithFrame:CGRectZero];
     }
@@ -84,11 +74,11 @@ static double CELL_SIZE = 40.0; // [points]
 - (void)updateAnnotationsAnimated:(BOOL)animated completion:(void (^)())completion
 {
     BOOL delegateRespondsToUpdateSelector = [self.delegate respondsToSelector:@selector(mapClusterController:didUpdateMapClusterAnnotation:)];
-    double cellSize = [self convertPointSize:CELL_SIZE toMapPointSizeFromView:self.mapView.superview];
+    double cellSize = [self convertPointSize:_cellSize toMapPointSizeFromView:self.mapView.superview];
 
     // Expand map rect and align to cell size to avoid popping when panning
     MKMapRect visibleMapRect = self.mapView.visibleMapRect;
-    MKMapRect gridMapRect = MKMapRectInset(visibleMapRect, -MARGIN_FACTOR * visibleMapRect.size.width, -MARGIN_FACTOR * visibleMapRect.size.height);
+    MKMapRect gridMapRect = MKMapRectInset(visibleMapRect, -_marginFactor * visibleMapRect.size.width, -_marginFactor * visibleMapRect.size.height);
     gridMapRect = MapClusterControllerAlignToCellSize(gridMapRect, cellSize);
     MKMapRect cellMapRect = MKMapRectMake(0, MKMapRectGetMinY(gridMapRect), cellSize, cellSize);
 

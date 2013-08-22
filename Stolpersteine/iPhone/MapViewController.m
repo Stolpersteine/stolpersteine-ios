@@ -254,6 +254,19 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [UIApplication.sharedApplication openURL:url];
 }
 
+- (void)updatePinAnnotationView:(MKPinAnnotationView *)pinAnnotationView forMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
+{
+    if ([mapClusterAnnotation isCluster]) {
+        if ([mapClusterAnnotation isOneLocation]) {
+            pinAnnotationView.pinColor = MKPinAnnotationColorPurple;
+        } else {
+            pinAnnotationView.pinColor = MKPinAnnotationColorGreen;
+        }
+    } else {
+        pinAnnotationView.pinColor = MKPinAnnotationColorRed;
+    }
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
@@ -340,15 +353,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         }
         
         MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)annotation;
-        if ([mapClusterAnnotation isCluster]) {
-            if ([mapClusterAnnotation isOneLocation]) {
-                pinAnnotationView.pinColor = MKPinAnnotationColorPurple;
-            } else {
-                pinAnnotationView.pinColor = MKPinAnnotationColorGreen;
-            }
-        } else {
-            pinAnnotationView.pinColor = MKPinAnnotationColorRed;
-        }
+        [self updatePinAnnotationView:pinAnnotationView forMapClusterAnnotation:mapClusterAnnotation];
         
         annotationView = pinAnnotationView;
     }
@@ -439,14 +444,20 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 #pragma mark - Map cluster controller
 
-- (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
+- (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
     return [Localization newTitleFromMapClusterAnnotation:mapClusterAnnotation];
 }
 
-- (NSString *)mapClusterController:(MapClusterController *)mapClusterController subtitleForClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
+- (NSString *)mapClusterController:(MapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
     return [Localization newSubtitleFromMapClusterAnnotation:mapClusterAnnotation];
+}
+
+- (void)mapClusterController:(MapClusterController *)mapClusterController didUpdateMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
+{
+    MKPinAnnotationView *pinAnnotationView = (MKPinAnnotationView *)[self.mapView viewForAnnotation:mapClusterAnnotation];
+    [self updatePinAnnotationView:pinAnnotationView forMapClusterAnnotation:mapClusterAnnotation];
 }
 
 #pragma mark - Table view

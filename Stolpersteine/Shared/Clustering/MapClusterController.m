@@ -83,6 +83,7 @@ static double CELL_SIZE = 40.0; // [points]
 
 - (void)updateAnnotationsAnimated:(BOOL)animated completion:(void (^)())completion
 {
+    BOOL delegateRespondsToUpdateSelector = [self.delegate respondsToSelector:@selector(mapClusterController:didUpdateMapClusterAnnotation:)];
     double cellSize = [self convertPointSize:CELL_SIZE toMapPointSizeFromView:self.mapView.superview];
 
     // Expand map rect and align to cell size to avoid popping when panning
@@ -110,8 +111,12 @@ static double CELL_SIZE = 40.0; // [points]
                 
                 [visibleAnnotationsInCell removeObject:annotationForCell];
                 [self.mapView removeAnnotations:visibleAnnotationsInCell.allObjects];
-                [self.mapView removeAnnotation:annotationForCell];  // trigger mapView:viewForAnnotation:
                 [self.mapView addAnnotation:annotationForCell];
+
+                // Give delegate a chance to update annotation view
+                if (delegateRespondsToUpdateSelector) {
+                    [self.delegate mapClusterController:self didUpdateMapClusterAnnotation:annotationForCell];
+                }
             }
             cellMapRect.origin.x += MKMapRectGetWidth(cellMapRect);
         }

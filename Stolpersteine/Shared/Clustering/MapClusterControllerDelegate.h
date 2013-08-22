@@ -31,7 +31,8 @@
 @protocol MapClusterControllerDelegate <NSObject>
 
 @optional
-- (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
-- (NSString *)mapClusterController:(MapClusterController *)mapClusterController subtitleForClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
+- (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
+- (NSString *)mapClusterController:(MapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
+- (void)mapClusterController:(MapClusterController *)mapClusterController didUpdateMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
 
 @end

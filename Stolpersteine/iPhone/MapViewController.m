@@ -34,6 +34,7 @@
 #import "StolpersteinSynchronizationController.h"
 #import "StolpersteinDetailViewController.h"
 #import "StolpersteinListViewController.h"
+#import "StolpersteinAnnotationView.h"
 #import "SearchBar.h"
 #import "SearchDisplayController.h"
 #import "SearchDisplayControllerDelegate.h"
@@ -254,16 +255,16 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [UIApplication.sharedApplication openURL:url];
 }
 
-- (void)updatePinAnnotationView:(MKPinAnnotationView *)pinAnnotationView forMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
+- (void)updateStopersteinAnnotationView:(StolpersteinAnnotationView *)stolpersteinAnnotationView forMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
     if ([mapClusterAnnotation isCluster]) {
         if ([mapClusterAnnotation isOneLocation]) {
-            pinAnnotationView.pinColor = MKPinAnnotationColorPurple;
+            stolpersteinAnnotationView.type = StolpersteinAnnotationViewTypeMultiple;
         } else {
-            pinAnnotationView.pinColor = MKPinAnnotationColorGreen;
+            stolpersteinAnnotationView.type = StolpersteinAnnotationViewTypeCluster;
         }
     } else {
-        pinAnnotationView.pinColor = MKPinAnnotationColorRed;
+        stolpersteinAnnotationView.type = StolpersteinAnnotationViewTypeSingle;
     }
 }
 
@@ -339,23 +340,37 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     if ([annotation isKindOfClass:MapClusterAnnotation.class]) {
         static NSString *stolpersteinIdentifier = @"stolpersteinIdentifier";
         
-        MKPinAnnotationView *pinAnnotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
-        if (pinAnnotationView) {
-            pinAnnotationView.annotation = annotation;
+//        MKPinAnnotationView *pinAnnotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
+//        if (pinAnnotationView) {
+//            pinAnnotationView.annotation = annotation;
+//        } else {
+//            MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
+//            pinView.canShowCallout = YES;
+//            
+//            UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//            pinView.rightCalloutAccessoryView = rightButton;
+//            
+//            pinAnnotationView = pinView;
+//        }
+//        
+//        MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)annotation;
+//        [self updatePinAnnotationView:pinAnnotationView forMapClusterAnnotation:mapClusterAnnotation];
+        
+        StolpersteinAnnotationView *stolpersteinAnnotationView = (StolpersteinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
+        if (stolpersteinAnnotationView) {
+            stolpersteinAnnotationView.annotation = annotation;
         } else {
-            MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
-            pinView.canShowCallout = YES;
-            
+            stolpersteinAnnotationView = [[StolpersteinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
+            stolpersteinAnnotationView.canShowCallout = YES;
+
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            pinView.rightCalloutAccessoryView = rightButton;
-            
-            pinAnnotationView = pinView;
+            stolpersteinAnnotationView.rightCalloutAccessoryView = rightButton;
         }
-        
+
         MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)annotation;
-        [self updatePinAnnotationView:pinAnnotationView forMapClusterAnnotation:mapClusterAnnotation];
-        
-        annotationView = pinAnnotationView;
+        [self updateStopersteinAnnotationView:stolpersteinAnnotationView forMapClusterAnnotation:mapClusterAnnotation];
+
+        annotationView = stolpersteinAnnotationView;
     }
     
     return annotationView;
@@ -456,8 +471,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)mapClusterController:(MapClusterController *)mapClusterController didUpdateMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
-    MKPinAnnotationView *pinAnnotationView = (MKPinAnnotationView *)[self.mapView viewForAnnotation:mapClusterAnnotation];
-    [self updatePinAnnotationView:pinAnnotationView forMapClusterAnnotation:mapClusterAnnotation];
+    StolpersteinAnnotationView *stolpersteinAnnoationView = (StolpersteinAnnotationView *)[self.mapView viewForAnnotation:mapClusterAnnotation];
+    [self updateStopersteinAnnotationView:stolpersteinAnnoationView forMapClusterAnnotation:mapClusterAnnotation];
 }
 
 #pragma mark - Table view

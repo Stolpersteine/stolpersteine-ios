@@ -33,6 +33,5 @@
 @optional
 - (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
 - (NSString *)mapClusterController:(MapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
-- (void)mapClusterController:(MapClusterController *)mapClusterController didUpdateMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
 
 @end

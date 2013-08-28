@@ -34,7 +34,6 @@
 #import "StolpersteinSynchronizationController.h"
 #import "StolpersteinDetailViewController.h"
 #import "StolpersteinListViewController.h"
-#import "StolpersteinAnnotationView.h"
 #import "SearchBar.h"
 #import "SearchDisplayController.h"
 #import "SearchDisplayControllerDelegate.h"
@@ -255,19 +254,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [UIApplication.sharedApplication openURL:url];
 }
 
-- (void)updateStopersteinAnnotationView:(StolpersteinAnnotationView *)stolpersteinAnnotationView forMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
-{
-    if ([mapClusterAnnotation isCluster]) {
-        if ([mapClusterAnnotation isOneLocation]) {
-            stolpersteinAnnotationView.type = StolpersteinAnnotationViewTypeMultiple;
-        } else {
-            stolpersteinAnnotationView.type = StolpersteinAnnotationViewTypeCluster;
-        }
-    } else {
-        stolpersteinAnnotationView.type = StolpersteinAnnotationViewTypeSingle;
-    }
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
@@ -340,37 +326,17 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     if ([annotation isKindOfClass:MapClusterAnnotation.class]) {
         static NSString *stolpersteinIdentifier = @"stolpersteinIdentifier";
         
-//        MKPinAnnotationView *pinAnnotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
-//        if (pinAnnotationView) {
-//            pinAnnotationView.annotation = annotation;
-//        } else {
-//            MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
-//            pinView.canShowCallout = YES;
-//            
-//            UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//            pinView.rightCalloutAccessoryView = rightButton;
-//            
-//            pinAnnotationView = pinView;
-//        }
-//        
-//        MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)annotation;
-//        [self updatePinAnnotationView:pinAnnotationView forMapClusterAnnotation:mapClusterAnnotation];
-        
-        StolpersteinAnnotationView *stolpersteinAnnotationView = (StolpersteinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
-        if (stolpersteinAnnotationView) {
-            stolpersteinAnnotationView.annotation = annotation;
+        annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
+        if (annotationView) {
+            annotationView.annotation = annotation;
         } else {
-            stolpersteinAnnotationView = [[StolpersteinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
-            stolpersteinAnnotationView.canShowCallout = YES;
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
+            annotationView.canShowCallout = YES;
+            annotationView.image = [UIImage imageNamed:@"stolperstein-single.png"];
 
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            stolpersteinAnnotationView.rightCalloutAccessoryView = rightButton;
+            annotationView.rightCalloutAccessoryView = rightButton;
         }
-
-        MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)annotation;
-        [self updateStopersteinAnnotationView:stolpersteinAnnotationView forMapClusterAnnotation:mapClusterAnnotation];
-
-        annotationView = stolpersteinAnnotationView;
     }
     
     return annotationView;
@@ -467,12 +433,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (NSString *)mapClusterController:(MapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
     return [Localization newSubtitleFromMapClusterAnnotation:mapClusterAnnotation];
-}
-
-- (void)mapClusterController:(MapClusterController *)mapClusterController didUpdateMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
-{
-    StolpersteinAnnotationView *stolpersteinAnnoationView = (StolpersteinAnnotationView *)[self.mapView viewForAnnotation:mapClusterAnnotation];
-    [self updateStopersteinAnnotationView:stolpersteinAnnoationView forMapClusterAnnotation:mapClusterAnnotation];
 }
 
 #pragma mark - Table view

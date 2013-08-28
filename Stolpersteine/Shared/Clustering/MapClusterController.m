@@ -99,7 +99,8 @@
                 annotationForCell.delegate = self.delegate;
                 
                 [visibleAnnotationsInCell removeObject:annotationForCell];
-                [self.mapView removeAnnotations:visibleAnnotationsInCell.allObjects];
+//                [self.mapView removeAnnotations:visibleAnnotationsInCell.allObjects];
+                [self removeAnnotations:visibleAnnotationsInCell fromMapView:self.mapView];
                 [self.mapView addAnnotation:annotationForCell];
             }
             cellMapRect.origin.x += MKMapRectGetWidth(cellMapRect);
@@ -109,6 +110,18 @@
     
     if (completion) {
         completion();
+    }
+}
+
+- (void)removeAnnotations:(NSSet *)annotations fromMapView:(MKMapView *)mapView
+{
+    for (id<MKAnnotation> annotation in annotations) {
+        MKAnnotationView *annotationView = [mapView viewForAnnotation:annotation];
+        [UIView animateWithDuration:0.2 animations:^{
+            annotationView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [mapView removeAnnotation:annotation];
+        }];
     }
 }
 

@@ -375,6 +375,17 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     }
 }
 
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews
+{
+    for (MKAnnotationView *annotationView in annotationViews)
+    {
+        annotationView.alpha = 0.0;
+        [UIView animateWithDuration:0.2 animations:^{
+            annotationView.alpha = 1.0;
+        }];
+    }
+}
+
 #pragma mark - Location manager
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status

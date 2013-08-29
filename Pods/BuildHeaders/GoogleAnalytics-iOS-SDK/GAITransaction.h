@@ -1,1 +1,1 @@
-../../GoogleAnalytics-iOS-SDK/Library/GAITransaction.h
+../../GoogleAnalytics-iOS-SDK/GoogleAnalytics-iOS-SDK/Library/GAITransaction.h

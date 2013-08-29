@@ -1,1 +1,1 @@
-../../GoogleAnalytics-iOS-SDK/Library/GAITrackedViewController.h
+../../GoogleAnalytics-iOS-SDK/GoogleAnalytics-iOS-SDK/Library/GAITrackedViewController.h

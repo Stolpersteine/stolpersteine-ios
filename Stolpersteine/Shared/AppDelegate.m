@@ -30,6 +30,8 @@
 #import "DiagnosticsService.h"
 #import "Appearance.h"
 
+#import "iRate.h"
+
 @implementation AppDelegate
 
 + (StolpersteinNetworkService *)networkService
@@ -45,6 +47,24 @@
 }
 
 #pragma mark - Application
+
++ (void)initialize
+{
+    // Automatic rating dialog
+    iRate *irate = iRate.sharedInstance;
+    irate.messageTitle = NSLocalizedString(@"Rating.title", nil);
+    irate.message = NSLocalizedString(@"Rating.message", nil);
+    irate.cancelButtonLabel = NSLocalizedString(@"Rating.cancel", nil);
+    irate.remindButtonLabel = NSLocalizedString(@"Rating.remind", nil);
+    irate.rateButtonLabel = NSLocalizedString(@"Rating.rate", nil);
+    irate.daysUntilPrompt = 5;
+    irate.usesUntilPrompt = 10;
+    irate.remindPeriod = 1;
+    irate.promptAgainForEachNewVersion = NO;
+    
+    irate.previewMode = YES;
+//    irate.verboseLogging = NO;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -81,7 +101,7 @@
     
     // Appearance
     [Appearance apply];
-    
+        
     return YES;
 }
 
@@ -94,6 +114,28 @@
     NSString *errorButtonTitle = NSLocalizedString(@"AppDelegate.errorButtonTitle", nil);
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:errorTitle message:errorMessage delegate:nil cancelButtonTitle:errorButtonTitle otherButtonTitles:nil];
     [alert show];
+}
+
+#pragma mark - Rating dialog
+
+- (void)iRateDidPromptForRating
+{
+    [self.diagnosticsService trackEvent:DiagnosticsServiceEventRatingPrompted withClass:self.class];
+}
+
+- (void)iRateUserDidAttemptToRateApp
+{
+    [self.diagnosticsService trackEvent:DiagnosticsServiceEventRatingAttempted withClass:self.class];
+}
+
+- (void)iRateUserDidDeclineToRateApp
+{
+    [self.diagnosticsService trackEvent:DiagnosticsServiceEventRatingDeclined withClass:self.class];
+}
+
+- (void)iRateUserDidRequestReminderToRateApp
+{
+    [self.diagnosticsService trackEvent:DiagnosticsServiceEventRatingDelayed withClass:self.class];
 }
 
 @end

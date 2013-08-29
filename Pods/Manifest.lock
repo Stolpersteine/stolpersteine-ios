@@ -3,6 +3,7 @@ PODS:
   - AGWindowView (HEAD based on 0.1.2)
   - Base64nl (1.1)
   - GoogleAnalytics-iOS-SDK (2.0beta4)
+  - iRate (1.7.5)
   - OCMock (2.2)
   - TUSafariActivity (1.0.0)
 
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - AGWindowView (HEAD)
   - Base64nl (>= 1.1)
   - GoogleAnalytics-iOS-SDK (>= 2.0beta4)
+  - iRate (>= 1.7.5)
   - OCMock (>= 2.2)
   - TUSafariActivity (>= 1.0.0)
 
@@ -19,6 +21,7 @@ SPEC CHECKSUMS:
   AGWindowView: 01c44fba4aff24c489a962c53f42ff12e25f8507
   Base64nl: 1ca185984ee5507199b5c515d3083c554e15f06e
   GoogleAnalytics-iOS-SDK: acf0f1ac4dcac408d17e7766454918b7e9e2b03a
+  iRate: 8de5eaeca627c7708c8aec279eeb8daf2551c774
   OCMock: 5300ae6b75398fc3ae6cbf9102191333d35f6852
   TUSafariActivity: bd9da588f5f9136ba445d89f8f86b6dccf4d46ba
 

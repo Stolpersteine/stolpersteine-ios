@@ -1,5 +1,5 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/AGWindowView" "${PODS_ROOT}/Headers/Base64nl" "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/OCMock" "${PODS_ROOT}/Headers/TUSafariActivity"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/AGWindowView" "${PODS_ROOT}/Headers/Base64nl" "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/OCMock" "${PODS_ROOT}/Headers/TUSafariActivity" "${PODS_ROOT}/Headers/iRate"
 LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAnalytics-iOS-SDK/GoogleAnalytics-iOS-SDK/Library"
-OTHER_LDFLAGS = -ObjC -lGoogleAnalytics -framework CFNetwork -framework CoreData -framework CoreGraphics -framework IOKit -framework MobileCoreServices -framework QuartzCore -framework Security -framework SystemConfiguration -framework UIKit
+OTHER_LDFLAGS = -ObjC -lGoogleAnalytics -framework CFNetwork -framework CoreData -framework CoreGraphics -framework IOKit -framework MobileCoreServices -framework QuartzCore -framework Security -framework StoreKit -framework SystemConfiguration -framework UIKit
 PODS_ROOT = ${SRCROOT}/Pods

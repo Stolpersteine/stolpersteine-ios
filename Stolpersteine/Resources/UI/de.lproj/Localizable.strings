@@ -24,3 +24,9 @@
 "StolpersteinDetailViewController.source" = "Quelle: %@";
 "StolpersteinDetailViewController.webViewTitleBiography" = "Biografie";
 "StolpersteinDetailViewController.webViewTitleDescription" = "Beschreibung";
+
+"Rating.title" = "%@ App";
+"Rating.message" = "Gefällt Ihnen diese App? Über Ihre Bewertung würden wir uns freuen.";
+"Rating.cancel" = "Nein danke";
+"Rating.rate" = "Jetzt bewerten";
+"Rating.remind" = "Später erinnern";

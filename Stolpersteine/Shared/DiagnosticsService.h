@@ -26,7 +26,11 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    DiagnosticsServiceEventOrientationChanged
+    DiagnosticsServiceEventOrientationChanged,
+    DiagnosticsServiceEventRatingPrompted,
+    DiagnosticsServiceEventRatingAttempted,
+    DiagnosticsServiceEventRatingDeclined,
+    DiagnosticsServiceEventRatingDelayed
 } DiagnosticsServiceEvent;
 
 @interface DiagnosticsService : NSObject

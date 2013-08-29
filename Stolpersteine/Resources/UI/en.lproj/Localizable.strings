@@ -11,16 +11,22 @@
 "AppDelegate.errorButtonTitle" = "OK";
 
 "MapViewController.title" = "Map";
-"MapViewController.searchBarPlaceholder" = "Name or address";
+"MapViewController.searchBarPlaceholder" = "Name or Address";
 "MapViewController.imprint" = "Contact";
 "MapViewController.imprintURL" = "http://www.option-u.com/stolpersteine/imprint-ios-app-en/";
 "MapViewController.paddingRight" = "75";    // "Cancel"
 
 "StolpersteinDetailViewController.title" = "Info";
-"StolpersteinDetailViewController.biography" = "Show biography";
-"StolpersteinDetailViewController.description" = "Show description";
-"StolpersteinDetailViewController.street" = "All in this street";
+"StolpersteinDetailViewController.biography" = "Show Biography";
+"StolpersteinDetailViewController.description" = "Show Description";
+"StolpersteinDetailViewController.street" = "All in this Street";
 "StolpersteinDetailViewController.maps" = "Show in Maps App";
 "StolpersteinDetailViewController.source" = "Source: %@";
 "StolpersteinDetailViewController.webViewTitleBiography" = "Biography";
 "StolpersteinDetailViewController.webViewTitleDescription" = "Description";
+
+"Rating.title" = "%@ App";
+"Rating.message" = "Do you like this app? We appreciate your feedback.";
+"Rating.cancel" = "No Thanks";
+"Rating.rate" = "Rate it Now";
+"Rating.remind" = "Remind me Later";

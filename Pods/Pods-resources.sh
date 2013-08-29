@@ -62,6 +62,7 @@ install_resource "TUSafariActivity/TUSafariActivity/sk.lproj"
 install_resource "TUSafariActivity/TUSafariActivity/sv.lproj"
 install_resource "TUSafariActivity/TUSafariActivity/vi.lproj"
 install_resource "TUSafariActivity/TUSafariActivity/zh_CN.lproj"
+install_resource "iRate/iRate/iRate.bundle"
 
 rsync -avr --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 rm -f "$RESOURCES_TO_COPY"

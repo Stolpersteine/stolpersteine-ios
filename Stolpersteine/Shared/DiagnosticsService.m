@@ -33,6 +33,7 @@
 #import "StolpersteinDetailViewController.h"
 #import "StolpersteinListViewController.h"
 #import "StolpersteinDescriptionViewController.h"
+#import "AppDelegate.h"
 
 #define CUSTOM_DIMENSION_INTERFACE_ORIENTATION 1
 #define CUSTOM_DIMENSION_LOCATION_SERVICES 2
@@ -65,6 +66,7 @@
         
         // Mappings
         self.classToViewNameMapping = @{
+           NSStringFromClass(AppDelegate.class): @"Misc",
            NSStringFromClass(MapViewController.class): @"Map",
            NSStringFromClass(SearchDisplayController.class): @"SearchDisplay",
            NSStringFromClass(StolpersteinDetailViewController.class): @"StolpersteinDetail",
@@ -72,7 +74,11 @@
            NSStringFromClass(StolpersteinDescriptionViewController.class): @"StolpersteinDescription"
         };
         self.eventToActionNameMapping = @{
-            @(DiagnosticsServiceEventOrientationChanged): @"orientationChanged"
+            @(DiagnosticsServiceEventOrientationChanged): @"orientationChanged",
+            @(DiagnosticsServiceEventRatingPrompted): @"ratingPrompted",
+            @(DiagnosticsServiceEventRatingAttempted): @"ratingAttempted",
+            @(DiagnosticsServiceEventRatingDeclined): @"ratingDeclined",
+            @(DiagnosticsServiceEventRatingDelayed): @"ratingDelayed"
         };
         
         // Register for changes to user settings

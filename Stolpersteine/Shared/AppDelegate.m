@@ -62,8 +62,8 @@
     irate.remindPeriod = 1;
     irate.promptAgainForEachNewVersion = NO;
     
-    irate.previewMode = YES;
-//    irate.verboseLogging = NO;
+//    irate.previewMode = YES;
+    irate.verboseLogging = NO;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

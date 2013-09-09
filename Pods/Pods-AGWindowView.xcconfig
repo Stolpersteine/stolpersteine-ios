@@ -1,1 +1,1 @@
-PODS_AGWINDOWVIEW_OTHER_LDFLAGS = -framework CoreGraphics -framework IOKit -framework QuartzCore -framework SystemConfiguration -framework UIKit
+PODS_AGWINDOWVIEW_OTHER_LDFLAGS = -framework CoreGraphics -framework Foundation -framework UIKit

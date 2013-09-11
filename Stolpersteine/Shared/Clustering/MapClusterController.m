@@ -97,6 +97,8 @@
                 MapClusterAnnotation *annotationForCell = MapClusterControllerFindAnnotation(cellMapRect, allAnnotationsInCell, visibleAnnotationsInCell);
                 annotationForCell.annotations = allAnnotationsInCell.allObjects;
                 annotationForCell.delegate = self.delegate;
+                annotationForCell.title = nil;
+                annotationForCell.subtitle = nil;
                 
                 [visibleAnnotationsInCell removeObject:annotationForCell];
 //                [self.mapView removeAnnotations:visibleAnnotationsInCell.allObjects];

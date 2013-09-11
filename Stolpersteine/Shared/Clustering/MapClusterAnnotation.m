@@ -33,22 +33,20 @@
 
 - (NSString *)title
 {
-    NSString *title;
-    if ([self.delegate respondsToSelector:@selector(mapClusterController:titleForMapClusterAnnotation:)]) {
-        title = [self.delegate mapClusterController:nil titleForMapClusterAnnotation:self];
+    if (_title == nil && [self.delegate respondsToSelector:@selector(mapClusterController:titleForMapClusterAnnotation:)]) {
+        _title = [self.delegate mapClusterController:nil titleForMapClusterAnnotation:self];
     }
-    
-    return title;
+
+    return _title;
 }
 
 - (NSString *)subtitle
 {
-    NSString *subtitle;
-    if ([self.delegate respondsToSelector:@selector(mapClusterController:subtitleForMapClusterAnnotation:)]) {
-        subtitle = [self.delegate mapClusterController:nil subtitleForMapClusterAnnotation:self];
+    if (_subtitle == nil && [self.delegate respondsToSelector:@selector(mapClusterController:subtitleForMapClusterAnnotation:)]) {
+        _subtitle = [self.delegate mapClusterController:nil subtitleForMapClusterAnnotation:self];
     }
-
-    return subtitle;
+    
+    return _subtitle;
 }
 
 - (BOOL)isCluster
@@ -58,7 +56,6 @@
 
 - (BOOL)isOneLocation
 {
-    
     CLLocationCoordinate2D coordinate = kCLLocationCoordinate2DInvalid;
     for (id<MKAnnotation> annotation in self.annotations) {
         if (!CLLocationCoordinate2DIsValid(coordinate) || (fequal(coordinate.latitude, annotation.coordinate.latitude) && fequal(coordinate.longitude, annotation.coordinate.longitude))) {

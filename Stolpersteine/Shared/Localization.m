@@ -171,7 +171,7 @@
 
 + (NSString *)newStolpersteineCountFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
-    return [NSString stringWithFormat:@"%u Stolpersteine", mapClusterAnnotation.annotations.count];
+    return [NSString stringWithFormat:@"%lu Stolpersteine", (unsigned long)mapClusterAnnotation.annotations.count];
 }
 
 @end

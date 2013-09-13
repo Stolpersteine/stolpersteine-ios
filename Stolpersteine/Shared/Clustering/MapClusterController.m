@@ -63,17 +63,11 @@
     return self.allAnnotationsMapView.annotations.count;
 }
 
-- (double)convertPointSize:(double)pointSize toMapPointSizeFromView:(UIView *)view
-{
-    CLLocationCoordinate2D leftCoordinate = [self.mapView convertPoint:CGPointZero toCoordinateFromView:view];
-    CLLocationCoordinate2D rightCoordinate = [self.mapView convertPoint:CGPointMake(pointSize, 0) toCoordinateFromView:view];
-    double cellSize = MKMapPointForCoordinate(rightCoordinate).x - MKMapPointForCoordinate(leftCoordinate).x;
-    return cellSize;
-}
-
 - (void)updateAnnotationsAnimated:(BOOL)animated completion:(void (^)())completion
 {
-    double cellSize = [self convertPointSize:_cellSize toMapPointSizeFromView:self.mapView.superview];
+    // Use height to make sure cell size stays the same when rotating map view
+    double percentage = self.cellSize / self.mapView.frame.size.height;
+    double cellSize = percentage * self.mapView.visibleMapRect.size.height;
 
     // Expand map rect and align to cell size to avoid popping when panning
     MKMapRect visibleMapRect = self.mapView.visibleMapRect;
@@ -101,7 +95,6 @@
                 annotationForCell.subtitle = nil;
                 
                 [visibleAnnotationsInCell removeObject:annotationForCell];
-//                [self.mapView removeAnnotations:visibleAnnotationsInCell.allObjects];
                 [self removeAnnotations:visibleAnnotationsInCell fromMapView:self.mapView];
                 [self.mapView addAnnotation:annotationForCell];
             }

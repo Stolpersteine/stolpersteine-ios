@@ -63,23 +63,55 @@
     return self.allAnnotationsMapView.annotations.count;
 }
 
+- (double)convertPointSize:(double)pointSize toMapPointSizeFromView:(UIView *)view
+{
+    CLLocationCoordinate2D leftCoordinate = [self.mapView convertPoint:CGPointZero toCoordinateFromView:view];
+    CLLocationCoordinate2D rightCoordinate = [self.mapView convertPoint:CGPointMake(pointSize, 0) toCoordinateFromView:view];
+    
+//    double cellSize = fabs(MKMapPointForCoordinate(rightCoordinate).x - MKMapPointForCoordinate(leftCoordinate).x);
+    MKMapPoint leftMapPoint = MKMapPointForCoordinate(leftCoordinate);
+    MKMapPoint rightMapPoint = MKMapPointForCoordinate(rightCoordinate);
+    double xd = leftMapPoint.x - rightMapPoint.x;
+    double yd = leftMapPoint.y - rightMapPoint.y;
+    double cellSize = sqrt(xd*xd + yd*yd);
+
+//    double meters = MKMetersBetweenMapPoints(leftMapPoint, rightMapPoint);
+//    double cellSize = meters * MKMapPointsPerMeterAtLatitude(0);
+    return cellSize;
+}
+
 - (void)updateAnnotationsAnimated:(BOOL)animated completion:(void (^)())completion
 {
-    // Use height to make sure cell size stays the same when rotating map view
-    double percentage = self.cellSize / self.mapView.frame.size.height;
-    double cellSize = percentage * self.mapView.visibleMapRect.size.height;
+//    [self.mapView removeOverlays:self.mapView.overlays];
+//    MKMapPoint points[4];
 
+//    // Use height to make sure cell size stays the same when rotating map view
+//    double percentage = self.cellSize / self.mapView.frame.size.height;
+//    double cellSize = percentage * self.mapView.visibleMapRect.size.height;
+    
+    double cellSize = [self convertPointSize:self.cellSize toMapPointSizeFromView:self.mapView.superview];
+    
     // Expand map rect and align to cell size to avoid popping when panning
     MKMapRect visibleMapRect = self.mapView.visibleMapRect;
     MKMapRect gridMapRect = MKMapRectInset(visibleMapRect, -_marginFactor * visibleMapRect.size.width, -_marginFactor * visibleMapRect.size.height);
     gridMapRect = MapClusterControllerAlignToCellSize(gridMapRect, cellSize);
     MKMapRect cellMapRect = MKMapRectMake(0, MKMapRectGetMinY(gridMapRect), cellSize, cellSize);
+    
+    NSLog(@"gridMapRect = %f, %f, %f, %f", gridMapRect.origin.x, gridMapRect.origin.y, gridMapRect.size.width, gridMapRect.size.height);
+    NSLog(@"cellSize = %f", cellSize);
 
     // For each cell in the grid, pick one annotation to show
     while (MKMapRectGetMinY(cellMapRect) < MKMapRectGetMaxY(gridMapRect)) {
         cellMapRect.origin.x = MKMapRectGetMinX(gridMapRect);
         
         while (MKMapRectGetMinX(cellMapRect) < MKMapRectGetMaxX(gridMapRect)) {
+//            points[0] = MKMapPointMake(MKMapRectGetMinX(cellMapRect), MKMapRectGetMinY(cellMapRect));
+//            points[1] = MKMapPointMake(MKMapRectGetMaxX(cellMapRect), MKMapRectGetMinY(cellMapRect));
+//            points[2] = MKMapPointMake(MKMapRectGetMaxX(cellMapRect), MKMapRectGetMaxY(cellMapRect));
+//            points[3] = MKMapPointMake(MKMapRectGetMinX(cellMapRect), MKMapRectGetMaxY(cellMapRect));
+//            MKPolygon* poly = [MKPolygon polygonWithPoints:points count:4];
+//            [self.mapView addOverlay:poly];
+            
             NSMutableSet *allAnnotationsInCell = [[self.allAnnotationsMapView annotationsInMapRect:cellMapRect] mutableCopy];
             if (allAnnotationsInCell.count > 0) {
                 NSMutableSet *visibleAnnotationsInCell = [self.mapView annotationsInMapRect:cellMapRect].mutableCopy;
@@ -102,6 +134,8 @@
         }
         cellMapRect.origin.y += MKMapRectGetWidth(cellMapRect);
     }
+    
+    NSLog(@"done");
     
     if (completion) {
         completion();

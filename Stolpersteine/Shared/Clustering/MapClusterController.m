@@ -55,7 +55,7 @@
 - (void)addAnnotations:(NSArray *)annotations
 {
     [self.allAnnotationsMapView addAnnotations:annotations];
-    [self updateAnnotationsAnimated:YES completion:NULL];
+    [self updateAnnotationsWithCompletionHandler:NULL];
 }
 
 - (NSUInteger)numberOfAnnotations
@@ -81,7 +81,7 @@
     return cellSize;
 }
 
-- (void)updateAnnotationsAnimated:(BOOL)animated completion:(void (^)())completion
+- (void)updateAnnotationsWithCompletionHandler:(void (^)())completionHandler
 {
     // Calculate cell size in map point units
     double cellSize = [self convertPointSize:self.cellSize toMapPointSizeFromView:self.mapView.superview];
@@ -112,7 +112,7 @@
                 annotationForCell.subtitle = nil;
                 
                 [visibleAnnotationsInCell removeObject:annotationForCell];
-                [self removeAnnotations:visibleAnnotationsInCell fromMapView:self.mapView];
+                [self removeAnnotations:visibleAnnotationsInCell];
                 [self.mapView addAnnotation:annotationForCell];
             }
             cellMapRect.origin.x += MKMapRectGetWidth(cellMapRect);
@@ -120,19 +120,30 @@
         cellMapRect.origin.y += MKMapRectGetWidth(cellMapRect);
     }
     
-    if (completion) {
-        completion();
+    if (completionHandler) {
+        completionHandler();
     }
 }
 
-- (void)removeAnnotations:(NSSet *)annotations fromMapView:(MKMapView *)mapView
+- (void)removeAnnotations:(NSSet *)annotations
 {
     for (id<MKAnnotation> annotation in annotations) {
-        MKAnnotationView *annotationView = [mapView viewForAnnotation:annotation];
+        MKAnnotationView *annotationView = [self.mapView viewForAnnotation:annotation];
         [UIView animateWithDuration:0.2 animations:^{
             annotationView.alpha = 0.0;
         } completion:^(BOOL finished) {
-            [mapView removeAnnotation:annotation];
+            [self.mapView removeAnnotation:annotation];
+        }];
+    }
+}
+
+- (void)didAddAnnotationViews:(NSArray *)annotationViews
+{
+    for (MKAnnotationView *annotationView in annotationViews)
+    {
+        annotationView.alpha = 0.0;
+        [UIView animateWithDuration:0.2 animations:^{
+            annotationView.alpha = 1.0;
         }];
     }
 }

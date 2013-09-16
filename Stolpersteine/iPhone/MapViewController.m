@@ -292,7 +292,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     }
 
     // Update annotations
-    [self.mapClusterController updateAnnotationsAnimated:YES completion:^{
+    [self.mapClusterController updateAnnotationsWithCompletionHandler:^{
         if (self.stolpersteinToSelect) {
             // Map has zoomed to selected stolperstein; search for cluster annotation that contains this stolperstein
             id<MKAnnotation> annotation = [self annotationForStolperstein:self.stolpersteinToSelect inMapRect:mapView.visibleMapRect];
@@ -377,13 +377,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews
 {
-    for (MKAnnotationView *annotationView in annotationViews)
-    {
-        annotationView.alpha = 0.0;
-        [UIView animateWithDuration:0.2 animations:^{
-            annotationView.alpha = 1.0;
-        }];
-    }
+    [self.mapClusterController didAddAnnotationViews:annotationViews];
 }
 
 #pragma mark - Location manager

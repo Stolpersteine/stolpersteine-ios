@@ -119,6 +119,7 @@
 		627E4405169B273D0065C1F1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E4404169B273D0065C1F1 /* MobileCoreServices.framework */; };
 		627E4432169C420A0065C1F1 /* StolpersteinNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4431169C420A0065C1F1 /* StolpersteinNetworkService.m */; };
 		627E4438169C43970065C1F1 /* Stolperstein.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4437169C43970065C1F1 /* Stolperstein.m */; };
+		62C0212317E86755003ED7EE /* MapClusterMapViewDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C0212217E86755003ED7EE /* MapClusterMapViewDelegateProxy.m */; };
 		62C9C1351762861700AFBE01 /* ImageGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9C1341762861700AFBE01 /* ImageGalleryView.m */; };
 		62F147C4170202A1003E7DAA /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F147BD170202A1003E7DAA /* SearchBar.m */; };
 		62F147C5170202A1003E7DAA /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F147C0170202A1003E7DAA /* SearchDisplayController.m */; };
@@ -259,6 +260,8 @@
 		627E4431169C420A0065C1F1 /* StolpersteinNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinNetworkService.m; sourceTree = "<group>"; };
 		627E4436169C43970065C1F1 /* Stolperstein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stolperstein.h; sourceTree = "<group>"; };
 		627E4437169C43970065C1F1 /* Stolperstein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stolperstein.m; sourceTree = "<group>"; };
+		62C0212117E86755003ED7EE /* MapClusterMapViewDelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusterMapViewDelegateProxy.h; sourceTree = "<group>"; };
+		62C0212217E86755003ED7EE /* MapClusterMapViewDelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusterMapViewDelegateProxy.m; sourceTree = "<group>"; };
 		62C9C1331762861700AFBE01 /* ImageGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryView.h; sourceTree = "<group>"; };
 		62C9C1341762861700AFBE01 /* ImageGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGalleryView.m; sourceTree = "<group>"; };
 		62F147BC170202A1003E7DAA /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
@@ -335,6 +338,8 @@
 				4808CF3816FCFE4C00E89E97 /* MapClusterAnnotation.m */,
 				4808CF3916FCFE4C00E89E97 /* MapClusterController.h */,
 				4808CF3A16FCFE4C00E89E97 /* MapClusterController.m */,
+				62C0212117E86755003ED7EE /* MapClusterMapViewDelegateProxy.h */,
+				62C0212217E86755003ED7EE /* MapClusterMapViewDelegateProxy.m */,
 				481CBC861704CD2700695499 /* MapClusterControllerDelegate.h */,
 				4808CF3B16FCFE4C00E89E97 /* MapClusterControllerUtils.h */,
 				4808CF3C16FCFE4C00E89E97 /* MapClusterControllerUtils.m */,
@@ -1011,6 +1016,7 @@
 				4877716E1780AA7C00789F32 /* Appearance.m in Sources */,
 				487771711780AE7100789F32 /* RoundedRectButton.m in Sources */,
 				4877717517861A4400789F32 /* StolpersteinDescriptionViewController.m in Sources */,
+				62C0212317E86755003ED7EE /* MapClusterMapViewDelegateProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

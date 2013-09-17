@@ -30,11 +30,13 @@
 #import "MapClusterControllerUtils.h"
 #import "MapClusterAnnotation.h"
 #import "MapClusterControllerDelegate.h"
+#import "MapClusterMapViewDelegateProxy.h"
 
-@interface MapClusterController()
+@interface MapClusterController()<MKMapViewDelegate>
 
 @property (strong, nonatomic) MKMapView *mapView;
 @property (strong, nonatomic) MKMapView *allAnnotationsMapView;
+@property (strong, nonatomic) MapClusterMapViewDelegateProxy *mapViewDelegateProxy;
 
 @end
 
@@ -48,6 +50,9 @@
         self.cellSize = 40;
         self.mapView = mapView;
         self.allAnnotationsMapView = [[MKMapView alloc] initWithFrame:CGRectZero];
+        
+        self.mapViewDelegateProxy = [[MapClusterMapViewDelegateProxy alloc] initWithMapView:mapView];
+        self.mapViewDelegateProxy.delegate = self;
     }
     return self;
 }
@@ -127,6 +132,7 @@
 
 - (void)removeAnnotations:(NSSet *)annotations
 {
+    // Animate annotations that get removed
     for (id<MKAnnotation> annotation in annotations) {
         MKAnnotationView *annotationView = [self.mapView viewForAnnotation:annotation];
         [UIView animateWithDuration:0.2 animations:^{
@@ -137,14 +143,21 @@
     }
 }
 
-- (void)didAddAnnotationViews:(NSArray *)annotationViews
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews
 {
+    // Animate annotations that get added
     for (MKAnnotationView *annotationView in annotationViews)
     {
         annotationView.alpha = 0.0;
         [UIView animateWithDuration:0.2 animations:^{
             annotationView.alpha = 1.0;
         }];
+    }
+    
+    
+    // Forward to standard delegate
+    if ([self.mapViewDelegateProxy.target respondsToSelector:@selector(mapView:didAddAnnotationViews:)]) {
+        [self.mapViewDelegateProxy.target mapView:mapView didAddAnnotationViews:annotationViews];
     }
 }
 

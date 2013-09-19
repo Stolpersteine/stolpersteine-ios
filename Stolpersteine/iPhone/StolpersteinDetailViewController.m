@@ -33,7 +33,7 @@
 #import "DiagnosticsService.h"
 #import "Stolperstein.h"
 #import "StolpersteinSearchData.h"
-#import "StolpersteinListViewController.h"
+#import "StolpersteinCardsViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "Localization.h"
 #import "ImageGalleryViewController.h"
@@ -179,7 +179,7 @@
     } else if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToStolpersteinListViewController"]) {
         StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
         searchData.street = [Localization newStreetNameFromStolperstein:self.stolperstein];
-        StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
+        StolpersteinCardsViewController *listViewController = (StolpersteinCardsViewController *)segue.destinationViewController;
         listViewController.searchData = searchData;
         listViewController.title = searchData.street;
     } else if ([segue.identifier isEqualToString:@"stolpersteinDetailViewControllerToWebViewController"]) {

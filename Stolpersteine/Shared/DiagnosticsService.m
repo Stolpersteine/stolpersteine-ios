@@ -31,7 +31,7 @@
 #import "MapViewController.h"
 #import "SearchDisplayController.h"
 #import "StolpersteinDetailViewController.h"
-#import "StolpersteinListViewController.h"
+#import "StolpersteinCardsViewController.h"
 #import "StolpersteinDescriptionViewController.h"
 #import "AppDelegate.h"
 
@@ -70,7 +70,7 @@
            NSStringFromClass(MapViewController.class): @"Map",
            NSStringFromClass(SearchDisplayController.class): @"SearchDisplay",
            NSStringFromClass(StolpersteinDetailViewController.class): @"StolpersteinDetail",
-           NSStringFromClass(StolpersteinListViewController.class): @"StolpersteinList",
+           NSStringFromClass(StolpersteinCardsViewController.class): @"StolpersteinCards",
            NSStringFromClass(StolpersteinDescriptionViewController.class): @"StolpersteinDescription"
         };
         self.eventToActionNameMapping = @{

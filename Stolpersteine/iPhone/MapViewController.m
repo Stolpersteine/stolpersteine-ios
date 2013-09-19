@@ -33,7 +33,7 @@
 #import "StolpersteinSynchronizationControllerDelegate.h"
 #import "StolpersteinSynchronizationController.h"
 #import "StolpersteinDetailViewController.h"
-#import "StolpersteinListViewController.h"
+#import "StolpersteinCardsViewController.h"
 #import "SearchBar.h"
 #import "SearchDisplayController.h"
 #import "SearchDisplayControllerDelegate.h"
@@ -262,7 +262,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
         detailViewController.stolperstein = mapClusterAnnotation.annotations[0];
     } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
-        StolpersteinListViewController *listViewController = (StolpersteinListViewController *)segue.destinationViewController;
+        StolpersteinCardsViewController *listViewController = (StolpersteinCardsViewController *)segue.destinationViewController;
         listViewController.stolpersteine = mapClusterAnnotation.annotations;
         listViewController.title = [Localization newStolpersteineCountFromMapClusterAnnotation:mapClusterAnnotation];
     }

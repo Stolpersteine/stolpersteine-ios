@@ -23,22 +23,24 @@
 //  THE SOFTWARE.
 //
 
-#import "StolpersteinListViewController.h"
+#import "StolpersteinCardsViewController.h"
+
+#import "Stolperstein.h"
+#import "StolpersteinDetailViewController.h"
+#import "StolpersteinCardCell.h"
 
 #import "AppDelegate.h"
 #import "StolpersteinNetworkService.h"
 #import "DiagnosticsService.h"
-#import "Stolperstein.h"
-#import "StolpersteinDetailViewController.h"
 #import "Localization.h"
 
-@interface StolpersteinListViewController()
+@interface StolpersteinCardsViewController()
 
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
 
 @end
 
-@implementation StolpersteinListViewController
+@implementation StolpersteinCardsViewController
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -77,11 +79,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * const cellIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    StolpersteinCardCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     Stolperstein *stolperstein = self.stolpersteine[indexPath.row];
-    cell.textLabel.text = [Localization newNameFromStolperstein:stolperstein];
-    cell.detailTextLabel.text = [Localization newShortAddressFromStolperstein:stolperstein];
+    cell.titleLabel.text = [Localization newNameFromStolperstein:stolperstein];
+    cell.subtitleLabel.text = [Localization newShortAddressFromStolperstein:stolperstein];
     
     return cell;
 }

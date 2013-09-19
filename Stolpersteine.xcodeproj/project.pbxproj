@@ -35,7 +35,7 @@
 		484D094517CE8766004925F7 /* stolperstein-single.png in Resources */ = {isa = PBXBuildFile; fileRef = 484D094417CE8766004925F7 /* stolperstein-single.png */; };
 		48633B9816C03F690057A317 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B8A16C03F690057A317 /* MapViewController.m */; };
 		48633B9C16C03F690057A317 /* StolpersteinDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */; };
-		48633B9D16C03F690057A317 /* StolpersteinListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9616C03F690057A317 /* StolpersteinListViewController.m */; };
+		48633B9D16C03F690057A317 /* StolpersteinCardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9616C03F690057A317 /* StolpersteinCardsViewController.m */; };
 		48633BA016C03FCE0057A317 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9F16C03FCE0057A317 /* AppDelegate.m */; };
 		48633BA616C040520057A317 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48633BA216C040520057A317 /* InfoPlist.strings */; };
 		48633BAA16C041150057A317 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48633BAC16C041150057A317 /* Localizable.strings */; };
@@ -75,6 +75,7 @@
 		48A08C9016DBF5A5000A2470 /* Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8F16DBF5A5000A2470 /* Localization.m */; };
 		48A08C9116DBF5A5000A2470 /* Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8F16DBF5A5000A2470 /* Localization.m */; };
 		48A08C9416DBF620000A2470 /* LocalizationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C9316DBF620000A2470 /* LocalizationTests.m */; };
+		48A6CEA717EB9AC300E0751B /* StolpersteinCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A6CEA617EB9AC300E0751B /* StolpersteinCardCell.m */; };
 		48AC6D7016BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7116BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
 		48AC6D7216BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */; };
@@ -164,8 +165,8 @@
 		48633B8A16C03F690057A317 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinDetailViewController.h; sourceTree = "<group>"; };
 		48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinDetailViewController.m; sourceTree = "<group>"; };
-		48633B9516C03F690057A317 /* StolpersteinListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinListViewController.h; sourceTree = "<group>"; };
-		48633B9616C03F690057A317 /* StolpersteinListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinListViewController.m; sourceTree = "<group>"; };
+		48633B9516C03F690057A317 /* StolpersteinCardsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinCardsViewController.h; sourceTree = "<group>"; };
+		48633B9616C03F690057A317 /* StolpersteinCardsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinCardsViewController.m; sourceTree = "<group>"; };
 		48633B9E16C03FCE0057A317 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		48633B9F16C03FCE0057A317 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		48633BA316C040520057A317 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -212,6 +213,8 @@
 		48A08C8F16DBF5A5000A2470 /* Localization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localization.m; sourceTree = "<group>"; };
 		48A08C9216DBF620000A2470 /* LocalizationTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationTests.h; sourceTree = "<group>"; };
 		48A08C9316DBF620000A2470 /* LocalizationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationTests.m; sourceTree = "<group>"; };
+		48A6CEA517EB9AC300E0751B /* StolpersteinCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinCardCell.h; sourceTree = "<group>"; };
+		48A6CEA617EB9AC300E0751B /* StolpersteinCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinCardCell.m; sourceTree = "<group>"; };
 		48AC6D6E16BF0964004C4AF4 /* StolpersteinSearchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinSearchData.h; sourceTree = "<group>"; };
 		48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinSearchData.m; sourceTree = "<group>"; };
 		48BAF38316E926DE007250A0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -413,8 +416,10 @@
 			children = (
 				48633B8916C03F690057A317 /* MapViewController.h */,
 				48633B8A16C03F690057A317 /* MapViewController.m */,
-				48633B9516C03F690057A317 /* StolpersteinListViewController.h */,
-				48633B9616C03F690057A317 /* StolpersteinListViewController.m */,
+				48633B9516C03F690057A317 /* StolpersteinCardsViewController.h */,
+				48633B9616C03F690057A317 /* StolpersteinCardsViewController.m */,
+				48A6CEA517EB9AC300E0751B /* StolpersteinCardCell.h */,
+				48A6CEA617EB9AC300E0751B /* StolpersteinCardCell.m */,
 				48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */,
 				48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */,
 				4877717317861A4400789F32 /* StolpersteinDescriptionViewController.h */,
@@ -998,7 +1003,7 @@
 				48AC6D7016BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */,
 				48633B9816C03F690057A317 /* MapViewController.m in Sources */,
 				48633B9C16C03F690057A317 /* StolpersteinDetailViewController.m in Sources */,
-				48633B9D16C03F690057A317 /* StolpersteinListViewController.m in Sources */,
+				48633B9D16C03F690057A317 /* StolpersteinCardsViewController.m in Sources */,
 				48633BA016C03FCE0057A317 /* AppDelegate.m in Sources */,
 				48A08C9016DBF5A5000A2470 /* Localization.m in Sources */,
 				48BAF38816E9405C007250A0 /* DiagnosticsService.m in Sources */,
@@ -1015,6 +1020,7 @@
 				489B682917739342000803C2 /* StolpersteinSynchronizationController.m in Sources */,
 				4877716E1780AA7C00789F32 /* Appearance.m in Sources */,
 				487771711780AE7100789F32 /* RoundedRectButton.m in Sources */,
+				48A6CEA717EB9AC300E0751B /* StolpersteinCardCell.m in Sources */,
 				4877717517861A4400789F32 /* StolpersteinDescriptionViewController.m in Sources */,
 				62C0212317E86755003ED7EE /* MapClusterMapViewDelegateProxy.m in Sources */,
 			);

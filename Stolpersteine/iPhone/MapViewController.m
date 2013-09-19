@@ -298,18 +298,18 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
             id<MKAnnotation> annotation = [self annotationForStolperstein:self.stolpersteinToSelect inMapRect:mapView.visibleMapRect];
             self.stolpersteinToSelect = nil;
             
-            // Dispatch async to avoid calling regionDidChangeAnimated immediately
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // No zooming, only panning. Otherwise, stolperstein might change to a different cluster annotation
-                [self.mapView setCenterCoordinate:annotation.coordinate animated:NO];
-            });
-            
             if ([self isCoordinateUpToDate:annotation.coordinate]) {
                 // Select immediately since region won't change
                 [self.mapView selectAnnotation:annotation animated:YES];
             } else {
                 // Actual selection happens in next call to mapView:regionDidChangeAnimated:
                 self.annotationToSelect = annotation;
+                
+                // Dispatch async to avoid calling regionDidChangeAnimated immediately
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // No zooming, only panning. Otherwise, stolperstein might change to a different cluster annotation
+                    [self.mapView setCenterCoordinate:annotation.coordinate animated:NO];
+                });
             }
         } else if (self.annotationToSelect) {
             // Map has zoomed to annotation

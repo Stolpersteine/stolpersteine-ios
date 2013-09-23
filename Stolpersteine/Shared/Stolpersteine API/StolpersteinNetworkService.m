@@ -33,7 +33,6 @@
 #import "StolpersteinSearchData.h"
 #import "StolpersteinNetworkServiceDelegate.h"
 #import "NSDictionary+StolpersteinParsing.h"
-#import "Base64.h"
 
 static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1";
 
@@ -55,7 +54,8 @@ static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1"
         [self.httpClient registerHTTPOperationClass:AFJSONRequestOperation.class];
         
         if (clientUser && clientPassword) {
-            self.encodedClientCredentials = [[[NSString stringWithFormat:@"%@:%@", clientUser, clientPassword] dataUsingEncoding:NSUTF8StringEncoding] base64EncodedString];
+            NSString *clientCredentials = [NSString stringWithFormat:@"%@:%@", clientUser, clientPassword];
+            self.encodedClientCredentials = [[clientCredentials dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
         }
 
         self.defaultSearchData = [[StolpersteinSearchData alloc] init];

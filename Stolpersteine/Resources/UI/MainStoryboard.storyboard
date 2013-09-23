@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XLj-i0-kjg">
     <dependencies>
-        <deployment version="1536" defaultVersion="1536" identifier="iOS"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
@@ -64,7 +64,6 @@
                         <outlet property="imprintButton" destination="zDp-xd-q2d" id="rFh-9b-55r"/>
                         <outlet property="mapView" destination="omQ-fz-cwh" id="JBd-Rf-WH9"/>
                         <outlet property="searchBar" destination="AgH-MU-KZc" id="Khr-cK-EUC"/>
-                        <segue destination="Az3-JW-c4L" kind="push" identifier="mapViewControllerToStolpersteinDetailViewController" id="hg1-Lc-53S"/>
                         <segue destination="S9Y-Yy-0sA" kind="push" identifier="mapViewControllerToStolpersteineListViewController" id="icL-Q6-suH"/>
                     </connections>
                 </viewController>
@@ -96,31 +95,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="29K-mt-rrC" customClass="StolpersteinCardCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="144"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="29K-mt-rrC" customClass="StolpersteinCardCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="144"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="29K-mt-rrC" id="3lF-od-53v">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="143"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="143"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="re6-BP-fXL">
-                                            <rect key="frame" x="16" y="8" width="284" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="288" translatesAutoresizingMaskIntoConstraints="NO" id="re6-BP-fXL">
+                                            <rect key="frame" x="16" y="16" width="288" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="99r-aX-8xG">
-                                            <rect key="frame" x="16" y="37" width="284" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="re6-BP-fXL" firstAttribute="top" secondItem="3lF-od-53v" secondAttribute="top" constant="16" id="AXy-fp-sT0"/>
+                                        <constraint firstItem="re6-BP-fXL" firstAttribute="centerX" secondItem="3lF-od-53v" secondAttribute="centerX" id="Dhl-tN-OBV"/>
+                                        <constraint firstItem="re6-BP-fXL" firstAttribute="leading" secondItem="3lF-od-53v" secondAttribute="leading" constant="16" id="JZf-Hn-NRg"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="subtitleLabel" destination="99r-aX-8xG" id="Vco-z1-tU9"/>
                                     <outlet property="titleLabel" destination="re6-BP-fXL" id="0Ez-cz-O0z"/>
+                                    <segue destination="ZbI-TV-s7f" kind="push" identifier="stolpersteinCardsViewControllerToStolpersteinDescriptionViewController" id="9Uw-e6-NCi"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -130,181 +128,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="hYk-hn-xCs"/>
-                    <connections>
-                        <segue destination="Az3-JW-c4L" kind="push" identifier="stolpersteineListViewControllerToStolpersteinDetailViewController" id="Txc-mb-Q18"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GeU-YR-f5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="710" y="-341"/>
-        </scene>
-        <!--Stolperstein Detail View Controller-->
-        <scene sceneID="osR-H4-E6h">
-            <objects>
-                <viewController storyboardIdentifier="detailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Az3-JW-c4L" customClass="StolpersteinDetailViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="J5s-Km-s9e"/>
-                        <viewControllerLayoutGuide type="bottom" id="dqB-Oi-cFb"/>
-                    </layoutGuides>
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="scrollView" alwaysBounceVertical="YES" id="lxM-gj-iBt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="6i7-Lc-dC1">
-                                <rect key="frame" x="20" y="20" width="280" height="21"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUv-ks-uNY">
-                                <rect key="frame" x="20" y="61" width="180" height="160"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="O1b-Pm-08K"/>
-                                    <constraint firstAttribute="width" constant="180" id="a7p-K5-bFK"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="1F8-OG-UAt" kind="embed" identifier="imageGalleryViewController" id="fCj-4l-XqO"/>
-                                </connections>
-                            </containerView>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Address" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-z7-0LY">
-                                <rect key="frame" x="20" y="241" width="280" height="21"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3R-yr-byf" customClass="RoundedRectButton">
-                                <rect key="frame" x="20" y="282" width="280" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="kDK-Pz-PAz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Street">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="S9Y-Yy-0sA" kind="push" identifier="stolpersteinDetailViewControllerToStolpersteinListViewController" id="nZ0-iT-1hC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ehs-e2-S0O" customClass="RoundedRectButton">
-                                <rect key="frame" x="20" y="334" width="280" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Lrw-db-dPT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Biography">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="ZbI-TV-s7f" kind="push" identifier="stolpersteinDetailViewControllerToWebViewController" id="FXf-H8-4ZM"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hj3-Gr-CcF" customClass="RoundedRectButton">
-                                <rect key="frame" x="20" y="386" width="281" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="3Gg-M1-Mzc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Maps">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showInMapsApp:" destination="Az3-JW-c4L" eventType="touchUpInside" id="RvO-g3-liI"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYZ-d0-Zp5">
-                                <rect key="frame" x="20" y="440" width="42" height="35"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="YHP-b1-LUm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="RYZ-d0-Zp5" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" id="8sz-BZ-bZA"/>
-                            <constraint firstAttribute="trailing" secondItem="T3R-yr-byf" secondAttribute="trailing" constant="20" symbolic="YES" id="BQs-nf-Nzw"/>
-                            <constraint firstItem="hj3-Gr-CcF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="T3R-yr-byf" secondAttribute="bottom" priority="999" constant="8" symbolic="YES" id="C3g-ZJ-3uT"/>
-                            <constraint firstAttribute="centerX" secondItem="Ehs-e2-S0O" secondAttribute="centerX" id="C3p-ue-6TR"/>
-                            <constraint firstItem="OUv-ks-uNY" firstAttribute="top" secondItem="6i7-Lc-dC1" secondAttribute="bottom" constant="20" id="DHk-ct-pw2"/>
-                            <constraint firstItem="6i7-Lc-dC1" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" id="FD8-Al-eeb"/>
-                            <constraint firstAttribute="centerX" secondItem="hj3-Gr-CcF" secondAttribute="centerX" id="FHp-EJ-Abs"/>
-                            <constraint firstItem="T3R-yr-byf" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" id="GLq-VQ-jOC"/>
-                            <constraint firstItem="6i7-Lc-dC1" firstAttribute="top" secondItem="lxM-gj-iBt" secondAttribute="top" constant="20" symbolic="YES" id="Gc3-8L-j76"/>
-                            <constraint firstItem="T3R-yr-byf" firstAttribute="top" secondItem="G7e-z7-0LY" secondAttribute="bottom" constant="20" id="ISg-PR-yvd"/>
-                            <constraint firstItem="G7e-z7-0LY" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" id="Kim-gQ-Z8k"/>
-                            <constraint firstItem="hj3-Gr-CcF" firstAttribute="top" secondItem="Ehs-e2-S0O" secondAttribute="bottom" constant="8" symbolic="YES" id="M61-us-D1B"/>
-                            <constraint firstItem="Ehs-e2-S0O" firstAttribute="top" secondItem="T3R-yr-byf" secondAttribute="bottom" constant="8" symbolic="YES" id="NR6-Cu-EVU"/>
-                            <constraint firstAttribute="trailing" secondItem="6i7-Lc-dC1" secondAttribute="trailing" constant="20" symbolic="YES" id="Wpp-EX-kVw"/>
-                            <constraint firstItem="RYZ-d0-Zp5" firstAttribute="top" secondItem="hj3-Gr-CcF" secondAttribute="bottom" constant="10" id="XAe-DH-Nsv"/>
-                            <constraint firstItem="OUv-ks-uNY" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" id="aeT-cO-rUP"/>
-                            <constraint firstItem="hj3-Gr-CcF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G7e-z7-0LY" secondAttribute="bottom" priority="998" constant="20" id="c2D-Hn-maM"/>
-                            <constraint firstItem="G7e-z7-0LY" firstAttribute="top" secondItem="6i7-Lc-dC1" secondAttribute="bottom" priority="999" constant="20" id="gYU-3n-eeP"/>
-                            <constraint firstAttribute="centerX" secondItem="T3R-yr-byf" secondAttribute="centerX" id="h4Z-c7-TQU"/>
-                            <constraint firstAttribute="trailing" secondItem="G7e-z7-0LY" secondAttribute="trailing" constant="20" symbolic="YES" id="j4A-ZS-WtO"/>
-                            <constraint firstItem="Ehs-e2-S0O" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" id="jAu-I3-muU"/>
-                            <constraint firstItem="Ehs-e2-S0O" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G7e-z7-0LY" secondAttribute="bottom" priority="999" constant="20" id="lMC-Cl-LQg"/>
-                            <constraint firstItem="hj3-Gr-CcF" firstAttribute="leading" secondItem="lxM-gj-iBt" secondAttribute="leading" constant="20" symbolic="YES" id="oVX-vb-hF8"/>
-                            <constraint firstItem="G7e-z7-0LY" firstAttribute="top" secondItem="OUv-ks-uNY" secondAttribute="bottom" constant="20" id="pQ1-KU-82e"/>
-                            <constraint firstAttribute="bottom" secondItem="RYZ-d0-Zp5" secondAttribute="bottom" constant="10" id="qG5-R4-unq"/>
-                        </constraints>
-                    </scrollView>
-                    <navigationItem key="navigationItem" id="kTu-o1-owI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="LHN-M4-lsp">
-                            <connections>
-                                <action selector="showActivities:" destination="Az3-JW-c4L" id="Y9n-CC-fFe"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="addressLabel" destination="G7e-z7-0LY" id="iD0-NE-Y9d"/>
-                        <outlet property="allInThisStreetButton" destination="T3R-yr-byf" id="1wy-L5-QE4"/>
-                        <outlet property="biographyButton" destination="Ehs-e2-S0O" id="gW8-dQ-Qyl"/>
-                        <outlet property="imageGalleryView" destination="OUv-ks-uNY" id="IfD-F5-wvd"/>
-                        <outlet property="mapsAppButton" destination="hj3-Gr-CcF" id="G1I-PE-not"/>
-                        <outlet property="nameLabel" destination="6i7-Lc-dC1" id="5Hl-UB-lLb"/>
-                        <outlet property="scrollView" destination="lxM-gj-iBt" id="5Ym-tm-6b1"/>
-                        <outlet property="sourceLabel" destination="RYZ-d0-Zp5" id="67Z-Zp-xQw"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hgX-vg-RuV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="710" y="319"/>
-        </scene>
-        <!--Image Gallery View Controller-->
-        <scene sceneID="pZr-RO-MUc">
-            <objects>
-                <viewController id="1F8-OG-UAt" customClass="ImageGalleryViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JES-oN-hML"/>
-                        <viewControllerLayoutGuide type="bottom" id="vh4-jJ-PYs"/>
-                    </layoutGuides>
-                    <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="mZh-X6-L7z">
-                        <rect key="frame" x="0.0" y="0.0" width="180" height="160"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xeY-RB-BFn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1195" y="727"/>
+            <point key="canvasLocation" x="574" y="-11"/>
         </scene>
         <!--Stolperstein Description View Controller-->
         <scene sceneID="bQI-pg-hfM">
@@ -348,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INj-9S-2YH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1520" y="319"/>
+            <point key="canvasLocation" x="1126" y="-11"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -356,8 +183,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="Txc-mb-Q18"/>
-        <segue reference="icL-Q6-suH"/>
-    </inferredMetricsTieBreakers>
 </document>

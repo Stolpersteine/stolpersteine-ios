@@ -26,7 +26,7 @@
 #import "StolpersteinCardsViewController.h"
 
 #import "Stolperstein.h"
-#import "StolpersteinDetailViewController.h"
+#import "StolpersteinDescriptionViewController.h"
 #import "StolpersteinCardCell.h"
 
 #import "AppDelegate.h"
@@ -41,6 +41,13 @@
 @end
 
 @implementation StolpersteinCardsViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -71,6 +78,16 @@
     [self.searchStolpersteineOperation cancel];
 }
 
+- (void)preferredContentSizeChanged:(NSNotification *)notification
+{
+    [self.tableView reloadData];
+}
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 100;
+//}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.stolpersteine.count;
@@ -80,30 +97,25 @@
 {
     static NSString * const cellIdentifier = @"cell";
     StolpersteinCardCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    Stolperstein *stolperstein = self.stolpersteine[indexPath.row];
-    cell.titleLabel.text = [Localization newNameFromStolperstein:stolperstein];
-    cell.subtitleLabel.text = [Localization newShortAddressFromStolperstein:stolperstein];
+    [cell updateWithStolperstein:self.stolpersteine[indexPath.row]];
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self performSegueWithIdentifier:@"stolpersteineListViewControllerToStolpersteinDetailViewController" sender:self];
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"stolpersteineListViewControllerToStolpersteinDetailViewController"]) {
-        StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
-        Stolperstein *stolperstein = self.stolpersteine[self.tableView.indexPathForSelectedRow.row];
-        detailViewController.stolperstein = stolperstein;
+    if ([segue.identifier isEqualToString:@"stolpersteinCardsViewControllerToStolpersteinDescriptionViewController"]) {
+        StolpersteinCardCell *cardCell = (StolpersteinCardCell *)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
+        Stolperstein *stolperstein = cardCell.stolperstein;
         
-        if (self.searchData) {
-            // Stop endless navigation
-            detailViewController.allInThisStreetButtonHidden = YES;
-        }
+        NSURL *url = [[NSURL alloc] initWithString:stolperstein.personBiographyURLString];
+        StolpersteinDescriptionViewController *webViewController = (StolpersteinDescriptionViewController *)segue.destinationViewController;
+        webViewController.url = url;
+        NSString *localizedTitle = (stolperstein.type == StolpersteinTypeStolperschwelle) ? @"StolpersteinDetailViewController.webViewTitleDescription" : @"StolpersteinDetailViewController.webViewTitleBiography";
+        webViewController.title = NSLocalizedString(localizedTitle, nil);
+        NSString *name = [Localization newNameFromStolperstein:stolperstein];
+        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:name style:UIBarButtonItemStyleBordered target:nil action:nil];
+        self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
 }
 

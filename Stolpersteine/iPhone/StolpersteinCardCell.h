@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class Stolperstein;
+
 @interface StolpersteinCardCell : UITableViewCell
 
+@property (nonatomic, readonly) Stolperstein *stolperstein;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
+
+- (void)updateWithStolperstein:(Stolperstein *)stolperstein;
 
 @end

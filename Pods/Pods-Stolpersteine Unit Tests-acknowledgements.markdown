@@ -51,7 +51,7 @@ THE SOFTWARE.
 
 ## GoogleAnalytics-iOS-SDK
 
-Copyright 2009 - 2012 Google, Inc. All rights reserved.
+Copyright 2009 - 2013 Google, Inc. All rights reserved.
 
 
 ## OCMock

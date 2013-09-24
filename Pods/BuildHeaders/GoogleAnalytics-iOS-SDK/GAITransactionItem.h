@@ -1,1 +1,0 @@
-../../GoogleAnalytics-iOS-SDK/GoogleAnalytics-iOS-SDK/Library/GAITransactionItem.h

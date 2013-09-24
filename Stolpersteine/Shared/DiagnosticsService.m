@@ -27,6 +27,8 @@
 
 #import "GAI.h"
 #import "GAITracker.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
 
 #import "MapViewController.h"
 #import "SearchDisplayController.h"
@@ -56,13 +58,14 @@
         self.gai = GAI.sharedInstance;
         self.gai.trackUncaughtExceptions = YES;
         self.gai.dispatchInterval = 30;
-//        self.gai.debug = YES;
+//        [self.gai.logger setLogLevel:kGAILogLevelVerbose];
+//        self.gai.dryRun = YES;
         self.gaiTracker = [self.gai trackerWithTrackingId:googleAnayticsID];
-        self.gaiTracker.anonymize = YES;
+        [self.gaiTracker set:kGAIAnonymizeIp value:[@NO stringValue]];
         NSDictionary *infoDictionary = [NSBundle.mainBundle infoDictionary];
         NSString *version = [infoDictionary objectForKey:@"CFBundleVersion"];
         NSString *shortVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-        self.gaiTracker.appVersion = [NSString stringWithFormat:@"%@ (%@)", shortVersion, version];
+        [self.gaiTracker set:kGAIAppVersion value:[NSString stringWithFormat:@"%@ (%@)", shortVersion, version]];
         
         // Mappings
         self.classToViewNameMapping = @{
@@ -148,32 +151,37 @@
     BOOL isLandscapeNew = UIInterfaceOrientationIsLandscape(interfaceOrientationNew);
     if (isLandscapeOld != isLandscapeNew) {
         NSString *actionName = [self stringForEvent:DiagnosticsServiceEventOrientationChanged];
-        NSString *viewName = self.gaiTracker.appScreen; // last used view name
+        NSString *viewName = [self.gaiTracker get:kGAIScreenName]; // last used view name
         NSString *interfaceOrientationAsString = [DiagnosticsService stringForInterfaceOrientation:interfaceOrientationNew];
         if (actionName && viewName) {
-            [self addCustomDimensions];
-            [self.gaiTracker sendEventWithCategory:viewName withAction:actionName withLabel:interfaceOrientationAsString withValue:nil];
+            [self updateCustomDimensions];
+            NSDictionary *data = [[GAIDictionaryBuilder createEventWithCategory:viewName action:actionName label:interfaceOrientationAsString value:nil] build];
+            [self.gaiTracker send:data];
         }
     }
 }
 
-- (void)addCustomDimensions
+- (void)updateCustomDimensions
 {
     UIInterfaceOrientation interfaceOrientation = UIApplication.sharedApplication.statusBarOrientation;
     NSString *interfaceOrientationAsString = [DiagnosticsService stringForInterfaceOrientation:interfaceOrientation];
-    [self.gaiTracker setCustom:CUSTOM_DIMENSION_INTERFACE_ORIENTATION dimension:interfaceOrientationAsString];
+    NSString *interfaceOrientationDimension = [GAIFields customDimensionForIndex:CUSTOM_DIMENSION_INTERFACE_ORIENTATION];
+    [self.gaiTracker set:interfaceOrientationAsString value:interfaceOrientationDimension];
     
     CLAuthorizationStatus authorizationStatus = CLLocationManager.authorizationStatus;
     NSString *authorizationStatusAsString = [DiagnosticsService stringForAuthorizationStatus:authorizationStatus];
-    [self.gaiTracker setCustom:CUSTOM_DIMENSION_LOCATION_SERVICES dimension:authorizationStatusAsString];
+    NSString *locationServicesDimension = [GAIFields customDimensionForIndex:CUSTOM_DIMENSION_LOCATION_SERVICES];
+    [self.gaiTracker set:authorizationStatusAsString value:locationServicesDimension];
 }
 
 - (void)trackViewWithClass:(Class)class
 {
     NSString *viewName = [self stringForClass:class];
     if (viewName) {
-        [self addCustomDimensions];
-        [self.gaiTracker sendView:viewName];
+        [self updateCustomDimensions];
+        [self.gaiTracker set:kGAIScreenName value:viewName];
+        NSDictionary *data = [[GAIDictionaryBuilder createAppView] build];
+        [self.gaiTracker send:data];
     }
 }
 
@@ -182,8 +190,9 @@
     NSString *actionName = [self stringForEvent:event];
     NSString *viewName = [self stringForClass:class];
     if (actionName && viewName) {
-        [self addCustomDimensions];
-        [self.gaiTracker sendEventWithCategory:viewName withAction:actionName withLabel:nil withValue:nil];
+        [self updateCustomDimensions];
+        NSDictionary *data = [[GAIDictionaryBuilder createEventWithCategory:viewName action:actionName label:nil value:nil] build];
+        [self.gaiTracker send:data];
     }
 }
 

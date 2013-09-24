@@ -102,7 +102,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="143"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="288" translatesAutoresizingMaskIntoConstraints="NO" id="re6-BP-fXL">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="288" translatesAutoresizingMaskIntoConstraints="NO" id="re6-BP-fXL">
                                             <rect key="frame" x="16" y="16" width="288" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -111,9 +111,9 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="re6-BP-fXL" firstAttribute="top" secondItem="3lF-od-53v" secondAttribute="top" constant="16" id="AXy-fp-sT0"/>
-                                        <constraint firstItem="re6-BP-fXL" firstAttribute="centerX" secondItem="3lF-od-53v" secondAttribute="centerX" id="Dhl-tN-OBV"/>
-                                        <constraint firstItem="re6-BP-fXL" firstAttribute="leading" secondItem="3lF-od-53v" secondAttribute="leading" constant="16" id="JZf-Hn-NRg"/>
+                                        <constraint firstItem="re6-BP-fXL" firstAttribute="leading" secondItem="3lF-od-53v" secondAttribute="leading" constant="16" id="8Cu-6o-Y2Z"/>
+                                        <constraint firstItem="re6-BP-fXL" firstAttribute="top" secondItem="3lF-od-53v" secondAttribute="top" constant="16" id="hAB-K0-2vG"/>
+                                        <constraint firstAttribute="trailing" secondItem="re6-BP-fXL" secondAttribute="trailing" constant="-17" id="hGK-Qq-sls"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

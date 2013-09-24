@@ -1,4 +1,4 @@
-platform :ios, '6.0'
+platform :ios, '7.0'
 
 pod 'AFNetworking', '~> 1.3.2'
 pod 'GoogleAnalytics-iOS-SDK', '>= 3.0.1'

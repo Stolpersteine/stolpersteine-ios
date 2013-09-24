@@ -8,7 +8,11 @@
 
 #import "StolpersteinCardCell.h"
 
+#import "Stolperstein.h"
 #import "Localization.h"
+
+#define PADDING 16
+#define WIDTH 288
 
 @interface StolpersteinCardCell()
 
@@ -39,14 +43,33 @@
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein
 {
     self.stolperstein = stolperstein;
+    self.titleLabel.attributedText = [StolpersteinCardCell newAttributedStringFromStolperstein:stolperstein];
+}
+
++ (CGFloat)standardHeight
+{
+    Stolperstein *stolperstein = [[Stolperstein alloc] init];
+    stolperstein.personFirstName = @"xxxxxxxxxx";
+    stolperstein.personLastName = @"xxxxxxxxxx";
+    stolperstein.locationStreet = @"xxxxxxxxxx xxx";
+    stolperstein.locationZipCode = @"xxxx";
+    stolperstein.locationCity = @"xxxxxxxxxx";
     
+    NSAttributedString *attributedText = [StolpersteinCardCell newAttributedStringFromStolperstein:stolperstein];
+    CGRect boundingRect = [attributedText boundingRectWithSize:CGSizeMake(WIDTH, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    
+    return ceil(boundingRect.size.height) + 2 * PADDING;
+}
+
++ (NSAttributedString *)newAttributedStringFromStolperstein:(Stolperstein *)stolperstein
+{
     NSString *name = [Localization newNameFromStolperstein:stolperstein];
     NSString *address = [Localization newLongAddressFromStolperstein:stolperstein];
     NSString *detailText = [NSString stringWithFormat:@"%@\n%@", name, address];
     NSMutableAttributedString *attributedDetailText = [[NSMutableAttributedString alloc] initWithString:detailText];
     
     [attributedDetailText beginEditing];
-
+    
     UIFont *nameFont = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
     NSRange nameRange = NSMakeRange(0, name.length);
     [attributedDetailText addAttribute:NSFontAttributeName value:nameFont range:nameRange];
@@ -57,7 +80,7 @@
     
     [attributedDetailText endEditing];
     
-    self.titleLabel.attributedText = attributedDetailText;
+    return attributedDetailText;
 }
 
 @end

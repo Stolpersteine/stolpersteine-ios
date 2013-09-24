@@ -46,7 +46,8 @@
 {
     [super viewDidLoad];
     
-    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+    self.tableView.rowHeight = [StolpersteinCardCell standardHeight];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -78,15 +79,11 @@
     [self.searchStolpersteineOperation cancel];
 }
 
-- (void)preferredContentSizeChanged:(NSNotification *)notification
+- (void)contentSizeCategoryDidChange:(NSNotification *)notification
 {
+    self.tableView.rowHeight = [StolpersteinCardCell standardHeight];
     [self.tableView reloadData];
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 100;
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

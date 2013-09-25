@@ -154,7 +154,6 @@
         }];
     }
     
-    
     // Forward to standard delegate
     if ([self.mapViewDelegateProxy.target respondsToSelector:@selector(mapView:didAddAnnotationViews:)]) {
         [self.mapViewDelegateProxy.target mapView:mapView didAddAnnotationViews:annotationViews];

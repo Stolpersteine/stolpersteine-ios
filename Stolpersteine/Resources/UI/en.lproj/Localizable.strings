@@ -6,6 +6,9 @@
   Copyright (c) 2013 Option-U Software. All rights reserved.
 */
 
+"Misc.stolperstein" = "Stolperstein";
+"Misc.stolpersteine" = "Stolpersteine";
+
 "AppDelegate.errorTitle" = "Network Error";
 "AppDelegate.errorMessage" = "Couldn't load data. Please try again later.";
 "AppDelegate.errorButtonTitle" = "OK";

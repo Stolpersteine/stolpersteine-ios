@@ -6,6 +6,9 @@
   Copyright (c) 2013 Option-U Software. All rights reserved.
 */
 
+"Misc.stolperstein" = "Stolperstein";
+"Misc.stolpersteine" = "Stolpersteine";
+
 "AppDelegate.errorTitle" = "Netzwerkfehler";
 "AppDelegate.errorMessage" = "Bitte versuchen Sie es später noch einmal.";
 "AppDelegate.errorButtonTitle" = "OK";

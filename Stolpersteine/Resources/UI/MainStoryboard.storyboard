@@ -64,7 +64,7 @@
                         <outlet property="imprintButton" destination="zDp-xd-q2d" id="rFh-9b-55r"/>
                         <outlet property="mapView" destination="omQ-fz-cwh" id="JBd-Rf-WH9"/>
                         <outlet property="searchBar" destination="AgH-MU-KZc" id="Khr-cK-EUC"/>
-                        <segue destination="S9Y-Yy-0sA" kind="push" identifier="mapViewControllerToStolpersteineListViewController" id="icL-Q6-suH"/>
+                        <segue destination="S9Y-Yy-0sA" kind="push" identifier="mapViewControllerToStolpersteineCardsViewController" id="icL-Q6-suH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>

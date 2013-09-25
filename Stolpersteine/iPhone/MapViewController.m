@@ -256,12 +256,9 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
-    MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)selectedAnnotation;
-    if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteinDetailViewController"]) {
-        StolpersteinDetailViewController *detailViewController = (StolpersteinDetailViewController *)segue.destinationViewController;
-        detailViewController.stolperstein = mapClusterAnnotation.annotations[0];
-    } else if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineListViewController"]) {
+    if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineCardsViewController"]) {
+        id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
+        MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)selectedAnnotation;
         StolpersteinCardsViewController *listViewController = (StolpersteinCardsViewController *)segue.destinationViewController;
         listViewController.stolpersteine = mapClusterAnnotation.annotations;
         listViewController.title = [Localization newStolpersteineCountFromMapClusterAnnotation:mapClusterAnnotation];
@@ -363,15 +360,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     if ([view.annotation isKindOfClass:MapClusterAnnotation.class]) {
-        MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)view.annotation;
-        NSString *identifier;
-        if (mapClusterAnnotation.isCluster) {
-            identifier = @"mapViewControllerToStolpersteineListViewController";
-        } else {
-            identifier = @"mapViewControllerToStolpersteinDetailViewController";
-        }
-        
-        [self performSegueWithIdentifier:identifier sender:view.annotation];
+        [self performSegueWithIdentifier:@"mapViewControllerToStolpersteineCardsViewController" sender:self];
     }
 }
 

@@ -171,7 +171,9 @@
 
 + (NSString *)newStolpersteineCountFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
 {
-    return [NSString stringWithFormat:@"%tu Stolpersteine", mapClusterAnnotation.annotations.count];
+    NSString *localizedKey = mapClusterAnnotation.isCluster ? @"Misc.stolpersteine" : @"Misc.stolperstein";
+    NSString *localizedName = NSLocalizedString(localizedKey, nil);
+    return [NSString stringWithFormat:@"%tu %@", mapClusterAnnotation.annotations.count, localizedName];
 }
 
 @end

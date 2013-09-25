@@ -54,7 +54,12 @@
     stolperstein.locationStreet = @"xxxxxxxxxx xxx";
     stolperstein.locationZipCode = @"xxxx";
     stolperstein.locationCity = @"xxxxxxxxxx";
-    
+
+    return [StolpersteinCardCell heightForStolperstein:stolperstein];
+}
+
++ (CGFloat)heightForStolperstein:(Stolperstein *)stolperstein
+{
     NSAttributedString *attributedText = [StolpersteinCardCell newAttributedStringFromStolperstein:stolperstein];
     CGRect boundingRect = [attributedText boundingRectWithSize:CGSizeMake(WIDTH, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     

@@ -46,7 +46,7 @@
 {
     [super viewDidLoad];
     
-    self.tableView.rowHeight = [StolpersteinCardCell standardHeight];
+    self.tableView.estimatedRowHeight = [StolpersteinCardCell standardHeight];
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
@@ -81,22 +81,8 @@
 
 - (void)contentSizeCategoryDidChange:(NSNotification *)notification
 {
-    self.tableView.rowHeight = [StolpersteinCardCell standardHeight];
+    self.tableView.estimatedRowHeight = [StolpersteinCardCell standardHeight];
     [self.tableView reloadData];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.stolpersteine.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString * const cellIdentifier = @"cell";
-    StolpersteinCardCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    [cell updateWithStolperstein:self.stolpersteine[indexPath.row]];
-    
-    return cell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -114,6 +100,27 @@
         UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:name style:UIBarButtonItemStyleBordered target:nil action:nil];
         self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
+}
+
+#pragma mark - Table view
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [StolpersteinCardCell heightForStolperstein:self.stolpersteine[indexPath.row]];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.stolpersteine.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString * const cellIdentifier = @"cell";
+    StolpersteinCardCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    [cell updateWithStolperstein:self.stolpersteine[indexPath.row]];
+    
+    return cell;
 }
 
 @end

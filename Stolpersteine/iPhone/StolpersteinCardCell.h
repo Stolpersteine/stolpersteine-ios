@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein;
+
 + (CGFloat)standardHeight;
++ (CGFloat)heightForStolperstein:(Stolperstein *)stolperstein;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  StolpersteinWrapperAnnotation.m
+//  MapClusterAnnotation.m
 //  Stolpersteine
 //
 //  Copyright (C) 2013 Option-U Software

@@ -47,7 +47,7 @@
     self = [super init];
     if (self) {
         self.marginFactor = 0.5;
-        self.cellSize = 40;
+        self.cellSize = 60;
         self.mapView = mapView;
         self.allAnnotationsMapView = [[MKMapView alloc] initWithFrame:CGRectZero];
         

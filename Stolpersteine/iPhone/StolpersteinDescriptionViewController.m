@@ -47,9 +47,6 @@
     
     // Display progress in navigation bar    
     UIActivityIndicatorView * activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    CGRect frame = activityIndicatorView.frame;
-    frame.size.width = 47;
-    activityIndicatorView.frame = frame;
     self.activityIndicatorView = activityIndicatorView;
     self.activityIndicatorBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView];
     [self.activityIndicatorBarButtonItem setStyle:UIBarButtonItemStyleBordered];

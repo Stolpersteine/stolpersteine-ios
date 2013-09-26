@@ -34,9 +34,6 @@
 #import "StolpersteinSynchronizationController.h"
 #import "StolpersteinDetailViewController.h"
 #import "StolpersteinCardsViewController.h"
-#import "SearchBar.h"
-#import "SearchDisplayController.h"
-#import "SearchDisplayControllerDelegate.h"
 #import "MapClusterController.h"
 #import "MapClusterControllerDelegate.h"
 #import "MapClusterAnnotation.h"
@@ -47,14 +44,13 @@ static const MKCoordinateRegion BERLIN_REGION = { {52.5233, 13.4127}, {0.4493, 0
 static const double ZOOM_DISTANCE_USER = 1200;
 static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
-@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SearchDisplayControllerDelegate, MapClusterControllerDelegate, StolpersteinSynchronizationControllerDelegate>
+@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, MapClusterControllerDelegate, StolpersteinSynchronizationControllerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
 @property (nonatomic, strong) StolpersteinSynchronizationController *stolpersteinSyncController;
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
-@property (nonatomic, strong) SearchDisplayController *mySearchDisplayController;
 @property (nonatomic, strong) NSArray *searchedStolpersteine;
 @property (nonatomic, strong) Stolperstein *stolpersteinToSelect;
 @property (nonatomic, strong) MapClusterAnnotation *annotationToSelect;
@@ -73,17 +69,10 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     
     self.title = NSLocalizedString(@"MapViewController.title", nil);
     
-    // Search bar
-    self.searchBar.placeholder = NSLocalizedString(@"MapViewController.searchBarPlaceholder", nil);
-    self.mySearchDisplayController = [[SearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
-    self.mySearchDisplayController.delegate = self;
-    self.mySearchDisplayController.searchResultsDataSource = self;
-    self.mySearchDisplayController.searchResultsDelegate = self;
-
     // Navigation bar
-    self.locationButton = [[UIButton alloc] init];
-    [self.locationButton addTarget:self action:@selector(centerMap:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem.customView = self.locationButton;
+    [self.searchDisplayController.searchBar removeFromSuperview];
+    self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
+    self.navigationItem.rightBarButtonItem = self.locationBarButtonItem;
     
     // User location
     self.locationManager = [[CLLocationManager alloc] init];
@@ -150,8 +139,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    self.searchBar.portraitModeEnabled = UIInterfaceOrientationIsPortrait(interfaceOrientation);
-    [self layoutNavigationBarButtonsForInterfaceOrientation:interfaceOrientation animated:NO];
 }
 
 - (void)layoutNavigationBarButtonsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation animated:(BOOL)animated
@@ -180,23 +167,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [self.locationButton setImage:image forState:UIControlStateNormal];
     self.locationButton.frame = frame;
     [self.locationButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
-    
-    // Hack to avoid wrong width when changing the orientation while the search bar is not visible.
-    if (self.navigationItem.rightBarButtonItem.customView == self.locationButton) {
-        self.searchBar.paddingRight = frame.size.width + 15;
-    } else {
-        NSString *paddingRightAsString = NSLocalizedString(@"MapViewController.paddingRight", nil);
-        self.searchBar.paddingRight = paddingRightAsString.floatValue;
-    }
-    
-    void (^changeUI)() = ^() {
-        self.searchBar.frame = self.searchBar.frame;
-    };
-    if (animated) {
-        [UIView animateWithDuration:0.25 animations:changeUI];
-    } else {
-        changeUI();
-    }
 }
 
 - (id<MKAnnotation>)annotationForStolperstein:(Stolperstein *)stolperstein inMapRect:(MKMapRect)mapRect
@@ -380,37 +350,37 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 #pragma mark - Search display controller
 
-- (BOOL)searchDisplayController:(SearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self.searchStolpersteineOperation cancel];
-    
-    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
-    searchData.keyword = searchString;
-    self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 100) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.searchedStolpersteine = stolpersteine;
-        [self.mySearchDisplayController.searchResultsTableView reloadData];
-        [self.mySearchDisplayController.searchResultsTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
-        
-        return YES;
-    }];
-                                           
-    return NO;
-}
-
-- (void)searchDisplayController:(SearchDisplayController *)controller willChangeNavigationItem:(UINavigationItem *)navigationItem
-{
-    [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation animated:YES];
-}
-
-- (void)searchDisplayControllerDidAppear:(SearchDisplayController *)controller
-{
-    [AppDelegate.diagnosticsService trackViewWithClass:self.mySearchDisplayController.class];
-}
-
-- (void)searchDisplayControllerDidDisappear:(SearchDisplayController *)controller
-{
-    [AppDelegate.diagnosticsService trackViewWithClass:self.class];
-}
+//- (BOOL)searchDisplayController:(SearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+//{
+//    [self.searchStolpersteineOperation cancel];
+//    
+//    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+//    searchData.keyword = searchString;
+//    self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 100) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
+//        self.searchedStolpersteine = stolpersteine;
+//        [self.mySearchDisplayController.searchResultsTableView reloadData];
+//        [self.mySearchDisplayController.searchResultsTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+//        
+//        return YES;
+//    }];
+//                                           
+//    return NO;
+//}
+//
+//- (void)searchDisplayController:(SearchDisplayController *)controller willChangeNavigationItem:(UINavigationItem *)navigationItem
+//{
+//    [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation animated:YES];
+//}
+//
+//- (void)searchDisplayControllerDidAppear:(SearchDisplayController *)controller
+//{
+//    [AppDelegate.diagnosticsService trackViewWithClass:self.mySearchDisplayController.class];
+//}
+//
+//- (void)searchDisplayControllerDidDisappear:(SearchDisplayController *)controller
+//{
+//    [AppDelegate.diagnosticsService trackViewWithClass:self.class];
+//}
 
 #pragma mark - Map cluster controller
 
@@ -468,15 +438,15 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         [self mapView:self.mapView regionDidChangeAnimated:YES];
     }
     
-    // Dismiss search display controller
-    self.mySearchDisplayController.active = NO;
+//    // Dismiss search display controller
+//    self.mySearchDisplayController.active = NO;
 }
 
 #pragma mark - Scroll view
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    [self.searchBar resignFirstResponder];
+//    [self.searchBar resignFirstResponder];
 }
 
 @end

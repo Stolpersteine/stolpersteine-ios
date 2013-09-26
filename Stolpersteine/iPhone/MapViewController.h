@@ -26,13 +26,11 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@class SearchBar;
-
 @interface MapViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet SearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIButton *imprintButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *locationBarButtonItem;
 @property (strong, nonatomic) UIButton *locationButton;
 
 - (IBAction)centerMap:(UIButton *)sender;

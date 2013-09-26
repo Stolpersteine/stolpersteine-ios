@@ -40,6 +40,14 @@
                                     <action selector="showImprint:" destination="2" eventType="touchUpInside" id="yjG-WX-T2W"/>
                                 </connections>
                             </button>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IQq-hk-QkF">
+                                <rect key="frame" x="0.0" y="65" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2" id="TbT-1Q-yMB"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -53,21 +61,26 @@
                     </view>
                     <navigationItem key="navigationItem" id="wB8-Ca-YR2">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" restorationIdentifier="" id="AgH-MU-KZc" customClass="SearchBar">
-                            <rect key="frame" x="12" y="7" width="242" height="30"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
-                        <barButtonItem key="rightBarButtonItem" title="Button" id="r98-E5-DRq"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="9TO-yK-Bea"/>
                     </navigationItem>
                     <connections>
                         <outlet property="imprintButton" destination="zDp-xd-q2d" id="rFh-9b-55r"/>
+                        <outlet property="locationBarButtonItem" destination="9TO-yK-Bea" id="jHe-jp-Fzw"/>
                         <outlet property="mapView" destination="omQ-fz-cwh" id="JBd-Rf-WH9"/>
-                        <outlet property="searchBar" destination="AgH-MU-KZc" id="Khr-cK-EUC"/>
+                        <outlet property="searchDisplayController" destination="JzS-bv-yDb" id="zOm-FS-dq1"/>
                         <segue destination="S9Y-Yy-0sA" kind="push" identifier="mapViewControllerToStolpersteineCardsViewController" id="icL-Q6-suH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="JzS-bv-yDb">
+                    <connections>
+                        <outlet property="delegate" destination="2" id="Hum-2V-CY8"/>
+                        <outlet property="searchBar" destination="IQq-hk-QkF" id="ydi-bt-EW8"/>
+                        <outlet property="searchContentsController" destination="2" id="aID-XX-9Ee"/>
+                        <outlet property="searchResultsDataSource" destination="2" id="be4-EC-ZX0"/>
+                        <outlet property="searchResultsDelegate" destination="2" id="UBF-4b-N6R"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="21" y="-11"/>
         </scene>

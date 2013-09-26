@@ -160,18 +160,18 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     CGRect frame = self.locationButton.frame;
     if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
         if (self.userLocationMode) {
-            image = [UIImage imageNamed:@"icon-region-landscape.png"];
+            image = [UIImage imageNamed:@"icon-region-landscape"];
         } else {
-            image = [UIImage imageNamed:@"icon-location-landscape.png"];
+            image = [UIImage imageNamed:@"icon-location-landscape"];
         }
         frame.size = CGSizeMake(24, 24);
-        backgroundImage = [UIImage imageNamed:@"bar-button-landscape.png"];
+        backgroundImage = [UIImage imageNamed:@"bar-button-landscape"];
         backgroundImage = [backgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(15, 5, 15, 5)];
     } else {
         if (self.userLocationMode) {
-            image = [UIImage imageNamed:@"icon-region-portrait.png"];
+            image = [UIImage imageNamed:@"icon-region-portrait"];
         } else {
-            image = [UIImage imageNamed:@"icon-location-portrait.png"];
+            image = [UIImage imageNamed:@"icon-location-portrait"];
         }
         frame.size = CGSizeMake(30, 30);
         backgroundImage = [UIImage imageNamed:@"bar-button-portrait.png"];
@@ -329,7 +329,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         } else {
             annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
             annotationView.canShowCallout = YES;
-            annotationView.image = [UIImage imageNamed:@"stolperstein-single.png"];
+            annotationView.image = [UIImage imageNamed:@"stolperstein-single"];
 
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             annotationView.rightCalloutAccessoryView = rightButton;

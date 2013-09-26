@@ -45,7 +45,7 @@
 
 - (void)setup
 {
-    UIImage *backgroundImage = [[UIImage imageNamed:@"rounded-rect-frame.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
+    UIImage *backgroundImage = [[UIImage imageNamed:@"rounded-rect-frame"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
     [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     [self setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
 }
@@ -54,7 +54,7 @@
 {
     _chevronEnabled = chevronEnabled;
     
-    UIImage *image = chevronEnabled ? [UIImage imageNamed:@"icon-chevron.png"] : nil;
+    UIImage *image = chevronEnabled ? [UIImage imageNamed:@"icon-chevron"] : nil;
     [self setImage:image forState:UIControlStateNormal];
 }
 

@@ -70,13 +70,13 @@
     
     UIImage *backgroundImage, *iconImage, *clearImage;
     if (portraitModeEnabled) {
-        backgroundImage = [[UIImage imageNamed:@"search-text-field-portrait.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 15, 15, 15)];
-        iconImage = [UIImage imageNamed:@"search-text-field-magnifier-portrait.png"];
-        clearImage = [UIImage imageNamed:@"search-text-field-clear-button-portrait.png"];
+        backgroundImage = [[UIImage imageNamed:@"search-text-field-portrait"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 15, 15, 15)];
+        iconImage = [UIImage imageNamed:@"search-text-field-magnifier-portrait"];
+        clearImage = [UIImage imageNamed:@"search-text-field-clear-button-portrait"];
     } else {
-        backgroundImage = [[UIImage imageNamed:@"search-text-field-landscape.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
-        iconImage = [UIImage imageNamed:@"search-text-field-magnifier-landscape.png"];
-        clearImage = [UIImage imageNamed:@"search-text-field-clear-button-landscape.png"];
+        backgroundImage = [[UIImage imageNamed:@"search-text-field-landscape"] resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
+        iconImage = [UIImage imageNamed:@"search-text-field-magnifier-landscape"];
+        clearImage = [UIImage imageNamed:@"search-text-field-clear-button-landscape"];
     }
     self.background = backgroundImage;
     

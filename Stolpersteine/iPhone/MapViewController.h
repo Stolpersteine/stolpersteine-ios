@@ -33,7 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *locationBarButtonItem;
 @property (strong, nonatomic) UIButton *locationButton;
 
-- (IBAction)centerMap:(UIButton *)sender;
+- (IBAction)centerMap:(UIBarButtonItem *)sender;
 - (IBAction)showImprint:(UIButton *)sender;
 
 @end

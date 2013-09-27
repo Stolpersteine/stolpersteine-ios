@@ -80,9 +80,6 @@
 		62B6B94E17F4338D009E18AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B6B94917F4338D009E18AE /* Localizable.strings */; };
 		62C0212317E86755003ED7EE /* MapClusterMapViewDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C0212217E86755003ED7EE /* MapClusterMapViewDelegateProxy.m */; };
 		62C9C1351762861700AFBE01 /* ImageGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9C1341762861700AFBE01 /* ImageGalleryView.m */; };
-		62F147C4170202A1003E7DAA /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F147BD170202A1003E7DAA /* SearchBar.m */; };
-		62F147C5170202A1003E7DAA /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F147C0170202A1003E7DAA /* SearchDisplayController.m */; };
-		62F147C6170202A1003E7DAA /* SearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F147C3170202A1003E7DAA /* SearchTextField.m */; };
 		FD4FA27022B24161ABCD3E5F /* libPods-Stolpersteine Unit Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE0DCC63AF534AF3826ADCFF /* libPods-Stolpersteine Unit Tests.a */; };
 /* End PBXBuildFile section */
 
@@ -179,14 +176,6 @@
 		62C0212217E86755003ED7EE /* MapClusterMapViewDelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusterMapViewDelegateProxy.m; sourceTree = "<group>"; };
 		62C9C1331762861700AFBE01 /* ImageGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryView.h; sourceTree = "<group>"; };
 		62C9C1341762861700AFBE01 /* ImageGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGalleryView.m; sourceTree = "<group>"; };
-		62F147BC170202A1003E7DAA /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
-		62F147BD170202A1003E7DAA /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
-		62F147BE170202A1003E7DAA /* SearchBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarDelegate.h; sourceTree = "<group>"; };
-		62F147BF170202A1003E7DAA /* SearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayController.h; sourceTree = "<group>"; };
-		62F147C0170202A1003E7DAA /* SearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDisplayController.m; sourceTree = "<group>"; };
-		62F147C1170202A1003E7DAA /* SearchDisplayControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayControllerDelegate.h; sourceTree = "<group>"; };
-		62F147C2170202A1003E7DAA /* SearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTextField.h; sourceTree = "<group>"; };
-		62F147C3170202A1003E7DAA /* SearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTextField.m; sourceTree = "<group>"; };
 		62F18DF917736A4200E2FAF9 /* StolpersteinNetworkServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinNetworkServiceDelegate.h; sourceTree = "<group>"; };
 		90D265056EBE417F95BF08CA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		AE0DCC63AF534AF3826ADCFF /* libPods-Stolpersteine Unit Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stolpersteine Unit Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -469,7 +458,6 @@
 				48BAF38616E9405C007250A0 /* DiagnosticsService.h */,
 				48BAF38716E9405C007250A0 /* DiagnosticsService.m */,
 				4877716B1780AA7C00789F32 /* Appearance */,
-				62F147BB170202A1003E7DAA /* Search Bar */,
 				4808CF3616FCFE4C00E89E97 /* Clustering */,
 				627E442F169C41EC0065C1F1 /* Stolpersteine API */,
 			);
@@ -493,21 +481,6 @@
 				48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */,
 			);
 			path = "Stolpersteine API";
-			sourceTree = "<group>";
-		};
-		62F147BB170202A1003E7DAA /* Search Bar */ = {
-			isa = PBXGroup;
-			children = (
-				62F147BC170202A1003E7DAA /* SearchBar.h */,
-				62F147BD170202A1003E7DAA /* SearchBar.m */,
-				62F147BE170202A1003E7DAA /* SearchBarDelegate.h */,
-				62F147BF170202A1003E7DAA /* SearchDisplayController.h */,
-				62F147C0170202A1003E7DAA /* SearchDisplayController.m */,
-				62F147C1170202A1003E7DAA /* SearchDisplayControllerDelegate.h */,
-				62F147C2170202A1003E7DAA /* SearchTextField.h */,
-				62F147C3170202A1003E7DAA /* SearchTextField.m */,
-			);
-			path = "Search Bar";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -580,6 +553,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Option-U Software";
+				TargetAttributes = {
+					627E43B1169B0F050065C1F1 = {
+						DevelopmentTeam = KN32D96YCR;
+					};
+				};
 			};
 			buildConfigurationList = 627E43AC169B0F050065C1F1 /* Build configuration list for PBXProject "Stolpersteine" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -794,9 +772,6 @@
 				4808CF3D16FCFE4C00E89E97 /* MapClusterAnnotation.m in Sources */,
 				4808CF3E16FCFE4C00E89E97 /* MapClusterController.m in Sources */,
 				4808CF3F16FCFE4C00E89E97 /* MapClusterControllerUtils.m in Sources */,
-				62F147C4170202A1003E7DAA /* SearchBar.m in Sources */,
-				62F147C5170202A1003E7DAA /* SearchDisplayController.m in Sources */,
-				62F147C6170202A1003E7DAA /* SearchTextField.m in Sources */,
 				4825F937174E8F7C0058B811 /* ImageGalleryItemView.m in Sources */,
 				4825F939174E8F7C0058B811 /* ProgressImageView.m in Sources */,
 				621CB6141760978E00796E18 /* ImageGalleryViewController.m in Sources */,
@@ -919,10 +894,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine/Stolpersteine-Prefix.pch";
 				INFOPLIST_FILE = "Stolpersteine/Stolpersteine-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;
@@ -1059,10 +1037,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine/Stolpersteine-Prefix.pch";
 				INFOPLIST_FILE = "Stolpersteine/Stolpersteine-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1073,10 +1054,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine/Stolpersteine-Prefix.pch";
 				INFOPLIST_FILE = "Stolpersteine/Stolpersteine-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

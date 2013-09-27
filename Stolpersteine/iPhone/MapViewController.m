@@ -44,7 +44,7 @@ static const MKCoordinateRegion BERLIN_REGION = { {52.5233, 13.4127}, {0.4493, 0
 static const double ZOOM_DISTANCE_USER = 1200;
 static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
-@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, MapClusterControllerDelegate, StolpersteinSynchronizationControllerDelegate>
+@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, MapClusterControllerDelegate, StolpersteinSynchronizationControllerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -202,7 +202,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     }
 }
 
-- (IBAction)centerMap:(UIButton *)sender
+- (IBAction)centerMap:(UIBarButtonItem *)sender
 {
     if (!self.isUserLocationMode && self.userLocation.location) {
         self.userLocationMode = YES;
@@ -235,7 +235,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     }
 }
 
-#pragma mark - Stolpersteine synchronization controller
+#pragma mark - Stolperstein synchronization controller
 
 - (void)stolpersteinSynchronizationController:(StolpersteinSynchronizationController *)stolpersteinSynchronizationController didAddStolpersteine:(NSArray *)stolpersteine
 {
@@ -350,37 +350,34 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 #pragma mark - Search display controller
 
-//- (BOOL)searchDisplayController:(SearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-//{
-//    [self.searchStolpersteineOperation cancel];
-//    
-//    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
-//    searchData.keyword = searchString;
-//    self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 100) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-//        self.searchedStolpersteine = stolpersteine;
-//        [self.mySearchDisplayController.searchResultsTableView reloadData];
-//        [self.mySearchDisplayController.searchResultsTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
-//        
-//        return YES;
-//    }];
-//                                           
-//    return NO;
-//}
-//
-//- (void)searchDisplayController:(SearchDisplayController *)controller willChangeNavigationItem:(UINavigationItem *)navigationItem
-//{
-//    [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation animated:YES];
-//}
-//
-//- (void)searchDisplayControllerDidAppear:(SearchDisplayController *)controller
-//{
-//    [AppDelegate.diagnosticsService trackViewWithClass:self.mySearchDisplayController.class];
-//}
-//
-//- (void)searchDisplayControllerDidDisappear:(SearchDisplayController *)controller
-//{
-//    [AppDelegate.diagnosticsService trackViewWithClass:self.class];
-//}
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self.searchStolpersteineOperation cancel];
+    
+    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+    searchData.keyword = searchString;
+    self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 100) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
+        self.searchedStolpersteine = stolpersteine;
+        [self.searchDisplayController.searchResultsTableView reloadData];
+        [self.searchDisplayController.searchResultsTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+        
+        return YES;
+    }];
+                                           
+    return NO;
+}
+
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+{
+    [self.navigationItem setRightBarButtonItem:nil animated:YES];
+    [controller.searchBar setShowsCancelButton:YES animated:YES];
+}
+
+- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+{
+    [self.navigationItem setRightBarButtonItem:self.locationBarButtonItem animated:YES];
+    [controller.searchBar setShowsCancelButton:NO animated:YES];
+}
 
 #pragma mark - Map cluster controller
 
@@ -438,15 +435,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         [self mapView:self.mapView regionDidChangeAnimated:YES];
     }
     
-//    // Dismiss search display controller
-//    self.mySearchDisplayController.active = NO;
-}
-
-#pragma mark - Scroll view
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-//    [self.searchBar resignFirstResponder];
+    // Dismiss search display controller
+    self.searchDisplayController.active = NO;
 }
 
 @end

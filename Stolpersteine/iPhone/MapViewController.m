@@ -54,8 +54,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 @property (nonatomic, strong) NSArray *searchedStolpersteine;
 @property (nonatomic, strong) Stolperstein *stolpersteinToSelect;
 @property (nonatomic, strong) MapClusterAnnotation *annotationToSelect;
-@property (nonatomic, assign) MKCoordinateRegion regionToSet;
-@property (nonatomic, assign, getter = isRegionToSetInvalid) BOOL regionToSetInvalid;
 @property (nonatomic, assign) MKCoordinateSpan regionSpanBeforeChange;
 @property (nonatomic, strong) MapClusterController *mapClusterController;
 
@@ -79,7 +77,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.locationManager.delegate = self;
     
     // Initialize map region
-    self.regionToSet = BERLIN_REGION;
+    self.mapView.region = BERLIN_REGION;
     
     // Clustering
     self.mapClusterController = [[MapClusterController alloc] initWithMapView:self.mapView];
@@ -103,13 +101,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
     if (self.mapClusterController.numberOfAnnotations < 4600) {
         [self.stolpersteinSyncController synchronize];
-    }
-    
-    // Region is restored here to avoid problems when setting this property
-    // while the map is off screen.
-    if (!self.isRegionToSetInvalid) {
-        self.mapView.region = self.regionToSet;
-        self.regionToSetInvalid = YES;
     }
     
     [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];

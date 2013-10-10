@@ -261,9 +261,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         if (annotationView) {
             annotationView.annotation = annotation;
         } else {
-            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
             annotationView.canShowCallout = YES;
-            annotationView.image = [UIImage imageNamed:@"stolperstein-single"];
 
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             annotationView.rightCalloutAccessoryView = rightButton;

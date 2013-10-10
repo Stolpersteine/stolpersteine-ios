@@ -61,9 +61,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="wB8-Ca-YR2">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="9TO-yK-Bea">
+                        <barButtonItem key="rightBarButtonItem" image="IconRegion" id="9TO-yK-Bea">
                             <connections>
-                                <action selector="centerMap:" destination="2" id="t8d-Rx-Ba6"/>
+                                <action selector="centerMap:" destination="2" id="kAA-19-KQH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -195,6 +195,9 @@
             <point key="canvasLocation" x="1126" y="-11"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="IconRegion" width="20" height="20"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

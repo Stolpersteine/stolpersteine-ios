@@ -71,6 +71,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [self.searchDisplayController.searchBar removeFromSuperview];
     self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
     self.navigationItem.rightBarButtonItem = self.locationBarButtonItem;
+    [self updateLocationBarButtonItem];
     
     // User location
     self.locationManager = [[CLLocationManager alloc] init];
@@ -102,8 +103,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     if (self.mapClusterController.numberOfAnnotations < 4600) {
         [self.stolpersteinSyncController synchronize];
     }
-    
-    [self layoutViewsForInterfaceOrientation:self.interfaceOrientation];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -123,41 +122,15 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [NSNotificationCenter.defaultCenter removeObserver:self.stolpersteinSyncController];
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+- (void)updateLocationBarButtonItem
 {
-    [self layoutViewsForInterfaceOrientation:toInterfaceOrientation];
-}
-
-- (void)layoutViewsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-}
-
-- (void)layoutNavigationBarButtonsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation animated:(BOOL)animated
-{
-    UIImage *image, *backgroundImage;
-    CGRect frame = self.locationButton.frame;
-    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-        if (self.userLocationMode) {
-            image = [UIImage imageNamed:@"icon-region-landscape"];
-        } else {
-            image = [UIImage imageNamed:@"icon-location-landscape"];
-        }
-        frame.size = CGSizeMake(24, 24);
-        backgroundImage = [UIImage imageNamed:@"bar-button-landscape"];
-        backgroundImage = [backgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(15, 5, 15, 5)];
+    UIImage *image;
+    if (self.userLocationMode) {
+        image = [UIImage imageNamed:@"IconRegion"];
     } else {
-        if (self.userLocationMode) {
-            image = [UIImage imageNamed:@"icon-region-portrait"];
-        } else {
-            image = [UIImage imageNamed:@"icon-location-portrait"];
-        }
-        frame.size = CGSizeMake(30, 30);
-        backgroundImage = [UIImage imageNamed:@"bar-button-portrait.png"];
-        backgroundImage = [backgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(12, 4, 12, 4)];
+        image = [UIImage imageNamed:@"IconLocation"];
     }
-    [self.locationButton setImage:image forState:UIControlStateNormal];
-    self.locationButton.frame = frame;
-    [self.locationButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+    [self.locationBarButtonItem setImage:image];
 }
 
 - (id<MKAnnotation>)annotationForStolperstein:(Stolperstein *)stolperstein inMapRect:(MKMapRect)mapRect
@@ -205,7 +178,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         }
         [self.mapView setRegion:BERLIN_REGION animated:YES];
     }
-    [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation animated:NO];
+    [self updateLocationBarButtonItem];
 }
 
 - (IBAction)showImprint:(UIButton *)sender
@@ -335,7 +308,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         self.userLocation = nil;
         self.mapView.showsUserLocation = NO;
         self.userLocationMode = YES;
-        [self layoutNavigationBarButtonsForInterfaceOrientation:self.interfaceOrientation animated:NO];
+        [self updateLocationBarButtonItem];
     }
 }
 

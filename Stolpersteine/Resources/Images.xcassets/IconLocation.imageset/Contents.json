@@ -2,13 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "icon-location-landscape.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "icon-location-landscape@2x.png"
+      "filename" : "TrackingLocationOffMask@2x.png"
     }
   ],
   "info" : {

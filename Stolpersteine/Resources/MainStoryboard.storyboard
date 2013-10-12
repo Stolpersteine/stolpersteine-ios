@@ -61,7 +61,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="wB8-Ca-YR2">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" image="IconRegion" id="9TO-yK-Bea">
+                        <barButtonItem key="rightBarButtonItem" image="IconLocation" id="9TO-yK-Bea">
                             <connections>
                                 <action selector="centerMap:" destination="2" id="kAA-19-KQH"/>
                             </connections>
@@ -196,7 +196,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IconRegion" width="20" height="20"/>
+        <image name="IconLocation" width="23" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

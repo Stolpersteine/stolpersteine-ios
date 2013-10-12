@@ -30,8 +30,6 @@
 #import "DiagnosticsService.h"
 #import "Appearance.h"
 
-#import "iRate.h"
-
 @implementation AppDelegate
 
 + (StolpersteinNetworkService *)networkService
@@ -47,24 +45,6 @@
 }
 
 #pragma mark - Application
-
-+ (void)initialize
-{
-    // Automatic rating dialog
-    iRate *irate = iRate.sharedInstance;
-    irate.messageTitle = NSLocalizedString(@"Rating.title", nil);
-    irate.message = NSLocalizedString(@"Rating.message", nil);
-    irate.cancelButtonLabel = NSLocalizedString(@"Rating.cancel", nil);
-    irate.remindButtonLabel = NSLocalizedString(@"Rating.remind", nil);
-    irate.rateButtonLabel = NSLocalizedString(@"Rating.rate", nil);
-    irate.daysUntilPrompt = 5;
-    irate.usesUntilPrompt = 10;
-    irate.remindPeriod = 1;
-    irate.promptAgainForEachNewVersion = NO;
-    
-//    irate.previewMode = YES;
-    irate.verboseLogging = NO;
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

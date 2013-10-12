@@ -10,7 +10,7 @@
 #define COCOAPODS_POD_AVAILABLE_AFNetworking
 #define COCOAPODS_VERSION_MAJOR_AFNetworking 1
 #define COCOAPODS_VERSION_MINOR_AFNetworking 3
-#define COCOAPODS_VERSION_PATCH_AFNetworking 2
+#define COCOAPODS_VERSION_PATCH_AFNetworking 3
 
 // AGWindowView
 #define COCOAPODS_POD_AVAILABLE_AGWindowView
@@ -29,10 +29,4 @@
 #define COCOAPODS_VERSION_MAJOR_TUSafariActivity 1
 #define COCOAPODS_VERSION_MINOR_TUSafariActivity 0
 #define COCOAPODS_VERSION_PATCH_TUSafariActivity 0
-
-// iRate
-#define COCOAPODS_POD_AVAILABLE_iRate
-#define COCOAPODS_VERSION_MAJOR_iRate 1
-#define COCOAPODS_VERSION_MINOR_iRate 7
-#define COCOAPODS_VERSION_PATCH_iRate 5
 

@@ -32,19 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6222BF2216A037CE006ED538"
-               BuildableName = "Stolpersteine Unit Tests.octest"
-               BlueprintName = "Stolpersteine Unit Tests"
-               ReferencedContainer = "container:Stolpersteine.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "480FFF8516A0C6150012CCD5"
-               BuildableName = "Stolpersteine Integration Tests.octest"
-               BlueprintName = "Stolpersteine Integration Tests"
+               BlueprintIdentifier = "486576F5180B29CD000326D1"
+               BuildableName = "Stolpersteine Tests.xctest"
+               BlueprintName = "Stolpersteine Tests"
                ReferencedContainer = "container:Stolpersteine.xcodeproj">
             </BuildableReference>
          </TestableReference>

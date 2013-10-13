@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6222BF2216A037CE006ED538"
-               BuildableName = "Stolpersteine Unit Tests.octest"
+               BuildableName = "Stolpersteine Unit Tests.xctest"
                BlueprintName = "Stolpersteine Unit Tests"
                ReferencedContainer = "container:Stolpersteine.xcodeproj">
             </BuildableReference>
@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "480FFF8516A0C6150012CCD5"
-               BuildableName = "Stolpersteine Integration Tests.octest"
+               BuildableName = "Stolpersteine Integration Tests.xctest"
                BlueprintName = "Stolpersteine Integration Tests"
                ReferencedContainer = "container:Stolpersteine.xcodeproj">
             </BuildableReference>
@@ -47,7 +47,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6222BF2216A037CE006ED538"
-               BuildableName = "Stolpersteine Unit Tests.octest"
+               BuildableName = "Stolpersteine Unit Tests.xctest"
                BlueprintName = "Stolpersteine Unit Tests"
                ReferencedContainer = "container:Stolpersteine.xcodeproj">
             </BuildableReference>

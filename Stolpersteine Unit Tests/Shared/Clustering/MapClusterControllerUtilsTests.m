@@ -34,7 +34,7 @@
 {
     MKMapPoint mapPoint = MKMapPointMake(0, 0);
     id<MKAnnotation> annotation = MapClusterControllerFindClosestAnnotation(nil, mapPoint);
-    STAssertNil(annotation, @"Wrong annotation");
+    XCTAssertNil(annotation, @"Wrong annotation");
 }
 
 - (void)testFindClosestAnnotationEmpty
@@ -42,7 +42,7 @@
     NSMutableSet *annotations = [[NSMutableSet alloc] init];
     MKMapPoint mapPoint = MKMapPointMake(0, 0);
     id<MKAnnotation> annotation = MapClusterControllerFindClosestAnnotation(annotations, mapPoint);
-    STAssertNil(annotation, @"Wrong annotation");
+    XCTAssertNil(annotation, @"Wrong annotation");
 }
 
 - (void)testFindClosestAnnotation
@@ -65,24 +65,24 @@
     [annotations addObject:stolperstein3];
     
     id<MKAnnotation> annotation = MapClusterControllerFindClosestAnnotation(annotations, mapPoint);
-    STAssertEqualObjects(annotation, stolperstein2, @"Wrong annotation");
+    XCTAssertEqualObjects(annotation, stolperstein2, @"Wrong annotation");
 }
 
 - (void)testAlign
 {
     MKMapRect mapRect = MKMapRectMake(0, 0, 15, 20);
     MKMapRect adjustedMapRect = MapClusterControllerAlignToCellSize(mapRect, 5);
-    STAssertEquals(adjustedMapRect.origin.x, 0.0, @"Wrong origin x");
-    STAssertEquals(adjustedMapRect.origin.y, 0.0, @"Wrong origin y");
-    STAssertEquals(adjustedMapRect.size.width, 15.0, @"Wrong size width");
-    STAssertEquals(adjustedMapRect.size.height, 20.0, @"Wrong size height");
+    XCTAssertEqual(adjustedMapRect.origin.x, 0.0, @"Wrong origin x");
+    XCTAssertEqual(adjustedMapRect.origin.y, 0.0, @"Wrong origin y");
+    XCTAssertEqual(adjustedMapRect.size.width, 15.0, @"Wrong size width");
+    XCTAssertEqual(adjustedMapRect.size.height, 20.0, @"Wrong size height");
 
     mapRect = MKMapRectMake(8, 8, 15, 20);
     adjustedMapRect = MapClusterControllerAlignToCellSize(mapRect, 6);
-    STAssertEquals(adjustedMapRect.origin.x, 6.0, @"Wrong origin x");
-    STAssertEquals(adjustedMapRect.origin.y, 6.0, @"Wrong origin y");
-    STAssertEquals(adjustedMapRect.size.width, 18.0, @"Wrong size width");
-    STAssertEquals(adjustedMapRect.size.height, 24.0, @"Wrong size height");
+    XCTAssertEqual(adjustedMapRect.origin.x, 6.0, @"Wrong origin x");
+    XCTAssertEqual(adjustedMapRect.origin.y, 6.0, @"Wrong origin y");
+    XCTAssertEqual(adjustedMapRect.size.width, 18.0, @"Wrong size width");
+    XCTAssertEqual(adjustedMapRect.size.height, 24.0, @"Wrong size height");
 }
 
 @end

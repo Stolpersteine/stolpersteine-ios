@@ -37,45 +37,45 @@
     // IDs match
     stolperstein0.id = @"123";
     stolperstein1.id = @"123";
-    STAssertTrue([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
-    STAssertTrue([stolperstein1 isEqual:stolperstein0], @"Wrong equality");
-    STAssertTrue(stolperstein0.hash == stolperstein1.hash, @"Wrong hash");
+    XCTAssertTrue([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
+    XCTAssertTrue([stolperstein1 isEqual:stolperstein0], @"Wrong equality");
+    XCTAssertTrue(stolperstein0.hash == stolperstein1.hash, @"Wrong hash");
 
     // Object equals itself
     stolperstein0.id = @"123";
-    STAssertTrue([stolperstein0 isEqual:stolperstein0], @"Wrong equality");
-    STAssertTrue(stolperstein0.hash == stolperstein0.hash, @"Wrong hash");
+    XCTAssertTrue([stolperstein0 isEqual:stolperstein0], @"Wrong equality");
+    XCTAssertTrue(stolperstein0.hash == stolperstein0.hash, @"Wrong hash");
 
     // IDs don't match
     stolperstein0.id = @"123";
     stolperstein1.id = @"456";
-    STAssertFalse([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
-    STAssertFalse([stolperstein1 isEqual:stolperstein0], @"Wrong equality");
-    STAssertFalse(stolperstein0.hash == stolperstein1.hash, @"Wrong hash"); // not required, but preferable
+    XCTAssertFalse([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
+    XCTAssertFalse([stolperstein1 isEqual:stolperstein0], @"Wrong equality");
+    XCTAssertFalse(stolperstein0.hash == stolperstein1.hash, @"Wrong hash"); // not required, but preferable
 
     // Wrong class
     stolperstein0.id = @"123";
     stolperstein1.id = @"456";
-    STAssertFalse([stolperstein0 isEqual:stolperstein1.id], @"Wrong equality");
-    STAssertFalse([stolperstein1 isEqual:stolperstein0.id], @"Wrong equality");
+    XCTAssertFalse([stolperstein0 isEqual:stolperstein1.id], @"Wrong equality");
+    XCTAssertFalse([stolperstein1 isEqual:stolperstein0.id], @"Wrong equality");
 
     // nil IDs
     stolperstein0.id = nil;
     stolperstein1.id = @"456";
-    STAssertFalse([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
+    XCTAssertFalse([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
 
     stolperstein0.id = @"123";
     stolperstein1.id = nil;
-    STAssertFalse([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
+    XCTAssertFalse([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
 
     stolperstein0.id = nil;
     stolperstein1.id = nil;
-    STAssertFalse([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
+    XCTAssertFalse([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
 
     // nil objects
-    STAssertFalse([(id)nil isEqual:stolperstein1], @"Wrong equality");
-    STAssertFalse([stolperstein0 isEqual:nil], @"Wrong equality");
-    STAssertFalse([(id)nil isEqual:nil], @"Wrong equality");
+    XCTAssertFalse([(id)nil isEqual:stolperstein1], @"Wrong equality");
+    XCTAssertFalse([stolperstein0 isEqual:nil], @"Wrong equality");
+    XCTAssertFalse([(id)nil isEqual:nil], @"Wrong equality");
 }
 
 - (void)testEqualToStolperstein
@@ -86,39 +86,39 @@
     // IDs match
     stolperstein0.id = @"123";
     stolperstein1.id = @"123";
-    STAssertTrue([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
-    STAssertTrue([stolperstein1 isEqualToStolperstein:stolperstein0], @"Wrong equality");
-    STAssertTrue(stolperstein0.hash == stolperstein1.hash, @"Wrong hash");
+    XCTAssertTrue([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
+    XCTAssertTrue([stolperstein1 isEqualToStolperstein:stolperstein0], @"Wrong equality");
+    XCTAssertTrue(stolperstein0.hash == stolperstein1.hash, @"Wrong hash");
     
     // Object equals itself
     stolperstein0.id = @"123";
-    STAssertTrue([stolperstein0 isEqualToStolperstein:stolperstein0], @"Wrong equality");
-    STAssertTrue(stolperstein0.hash == stolperstein0.hash, @"Wrong hash");
+    XCTAssertTrue([stolperstein0 isEqualToStolperstein:stolperstein0], @"Wrong equality");
+    XCTAssertTrue(stolperstein0.hash == stolperstein0.hash, @"Wrong hash");
     
     // IDs don't match
     stolperstein0.id = @"123";
     stolperstein1.id = @"456";
-    STAssertFalse([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
-    STAssertFalse([stolperstein1 isEqualToStolperstein:stolperstein0], @"Wrong equality");
-    STAssertFalse(stolperstein0.hash == stolperstein1.hash, @"Wrong hash"); // not required, but preferable
+    XCTAssertFalse([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
+    XCTAssertFalse([stolperstein1 isEqualToStolperstein:stolperstein0], @"Wrong equality");
+    XCTAssertFalse(stolperstein0.hash == stolperstein1.hash, @"Wrong hash"); // not required, but preferable
 
     // nil IDs
     stolperstein0.id = nil;
     stolperstein1.id = @"456";
-    STAssertFalse([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
+    XCTAssertFalse([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
     
     stolperstein0.id = @"123";
     stolperstein1.id = nil;
-    STAssertFalse([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
+    XCTAssertFalse([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
     
     stolperstein0.id = nil;
     stolperstein1.id = nil;
-    STAssertFalse([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
+    XCTAssertFalse([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
     
     // nil objects
-    STAssertFalse([(id)nil isEqualToStolperstein:stolperstein1], @"Wrong equality");
-    STAssertFalse([stolperstein0 isEqualToStolperstein:nil], @"Wrong equality");
-    STAssertFalse([(id)nil isEqualToStolperstein:nil], @"Wrong equality");
+    XCTAssertFalse([(id)nil isEqualToStolperstein:stolperstein1], @"Wrong equality");
+    XCTAssertFalse([stolperstein0 isEqualToStolperstein:nil], @"Wrong equality");
+    XCTAssertFalse([(id)nil isEqualToStolperstein:nil], @"Wrong equality");
 }
 
 @end

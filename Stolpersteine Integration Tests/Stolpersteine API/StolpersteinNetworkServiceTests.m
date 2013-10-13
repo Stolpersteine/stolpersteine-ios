@@ -69,43 +69,43 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
-        STAssertNil(error, @"Error request");
-        STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
+        XCTAssertNil(error, @"Error request");
+        XCTAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
             // Mandatory fields
-            STAssertNotNil(stolperstein.id, @"Wrong ID");
-            STAssertTrue([stolperstein.id isKindOfClass:NSString.class], @"Wrong type for ID");
-            STAssertTrue(stolperstein.type == StolpersteinTypeStolperstein || stolperstein.type == StolpersteinTypeStolperschwelle, @"Wrong type");
-            STAssertNotNil(stolperstein.personFirstName, @"Wrong first name");
-            STAssertTrue([stolperstein.personFirstName isKindOfClass:NSString.class], @"Wrong type for first name");
-            STAssertNotNil(stolperstein.personLastName, @"Wrong last name");
-            STAssertTrue([stolperstein.personLastName isKindOfClass:NSString.class], @"Wrong type for last name");
-            STAssertNotNil(stolperstein.personBiographyURLString, @"Wrong biography url");
-            STAssertTrue([stolperstein.personBiographyURLString isKindOfClass:NSString.class], @"Wrong type for biography URL");
-            STAssertNotNil(stolperstein.locationStreet, @"Wrong street");
-            STAssertTrue([stolperstein.locationStreet isKindOfClass:NSString.class], @"Wrong type for street");
-            STAssertNotNil(stolperstein.locationCity, @"Wrong city");
-            STAssertTrue([stolperstein.locationCity isKindOfClass:NSString.class], @"Wrong type for city");
-            STAssertTrue(stolperstein.locationCoordinate.latitude != 0, @"Wrong coordinates");
-            STAssertTrue(stolperstein.locationCoordinate.longitude != 0, @"Wrong coordinates");
-            STAssertNotNil(stolperstein.sourceName, @"Wrong source name");
-            STAssertTrue([stolperstein.sourceName isKindOfClass:NSString.class], @"Wrong type for source name");
-            STAssertNotNil(stolperstein.sourceURLString, @"Wrong source url");
-            STAssertTrue([stolperstein.sourceURLString isKindOfClass:NSString.class], @"Wrong type for source url");
+            XCTAssertNotNil(stolperstein.id, @"Wrong ID");
+            XCTAssertTrue([stolperstein.id isKindOfClass:NSString.class], @"Wrong type for ID");
+            XCTAssertTrue(stolperstein.type == StolpersteinTypeStolperstein || stolperstein.type == StolpersteinTypeStolperschwelle, @"Wrong type");
+            XCTAssertNotNil(stolperstein.personFirstName, @"Wrong first name");
+            XCTAssertTrue([stolperstein.personFirstName isKindOfClass:NSString.class], @"Wrong type for first name");
+            XCTAssertNotNil(stolperstein.personLastName, @"Wrong last name");
+            XCTAssertTrue([stolperstein.personLastName isKindOfClass:NSString.class], @"Wrong type for last name");
+            XCTAssertNotNil(stolperstein.personBiographyURLString, @"Wrong biography url");
+            XCTAssertTrue([stolperstein.personBiographyURLString isKindOfClass:NSString.class], @"Wrong type for biography URL");
+            XCTAssertNotNil(stolperstein.locationStreet, @"Wrong street");
+            XCTAssertTrue([stolperstein.locationStreet isKindOfClass:NSString.class], @"Wrong type for street");
+            XCTAssertNotNil(stolperstein.locationCity, @"Wrong city");
+            XCTAssertTrue([stolperstein.locationCity isKindOfClass:NSString.class], @"Wrong type for city");
+            XCTAssertTrue(stolperstein.locationCoordinate.latitude != 0, @"Wrong coordinates");
+            XCTAssertTrue(stolperstein.locationCoordinate.longitude != 0, @"Wrong coordinates");
+            XCTAssertNotNil(stolperstein.sourceName, @"Wrong source name");
+            XCTAssertTrue([stolperstein.sourceName isKindOfClass:NSString.class], @"Wrong type for source name");
+            XCTAssertNotNil(stolperstein.sourceURLString, @"Wrong source url");
+            XCTAssertTrue([stolperstein.sourceURLString isKindOfClass:NSString.class], @"Wrong type for source url");
             
             // Optional fields
             if (stolperstein.text) {
-                STAssertTrue([stolperstein.text isKindOfClass:NSString.class], @"Wrong type for text");
+                XCTAssertTrue([stolperstein.text isKindOfClass:NSString.class], @"Wrong type for text");
             }
             
             if (stolperstein.locationZipCode) {
-                STAssertTrue([stolperstein.locationZipCode isKindOfClass:NSString.class], @"Wrong type for zip code");
+                XCTAssertTrue([stolperstein.locationZipCode isKindOfClass:NSString.class], @"Wrong type for zip code");
             }
         }
         
         return NO;
     }];
-    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 }
 
 - (void)testRetrieveStolpersteineKeyword
@@ -115,17 +115,17 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
-        STAssertNil(error, @"Error request");
-        STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
+        XCTAssertNil(error, @"Error request");
+        XCTAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
             BOOL found = [stolperstein.personFirstName hasPrefix:searchData.keyword];
             found |= [stolperstein.personLastName hasPrefix:searchData.keyword];
-            STAssertTrue(found, @"Wrong search result");
+            XCTAssertTrue(found, @"Wrong search result");
         }
         
         return NO;
     }];
-    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 }
 
 - (void)testRetrieveStolpersteineStreet
@@ -135,16 +135,16 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
-        STAssertNil(error, @"Error request");
-        STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
+        XCTAssertNil(error, @"Error request");
+        XCTAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
             BOOL found = [stolperstein.locationStreet hasPrefix:searchData.street];
-            STAssertTrue(found, @"Wrong search result");
+            XCTAssertTrue(found, @"Wrong search result");
         }
         
         return NO;
     }];
-    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 }
 
 - (void)testRetrieveStolpersteineCity
@@ -155,16 +155,16 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
-        STAssertNil(error, @"Error request");
-        STAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
+        XCTAssertNil(error, @"Error request");
+        XCTAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
             BOOL found = [stolperstein.locationCity hasPrefix:searchData.city];
-            STAssertTrue(found, @"Wrong search result");
+            XCTAssertTrue(found, @"Wrong search result");
         }
         
         return NO;
     }];
-    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 }
 
 - (void)testRetrieveStolpersteineCityInvalid
@@ -175,12 +175,12 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
-        STAssertNil(error, @"Error request");
-        STAssertEquals(stolpersteine.count, 0u, @"Wrong number of stolpersteine");
+        XCTAssertNil(error, @"Error request");
+        XCTAssertEqual(stolpersteine.count, 0u, @"Wrong number of stolpersteine");
         
         return NO;
     }];
-    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 }
 
 - (void)testRetrieveStolpersteineCityDefaultInvalid
@@ -189,12 +189,12 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
-        STAssertNil(error, @"Error request");
-        STAssertEquals(stolpersteine.count, 0u, @"Wrong number of stolpersteine");
+        XCTAssertNil(error, @"Error request");
+        XCTAssertEqual(stolpersteine.count, 0u, @"Wrong number of stolpersteine");
         
         return NO;
     }];
-    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 }
 
 - (void)testRetrieveStolpersteinePaging
@@ -204,8 +204,8 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 2) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
-        STAssertNil(error, @"Error request");
-        STAssertEquals(stolpersteine.count, 2u, @"Wrong number of stolpersteine");
+        XCTAssertNil(error, @"Error request");
+        XCTAssertEqual(stolpersteine.count, 2u, @"Wrong number of stolpersteine");
         if (stolpersteine.count == 2) {
             stolpersteineID0 = [stolpersteine[0] id];
             stolpersteineID1 = [stolpersteine[1] id];
@@ -213,37 +213,37 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
         
         return NO;
     }];
-    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 
     // First page
     self.done = NO;
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 1) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
-        STAssertNil(error, @"Error request");
-        STAssertEquals(stolpersteine.count, 1u, @"Wrong number of stolpersteine");
+        XCTAssertNil(error, @"Error request");
+        XCTAssertEqual(stolpersteine.count, 1u, @"Wrong number of stolpersteine");
         if (stolpersteine.count == 1) {
-            STAssertEqualObjects(stolpersteineID0, [stolpersteine[0] id], @"Wrong stolpersteine ID");
+            XCTAssertEqualObjects(stolpersteineID0, [stolpersteine[0] id], @"Wrong stolpersteine ID");
         }
         
         return NO;
     }];
-    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 
     // Second page
     self.done = NO;
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(1, 1) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
-        STAssertNil(error, @"Error request");
-        STAssertEquals(stolpersteine.count, 1u, @"Wrong number of stolpersteine");
+        XCTAssertNil(error, @"Error request");
+        XCTAssertEqual(stolpersteine.count, 1u, @"Wrong number of stolpersteine");
         if (stolpersteine.count == 1) {
-            STAssertEqualObjects(stolpersteineID1, [stolpersteine[0] id], @"Wrong stolpersteine ID");
+            XCTAssertEqualObjects(stolpersteineID1, [stolpersteine[0] id], @"Wrong stolpersteine ID");
         }
         
         return NO;
     }];
-    STAssertTrue([self waitForCompletion:5.0], @"Time out");
+    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 }
 
 @end

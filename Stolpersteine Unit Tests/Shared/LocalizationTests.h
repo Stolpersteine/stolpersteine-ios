@@ -23,8 +23,8 @@
 //  THE SOFTWARE.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface LocalizationTests : SenTestCase
+@interface LocalizationTests : XCTestCase
 
 @end

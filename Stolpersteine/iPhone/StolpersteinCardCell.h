@@ -14,6 +14,7 @@
 
 @property (nonatomic, readonly) Stolperstein *stolperstein;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *streetButton;
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein;
 

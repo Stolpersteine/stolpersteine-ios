@@ -463,7 +463,7 @@
 		627E43A9169B0F050065C1F1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Option-U Software";
 				TargetAttributes = {
 					627E43B1169B0F050065C1F1 = {
@@ -736,7 +736,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9703DF9DC8314D4AB2AD07A0 /* Pods-Stolpersteine Tests.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -769,7 +768,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9703DF9DC8314D4AB2AD07A0 /* Pods-Stolpersteine Tests.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -799,7 +797,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9703DF9DC8314D4AB2AD07A0 /* Pods-Stolpersteine Tests.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;

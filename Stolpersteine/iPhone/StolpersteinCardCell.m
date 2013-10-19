@@ -11,7 +11,8 @@
 #import "Stolperstein.h"
 #import "Localization.h"
 
-#define PADDING 16
+#define PADDING_TOP 16
+#define PADDING_BOTTOM (8 + 8 + 30)
 #define WIDTH 288
 
 @interface StolpersteinCardCell()
@@ -38,6 +39,8 @@
 
 - (void)setup
 {
+    NSString *title = NSLocalizedString(@"StolpersteinDetailViewController.street", nil);
+    [self.streetButton setTitle:title forState:UIControlStateNormal];
 }
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein
@@ -63,7 +66,7 @@
     NSAttributedString *attributedText = [StolpersteinCardCell newAttributedStringFromStolperstein:stolperstein];
     CGRect boundingRect = [attributedText boundingRectWithSize:CGSizeMake(WIDTH, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     
-    return ceil(boundingRect.size.height) + 2 * PADDING;
+    return ceil(boundingRect.size.height) + PADDING_TOP + PADDING_BOTTOM;
 }
 
 + (NSAttributedString *)newAttributedStringFromStolperstein:(Stolperstein *)stolperstein

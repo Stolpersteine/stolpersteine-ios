@@ -37,6 +37,7 @@
 @interface StolpersteinCardsViewController()
 
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
+@property (nonatomic, strong) StolpersteinCardCell *measuringCell;
 
 @end
 
@@ -46,7 +47,15 @@
 {
     [super viewDidLoad];
     
-    self.tableView.estimatedRowHeight = [StolpersteinCardCell standardHeight];
+    static NSString * const cellIdentifier = @"cell";
+    self.measuringCell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+//    - estimatedHeightForRowAtIndexPath -> property
+//    - cellIdentifier -> constant
+//    https://github.com/caoimghgin/TableViewCellWithAutoLayout
+//    http://stackoverflow.com/questions/18746929/using-auto-layout-in-uitableview-for-dynamic-cell-layouts-heights
+
+    self.tableView.estimatedRowHeight = [self.measuringCell estimatedHeight];
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
@@ -81,7 +90,7 @@
 
 - (void)contentSizeCategoryDidChange:(NSNotification *)notification
 {
-    self.tableView.estimatedRowHeight = [StolpersteinCardCell standardHeight];
+    self.tableView.estimatedRowHeight = [self.measuringCell estimatedHeight];
     [self.tableView reloadData];
 }
 
@@ -106,7 +115,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [StolpersteinCardCell heightForStolperstein:self.stolpersteine[indexPath.row]];
+    StolpersteinCardCell *cell = self.measuringCell;
+    [cell updateWithStolperstein:self.stolpersteine[indexPath.row]];
+    
+    [cell.contentView setNeedsLayout];
+    [cell.contentView layoutIfNeeded];
+    
+    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    return height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

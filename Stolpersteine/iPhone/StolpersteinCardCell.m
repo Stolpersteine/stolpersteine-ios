@@ -11,10 +11,6 @@
 #import "Stolperstein.h"
 #import "Localization.h"
 
-#define PADDING_TOP 16
-#define PADDING_BOTTOM (8 + 8 + 30)
-#define WIDTH 288
-
 @interface StolpersteinCardCell()
 
 @property (nonatomic, strong) Stolperstein *stolperstein;
@@ -49,7 +45,7 @@
     self.titleLabel.attributedText = [StolpersteinCardCell newAttributedStringFromStolperstein:stolperstein];
 }
 
-+ (CGFloat)standardHeight
+- (CGFloat)estimatedHeight
 {
     Stolperstein *stolperstein = [[Stolperstein alloc] init];
     stolperstein.personFirstName = @"xxxxxxxxxx";
@@ -57,16 +53,16 @@
     stolperstein.locationStreet = @"xxxxxxxxxx xxx";
     stolperstein.locationZipCode = @"xxxx";
     stolperstein.locationCity = @"xxxxxxxxxx";
-
-    return [StolpersteinCardCell heightForStolperstein:stolperstein];
-}
-
-+ (CGFloat)heightForStolperstein:(Stolperstein *)stolperstein
-{
-    NSAttributedString *attributedText = [StolpersteinCardCell newAttributedStringFromStolperstein:stolperstein];
-    CGRect boundingRect = [attributedText boundingRectWithSize:CGSizeMake(WIDTH, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     
-    return ceil(boundingRect.size.height) + PADDING_TOP + PADDING_BOTTOM;
+    [self updateWithStolperstein:stolperstein];
+    
+    [self setNeedsUpdateConstraints];
+    [self updateConstraintsIfNeeded];
+    [self.contentView setNeedsLayout];
+    [self.contentView layoutIfNeeded];
+    
+    CGFloat height = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    return height;
 }
 
 + (NSAttributedString *)newAttributedStringFromStolperstein:(Stolperstein *)stolperstein
@@ -82,7 +78,7 @@
     NSRange nameRange = NSMakeRange(0, name.length);
     [attributedDetailText addAttribute:NSFontAttributeName value:nameFont range:nameRange];
     
-    UIFont *addressFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    UIFont *addressFont = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2];
     NSRange addressRange = NSMakeRange(nameRange.length + 1, address.length);
     [attributedDetailText addAttribute:NSFontAttributeName value:addressFont range:addressRange];
     

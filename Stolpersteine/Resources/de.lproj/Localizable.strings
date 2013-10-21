@@ -18,14 +18,11 @@
 "MapViewController.imprint" = "Impressum";
 "MapViewController.imprintURL" = "http://www.option-u.com/stolpersteine/imprint-ios-app-de/";
 
-"StolpersteinDetailViewController.title" = "Info";
-"StolpersteinDetailViewController.biography" = "Biografie anzeigen";
-"StolpersteinDetailViewController.description" = "Beschreibung anzeigen";
-"StolpersteinDetailViewController.street" = "Alle in dieser Straße";
-"StolpersteinDetailViewController.maps" = "In der Karten App anzeigen";
-"StolpersteinDetailViewController.source" = "Quelle: %@";
-"StolpersteinDetailViewController.webViewTitleBiography" = "Biografie";
-"StolpersteinDetailViewController.webViewTitleDescription" = "Beschreibung";
+"StolpersteinCardCell.street" = "Alle in dieser Straße";
+"StolpersteinCardCell.source" = "Quelle";
+
+"StolpersteinCardsViewController.webViewTitleBiography" = "Biografie";
+"StolpersteinCardsViewController.webViewTitleDescription" = "Beschreibung";
 
 "Rating.title" = "%@ App";
 "Rating.message" = "Gefällt Ihnen diese App? Über Ihre Bewertung würden wir uns freuen.";

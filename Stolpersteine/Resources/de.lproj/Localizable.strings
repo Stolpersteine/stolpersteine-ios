@@ -17,7 +17,6 @@
 "MapViewController.searchBarPlaceholder" = "Name oder Adresse";
 "MapViewController.imprint" = "Impressum";
 "MapViewController.imprintURL" = "http://www.option-u.com/stolpersteine/imprint-ios-app-de/";
-"MapViewController.paddingRight" = "100";   // "Abbrechen"
 
 "StolpersteinDetailViewController.title" = "Info";
 "StolpersteinDetailViewController.biography" = "Biografie anzeigen";

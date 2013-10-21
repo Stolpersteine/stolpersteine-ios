@@ -17,7 +17,6 @@
 		4825F939174E8F7C0058B811 /* ProgressImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825F934174E8F7C0058B811 /* ProgressImageView.m */; };
 		484C8EE5169B609F001CEA59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484C8EE4169B609F001CEA59 /* CoreLocation.framework */; };
 		48633B9816C03F690057A317 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B8A16C03F690057A317 /* MapViewController.m */; };
-		48633B9C16C03F690057A317 /* StolpersteinDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */; };
 		48633B9D16C03F690057A317 /* StolpersteinCardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9616C03F690057A317 /* StolpersteinCardsViewController.m */; };
 		48633BA016C03FCE0057A317 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48633B9F16C03FCE0057A317 /* AppDelegate.m */; };
 		486576F7180B29CD000326D1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 486576EF180AD770000326D1 /* XCTest.framework */; };
@@ -86,8 +85,6 @@
 		484C8EE4169B609F001CEA59 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		48633B8916C03F690057A317 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		48633B8A16C03F690057A317 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinDetailViewController.h; sourceTree = "<group>"; };
-		48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinDetailViewController.m; sourceTree = "<group>"; };
 		48633B9516C03F690057A317 /* StolpersteinCardsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinCardsViewController.h; sourceTree = "<group>"; };
 		48633B9616C03F690057A317 /* StolpersteinCardsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinCardsViewController.m; sourceTree = "<group>"; };
 		48633B9E16C03FCE0057A317 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -236,8 +233,6 @@
 				48633B9616C03F690057A317 /* StolpersteinCardsViewController.m */,
 				48A6CEA517EB9AC300E0751B /* StolpersteinCardCell.h */,
 				48A6CEA617EB9AC300E0751B /* StolpersteinCardCell.m */,
-				48633B9316C03F690057A317 /* StolpersteinDetailViewController.h */,
-				48633B9416C03F690057A317 /* StolpersteinDetailViewController.m */,
 				4877717317861A4400789F32 /* StolpersteinDescriptionViewController.h */,
 				4877717417861A4400789F32 /* StolpersteinDescriptionViewController.m */,
 				4825F929174E8F7C0058B811 /* Image Gallery */,
@@ -631,7 +626,6 @@
 				6222BF0116A030E5006ED538 /* NSDictionary+StolpersteinParsing.m in Sources */,
 				48AC6D7016BF0964004C4AF4 /* StolpersteinSearchData.m in Sources */,
 				48633B9816C03F690057A317 /* MapViewController.m in Sources */,
-				48633B9C16C03F690057A317 /* StolpersteinDetailViewController.m in Sources */,
 				48633B9D16C03F690057A317 /* StolpersteinCardsViewController.m in Sources */,
 				48633BA016C03FCE0057A317 /* AppDelegate.m in Sources */,
 				48A08C9016DBF5A5000A2470 /* Localization.m in Sources */,

@@ -34,6 +34,8 @@
 #import "DiagnosticsService.h"
 #import "Localization.h"
 
+static NSString * const CELL_IDENTIFIER = @"cell";
+
 @interface StolpersteinCardsViewController()
 
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
@@ -47,15 +49,9 @@
 {
     [super viewDidLoad];
     
-    static NSString * const cellIdentifier = @"cell";
-    self.measuringCell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-//    - estimatedHeightForRowAtIndexPath -> property
-//    - cellIdentifier -> constant
-//    https://github.com/caoimghgin/TableViewCellWithAutoLayout
-//    http://stackoverflow.com/questions/18746929/using-auto-layout-in-uitableview-for-dynamic-cell-layouts-heights
-
+    self.measuringCell = [self.tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
     self.tableView.estimatedRowHeight = [self.measuringCell estimatedHeight];
+    
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
@@ -63,7 +59,7 @@
 {
     [super viewWillAppear:animated];
     
-    if (!self.stolpersteine) {
+    if (!self.stolpersteine && self.searchData) {
         [self.searchStolpersteineOperation cancel];
         self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:self.searchData range:NSMakeRange(0, 0) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
             self.stolpersteine = stolpersteine;
@@ -94,20 +90,26 @@
     [self.tableView reloadData];
 }
 
+- (void)dismissViewController
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"stolpersteinCardsViewControllerToStolpersteinDescriptionViewController"]) {
+    if ([segue.identifier isEqualToString:@"stolpersteinCardsViewControllerToModalStolpersteinCardsViewController"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        UIViewController *cardsViewController = navigationController.topViewController;
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:cardsViewController action:@selector(dismissViewController)];
+        cardsViewController.navigationItem.rightBarButtonItem = barButtonItem;
+    } else if ([segue.identifier isEqualToString:@"stolpersteinCardsViewControllerToStolpersteinDescriptionViewController"]) {
         StolpersteinCardCell *cardCell = (StolpersteinCardCell *)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
         Stolperstein *stolperstein = cardCell.stolperstein;
         
         NSURL *url = [[NSURL alloc] initWithString:stolperstein.personBiographyURLString];
         StolpersteinDescriptionViewController *webViewController = (StolpersteinDescriptionViewController *)segue.destinationViewController;
         webViewController.url = url;
-        NSString *localizedTitle = (stolperstein.type == StolpersteinTypeStolperschwelle) ? @"StolpersteinDetailViewController.webViewTitleDescription" : @"StolpersteinDetailViewController.webViewTitleBiography";
-        webViewController.title = NSLocalizedString(localizedTitle, nil);
-        NSString *name = [Localization newNameFromStolperstein:stolperstein];
-        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:name style:UIBarButtonItemStyleBordered target:nil action:nil];
-        self.navigationItem.backBarButtonItem = backBarButtonItem;
+        webViewController.title = [Localization newNameFromStolperstein:stolperstein];
     }
 }
 
@@ -115,14 +117,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    StolpersteinCardCell *cell = self.measuringCell;
-    [cell updateWithStolperstein:self.stolpersteine[indexPath.row]];
-    
-    [cell.contentView setNeedsLayout];
-    [cell.contentView layoutIfNeeded];
-    
-    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    return height;
+    return [self.measuringCell heightForStolperstein:self.stolpersteine[indexPath.row]];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -132,8 +127,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * const cellIdentifier = @"cell";
-    StolpersteinCardCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    StolpersteinCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
     [cell updateWithStolperstein:self.stolpersteine[indexPath.row]];
     
     return cell;

@@ -28,7 +28,7 @@
 #import "ProgressImageView.h"
 #import "ImageGalleryView.h"
 #import "ImageGalleryItemView.h"
-#import "AGWindowView.h"
+//#import "AGWindowView.h"
 
 #define ITEM_IDENTIFIER @"item"
 #define ANIMATION_DURATION 0.3f
@@ -108,19 +108,19 @@
     [UIApplication.sharedApplication setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     self.imageGalleryViewSuperView = self.view.superview;
     
-    AGWindowView *windowView = [[AGWindowView alloc] initAndAddToKeyWindow];
-    windowView.supportedInterfaceOrientations = UIInterfaceOrientationMaskAll;
-    self.backgroundView = [[UIView alloc] initWithFrame:windowView.bounds];
-    self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.backgroundView.backgroundColor = UIColor.blackColor;
-    self.backgroundView.alpha = 0;
-    [windowView addSubview:self.backgroundView];
-    [windowView addSubViewAndKeepSamePosition:self.view];
-    
-    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-        self.backgroundView.alpha = 1;
-        self.view.frame = windowView.bounds;
-    } completion:NULL];
+//    AGWindowView *windowView = [[AGWindowView alloc] initAndAddToKeyWindow];
+//    windowView.supportedInterfaceOrientations = UIInterfaceOrientationMaskAll;
+//    self.backgroundView = [[UIView alloc] initWithFrame:windowView.bounds];
+//    self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//    self.backgroundView.backgroundColor = UIColor.blackColor;
+//    self.backgroundView.alpha = 0;
+//    [windowView addSubview:self.backgroundView];
+//    [windowView addSubViewAndKeepSamePosition:self.view];
+//    
+//    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+//        self.backgroundView.alpha = 1;
+//        self.view.frame = windowView.bounds;
+//    } completion:NULL];
 }
 
 - (void)hideFullScreenGallery
@@ -135,19 +135,19 @@
         [navigationController setNavigationBarHidden:NO];
     }
     
-    AGWindowView *windowView = [AGWindowView activeWindowViewContainingView:self.view];
-    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-        self.backgroundView.alpha = 0;
-        CGRect frame = [windowView convertRect:self.imageGalleryViewSuperView.bounds fromView:self.imageGalleryViewSuperView];
-        self.view.frame = frame;
-    } completion:^(BOOL finished) {
-        CGRect frame = [self.imageGalleryViewSuperView convertRect:self.view.frame fromView:self.view.superview];
-        self.view.frame = frame;
-        [self.imageGalleryViewSuperView addSubview:self.view];
-        
-        [windowView removeFromSuperview];
-        self.backgroundView = nil;
-    }];
+//    AGWindowView *windowView = [AGWindowView activeWindowViewContainingView:self.view];
+//    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+//        self.backgroundView.alpha = 0;
+//        CGRect frame = [windowView convertRect:self.imageGalleryViewSuperView.bounds fromView:self.imageGalleryViewSuperView];
+//        self.view.frame = frame;
+//    } completion:^(BOOL finished) {
+//        CGRect frame = [self.imageGalleryViewSuperView convertRect:self.view.frame fromView:self.view.superview];
+//        self.view.frame = frame;
+//        [self.imageGalleryViewSuperView addSubview:self.view];
+//        
+//        [windowView removeFromSuperview];
+//        self.backgroundView = nil;
+//    }];
 }
 
 @end

@@ -32,7 +32,6 @@
 #import "StolpersteinSearchData.h"
 #import "StolpersteinSynchronizationControllerDelegate.h"
 #import "StolpersteinSynchronizationController.h"
-#import "StolpersteinDetailViewController.h"
 #import "StolpersteinCardsViewController.h"
 #import "MapClusterController.h"
 #import "MapClusterControllerDelegate.h"

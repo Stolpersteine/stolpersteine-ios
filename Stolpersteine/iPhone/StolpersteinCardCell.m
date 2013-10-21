@@ -11,7 +11,7 @@
 #import "Stolperstein.h"
 #import "Localization.h"
 
-@interface StolpersteinCardCell()
+@interface StolpersteinCardCell()<UIActionSheetDelegate>
 
 @property (nonatomic, strong) Stolperstein *stolperstein;
 
@@ -35,14 +35,17 @@
 
 - (void)setup
 {
-    NSString *title = NSLocalizedString(@"StolpersteinDetailViewController.street", nil);
+    NSString *title = NSLocalizedString(@"StolpersteinCardCell.street", nil);
     [self.streetButton setTitle:title forState:UIControlStateNormal];
+
+    NSString *source = NSLocalizedString(@"StolpersteinCardCell.source", nil);
+    [self.sourceButton setTitle:source forState:UIControlStateNormal];
 }
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein
 {
     self.stolperstein = stolperstein;
-    self.titleLabel.attributedText = [StolpersteinCardCell newAttributedStringFromStolperstein:stolperstein];
+    self.bodyLabel.attributedText = [StolpersteinCardCell newBodyAttributedStringFromStolperstein:stolperstein];
 }
 
 - (CGFloat)estimatedHeight
@@ -54,6 +57,11 @@
     stolperstein.locationZipCode = @"xxxx";
     stolperstein.locationCity = @"xxxxxxxxxx";
     
+    return [self heightForStolperstein:stolperstein];
+}
+
+- (CGFloat)heightForStolperstein:(Stolperstein *)stolperstein
+{
     [self updateWithStolperstein:stolperstein];
     
     [self setNeedsUpdateConstraints];
@@ -65,26 +73,38 @@
     return height;
 }
 
-+ (NSAttributedString *)newAttributedStringFromStolperstein:(Stolperstein *)stolperstein
++ (NSAttributedString *)newBodyAttributedStringFromStolperstein:(Stolperstein *)stolperstein
 {
     NSString *name = [Localization newNameFromStolperstein:stolperstein];
     NSString *address = [Localization newLongAddressFromStolperstein:stolperstein];
-    NSString *detailText = [NSString stringWithFormat:@"%@\n%@", name, address];
-    NSMutableAttributedString *attributedDetailText = [[NSMutableAttributedString alloc] initWithString:detailText];
+    NSString *body = [NSString stringWithFormat:@"%@\n%@", name, address];
+    NSMutableAttributedString *bodyAttributedString = [[NSMutableAttributedString alloc] initWithString:body];
     
-    [attributedDetailText beginEditing];
+    [bodyAttributedString beginEditing];
     
     UIFont *nameFont = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
     NSRange nameRange = NSMakeRange(0, name.length);
-    [attributedDetailText addAttribute:NSFontAttributeName value:nameFont range:nameRange];
+    [bodyAttributedString addAttribute:NSFontAttributeName value:nameFont range:nameRange];
     
-    UIFont *addressFont = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2];
+    UIFont *addressFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     NSRange addressRange = NSMakeRange(nameRange.length + 1, address.length);
-    [attributedDetailText addAttribute:NSFontAttributeName value:addressFont range:addressRange];
+    [bodyAttributedString addAttribute:NSFontAttributeName value:addressFont range:addressRange];
     
-    [attributedDetailText endEditing];
+    [bodyAttributedString endEditing];
     
-    return attributedDetailText;
+    return bodyAttributedString;
+}
+
+- (IBAction)showSource:(UIButton *)sender
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:sender.titleLabel.text delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Stolpersteine Berlin", nil];
+    [actionSheet showInView:self.superview];
+}
+
+- (void)showSourceURL
+{
+    NSURL *sourceURL = [NSURL URLWithString:self.stolperstein.sourceURLString];
+    [UIApplication.sharedApplication openURL:sourceURL];
 }
 
 @end

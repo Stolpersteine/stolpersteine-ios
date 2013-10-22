@@ -65,6 +65,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [super viewDidLoad];
     
     self.title = NSLocalizedString(@"MapViewController.title", nil);
+    self.mapView.showsBuildings = YES;
     
     // Navigation bar
     [self.searchDisplayController.searchBar removeFromSuperview];

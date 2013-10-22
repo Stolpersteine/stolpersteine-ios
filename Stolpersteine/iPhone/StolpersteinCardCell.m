@@ -37,9 +37,6 @@
 {
     NSString *title = NSLocalizedString(@"StolpersteinCardCell.street", nil);
     [self.streetButton setTitle:title forState:UIControlStateNormal];
-
-    NSString *source = NSLocalizedString(@"StolpersteinCardCell.source", nil);
-    [self.sourceButton setTitle:source forState:UIControlStateNormal];
 }
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein
@@ -93,18 +90,6 @@
     [bodyAttributedString endEditing];
     
     return bodyAttributedString;
-}
-
-- (IBAction)showSource:(UIButton *)sender
-{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:sender.titleLabel.text delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Stolpersteine Berlin", nil];
-    [actionSheet showInView:self.superview];
-}
-
-- (void)showSourceURL
-{
-    NSURL *sourceURL = [NSURL URLWithString:self.stolperstein.sourceURLString];
-    [UIApplication.sharedApplication openURL:sourceURL];
 }
 
 @end

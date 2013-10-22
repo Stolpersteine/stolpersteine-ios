@@ -49,8 +49,11 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 {
     [super viewDidLoad];
     
-    self.measuringCell = [self.tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
-    self.tableView.estimatedRowHeight = [self.measuringCell estimatedHeight];
+    StolpersteinCardCell *measuringCell = [self.tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
+    [measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein];
+    [measuringCell updateLayoutWithTableView:self.tableView];
+    self.tableView.estimatedRowHeight = [measuringCell heightForCurrentStolperstein];
+    self.measuringCell = measuringCell;
     
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
@@ -86,7 +89,9 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 
 - (void)contentSizeCategoryDidChange:(NSNotification *)notification
 {
-    self.tableView.estimatedRowHeight = [self.measuringCell estimatedHeight];
+    [self.measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein];
+    [self.measuringCell updateLayoutWithTableView:self.tableView];
+    self.tableView.estimatedRowHeight = [self.measuringCell heightForCurrentStolperstein];
     [self.tableView reloadData];
 }
 
@@ -117,7 +122,10 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.measuringCell heightForStolperstein:self.stolpersteine[indexPath.row]];
+    [self.measuringCell updateWithStolperstein:self.stolpersteine[indexPath.row]];
+    [self.measuringCell updateLayoutWithTableView:tableView];
+    CGFloat height = [self.measuringCell heightForCurrentStolperstein];
+    return height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -128,9 +136,16 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StolpersteinCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
+    [cell updateLayoutWithTableView:tableView];
     [cell updateWithStolperstein:self.stolpersteine[indexPath.row]];
     
     return cell;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    // To make sure table cells have correct height
+    [self.tableView reloadData];
 }
 
 @end

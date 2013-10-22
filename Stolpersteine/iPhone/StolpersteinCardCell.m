@@ -45,7 +45,7 @@
     self.bodyLabel.attributedText = [StolpersteinCardCell newBodyAttributedStringFromStolperstein:stolperstein];
 }
 
-- (CGFloat)estimatedHeight
++ (Stolperstein *)standardStolperstein
 {
     Stolperstein *stolperstein = [[Stolperstein alloc] init];
     stolperstein.personFirstName = @"xxxxxxxxxx";
@@ -53,14 +53,20 @@
     stolperstein.locationStreet = @"xxxxxxxxxx xxx";
     stolperstein.locationZipCode = @"xxxx";
     stolperstein.locationCity = @"xxxxxxxxxx";
-    
-    return [self heightForStolperstein:stolperstein];
+
+    return stolperstein;
 }
 
-- (CGFloat)heightForStolperstein:(Stolperstein *)stolperstein
+- (void)updateLayoutWithTableView:(UITableView *)tableView
 {
-    [self updateWithStolperstein:stolperstein];
-    
+    CGFloat left = self.leftSpaceConstraint.constant;
+    CGFloat right = self.rightSpaceConstraint.constant;
+    CGFloat width = tableView.bounds.size.width - left - right;
+    self.bodyLabel.preferredMaxLayoutWidth = width;
+}
+
+- (CGFloat)heightForCurrentStolperstein
+{
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
     [self.contentView setNeedsLayout];

@@ -119,8 +119,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Body" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="271" translatesAutoresizingMaskIntoConstraints="NO" id="re6-BP-fXL">
-                                            <rect key="frame" x="16" y="16" width="271" height="21"/>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="1000" text="Body" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="272" translatesAutoresizingMaskIntoConstraints="NO" id="re6-BP-fXL">
+                                            <rect key="frame" x="16" y="16" width="272" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -139,16 +139,16 @@
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chevron" translatesAutoresizingMaskIntoConstraints="NO" id="H8n-3G-Av1">
-                                            <rect key="frame" x="295" y="20" width="8" height="13"/>
+                                            <rect key="frame" x="296" y="20" width="8" height="13"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="re6-BP-fXL" firstAttribute="leading" secondItem="3lF-od-53v" secondAttribute="leading" constant="16" id="8Cu-6o-Y2Z"/>
                                         <constraint firstAttribute="bottom" secondItem="qS8-Cv-1Tb" secondAttribute="bottom" constant="16" id="KWu-Cy-ctv"/>
-                                        <constraint firstAttribute="trailing" secondItem="H8n-3G-Av1" secondAttribute="trailing" constant="17" id="fpV-hb-2Tl"/>
+                                        <constraint firstAttribute="trailing" secondItem="H8n-3G-Av1" secondAttribute="trailing" constant="16" id="fpV-hb-2Tl"/>
                                         <constraint firstItem="re6-BP-fXL" firstAttribute="top" secondItem="3lF-od-53v" secondAttribute="top" constant="16" id="hAB-K0-2vG"/>
-                                        <constraint firstAttribute="trailing" secondItem="re6-BP-fXL" secondAttribute="trailing" constant="33" id="hGK-Qq-sls"/>
+                                        <constraint firstAttribute="trailing" secondItem="re6-BP-fXL" secondAttribute="trailing" constant="32" id="hGK-Qq-sls"/>
                                         <constraint firstItem="H8n-3G-Av1" firstAttribute="centerY" secondItem="re6-BP-fXL" secondAttribute="centerY" id="hgL-tc-WgI"/>
                                         <constraint firstItem="qS8-Cv-1Tb" firstAttribute="leading" secondItem="re6-BP-fXL" secondAttribute="leading" id="jdh-JK-ddk"/>
                                         <constraint firstItem="qS8-Cv-1Tb" firstAttribute="top" secondItem="re6-BP-fXL" secondAttribute="bottom" constant="8" symbolic="YES" id="zsL-SQ-UPG"/>
@@ -156,6 +156,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="bodyLabel" destination="re6-BP-fXL" id="v1N-ZS-7qh"/>
+                                    <outlet property="leftSpaceConstraint" destination="8Cu-6o-Y2Z" id="4WJ-iJ-Zjx"/>
+                                    <outlet property="rightSpaceConstraint" destination="hGK-Qq-sls" id="voP-hv-Z2S"/>
                                     <outlet property="streetButton" destination="qS8-Cv-1Tb" id="RCQ-wN-oFh"/>
                                     <segue destination="ZbI-TV-s7f" kind="push" identifier="stolpersteinCardsViewControllerToStolpersteinDescriptionViewController" id="9Uw-e6-NCi"/>
                                 </connections>

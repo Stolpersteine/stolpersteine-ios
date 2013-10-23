@@ -27,10 +27,6 @@
 
 typedef enum {
     DiagnosticsServiceEventOrientationChanged,
-    DiagnosticsServiceEventRatingPrompted,
-    DiagnosticsServiceEventRatingAttempted,
-    DiagnosticsServiceEventRatingDeclined,
-    DiagnosticsServiceEventRatingDelayed
 } DiagnosticsServiceEvent;
 
 @interface DiagnosticsService : NSObject

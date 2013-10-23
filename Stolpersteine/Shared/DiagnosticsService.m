@@ -73,11 +73,7 @@
            NSStringFromClass(StolpersteinDescriptionViewController.class): @"StolpersteinDescription"
         };
         self.eventToActionNameMapping = @{
-            @(DiagnosticsServiceEventOrientationChanged): @"orientationChanged",
-            @(DiagnosticsServiceEventRatingPrompted): @"ratingPrompted",
-            @(DiagnosticsServiceEventRatingAttempted): @"ratingAttempted",
-            @(DiagnosticsServiceEventRatingDeclined): @"ratingDeclined",
-            @(DiagnosticsServiceEventRatingDelayed): @"ratingDelayed"
+            @(DiagnosticsServiceEventOrientationChanged): @"orientationChanged"
         };
         
         // Register for changes to user settings

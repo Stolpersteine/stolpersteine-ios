@@ -96,26 +96,4 @@
     [alert show];
 }
 
-#pragma mark - Rating dialog
-
-- (void)iRateDidPromptForRating
-{
-    [self.diagnosticsService trackEvent:DiagnosticsServiceEventRatingPrompted withClass:self.class];
-}
-
-- (void)iRateUserDidAttemptToRateApp
-{
-    [self.diagnosticsService trackEvent:DiagnosticsServiceEventRatingAttempted withClass:self.class];
-}
-
-- (void)iRateUserDidDeclineToRateApp
-{
-    [self.diagnosticsService trackEvent:DiagnosticsServiceEventRatingDeclined withClass:self.class];
-}
-
-- (void)iRateUserDidRequestReminderToRateApp
-{
-    [self.diagnosticsService trackEvent:DiagnosticsServiceEventRatingDelayed withClass:self.class];
-}
-
 @end

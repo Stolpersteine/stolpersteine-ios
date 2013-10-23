@@ -27,6 +27,7 @@
 
 typedef enum {
     DiagnosticsServiceEventOrientationChanged,
+    DiagnosticsServiceEventStartSearch
 } DiagnosticsServiceEvent;
 
 @interface DiagnosticsService : NSObject

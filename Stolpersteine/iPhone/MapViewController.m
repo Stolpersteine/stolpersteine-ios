@@ -73,6 +73,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.navigationItem.rightBarButtonItem = self.locationBarButtonItem;
     [self updateLocationBarButtonItem];
     self.searchDisplayController.searchBar.placeholder = NSLocalizedString(@"MapViewController.searchBarPlaceholder", nil);
+    UIImage *searchBarBackgroundImage = [UIImage imageNamed:@"SearchBarBackground"];
+    [self.searchDisplayController.searchBar setSearchFieldBackgroundImage:searchBarBackgroundImage forState:UIControlStateNormal];
     
     // User location
     self.locationManager = [[CLLocationManager alloc] init];

@@ -24,7 +24,6 @@
 		486576F9180B29CD000326D1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B6169B0F050065C1F1 /* UIKit.framework */; };
 		486576FF180B29CD000326D1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 486576FD180B29CD000326D1 /* InfoPlist.strings */; };
 		4877716E1780AA7C00789F32 /* Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877716D1780AA7C00789F32 /* Appearance.m */; };
-		487771711780AE7100789F32 /* RoundedRectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 487771701780AE7100789F32 /* RoundedRectButton.m */; };
 		4877717517861A4400789F32 /* StolpersteinDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877717417861A4400789F32 /* StolpersteinDescriptionViewController.m */; };
 		489B682917739342000803C2 /* StolpersteinSynchronizationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 489B682817739342000803C2 /* StolpersteinSynchronizationController.m */; };
 		48A08C9016DBF5A5000A2470 /* Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8F16DBF5A5000A2470 /* Localization.m */; };
@@ -96,8 +95,6 @@
 		48657702180B29CD000326D1 /* Stolpersteine Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stolpersteine Tests-Prefix.pch"; sourceTree = "<group>"; };
 		4877716C1780AA7C00789F32 /* Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appearance.h; sourceTree = "<group>"; };
 		4877716D1780AA7C00789F32 /* Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appearance.m; sourceTree = "<group>"; };
-		4877716F1780AE7100789F32 /* RoundedRectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedRectButton.h; sourceTree = "<group>"; };
-		487771701780AE7100789F32 /* RoundedRectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedRectButton.m; sourceTree = "<group>"; };
 		4877717317861A4400789F32 /* StolpersteinDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinDescriptionViewController.h; sourceTree = "<group>"; };
 		4877717417861A4400789F32 /* StolpersteinDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinDescriptionViewController.m; sourceTree = "<group>"; };
 		489B682717739342000803C2 /* StolpersteinSynchronizationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinSynchronizationController.h; sourceTree = "<group>"; };
@@ -267,8 +264,6 @@
 			children = (
 				4877716C1780AA7C00789F32 /* Appearance.h */,
 				4877716D1780AA7C00789F32 /* Appearance.m */,
-				4877716F1780AE7100789F32 /* RoundedRectButton.h */,
-				487771701780AE7100789F32 /* RoundedRectButton.m */,
 			);
 			path = Appearance;
 			sourceTree = "<group>";
@@ -639,7 +634,6 @@
 				62C9C1351762861700AFBE01 /* ImageGalleryView.m in Sources */,
 				489B682917739342000803C2 /* StolpersteinSynchronizationController.m in Sources */,
 				4877716E1780AA7C00789F32 /* Appearance.m in Sources */,
-				487771711780AE7100789F32 /* RoundedRectButton.m in Sources */,
 				48A6CEA717EB9AC300E0751B /* StolpersteinCardCell.m in Sources */,
 				4877717517861A4400789F32 /* StolpersteinDescriptionViewController.m in Sources */,
 				62C0212317E86755003ED7EE /* MapClusterMapViewDelegateProxy.m in Sources */,

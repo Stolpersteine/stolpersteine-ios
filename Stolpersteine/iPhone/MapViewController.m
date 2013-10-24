@@ -198,7 +198,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)selectedAnnotation;
         StolpersteinCardsViewController *listViewController = (StolpersteinCardsViewController *)segue.destinationViewController;
         listViewController.stolpersteine = mapClusterAnnotation.annotations;
-        listViewController.title = [Localization newStolpersteineCountFromMapClusterAnnotation:mapClusterAnnotation];
+        listViewController.title = [Localization newStolpersteineCountFromArray:mapClusterAnnotation.annotations];
     }
 }
 

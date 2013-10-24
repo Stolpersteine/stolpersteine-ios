@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightSpaceConstraint;
 
-- (void)updateWithStolperstein:(Stolperstein *)stolperstein;
+- (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden;
 - (void)updateLayoutWithTableView:(UITableView *)tableView;
 - (CGFloat)heightForCurrentStolperstein;
 

@@ -163,17 +163,17 @@
         Stolperstein *stolperstein = (Stolperstein *)mapClusterAnnotation.annotations[0];
         subtitle = [Localization newShortAddressFromStolperstein:stolperstein];
     } else {
-        subtitle = [Localization newStolpersteineCountFromMapClusterAnnotation:mapClusterAnnotation];
+        subtitle = [Localization newStolpersteineCountFromArray:mapClusterAnnotation.annotations];
     }
     
     return subtitle;
 }
 
-+ (NSString *)newStolpersteineCountFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
++ (NSString *)newStolpersteineCountFromArray:(NSArray *)array
 {
-    NSString *localizedKey = mapClusterAnnotation.isCluster ? @"Misc.stolpersteine" : @"Misc.stolperstein";
+    NSString *localizedKey = array.count > 0 ? @"Misc.stolpersteine" : @"Misc.stolperstein";
     NSString *localizedName = NSLocalizedString(localizedKey, nil);
-    return [NSString stringWithFormat:@"%tu %@", mapClusterAnnotation.annotations.count, localizedName];
+    return [NSString stringWithFormat:@"%tu %@", array.count, localizedName];
 }
 
 @end

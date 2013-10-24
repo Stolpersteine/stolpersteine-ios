@@ -51,7 +51,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     [super viewDidLoad];
     
     StolpersteinCardCell *measuringCell = [self.tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
-    [measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein];
+    [measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein streetButtonHidden:self.isStreetButtonHidden];
     [measuringCell updateLayoutWithTableView:self.tableView];
     self.tableView.estimatedRowHeight = [measuringCell heightForCurrentStolperstein];
     self.measuringCell = measuringCell;
@@ -67,6 +67,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
         [self.searchStolpersteineOperation cancel];
         self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:self.searchData range:NSMakeRange(0, 0) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
             self.stolpersteine = stolpersteine;
+            self.title = [Localization newStolpersteineCountFromArray:stolpersteine];
             [self.tableView reloadData];
             
             return YES;
@@ -94,9 +95,14 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     [self.tableView reloadData];
 }
 
+- (BOOL)isStreetButtonHidden
+{
+    return (self.searchData != nil);
+}
+
 - (void)contentSizeCategoryDidChange:(NSNotification *)notification
 {
-    [self.measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein];
+    [self.measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein streetButtonHidden:self.isStreetButtonHidden];
     [self.measuringCell updateLayoutWithTableView:self.tableView];
     self.tableView.estimatedRowHeight = [self.measuringCell heightForCurrentStolperstein];
     [self.tableView reloadData];
@@ -128,6 +134,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
         StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
         searchData.street = [Localization newStreetNameFromStolperstein:stolperstein];
         cardsViewController.searchData = searchData;
+        cardsViewController.title = searchData.street;
     } else if ([segue.identifier isEqualToString:@"stolpersteinCardsViewControllerToStolpersteinDescriptionViewController"]) {
         NSURL *url = [[NSURL alloc] initWithString:stolperstein.personBiographyURLString];
         StolpersteinDescriptionViewController *webViewController = (StolpersteinDescriptionViewController *)segue.destinationViewController;
@@ -140,7 +147,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.measuringCell updateWithStolperstein:self.stolpersteine[indexPath.row]];
+    [self.measuringCell updateWithStolperstein:self.stolpersteine[indexPath.row] streetButtonHidden:self.isStreetButtonHidden];
     [self.measuringCell updateLayoutWithTableView:tableView];
     CGFloat height = [self.measuringCell heightForCurrentStolperstein];
     return height;
@@ -155,7 +162,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 {
     StolpersteinCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
     [cell updateLayoutWithTableView:tableView];
-    [cell updateWithStolperstein:self.stolpersteine[indexPath.row]];
+    [cell updateWithStolperstein:self.stolpersteine[indexPath.row] streetButtonHidden:self.isStreetButtonHidden];
     cell.streetButton.tag = indexPath.row;
     
     return cell;

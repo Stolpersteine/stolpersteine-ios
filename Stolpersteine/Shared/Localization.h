@@ -38,6 +38,6 @@
 + (NSString *)newDescriptionFromStolperstein:(Stolperstein *)stolperstein;
 + (NSString *)newTitleFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
 + (NSString *)newSubtitleFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
-+ (NSString *)newStolpersteineCountFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
++ (NSString *)newStolpersteineCountFromArray:(NSArray *)array;
 
 @end

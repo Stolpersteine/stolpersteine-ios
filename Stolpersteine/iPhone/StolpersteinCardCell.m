@@ -39,10 +39,14 @@
     [self.streetButton setTitle:title forState:UIControlStateNormal];
 }
 
-- (void)updateWithStolperstein:(Stolperstein *)stolperstein
+- (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden
 {
     self.stolperstein = stolperstein;
     self.bodyLabel.attributedText = [StolpersteinCardCell newBodyAttributedStringFromStolperstein:stolperstein];
+    
+    if (streetButtonHidden) {
+        [self.streetButton removeFromSuperview];
+    }
 }
 
 + (Stolperstein *)standardStolperstein

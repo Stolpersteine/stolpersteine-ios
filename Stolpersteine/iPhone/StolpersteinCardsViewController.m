@@ -87,6 +87,12 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     [self.searchStolpersteineOperation cancel];
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    // To make sure table cells have correct height
+    [self.tableView reloadData];
+}
+
 - (void)contentSizeCategoryDidChange:(NSNotification *)notification
 {
     [self.measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein];
@@ -140,12 +146,6 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     [cell updateWithStolperstein:self.stolpersteine[indexPath.row]];
     
     return cell;
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    // To make sure table cells have correct height
-    [self.tableView reloadData];
 }
 
 @end

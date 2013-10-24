@@ -28,9 +28,10 @@
 #import "Stolperstein.h"
 #import "StolpersteinDescriptionViewController.h"
 #import "StolpersteinCardCell.h"
+#import "StolpersteinSearchData.h"
+#import "StolpersteinNetworkService.h"
 
 #import "AppDelegate.h"
-#import "StolpersteinNetworkService.h"
 #import "DiagnosticsService.h"
 #import "Localization.h"
 
@@ -108,15 +109,26 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSIndexPath *indexPath;
+    if ([sender isKindOfClass:UIButton.class]) {
+        NSInteger row = [sender tag];
+        indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    } else {
+        indexPath = self.tableView.indexPathForSelectedRow;
+    }
+    StolpersteinCardCell *cardCell = (StolpersteinCardCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    Stolperstein *stolperstein = cardCell.stolperstein;
+
     if ([segue.identifier isEqualToString:@"stolpersteinCardsViewControllerToModalStolpersteinCardsViewController"]) {
         UINavigationController *navigationController = segue.destinationViewController;
-        UIViewController *cardsViewController = navigationController.topViewController;
+        StolpersteinCardsViewController *cardsViewController = (StolpersteinCardsViewController *)navigationController.topViewController;
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:cardsViewController action:@selector(dismissViewController)];
         cardsViewController.navigationItem.rightBarButtonItem = barButtonItem;
-    } else if ([segue.identifier isEqualToString:@"stolpersteinCardsViewControllerToStolpersteinDescriptionViewController"]) {
-        StolpersteinCardCell *cardCell = (StolpersteinCardCell *)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
-        Stolperstein *stolperstein = cardCell.stolperstein;
         
+        StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+        searchData.street = [Localization newStreetNameFromStolperstein:stolperstein];
+        cardsViewController.searchData = searchData;
+    } else if ([segue.identifier isEqualToString:@"stolpersteinCardsViewControllerToStolpersteinDescriptionViewController"]) {
         NSURL *url = [[NSURL alloc] initWithString:stolperstein.personBiographyURLString];
         StolpersteinDescriptionViewController *webViewController = (StolpersteinDescriptionViewController *)segue.destinationViewController;
         webViewController.url = url;
@@ -144,6 +156,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     StolpersteinCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
     [cell updateLayoutWithTableView:tableView];
     [cell updateWithStolperstein:self.stolpersteine[indexPath.row]];
+    cell.streetButton.tag = indexPath.row;
     
     return cell;
 }

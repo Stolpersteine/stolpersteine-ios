@@ -130,11 +130,17 @@
     return address;
 }
 
-+ (NSString *)newDescriptionFromStolperstein:(Stolperstein *)stolperstein
++ (NSString *)newPasteboardStringFromStolperstein:(Stolperstein *)stolperstein
 {
     NSString *name = [Localization newNameFromStolperstein:stolperstein];
     NSString *address = [Localization newShortAddressFromStolperstein:stolperstein];
-    return [NSString stringWithFormat:@"%@, %@", name, address];
+    NSMutableString *string = [NSMutableString stringWithFormat:@"%@\n%@", name, address];
+    if (stolperstein.personBiographyURLString) {
+        [string appendString:@"\n"];
+        [string appendString:stolperstein.personBiographyURLString];
+    }
+    
+    return string;
 }
 
 + (NSString *)newTitleFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation

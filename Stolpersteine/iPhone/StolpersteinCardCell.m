@@ -37,6 +37,10 @@
 {
     NSString *title = NSLocalizedString(@"StolpersteinCardCell.street", nil);
     [self.streetButton setTitle:title forState:UIControlStateNormal];
+    
+    // Long press for copy & paste
+    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    [self addGestureRecognizer:recognizer];
 }
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden
@@ -100,6 +104,49 @@
     [bodyAttributedString endEditing];
     
     return bodyAttributedString;
+}
+
+#pragma mark Copy & paste related methods
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
+{
+    if (action == @selector(copy:)) {
+        return YES;
+    }
+    
+    return [super canPerformAction:action withSender:sender];
+}
+
+- (void)copy:(id)sender
+{
+    Stolperstein *stolperstein = self.stolperstein;
+    UIPasteboard *pasteboard = UIPasteboard.generalPasteboard;
+    pasteboard.URL = [NSURL URLWithString:stolperstein.personBiographyURLString];
+    pasteboard.string = [Localization newPasteboardStringFromStolperstein:stolperstein];
+    
+    [self setSelected:NO animated:YES];
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+#pragma mark UILongPressGestureRecognizer handler methods
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)longPressRecognizer
+{
+    if (longPressRecognizer.state != UIGestureRecognizerStateBegan) {
+        return;
+    }
+
+    [self becomeFirstResponder];    // has to be before setMenuVisible:animated:
+    
+    UIMenuController *menu = [UIMenuController sharedMenuController];
+    [menu setTargetRect:self.bounds inView:self];
+    [menu setMenuVisible:YES animated:YES];
+    
+    [self setSelected:YES animated:NO];
 }
 
 @end

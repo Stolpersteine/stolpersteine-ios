@@ -37,6 +37,8 @@
 {
     NSString *title = NSLocalizedString(@"StolpersteinCardCell.street", nil);
     [self.streetButton setTitle:title forState:UIControlStateNormal];
+    self.streetButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+
     
     // Long press for copy & paste
     UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
@@ -97,7 +99,7 @@
     NSRange nameRange = NSMakeRange(0, name.length);
     [bodyAttributedString addAttribute:NSFontAttributeName value:nameFont range:nameRange];
     
-    UIFont *addressFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    UIFont *addressFont = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     NSRange addressRange = NSMakeRange(nameRange.length + 1, address.length);
     [bodyAttributedString addAttribute:NSFontAttributeName value:addressFont range:addressRange];
     

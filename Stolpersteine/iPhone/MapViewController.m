@@ -73,8 +73,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.navigationItem.rightBarButtonItem = self.locationBarButtonItem;
     [self updateLocationBarButtonItem];
     self.searchDisplayController.searchBar.placeholder = NSLocalizedString(@"MapViewController.searchBarPlaceholder", nil);
-    UIImage *searchBarBackgroundImage = [UIImage imageNamed:@"SearchBarBackground"];
-    [self.searchDisplayController.searchBar setSearchFieldBackgroundImage:searchBarBackgroundImage forState:UIControlStateNormal];
+    [self updateSearchBarForInterfaceOrientation:self.interfaceOrientation];
     
     // User location
     self.locationManager = [[CLLocationManager alloc] init];
@@ -123,6 +122,22 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [super viewDidDisappear:animated];
     
     [NSNotificationCenter.defaultCenter removeObserver:self.stolpersteinSyncController];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self updateSearchBarForInterfaceOrientation:toInterfaceOrientation];
+}
+
+- (void)updateSearchBarForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    UIImage *backgroundImage;
+    if (UIDeviceOrientationIsLandscape(interfaceOrientation)) {
+        backgroundImage = [UIImage imageNamed:@"SearchBarBackgroundLandscape"];
+    } else {
+        backgroundImage = [UIImage imageNamed:@"SearchBarBackground"];
+    }
+    [self.searchDisplayController.searchBar setSearchFieldBackgroundImage:backgroundImage forState:UIControlStateNormal];
 }
 
 - (void)updateLocationBarButtonItem
@@ -336,7 +351,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
 {
     [self.navigationItem setRightBarButtonItem:nil animated:YES];
-    [controller.searchBar setShowsCancelButton:YES animated:YES];
+    [controller.searchBar setShowsCancelButton:YES animated:NO];
 }
 
 - (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller

@@ -177,7 +177,7 @@
 
 + (NSString *)newStolpersteineCountFromArray:(NSArray *)array
 {
-    NSString *localizedKey = array.count > 0 ? @"Misc.stolpersteine" : @"Misc.stolperstein";
+    NSString *localizedKey = array.count > 1 ? @"Misc.stolpersteine" : @"Misc.stolperstein";
     NSString *localizedName = NSLocalizedString(localizedKey, nil);
     return [NSString stringWithFormat:@"%tu %@", array.count, localizedName];
 }

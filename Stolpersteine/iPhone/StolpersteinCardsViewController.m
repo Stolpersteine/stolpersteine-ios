@@ -134,7 +134,6 @@ static NSString * const CELL_IDENTIFIER = @"cell";
         StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
         searchData.street = [Localization newStreetNameFromStolperstein:stolperstein];
         cardsViewController.searchData = searchData;
-        cardsViewController.title = searchData.street;
     } else if ([segue.identifier isEqualToString:@"stolpersteinCardsViewControllerToStolpersteinDescriptionViewController"]) {
         NSURL *url = [[NSURL alloc] initWithString:stolperstein.personBiographyURLString];
         StolpersteinDescriptionViewController *webViewController = (StolpersteinDescriptionViewController *)segue.destinationViewController;

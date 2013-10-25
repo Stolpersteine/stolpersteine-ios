@@ -23,18 +23,15 @@
                                     <outlet property="delegate" destination="2" id="cmn-I6-Sfx"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDp-xd-q2d">
-                                <rect key="frame" x="271" y="450" width="39" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Copyright">
-                                            <attributes>
-                                                <color key="NSColor" red="0.44459410391164167" green="0.46130816605839414" blue="0.4078231671887862" alpha="1" colorSpace="deviceRGB"/>
-                                                <font key="NSFont" size="9" name="Helvetica"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDp-xd-q2d">
+                                <rect key="frame" x="281" y="441" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="JhQ-KX-8ZL"/>
+                                    <constraint firstAttribute="height" constant="44" id="c8L-Cn-ebw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="9"/>
+                                <state key="normal" image="LogoGray">
+                                    <color key="titleColor" red="0.44459410391164167" green="0.46130816605839414" blue="0.4078231671887862" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="showImprint:" destination="2" eventType="touchUpInside" id="yjG-WX-T2W"/>
@@ -54,8 +51,8 @@
                             <constraint firstItem="omQ-fz-cwh" firstAttribute="trailing" secondItem="nic-0c-bX8" secondAttribute="trailing" id="7VZ-2t-xJb"/>
                             <constraint firstItem="omQ-fz-cwh" firstAttribute="leading" secondItem="nic-0c-bX8" secondAttribute="leading" id="LIi-NL-Vxc"/>
                             <constraint firstItem="omQ-fz-cwh" firstAttribute="bottom" secondItem="nic-0c-bX8" secondAttribute="bottom" id="TXt-KN-KII"/>
-                            <constraint firstAttribute="trailing" secondItem="zDp-xd-q2d" secondAttribute="trailing" constant="10" id="UdW-yk-rLs"/>
-                            <constraint firstAttribute="bottom" secondItem="zDp-xd-q2d" secondAttribute="bottom" constant="8" id="gtD-5z-Qb4"/>
+                            <constraint firstAttribute="bottom" secondItem="zDp-xd-q2d" secondAttribute="bottom" constant="-5" id="ZPb-8e-ZRe"/>
+                            <constraint firstAttribute="trailing" secondItem="zDp-xd-q2d" secondAttribute="trailing" constant="-5" id="qN2-5E-MKM"/>
                             <constraint firstItem="omQ-fz-cwh" firstAttribute="top" secondItem="nic-0c-bX8" secondAttribute="top" id="yRN-JE-o6b"/>
                         </constraints>
                     </view>
@@ -238,6 +235,7 @@
     <resources>
         <image name="Chevron" width="8" height="13"/>
         <image name="IconLocation" width="23" height="24"/>
+        <image name="LogoGray" width="24" height="18"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -245,6 +243,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hPN-5W-7Kd"/>
+        <segue reference="icL-Q6-suH"/>
     </inferredMetricsTieBreakers>
 </document>

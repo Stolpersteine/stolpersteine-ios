@@ -30,11 +30,11 @@
                                     <constraint firstAttribute="height" constant="44" id="c8L-Cn-ebw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="9"/>
-                                <state key="normal" image="LogoGray">
+                                <state key="normal" image="InfoDark">
                                     <color key="titleColor" red="0.44459410391164167" green="0.46130816605839414" blue="0.4078231671887862" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="showImprint:" destination="2" eventType="touchUpInside" id="yjG-WX-T2W"/>
+                                    <segue destination="UVD-J8-MJw" kind="modal" id="Pa4-29-SuK"/>
                                 </connections>
                             </button>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IQq-hk-QkF">
@@ -185,7 +185,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15Y-ke-IAZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="574" y="676"/>
+            <point key="canvasLocation" x="574" y="-736"/>
         </scene>
         <!--Stolperstein Description View Controller-->
         <scene sceneID="bQI-pg-hfM">
@@ -231,11 +231,104 @@
             </objects>
             <point key="canvasLocation" x="1126" y="-11"/>
         </scene>
+        <!--Info View Controller-->
+        <scene sceneID="pBI-oZ-rQa">
+            <objects>
+                <tableViewController id="Ryi-d9-nxg" customClass="InfoViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Ndi-di-8BL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Section-1" id="umA-iG-c9w">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="301" id="zOP-Xh-kty">
+                                        <rect key="frame" x="0.0" y="119" width="320" height="301"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zOP-Xh-kty" id="ci0-up-PPO">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gunter-demnig.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ACu-Y0-XDS">
+                                                    <rect key="frame" x="0.0" y="20" width="320" height="150"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="320" id="wTh-gr-5Xr"/>
+                                                        <constraint firstAttribute="height" constant="150" id="yTG-we-IUG"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ACu-Y0-XDS" firstAttribute="top" secondItem="ci0-up-PPO" secondAttribute="top" constant="20" symbolic="YES" id="met-4g-krG"/>
+                                                <constraint firstAttribute="centerX" secondItem="ACu-Y0-XDS" secondAttribute="centerX" id="ucu-z0-380"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Section-2" id="VCZ-jH-Pbm">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="eBZ-4H-Hmr">
+                                        <rect key="frame" x="0.0" y="468" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eBZ-4H-Hmr" id="fGE-Hr-RWu">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="nTQ-12-R2U">
+                                        <rect key="frame" x="0.0" y="512" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nTQ-12-R2U" id="W6h-Fa-4Bf">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="EQM-SX-8Xk">
+                                        <rect key="frame" x="0.0" y="556" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EQM-SX-8Xk" id="SQr-3O-ZKU">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="0L8-Pz-NMQ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Ym2-9m-hCW">
+                            <connections>
+                                <action selector="close:" destination="Ryi-d9-nxg" id="BKS-pR-wrf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hdW-hi-dKJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1126" y="703"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="K2J-Iu-FmW">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="UVD-J8-MJw" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uYw-go-8rN">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Ryi-d9-nxg" kind="relationship" relationship="rootViewController" id="kvi-4a-mQj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h8j-Mh-pMG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="574" y="703"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Chevron" width="8" height="13"/>
         <image name="IconLocation" width="23" height="24"/>
-        <image name="LogoGray" width="24" height="18"/>
+        <image name="InfoDark" width="22" height="22"/>
+        <image name="gunter-demnig.jpg" width="320" height="160"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

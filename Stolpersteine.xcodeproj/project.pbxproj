@@ -25,6 +25,9 @@
 		486576FF180B29CD000326D1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 486576FD180B29CD000326D1 /* InfoPlist.strings */; };
 		4877716E1780AA7C00789F32 /* Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877716D1780AA7C00789F32 /* Appearance.m */; };
 		4877717517861A4400789F32 /* StolpersteinDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877717417861A4400789F32 /* StolpersteinDescriptionViewController.m */; };
+		4879D222181C336E0022C131 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4879D221181C336E0022C131 /* InfoViewController.m */; };
+		4879D225181C3E400022C131 /* gunter-demnig@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4879D224181C3E400022C131 /* gunter-demnig@2x.jpg */; };
+		4879D227181C47890022C131 /* gunter-demnig.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4879D226181C47890022C131 /* gunter-demnig.jpg */; };
 		489B682917739342000803C2 /* StolpersteinSynchronizationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 489B682817739342000803C2 /* StolpersteinSynchronizationController.m */; };
 		48A08C9016DBF5A5000A2470 /* Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8F16DBF5A5000A2470 /* Localization.m */; };
 		48A6CEA717EB9AC300E0751B /* StolpersteinCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A6CEA617EB9AC300E0751B /* StolpersteinCardCell.m */; };
@@ -97,6 +100,10 @@
 		4877716D1780AA7C00789F32 /* Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appearance.m; sourceTree = "<group>"; };
 		4877717317861A4400789F32 /* StolpersteinDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinDescriptionViewController.h; sourceTree = "<group>"; };
 		4877717417861A4400789F32 /* StolpersteinDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinDescriptionViewController.m; sourceTree = "<group>"; };
+		4879D220181C336E0022C131 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		4879D221181C336E0022C131 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		4879D224181C3E400022C131 /* gunter-demnig@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "gunter-demnig@2x.jpg"; sourceTree = "<group>"; };
+		4879D226181C47890022C131 /* gunter-demnig.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "gunter-demnig.jpg"; sourceTree = "<group>"; };
 		489B682717739342000803C2 /* StolpersteinSynchronizationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinSynchronizationController.h; sourceTree = "<group>"; };
 		489B682817739342000803C2 /* StolpersteinSynchronizationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinSynchronizationController.m; sourceTree = "<group>"; };
 		489B682C17739444000803C2 /* StolpersteinSynchronizationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinSynchronizationControllerDelegate.h; sourceTree = "<group>"; };
@@ -226,6 +233,8 @@
 			children = (
 				48633B8916C03F690057A317 /* MapViewController.h */,
 				48633B8A16C03F690057A317 /* MapViewController.m */,
+				4879D220181C336E0022C131 /* InfoViewController.h */,
+				4879D221181C336E0022C131 /* InfoViewController.m */,
 				48633B9516C03F690057A317 /* StolpersteinCardsViewController.h */,
 				48633B9616C03F690057A317 /* StolpersteinCardsViewController.m */,
 				48A6CEA517EB9AC300E0751B /* StolpersteinCardCell.h */,
@@ -268,6 +277,15 @@
 			path = Appearance;
 			sourceTree = "<group>";
 		};
+		4879D223181C3E400022C131 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				4879D226181C47890022C131 /* gunter-demnig.jpg */,
+				4879D224181C3E400022C131 /* gunter-demnig@2x.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		48E2781B180B2BD00018EE03 /* Stolpersteine API */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				622DEDA217F432EB009C9B44 /* Images.xcassets */,
+				4879D223181C3E400022C131 /* Images */,
 				62B6B94717F4338D009E18AE /* InfoPlist.strings */,
 				62B6B94917F4338D009E18AE /* Localizable.strings */,
 				622DEDA317F432EB009C9B44 /* MainStoryboard.storyboard */,
@@ -494,10 +513,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				622DEDCD17F432EB009C9B44 /* Images.xcassets in Resources */,
+				4879D225181C3E400022C131 /* gunter-demnig@2x.jpg in Resources */,
 				48C0272D172B024F0053B8E9 /* Stolpersteine-Config.plist in Resources */,
 				622DEDCF17F432EB009C9B44 /* Settings.bundle in Resources */,
 				62B6B94D17F4338D009E18AE /* InfoPlist.strings in Resources */,
 				622DEDCE17F432EB009C9B44 /* MainStoryboard.storyboard in Resources */,
+				4879D227181C47890022C131 /* gunter-demnig.jpg in Resources */,
 				62B6B94E17F4338D009E18AE /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -627,6 +648,7 @@
 				48BAF38816E9405C007250A0 /* DiagnosticsService.m in Sources */,
 				4808CF3D16FCFE4C00E89E97 /* MapClusterAnnotation.m in Sources */,
 				4808CF3E16FCFE4C00E89E97 /* MapClusterController.m in Sources */,
+				4879D222181C336E0022C131 /* InfoViewController.m in Sources */,
 				4808CF3F16FCFE4C00E89E97 /* MapClusterControllerUtils.m in Sources */,
 				4825F937174E8F7C0058B811 /* ImageGalleryItemView.m in Sources */,
 				4825F939174E8F7C0058B811 /* ProgressImageView.m in Sources */,

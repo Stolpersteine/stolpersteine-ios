@@ -10,6 +10,10 @@
 
 @interface InfoViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *stolpersteineTestLabel;
+@property (weak, nonatomic) IBOutlet UIButton *stolpersteineInfoButton;
+
+- (IBAction)showStolpersteineInfo:(UIButton *)sender;
 - (IBAction)close:(UIBarButtonItem *)sender;
 
 @end

@@ -14,17 +14,17 @@
                         <viewControllerLayoutGuide type="bottom" id="6uW-y9-QN2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nic-0c-bX8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="omQ-fz-cwh">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="cmn-I6-Sfx"/>
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDp-xd-q2d">
-                                <rect key="frame" x="281" y="441" width="44" height="44"/>
+                                <rect key="frame" x="281" y="529" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="JhQ-KX-8ZL"/>
                                     <constraint firstAttribute="height" constant="44" id="c8L-Cn-ebw"/>
@@ -105,7 +105,7 @@
             <objects>
                 <tableViewController id="S9Y-Yy-0sA" customClass="StolpersteinCardsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="22" sectionFooterHeight="22" id="ii3-to-xuB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -196,11 +196,11 @@
                         <viewControllerLayoutGuide type="bottom" id="90r-VU-hk1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ScY-bK-aUx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdx-kd-zb2">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="ZbI-TV-s7f" id="FEu-aw-YNd"/>
@@ -236,31 +236,65 @@
             <objects>
                 <tableViewController id="Ryi-d9-nxg" customClass="InfoViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Ndi-di-8BL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="Section-1" id="umA-iG-c9w">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="301" id="zOP-Xh-kty">
-                                        <rect key="frame" x="0.0" y="119" width="320" height="301"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="210" id="zOP-Xh-kty">
+                                        <rect key="frame" x="0.0" y="119" width="320" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zOP-Xh-kty" id="ci0-up-PPO">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="209"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gunter-demnig.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ACu-Y0-XDS">
-                                                    <rect key="frame" x="0.0" y="20" width="320" height="150"/>
+                                                    <rect key="frame" x="15" y="15" width="320" height="151"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="320" id="wTh-gr-5Xr"/>
-                                                        <constraint firstAttribute="height" constant="150" id="yTG-we-IUG"/>
+                                                        <constraint firstAttribute="height" constant="151" id="F1a-pl-3ss"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="285" translatesAutoresizingMaskIntoConstraints="NO" id="fxe-Q9-Y6F">
+                                                    <rect key="frame" x="15" y="173" width="285" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ACu-Y0-XDS" firstAttribute="top" secondItem="ci0-up-PPO" secondAttribute="top" constant="20" symbolic="YES" id="met-4g-krG"/>
-                                                <constraint firstAttribute="centerX" secondItem="ACu-Y0-XDS" secondAttribute="centerX" id="ucu-z0-380"/>
+                                                <constraint firstItem="ACu-Y0-XDS" firstAttribute="leading" secondItem="ci0-up-PPO" secondAttribute="leading" constant="15" id="UaA-Vx-Els"/>
+                                                <constraint firstItem="fxe-Q9-Y6F" firstAttribute="leading" secondItem="ACu-Y0-XDS" secondAttribute="leading" id="Z9B-0x-LPU"/>
+                                                <constraint firstAttribute="bottom" secondItem="fxe-Q9-Y6F" secondAttribute="bottom" constant="15" id="ZR0-qD-jL6"/>
+                                                <constraint firstAttribute="trailing" secondItem="fxe-Q9-Y6F" secondAttribute="trailing" constant="20" id="hbx-XO-5Wy"/>
+                                                <constraint firstItem="ACu-Y0-XDS" firstAttribute="top" secondItem="ci0-up-PPO" secondAttribute="top" constant="15" id="pv2-Kd-7Gk"/>
+                                                <constraint firstItem="fxe-Q9-Y6F" firstAttribute="top" secondItem="ACu-Y0-XDS" secondAttribute="bottom" constant="7" id="qx9-Oy-X69"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Zb6-rt-2MK">
+                                        <rect key="frame" x="0.0" y="329" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zb6-rt-2MK" id="5ff-Cg-ns4">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3P-Oi-ckN">
+                                                    <rect key="frame" x="15" y="7" width="121" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Stolpersteine Info">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="showStolpersteineInfo:" destination="Ryi-d9-nxg" eventType="touchUpInside" id="hd3-zy-uzV"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="D3P-Oi-ckN" secondAttribute="centerY" id="WDQ-RL-RNf"/>
+                                                <constraint firstItem="D3P-Oi-ckN" firstAttribute="leading" secondItem="5ff-Cg-ns4" secondAttribute="leading" constant="15" id="h7A-PJ-gO6"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -269,7 +303,7 @@
                             <tableViewSection headerTitle="Section-2" id="VCZ-jH-Pbm">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="eBZ-4H-Hmr">
-                                        <rect key="frame" x="0.0" y="468" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="421" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eBZ-4H-Hmr" id="fGE-Hr-RWu">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -277,7 +311,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="nTQ-12-R2U">
-                                        <rect key="frame" x="0.0" y="512" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="465" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nTQ-12-R2U" id="W6h-Fa-4Bf">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -285,7 +319,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="EQM-SX-8Xk">
-                                        <rect key="frame" x="0.0" y="556" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="509" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EQM-SX-8Xk" id="SQr-3O-ZKU">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -303,6 +337,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="stolpersteineInfoButton" destination="D3P-Oi-ckN" id="qM1-Jj-fFm"/>
+                        <outlet property="stolpersteineTestLabel" destination="fxe-Q9-Y6F" id="sMq-vs-Wku"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdW-hi-dKJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -333,7 +371,7 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="icL-Q6-suH"/>

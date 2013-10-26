@@ -8,6 +8,9 @@
 
 #import "InfoViewController.h"
 
+#import "AppDelegate.h"
+#import "DiagnosticsService.h"
+
 @interface InfoViewController ()
 
 @end
@@ -20,6 +23,13 @@
     
     [self.stolpersteineInfoButton setTitle:@"Weitere Informationen auf Wikipedia" forState:UIControlStateNormal];
     self.stolpersteineTestLabel.text = @"Stolpersteine sind kleine Gedenktafeln im Straßenpflaster zur Erinnerung an die Opfer des Nationalsozialismus. Mehr als 40.000 davon hat der Künstler Gunter Demnig mittlerweile in ganz Europa verlegt. Mit dieser App haben Sie schnell und einfach Zugriff auf Orte und Adressen der rund 5.000 Stolpersteinen in Berlin.";
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [AppDelegate.diagnosticsService trackViewWithClass:self.class];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

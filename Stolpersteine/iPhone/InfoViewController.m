@@ -22,7 +22,8 @@
     [super viewDidLoad];
     
     [self.stolpersteineInfoButton setTitle:@"Weitere Informationen auf Wikipedia" forState:UIControlStateNormal];
-    self.stolpersteineTestLabel.text = @"Stolpersteine sind kleine Gedenktafeln im Straßenpflaster zur Erinnerung an die Opfer des Nationalsozialismus. Mehr als 40.000 davon hat der Künstler Gunter Demnig mittlerweile in ganz Europa verlegt. Mit dieser App haben Sie schnell und einfach Zugriff auf Orte und Adressen der rund 5.000 Stolpersteinen in Berlin.";
+    [self.artistInfoButton setTitle:@"Gunter Demnigs Webseite" forState:UIControlStateNormal];
+    self.stolpersteineTextLabel.text = @"Stolpersteine sind kleine Gedenktafeln im Straßenpflaster zur Erinnerung an die Opfer des Nationalsozialismus. Mehr als 40.000 davon hat der Künstler Gunter Demnig mittlerweile in ganz Europa verlegt. Mit dieser App haben Sie schnell und einfach Zugriff auf Orte und Adressen der rund 5.000 Stolpersteinen in Berlin.";
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -52,6 +53,8 @@
         title = @"Stolpersteine";
     } else if (section == 1) {
         title = @"Über die App";
+    } else if (section == 2) {
+        title = @"Über uns";
     } else {
         title = [super tableView:tableView titleForHeaderInSection:section];
     }
@@ -68,7 +71,12 @@
     }
 }
 
-- (IBAction)showStolpersteineInfo:(UIButton *)sender {
+- (IBAction)showStolpersteineInfo:(UIButton *)sender
+{
+}
+
+- (IBAction)showArtistInfo:(UIButton *)sender
+{
 }
 
 - (IBAction)close:(UIBarButtonItem *)sender

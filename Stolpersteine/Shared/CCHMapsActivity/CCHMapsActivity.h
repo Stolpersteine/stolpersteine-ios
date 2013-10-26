@@ -1,8 +1,11 @@
 //
-//  WebViewController.h
+//  CCHMapsActivity.h
 //  Stolpersteine
 //
-//  Copyright (C) 2013 Option-U Software
+//  Created by Claus on 06.07.13.
+//  Copyright (c) 2013 Claus Höfele
+//
+//  https://github.com/choefele/CCHMapsActivity
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,15 +28,8 @@
 
 #import <UIKit/UIKit.h>
 
-@class Stolperstein;
+@interface CCHMapsActivity : UIActivity
 
-@interface StolpersteinDescriptionViewController : UIViewController<UIWebViewDelegate>
-
-@property (nonatomic, strong) Stolperstein *stolperstein;
-
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *activityBarButtonItem;
-
-- (IBAction)showActivities:(UIBarButtonItem *)sender;
+@property (nonatomic, strong) NSDictionary *launchOptions;
 
 @end

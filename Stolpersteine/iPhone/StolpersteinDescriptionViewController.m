@@ -25,10 +25,15 @@
 
 #import "StolpersteinDescriptionViewController.h"
 
+#import "Stolperstein.h"
 #import "TUSafariActivity.h"
+#import "CCHMapsActivity.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AppDelegate.h"
 #import "DiagnosticsService.h"
+#import "Localization.h"
+
+#import <AddressBook/AddressBook.h>
 
 @interface StolpersteinDescriptionViewController()
 
@@ -55,7 +60,8 @@
     // Load web site
     self.webView.delegate = self;
     self.webView.scalesPageToFit = YES;
-    NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
+    NSURL *url = [[NSURL alloc] initWithString:self.stolperstein.personBiographyURLString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 }
 
@@ -130,9 +136,27 @@
 
 - (IBAction)showActivities:(UIBarButtonItem *)sender
 {
-    NSArray *itemsToShare = @[self.webViewTitle, self.webView.request.URL];
-    TUSafariActivity *activity = [[TUSafariActivity alloc] init];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:@[activity]];
+    // Create an MKMapItem to pass to the Maps app
+    NSMutableDictionary *addressDictionary = [NSMutableDictionary dictionaryWithCapacity:3];
+    if (self.stolperstein.locationStreet) {
+        [addressDictionary setObject:self.stolperstein.locationStreet forKey:(NSString *)kABPersonAddressStreetKey];
+    }
+    if (self.stolperstein.locationCity) {
+        [addressDictionary setObject:self.stolperstein.locationCity forKey:(NSString *)kABPersonAddressCityKey];
+    }
+    if (self.stolperstein.locationZipCode) {
+        [addressDictionary setObject:self.stolperstein.locationZipCode forKey:(NSString *)kABPersonAddressZIPKey];
+    }
+    CLLocationCoordinate2D coordinate = self.stolperstein.locationCoordinate;
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:addressDictionary];
+    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+    mapItem.name = [Localization newNameFromStolperstein:self.stolperstein];
+
+    // Configure activity items
+    NSArray *itemsToShare = @[self.webViewTitle, self.webView.request.URL, mapItem];
+    TUSafariActivity *safariActivity = [[TUSafariActivity alloc] init];
+    CCHMapsActivity *mapsActivity = [[CCHMapsActivity alloc] init];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:@[safariActivity, mapsActivity]];
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 

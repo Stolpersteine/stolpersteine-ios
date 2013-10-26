@@ -28,6 +28,12 @@
 		4879D222181C336E0022C131 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4879D221181C336E0022C131 /* InfoViewController.m */; };
 		4879D225181C3E400022C131 /* gunter-demnig@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4879D224181C3E400022C131 /* gunter-demnig@2x.jpg */; };
 		4879D227181C47890022C131 /* gunter-demnig.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4879D226181C47890022C131 /* gunter-demnig.jpg */; };
+		4879D235181C5F340022C131 /* CCHMapsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4879D22A181C5F340022C131 /* CCHMapsActivity.m */; };
+		4879D236181C5F340022C131 /* CCHMapsActivity.png in Resources */ = {isa = PBXBuildFile; fileRef = 4879D22B181C5F340022C131 /* CCHMapsActivity.png */; };
+		4879D237181C5F340022C131 /* CCHMapsActivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4879D22C181C5F340022C131 /* CCHMapsActivity@2x.png */; };
+		4879D238181C5F340022C131 /* CCHMapsActivity@2x˜ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4879D22D181C5F340022C131 /* CCHMapsActivity@2x˜ipad.png */; };
+		4879D239181C5F340022C131 /* CCHMapsActivity˜ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4879D22E181C5F340022C131 /* CCHMapsActivity˜ipad.png */; };
+		4879D23A181C5F340022C131 /* CCHMapsActivity.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4879D22F181C5F340022C131 /* CCHMapsActivity.strings */; };
 		489B682917739342000803C2 /* StolpersteinSynchronizationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 489B682817739342000803C2 /* StolpersteinSynchronizationController.m */; };
 		48A08C9016DBF5A5000A2470 /* Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8F16DBF5A5000A2470 /* Localization.m */; };
 		48A6CEA717EB9AC300E0751B /* StolpersteinCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A6CEA617EB9AC300E0751B /* StolpersteinCardCell.m */; };
@@ -104,6 +110,17 @@
 		4879D221181C336E0022C131 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		4879D224181C3E400022C131 /* gunter-demnig@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "gunter-demnig@2x.jpg"; sourceTree = "<group>"; };
 		4879D226181C47890022C131 /* gunter-demnig.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "gunter-demnig.jpg"; sourceTree = "<group>"; };
+		4879D229181C5F340022C131 /* CCHMapsActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCHMapsActivity.h; sourceTree = "<group>"; };
+		4879D22A181C5F340022C131 /* CCHMapsActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCHMapsActivity.m; sourceTree = "<group>"; };
+		4879D22B181C5F340022C131 /* CCHMapsActivity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CCHMapsActivity.png; sourceTree = "<group>"; };
+		4879D22C181C5F340022C131 /* CCHMapsActivity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CCHMapsActivity@2x.png"; sourceTree = "<group>"; };
+		4879D22D181C5F340022C131 /* CCHMapsActivity@2x˜ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CCHMapsActivity@2x˜ipad.png"; sourceTree = "<group>"; };
+		4879D22E181C5F340022C131 /* CCHMapsActivity˜ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CCHMapsActivity˜ipad.png"; sourceTree = "<group>"; };
+		4879D230181C5F340022C131 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CCHMapsActivity.strings; sourceTree = "<group>"; };
+		4879D231181C5F340022C131 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CCHMapsActivity.strings; sourceTree = "<group>"; };
+		4879D232181C5F340022C131 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/CCHMapsActivity.strings; sourceTree = "<group>"; };
+		4879D233181C5F340022C131 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CCHMapsActivity.strings; sourceTree = "<group>"; };
+		4879D234181C5F340022C131 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/CCHMapsActivity.strings; sourceTree = "<group>"; };
 		489B682717739342000803C2 /* StolpersteinSynchronizationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinSynchronizationController.h; sourceTree = "<group>"; };
 		489B682817739342000803C2 /* StolpersteinSynchronizationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinSynchronizationController.m; sourceTree = "<group>"; };
 		489B682C17739444000803C2 /* StolpersteinSynchronizationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinSynchronizationControllerDelegate.h; sourceTree = "<group>"; };
@@ -286,6 +303,20 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		4879D228181C5F340022C131 /* CCHMapsActivity */ = {
+			isa = PBXGroup;
+			children = (
+				4879D229181C5F340022C131 /* CCHMapsActivity.h */,
+				4879D22A181C5F340022C131 /* CCHMapsActivity.m */,
+				4879D22B181C5F340022C131 /* CCHMapsActivity.png */,
+				4879D22C181C5F340022C131 /* CCHMapsActivity@2x.png */,
+				4879D22D181C5F340022C131 /* CCHMapsActivity@2x˜ipad.png */,
+				4879D22E181C5F340022C131 /* CCHMapsActivity˜ipad.png */,
+				4879D22F181C5F340022C131 /* CCHMapsActivity.strings */,
+			);
+			path = CCHMapsActivity;
+			sourceTree = "<group>";
+		};
 		48E2781B180B2BD00018EE03 /* Stolpersteine API */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +430,7 @@
 				48BAF38716E9405C007250A0 /* DiagnosticsService.m */,
 				4877716B1780AA7C00789F32 /* Appearance */,
 				4808CF3616FCFE4C00E89E97 /* Clustering */,
+				4879D228181C5F340022C131 /* CCHMapsActivity */,
 				627E442F169C41EC0065C1F1 /* Stolpersteine API */,
 			);
 			path = Shared;
@@ -487,6 +519,9 @@
 			knownRegions = (
 				en,
 				de,
+				es,
+				fr,
+				it,
 			);
 			mainGroup = 627E43A7169B0F040065C1F1;
 			productRefGroup = 627E43B3169B0F050065C1F1 /* Products */;
@@ -519,7 +554,12 @@
 				62B6B94D17F4338D009E18AE /* InfoPlist.strings in Resources */,
 				622DEDCE17F432EB009C9B44 /* MainStoryboard.storyboard in Resources */,
 				4879D227181C47890022C131 /* gunter-demnig.jpg in Resources */,
+				4879D238181C5F340022C131 /* CCHMapsActivity@2x˜ipad.png in Resources */,
 				62B6B94E17F4338D009E18AE /* Localizable.strings in Resources */,
+				4879D239181C5F340022C131 /* CCHMapsActivity˜ipad.png in Resources */,
+				4879D236181C5F340022C131 /* CCHMapsActivity.png in Resources */,
+				4879D237181C5F340022C131 /* CCHMapsActivity@2x.png in Resources */,
+				4879D23A181C5F340022C131 /* CCHMapsActivity.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +692,7 @@
 				4808CF3F16FCFE4C00E89E97 /* MapClusterControllerUtils.m in Sources */,
 				4825F937174E8F7C0058B811 /* ImageGalleryItemView.m in Sources */,
 				4825F939174E8F7C0058B811 /* ProgressImageView.m in Sources */,
+				4879D235181C5F340022C131 /* CCHMapsActivity.m in Sources */,
 				621CB6141760978E00796E18 /* ImageGalleryViewController.m in Sources */,
 				62C9C1351762861700AFBE01 /* ImageGalleryView.m in Sources */,
 				489B682917739342000803C2 /* StolpersteinSynchronizationController.m in Sources */,
@@ -671,6 +712,18 @@
 				486576FE180B29CD000326D1 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4879D22F181C5F340022C131 /* CCHMapsActivity.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4879D230181C5F340022C131 /* de */,
+				4879D231181C5F340022C131 /* en */,
+				4879D232181C5F340022C131 /* es */,
+				4879D233181C5F340022C131 /* fr */,
+				4879D234181C5F340022C131 /* it */,
+			);
+			name = CCHMapsActivity.strings;
 			sourceTree = "<group>";
 		};
 		62B6B94717F4338D009E18AE /* InfoPlist.strings */ = {

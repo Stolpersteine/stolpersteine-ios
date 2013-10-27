@@ -14,8 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *stolpersteineInfoButton;
 @property (weak, nonatomic) IBOutlet UIButton *artistInfoButton;
 
-- (IBAction)showStolpersteineInfo:(UIButton *)sender;
-- (IBAction)showArtistInfo:(UIButton *)sender;
 - (IBAction)close:(UIBarButtonItem *)sender;
 
 @end

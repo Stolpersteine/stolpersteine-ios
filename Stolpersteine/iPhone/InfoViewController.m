@@ -54,7 +54,11 @@
     } else if (section == 1) {
         title = @"Über die App";
     } else if (section == 2) {
-        title = @"Über uns";
+        title = @"Quellenangaben";
+    } else if (section == 3) {
+        title = @"Danksagungen";
+    } else if (section == 4) {
+        title = @"Impressum";
     } else {
         title = [super tableView:tableView titleForHeaderInSection:section];
     }

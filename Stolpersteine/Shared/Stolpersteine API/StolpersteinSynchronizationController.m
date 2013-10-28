@@ -35,6 +35,7 @@
 @property (nonatomic, strong) StolpersteinNetworkService *networkService;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
 @property (nonatomic, assign, getter = isSynchronizing) BOOL synchronizing;
+@property (nonatomic, strong) NSMutableSet *stolpersteine;
 
 @end
 
@@ -45,6 +46,7 @@
     self = [super init];
     if (self) {
         self.networkService = networkService;
+        self.stolpersteine = [NSMutableSet setWithCapacity:NETWORK_BATCH_SIZE];
     }
     
     return self;
@@ -84,16 +86,16 @@
 
 - (void)didAddStolpersteine:(NSArray *)stolpersteine
 {
-    if ([self.delegate respondsToSelector:@selector(stolpersteinSynchronizationController:didAddStolpersteine:)]) {
-        [self.delegate stolpersteinSynchronizationController:self didAddStolpersteine:stolpersteine];
+    // Filter out items that are already on the map
+    NSMutableSet *additionalStolpersteineAsSet = [NSMutableSet setWithArray:stolpersteine];
+    [additionalStolpersteineAsSet minusSet:self.stolpersteine];
+    NSArray *additionalStolpersteine = additionalStolpersteineAsSet.allObjects;
+    [self.stolpersteine addObjectsFromArray:additionalStolpersteine];
+    
+    // Tell delegate about additional items
+    if (additionalStolpersteine.count > 0 && [self.delegate respondsToSelector:@selector(stolpersteinSynchronizationController:didAddStolpersteine:)]) {
+        [self.delegate stolpersteinSynchronizationController:self didAddStolpersteine:additionalStolpersteine];
     }
-}
-
-- (void)didRemoveStolpersteine:(NSArray *)stolpersteine
-{
-    if ([self.delegate respondsToSelector:@selector(stolpersteinSynchronizationController:didRemoveStolpersteine:)]) {
-        [self.delegate stolpersteinSynchronizationController:self didRemoveStolpersteine:stolpersteine];
-    }    
 }
 
 - (void)didStartSynchronization

@@ -15,15 +15,14 @@
 
 "MapViewController.title" = "Map";
 "MapViewController.searchBarPlaceholder" = "Name or Address";
+"MapViewController.location" = "Zoom to current location";
+"MapViewController.region" = "Zoom to region";
+"MapViewController.info" = "About the app";
+
+"InfoViewController.title" = "Info";
 
 "StolpersteinCardCell.street" = "All in this Street";
 "StolpersteinCardCell.source" = "Show source";
 
 "StolpersteinCardsViewController.webViewTitleBiography" = "Biography";
 "StolpersteinCardsViewController.webViewTitleDescription" = "Description";
-
-"Rating.title" = "%@ App";
-"Rating.message" = "Do you like this app? We appreciate your feedback.";
-"Rating.cancel" = "No Thanks";
-"Rating.rate" = "Rate it Now";
-"Rating.remind" = "Remind me Later";

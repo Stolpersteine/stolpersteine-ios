@@ -66,6 +66,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     
     self.title = NSLocalizedString(@"MapViewController.title", nil);
     self.mapView.showsBuildings = YES;
+    self.infoButton.accessibilityLabel = NSLocalizedString(@"MapViewController.info", nil);
     
     // Navigation bar
     [self.searchDisplayController.searchBar removeFromSuperview];
@@ -136,11 +137,15 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (void)updateLocationBarButtonItem
 {
     UIImage *image;
+    NSString *accessibilityLabel;
     if (self.userLocationMode) {
         image = [UIImage imageNamed:@"IconRegion"];
+        accessibilityLabel = NSLocalizedString(@"MapViewController.region", nil);
     } else {
         image = [UIImage imageNamed:@"IconLocation"];
+        accessibilityLabel = NSLocalizedString(@"MapViewController.location", nil);
     }
+    self.locationBarButtonItem.accessibilityLabel = accessibilityLabel;
     [self.locationBarButtonItem setImage:image];
 }
 

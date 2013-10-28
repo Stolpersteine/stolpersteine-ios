@@ -15,15 +15,14 @@
 
 "MapViewController.title" = "Karte";
 "MapViewController.searchBarPlaceholder" = "Name oder Adresse";
+"MapViewController.location" = "Aktuelle Position anzeigen";
+"MapViewController.region" = "Ganze Region anzeigen";
+"MapViewController.info" = "Über diese App";
+
+"InfoViewController.title" = "Info";
 
 "StolpersteinCardCell.street" = "Alle in dieser Straße";
 "StolpersteinCardCell.source" = "Quelle";
 
 "StolpersteinCardsViewController.webViewTitleBiography" = "Biografie";
 "StolpersteinCardsViewController.webViewTitleDescription" = "Beschreibung";
-
-"Rating.title" = "%@ App";
-"Rating.message" = "Gefällt Ihnen diese App? Über Ihre Bewertung würden wir uns freuen.";
-"Rating.cancel" = "Nein danke";
-"Rating.rate" = "Jetzt bewerten";
-"Rating.remind" = "Später erinnern";

@@ -29,10 +29,8 @@
 @interface MapViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UIButton *imprintButton;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *locationBarButtonItem;
-@property (strong, nonatomic) UIButton *locationButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *locationButton2;
 
 - (IBAction)centerMap:(UIBarButtonItem *)sender;
 

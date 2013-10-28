@@ -21,6 +21,8 @@
 {
     [super viewDidLoad];
     
+    self.title = NSLocalizedString(@"InfoViewController.title", nil);
+    
 	// Stolpersteine
     self.stolpersteineLabel.text = @"Stolpersteine sind kleine Gedenktafeln im Straßenpflaster zur Erinnerung an die Opfer des Nationalsozialismus. Mehr als 40.000 davon hat der Künstler Gunter Demnig mittlerweile in ganz Europa verlegt. Mit dieser App haben Sie schnell und einfach Zugriff auf Orte und Adressen der rund 5.000 Stolpersteine in Berlin.";
     [self.stolpersteineInfoButton setTitle:@"Stolpersteine auf Wikipedia" forState:UIControlStateNormal];

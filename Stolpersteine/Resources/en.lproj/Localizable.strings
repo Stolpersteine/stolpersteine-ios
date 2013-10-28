@@ -15,8 +15,6 @@
 
 "MapViewController.title" = "Map";
 "MapViewController.searchBarPlaceholder" = "Name or Address";
-"MapViewController.imprint" = "Contact";
-"MapViewController.imprintURL" = "http://www.option-u.com/stolpersteine/imprint-ios-app-en/";
 
 "StolpersteinCardCell.street" = "All in this Street";
 "StolpersteinCardCell.source" = "Show source";

@@ -35,6 +35,5 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *locationButton2;
 
 - (IBAction)centerMap:(UIBarButtonItem *)sender;
-- (IBAction)showImprint:(UIButton *)sender;
 
 @end

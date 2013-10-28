@@ -86,13 +86,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.mapClusterController = [[MapClusterController alloc] initWithMapView:self.mapView];
     self.mapClusterController.delegate = self;
     
-    // Imprint link
-    NSString *imprint = NSLocalizedString(@"MapViewController.imprint", nil);
-    NSMutableAttributedString *attributedString = [[self.imprintButton attributedTitleForState:UIControlStateNormal] mutableCopy];
-    attributedString.mutableString.string = imprint;
-    [attributedString addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:NSMakeRange(0, attributedString.length)];
-    [self.imprintButton setAttributedTitle:attributedString forState:UIControlStateNormal];
-    
     // Start loading data
     self.stolpersteinSyncController = [[StolpersteinSynchronizationController alloc] initWithNetworkService:AppDelegate.networkService];
     self.stolpersteinSyncController.delegate = self;
@@ -197,13 +190,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         [self.mapView setRegion:BERLIN_REGION animated:YES];
     }
     [self updateLocationBarButtonItem];
-}
-
-- (IBAction)showImprint:(UIButton *)sender
-{
-    NSString *imprintURLAsString = NSLocalizedString(@"MapViewController.imprintURL", nil);
-    NSURL *url = [NSURL URLWithString:imprintURLAsString];
-    [UIApplication.sharedApplication openURL:url];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

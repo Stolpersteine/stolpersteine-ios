@@ -25,7 +25,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *acknowledgementsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *contactButton;
 @property (weak, nonatomic) IBOutlet UIButton *gitHubButton;
-@property (weak, nonatomic) IBOutlet UIButton *librariesButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *legalLabel;
 

@@ -20,6 +20,11 @@
 "MapViewController.info" = "Über diese App";
 
 "InfoViewController.title" = "Info";
+"InfoViewController.wikipediaURL" = "http://de.wikipedia.org/wiki/Stolpersteine";
+"InfoViewController.demnigURL" = "http://www.stolpersteine.com/";
+"InfoViewController.kssBerlinURL" = "http://www.stolpersteine-berlin.de/";
+"InfoViewController.wikipediaStolpersteineURL" = "http://de.wikipedia.org/wiki/Liste_der_Stolpersteine_in_Berlin";
+"InfoViewController.gitHubURL" = "https://github.com/optionu/stolpersteine-ios";
 
 "StolpersteinCardCell.street" = "Alle in dieser Straße";
 "StolpersteinCardCell.source" = "Quelle";

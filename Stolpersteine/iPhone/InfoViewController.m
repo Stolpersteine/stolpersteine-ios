@@ -132,12 +132,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == STOLPERSTEINE_SECTION) {
-        if (indexPath.row == 0) {
-            
-        }
-    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    NSString *urlString;
+    if (indexPath.section == STOLPERSTEINE_SECTION && indexPath.row == 1) {
+        urlString = NSLocalizedString(@"InfoViewController.wikipediaURL", nil);
+    } else if (indexPath.section == STOLPERSTEINE_SECTION && indexPath.row == 2) {
+        urlString = NSLocalizedString(@"InfoViewController.demnigURL", nil);
+    } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION && indexPath.row == 1) {
+        urlString = NSLocalizedString(@"InfoViewController.kssBerlinURL", nil);
+    } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION && indexPath.row == 2) {
+        urlString = NSLocalizedString(@"InfoViewController.wikipediaStolpersteineURL", nil);
+    } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION && indexPath.row == 5) {
+        urlString = NSLocalizedString(@"InfoViewController.gitHubURL", nil);
+    }
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    if ([UIApplication.sharedApplication canOpenURL:url]) {
+        [UIApplication.sharedApplication openURL:url];
+    }
 }
 
 - (IBAction)close:(UIBarButtonItem *)sender

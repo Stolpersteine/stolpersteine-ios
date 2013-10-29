@@ -22,10 +22,12 @@
 
 #define ABOUT_SECTION 1
 #define ABOUT_PADDING (PADDING_TOP + PADDING_BOTTOM)
+
+#define ACKNOWLEDGEMENTS_SECTION 2
 #define SOURCES_PADDING (PADDING_TOP + PADDING_BOTTOM)
 #define ACKNOWLEDGEMENTS_PADDING (PADDING_TOP + PADDING_BOTTOM)
 
-#define LEGAL_SECTION 2
+#define LEGAL_SECTION 3
 #define LEGAL_PADDING (PADDING_TOP + 88 + PADDING_SPACING + PADDING_BOTTOM)
 
 @implementation InfoViewController
@@ -46,10 +48,12 @@
 	[self.ratingButton setTitle:@"Im App Store bewerten" forState:UIControlStateNormal];
 	[self.recommendButton setTitle:@"An Freunde weiterempfehlen" forState:UIControlStateNormal];
 	
-	self.sourceLabel.text = @"Wir bedanken uns bei den folgenden Organisationen, die uns die Daten für diese App zur Verfügung gestellt haben:";
+    // Sources
+	self.sourcesLabel.text = @"Wir bedanken uns bei den folgenden Organisationen, die uns die Daten für diese App zur Verfügung gestellt haben:";
 	[self.kssButton setTitle:@"Koordinierungsstelle Stolpersteine Berlin" forState:UIControlStateNormal];
 	[self.wikipediaButton setTitle:@"Wikipedia" forState:UIControlStateNormal];
 	
+    // Acknowledgements
 	self.acknowledgementsLabel.text = @"Diese App ist open source, damit jeder mitmachen kann. Beiträge von Claus Höfele, Hendrik Spree und Rachel Höfele";
 	[self.contactButton setTitle:@"Schreiben Sie uns eine E-Mail" forState:UIControlStateNormal];
 	[self.gitHubButton setTitle:@"Stolpersteine App auf GitHub" forState:UIControlStateNormal];
@@ -81,10 +85,10 @@
     } else if (indexPath.section == ABOUT_SECTION && indexPath.row == 0) {
         label = self.aboutLabel;
         padding = ABOUT_PADDING;
-    } else if (indexPath.section == ABOUT_SECTION && indexPath.row == 3) {
-        label = self.sourceLabel;
+    } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION && indexPath.row == 0) {
+        label = self.sourcesLabel;
         padding = SOURCES_PADDING;
-    } else if (indexPath.section == ABOUT_SECTION && indexPath.row == 6) {
+    } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION && indexPath.row == 3) {
         label = self.acknowledgementsLabel;
         padding = ACKNOWLEDGEMENTS_PADDING;
     } else if (indexPath.section == LEGAL_SECTION && indexPath.row == 0) {
@@ -114,7 +118,9 @@
     if (section == STOLPERSTEINE_SECTION) {
         title = @"Stolpersteine";
     } else if (section == ABOUT_SECTION) {
-        title = @"Über diese App";
+        title = @"App bewerten";
+    } else if (section == ACKNOWLEDGEMENTS_SECTION) {
+        title = @"Danksagungen";
     } else if (section == LEGAL_SECTION) {
         title = @"Impressum";
     } else {
@@ -122,15 +128,6 @@
     }
     
     return title;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == STOLPERSTEINE_SECTION) {
-        if (indexPath.row == 0) {
-            
-        }
-    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

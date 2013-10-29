@@ -411,8 +411,12 @@
                                             <bool key="isElement" value="YES"/>
                                         </accessibility>
                                     </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Acknowledgements" id="Oth-KD-xke">
+                                <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="U9p-bL-fPa">
-                                        <rect key="frame" x="0.0" y="589" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="637" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U9p-bL-fPa" id="KsC-ax-u3V">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
@@ -434,7 +438,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="9Px-Di-Rka">
-                                        <rect key="frame" x="0.0" y="689" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="737" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Px-Di-Rka" id="ai8-re-DHt">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -462,7 +466,7 @@
                                         </accessibility>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4Ig-tV-lur">
-                                        <rect key="frame" x="0.0" y="733" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="781" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Ig-tV-lur" id="gmM-OK-Che">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -490,7 +494,7 @@
                                         </accessibility>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="rm1-QE-ZyY">
-                                        <rect key="frame" x="0.0" y="777" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="825" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rm1-QE-ZyY" id="h9O-fW-YdV">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
@@ -511,7 +515,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="f5N-tC-bpg">
-                                        <rect key="frame" x="0.0" y="877" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="925" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f5N-tC-bpg" id="wCs-5K-xFa">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -540,7 +544,7 @@
                                         </accessibility>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="sCV-pV-fxt">
-                                        <rect key="frame" x="0.0" y="921" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="969" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sCV-pV-fxt" id="DcV-mD-3RL">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -569,20 +573,20 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Legal" id="UAN-Iz-AsH">
+                            <tableViewSection headerTitle="Legal" id="Qs2-vk-GWH">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="200" id="TlH-A3-1FE">
-                                        <rect key="frame" x="0.0" y="1013" width="320" height="200"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="200" id="Pfm-0Q-xCL">
+                                        <rect key="frame" x="0.0" y="1061" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TlH-A3-1FE" id="d57-3W-38a">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pfm-0Q-xCL" id="q91-xM-UMs">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OptionUColor" translatesAutoresizingMaskIntoConstraints="NO" id="cLu-sA-xT3">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OptionUColor" translatesAutoresizingMaskIntoConstraints="NO" id="omi-rw-TWT">
                                                     <rect key="frame" x="15" y="15" width="285" height="88"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="nDm-Si-xa8">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="dPS-eh-oJe">
                                                     <rect key="frame" x="20" y="111" width="280" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -591,11 +595,11 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="nDm-Si-xa8" secondAttribute="trailing" constant="20" id="BTd-TV-CHy"/>
-                                                <constraint firstItem="nDm-Si-xa8" firstAttribute="leading" secondItem="d57-3W-38a" secondAttribute="leading" constant="20" id="Tw5-2e-l68"/>
-                                                <constraint firstItem="nDm-Si-xa8" firstAttribute="top" secondItem="cLu-sA-xT3" secondAttribute="bottom" constant="8" symbolic="YES" id="jPb-jc-f5q"/>
-                                                <constraint firstItem="cLu-sA-xT3" firstAttribute="top" secondItem="d57-3W-38a" secondAttribute="top" constant="15" id="nOS-QK-o5S"/>
-                                                <constraint firstItem="cLu-sA-xT3" firstAttribute="leading" secondItem="d57-3W-38a" secondAttribute="leading" constant="15" id="scZ-4T-wWb"/>
+                                                <constraint firstAttribute="trailing" secondItem="dPS-eh-oJe" secondAttribute="trailing" constant="20" id="50S-ct-IjE"/>
+                                                <constraint firstItem="dPS-eh-oJe" firstAttribute="top" secondItem="omi-rw-TWT" secondAttribute="bottom" constant="8" symbolic="YES" id="70H-8y-aOJ"/>
+                                                <constraint firstItem="dPS-eh-oJe" firstAttribute="leading" secondItem="q91-xM-UMs" secondAttribute="leading" constant="20" id="DXL-pF-woG"/>
+                                                <constraint firstItem="omi-rw-TWT" firstAttribute="top" secondItem="q91-xM-UMs" secondAttribute="top" constant="15" id="n5Q-VM-xJg"/>
+                                                <constraint firstItem="omi-rw-TWT" firstAttribute="leading" secondItem="q91-xM-UMs" secondAttribute="leading" constant="15" id="qgQ-kD-tMU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -618,10 +622,10 @@
                         <outlet property="contactButton" destination="QA4-QR-Kmh" id="sUU-Zu-AMc"/>
                         <outlet property="gitHubButton" destination="ar0-UW-8Pc" id="5P8-pT-id5"/>
                         <outlet property="kssButton" destination="qew-M9-jMr" id="i2C-8h-BLG"/>
-                        <outlet property="legalLabel" destination="nDm-Si-xa8" id="jUB-iM-V4e"/>
+                        <outlet property="legalLabel" destination="dPS-eh-oJe" id="jxZ-Jc-FP8"/>
                         <outlet property="ratingButton" destination="wgU-Vh-9zh" id="f6M-rR-Zbe"/>
                         <outlet property="recommendButton" destination="z9u-E4-3UX" id="6UE-Su-l99"/>
-                        <outlet property="sourceLabel" destination="C1t-YI-StL" id="2AN-I4-7UQ"/>
+                        <outlet property="sourcesLabel" destination="C1t-YI-StL" id="Pzq-e3-ZW2"/>
                         <outlet property="stolpersteineInfoButton" destination="D3P-Oi-ckN" id="qM1-Jj-fFm"/>
                         <outlet property="stolpersteineLabel" destination="fxe-Q9-Y6F" id="xNI-x5-Ayi"/>
                         <outlet property="wikipediaButton" destination="9yr-9f-c3W" id="ueI-Fv-WCZ"/>

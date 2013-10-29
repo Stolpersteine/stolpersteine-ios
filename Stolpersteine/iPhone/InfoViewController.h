@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *ratingButton;
 @property (weak, nonatomic) IBOutlet UIButton *recommendButton;
 
-@property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sourcesLabel;
 @property (weak, nonatomic) IBOutlet UIButton *kssButton;
 @property (weak, nonatomic) IBOutlet UIButton *wikipediaButton;
 

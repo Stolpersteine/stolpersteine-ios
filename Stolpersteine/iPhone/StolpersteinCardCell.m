@@ -38,7 +38,6 @@
     NSString *title = NSLocalizedString(@"StolpersteinCardCell.street", nil);
     [self.streetButton setTitle:title forState:UIControlStateNormal];
     self.streetButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-
     
     // Long press for copy & paste
     UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
@@ -133,8 +132,6 @@
 {
     return YES;
 }
-
-#pragma mark UILongPressGestureRecognizer handler methods
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)longPressRecognizer
 {

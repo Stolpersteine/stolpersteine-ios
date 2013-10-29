@@ -11,6 +11,10 @@
 #import "AppDelegate.h"
 #import "DiagnosticsService.h"
 
+#import <StoreKit/StoreKit.h>
+
+#define APP_STORE_ID @"640731757"
+
 #define PADDING_LEFT 15
 #define PADDING_RIGHT 20
 #define PADDING_TOP 15
@@ -29,6 +33,10 @@
 
 #define LEGAL_SECTION 3
 #define LEGAL_PADDING (PADDING_TOP + 88 + PADDING_SPACING + PADDING_BOTTOM)
+
+@interface InfoViewController() <SKStoreProductViewControllerDelegate>
+
+@end
 
 @implementation InfoViewController
 
@@ -135,22 +143,37 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     NSString *urlString;
-    if (indexPath.section == STOLPERSTEINE_SECTION && indexPath.row == 1) {
-        urlString = NSLocalizedString(@"InfoViewController.wikipediaURL", nil);
-    } else if (indexPath.section == STOLPERSTEINE_SECTION && indexPath.row == 2) {
-        urlString = NSLocalizedString(@"InfoViewController.demnigURL", nil);
-    } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION && indexPath.row == 1) {
-        urlString = NSLocalizedString(@"InfoViewController.kssBerlinURL", nil);
-    } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION && indexPath.row == 2) {
-        urlString = NSLocalizedString(@"InfoViewController.wikipediaStolpersteineURL", nil);
-    } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION && indexPath.row == 5) {
-        urlString = NSLocalizedString(@"InfoViewController.gitHubURL", nil);
+    if (indexPath.section == STOLPERSTEINE_SECTION) {
+        if (indexPath.row == 1) {
+            urlString = NSLocalizedString(@"InfoViewController.wikipediaURL", nil);
+        } else if (indexPath.row == 2) {
+            urlString = NSLocalizedString(@"InfoViewController.demnigURL", nil);
+        }
+    } else if (indexPath.section == ABOUT_SECTION) {
+        if (indexPath.row == 1) {
+            urlString = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", APP_STORE_ID];
+        } else if (indexPath.row == 2) {
+        }
+    } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION) {
+        if (indexPath.row == 1) {
+            urlString = NSLocalizedString(@"InfoViewController.kssBerlinURL", nil);
+        } else if (indexPath.row == 2) {
+            urlString = NSLocalizedString(@"InfoViewController.wikipediaStolpersteineURL", nil);
+        } else if (indexPath.row == 4) {
+        } else if (indexPath.row == 5) {
+            urlString = NSLocalizedString(@"InfoViewController.gitHubURL", nil);
+        }
     }
     
     NSURL *url = [NSURL URLWithString:urlString];
     if ([UIApplication.sharedApplication canOpenURL:url]) {
         [UIApplication.sharedApplication openURL:url];
     }
+}
+
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)close:(UIBarButtonItem *)sender

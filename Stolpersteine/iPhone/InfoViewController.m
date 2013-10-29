@@ -48,27 +48,25 @@
     self.title = NSLocalizedString(@"InfoViewController.title", nil);
     
 	// Stolpersteine
-    self.stolpersteineLabel.text = @"Stolpersteine sind kleine Gedenktafeln im Straßenpflaster zur Erinnerung an die Opfer des Nationalsozialismus. Mehr als 40.000 davon hat der Künstler Gunter Demnig mittlerweile in ganz Europa verlegt. Mit dieser App haben Sie schnell und einfach Zugriff auf Ortsdaten und Adressen der rund 5.000 Stolpersteine in Berlin.";
-    [self.stolpersteineInfoButton setTitle:@"Stolpersteine auf Wikipedia" forState:UIControlStateNormal];
-    [self.artistInfoButton setTitle:@"Gunter Demnigs Webseite" forState:UIControlStateNormal];
+    self.stolpersteineLabel.text = NSLocalizedString(@"InfoViewController.stolpersteineText", nil);
+    [self.stolpersteineInfoButton setTitle:NSLocalizedString(@"InfoViewController.stolpersteineInfoTitle", nil) forState:UIControlStateNormal];
+    [self.artistInfoButton setTitle:NSLocalizedString(@"InfoViewController.artistInfoTitle", nil) forState:UIControlStateNormal];
 	
 	// About
-	self.aboutLabel.text = @"Gefällt Ihnen diese App? Über Ihre Bewertung oder eine Weiterempfehlung würden wir uns freuen.";
-	[self.ratingButton setTitle:@"Im App Store bewerten" forState:UIControlStateNormal];
-	[self.recommendButton setTitle:@"An Freunde weiterempfehlen" forState:UIControlStateNormal];
-	
-    // Sources
-	self.sourcesLabel.text = @"Wir bedanken uns bei den folgenden Organisationen, die uns die Daten für diese App zur Verfügung gestellt haben:";
-	[self.kssButton setTitle:@"Koordinierungsstelle Stolpersteine Berlin" forState:UIControlStateNormal];
-	[self.wikipediaButton setTitle:@"Wikipedia" forState:UIControlStateNormal];
+	self.aboutLabel.text = NSLocalizedString(@"InfoViewController.aboutText", nil);
+	[self.ratingButton setTitle:NSLocalizedString(@"InfoViewController.ratingTitle", nil) forState:UIControlStateNormal];
+	[self.recommendButton setTitle:NSLocalizedString(@"InfoViewController.recommendTitle", nil) forState:UIControlStateNormal];
 	
     // Acknowledgements
-	self.acknowledgementsLabel.text = @"Diese App ist open source, damit jeder mitmachen kann. Beiträge von Claus Höfele, Hendrik Spree und Rachel Höfele";
-	[self.contactButton setTitle:@"Schreiben Sie uns eine E-Mail" forState:UIControlStateNormal];
-	[self.gitHubButton setTitle:@"Stolpersteine App auf GitHub" forState:UIControlStateNormal];
+	self.sourcesLabel.text = NSLocalizedString(@"InfoViewController.sourcesText", nil);
+	[self.kssButton setTitle:NSLocalizedString(@"InfoViewController.kssTitle", nil) forState:UIControlStateNormal];
+	[self.wikipediaButton setTitle:NSLocalizedString(@"InfoViewController.wikipediaTitle", nil) forState:UIControlStateNormal];
+	self.acknowledgementsLabel.text = NSLocalizedString(@"InfoViewController.acknowledgementsText", nil);
+	[self.contactButton setTitle:NSLocalizedString(@"InfoViewController.contactTitle", nil) forState:UIControlStateNormal];
+	[self.gitHubButton setTitle:NSLocalizedString(@"InfoViewController.gitHubTitle", nil) forState:UIControlStateNormal];
 	
 	// Legal
-	self.legalLabel.text = @"Claus Höfele\nCalvinstr. 20b\n10557 Berlin";
+	self.legalLabel.text = NSLocalizedString(@"InfoViewController.legalText", nil);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -125,13 +123,13 @@
 {
     NSString *title;
     if (section == STOLPERSTEINE_SECTION) {
-        title = @"Stolpersteine";
+        title = NSLocalizedString(@"InfoViewController.stolpersteineSection", nil);
     } else if (section == ABOUT_SECTION) {
-        title = @"App bewerten";
+        title = NSLocalizedString(@"InfoViewController.aboutSection", nil);
     } else if (section == ACKNOWLEDGEMENTS_SECTION) {
-        title = @"Danksagungen";
+        title = NSLocalizedString(@"InfoViewController.acknowledgementsSection", nil);
     } else if (section == LEGAL_SECTION) {
-        title = @"Impressum";
+        title = NSLocalizedString(@"InfoViewController.legalSection", nil);
     } else {
         title = [super tableView:tableView titleForHeaderInSection:section];
     }

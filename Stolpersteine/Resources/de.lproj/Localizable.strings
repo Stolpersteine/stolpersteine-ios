@@ -20,6 +20,28 @@
 "MapViewController.info" = "Über diese App";
 
 "InfoViewController.title" = "Info";
+
+"InfoViewController.stolpersteineSection" = "Stolpersteine";
+"InfoViewController.stolpersteineText" = "Stolpersteine sind kleine Gedenktafeln im Straßenpflaster zur Erinnerung an die Opfer des Nationalsozialismus. Mehr als 40.000 davon hat der Künstler Gunter Demnig mittlerweile in ganz Europa verlegt. Mit dieser App haben Sie schnell und einfach Zugriff auf Ortsdaten und Adressen der rund 5.000 Stolpersteine in Berlin.";
+"InfoViewController.stolpersteineInfoTitle" = "Stolpersteine auf Wikipedia";
+"InfoViewController.artistInfoTitle" = "Gunter Demnigs Webseite";
+
+"InfoViewController.aboutSection" = "App bewerten";
+"InfoViewController.aboutText" = "Gefällt Ihnen diese App? Über Ihre Bewertung oder eine Weiterempfehlung würden wir uns freuen.";
+"InfoViewController.ratingTitle" = "Im App Store bewerten";
+"InfoViewController.recommendTitle" = "An Freunde weiterempfehlen";
+
+"InfoViewController.acknowledgementsSection" = "Danksagungen";
+"InfoViewController.sourcesText" = "Wir bedanken uns bei den folgenden Organisationen, die uns die Daten für diese App zur Verfügung gestellt haben:";
+"InfoViewController.kssTitle" = "Koordinierungsstelle Stolpersteine Berlin";
+"InfoViewController.wikipediaTitle" = "Wikipedia";
+"InfoViewController.acknowledgementsText" = "Diese App ist open source, damit jeder mitmachen kann. Beiträge von Claus Höfele, Hendrik Spree und Rachel Höfele";
+"InfoViewController.contactTitle" = "Schreiben Sie uns eine E-Mail";
+"InfoViewController.gitHubTitle" = "Stolpersteine App auf GitHub";
+
+"InfoViewController.legalSection" = "Impressum";
+"InfoViewController.legalText" = "Claus Höfele\nCalvinstr. 20b\n10557 Berlin";
+
 "InfoViewController.wikipediaURL" = "http://de.wikipedia.org/wiki/Stolpersteine";
 "InfoViewController.demnigURL" = "http://www.stolpersteine.com/";
 "InfoViewController.kssBerlinURL" = "http://www.stolpersteine-berlin.de/";

@@ -11,9 +11,10 @@
 #import "AppDelegate.h"
 #import "DiagnosticsService.h"
 
-#import <StoreKit/StoreKit.h>
+#import <MessageUI/MessageUI.h>
 
 #define APP_STORE_ID @"640731757"
+#define EMAIL_OPTION_U @"stolpersteine@option-u.com"
 
 #define PADDING_LEFT 15
 #define PADDING_RIGHT 20
@@ -34,7 +35,7 @@
 #define LEGAL_SECTION 3
 #define LEGAL_PADDING (PADDING_TOP + 88 + PADDING_SPACING + PADDING_BOTTOM)
 
-@interface InfoViewController() <SKStoreProductViewControllerDelegate>
+@interface InfoViewController() <MFMailComposeViewControllerDelegate>
 
 @end
 
@@ -153,6 +154,9 @@
         if (indexPath.row == 1) {
             urlString = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", APP_STORE_ID];
         } else if (indexPath.row == 2) {
+            NSString *subject = NSLocalizedString(@"InfoViewController.recommendationSubject", nil);
+            NSString *message = NSLocalizedString(@"InfoViewController.recommendationMessage", nil);
+            [self sendMailWithRecipient:nil subject:subject message:message];
         }
     } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION) {
         if (indexPath.row == 1) {
@@ -160,6 +164,12 @@
         } else if (indexPath.row == 2) {
             urlString = NSLocalizedString(@"InfoViewController.wikipediaStolpersteineURL", nil);
         } else if (indexPath.row == 4) {
+            NSString *subject = NSLocalizedString(@"InfoViewController.contactSubject", nil);
+            NSString *version = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleVersion"];
+            NSString *shortVersion = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+            NSString *messageFormat = NSLocalizedString(@"InfoViewController.contactMessage", nil);
+            NSString *message = [NSString stringWithFormat:messageFormat, shortVersion, version];
+            [self sendMailWithRecipient:EMAIL_OPTION_U subject:subject message:message];
         } else if (indexPath.row == 5) {
             urlString = NSLocalizedString(@"InfoViewController.gitHubURL", nil);
         }
@@ -171,7 +181,23 @@
     }
 }
 
-- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController
+- (void)sendMailWithRecipient:(NSString *)recipient subject:(NSString *)subject message:(NSString *)message
+{
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] init];
+        composeViewController.mailComposeDelegate = self;
+        
+        if (recipient) {
+            composeViewController.toRecipients = @[recipient];
+        }
+        composeViewController.subject = subject;
+        [composeViewController setMessageBody:message isHTML:NO];
+        
+        [self presentViewController:composeViewController animated:YES completion:NULL];
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
     [self dismissViewControllerAnimated:YES completion:NULL];
 }

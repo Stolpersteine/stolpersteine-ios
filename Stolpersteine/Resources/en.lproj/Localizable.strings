@@ -25,6 +25,10 @@
 "InfoViewController.kssBerlinURL" = "http://www.stolpersteine-berlin.de/en/stolpersteine";
 "InfoViewController.wikipediaStolpersteineURL" = "http://de.wikipedia.org/wiki/Liste_der_Stolpersteine_in_Berlin";
 "InfoViewController.gitHubURL" = "https://github.com/optionu/stolpersteine-ios";
+"InfoViewController.recommendationSubject" = "Stolpersteine in Berlin";
+"InfoViewController.recommendationMessage" = "";
+"InfoViewController.contactSubject" = "Solpersteine iPhone App";
+"InfoViewController.contactMessage" = "\n\nVersion %@ (%@)";
 
 "StolpersteinCardCell.street" = "All in this Street";
 "StolpersteinCardCell.source" = "Show source";

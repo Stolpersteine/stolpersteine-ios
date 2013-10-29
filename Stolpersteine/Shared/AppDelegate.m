@@ -48,11 +48,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Works around bug on iPad when app is started in landscape orientation
-    UIInterfaceOrientation orientation = application.statusBarOrientation;
-    application.statusBarOrientation = UIInterfaceOrientationPortrait;
-    application.statusBarOrientation = orientation;
-    
+    // App version info
     NSString *version = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleVersion"];
     NSString *shortVersion = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     NSLog(@"Stolpersteine %@ (%@)", shortVersion, version);

@@ -141,26 +141,32 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    NSString *urlString;
+    NSString *urlString, *diagnosticsLabel;
     if (indexPath.section == STOLPERSTEINE_SECTION) {
         if (indexPath.row == 1) {
             urlString = NSLocalizedString(@"InfoViewController.wikipediaURL", nil);
+            diagnosticsLabel = @"wikipedia";
         } else if (indexPath.row == 2) {
             urlString = NSLocalizedString(@"InfoViewController.demnigURL", nil);
+            diagnosticsLabel = @"demnig";
         }
     } else if (indexPath.section == ABOUT_SECTION) {
         if (indexPath.row == 1) {
             urlString = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", APP_STORE_ID];
+            diagnosticsLabel = @"appStore";
         } else if (indexPath.row == 2) {
             NSString *subject = NSLocalizedString(@"InfoViewController.recommendationSubject", nil);
             NSString *message = NSLocalizedString(@"InfoViewController.recommendationMessage", nil);
             [self sendMailWithRecipient:nil subject:subject message:message];
+            diagnosticsLabel = @"recommendation";
         }
     } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION) {
         if (indexPath.row == 1) {
             urlString = NSLocalizedString(@"InfoViewController.kssBerlinURL", nil);
+            diagnosticsLabel = @"kssBerlin";
         } else if (indexPath.row == 2) {
             urlString = NSLocalizedString(@"InfoViewController.wikipediaStolpersteineURL", nil);
+            diagnosticsLabel = @"wikipediaBerlin";
         } else if (indexPath.row == 4) {
             NSString *subject = NSLocalizedString(@"InfoViewController.contactSubject", nil);
             NSString *version = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleVersion"];
@@ -168,10 +174,14 @@
             NSString *messageFormat = NSLocalizedString(@"InfoViewController.contactMessage", nil);
             NSString *message = [NSString stringWithFormat:messageFormat, shortVersion, version];
             [self sendMailWithRecipient:EMAIL_OPTION_U subject:subject message:message];
+            diagnosticsLabel = @"contact";
         } else if (indexPath.row == 5) {
             urlString = NSLocalizedString(@"InfoViewController.gitHubURL", nil);
+            diagnosticsLabel = @"gitHub";
         }
     }
+    
+    [AppDelegate.diagnosticsService trackEvent:DiagnosticsServiceEventInfoItemTapped withClass:self.class label:diagnosticsLabel];
     
     NSURL *url = [NSURL URLWithString:urlString];
     if ([UIApplication.sharedApplication canOpenURL:url]) {

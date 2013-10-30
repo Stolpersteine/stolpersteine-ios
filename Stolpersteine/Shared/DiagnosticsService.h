@@ -27,7 +27,9 @@
 
 typedef enum {
     DiagnosticsServiceEventOrientationChanged,
-    DiagnosticsServiceEventStartSearch
+    DiagnosticsServiceEventStartSearch,
+    DiagnosticsServiceEventMapCentered,
+    DiagnosticsServiceEventInfoItemTapped
 } DiagnosticsServiceEvent;
 
 @interface DiagnosticsService : NSObject
@@ -36,5 +38,6 @@ typedef enum {
 
 - (void)trackViewWithClass:(Class)class;
 - (void)trackEvent:(DiagnosticsServiceEvent)event withClass:(Class)class;
+- (void)trackEvent:(DiagnosticsServiceEvent)event withClass:(Class)class label:(NSString *)label;
 
 @end

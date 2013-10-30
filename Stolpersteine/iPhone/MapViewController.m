@@ -184,17 +184,21 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (IBAction)centerMap:(UIBarButtonItem *)sender
 {
+    NSString *diagnosticsLabel;
     if (!self.isUserLocationMode && self.userLocation.location) {
         self.userLocationMode = YES;
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.userLocation.location.coordinate, ZOOM_DISTANCE_USER, ZOOM_DISTANCE_USER);
         [self.mapView setRegion:region animated:YES];
+        diagnosticsLabel = @"userLocation";
     } else {
         if (self.userLocation.location) {
             self.userLocationMode = NO;
         }
         [self.mapView setRegion:BERLIN_REGION animated:YES];
+        diagnosticsLabel = @"region";
     }
     [self updateLocationBarButtonItem];
+    [AppDelegate.diagnosticsService trackEvent:DiagnosticsServiceEventMapCentered withClass:self.class label:diagnosticsLabel];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

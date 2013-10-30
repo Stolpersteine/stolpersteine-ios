@@ -76,7 +76,9 @@
         };
         self.eventToActionNameMapping = @{
             @(DiagnosticsServiceEventOrientationChanged): @"orientationChanged",
-            @(DiagnosticsServiceEventStartSearch): @"startSearch"
+            @(DiagnosticsServiceEventStartSearch): @"startSearch",
+            @(DiagnosticsServiceEventMapCentered): @"mapCentered",
+            @(DiagnosticsServiceEventInfoItemTapped): @"infoItemTapped"
         };
         
         // Register for changes to user settings
@@ -182,11 +184,16 @@
 
 - (void)trackEvent:(DiagnosticsServiceEvent)event withClass:(Class)class
 {
+    [self trackEvent:event withClass:class label:nil];
+}
+
+- (void)trackEvent:(DiagnosticsServiceEvent)event withClass:(Class)class label:(NSString *)label
+{
     NSString *actionName = [self stringForEvent:event];
     NSString *viewName = [self stringForClass:class];
     if (actionName && viewName) {
         [self updateCustomDimensions];
-        NSDictionary *data = [[GAIDictionaryBuilder createEventWithCategory:viewName action:actionName label:nil value:nil] build];
+        NSDictionary *data = [[GAIDictionaryBuilder createEventWithCategory:viewName action:actionName label:label value:nil] build];
         [self.gaiTracker send:data];
     }
 }

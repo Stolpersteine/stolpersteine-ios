@@ -22,7 +22,7 @@
 "InfoViewController.title" = "Info";
 
 "InfoViewController.stolpersteineSection" = "Stolpersteine";
-"InfoViewController.stolpersteineText" = "Stolpersteine sind kleine Gedenktafeln im Straßenpflaster zur Erinnerung an die Opfer des Nationalsozialismus. Mehr als 40.000 davon hat der Künstler Gunter Demnig mittlerweile in ganz Europa verlegt. Mit dieser App haben Sie schnell und einfach Zugriff auf Ortsdaten und Adressen der rund 5.000 Stolpersteine in Berlin.";
+"InfoViewController.stolpersteineText" = "Stolpersteine sind kleine Gedenktafeln im Straßenpflaster zur Erinnerung an die Opfer des Nationalsozialismus. Mehr als 40.000 davon hat der Künstler Gunter Demnig mittlerweile in ganz Europa verlegt. Mit dieser App haben Sie schnell und einfach Zugriff auf die Daten der rund 5.000 Stolpersteine in Berlin.";
 "InfoViewController.stolpersteineInfoTitle" = "Stolpersteine auf Wikipedia";
 "InfoViewController.artistInfoTitle" = "Gunter Demnigs Webseite";
 
@@ -35,7 +35,7 @@
 "InfoViewController.sourcesText" = "Wir bedanken uns bei den folgenden Organisationen, die uns die Daten für diese App zur Verfügung gestellt haben:";
 "InfoViewController.kssTitle" = "Koordinierungsstelle Stolpersteine Berlin";
 "InfoViewController.wikipediaTitle" = "Wikipedia";
-"InfoViewController.acknowledgementsText" = "Diese App ist open source, damit jeder mitmachen kann. Beiträge von Claus Höfele, Hendrik Spree und Rachel Höfele";
+"InfoViewController.acknowledgementsText" = "Diese App ist ein Open-Source-Projekt mit Beiträgen von Claus Höfele, Hendrik Spree und Rachel Höfele.";
 "InfoViewController.contactTitle" = "Schreiben Sie uns eine E-Mail";
 "InfoViewController.gitHubTitle" = "Stolpersteine App auf GitHub";
 
@@ -49,7 +49,7 @@
 "InfoViewController.gitHubURL" = "https://github.com/optionu/stolpersteine-ios";
 "InfoViewController.recommendationSubject" = "Stolpersteine in Berlin";
 "InfoViewController.recommendationMessage" = "Hallo,\n\nhier kann man die kostenlose iPhone App mit Namen und Adressen der rund 5.000 Stolpersteine in Berlin herunterladen: https://itunes.apple.com/de/app/stolpersteine-in-berlin/id640731757?mt=8\n\nKann ich sehr empfehlen.";
-"InfoViewController.contactSubject" = "Solpersteine iPhone App";
+"InfoViewController.contactSubject" = "Stolpersteine iPhone App";
 "InfoViewController.contactMessage" = "\n\nVersion %@ (%@)";
 
 "StolpersteinCardCell.street" = "Alle in dieser Straße";

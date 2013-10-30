@@ -27,7 +27,7 @@
 
 typedef enum {
     DiagnosticsServiceEventOrientationChanged,
-    DiagnosticsServiceEventStartSearch,
+    DiagnosticsServiceEventSearchStarted,
     DiagnosticsServiceEventMapCentered,
     DiagnosticsServiceEventInfoItemTapped
 } DiagnosticsServiceEvent;

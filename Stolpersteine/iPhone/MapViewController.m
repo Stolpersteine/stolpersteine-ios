@@ -351,7 +351,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller
 {
-    [AppDelegate.diagnosticsService trackEvent:DiagnosticsServiceEventStartSearch withClass:self.class];
+    [AppDelegate.diagnosticsService trackEvent:DiagnosticsServiceEventSearchStarted withClass:self.class];
 }
 
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller

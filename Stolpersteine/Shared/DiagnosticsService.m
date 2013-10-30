@@ -76,7 +76,7 @@
         };
         self.eventToActionNameMapping = @{
             @(DiagnosticsServiceEventOrientationChanged): @"orientationChanged",
-            @(DiagnosticsServiceEventStartSearch): @"startSearch",
+            @(DiagnosticsServiceEventSearchStarted): @"searchStarted",
             @(DiagnosticsServiceEventMapCentered): @"mapCentered",
             @(DiagnosticsServiceEventInfoItemTapped): @"infoItemTapped"
         };

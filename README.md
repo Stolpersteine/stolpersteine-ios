@@ -6,10 +6,11 @@ iOS app to display the locations of [Stolpersteine](http://en.wikipedia.org/wiki
 
 [![Download on the App Store](http://linkmaker.itunes.apple.com/htmlResources/assets/images/web/linkmaker/badge_appstore-lrg.png)](https://itunes.apple.com/us/app/stolpersteine-in-berlin/id640731757?mt=8&uo=4)
 
-## Contact
+## Contributors
 
-[Claus Höfele](http://github.com/choefele)  
-[@claushoefele](https://twitter.com/claushoefele)
+[Claus Höfele](http://github.com/choefele) [@claushoefele](https://twitter.com/claushoefele)
+Hendrik Spree [@drikkes](https://twitter.com/drikkes)
+Rachel Höfele
 
 ## License
 

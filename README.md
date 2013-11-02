@@ -8,9 +8,9 @@ iOS app to display the locations of [Stolpersteine](http://en.wikipedia.org/wiki
 
 ## Contributors
 
-[Claus Höfele](http://github.com/choefele) [@claushoefele](https://twitter.com/claushoefele)
-Hendrik Spree [@drikkes](https://twitter.com/drikkes)
-Rachel Höfele
+- [Claus Höfele](http://github.com/choefele) [@claushoefele](https://twitter.com/claushoefele)
+- Hendrik Spree [@drikkes](https://twitter.com/drikkes)
+- Rachel Höfele
 
 ## License
 

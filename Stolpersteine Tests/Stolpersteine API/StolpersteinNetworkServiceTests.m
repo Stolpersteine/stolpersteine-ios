@@ -70,12 +70,16 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
         self.done = YES;
         
         XCTAssertNil(error, @"Error request");
-        XCTAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
+        XCTAssertTrue(stolpersteine.count == 5, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
             // Mandatory fields
             XCTAssertNotNil(stolperstein.id, @"Wrong ID");
             XCTAssertTrue([stolperstein.id isKindOfClass:NSString.class], @"Wrong type for ID");
             XCTAssertTrue(stolperstein.type == StolpersteinTypeStolperstein || stolperstein.type == StolpersteinTypeStolperschwelle, @"Wrong type");
+            XCTAssertNotNil(stolperstein.sourceName, @"Wrong source name");
+            XCTAssertTrue([stolperstein.sourceName isKindOfClass:NSString.class], @"Wrong type for source name");
+            XCTAssertNotNil(stolperstein.sourceURLString, @"Wrong source url");
+            XCTAssertTrue([stolperstein.sourceURLString isKindOfClass:NSString.class], @"Wrong type for source url");
             XCTAssertNotNil(stolperstein.personFirstName, @"Wrong first name");
             XCTAssertTrue([stolperstein.personFirstName isKindOfClass:NSString.class], @"Wrong type for first name");
             XCTAssertNotNil(stolperstein.personLastName, @"Wrong last name");
@@ -88,16 +92,8 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
             XCTAssertTrue([stolperstein.locationCity isKindOfClass:NSString.class], @"Wrong type for city");
             XCTAssertTrue(stolperstein.locationCoordinate.latitude != 0, @"Wrong coordinates");
             XCTAssertTrue(stolperstein.locationCoordinate.longitude != 0, @"Wrong coordinates");
-            XCTAssertNotNil(stolperstein.sourceName, @"Wrong source name");
-            XCTAssertTrue([stolperstein.sourceName isKindOfClass:NSString.class], @"Wrong type for source name");
-            XCTAssertNotNil(stolperstein.sourceURLString, @"Wrong source url");
-            XCTAssertTrue([stolperstein.sourceURLString isKindOfClass:NSString.class], @"Wrong type for source url");
             
             // Optional fields
-            if (stolperstein.text) {
-                XCTAssertTrue([stolperstein.text isKindOfClass:NSString.class], @"Wrong type for text");
-            }
-            
             if (stolperstein.locationZipCode) {
                 XCTAssertTrue([stolperstein.locationZipCode isKindOfClass:NSString.class], @"Wrong type for zip code");
             }

@@ -33,15 +33,14 @@
 {
     Stolperstein *stolperstein = [[Stolperstein alloc] init];
     stolperstein.id = [self valueForKeyPath:@"id"];
-    stolperstein.text = [self valueForKeyPath:@"description"];
+    stolperstein.sourceName = [self valueForKeyPath:@"source.name"];
+    stolperstein.sourceURLString = [self valueForKeyPath:@"source.url"];
     stolperstein.personFirstName = [self valueForKeyPath:@"person.firstName"];
     stolperstein.personLastName = [self valueForKeyPath:@"person.lastName"];
     stolperstein.personBiographyURLString = [self valueForKeyPath:@"person.biographyUrl"];
     stolperstein.locationStreet = [self valueForKeyPath:@"location.street"];
     stolperstein.locationZipCode = [self valueForKeyPath:@"location.zipCode"];
     stolperstein.locationCity = [self valueForKeyPath:@"location.city"];
-    stolperstein.sourceName = [self valueForKeyPath:@"source.name"];
-    stolperstein.sourceURLString = [self valueForKeyPath:@"source.url"];
     
     NSString *typeAsString = [self valueForKeyPath:@"type"];
     if ([typeAsString isEqualToString:@"stolperschwelle"]) {

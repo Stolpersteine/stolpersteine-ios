@@ -1,4 +1,4 @@
 language: objective-c
 install: echo
 script: 
-  - xcodebuild -workspace Stolpersteine.xcworkspace -scheme "Stolpersteine Tests" -sdk iphonesimulator -configuration Debug TEST_AFTER_BUILD=YES ONLY_ACTIVE_ARCH=NO
+  - xcodebuild -workspace Stolpersteine.xcworkspace -scheme "Stolpersteine" -sdk iphonesimulator -configuration Debug test

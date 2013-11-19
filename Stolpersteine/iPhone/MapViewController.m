@@ -80,9 +80,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
-    // Initialize map region
-    self.mapView.region = BERLIN_REGION;
-    
     // Clustering
     self.mapClusterController = [[MapClusterController alloc] initWithMapView:self.mapView];
     self.mapClusterController.delegate = self;
@@ -90,6 +87,9 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     // Start loading data
     self.stolpersteinSyncController = [[StolpersteinSynchronizationController alloc] initWithNetworkService:AppDelegate.networkService];
     self.stolpersteinSyncController.delegate = self;
+
+    // Initialize map region
+    self.mapView.region = BERLIN_REGION;
 }
 
 - (void)viewWillAppear:(BOOL)animated

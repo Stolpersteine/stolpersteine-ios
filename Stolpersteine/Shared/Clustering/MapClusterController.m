@@ -143,8 +143,15 @@
     }
 }
 
+#pragma mark - Map view proxied delegate methods
+
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews
 {
+    // Forward to standard delegate
+    if ([self.mapViewDelegateProxy.target respondsToSelector:@selector(mapView:didAddAnnotationViews:)]) {
+        [self.mapViewDelegateProxy.target mapView:mapView didAddAnnotationViews:annotationViews];
+    }
+
     // Animate annotations that get added
     for (MKAnnotationView *annotationView in annotationViews)
     {
@@ -153,10 +160,21 @@
             annotationView.alpha = 1.0;
         }];
     }
-    
+}
+
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
     // Forward to standard delegate
-    if ([self.mapViewDelegateProxy.target respondsToSelector:@selector(mapView:didAddAnnotationViews:)]) {
-        [self.mapViewDelegateProxy.target mapView:mapView didAddAnnotationViews:annotationViews];
+    if ([self.mapViewDelegateProxy.target respondsToSelector:@selector(mapView:regionWillChangeAnimated:)]) {
+        [self.mapViewDelegateProxy.target mapView:mapView regionWillChangeAnimated:animated];
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    // Forward to standard delegate
+    if ([self.mapViewDelegateProxy.target respondsToSelector:@selector(mapView:regionDidChangeAnimated:)]) {
+        [self.mapViewDelegateProxy.target mapView:mapView regionDidChangeAnimated:animated];
     }
 }
 

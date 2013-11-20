@@ -36,7 +36,7 @@
 @property (nonatomic, assign, readonly) NSUInteger numberOfAnnotations;
 
 - (id)initWithMapView:(MKMapView *)mapView;
-- (void)addAnnotations:(NSArray *)annotations;
-- (void)zoomToAnnotation:(id<MKAnnotation>)annotation withLatitudinalMeters:(CLLocationDistance)latitudinalMeters longitudinalMeters:(CLLocationDistance)longitudinalMeters;
+- (void)addAnnotations:(NSArray *)annotations withCompletionHandler:(void (^)())completionHandler;
+- (void)selectAnnotation:(id<MKAnnotation>)annotation andZoomToRegionWithLatitudinalMeters:(CLLocationDistance)latitudinalMeters longitudinalMeters:(CLLocationDistance)longitudinalMeters;
 
 @end

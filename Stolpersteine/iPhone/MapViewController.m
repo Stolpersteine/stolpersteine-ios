@@ -179,7 +179,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)stolpersteinSynchronizationController:(StolpersteinSynchronizationController *)stolpersteinSynchronizationController didAddStolpersteine:(NSArray *)stolpersteine
 {
-    [self.mapClusterController addAnnotations:stolpersteine];   
+    [self.mapClusterController addAnnotations:stolpersteine withCompletionHandler:NULL];
 }
 
 #pragma mark - Map view
@@ -323,20 +323,14 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
      
     // Dismiss search display controller
     self.searchDisplayController.active = NO;
-
-    // Zoom to selected stolperstein
+    
+    // Force selected annotation to be on map
     Stolperstein *stolperstein = self.searchedStolpersteine[indexPath.row];
-    [self.mapClusterController zoomToAnnotation:stolperstein withLatitudinalMeters:ZOOM_DISTANCE_STOLPERSTEIN longitudinalMeters:ZOOM_DISTANCE_STOLPERSTEIN];
+    __weak MapClusterController *weakMapClusterController = self.mapClusterController;
+    [weakMapClusterController addAnnotations:@[stolperstein] withCompletionHandler:^{
+        // Zoom to selected stolperstein
+        [weakMapClusterController selectAnnotation:stolperstein andZoomToRegionWithLatitudinalMeters:ZOOM_DISTANCE_STOLPERSTEIN longitudinalMeters:ZOOM_DISTANCE_STOLPERSTEIN];
+    }];
 }
 
-//- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
-//{
-//    
-//}
-//
-//- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
-//{
-//    
-//}
-//
 @end

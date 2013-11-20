@@ -61,10 +61,10 @@
     return self;
 }
 
-- (void)addAnnotations:(NSArray *)annotations
+- (void)addAnnotations:(NSArray *)annotations withCompletionHandler:(void (^)())completionHandler
 {
     [self.allAnnotationsMapView addAnnotations:annotations];
-    [self updateAnnotationsWithCompletionHandler:NULL];
+    [self updateAnnotationsWithCompletionHandler:completionHandler];
 }
 
 - (NSUInteger)numberOfAnnotations
@@ -72,28 +72,10 @@
     return self.allAnnotationsMapView.annotations.count;
 }
 
-- (double)convertPointSize:(double)pointSize toMapPointSizeFromView:(UIView *)view
-{
-    // Convert points to coordinates
-    CLLocationCoordinate2D leftCoordinate = [self.mapView convertPoint:CGPointZero toCoordinateFromView:view];
-    CLLocationCoordinate2D rightCoordinate = [self.mapView convertPoint:CGPointMake(pointSize, 0) toCoordinateFromView:view];
-    
-    // Convert coordinates to map points
-    MKMapPoint leftMapPoint = MKMapPointForCoordinate(leftCoordinate);
-    MKMapPoint rightMapPoint = MKMapPointForCoordinate(rightCoordinate);
-    
-    // Calculate distance between map points
-    double xd = leftMapPoint.x - rightMapPoint.x;
-    double yd = leftMapPoint.y - rightMapPoint.y;
-    double cellSize = sqrt(xd*xd + yd*yd);
-
-    return cellSize;
-}
-
 - (void)updateAnnotationsWithCompletionHandler:(void (^)())completionHandler
 {
     // Calculate cell size in map point units
-    double cellSize = [self convertPointSize:self.cellSize toMapPointSizeFromView:self.mapView.superview];
+    double cellSize = MapClusterControllerMapLengthForLength(self.mapView, self.mapView.superview, self.cellSize);
     
     // Expand map rect and align to cell size to avoid popping when panning
     MKMapRect visibleMapRect = self.mapView.visibleMapRect;
@@ -142,19 +124,16 @@
     }
 }
 
-- (void)zoomToAnnotation:(id<MKAnnotation>)annotation withLatitudinalMeters:(CLLocationDistance)latitudinalMeters longitudinalMeters:(CLLocationDistance)longitudinalMeters
+- (void)selectAnnotation:(id<MKAnnotation>)annotation andZoomToRegionWithLatitudinalMeters:(CLLocationDistance)latitudinalMeters longitudinalMeters:(CLLocationDistance)longitudinalMeters
 {
     // Deselect annotations
     [self deselectAllAnnotations];
     
-    // Force selected annotation to be on map
-//    [self addAnnotations:@[annotation]];
-
     // Zoom to annotation
     self.stolpersteinToSelect = annotation;
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, latitudinalMeters, longitudinalMeters);
     [self.mapView setRegion:region animated:YES];
-    if ([self isCoordinateUpToDate:region.center]) {
+    if (MapClusterControllerCoordinateEqualToCoordinate(region.center, self.mapView.centerCoordinate)) {
         // Manually call update methods because region won't change
         [self mapView:self.mapView regionWillChangeAnimated:YES];
         [self mapView:self.mapView regionDidChangeAnimated:YES];
@@ -172,31 +151,6 @@
             [self.mapView removeAnnotation:annotation];
         }];
     }
-}
-
-- (id<MKAnnotation>)annotationForStolperstein:(id<MKAnnotation>)stolperstein inMapRect:(MKMapRect)mapRect
-{
-    id<MKAnnotation> annotationResult = nil;
-    
-    NSSet *annotations = [self.mapView annotationsInMapRect:mapRect];
-    for (id<MKAnnotation> annotation in annotations) {
-        if ([annotation isKindOfClass:MapClusterAnnotation.class]) {
-            MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)annotation;
-            NSUInteger index = [mapClusterAnnotation.annotations indexOfObject:stolperstein];
-            if (index != NSNotFound) {
-                annotationResult = annotation;
-                break;
-            }
-        }
-    }
-    
-    return annotationResult;
-}
-
-- (BOOL)isCoordinateUpToDate:(CLLocationCoordinate2D)coordinate
-{
-    BOOL isCoordinateUpToDate = fequal(coordinate.latitude, self.mapView.region.center.latitude) && fequal(coordinate.longitude, self.mapView.region.center.longitude);
-    return isCoordinateUpToDate;
 }
 
 #pragma mark - Map view proxied delegate methods
@@ -246,10 +200,10 @@
     [self updateAnnotationsWithCompletionHandler:^{
         if (self.stolpersteinToSelect) {
             // Map has zoomed to selected stolperstein; search for cluster annotation that contains this stolperstein
-            id<MKAnnotation> annotation = [self annotationForStolperstein:self.stolpersteinToSelect inMapRect:mapView.visibleMapRect];
+            id<MKAnnotation> annotation = MapClusterControllerClusterAnnotationForAnnotation(self.mapView, self.stolpersteinToSelect, mapView.visibleMapRect);
             self.stolpersteinToSelect = nil;
             
-            if ([self isCoordinateUpToDate:annotation.coordinate]) {
+            if (MapClusterControllerCoordinateEqualToCoordinate(self.mapView.centerCoordinate, annotation.coordinate)) {
                 // Select immediately since region won't change
                 [self.mapView selectAnnotation:annotation animated:YES];
             } else {

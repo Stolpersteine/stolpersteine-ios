@@ -31,3 +31,6 @@
 id<MKAnnotation> MapClusterControllerFindClosestAnnotation(NSSet *annotations, MKMapPoint mapPoint);
 MKMapRect MapClusterControllerAlignToCellSize(MKMapRect mapRect, double cellSize);
 MapClusterAnnotation *MapClusterControllerFindAnnotation(MKMapRect cellMapRect, NSSet *annotations, NSSet *visibleAnnotations);
+double MapClusterControllerMapLengthForLength(MKMapView *mapView, UIView *view, double length);
+BOOL MapClusterControllerCoordinateEqualToCoordinate(CLLocationCoordinate2D coordinate1, CLLocationCoordinate2D coordinate2);
+MapClusterAnnotation *MapClusterControllerClusterAnnotationForAnnotation(MKMapView *mapView, id<MKAnnotation> annotation, MKMapRect mapRect);

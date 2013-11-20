@@ -27,6 +27,8 @@
 
 #import "MapClusterAnnotation.h"
 
+#define fequal(a, b) (fabs((a) - (b)) < FLT_EPSILON)
+
 id<MKAnnotation> MapClusterControllerFindClosestAnnotation(NSSet *annotations, MKMapPoint mapPoint)
 {
     id<MKAnnotation> closestAnnotation;
@@ -72,4 +74,47 @@ MapClusterAnnotation *MapClusterControllerFindAnnotation(MKMapRect cellMapRect, 
     annotation.coordinate = closestAnnotation.coordinate;
     
     return annotation;
+}
+
+double MapClusterControllerMapLengthForLength(MKMapView *mapView, UIView *view, double length)
+{
+    // Convert points to coordinates
+    CLLocationCoordinate2D leftCoordinate = [mapView convertPoint:CGPointZero toCoordinateFromView:view];
+    CLLocationCoordinate2D rightCoordinate = [mapView convertPoint:CGPointMake(length, 0) toCoordinateFromView:view];
+    
+    // Convert coordinates to map points
+    MKMapPoint leftMapPoint = MKMapPointForCoordinate(leftCoordinate);
+    MKMapPoint rightMapPoint = MKMapPointForCoordinate(rightCoordinate);
+    
+    // Calculate distance between map points
+    double xd = leftMapPoint.x - rightMapPoint.x;
+    double yd = leftMapPoint.y - rightMapPoint.y;
+    double mapLength = sqrt(xd*xd + yd*yd);
+    
+    return mapLength;
+}
+
+BOOL MapClusterControllerCoordinateEqualToCoordinate(CLLocationCoordinate2D coordinate1, CLLocationCoordinate2D coordinate2)
+{
+    BOOL isCoordinateUpToDate = fequal(coordinate1.latitude, coordinate2.latitude) && fequal(coordinate1.longitude, coordinate2.longitude);
+    return isCoordinateUpToDate;
+}
+
+MapClusterAnnotation *MapClusterControllerClusterAnnotationForAnnotation(MKMapView *mapView, id<MKAnnotation> annotation, MKMapRect mapRect)
+{
+    MapClusterAnnotation *annotationResult;
+    
+    NSSet *mapAnnotations = [mapView annotationsInMapRect:mapRect];
+    for (id<MKAnnotation> mapAnnotation in mapAnnotations) {
+        if ([mapAnnotation isKindOfClass:MapClusterAnnotation.class]) {
+            MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)mapAnnotation;
+            NSUInteger index = [mapClusterAnnotation.annotations indexOfObject:annotation];
+            if (index != NSNotFound) {
+                annotationResult = mapClusterAnnotation;
+                break;
+            }
+        }
+    }
+    
+    return annotationResult;
 }

@@ -1,4 +1,4 @@
 language: objective-c
 install: echo
 script: 
-  - xcodebuild -workspace Stolpersteine.xcworkspace -scheme "Stolpersteine" -sdk iphonesimulator -configuration Debug test
+  - xcodebuild -workspace Stolpersteine.xcworkspace -scheme "Stolpersteine" -sdk iphonesimulator -configuration Debug -destination 'platform=iOS Simulator,OS=7.0,name=iPhone Retina (4-inch)' test

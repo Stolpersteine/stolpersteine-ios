@@ -32,11 +32,16 @@
 #import "MapClusterControllerDelegate.h"
 #import "MapClusterMapViewDelegateProxy.h"
 
+#define fequal(a, b) (fabs((a) - (b)) < FLT_EPSILON)
+
 @interface MapClusterController()<MKMapViewDelegate>
 
 @property (strong, nonatomic) MKMapView *mapView;
 @property (strong, nonatomic) MKMapView *allAnnotationsMapView;
 @property (strong, nonatomic) MapClusterMapViewDelegateProxy *mapViewDelegateProxy;
+@property (nonatomic, strong) id<MKAnnotation> stolpersteinToSelect;
+@property (nonatomic, strong) MapClusterAnnotation *annotationToSelect;
+@property (nonatomic, assign) MKCoordinateSpan regionSpanBeforeChange;
 
 @end
 
@@ -51,8 +56,7 @@
         self.mapView = mapView;
         self.allAnnotationsMapView = [[MKMapView alloc] initWithFrame:CGRectZero];
         
-        self.mapViewDelegateProxy = [[MapClusterMapViewDelegateProxy alloc] initWithMapView:mapView];
-        self.mapViewDelegateProxy.delegate = self;
+        self.mapViewDelegateProxy = [[MapClusterMapViewDelegateProxy alloc] initWithMapView:mapView delegate:self];
     }
     return self;
 }
@@ -130,6 +134,33 @@
     }
 }
 
+- (void)deselectAllAnnotations
+{
+    NSArray *selectedAnnotations = self.mapView.selectedAnnotations;
+    for (id<MKAnnotation> selectedAnnotation in selectedAnnotations) {
+        [self.mapView deselectAnnotation:selectedAnnotation animated:YES];
+    }
+}
+
+- (void)zoomToAnnotation:(id<MKAnnotation>)annotation withLatitudinalMeters:(CLLocationDistance)latitudinalMeters longitudinalMeters:(CLLocationDistance)longitudinalMeters
+{
+    // Deselect annotations
+    [self deselectAllAnnotations];
+    
+    // Force selected annotation to be on map
+//    [self addAnnotations:@[annotation]];
+
+    // Zoom to annotation
+    self.stolpersteinToSelect = annotation;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, latitudinalMeters, longitudinalMeters);
+    [self.mapView setRegion:region animated:YES];
+    if ([self isCoordinateUpToDate:region.center]) {
+        // Manually call update methods because region won't change
+        [self mapView:self.mapView regionWillChangeAnimated:YES];
+        [self mapView:self.mapView regionDidChangeAnimated:YES];
+    }
+}
+
 - (void)removeAnnotations:(NSSet *)annotations
 {
     // Animate annotations that get removed
@@ -141,6 +172,31 @@
             [self.mapView removeAnnotation:annotation];
         }];
     }
+}
+
+- (id<MKAnnotation>)annotationForStolperstein:(id<MKAnnotation>)stolperstein inMapRect:(MKMapRect)mapRect
+{
+    id<MKAnnotation> annotationResult = nil;
+    
+    NSSet *annotations = [self.mapView annotationsInMapRect:mapRect];
+    for (id<MKAnnotation> annotation in annotations) {
+        if ([annotation isKindOfClass:MapClusterAnnotation.class]) {
+            MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)annotation;
+            NSUInteger index = [mapClusterAnnotation.annotations indexOfObject:stolperstein];
+            if (index != NSNotFound) {
+                annotationResult = annotation;
+                break;
+            }
+        }
+    }
+    
+    return annotationResult;
+}
+
+- (BOOL)isCoordinateUpToDate:(CLLocationCoordinate2D)coordinate
+{
+    BOOL isCoordinateUpToDate = fequal(coordinate.latitude, self.mapView.region.center.latitude) && fequal(coordinate.longitude, self.mapView.region.center.longitude);
+    return isCoordinateUpToDate;
 }
 
 #pragma mark - Map view proxied delegate methods
@@ -168,6 +224,8 @@
     if ([self.mapViewDelegateProxy.target respondsToSelector:@selector(mapView:regionWillChangeAnimated:)]) {
         [self.mapViewDelegateProxy.target mapView:mapView regionWillChangeAnimated:animated];
     }
+    
+    self.regionSpanBeforeChange = mapView.region.span;
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
@@ -176,6 +234,40 @@
     if ([self.mapViewDelegateProxy.target respondsToSelector:@selector(mapView:regionDidChangeAnimated:)]) {
         [self.mapViewDelegateProxy.target mapView:mapView regionDidChangeAnimated:animated];
     }
+    
+    // Deselect all annotations when zooming in/out. Longitude delta will not change
+    // unless zoom changes (in contrast to latitude delta).
+    BOOL hasZoomed = !fequal(mapView.region.span.longitudeDelta, self.regionSpanBeforeChange.longitudeDelta);
+    if (hasZoomed) {
+        [self deselectAllAnnotations];
+    }
+    
+    // Update annotations
+    [self updateAnnotationsWithCompletionHandler:^{
+        if (self.stolpersteinToSelect) {
+            // Map has zoomed to selected stolperstein; search for cluster annotation that contains this stolperstein
+            id<MKAnnotation> annotation = [self annotationForStolperstein:self.stolpersteinToSelect inMapRect:mapView.visibleMapRect];
+            self.stolpersteinToSelect = nil;
+            
+            if ([self isCoordinateUpToDate:annotation.coordinate]) {
+                // Select immediately since region won't change
+                [self.mapView selectAnnotation:annotation animated:YES];
+            } else {
+                // Actual selection happens in next call to mapView:regionDidChangeAnimated:
+                self.annotationToSelect = annotation;
+                
+                // Dispatch async to avoid calling regionDidChangeAnimated immediately
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // No zooming, only panning. Otherwise, stolperstein might change to a different cluster annotation
+                    [self.mapView setCenterCoordinate:annotation.coordinate animated:NO];
+                });
+            }
+        } else if (self.annotationToSelect) {
+            // Map has zoomed to annotation
+            [self.mapView selectAnnotation:self.annotationToSelect animated:YES];
+            self.annotationToSelect = nil;
+        }
+    }];
 }
 
 @end

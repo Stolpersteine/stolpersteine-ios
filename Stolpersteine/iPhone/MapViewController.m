@@ -38,7 +38,6 @@
 #import "MapClusterAnnotation.h"
 #import "Localization.h"
 
-#define fequal(a, b) (fabs((a) - (b)) < FLT_EPSILON)
 static const MKCoordinateRegion BERLIN_REGION = { {52.5233, 13.4127}, {0.4493, 0.7366} };
 static const double ZOOM_DISTANCE_USER = 1200;
 static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
@@ -51,9 +50,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 @property (nonatomic, strong) StolpersteinSynchronizationController *stolpersteinSyncController;
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
 @property (nonatomic, strong) NSArray *searchedStolpersteine;
-@property (nonatomic, strong) Stolperstein *stolpersteinToSelect;
-@property (nonatomic, strong) MapClusterAnnotation *annotationToSelect;
-@property (nonatomic, assign) MKCoordinateSpan regionSpanBeforeChange;
 @property (nonatomic, strong) MapClusterController *mapClusterController;
 
 @end
@@ -149,39 +145,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [self.locationBarButtonItem setImage:image];
 }
 
-- (id<MKAnnotation>)annotationForStolperstein:(Stolperstein *)stolperstein inMapRect:(MKMapRect)mapRect
-{
-    id<MKAnnotation> annotationResult = nil;
-    
-    NSSet *annotations = [self.mapView annotationsInMapRect:mapRect];
-    for (id<MKAnnotation> annotation in annotations) {
-        if ([annotation isKindOfClass:MapClusterAnnotation.class]) {
-            MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)annotation;
-            NSUInteger index = [mapClusterAnnotation.annotations indexOfObject:stolperstein];
-            if (index != NSNotFound) {
-                annotationResult = annotation;
-                break;
-            }
-        }
-    }
-    
-    return annotationResult;
-}
-
-- (BOOL)isCoordinateUpToDate:(CLLocationCoordinate2D)coordinate
-{
-    BOOL isCoordinateUpToDate = fequal(coordinate.latitude, self.mapView.region.center.latitude) && fequal(coordinate.longitude, self.mapView.region.center.longitude);
-    return isCoordinateUpToDate;
-}
-
-- (void)deselectAllAnnotations
-{
-    NSArray *selectedAnnotations = self.mapView.selectedAnnotations;
-    for (id<MKAnnotation> selectedAnnotation in selectedAnnotations) {
-        [self.mapView deselectAnnotation:selectedAnnotation animated:YES];
-    }
-}
-
 - (IBAction)centerMap:(UIBarButtonItem *)sender
 {
     NSString *diagnosticsLabel;
@@ -220,48 +183,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 }
 
 #pragma mark - Map view
-
-- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
-{
-    self.regionSpanBeforeChange = mapView.region.span;
-}
-
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
-{
-    // Deselect all annotations when zooming in/out. Longitude delta will not change
-    // unless zoom changes (in contrast to latitude delta).
-    BOOL hasZoomed = !fequal(mapView.region.span.longitudeDelta, self.regionSpanBeforeChange.longitudeDelta);
-    if (hasZoomed) {
-        [self deselectAllAnnotations];
-    }
-
-    // Update annotations
-    [self.mapClusterController updateAnnotationsWithCompletionHandler:^{
-        if (self.stolpersteinToSelect) {
-            // Map has zoomed to selected stolperstein; search for cluster annotation that contains this stolperstein
-            id<MKAnnotation> annotation = [self annotationForStolperstein:self.stolpersteinToSelect inMapRect:mapView.visibleMapRect];
-            self.stolpersteinToSelect = nil;
-            
-            if ([self isCoordinateUpToDate:annotation.coordinate]) {
-                // Select immediately since region won't change
-                [self.mapView selectAnnotation:annotation animated:YES];
-            } else {
-                // Actual selection happens in next call to mapView:regionDidChangeAnimated:
-                self.annotationToSelect = annotation;
-                
-                // Dispatch async to avoid calling regionDidChangeAnimated immediately
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // No zooming, only panning. Otherwise, stolperstein might change to a different cluster annotation
-                    [self.mapView setCenterCoordinate:annotation.coordinate animated:NO];
-                });
-            }
-        } else if (self.annotationToSelect) {
-            // Map has zoomed to annotation
-            [self.mapView selectAnnotation:self.annotationToSelect animated:YES];
-            self.annotationToSelect = nil;
-        }
-    }];
-}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
@@ -400,24 +321,22 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     // Deselect table row
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
      
-    // Deselect annotations
-    [self deselectAllAnnotations];
-
-    // Force selected stolperstein to be on map
-    self.stolpersteinToSelect = self.searchedStolpersteine[indexPath.row];
-    [self.mapClusterController addAnnotations:@[self.stolpersteinToSelect]];
-
-    // Zoom in to selected stolperstein
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.stolpersteinToSelect.coordinate, ZOOM_DISTANCE_STOLPERSTEIN, ZOOM_DISTANCE_STOLPERSTEIN);
-    [self.mapView setRegion:region animated:YES];
-    if ([self isCoordinateUpToDate:region.center]) {
-        // Manually call update methods because region won't change
-        [self mapView:self.mapView regionWillChangeAnimated:YES];
-        [self mapView:self.mapView regionDidChangeAnimated:YES];
-    }
-    
     // Dismiss search display controller
     self.searchDisplayController.active = NO;
+
+    // Zoom to selected stolperstein
+    Stolperstein *stolperstein = self.searchedStolpersteine[indexPath.row];
+    [self.mapClusterController zoomToAnnotation:stolperstein withLatitudinalMeters:ZOOM_DISTANCE_STOLPERSTEIN longitudinalMeters:ZOOM_DISTANCE_STOLPERSTEIN];
 }
 
+//- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+//{
+//    
+//}
+//
+//- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+//{
+//    
+//}
+//
 @end

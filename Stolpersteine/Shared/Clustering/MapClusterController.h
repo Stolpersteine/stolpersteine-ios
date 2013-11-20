@@ -37,6 +37,6 @@
 
 - (id)initWithMapView:(MKMapView *)mapView;
 - (void)addAnnotations:(NSArray *)annotations;
-- (void)updateAnnotationsWithCompletionHandler:(void (^)())completionHandler;
+- (void)zoomToAnnotation:(id<MKAnnotation>)annotation withLatitudinalMeters:(CLLocationDistance)latitudinalMeters longitudinalMeters:(CLLocationDistance)longitudinalMeters;
 
 @end

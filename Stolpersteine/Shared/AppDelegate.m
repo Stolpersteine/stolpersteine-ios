@@ -48,6 +48,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Early out when running unit tests
+    BOOL runningTests = NSClassFromString(@"XCTestCase") != nil;
+    if (runningTests) {
+        return YES;
+    }
+
     // App version info
     NSString *version = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleVersion"];
     NSString *shortVersion = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleShortVersionString"];

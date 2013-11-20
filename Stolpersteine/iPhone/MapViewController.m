@@ -277,6 +277,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
 {
+    [self.searchStolpersteineOperation cancel];
     [self.navigationItem setRightBarButtonItem:self.locationBarButtonItem animated:YES];
     [controller.searchBar setShowsCancelButton:NO animated:YES];
 }

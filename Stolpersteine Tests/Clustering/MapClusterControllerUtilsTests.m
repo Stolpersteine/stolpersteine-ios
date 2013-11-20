@@ -68,7 +68,7 @@
     XCTAssertEqualObjects(annotation, stolperstein2, @"Wrong annotation");
 }
 
-- (void)testAlign
+- (void)testAlignToCellSize
 {
     MKMapRect mapRect = MKMapRectMake(0, 0, 15, 20);
     MKMapRect adjustedMapRect = MapClusterControllerAlignToCellSize(mapRect, 5);
@@ -83,6 +83,21 @@
     XCTAssertEqual(adjustedMapRect.origin.y, 6.0, @"Wrong origin y");
     XCTAssertEqual(adjustedMapRect.size.width, 18.0, @"Wrong size width");
     XCTAssertEqual(adjustedMapRect.size.height, 24.0, @"Wrong size height");
+}
+
+- (void)testCoordinateEqualToCoordinate
+{
+    CLLocationCoordinate2D coordinate0 = CLLocationCoordinate2DMake(5.12, -0.72);
+    XCTAssertTrue(MapClusterControllerCoordinateEqualToCoordinate(coordinate0, coordinate0), @"Wrong coordinate");
+    
+    CLLocationCoordinate2D coordinate1 = CLLocationCoordinate2DMake(5.12, -0.72);
+    XCTAssertTrue(MapClusterControllerCoordinateEqualToCoordinate(coordinate0, coordinate1), @"Wrong coordinate");
+
+    CLLocationCoordinate2D coordinate2 = CLLocationCoordinate2DMake(5.12, -0.73);
+    XCTAssertFalse(MapClusterControllerCoordinateEqualToCoordinate(coordinate1, coordinate2), @"Wrong coordinate");
+
+    CLLocationCoordinate2D coordinate3 = CLLocationCoordinate2DMake(5.11, -0.72);
+    XCTAssertFalse(MapClusterControllerCoordinateEqualToCoordinate(coordinate1, coordinate3), @"Wrong coordinate");
 }
 
 @end

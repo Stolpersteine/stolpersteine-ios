@@ -26,7 +26,6 @@
 #import "MapClusterControllerUtilsTests.h"
 
 #import "MapClusterControllerUtils.h"
-#import "Stolperstein.h"
 
 @implementation MapClusterControllerUtilsTests
 
@@ -51,21 +50,21 @@
     MKMapPoint mapPoint = MKMapPointForCoordinate(coordinate);
 
     NSMutableSet *annotations = [[NSMutableSet alloc] initWithCapacity:5];
-    Stolperstein *stolperstein0 = [[Stolperstein alloc] init];
-    stolperstein0.locationCoordinate = CLLocationCoordinate2DMake(40, 40);
-    [annotations addObject:stolperstein0];
-    Stolperstein *stolperstein1 = [[Stolperstein alloc] init];
-    stolperstein1.locationCoordinate = CLLocationCoordinate2DMake(47, 47);
-    [annotations addObject:stolperstein1];
-    Stolperstein *stolperstein2 = [[Stolperstein alloc] init];
-    stolperstein2.locationCoordinate = CLLocationCoordinate2DMake(45.1, 44.9);
-    [annotations addObject:stolperstein2];
-    Stolperstein *stolperstein3 = [[Stolperstein alloc] init];
-    stolperstein3.locationCoordinate = CLLocationCoordinate2DMake(42.1, 43.7);
-    [annotations addObject:stolperstein3];
+    MKPointAnnotation *annotation0 = [[MKPointAnnotation alloc] init];
+    annotation0.coordinate = CLLocationCoordinate2DMake(40, 40);
+    [annotations addObject:annotation0];
+    MKPointAnnotation *annotation1 = [[MKPointAnnotation alloc] init];
+    annotation1.coordinate = CLLocationCoordinate2DMake(47, 47);
+    [annotations addObject:annotation1];
+    MKPointAnnotation *annotation2 = [[MKPointAnnotation alloc] init];
+    annotation2.coordinate = CLLocationCoordinate2DMake(45.1, 44.9);
+    [annotations addObject:annotation2];
+    MKPointAnnotation *annotation3 = [[MKPointAnnotation alloc] init];
+    annotation3.coordinate = CLLocationCoordinate2DMake(42.1, 43.7);
+    [annotations addObject:annotation3];
     
     id<MKAnnotation> annotation = MapClusterControllerFindClosestAnnotation(annotations, mapPoint);
-    XCTAssertEqualObjects(annotation, stolperstein2, @"Wrong annotation");
+    XCTAssertEqualObjects(annotation, annotation2, @"Wrong annotation");
 }
 
 - (void)testAlignToCellSize

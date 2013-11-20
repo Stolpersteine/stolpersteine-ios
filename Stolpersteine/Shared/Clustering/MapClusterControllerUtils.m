@@ -108,10 +108,12 @@ MapClusterAnnotation *MapClusterControllerClusterAnnotationForAnnotation(MKMapVi
     for (id<MKAnnotation> mapAnnotation in mapAnnotations) {
         if ([mapAnnotation isKindOfClass:MapClusterAnnotation.class]) {
             MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)mapAnnotation;
-            NSUInteger index = [mapClusterAnnotation.annotations indexOfObject:annotation];
-            if (index != NSNotFound) {
-                annotationResult = mapClusterAnnotation;
-                break;
+            if (mapClusterAnnotation.annotations) {
+                NSUInteger index = [mapClusterAnnotation.annotations indexOfObject:annotation];
+                if (index != NSNotFound) {
+                    annotationResult = mapClusterAnnotation;
+                    break;
+                }
             }
         }
     }

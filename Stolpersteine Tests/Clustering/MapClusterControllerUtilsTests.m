@@ -26,6 +26,7 @@
 #import "MapClusterControllerUtilsTests.h"
 
 #import "MapClusterControllerUtils.h"
+#import "MapClusterAnnotation.h"
 
 @implementation MapClusterControllerUtilsTests
 
@@ -86,17 +87,101 @@
 
 - (void)testCoordinateEqualToCoordinate
 {
+    // Same struct
     CLLocationCoordinate2D coordinate0 = CLLocationCoordinate2DMake(5.12, -0.72);
     XCTAssertTrue(MapClusterControllerCoordinateEqualToCoordinate(coordinate0, coordinate0), @"Wrong coordinate");
     
+    // Equal struct
     CLLocationCoordinate2D coordinate1 = CLLocationCoordinate2DMake(5.12, -0.72);
     XCTAssertTrue(MapClusterControllerCoordinateEqualToCoordinate(coordinate0, coordinate1), @"Wrong coordinate");
 
+    // Longitude different
     CLLocationCoordinate2D coordinate2 = CLLocationCoordinate2DMake(5.12, -0.73);
     XCTAssertFalse(MapClusterControllerCoordinateEqualToCoordinate(coordinate1, coordinate2), @"Wrong coordinate");
 
+    // Latitude different
     CLLocationCoordinate2D coordinate3 = CLLocationCoordinate2DMake(5.11, -0.72);
     XCTAssertFalse(MapClusterControllerCoordinateEqualToCoordinate(coordinate1, coordinate3), @"Wrong coordinate");
+}
+
+- (MKMapRect)mapRectForCoordinateRegion:(MKCoordinateRegion)coordinateRegion
+{
+    CLLocationCoordinate2D topLeftCoordinate =
+    CLLocationCoordinate2DMake(coordinateRegion.center.latitude
+                               + (coordinateRegion.span.latitudeDelta/2.0),
+                               coordinateRegion.center.longitude
+                               - (coordinateRegion.span.longitudeDelta/2.0));
+    
+    MKMapPoint topLeftMapPoint = MKMapPointForCoordinate(topLeftCoordinate);
+    
+    CLLocationCoordinate2D bottomRightCoordinate =
+    CLLocationCoordinate2DMake(coordinateRegion.center.latitude
+                               - (coordinateRegion.span.latitudeDelta/2.0),
+                               coordinateRegion.center.longitude
+                               + (coordinateRegion.span.longitudeDelta/2.0));
+    
+    MKMapPoint bottomRightMapPoint = MKMapPointForCoordinate(bottomRightCoordinate);
+    
+    MKMapRect mapRect = MKMapRectMake(topLeftMapPoint.x,
+                                      topLeftMapPoint.y,
+                                      fabs(bottomRightMapPoint.x-topLeftMapPoint.x),
+                                      fabs(bottomRightMapPoint.y-topLeftMapPoint.y));
+    
+    return mapRect;
+}
+
+- (void)testClusterAnnotationForAnnotation
+{
+    MKMapRect mapRect = MKMapRectMake(10000000, 10000000, 20000000, 20000000);
+    MKCoordinateRegion coordinateRegion = MKCoordinateRegionForMapRect(mapRect);
+
+    MapClusterAnnotation *mapClusterAnnotation = [[MapClusterAnnotation alloc] init];
+    mapClusterAnnotation.coordinate = coordinateRegion.center;
+    MKMapView *mapView = [[MKMapView alloc] init];
+    [mapView addAnnotation:mapClusterAnnotation];
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    
+    // Cluster annotation doesn't contain annotation
+    MapClusterAnnotation *mapClusterAnnotationFound = MapClusterControllerClusterAnnotationForAnnotation(mapView, annotation, mapRect);
+    XCTAssertNil(mapClusterAnnotationFound, @"Wrong cluster annotation");
+    
+    // Cluster annotation contains annotation
+    mapClusterAnnotation.annotations = @[annotation];
+    mapClusterAnnotationFound = MapClusterControllerClusterAnnotationForAnnotation(mapView, annotation, mapRect);
+    XCTAssertEqualObjects(mapClusterAnnotation, mapClusterAnnotationFound, @"Wrong cluster annotation");
+
+    // Cluster annotation outside map rect
+    mapClusterAnnotation.coordinate = CLLocationCoordinate2DMake(coordinateRegion.center.latitude + 1.2 * coordinateRegion.span.latitudeDelta, coordinateRegion.center.longitude);
+    mapClusterAnnotationFound = MapClusterControllerClusterAnnotationForAnnotation(mapView, annotation, mapRect);
+    XCTAssertNil(mapClusterAnnotationFound, @"Wrong cluster annotation");
+}
+
+- (void)testClusterAnnotationForAnnotationMultiple
+{
+    MKMapRect mapRect = MKMapRectMake(10000000, 10000000, 20000000, 20000000);
+    MKCoordinateRegion coordinateRegion = MKCoordinateRegionForMapRect(mapRect);
+    
+    MKMapView *mapView = [[MKMapView alloc] init];
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    
+    MapClusterAnnotation *mapClusterAnnotation0 = [[MapClusterAnnotation alloc] init];
+    mapClusterAnnotation0.coordinate = coordinateRegion.center;
+    mapClusterAnnotation0.annotations = @[[[MKPointAnnotation alloc] init], annotation, [[MKPointAnnotation alloc] init]];
+    [mapView addAnnotation:mapClusterAnnotation0];
+
+    MapClusterAnnotation *mapClusterAnnotation1 = [[MapClusterAnnotation alloc] init];
+    mapClusterAnnotation1.coordinate = CLLocationCoordinate2DMake(coordinateRegion.center.latitude + 0.5, coordinateRegion.center.longitude + 0.5);
+    mapClusterAnnotation1.annotations = @[[[MKPointAnnotation alloc] init], [[MKPointAnnotation alloc] init]];
+    [mapView addAnnotation:mapClusterAnnotation1];
+
+    MapClusterAnnotation *mapClusterAnnotation2 = [[MapClusterAnnotation alloc] init];
+    mapClusterAnnotation2.coordinate = CLLocationCoordinate2DMake(coordinateRegion.center.latitude - 0.5, coordinateRegion.center.longitude - 0.5);
+    mapClusterAnnotation2.annotations = @[[[MKPointAnnotation alloc] init]];
+    [mapView addAnnotation:mapClusterAnnotation2];
+    
+    MapClusterAnnotation *mapClusterAnnotationFound = MapClusterControllerClusterAnnotationForAnnotation(mapView, annotation, mapRect);
+    XCTAssertEqualObjects(mapClusterAnnotation0, mapClusterAnnotationFound, @"Wrong cluster annotation");
 }
 
 @end

@@ -1,6 +1,6 @@
 # Stolpersteine iOS App
 
-[![Build Status](https://travis-ci.org/optionu/stolpersteine-ios.png?branch=master)](https://travis-ci.org/optionu/stolpersteine-ios)
+[![Build Status](https://travis-ci.org/optionu/stolpersteine-ios.png?branch=master)](https://travis-ci.org/optionu/stolpersteine-ios) [![Dependency Status](https://www.versioneye.com/user/projects/528df337632bacb984000004/badge.png)](https://www.versioneye.com/user/projects/528df337632bacb984000004)
 
 iOS app to display the locations of [Stolpersteine](http://en.wikipedia.org/wiki/Stolperstein) on a map. 
 

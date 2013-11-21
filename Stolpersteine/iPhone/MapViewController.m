@@ -249,6 +249,14 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self performSelector:@selector(updateSearchData:) withObject:searchString afterDelay:0.3];
+    
+    return NO;
+}
+
+- (void)updateSearchData:(NSString *)searchString
+{
     [self.searchStolpersteineOperation cancel];
     
     StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
@@ -260,8 +268,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         
         return YES;
     }];
-                                           
-    return NO;
 }
 
 - (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller

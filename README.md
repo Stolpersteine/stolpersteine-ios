@@ -12,7 +12,7 @@ iOS app to display the locations of [Stolpersteine](http://en.wikipedia.org/wiki
 - Hendrik Spree ([@drikkes](https://twitter.com/drikkes))
 - Rachel Höfele
 
-## License
+## License (MIT)
 
 Copyright (C) 2013 Option-U Software
 

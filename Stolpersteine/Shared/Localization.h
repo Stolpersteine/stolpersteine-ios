@@ -26,7 +26,7 @@
 #import <Foundation/Foundation.h>
 
 @class Stolperstein;
-@class MapClusterAnnotation;
+@class CCHMapClusterAnnotation;
 
 @interface Localization : NSObject
 
@@ -36,8 +36,8 @@
 + (NSString *)newShortAddressFromStolperstein:(Stolperstein *)stolperstein;
 + (NSString *)newLongAddressFromStolperstein:(Stolperstein *)stolperstein;
 + (NSString *)newPasteboardStringFromStolperstein:(Stolperstein *)stolperstein;
-+ (NSString *)newTitleFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
-+ (NSString *)newSubtitleFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation;
++ (NSString *)newTitleFromMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation;
++ (NSString *)newSubtitleFromMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation;
 + (NSString *)newStolpersteineCountFromArray:(NSArray *)array;
 
 @end

@@ -1,5 +1,6 @@
 platform :ios, '7.0'
 
+pod 'CCHMapClusterController', :path => '~/Projekte/CCHMapClusterController'
 pod 'AFNetworking', '~> 1.3.3'
 pod 'GoogleAnalytics-iOS-SDK', '>= 3.0.2'
 pod 'TUSafariActivity', '>= 1.0.0'

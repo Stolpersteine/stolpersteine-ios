@@ -26,7 +26,7 @@
 #import "Localization.h"
 
 #import "Stolperstein.h"
-#import "MapClusterAnnotation.h"
+#import "CCHMapClusterAnnotation.h"
 
 @implementation Localization
 
@@ -143,7 +143,7 @@
     return string;
 }
 
-+ (NSString *)newTitleFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
++ (NSString *)newTitleFromMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
 {
     NSString *title;
     if (mapClusterAnnotation.isCluster) {
@@ -162,7 +162,7 @@
     return title;
 }
 
-+ (NSString *)newSubtitleFromMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
++ (NSString *)newSubtitleFromMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
 {
     NSString *subtitle;
     if ([mapClusterAnnotation isOneLocation]) {

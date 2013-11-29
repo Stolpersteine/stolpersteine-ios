@@ -33,16 +33,16 @@
 #import "StolpersteinSynchronizationControllerDelegate.h"
 #import "StolpersteinSynchronizationController.h"
 #import "StolpersteinCardsViewController.h"
-#import "MapClusterController.h"
-#import "MapClusterControllerDelegate.h"
-#import "MapClusterAnnotation.h"
+#import "CCHMapClusterController.h"
+#import "CCHMapClusterControllerDelegate.h"
+#import "CCHMapClusterAnnotation.h"
 #import "Localization.h"
 
 static const MKCoordinateRegion BERLIN_REGION = { {52.5233, 13.4127}, {0.4493, 0.7366} };
 static const double ZOOM_DISTANCE_USER = 1200;
 static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
-@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, MapClusterControllerDelegate, StolpersteinSynchronizationControllerDelegate>
+@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, CCHMapClusterControllerDelegate, StolpersteinSynchronizationControllerDelegate>
 
 @property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -50,7 +50,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 @property (nonatomic, strong) StolpersteinSynchronizationController *stolpersteinSyncController;
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
 @property (nonatomic, strong) NSArray *searchedStolpersteine;
-@property (nonatomic, strong) MapClusterController *mapClusterController;
+@property (nonatomic, strong) CCHMapClusterController *mapClusterController;
 
 @end
 
@@ -77,7 +77,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.locationManager.delegate = self;
     
     // Clustering
-    self.mapClusterController = [[MapClusterController alloc] initWithMapView:self.mapView];
+    self.mapClusterController = [[CCHMapClusterController alloc] initWithMapView:self.mapView];
     self.mapClusterController.delegate = self;
     
     // Start loading data
@@ -168,7 +168,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 {
     if ([segue.identifier isEqualToString:@"mapViewControllerToStolpersteineCardsViewController"]) {
         id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
-        MapClusterAnnotation *mapClusterAnnotation = (MapClusterAnnotation *)selectedAnnotation;
+        CCHMapClusterAnnotation *mapClusterAnnotation = (CCHMapClusterAnnotation *)selectedAnnotation;
         StolpersteinCardsViewController *listViewController = (StolpersteinCardsViewController *)segue.destinationViewController;
         listViewController.stolpersteine = mapClusterAnnotation.annotations;
         listViewController.title = [Localization newStolpersteineCountFromArray:mapClusterAnnotation.annotations];
@@ -188,7 +188,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 {
     MKAnnotationView *annotationView;
     
-    if ([annotation isKindOfClass:MapClusterAnnotation.class]) {
+    if ([annotation isKindOfClass:CCHMapClusterAnnotation.class]) {
         static NSString *stolpersteinIdentifier = @"stolpersteinIdentifier";
         
         annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
@@ -226,7 +226,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    if ([view.annotation isKindOfClass:MapClusterAnnotation.class]) {
+    if ([view.annotation isKindOfClass:CCHMapClusterAnnotation.class]) {
         [self performSegueWithIdentifier:@"mapViewControllerToStolpersteineCardsViewController" sender:self];
     }
 }
@@ -290,12 +290,12 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 #pragma mark - Map cluster controller
 
-- (NSString *)mapClusterController:(MapClusterController *)mapClusterController titleForMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
+- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
 {
     return [Localization newTitleFromMapClusterAnnotation:mapClusterAnnotation];
 }
 
-- (NSString *)mapClusterController:(MapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(MapClusterAnnotation *)mapClusterAnnotation
+- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
 {
     return [Localization newSubtitleFromMapClusterAnnotation:mapClusterAnnotation];
 }
@@ -333,7 +333,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     
     // Force selected annotation to be on map
     Stolperstein *stolperstein = self.searchedStolpersteine[indexPath.row];
-    __weak MapClusterController *weakMapClusterController = self.mapClusterController;
+    __weak CCHMapClusterController *weakMapClusterController = self.mapClusterController;
     [weakMapClusterController addAnnotations:@[stolperstein] withCompletionHandler:^{
         // Zoom to selected stolperstein
         [weakMapClusterController selectAnnotation:stolperstein andZoomToRegionWithLatitudinalMeters:ZOOM_DISTANCE_STOLPERSTEIN longitudinalMeters:ZOOM_DISTANCE_STOLPERSTEIN];

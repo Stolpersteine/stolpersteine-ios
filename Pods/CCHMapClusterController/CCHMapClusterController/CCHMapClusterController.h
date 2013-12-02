@@ -1,8 +1,8 @@
 //
-//  LocalizationTests.h
-//  Stolpersteine
+//  MapClusterController.h
+//  CCHMapClusterController
 //
-//  Copyright (C) 2013 Option-U Software
+//  Copyright (C) 2013 Claus Höfele
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,21 @@
 //  THE SOFTWARE.
 //
 
-#import <XCTest/XCTest.h>
+#import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
-@interface MapClusterControllerUtilsTests : XCTestCase
+@protocol CCHMapClusterControllerDelegate;
+
+@interface CCHMapClusterController : NSObject
+
+@property (nonatomic, assign) double marginFactor;
+@property (nonatomic, assign) double cellSize;
+@property (nonatomic, assign, getter = isDebuggingEnabled) BOOL debuggingEnabled;
+@property (nonatomic, weak) id<CCHMapClusterControllerDelegate> delegate;
+@property (nonatomic, assign, readonly) NSUInteger numberOfAnnotations;
+
+- (id)initWithMapView:(MKMapView *)mapView;
+- (void)addAnnotations:(NSArray *)annotations withCompletionHandler:(void (^)())completionHandler;
+- (void)selectAnnotation:(id<MKAnnotation>)annotation andZoomToRegionWithLatitudinalMeters:(CLLocationDistance)latitudinalMeters longitudinalMeters:(CLLocationDistance)longitudinalMeters;
 
 @end

@@ -41,7 +41,6 @@
 		48E27823180B2BD00018EE03 /* LocalizationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2781A180B2BD00018EE03 /* LocalizationTests.m */; };
 		48E27824180B2BD00018EE03 /* StolpersteinNetworkServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2781D180B2BD00018EE03 /* StolpersteinNetworkServiceTests.m */; };
 		48E27825180B2BD00018EE03 /* StolpersteinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E2781F180B2BD00018EE03 /* StolpersteinTests.m */; };
-		48E27826180B2BD00018EE03 /* MapClusterControllerUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E27822180B2BD00018EE03 /* MapClusterControllerUtilsTests.m */; };
 		48E27827180B2BEF0018EE03 /* Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A08C8F16DBF5A5000A2470 /* Localization.m */; };
 		48E27829180B2C220018EE03 /* StolpersteinNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 627E4431169C420A0065C1F1 /* StolpersteinNetworkService.m */; };
 		48E2782A180B2C220018EE03 /* StolpersteinSynchronizationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 489B682817739342000803C2 /* StolpersteinSynchronizationController.m */; };
@@ -138,8 +137,6 @@
 		48E2781D180B2BD00018EE03 /* StolpersteinNetworkServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinNetworkServiceTests.m; sourceTree = "<group>"; };
 		48E2781E180B2BD00018EE03 /* StolpersteinTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinTests.h; sourceTree = "<group>"; };
 		48E2781F180B2BD00018EE03 /* StolpersteinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinTests.m; sourceTree = "<group>"; };
-		48E27821180B2BD00018EE03 /* MapClusterControllerUtilsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapClusterControllerUtilsTests.h; sourceTree = "<group>"; };
-		48E27822180B2BD00018EE03 /* MapClusterControllerUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapClusterControllerUtilsTests.m; sourceTree = "<group>"; };
 		6205ED93175E021D00482DF9 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		6205ED95175E023000482DF9 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		620B6C44171847550035C2AC /* buildnumber_dynamic.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = buildnumber_dynamic.xcconfig; sourceTree = "<group>"; };
@@ -251,7 +248,6 @@
 				48E27819180B2BD00018EE03 /* LocalizationTests.h */,
 				48E2781A180B2BD00018EE03 /* LocalizationTests.m */,
 				48E2781B180B2BD00018EE03 /* Stolpersteine API */,
-				48E27820180B2BD00018EE03 /* Clustering */,
 				486576FB180B29CD000326D1 /* Supporting Files */,
 			);
 			path = "Stolpersteine Tests";
@@ -308,15 +304,6 @@
 				48E2781F180B2BD00018EE03 /* StolpersteinTests.m */,
 			);
 			path = "Stolpersteine API";
-			sourceTree = "<group>";
-		};
-		48E27820180B2BD00018EE03 /* Clustering */ = {
-			isa = PBXGroup;
-			children = (
-				48E27821180B2BD00018EE03 /* MapClusterControllerUtilsTests.h */,
-				48E27822180B2BD00018EE03 /* MapClusterControllerUtilsTests.m */,
-			);
-			path = Clustering;
 			sourceTree = "<group>";
 		};
 		626BBF0E16AEB15600DEC6EA /* Resources */ = {
@@ -650,7 +637,6 @@
 				48E27829180B2C220018EE03 /* StolpersteinNetworkService.m in Sources */,
 				48E2782A180B2C220018EE03 /* StolpersteinSynchronizationController.m in Sources */,
 				48E2782B180B2C220018EE03 /* NSDictionary+StolpersteinParsing.m in Sources */,
-				48E27826180B2BD00018EE03 /* MapClusterControllerUtilsTests.m in Sources */,
 				48E27823180B2BD00018EE03 /* LocalizationTests.m in Sources */,
 				48E2782D180B2C220018EE03 /* StolpersteinSearchData.m in Sources */,
 			);

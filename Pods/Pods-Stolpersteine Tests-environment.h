@@ -16,7 +16,7 @@
 #define COCOAPODS_POD_AVAILABLE_CCHMapClusterController
 #define COCOAPODS_VERSION_MAJOR_CCHMapClusterController 1
 #define COCOAPODS_VERSION_MINOR_CCHMapClusterController 0
-#define COCOAPODS_VERSION_PATCH_CCHMapClusterController 0
+#define COCOAPODS_VERSION_PATCH_CCHMapClusterController 1
 
 // GoogleAnalytics-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK

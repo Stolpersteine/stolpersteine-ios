@@ -1,5 +1,5 @@
 //
-//  CCHMapClusterControllerDelegate.h
+//  CCHFadeInOutMapAnimator.h
 //  CCHMapClusterController
 //
 //  Copyright (C) 2013 Claus Höfele
@@ -25,13 +25,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class CCHMapClusterController;
-@class CCHMapClusterAnnotation;
+#import "CCHMapAnimator.h"
 
-@protocol CCHMapClusterControllerDelegate <NSObject>
+@interface CCHFadeInOutMapAnimator : NSObject<CCHMapAnimator>
 
-@optional
-- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation;
-- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation;
+@property (nonatomic, assign) NSTimeInterval duration;
+
+- (void)mapClusterController:(CCHMapClusterController *)mapClusterController didAddAnnotationViews:(NSArray *)annotationViews;
+- (void)mapClusterController:(CCHMapClusterController *)mapClusterController removeAnnotations:(NSSet *)annotations;
 
 @end

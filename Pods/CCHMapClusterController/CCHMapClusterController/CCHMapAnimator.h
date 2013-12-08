@@ -1,5 +1,5 @@
 //
-//  CCHMapClusterControllerDelegate.h
+//  CCHMapAnimator.h
 //  CCHMapClusterController
 //
 //  Copyright (C) 2013 Claus Höfele
@@ -26,12 +26,10 @@
 #import <Foundation/Foundation.h>
 
 @class CCHMapClusterController;
-@class CCHMapClusterAnnotation;
 
-@protocol CCHMapClusterControllerDelegate <NSObject>
+@protocol CCHMapAnimator <NSObject>
 
-@optional
-- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation;
-- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation;
+- (void)mapClusterController:(CCHMapClusterController *)mapClusterController didAddAnnotationViews:(NSArray *)annotationViews;
+- (void)mapClusterController:(CCHMapClusterController *)mapClusterController removeAnnotations:(NSSet *)annotations;
 
 @end

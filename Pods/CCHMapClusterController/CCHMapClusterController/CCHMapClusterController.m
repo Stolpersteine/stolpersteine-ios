@@ -1,5 +1,5 @@
 //
-//  MapClusterController.m
+//  CCHMapClusterController.m
 //  CCHMapClusterController
 //
 //  Copyright (C) 2013 Claus Höfele
@@ -31,6 +31,8 @@
 #import "CCHMapClusterAnnotation.h"
 #import "CCHMapClusterControllerDelegate.h"
 #import "CCHMapViewDelegateProxy.h"
+#import "CCHNearCenterMapClusterer.h"
+#import "CCHFadeInOutMapAnimator.h"
 
 #define fequal(a, b) (fabs((a) - (b)) < __FLT_EPSILON__)
 @interface CCHMapClusterControllerPolygon : MKPolygon
@@ -40,12 +42,15 @@
 
 @interface CCHMapClusterController()<MKMapViewDelegate>
 
-@property (strong, nonatomic) MKMapView *mapView;
-@property (strong, nonatomic) MKMapView *allAnnotationsMapView;
-@property (strong, nonatomic) CCHMapViewDelegateProxy *mapViewDelegateProxy;
+@property (nonatomic, strong) MKMapView *mapView;
+@property (nonatomic, strong) MKMapView *allAnnotationsMapView;
+@property (nonatomic, strong) CCHMapViewDelegateProxy *mapViewDelegateProxy;
 @property (nonatomic, strong) id<MKAnnotation> annotationToSelect;
 @property (nonatomic, strong) CCHMapClusterAnnotation *mapClusterAnnotationToSelect;
 @property (nonatomic, assign) MKCoordinateSpan regionSpanBeforeChange;
+@property (nonatomic, strong) id<CCHMapClusterer> strongClusterer;
+@property (nonatomic, strong) CCHMapClusterAnnotation *(^findVisibleAnnotation)(NSSet *annotations, NSSet *visibleAnnotations);
+@property (nonatomic, strong) id<CCHMapAnimator> strongAnimator;
 
 @end
 
@@ -55,13 +60,48 @@
 {
     self = [super init];
     if (self) {
+        self.reuseExistingClusterAnnotations = YES;
         self.marginFactor = 0.5;
         self.cellSize = 60;
         self.mapView = mapView;
         self.allAnnotationsMapView = [[MKMapView alloc] initWithFrame:CGRectZero];
         self.mapViewDelegateProxy = [[CCHMapViewDelegateProxy alloc] initWithMapView:mapView delegate:self];
+        
+        // Keep strong reference to default instance because public property is weak
+        id<CCHMapClusterer> clusterer = [[CCHNearCenterMapClusterer alloc] init];
+        self.clusterer = clusterer;
+        self.strongClusterer = clusterer;
+        id<CCHMapAnimator> animator = [[CCHFadeInOutMapAnimator alloc] init];
+        self.animator = animator;
+        self.strongAnimator = animator;
     }
     return self;
+}
+
+- (void)setClusterer:(id<CCHMapClusterer>)clusterer
+{
+    _clusterer = clusterer;
+    self.strongClusterer = nil;
+}
+
+- (void)setAnimator:(id<CCHMapAnimator>)animator
+{
+    _animator = animator;
+    self.strongAnimator = nil;
+}
+
+- (void)setReuseExistingClusterAnnotations:(BOOL)reuseExistingClusterAnnotations
+{
+    _reuseExistingClusterAnnotations = reuseExistingClusterAnnotations;
+    if (reuseExistingClusterAnnotations) {
+        self.findVisibleAnnotation = ^CCHMapClusterAnnotation *(NSSet *annotations, NSSet *visibleAnnotations) {
+            return CCHMapClusterControllerFindVisibleAnnotation(annotations, visibleAnnotations);
+        };
+    } else {
+        self.findVisibleAnnotation = ^CCHMapClusterAnnotation *(NSSet *annotations, NSSet *visibleAnnotations) {
+            return nil;
+        };
+    }
 }
 
 - (void)addAnnotations:(NSArray *)annotations withCompletionHandler:(void (^)())completionHandler
@@ -78,10 +118,10 @@
 - (void)updateAnnotationsWithCompletionHandler:(void (^)())completionHandler
 {
     // Calculate cell size in map point units
-    double cellSize = CCHMapClusterControllerMapLengthForLength(self.mapView, self.mapView.superview, self.cellSize);
+    double cellSize = CCHMapClusterControllerMapLengthForLength(_mapView, _mapView.superview, _cellSize);
     
     // Expand map rect and align to cell size to avoid popping when panning
-    MKMapRect visibleMapRect = self.mapView.visibleMapRect;
+    MKMapRect visibleMapRect = _mapView.visibleMapRect;
     MKMapRect gridMapRect = MKMapRectInset(visibleMapRect, -_marginFactor * visibleMapRect.size.width, -_marginFactor * visibleMapRect.size.height);
     gridMapRect = CCHMapClusterControllerAlignToCellSize(gridMapRect, cellSize);
     MKMapRect cellMapRect = MKMapRectMake(0, MKMapRectGetMinY(gridMapRect), cellSize, cellSize);
@@ -91,23 +131,29 @@
         cellMapRect.origin.x = MKMapRectGetMinX(gridMapRect);
         
         while (MKMapRectGetMinX(cellMapRect) < MKMapRectGetMaxX(gridMapRect)) {
-            NSMutableSet *allAnnotationsInCell = [[self.allAnnotationsMapView annotationsInMapRect:cellMapRect] mutableCopy];
+            NSSet *allAnnotationsInCell = [_allAnnotationsMapView annotationsInMapRect:cellMapRect];
             if (allAnnotationsInCell.count > 0) {
-                NSMutableSet *visibleAnnotationsInCell = [[self.mapView annotationsInMapRect:cellMapRect] mutableCopy];
-                MKUserLocation *userLocation = self.mapView.userLocation;
+                NSMutableSet *visibleAnnotationsInCell = [[_mapView annotationsInMapRect:cellMapRect] mutableCopy];
+                MKUserLocation *userLocation = _mapView.userLocation;
                 if (userLocation) {
                     [visibleAnnotationsInCell removeObject:userLocation];
                 }
                 
-                CCHMapClusterAnnotation *annotationForCell = CCHMapClusterControllerFindAnnotation(cellMapRect, allAnnotationsInCell, visibleAnnotationsInCell);
+                // Select cluster representation
+                CCHMapClusterAnnotation *annotationForCell = _findVisibleAnnotation(allAnnotationsInCell, visibleAnnotationsInCell);
+                if (annotationForCell == nil) {
+                    annotationForCell = [[CCHMapClusterAnnotation alloc] init];
+                    annotationForCell.coordinate = [_clusterer mapClusterController:self coordinateForAnnotations:allAnnotationsInCell inMapRect:cellMapRect];
+                }
                 annotationForCell.annotations = allAnnotationsInCell.allObjects;
-                annotationForCell.delegate = self.delegate;
+                annotationForCell.delegate = _delegate;
                 annotationForCell.title = nil;
                 annotationForCell.subtitle = nil;
                 
+                // Show cluster annotation on map
                 [visibleAnnotationsInCell removeObject:annotationForCell];
-                [self removeAnnotations:visibleAnnotationsInCell];
-                [self.mapView addAnnotation:annotationForCell];
+                [_animator mapClusterController:self removeAnnotations:visibleAnnotationsInCell];
+                [_mapView addAnnotation:annotationForCell];
             }
             cellMapRect.origin.x += MKMapRectGetWidth(cellMapRect);
         }
@@ -115,7 +161,7 @@
     }
     
     if (self.isDebuggingEnabled) {
-        [self.mapView removeOverlays:self.mapView.overlays];
+        [_mapView removeOverlays:_mapView.overlays];
         MKMapPoint points[4];
 
         cellMapRect = MKMapRectMake(0, MKMapRectGetMinY(gridMapRect), cellSize, cellSize);
@@ -128,7 +174,7 @@
                 points[2] = MKMapPointMake(MKMapRectGetMaxX(cellMapRect), MKMapRectGetMaxY(cellMapRect));
                 points[3] = MKMapPointMake(MKMapRectGetMinX(cellMapRect), MKMapRectGetMaxY(cellMapRect));
                 MKPolygon *polygon = [CCHMapClusterControllerPolygon polygonWithPoints:points count:4];
-                [self.mapView addOverlay:polygon];
+                [_mapView addOverlay:polygon];
 
                 cellMapRect.origin.x += MKMapRectGetWidth(cellMapRect);
             }
@@ -165,23 +211,6 @@
     }
 }
 
-- (void)removeAnnotations:(NSSet *)annotations
-{
-    // Animate annotations that get removed
-    for (id<MKAnnotation> annotation in annotations) {
-#if TARGET_OS_IPHONE
-        MKAnnotationView *annotationView = [self.mapView viewForAnnotation:annotation];
-        [UIView animateWithDuration:0.2 animations:^{
-            annotationView.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            [self.mapView removeAnnotation:annotation];
-        }];
-#else
-        [self.mapView removeAnnotation:annotation];
-#endif
-    }
-}
-
 #pragma mark - Map view proxied delegate methods
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews
@@ -192,15 +221,7 @@
     }
 
     // Animate annotations that get added
-#if TARGET_OS_IPHONE
-    for (MKAnnotationView *annotationView in annotationViews)
-    {
-        annotationView.alpha = 0.0;
-        [UIView animateWithDuration:0.2 animations:^{
-            annotationView.alpha = 1.0;
-        }];
-    }
-#endif
+    [self.animator mapClusterController:self didAddAnnotationViews:annotationViews];
 }
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated

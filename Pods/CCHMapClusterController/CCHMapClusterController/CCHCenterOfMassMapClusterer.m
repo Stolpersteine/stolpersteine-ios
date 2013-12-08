@@ -1,5 +1,5 @@
 //
-//  CCHMapClusterControllerDelegate.h
+//  CCHCenterOfMassMapClusterer.m
 //  CCHMapClusterController
 //
 //  Copyright (C) 2013 Claus Höfele
@@ -23,15 +23,29 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "CCHCenterOfMassMapClusterer.h"
 
-@class CCHMapClusterController;
-@class CCHMapClusterAnnotation;
+#import "CCHMapClusterController.h"
 
-@protocol CCHMapClusterControllerDelegate <NSObject>
+@implementation CCHCenterOfMassMapClusterer
 
-@optional
-- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation;
-- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation;
+- (CLLocationCoordinate2D)mapClusterController:(CCHMapClusterController *)mapClusterController coordinateForAnnotations:(NSSet *)annotations inMapRect:(MKMapRect)mapRect
+{
+    double latitude = 0, longitude = 0;
+    for (id<MKAnnotation> annotation in annotations) {
+        latitude += annotation.coordinate.latitude;
+        longitude += annotation.coordinate.longitude;
+    }
+    
+    CLLocationCoordinate2D coordinate;
+    if (annotations.count > 0) {
+        double count = (double)annotations.count;
+        coordinate = CLLocationCoordinate2DMake(latitude / count, longitude / count);
+    } else {
+        coordinate = CLLocationCoordinate2DMake(0, 0);
+    }
+    
+    return coordinate;
+}
 
 @end

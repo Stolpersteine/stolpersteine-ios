@@ -122,6 +122,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     } else {
         indexPath = self.tableView.indexPathForSelectedRow;
     }
+    
     StolpersteinCardCell *cardCell = (StolpersteinCardCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     Stolperstein *stolperstein = cardCell.stolperstein;
 
@@ -163,7 +164,21 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     [cell updateWithStolperstein:self.stolpersteine[indexPath.row] streetButtonHidden:self.isStreetButtonHidden];
     cell.streetButton.tag = indexPath.row;
     
+    if ([cell canSelectCurrentStolperstein]) {
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    } else {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    StolpersteinCardCell *cardCell = (StolpersteinCardCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    if ([cardCell canSelectCurrentStolperstein]) {
+        [self performSegueWithIdentifier:@"stolpersteinCardsViewControllerToStolpersteinDescriptionViewController" sender:self];
+    }
 }
 
 @end

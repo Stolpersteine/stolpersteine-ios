@@ -48,10 +48,17 @@
 {
     self.stolperstein = stolperstein;
     self.bodyLabel.attributedText = [StolpersteinCardCell newBodyAttributedStringFromStolperstein:stolperstein];
+    self.chevronImageView.hidden = ([self canSelectCurrentStolperstein] == NO);
     
     if (streetButtonHidden) {
         [self.streetButton removeFromSuperview];
     }
+}
+
+- (BOOL)canSelectCurrentStolperstein
+{
+    BOOL canSelectRow = (self.stolperstein.personBiographyURLString.length > 0);
+    return canSelectRow;
 }
 
 + (Stolperstein *)standardStolperstein

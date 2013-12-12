@@ -16,11 +16,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *bodyLabel;
 @property (weak, nonatomic) IBOutlet UIButton *streetButton;
+@property (weak, nonatomic) IBOutlet UIImageView *chevronImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightSpaceConstraint;
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden;
 - (void)updateLayoutWithTableView:(UITableView *)tableView;
+- (BOOL)canSelectCurrentStolperstein;
 - (CGFloat)heightForCurrentStolperstein;
 
 + (Stolperstein *)standardStolperstein;

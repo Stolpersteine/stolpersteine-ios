@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XLj-i0-kjg">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Map View Controller-->
@@ -154,10 +154,10 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="bodyLabel" destination="re6-BP-fXL" id="v1N-ZS-7qh"/>
+                                    <outlet property="chevronImageView" destination="H8n-3G-Av1" id="Fne-oa-XJr"/>
                                     <outlet property="leftSpaceConstraint" destination="8Cu-6o-Y2Z" id="4WJ-iJ-Zjx"/>
                                     <outlet property="rightSpaceConstraint" destination="hGK-Qq-sls" id="voP-hv-Z2S"/>
                                     <outlet property="streetButton" destination="qS8-Cv-1Tb" id="RCQ-wN-oFh"/>
-                                    <segue destination="ZbI-TV-s7f" kind="push" identifier="stolpersteinCardsViewControllerToStolpersteinDescriptionViewController" id="9Uw-e6-NCi"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -167,6 +167,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="hYk-hn-xCs"/>
+                    <connections>
+                        <segue destination="ZbI-TV-s7f" kind="push" identifier="stolpersteinCardsViewControllerToStolpersteinDescriptionViewController" id="haG-kk-mn9"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GeU-YR-f5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

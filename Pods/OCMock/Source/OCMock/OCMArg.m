@@ -21,9 +21,14 @@
 	return (void *)0x01234567;
 }
 
++ (id __autoreleasing *)anyObjectRef
+{
+    return (id *)0x01234567;
+}
+
 + (SEL)anySelector
 {
-    return @selector(aSelectorThatMatchesAnySelector);
+    return NSSelectorFromString(@"aSelectorThatMatchesAnySelector");
 }
 
 + (id)isNil
@@ -82,7 +87,7 @@
     {
         SEL selector;
         [value getValue:&selector];
-        if(selector == @selector(aSelectorThatMatchesAnySelector))
+        if(selector == NSSelectorFromString(@"aSelectorThatMatchesAnySelector"))
             return [OCMArg any];
     }
 	return value;

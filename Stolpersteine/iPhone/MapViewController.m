@@ -92,7 +92,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 {
     [super viewWillAppear:animated];
 
-    if (self.mapClusterController.numberOfAnnotations < 4600) {
+    if (self.mapClusterController.annotations.count < 4600) {
         [self.stolpersteinSyncController synchronize];
     }
 }
@@ -170,8 +170,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         id<MKAnnotation> selectedAnnotation = self.mapView.selectedAnnotations.lastObject;
         CCHMapClusterAnnotation *mapClusterAnnotation = (CCHMapClusterAnnotation *)selectedAnnotation;
         StolpersteinCardsViewController *listViewController = (StolpersteinCardsViewController *)segue.destinationViewController;
-        listViewController.stolpersteine = mapClusterAnnotation.annotations;
-        listViewController.title = [Localization newStolpersteineCountFromArray:mapClusterAnnotation.annotations];
+        listViewController.stolpersteine = mapClusterAnnotation.annotations.allObjects;
+        listViewController.title = [Localization newStolpersteineCountFromCount:mapClusterAnnotation.annotations.count];
     }
 }
 

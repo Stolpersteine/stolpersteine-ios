@@ -1,5 +1,5 @@
 //
-//  CCHMapClusterControllerDelegate.h
+//  CCHMapTree.h
 //  CCHMapClusterController
 //
 //  Copyright (C) 2013 Claus Höfele
@@ -24,29 +24,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
-@class CCHMapClusterController;
-@class CCHMapClusterAnnotation;
+@interface CCHMapTree : NSObject
 
-/**
- Protocol to configure custom titles and subtitles for cluster annotations.
- */
-@protocol CCHMapClusterControllerDelegate <NSObject>
+@property (nonatomic, copy, readonly) NSSet *annotations;
 
-@optional
+- (id)init;
+- (id)initWithNodeCapacity:(NSUInteger)nodeCapacity minLatitude:(double)minLatitude maxLatitude:(double)maxLatitude minLongitude:(double)minLongitude maxLongitude:(double)maxLongitude;
 
-/**
- Returns the title for a cluster annotation.
- @param mapClusterController The cluster controller sending the message.
- @param mapClusterAnnotation The cluster annotation.
- */
-- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation;
-
-/**
- Returns the subtitle for a cluster annotation.
- @param mapClusterController The cluster controller sending the message.
- @param mapClusterAnnotation The cluster annotation.
- */
-- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation;
+- (void)addAnnotations:(NSArray *)annotations;
+- (void)removeAnnotations:(NSArray *)annotations;
+- (NSSet *)annotationsInMapRect:(MKMapRect)mapRect;
 
 @end

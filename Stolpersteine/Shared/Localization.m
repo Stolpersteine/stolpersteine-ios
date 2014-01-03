@@ -148,14 +148,14 @@
     NSString *title;
     if (mapClusterAnnotation.isCluster) {
         NSUInteger numStolpersteine = MIN(mapClusterAnnotation.annotations.count, 5);
-        NSArray *stolpersteine = [mapClusterAnnotation.annotations subarrayWithRange:NSMakeRange(0, numStolpersteine)];
+        NSArray *stolpersteine = [mapClusterAnnotation.annotations.allObjects subarrayWithRange:NSMakeRange(0, numStolpersteine)];
         NSMutableArray *names = [NSMutableArray arrayWithCapacity:numStolpersteine];
         for (Stolperstein *stolperstein in stolpersteine) {
             [names addObject:[Localization newNameFromStolperstein:stolperstein]];
         }
         title = [names componentsJoinedByString:@", "];
     } else {
-        Stolperstein *stolperstein = mapClusterAnnotation.annotations[0];
+        Stolperstein *stolperstein = [mapClusterAnnotation.annotations anyObject];
         title = [Localization newNameFromStolperstein:stolperstein];
     }
     
@@ -166,20 +166,20 @@
 {
     NSString *subtitle;
     if ([mapClusterAnnotation isOneLocation]) {
-        Stolperstein *stolperstein = (Stolperstein *)mapClusterAnnotation.annotations[0];
+        Stolperstein *stolperstein = [mapClusterAnnotation.annotations anyObject];
         subtitle = [Localization newShortAddressFromStolperstein:stolperstein];
     } else {
-        subtitle = [Localization newStolpersteineCountFromArray:mapClusterAnnotation.annotations];
+        subtitle = [Localization newStolpersteineCountFromCount:mapClusterAnnotation.annotations.count];
     }
     
     return subtitle;
 }
 
-+ (NSString *)newStolpersteineCountFromArray:(NSArray *)array
++ (NSString *)newStolpersteineCountFromCount:(NSUInteger)count
 {
-    NSString *localizedKey = array.count > 1 ? @"Misc.stolpersteine" : @"Misc.stolperstein";
+    NSString *localizedKey = count > 1 ? @"Misc.stolpersteine" : @"Misc.stolperstein";
     NSString *localizedName = NSLocalizedString(localizedKey, nil);
-    return [NSString stringWithFormat:@"%tu %@", array.count, localizedName];
+    return [NSString stringWithFormat:@"%tu %@", count, localizedName];
 }
 
 @end

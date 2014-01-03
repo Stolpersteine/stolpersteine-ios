@@ -67,7 +67,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
         [self.searchStolpersteineOperation cancel];
         self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:self.searchData range:NSMakeRange(0, 0) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
             self.stolpersteine = stolpersteine;
-            self.title = [Localization newStolpersteineCountFromArray:stolpersteine];
+            self.title = [Localization newStolpersteineCountFromCount:stolpersteine.count];
             [self.tableView reloadData];
             
             return YES;

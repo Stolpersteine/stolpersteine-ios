@@ -31,14 +31,18 @@
 
 #define fequal(a, b) (fabs((a) - (b)) < __FLT_EPSILON__)
 
-MKMapRect CCHMapClusterControllerAlignToCellSize(MKMapRect mapRect, double cellSize)
+MKMapRect CCHMapClusterControllerAlignMapRectToCellSize(MKMapRect mapRect, double cellSize)
 {
-//    NSCAssert(cellSize != 0, @"Invalid cell size");
-    
+    NSCAssert(cellSize != 0, @"Invalid map length");
+    if (cellSize == 0) {
+        return MKMapRectNull;
+    }
+
     double startX = floor(MKMapRectGetMinX(mapRect) / cellSize) * cellSize;
     double startY = floor(MKMapRectGetMinY(mapRect) / cellSize) * cellSize;
     double endX = ceil(MKMapRectGetMaxX(mapRect) / cellSize) * cellSize;
     double endY = ceil(MKMapRectGetMaxY(mapRect) / cellSize) * cellSize;
+    
     return MKMapRectMake(startX, startY, endX - startX, endY - startY);
 }
 
@@ -68,12 +72,27 @@ double CCHMapClusterControllerMapLengthForLength(MKMapView *mapView, NSView *vie
     // Convert coordinates to map points
     MKMapPoint leftMapPoint = MKMapPointForCoordinate(leftCoordinate);
     MKMapPoint rightMapPoint = MKMapPointForCoordinate(rightCoordinate);
+
+    if (rightMapPoint.x < leftMapPoint.x) {
+        rightMapPoint.x += + MKMapSizeWorld.width;  // Points span 180th meridian
+    }
     
     // Calculate distance between map points
     double xd = leftMapPoint.x - rightMapPoint.x;
     double yd = leftMapPoint.y - rightMapPoint.y;
     double mapLength = sqrt(xd*xd + yd*yd);
     
+    return mapLength;
+}
+
+double CCHMapClusterControllerAlignMapLengthToWorldWidth(double mapLength)
+{
+    NSCAssert(mapLength != 0, @"Invalid map length");
+    if (mapLength == 0) {
+        return 0;
+    }
+
+    mapLength = MKMapSizeWorld.width / floor(MKMapSizeWorld.width / mapLength);
     return mapLength;
 }
 
@@ -92,8 +111,7 @@ CCHMapClusterAnnotation *CCHMapClusterControllerClusterAnnotationForAnnotation(M
         if ([mapAnnotation isKindOfClass:CCHMapClusterAnnotation.class]) {
             CCHMapClusterAnnotation *mapClusterAnnotation = (CCHMapClusterAnnotation *)mapAnnotation;
             if (mapClusterAnnotation.annotations) {
-                NSUInteger index = [mapClusterAnnotation.annotations indexOfObject:annotation];
-                if (index != NSNotFound) {
+                if ([mapClusterAnnotation.annotations containsObject:annotation]) {
                     annotationResult = mapClusterAnnotation;
                     break;
                 }
@@ -102,4 +120,39 @@ CCHMapClusterAnnotation *CCHMapClusterControllerClusterAnnotationForAnnotation(M
     }
     
     return annotationResult;
+}
+
+void CCHMapClusterControllerEnumerateCells(MKMapRect mapRect, double cellSize, void (^block)(MKMapRect cellRect))
+{
+    NSCAssert(block != NULL, @"Block argument can't be NULL");
+    if (block == nil) {
+        return;
+    }
+    
+    MKMapRect cellRect = MKMapRectMake(0, MKMapRectGetMinY(mapRect), cellSize, cellSize);
+    while (MKMapRectGetMinY(cellRect) < MKMapRectGetMaxY(mapRect)) {
+        cellRect.origin.x = MKMapRectGetMinX(mapRect);
+        
+        while (MKMapRectGetMinX(cellRect) < MKMapRectGetMaxX(mapRect)) {
+            // Wrap around the origin's longitude
+            MKMapRect rect = MKMapRectMake(fmod(cellRect.origin.x, MKMapSizeWorld.width), cellRect.origin.y, cellRect.size.width, cellRect.size.height);
+            block(rect);
+            
+            cellRect.origin.x += MKMapRectGetWidth(cellRect);
+        }
+        cellRect.origin.y += MKMapRectGetWidth(cellRect);
+    }
+}
+
+MKMapRect CCHMapClusterControllerMapRectForCoordinateRegion(MKCoordinateRegion coordinateRegion)
+{
+    CLLocationCoordinate2D topLeftCoordinate = CLLocationCoordinate2DMake(coordinateRegion.center.latitude + (coordinateRegion.span.latitudeDelta / 2.0), coordinateRegion.center.longitude - (coordinateRegion.span.longitudeDelta / 2.0));
+    MKMapPoint topLeftMapPoint = MKMapPointForCoordinate(topLeftCoordinate);
+    
+    CLLocationCoordinate2D bottomRightCoordinate = CLLocationCoordinate2DMake(coordinateRegion.center.latitude - (coordinateRegion.span.latitudeDelta / 2.0), coordinateRegion.center.longitude + (coordinateRegion.span.longitudeDelta / 2.0));
+    MKMapPoint bottomRightMapPoint = MKMapPointForCoordinate(bottomRightCoordinate);
+    
+    MKMapRect mapRect = MKMapRectMake(topLeftMapPoint.x, topLeftMapPoint.y, fabs(bottomRightMapPoint.x - topLeftMapPoint.x), fabs(bottomRightMapPoint.y - topLeftMapPoint.y));
+    
+    return mapRect;
 }

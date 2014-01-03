@@ -44,32 +44,33 @@
 {
     // Animate annotations that get added
 #if TARGET_OS_IPHONE
-    NSTimeInterval duration = self.duration;
     for (MKAnnotationView *annotationView in annotationViews)
     {
         annotationView.alpha = 0.0;
-        [UIView animateWithDuration:duration animations:^{
-            annotationView.alpha = 1.0;
-        }];
     }
+    
+    [UIView animateWithDuration:self.duration animations:^{
+        for (MKAnnotationView *annotationView in annotationViews) {
+            annotationView.alpha = 1.0;
+        }
+    }];
 #endif
 }
 
-- (void)mapClusterController:(CCHMapClusterController *)mapClusterController removeAnnotations:(NSSet *)annotations
+- (void)mapClusterController:(CCHMapClusterController *)mapClusterController removeAnnotations:(NSArray *)annotations
 {
     MKMapView *mapView = mapClusterController.mapView;
 #if TARGET_OS_IPHONE
-    NSTimeInterval duration = self.duration;
-    for (id<MKAnnotation> annotation in annotations) {
-        MKAnnotationView *annotationView = [mapView viewForAnnotation:annotation];
-        [UIView animateWithDuration:duration animations:^{
+    [UIView animateWithDuration:self.duration animations:^{
+        for (id<MKAnnotation> annotation in annotations) {
+            MKAnnotationView *annotationView = [mapView viewForAnnotation:annotation];
             annotationView.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            [mapView removeAnnotation:annotation];
-        }];
-    }
+        }
+    } completion:^(BOOL finished) {
+        [mapView removeAnnotations:annotations];
+    }];
 #else
-    [mapView removeAnnotations:annotations.allObjects];
+    [mapView removeAnnotations:annotations];
 #endif
 }
 

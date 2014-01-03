@@ -71,7 +71,7 @@
     
     // Network service
     self.networkService = [[StolpersteinNetworkService alloc] initWithClientUser:clientUser clientPassword:clientPassword];
-//    self.networkService.defaultSearchData.city = @"Berlin";
+    self.networkService.defaultSearchData.city = @"Berlin";
     self.networkService.delegate = self;
 #ifdef DEBUG
     // This allows invalid certificates so that proxies can decrypt the network traffic

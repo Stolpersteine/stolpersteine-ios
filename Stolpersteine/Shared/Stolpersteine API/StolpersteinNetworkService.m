@@ -49,16 +49,16 @@ static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1"
 {
     self = [super init];
     if (self) {
-        self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:API_URL]];
-        self.httpClient.parameterEncoding = AFJSONParameterEncoding;
-        [self.httpClient registerHTTPOperationClass:AFJSONRequestOperation.class];
+        _httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:API_URL]];
+        _httpClient.parameterEncoding = AFJSONParameterEncoding;
+        [_httpClient registerHTTPOperationClass:AFJSONRequestOperation.class];
         
         if (clientUser && clientPassword) {
             NSString *clientCredentials = [NSString stringWithFormat:@"%@:%@", clientUser, clientPassword];
-            self.encodedClientCredentials = [[clientCredentials dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+            _encodedClientCredentials = [[clientCredentials dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
         }
 
-        self.defaultSearchData = [[StolpersteinSearchData alloc] init];
+        _defaultSearchData = [[StolpersteinSearchData alloc] init];
         
         AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     }

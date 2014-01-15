@@ -45,8 +45,8 @@
 {
     self = [super init];
     if (self) {
-        self.networkService = networkService;
-        self.stolpersteine = [NSMutableSet setWithCapacity:NETWORK_BATCH_SIZE];
+        _networkService = networkService;
+        _stolpersteine = [NSMutableSet setWithCapacity:NETWORK_BATCH_SIZE];
     }
     
     return self;

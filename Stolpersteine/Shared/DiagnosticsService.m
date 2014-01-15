@@ -54,27 +54,27 @@
 {
     self = [super init];
     if (self) {
-        self.gai = GAI.sharedInstance;
-        self.gai.trackUncaughtExceptions = YES;
-        self.gai.dispatchInterval = 30;
-//        [self.gai.logger setLogLevel:kGAILogLevelVerbose];
-//        self.gai.dryRun = YES;
-        self.gaiTracker = [self.gai trackerWithTrackingId:googleAnayticsID];
-        [self.gaiTracker set:kGAIAnonymizeIp value:[@NO stringValue]];
+        _gai = GAI.sharedInstance;
+        _gai.trackUncaughtExceptions = YES;
+        _gai.dispatchInterval = 30;
+//        [_gai.logger setLogLevel:kGAILogLevelVerbose];
+//        _gai.dryRun = YES;
+        _gaiTracker = [self.gai trackerWithTrackingId:googleAnayticsID];
+        [_gaiTracker set:kGAIAnonymizeIp value:[@NO stringValue]];
         NSDictionary *infoDictionary = [NSBundle.mainBundle infoDictionary];
         NSString *version = [infoDictionary objectForKey:@"CFBundleVersion"];
         NSString *shortVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-        [self.gaiTracker set:kGAIAppVersion value:[NSString stringWithFormat:@"%@ (%@)", shortVersion, version]];
+        [_gaiTracker set:kGAIAppVersion value:[NSString stringWithFormat:@"%@ (%@)", shortVersion, version]];
         
         // Mappings
-        self.classToViewNameMapping = @{
+        _classToViewNameMapping = @{
            NSStringFromClass(AppDelegate.class): @"Misc",
            NSStringFromClass(MapViewController.class): @"Map",
            NSStringFromClass(InfoViewController.class): @"Info",
            NSStringFromClass(StolpersteinCardsViewController.class): @"StolpersteinCards",
            NSStringFromClass(StolpersteinDescriptionViewController.class): @"StolpersteinDescription"
         };
-        self.eventToActionNameMapping = @{
+        _eventToActionNameMapping = @{
             @(DiagnosticsServiceEventOrientationChanged): @"orientationChanged",
             @(DiagnosticsServiceEventSearchStarted): @"searchStarted",
             @(DiagnosticsServiceEventMapCentered): @"mapCentered",

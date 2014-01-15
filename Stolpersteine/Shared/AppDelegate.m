@@ -28,7 +28,6 @@
 #import "StolpersteinNetworkService.h"
 #import "StolpersteinSearchData.h"
 #import "DiagnosticsService.h"
-#import "Appearance.h"
 
 @implementation AppDelegate
 
@@ -81,9 +80,6 @@
     // Google Analytics
     self.diagnosticsService = [[DiagnosticsService alloc] initWithGoogleAnalyticsID:googleAnalyticsID];
     
-    // Appearance
-    [Appearance apply];
-        
     return YES;
 }
 

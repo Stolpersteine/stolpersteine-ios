@@ -33,16 +33,16 @@ typedef enum {
 
 @interface Stolperstein : NSObject<MKAnnotation>
 
-@property (nonatomic, strong) NSString *id;
+@property (nonatomic, copy) NSString *id;
 @property (nonatomic, assign) StolpersteinType type;
-@property (nonatomic, strong) NSString *sourceURLString;
-@property (nonatomic, strong) NSString *sourceName;
-@property (nonatomic, strong) NSString *personFirstName;
-@property (nonatomic, strong) NSString *personLastName;
-@property (nonatomic, strong) NSString *personBiographyURLString;
-@property (nonatomic, strong) NSString *locationStreet;
-@property (nonatomic, strong) NSString *locationZipCode;
-@property (nonatomic, strong) NSString *locationCity;
+@property (nonatomic, copy) NSString *sourceURLString;
+@property (nonatomic, copy) NSString *sourceName;
+@property (nonatomic, copy) NSString *personFirstName;
+@property (nonatomic, copy) NSString *personLastName;
+@property (nonatomic, copy) NSString *personBiographyURLString;
+@property (nonatomic, copy) NSString *locationStreet;
+@property (nonatomic, copy) NSString *locationZipCode;
+@property (nonatomic, copy) NSString *locationCity;
 @property (nonatomic, assign) CLLocationCoordinate2D locationCoordinate;
 
 @property (nonatomic, copy) NSString *title;

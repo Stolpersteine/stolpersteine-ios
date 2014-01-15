@@ -63,12 +63,17 @@
 
 + (Stolperstein *)standardStolperstein
 {
-    Stolperstein *stolperstein = [[Stolperstein alloc] init];
-    stolperstein.personFirstName = @"xxxxxxxxxx";
-    stolperstein.personLastName = @"xxxxxxxxxx";
-    stolperstein.locationStreet = @"xxxxxxxxxx xxx";
-    stolperstein.locationZipCode = @"xxxx";
-    stolperstein.locationCity = @"xxxxxxxxxx";
+    Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:nil
+                                                             type:StolpersteinTypeStolperstein
+                                                  sourceURLString:nil
+                                                       sourceName:nil
+                                                  personFirstName:@"xxxxxxxxxx"
+                                                   personLastName:@"xxxxxxxxxx"
+                                         personBiographyURLString:nil
+                                                   locationStreet:@"xxxxxxxxxx xxx"
+                                                  locationZipCode:@"xxxx"
+                                                     locationCity:@"xxxxxxxxxx"
+                                               locationCoordinate:CLLocationCoordinate2DMake(0, 0)];
 
     return stolperstein;
 }

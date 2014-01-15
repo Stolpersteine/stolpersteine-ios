@@ -25,7 +25,43 @@
 
 #import "Stolperstein.h"
 
+@interface Stolperstein()
+
+@property (nonatomic, copy) NSString *personBiographyURLString;
+
+@end
+
 @implementation Stolperstein
+
+- (id)initWithID:(NSString *)ID
+            type:(StolpersteinType)type
+ sourceURLString:(NSString *)sourceURLString
+      sourceName:(NSString *)sourceName
+ personFirstName:(NSString *)personFirstName
+  personLastName:(NSString *)personLastName
+personBiographyURLString:(NSString *)personBiographyURLString
+  locationStreet:(NSString *)locationStreet
+ locationZipCode:(NSString *)locationZipCode
+    locationCity:(NSString *)locationCity
+locationCoordinate:(CLLocationCoordinate2D)locationCoordinate
+{
+    self = [super init];
+    if (self) {
+        _ID = ID;
+        _type = type;
+        _sourceURLString = sourceURLString;
+        _sourceName = sourceName;
+        _personFirstName = personFirstName;
+        _personLastName = personLastName;
+        _personBiographyURLString = personBiographyURLString;
+        _locationStreet = locationStreet;
+        _locationZipCode = locationZipCode;
+        _locationCity = locationCity;
+        _locationCoordinate = locationCoordinate;
+    }
+    
+    return self;
+}
 
 - (BOOL)isEqual:(id)other
 {
@@ -44,13 +80,18 @@
 
 - (BOOL)isEqualToStolperstein:(Stolperstein *)stolperstein
 {
-    BOOL isEqual = [self.id isEqualToString:stolperstein.id];
+    BOOL isEqual = [self.ID isEqualToString:stolperstein.ID];
     return isEqual;
 }
 
 - (NSUInteger)hash
 {
-    return self.id.hash;
+    return self.ID.hash;
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    return self;    // immutable
 }
 
 - (NSString *)personBiographyURLString
@@ -69,6 +110,16 @@
     }
     
     return personBiographyURLString;
+}
+
+- (NSString *)title
+{
+    return nil;
+}
+
+- (NSString *)subtitle
+{
+    return nil;
 }
 
 - (CLLocationCoordinate2D)coordinate

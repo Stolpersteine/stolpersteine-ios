@@ -50,7 +50,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## GoogleAnalytics-iOS-SDK
 
-Copyright 2009 - 2013 Google, Inc. All rights reserved.
+Copyright 2009 - 2014 Google, Inc. All rights reserved.
 
 
 ## TUSafariActivity

@@ -22,7 +22,7 @@
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_GoogleAnalytics_iOS_SDK 3
 #define COCOAPODS_VERSION_MINOR_GoogleAnalytics_iOS_SDK 0
-#define COCOAPODS_VERSION_PATCH_GoogleAnalytics_iOS_SDK 2
+#define COCOAPODS_VERSION_PATCH_GoogleAnalytics_iOS_SDK 3
 
 // OCMock
 #define COCOAPODS_POD_AVAILABLE_OCMock

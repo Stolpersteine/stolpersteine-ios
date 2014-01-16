@@ -41,6 +41,15 @@ install_resource()
       ;;
   esac
 }
+install_resource "../../../CCHMapsActivity/CCHMapsActivity/CCHMapsActivity.png"
+install_resource "../../../CCHMapsActivity/CCHMapsActivity/CCHMapsActivity@2x.png"
+install_resource "../../../CCHMapsActivity/CCHMapsActivity/CCHMapsActivity@2x˜ipad.png"
+install_resource "../../../CCHMapsActivity/CCHMapsActivity/CCHMapsActivity˜ipad.png"
+install_resource "../../../CCHMapsActivity/CCHMapsActivity/de.lproj"
+install_resource "../../../CCHMapsActivity/CCHMapsActivity/en.lproj"
+install_resource "../../../CCHMapsActivity/CCHMapsActivity/es.lproj"
+install_resource "../../../CCHMapsActivity/CCHMapsActivity/fr.lproj"
+install_resource "../../../CCHMapsActivity/CCHMapsActivity/it.lproj"
 install_resource "TUSafariActivity/TUSafariActivity/Safari.png"
 install_resource "TUSafariActivity/TUSafariActivity/Safari@2x.png"
 install_resource "TUSafariActivity/TUSafariActivity/Safari@2x~ipad.png"

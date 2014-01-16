@@ -9,14 +9,10 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 1.3.3)
   - CCHMapClusterController
-  - CCHMapsActivity (from `~/Projekte/CCHMapsActivity`)
+  - CCHMapsActivity
   - GoogleAnalytics-iOS-SDK
   - OCMock
   - TUSafariActivity
-
-EXTERNAL SOURCES:
-  CCHMapsActivity:
-    :path: ~/Projekte/CCHMapsActivity
 
 SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66

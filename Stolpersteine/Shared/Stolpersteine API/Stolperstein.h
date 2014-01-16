@@ -33,32 +33,20 @@ typedef enum {
 
 @interface Stolperstein : NSObject<MKAnnotation>
 
-- (id)initWithID:(NSString *)ID
-            type:(StolpersteinType)type
- sourceURLString:(NSString *)sourceURLString
-      sourceName:(NSString *)sourceName
- personFirstName:(NSString *)personFirstName
-  personLastName:(NSString *)personLastName
-personBiographyURLString:(NSString *)personBiographyURLString
-  locationStreet:(NSString *)locationStreet
- locationZipCode:(NSString *)locationZipCode
-    locationCity:(NSString *)locationCity
-locationCoordinate:(CLLocationCoordinate2D)locationCoordinate;
+@property (nonatomic, copy) NSString *id;
+@property (nonatomic, assign) StolpersteinType type;
+@property (nonatomic, copy) NSString *sourceURLString;
+@property (nonatomic, copy) NSString *sourceName;
+@property (nonatomic, copy) NSString *personFirstName;
+@property (nonatomic, copy) NSString *personLastName;
+@property (nonatomic, copy) NSString *personBiographyURLString;
+@property (nonatomic, copy) NSString *locationStreet;
+@property (nonatomic, copy) NSString *locationZipCode;
+@property (nonatomic, copy) NSString *locationCity;
+@property (nonatomic, assign) CLLocationCoordinate2D locationCoordinate;
 
-@property (nonatomic, readonly, copy) NSString *ID;
-@property (nonatomic, readonly) StolpersteinType type;
-@property (nonatomic, readonly, copy) NSString *sourceURLString;
-@property (nonatomic, readonly, copy) NSString *sourceName;
-@property (nonatomic, readonly, copy) NSString *personFirstName;
-@property (nonatomic, readonly, copy) NSString *personLastName;
-@property (nonatomic, readonly, copy) NSString *personBiographyURLString;
-@property (nonatomic, readonly, copy) NSString *locationStreet;
-@property (nonatomic, readonly, copy) NSString *locationZipCode;
-@property (nonatomic, readonly, copy) NSString *locationCity;
-@property (nonatomic, readonly) CLLocationCoordinate2D locationCoordinate;
-
-@property (nonatomic, readonly, copy) NSString *title;
-@property (nonatomic, readonly, copy) NSString *subtitle;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, readonly, assign) CLLocationCoordinate2D coordinate;
 
 - (BOOL)isEqualToStolperstein:(Stolperstein *)stolperstein;

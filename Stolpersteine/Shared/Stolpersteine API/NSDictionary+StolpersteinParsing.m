@@ -31,30 +31,28 @@
 
 - (Stolperstein *)newStolperstein
 {
+    Stolperstein *stolperstein = [[Stolperstein alloc] init];
+    stolperstein.id = [self valueForKeyPath:@"id"];
+    stolperstein.sourceName = [self valueForKeyPath:@"source.name"];
+    stolperstein.sourceURLString = [self valueForKeyPath:@"source.url"];
+    stolperstein.personFirstName = [self valueForKeyPath:@"person.firstName"];
+    stolperstein.personLastName = [self valueForKeyPath:@"person.lastName"];
+    stolperstein.personBiographyURLString = [self valueForKeyPath:@"person.biographyUrl"];
+    stolperstein.locationStreet = [self valueForKeyPath:@"location.street"];
+    stolperstein.locationZipCode = [self valueForKeyPath:@"location.zipCode"];
+    stolperstein.locationCity = [self valueForKeyPath:@"location.city"];
+    
     NSString *typeAsString = [self valueForKeyPath:@"type"];
-    StolpersteinType type;
     if ([typeAsString isEqualToString:@"stolperschwelle"]) {
-        type = StolpersteinTypeStolperschwelle;
+        stolperstein.type = StolpersteinTypeStolperschwelle;
     } else {
-        type = StolpersteinTypeStolperstein;
+        stolperstein.type = StolpersteinTypeStolperstein;
     }
-
+    
     NSString *latitudeAsString = [self valueForKeyPath:@"location.coordinates.latitude"];
     NSString *longitudeAsString = [self valueForKeyPath:@"location.coordinates.longitude"];
-    CLLocationCoordinate2D locationCoordinate = CLLocationCoordinate2DMake(latitudeAsString.doubleValue, longitudeAsString.doubleValue);
-
-    Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:[self valueForKeyPath:@"id"]
-                                                             type:type
-                                                  sourceURLString:[self valueForKeyPath:@"source.url"]
-                                                       sourceName:[self valueForKeyPath:@"source.name"]
-                                                  personFirstName:[self valueForKeyPath:@"person.firstName"]
-                                                   personLastName:[self valueForKeyPath:@"person.lastName"]
-                                         personBiographyURLString:[self valueForKeyPath:@"person.biographyUrl"]
-                                                   locationStreet:[self valueForKeyPath:@"location.street"]
-                                                  locationZipCode:[self valueForKeyPath:@"location.zipCode"]
-                                                     locationCity:[self valueForKeyPath:@"location.city"]
-                                               locationCoordinate:locationCoordinate];
-   
+    stolperstein.locationCoordinate = CLLocationCoordinate2DMake(latitudeAsString.doubleValue, longitudeAsString.doubleValue);
+    
     return stolperstein;
 }
 

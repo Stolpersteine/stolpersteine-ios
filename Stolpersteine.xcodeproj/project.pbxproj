@@ -76,6 +76,16 @@
 		A09F7D357DD14407B31448A3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 195B6404122D49D18523AE52 /* libPods.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		6207C292188B3A7C000CA2D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 627E43A9169B0F050065C1F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6288BDE8188AE00B00F9B986;
+			remoteInfo = "Stolpersteine Berlin";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1452BF759A36498F9CF18EA1 /* Pods-Stolpersteine Unit Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stolpersteine Unit Tests.xcconfig"; path = "Pods/Pods-Stolpersteine Unit Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		195B6404122D49D18523AE52 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -432,6 +442,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6207C293188B3A7C000CA2D4 /* PBXTargetDependency */,
 			);
 			name = "Stolpersteine Tests";
 			productName = "Stolpersteine Tests";
@@ -763,6 +774,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6207C293188B3A7C000CA2D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6288BDE8188AE00B00F9B986 /* Stolpersteine Berlin */;
+			targetProxy = 6207C292188B3A7C000CA2D4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		486576FD180B29CD000326D1 /* InfoPlist.strings */ = {

@@ -1,0 +1,10 @@
+//
+//  buildnumber_dynamic.xcconfig
+//  Stolpersteine
+//
+//  Created by Hoefele, Claus(choefele) on 12.04.13.
+//  Copyright (c) 2013 Option-U Software. All rights reserved.
+//
+
+#include "../Pods/Pods.xcconfig"
+BUILD_NUMBER = 102

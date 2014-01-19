@@ -138,12 +138,15 @@
     [self sync];
     
     [self.backgroundQueue addOperationWithBlock:^{
-        [self.allAnnotationsMapTree addAnnotations:annotations];
+        BOOL updated = [self.allAnnotationsMapTree addAnnotations:annotations];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (updated && !self.isRegionChanging) {
+                [self updateAnnotationsWithCompletionHandler:completionHandler];
+            } else if (completionHandler) {
+                completionHandler();
+            }
+        });
     }];
-     
-    if (!self.isRegionChanging) {
-        [self updateAnnotationsWithCompletionHandler:completionHandler];
-    }
 }
 
 - (void)updateAnnotationsWithCompletionHandler:(void (^)())completionHandler
@@ -179,6 +182,9 @@
                         annotationForCell.annotations = allAnnotationsInCell;
                         annotationForCell.title = nil;
                         annotationForCell.subtitle = nil;
+                        if ([self.delegate respondsToSelector:@selector(mapClusterController:willReuseMapClusterAnnotation:)]) {
+                            [self.delegate mapClusterController:self willReuseMapClusterAnnotation:annotationForCell];
+                        }
                     });
                 }
                 
@@ -211,9 +217,15 @@
             }
         });
     }];
+    __weak NSOperation *weakOperation = operation;
+    operation.completionBlock = ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.updateOperations removeObject:weakOperation]; // also prevents retain cycle
+        });
+    };
     [self.updateOperations addObject:operation];
     [self.backgroundQueue addOperation:operation];
-    
+
     // Debugging
     if (self.isDebuggingEnabled) {
         for (id<MKOverlay> overlay in _mapView.overlays) {

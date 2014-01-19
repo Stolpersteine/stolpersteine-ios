@@ -1,8 +1,8 @@
 //
-//  AppDelegate.h
+//  ConfigurationService.m
 //  Stolpersteine
 //
-//  Copyright (C) 2013 Option-U Software
+//  Copyright (C) 2014 Option-U Software
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,20 +23,39 @@
 //  THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import "ConfigurationService.h"
 
-#import "StolpersteinNetworkServiceDelegate.h"
+@interface ConfigurationService()
 
-@class StolpersteinNetworkService;
-@class DiagnosticsService;
-@class ConfigurationService;
+@property (nonatomic, strong) NSDictionary *configurations;
+@property (nonatomic, strong) NSDictionary *enumToStringMapping;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, StolpersteinNetworkServiceDelegate>
+@end
 
-@property (strong, nonatomic) UIWindow *window;
+@implementation ConfigurationService
 
-+ (StolpersteinNetworkService *)networkService;
-+ (DiagnosticsService *)diagnosticsService;
-+ (ConfigurationService *)configurationService;
+- (id)initWithConfigurationsFile:(NSString *)file
+{
+    self = [super init];
+    if (self) {
+        _configurations = [NSDictionary dictionaryWithContentsOfFile:file];
+        _enumToStringMapping = @{
+             @(ConfigurationServiceKeyAPIUser) : @"API client user",
+             @(ConfigurationServiceKeyAPIPassword) : @"API client password",
+             @(ConfigurationServiceKeyGoogleAnalyticsID) : @"Google Analytics ID"
+        };
+    }
+    
+    return self;
+}
+
+- (NSString *)stringConfigurationForKey:(ConfigurationServiceKey)key
+{
+    NSString *keyAsString = [self.enumToStringMapping objectForKey:@(key)];
+    NSString *value = [self.configurations objectForKey:keyAsString];
+    value = value.length > 0 ? value : nil;
+    
+    return value;
+}
 
 @end

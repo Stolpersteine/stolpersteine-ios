@@ -28,6 +28,16 @@
 #import "StolpersteinNetworkService.h"
 #import "StolpersteinSearchData.h"
 #import "DiagnosticsService.h"
+#import "ConfigurationService.h"
+
+@interface AppDelegate()
+
+@property (strong, nonatomic) StolpersteinNetworkService *networkService;
+@property (strong, nonatomic) DiagnosticsService *diagnosticsService;
+@property (strong, nonatomic) ConfigurationService *configurationService;
+
+@end
+
 
 @implementation AppDelegate
 
@@ -41,6 +51,12 @@
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     return appDelegate.diagnosticsService;
+}
+
++ (ConfigurationService *)configurationService
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return appDelegate.configurationService;
 }
 
 #pragma mark - Application
@@ -58,17 +74,13 @@
     NSString *shortVersion = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     NSLog(@"Stolpersteine %@ (%@)", shortVersion, version);
     
-    // Configurations file
+    // Configuration service
     NSString *configurationsFile = [NSBundle.mainBundle pathForResource:@"Stolpersteine-Config" ofType:@"plist"];
-    NSDictionary *configurations = [NSDictionary dictionaryWithContentsOfFile:configurationsFile];
-    NSString *clientUser = [configurations objectForKey:@"API client user"];
-    clientUser = clientUser.length > 0 ? clientUser : nil;
-    NSString *clientPassword = [configurations objectForKey:@"API client password"];
-    clientPassword = clientPassword.length > 0 ? clientPassword : nil;
-    NSString *googleAnalyticsID = [configurations objectForKey:@"Google Analytics ID"];
-    googleAnalyticsID = googleAnalyticsID.length > 0 ? googleAnalyticsID : nil;
+    self.configurationService = [[ConfigurationService alloc] initWithConfigurationsFile:configurationsFile];
     
     // Network service
+    NSString *clientUser = [self.configurationService stringConfigurationForKey:ConfigurationServiceKeyAPIUser];
+    NSString *clientPassword = [self.configurationService stringConfigurationForKey:ConfigurationServiceKeyAPIPassword];
     self.networkService = [[StolpersteinNetworkService alloc] initWithClientUser:clientUser clientPassword:clientPassword];
     self.networkService.defaultSearchData.city = @"Berlin";
     self.networkService.delegate = self;
@@ -78,6 +90,7 @@
 #endif
     
     // Google Analytics
+    NSString *googleAnalyticsID = [self.configurationService stringConfigurationForKey:ConfigurationServiceKeyGoogleAnalyticsID];
     self.diagnosticsService = [[DiagnosticsService alloc] initWithGoogleAnalyticsID:googleAnalyticsID];
     
     return YES;

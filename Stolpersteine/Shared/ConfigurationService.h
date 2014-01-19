@@ -1,8 +1,8 @@
 //
-//  AppDelegate.h
+//  ConfigurationService.h
 //  Stolpersteine
 //
-//  Copyright (C) 2013 Option-U Software
+//  Copyright (C) 2014 Option-U Software
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,20 +23,17 @@
 //  THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "StolpersteinNetworkServiceDelegate.h"
+typedef enum {
+    ConfigurationServiceKeyAPIUser,
+    ConfigurationServiceKeyAPIPassword,
+    ConfigurationServiceKeyGoogleAnalyticsID
+} ConfigurationServiceKey;
 
-@class StolpersteinNetworkService;
-@class DiagnosticsService;
-@class ConfigurationService;
+@interface ConfigurationService : NSObject
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, StolpersteinNetworkServiceDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-+ (StolpersteinNetworkService *)networkService;
-+ (DiagnosticsService *)diagnosticsService;
-+ (ConfigurationService *)configurationService;
+- (id)initWithConfigurationsFile:(NSString *)file;
+- (NSString *)stringConfigurationForKey:(ConfigurationServiceKey)key;
 
 @end

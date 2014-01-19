@@ -43,7 +43,8 @@
              @(ConfigurationServiceKeyAPIUser) : @"API client user",
              @(ConfigurationServiceKeyAPIPassword) : @"API client password",
              @(ConfigurationServiceKeyGoogleAnalyticsID) : @"Google Analytics ID",
-             @(ConfigurationServiceKeyVisibleRegion) : @"Visible region"
+             @(ConfigurationServiceKeyVisibleRegion) : @"Visible region",
+             @(ConfigurationServiceKeyFilterCity) : @"Filter city"
         };
     }
     

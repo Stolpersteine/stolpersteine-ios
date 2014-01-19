@@ -82,7 +82,8 @@
     NSString *clientUser = [self.configurationService stringConfigurationForKey:ConfigurationServiceKeyAPIUser];
     NSString *clientPassword = [self.configurationService stringConfigurationForKey:ConfigurationServiceKeyAPIPassword];
     self.networkService = [[StolpersteinNetworkService alloc] initWithClientUser:clientUser clientPassword:clientPassword];
-    self.networkService.defaultSearchData.city = @"Berlin";
+    NSString *city = [self.configurationService stringConfigurationForKey:ConfigurationServiceKeyFilterCity];
+    self.networkService.defaultSearchData.city = city;
     self.networkService.delegate = self;
 #ifdef DEBUG
     // This allows invalid certificates so that proxies can decrypt the network traffic

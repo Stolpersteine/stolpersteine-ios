@@ -30,7 +30,8 @@ typedef enum {
     ConfigurationServiceKeyAPIUser,
     ConfigurationServiceKeyAPIPassword,
     ConfigurationServiceKeyGoogleAnalyticsID,
-    ConfigurationServiceKeyVisibleRegion
+    ConfigurationServiceKeyVisibleRegion,
+    ConfigurationServiceKeyFilterCity
 } ConfigurationServiceKey;
 
 @interface ConfigurationService : NSObject

@@ -19,5 +19,7 @@
 		<key>span.longitudeDelta</key>
 		<real>0.7366</real>
 	</dict>
+	<key>Filter city</key>
+	<string>Berlin</string>
 </dict>
 </plist>

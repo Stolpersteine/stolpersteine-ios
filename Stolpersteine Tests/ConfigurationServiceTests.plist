@@ -6,5 +6,16 @@
 	<string></string>
 	<key>API client password</key>
 	<string>test</string>
+	<key>Visible region</key>
+	<dict>
+		<key>center.latitude</key>
+		<integer>1</integer>
+		<key>center.longitude</key>
+		<integer>2</integer>
+		<key>span.latitudeDelta</key>
+		<integer>3</integer>
+		<key>span.longitudeDelta</key>
+		<integer>4</integer>
+	</dict>
 </dict>
 </plist>

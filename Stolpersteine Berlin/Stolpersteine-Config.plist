@@ -8,5 +8,16 @@
 	<string></string>
 	<key>API client password</key>
 	<string></string>
+	<key>Visible region</key>
+	<dict>
+		<key>center.latitude</key>
+		<real>52.5233</real>
+		<key>center.longitude</key>
+		<real>13.4127</real>
+		<key>span.latitudeDelta</key>
+		<real>0.4493</real>
+		<key>span.longitudeDelta</key>
+		<real>0.7366</real>
+	</dict>
 </dict>
 </plist>

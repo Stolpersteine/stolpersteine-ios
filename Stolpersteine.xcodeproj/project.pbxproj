@@ -75,6 +75,7 @@
 		62AB9D70188BC4450003AB4C /* ConfigurationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 62AB9D6E188BC4450003AB4C /* ConfigurationService.m */; };
 		62AB9D72188BC8BA0003AB4C /* ConfigurationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62AB9D71188BC8BA0003AB4C /* ConfigurationServiceTests.m */; };
 		62AB9D74188BCA890003AB4C /* ConfigurationServiceTests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62AB9D73188BCA890003AB4C /* ConfigurationServiceTests.plist */; };
+		62AB9D76188BDED50003AB4C /* ConfigurationServiceTestsEmpty.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62AB9D75188BDED50003AB4C /* ConfigurationServiceTestsEmpty.plist */; };
 		A09F7D357DD14407B31448A3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 195B6404122D49D18523AE52 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -165,6 +166,7 @@
 		62AB9D6E188BC4450003AB4C /* ConfigurationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationService.m; sourceTree = "<group>"; };
 		62AB9D71188BC8BA0003AB4C /* ConfigurationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationServiceTests.m; sourceTree = "<group>"; };
 		62AB9D73188BCA890003AB4C /* ConfigurationServiceTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigurationServiceTests.plist; sourceTree = "<group>"; };
+		62AB9D75188BDED50003AB4C /* ConfigurationServiceTestsEmpty.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigurationServiceTestsEmpty.plist; sourceTree = "<group>"; };
 		62B6B94A17F4338D009E18AE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62B6B94C17F4338D009E18AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62F18DF917736A4200E2FAF9 /* StolpersteinNetworkServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinNetworkServiceDelegate.h; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				48E2781A180B2BD00018EE03 /* LocalizationTests.m */,
 				62AB9D71188BC8BA0003AB4C /* ConfigurationServiceTests.m */,
 				62AB9D73188BCA890003AB4C /* ConfigurationServiceTests.plist */,
+				62AB9D75188BDED50003AB4C /* ConfigurationServiceTestsEmpty.plist */,
 				48E2781B180B2BD00018EE03 /* Stolpersteine API */,
 				486576FB180B29CD000326D1 /* Supporting Files */,
 			);
@@ -535,6 +538,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				486576FF180B29CD000326D1 /* InfoPlist.strings in Resources */,
+				62AB9D76188BDED50003AB4C /* ConfigurationServiceTestsEmpty.plist in Resources */,
 				62AB9D74188BCA890003AB4C /* ConfigurationServiceTests.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

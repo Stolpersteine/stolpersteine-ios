@@ -24,16 +24,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 typedef enum {
     ConfigurationServiceKeyAPIUser,
     ConfigurationServiceKeyAPIPassword,
-    ConfigurationServiceKeyGoogleAnalyticsID
+    ConfigurationServiceKeyGoogleAnalyticsID,
+    ConfigurationServiceKeyVisibleRegion
 } ConfigurationServiceKey;
 
 @interface ConfigurationService : NSObject
 
 - (id)initWithConfigurationsFile:(NSString *)file;
 - (NSString *)stringConfigurationForKey:(ConfigurationServiceKey)key;
+- (MKCoordinateRegion)coordinateRegionConfigurationForKey:(ConfigurationServiceKey)key;
 
 @end

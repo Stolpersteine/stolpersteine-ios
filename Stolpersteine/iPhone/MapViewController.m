@@ -28,6 +28,7 @@
 #import "AppDelegate.h"
 #import "StolpersteinNetworkService.h"
 #import "DiagnosticsService.h"
+#import "ConfigurationService.h"
 #import "Stolperstein.h"
 #import "StolpersteinSearchData.h"
 #import "StolpersteinSynchronizationControllerDelegate.h"
@@ -38,7 +39,6 @@
 #import "CCHMapClusterAnnotation.h"
 #import "Localization.h"
 
-static const MKCoordinateRegion BERLIN_REGION = { {52.5233, 13.4127}, {0.4493, 0.7366} };
 static const double ZOOM_DISTANCE_USER = 1200;
 static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
@@ -85,7 +85,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.stolpersteinSyncController.delegate = self;
 
     // Initialize map region
-    self.mapView.region = BERLIN_REGION;
+    self.mapView.region = [AppDelegate.configurationService coordinateRegionConfigurationForKey:ConfigurationServiceKeyVisibleRegion];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -157,7 +157,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         if (self.userLocation.location) {
             self.userLocationMode = NO;
         }
-        [self.mapView setRegion:BERLIN_REGION animated:YES];
+        MKCoordinateRegion region = [AppDelegate.configurationService coordinateRegionConfigurationForKey:ConfigurationServiceKeyVisibleRegion];
+        [self.mapView setRegion:region animated:YES];
         diagnosticsLabel = @"region";
     }
     [self updateLocationBarButtonItem];

@@ -42,7 +42,8 @@
         _enumToStringMapping = @{
              @(ConfigurationServiceKeyAPIUser) : @"API client user",
              @(ConfigurationServiceKeyAPIPassword) : @"API client password",
-             @(ConfigurationServiceKeyGoogleAnalyticsID) : @"Google Analytics ID"
+             @(ConfigurationServiceKeyGoogleAnalyticsID) : @"Google Analytics ID",
+             @(ConfigurationServiceKeyVisibleRegion) : @"Visible region"
         };
     }
     
@@ -52,10 +53,25 @@
 - (NSString *)stringConfigurationForKey:(ConfigurationServiceKey)key
 {
     NSString *keyAsString = [self.enumToStringMapping objectForKey:@(key)];
-    NSString *value = [self.configurations objectForKey:keyAsString];
-    value = value.length > 0 ? value : nil;
+    NSAssert(keyAsString != nil, @"Unknown key for configuration: %tu", key);
+    NSString *string = [self.configurations objectForKey:keyAsString];
+    string = string.length > 0 ? string : nil;
     
-    return value;
+    return string;
+}
+
+- (MKCoordinateRegion)coordinateRegionConfigurationForKey:(ConfigurationServiceKey)key
+{
+    NSString *keyAsString = [self.enumToStringMapping objectForKey:@(key)];
+    NSAssert(keyAsString != nil, @"Unknown key for configuration: %tu", key);
+    NSDictionary *coordinateRegionAsDictionary = [self.configurations objectForKey:keyAsString];
+    MKCoordinateRegion coordinateRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(0, 0), MKCoordinateSpanMake(0, 0));
+    coordinateRegion.center.latitude = [[coordinateRegionAsDictionary objectForKey:@"center.latitude"] doubleValue];
+    coordinateRegion.center.longitude = [[coordinateRegionAsDictionary objectForKey:@"center.longitude"] doubleValue];
+    coordinateRegion.span.latitudeDelta = [[coordinateRegionAsDictionary objectForKey:@"span.latitudeDelta"] doubleValue];
+    coordinateRegion.span.longitudeDelta = [[coordinateRegionAsDictionary objectForKey:@"span.longitudeDelta"] doubleValue];
+
+    return coordinateRegion;
 }
 
 @end

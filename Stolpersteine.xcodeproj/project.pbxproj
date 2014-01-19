@@ -49,8 +49,6 @@
 		6207C274188AE25A000CA2D4 /* gunter-demnig@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4879D224181C3E400022C131 /* gunter-demnig@2x.jpg */; };
 		6207C275188AE25B000CA2D4 /* gunter-demnig.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4879D226181C47890022C131 /* gunter-demnig.jpg */; };
 		6207C276188AE25B000CA2D4 /* gunter-demnig@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4879D224181C3E400022C131 /* gunter-demnig@2x.jpg */; };
-		6207C277188AE262000CA2D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B6B94717F4338D009E18AE /* InfoPlist.strings */; };
-		6207C278188AE263000CA2D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B6B94717F4338D009E18AE /* InfoPlist.strings */; };
 		6207C279188AE268000CA2D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B6B94917F4338D009E18AE /* Localizable.strings */; };
 		6207C27A188AE268000CA2D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B6B94917F4338D009E18AE /* Localizable.strings */; };
 		6207C27B188AE271000CA2D4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 622DEDA317F432EB009C9B44 /* MainStoryboard.storyboard */; };
@@ -162,9 +160,7 @@
 		6288BE23188AE02C00F9B986 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6288BE25188AE02C00F9B986 /* Stolpersteine Bochum-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stolpersteine Bochum-Prefix.pch"; sourceTree = "<group>"; };
 		6288BE29188AE02C00F9B986 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		62B6B94817F4338D009E18AE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62B6B94A17F4338D009E18AE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		62B6B94B17F4338D009E18AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62B6B94C17F4338D009E18AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62F18DF917736A4200E2FAF9 /* StolpersteinNetworkServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinNetworkServiceDelegate.h; sourceTree = "<group>"; };
 		90D265056EBE417F95BF08CA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -281,7 +277,6 @@
 			children = (
 				622DEDA217F432EB009C9B44 /* Images.xcassets */,
 				4879D223181C3E400022C131 /* Images */,
-				62B6B94717F4338D009E18AE /* InfoPlist.strings */,
 				62B6B94917F4338D009E18AE /* Localizable.strings */,
 				622DEDA317F432EB009C9B44 /* MainStoryboard.storyboard */,
 				622DEDA417F432EB009C9B44 /* Settings.bundle */,
@@ -542,7 +537,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6207C271188AE251000CA2D4 /* Images.xcassets in Resources */,
-				6207C277188AE262000CA2D4 /* InfoPlist.strings in Resources */,
 				6288BDF2188AE00C00F9B986 /* InfoPlist.strings in Resources */,
 				6207C289188B0F21000CA2D4 /* buildnumber_dynamic.xcconfig in Resources */,
 				6207C279188AE268000CA2D4 /* Localizable.strings in Resources */,
@@ -560,7 +554,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6207C272188AE251000CA2D4 /* Images.xcassets in Resources */,
-				6207C278188AE263000CA2D4 /* InfoPlist.strings in Resources */,
 				6288BE22188AE02C00F9B986 /* InfoPlist.strings in Resources */,
 				6207C285188B0F0F000CA2D4 /* buildnumber_dynamic.xcconfig in Resources */,
 				6207C27A188AE268000CA2D4 /* Localizable.strings in Resources */,
@@ -804,15 +797,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				6288BE21188AE02C00F9B986 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		62B6B94717F4338D009E18AE /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				62B6B94817F4338D009E18AE /* de */,
-				62B6B94B17F4338D009E18AE /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

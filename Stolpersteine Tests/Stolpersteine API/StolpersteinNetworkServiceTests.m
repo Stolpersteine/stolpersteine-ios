@@ -23,15 +23,15 @@
 //  THE SOFTWARE.
 //
 
-#import "StolpersteinNetworkServiceTests.h"
-
 #import "Stolperstein.h"
 #import "StolpersteinSearchData.h"
 #import "StolpersteinNetworkService.h"
 
+#import <XCTest/XCTest.h>
+
 static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1";
 
-@interface StolpersteinNetworkServiceTests()
+@interface StolpersteinNetworkServiceTests : XCTestCase
 
 @property (nonatomic, strong) StolpersteinNetworkService *networkService;
 @property (nonatomic, assign) BOOL done;

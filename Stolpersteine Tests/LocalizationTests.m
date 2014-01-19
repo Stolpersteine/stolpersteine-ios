@@ -23,12 +23,16 @@
 //  THE SOFTWARE.
 //
 
-#import "LocalizationTests.h"
-
 #import "Localization.h"
 #import "Stolperstein.h"
 
 #import "OCMock.h"
+
+#import <XCTest/XCTest.h>
+
+@interface LocalizationTests : XCTestCase
+
+@end
 
 @implementation LocalizationTests
 

@@ -119,11 +119,8 @@
 		48AC6D6F16BF0964004C4AF4 /* StolpersteinSearchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinSearchData.m; sourceTree = "<group>"; };
 		48BAF38616E9405C007250A0 /* DiagnosticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiagnosticsService.h; sourceTree = "<group>"; };
 		48BAF38716E9405C007250A0 /* DiagnosticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiagnosticsService.m; sourceTree = "<group>"; };
-		48E27819180B2BD00018EE03 /* LocalizationTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationTests.h; sourceTree = "<group>"; };
 		48E2781A180B2BD00018EE03 /* LocalizationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationTests.m; sourceTree = "<group>"; };
-		48E2781C180B2BD00018EE03 /* StolpersteinNetworkServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinNetworkServiceTests.h; sourceTree = "<group>"; };
 		48E2781D180B2BD00018EE03 /* StolpersteinNetworkServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinNetworkServiceTests.m; sourceTree = "<group>"; };
-		48E2781E180B2BD00018EE03 /* StolpersteinTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinTests.h; sourceTree = "<group>"; };
 		48E2781F180B2BD00018EE03 /* StolpersteinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinTests.m; sourceTree = "<group>"; };
 		6205ED93175E021D00482DF9 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		6205ED95175E023000482DF9 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
@@ -226,7 +223,6 @@
 		486576FA180B29CD000326D1 /* Stolpersteine Tests */ = {
 			isa = PBXGroup;
 			children = (
-				48E27819180B2BD00018EE03 /* LocalizationTests.h */,
 				48E2781A180B2BD00018EE03 /* LocalizationTests.m */,
 				48E2781B180B2BD00018EE03 /* Stolpersteine API */,
 				486576FB180B29CD000326D1 /* Supporting Files */,
@@ -256,9 +252,7 @@
 		48E2781B180B2BD00018EE03 /* Stolpersteine API */ = {
 			isa = PBXGroup;
 			children = (
-				48E2781C180B2BD00018EE03 /* StolpersteinNetworkServiceTests.h */,
 				48E2781D180B2BD00018EE03 /* StolpersteinNetworkServiceTests.m */,
-				48E2781E180B2BD00018EE03 /* StolpersteinTests.h */,
 				48E2781F180B2BD00018EE03 /* StolpersteinTests.m */,
 			);
 			path = "Stolpersteine API";

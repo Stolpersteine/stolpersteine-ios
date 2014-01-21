@@ -44,7 +44,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 @interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, CCHMapClusterControllerDelegate, StolpersteinSynchronizationControllerDelegate>
 
-@property (nonatomic, strong) MKUserLocation *userLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
 @property (nonatomic, strong) StolpersteinSynchronizationController *stolpersteinSyncController;
@@ -147,14 +146,15 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (IBAction)centerMap:(UIBarButtonItem *)sender
 {
+    BOOL userLocationAvailable = (self.mapView.userLocation.location != nil);
     NSString *diagnosticsLabel;
-    if (!self.isUserLocationMode && self.userLocation.location) {
+    if (!self.isUserLocationMode && userLocationAvailable) {
         self.userLocationMode = YES;
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.userLocation.location.coordinate, ZOOM_DISTANCE_USER, ZOOM_DISTANCE_USER);
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, ZOOM_DISTANCE_USER, ZOOM_DISTANCE_USER);
         [self.mapView setRegion:region animated:YES];
         diagnosticsLabel = @"userLocation";
     } else {
-        if (self.userLocation.location) {
+        if (userLocationAvailable) {
             self.userLocationMode = NO;
         }
         MKCoordinateRegion region = [AppDelegate.configurationService coordinateRegionConfigurationForKey:ConfigurationServiceKeyVisibleRegion];
@@ -220,11 +220,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     return view;
 }
 
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
-{
-    self.userLocation = userLocation;
-}
-
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     if ([view.annotation isKindOfClass:CCHMapClusterAnnotation.class]) {
@@ -239,7 +234,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     if (status == kCLAuthorizationStatusAuthorized) {
         self.mapView.showsUserLocation = YES;
     } else {
-        self.userLocation = nil;
         self.mapView.showsUserLocation = NO;
         self.userLocationMode = YES;
         [self updateLocationBarButtonItem];

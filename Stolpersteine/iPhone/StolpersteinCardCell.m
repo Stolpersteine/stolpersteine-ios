@@ -23,25 +23,25 @@
 {
     [super awakeFromNib];
     
-    [self setup];
+    [self setUp];
 }
 
-- (void)prepareForReuse
+- (void)setUp
 {
-    [super prepareForReuse];
-    
-    [self setup];
-}
-
-- (void)setup
-{
+    // Street button
     NSString *title = NSLocalizedString(@"StolpersteinCardCell.street", nil);
     [self.streetButton setTitle:title forState:UIControlStateNormal];
     self.streetButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     
-    // Long press for copy & paste
+    // Copy & paste
     UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [self addGestureRecognizer:recognizer];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(willHideEditMenu:) name:UIMenuControllerWillHideMenuNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden
@@ -153,6 +153,11 @@
     [menu setMenuVisible:YES animated:YES];
     
     [self setSelected:YES animated:NO];
+}
+
+- (void)willHideEditMenu:(NSNotification *)notification
+{
+    [self setSelected:NO animated:NO];
 }
 
 @end

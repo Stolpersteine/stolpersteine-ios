@@ -26,7 +26,6 @@
 #import "MapViewController.h"
 
 #import "AppDelegate.h"
-#import "StolpersteinNetworkService.h"
 #import "DiagnosticsService.h"
 #import "ConfigurationService.h"
 #import "Localization.h"
@@ -37,6 +36,7 @@
 #import "StolpersteinSynchronizationController.h"
 #import "StolpersteinCardsViewController.h"
 #import "StolpersteinAnnotationView.h"
+#import "StolpersteinNetworkService.h"
 
 #import "CCHMapClusterController.h"
 #import "CCHMapClusterControllerDelegate.h"

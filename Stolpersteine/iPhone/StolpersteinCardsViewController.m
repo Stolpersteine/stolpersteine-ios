@@ -86,6 +86,10 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 {
     [super viewWillDisappear:animated];
     
+    // Make sure that menu controller on table cell gets hidden
+    UIMenuController *menu = [UIMenuController sharedMenuController];
+    [menu setMenuVisible:NO animated:YES];
+    
     [self.searchStolpersteineOperation cancel];
 }
 

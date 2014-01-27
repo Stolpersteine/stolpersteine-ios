@@ -29,15 +29,18 @@
 #import "StolpersteinNetworkService.h"
 #import "DiagnosticsService.h"
 #import "ConfigurationService.h"
+#import "Localization.h"
+
 #import "Stolperstein.h"
 #import "StolpersteinSearchData.h"
 #import "StolpersteinSynchronizationControllerDelegate.h"
 #import "StolpersteinSynchronizationController.h"
 #import "StolpersteinCardsViewController.h"
+#import "StolpersteinClusterAnnotationView.h"
+
 #import "CCHMapClusterController.h"
 #import "CCHMapClusterControllerDelegate.h"
 #import "CCHMapClusterAnnotation.h"
-#import "Localization.h"
 
 static const double ZOOM_DISTANCE_USER = 1200;
 static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
@@ -190,18 +193,23 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     MKAnnotationView *annotationView;
     
     if ([annotation isKindOfClass:CCHMapClusterAnnotation.class]) {
-        static NSString *stolpersteinIdentifier = @"stolpersteinIdentifier";
+        static NSString *identifier = @"stolpersteinCluster";
         
-        annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:stolpersteinIdentifier];
-        if (annotationView) {
-            annotationView.annotation = annotation;
+        StolpersteinClusterAnnotationView *mapClusterAnnotationView = (StolpersteinClusterAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        if (mapClusterAnnotationView) {
+            mapClusterAnnotationView.annotation = annotation;
         } else {
-            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stolpersteinIdentifier];
-            annotationView.canShowCallout = YES;
+            mapClusterAnnotationView = [[StolpersteinClusterAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            mapClusterAnnotationView.canShowCallout = YES;
 
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            annotationView.rightCalloutAccessoryView = rightButton;
+            mapClusterAnnotationView.rightCalloutAccessoryView = rightButton;
         }
+        
+        CCHMapClusterAnnotation *mapClusterAnnotation = (CCHMapClusterAnnotation *)annotation;
+        mapClusterAnnotationView.count = mapClusterAnnotation.annotations.count;
+        
+        annotationView = mapClusterAnnotationView;
     }
     
     return annotationView;
@@ -280,6 +288,12 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 - (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
 {
     return [Localization newSubtitleFromMapClusterAnnotation:mapClusterAnnotation];
+}
+
+- (void)mapClusterController:(CCHMapClusterController *)mapClusterController willReuseMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
+{
+    StolpersteinClusterAnnotationView *mapClusterAnnotationView = (StolpersteinClusterAnnotationView *)[self.mapClusterController.mapView viewForAnnotation:mapClusterAnnotation];
+    mapClusterAnnotationView.count = mapClusterAnnotation.annotations.count;
 }
 
 #pragma mark - Table view

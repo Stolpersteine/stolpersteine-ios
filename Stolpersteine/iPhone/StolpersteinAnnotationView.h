@@ -25,7 +25,7 @@
 
 #import <MapKit/MapKit.h>
 
-@interface StolpersteinClusterAnnotationView : MKAnnotationView
+@interface StolpersteinAnnotationView : MKAnnotationView
 
 @property (assign, nonatomic) NSUInteger count;
 

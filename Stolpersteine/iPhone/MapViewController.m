@@ -36,7 +36,7 @@
 #import "StolpersteinSynchronizationControllerDelegate.h"
 #import "StolpersteinSynchronizationController.h"
 #import "StolpersteinCardsViewController.h"
-#import "StolpersteinClusterAnnotationView.h"
+#import "StolpersteinAnnotationView.h"
 
 #import "CCHMapClusterController.h"
 #import "CCHMapClusterControllerDelegate.h"
@@ -195,11 +195,11 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     if ([annotation isKindOfClass:CCHMapClusterAnnotation.class]) {
         static NSString *identifier = @"stolpersteinCluster";
         
-        StolpersteinClusterAnnotationView *mapClusterAnnotationView = (StolpersteinClusterAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        StolpersteinAnnotationView *mapClusterAnnotationView = (StolpersteinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (mapClusterAnnotationView) {
             mapClusterAnnotationView.annotation = annotation;
         } else {
-            mapClusterAnnotationView = [[StolpersteinClusterAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            mapClusterAnnotationView = [[StolpersteinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             mapClusterAnnotationView.canShowCallout = YES;
 
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -292,7 +292,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)mapClusterController:(CCHMapClusterController *)mapClusterController willReuseMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
 {
-    StolpersteinClusterAnnotationView *mapClusterAnnotationView = (StolpersteinClusterAnnotationView *)[self.mapClusterController.mapView viewForAnnotation:mapClusterAnnotation];
+    StolpersteinAnnotationView *mapClusterAnnotationView = (StolpersteinAnnotationView *)[self.mapClusterController.mapView viewForAnnotation:mapClusterAnnotation];
     mapClusterAnnotationView.count = mapClusterAnnotation.annotations.count;
 }
 

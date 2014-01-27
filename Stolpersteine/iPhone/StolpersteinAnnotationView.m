@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-#import "StolpersteinClusterAnnotationView.h"
+#import "StolpersteinAnnotationView.h"
 
 static inline CGPoint TBRectCenter(CGRect rect)
 {
@@ -47,13 +47,13 @@ static inline CGFloat TBScaledValueForValue(CGFloat value)
     return 1.0 / (1.0 + expf(-1 * TBScaleFactorAlpha * powf(value, TBScaleFactorBeta)));
 }
 
-@interface StolpersteinClusterAnnotationView ()
+@interface StolpersteinAnnotationView ()
 
 @property (strong, nonatomic) UILabel *countLabel;
 
 @end
 
-@implementation StolpersteinClusterAnnotationView
+@implementation StolpersteinAnnotationView
 
 - (id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
 {

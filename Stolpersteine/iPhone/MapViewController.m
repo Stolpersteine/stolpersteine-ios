@@ -207,19 +207,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     return annotationView;
 }
 
-- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
-{
-    MKOverlayView *view;
-    if ([overlay isKindOfClass:MKPolygon.class]) {
-        MKPolygonView *polygonView = [[MKPolygonView alloc] initWithPolygon:(MKPolygon *)overlay];
-        polygonView.strokeColor = [UIColor.blueColor colorWithAlphaComponent:0.7];
-        polygonView.lineWidth = 1;
-        view = polygonView;
-    }
-    
-    return view;
-}
-
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     if ([view.annotation isKindOfClass:CCHMapClusterAnnotation.class]) {

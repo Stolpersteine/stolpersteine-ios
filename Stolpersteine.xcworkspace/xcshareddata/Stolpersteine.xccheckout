@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>A9A789B4-A101-4F51-AF33-59106EEA65B7</string>
+	<string>64AE17A8-588B-43AD-8B9C-D06A82F5FCD0</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Stolpersteine</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>00F82C20-33AE-4CF6-9C4B-2F6D523B765E</key>
-		<string>https://github.com/optionu/stolpersteine-ios.git</string>
+		<key>79EAB9BF-35C6-4F2B-9BEB-46836760D0FE</key>
+		<string>ssh://github.com/optionu/stolpersteine-ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Stolpersteine.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>00F82C20-33AE-4CF6-9C4B-2F6D523B765E</key>
+		<key>79EAB9BF-35C6-4F2B-9BEB-46836760D0FE</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/optionu/stolpersteine-ios.git</string>
+	<string>ssh://github.com/optionu/stolpersteine-ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>00F82C20-33AE-4CF6-9C4B-2F6D523B765E</string>
+	<string>79EAB9BF-35C6-4F2B-9BEB-46836760D0FE</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>00F82C20-33AE-4CF6-9C4B-2F6D523B765E</string>
+			<string>79EAB9BF-35C6-4F2B-9BEB-46836760D0FE</string>
 			<key>IDESourceControlWCCName</key>
 			<string>stolpersteine-ios</string>
 		</dict>

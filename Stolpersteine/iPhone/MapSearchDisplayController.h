@@ -1,8 +1,8 @@
 //
-//  ViewController.h
+//  MapSearchDisplayController.h
 //  Stolpersteine
 //
-//  Copyright (C) 2013 Option-U Software
+//  Copyright (C) 2014 Option-U Software
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,17 +24,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MapKit/MapKit.h>
 
-@class MapSearchDisplayController;
+@class StolpersteinNetworkService;
+@class CCHMapClusterController;
 
-@interface MapViewController : UIViewController
+@interface MapSearchDisplayController : UISearchDisplayController <UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UIButton *infoButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *locationBarButtonItem;
-@property (weak, nonatomic) IBOutlet MapSearchDisplayController *mapSearchDisplayController;
-
-- (IBAction)centerMap:(UIBarButtonItem *)sender;
+@property (nonatomic, strong) StolpersteinNetworkService *networkService;
+@property (nonatomic, strong) CCHMapClusterController *mapClusterController;
+@property (nonatomic, assign) double zoomDistance;
 
 @end

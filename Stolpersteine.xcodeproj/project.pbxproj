@@ -73,6 +73,8 @@
 		6288BE22188AE02C00F9B986 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6288BE20188AE02C00F9B986 /* InfoPlist.strings */; };
 		6288BE24188AE02C00F9B986 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6288BE23188AE02C00F9B986 /* main.m */; };
 		6288BE2A188AE02C00F9B986 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6288BE29188AE02C00F9B986 /* Images.xcassets */; };
+		628D77771897B41400F605CC /* MapSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628D77761897B41400F605CC /* MapSearchDisplayController.m */; };
+		628D77781897B41400F605CC /* MapSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628D77761897B41400F605CC /* MapSearchDisplayController.m */; };
 		62AB9D6F188BC4450003AB4C /* ConfigurationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 62AB9D6E188BC4450003AB4C /* ConfigurationService.m */; };
 		62AB9D70188BC4450003AB4C /* ConfigurationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 62AB9D6E188BC4450003AB4C /* ConfigurationService.m */; };
 		62AB9D72188BC8BA0003AB4C /* ConfigurationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62AB9D71188BC8BA0003AB4C /* ConfigurationServiceTests.m */; };
@@ -166,6 +168,8 @@
 		6288BE23188AE02C00F9B986 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6288BE25188AE02C00F9B986 /* Stolpersteine Bochum-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stolpersteine Bochum-Prefix.pch"; sourceTree = "<group>"; };
 		6288BE29188AE02C00F9B986 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		628D77751897B41400F605CC /* MapSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapSearchDisplayController.h; sourceTree = "<group>"; };
+		628D77761897B41400F605CC /* MapSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSearchDisplayController.m; sourceTree = "<group>"; };
 		62AB9D6D188BC4450003AB4C /* ConfigurationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationService.h; sourceTree = "<group>"; };
 		62AB9D6E188BC4450003AB4C /* ConfigurationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationService.m; sourceTree = "<group>"; };
 		62AB9D71188BC8BA0003AB4C /* ConfigurationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationServiceTests.m; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 			children = (
 				48633B8916C03F690057A317 /* MapViewController.h */,
 				48633B8A16C03F690057A317 /* MapViewController.m */,
+				628D77751897B41400F605CC /* MapSearchDisplayController.h */,
+				628D77761897B41400F605CC /* MapSearchDisplayController.m */,
 				626EFDCC1896F22F00206C4B /* StolpersteinAnnotationView.h */,
 				626EFDCD1896F22F00206C4B /* StolpersteinAnnotationView.m */,
 				4879D220181C336E0022C131 /* InfoViewController.h */,
@@ -758,6 +764,7 @@
 				6207C261188AE0EF000CA2D4 /* DiagnosticsService.m in Sources */,
 				6207C255188AE0DA000CA2D4 /* MapViewController.m in Sources */,
 				6207C263188AE0EF000CA2D4 /* StolpersteinSynchronizationController.m in Sources */,
+				628D77771897B41400F605CC /* MapSearchDisplayController.m in Sources */,
 				6207C265188AE0EF000CA2D4 /* Stolperstein.m in Sources */,
 				6207C256188AE0DA000CA2D4 /* InfoViewController.m in Sources */,
 				6207C25F188AE0EF000CA2D4 /* AppDelegate.m in Sources */,
@@ -781,6 +788,7 @@
 				6207C269188AE0EF000CA2D4 /* DiagnosticsService.m in Sources */,
 				6207C25A188AE0DB000CA2D4 /* MapViewController.m in Sources */,
 				6207C26B188AE0EF000CA2D4 /* StolpersteinSynchronizationController.m in Sources */,
+				628D77781897B41400F605CC /* MapSearchDisplayController.m in Sources */,
 				6207C26D188AE0EF000CA2D4 /* Stolperstein.m in Sources */,
 				6207C25B188AE0DB000CA2D4 /* InfoViewController.m in Sources */,
 				6207C267188AE0EF000CA2D4 /* AppDelegate.m in Sources */,

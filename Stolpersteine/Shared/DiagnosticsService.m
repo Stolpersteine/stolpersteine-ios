@@ -31,6 +31,7 @@
 #import "GAIDictionaryBuilder.h"
 
 #import "MapViewController.h"
+#import "MapSearchDisplayController.h"
 #import "InfoViewController.h"
 #import "StolpersteinCardsViewController.h"
 #import "StolpersteinDescriptionViewController.h"
@@ -70,6 +71,7 @@
         _classToViewNameMapping = @{
            NSStringFromClass(AppDelegate.class): @"Misc",
            NSStringFromClass(MapViewController.class): @"Map",
+           NSStringFromClass(MapSearchDisplayController.class): @"Map",
            NSStringFromClass(InfoViewController.class): @"Info",
            NSStringFromClass(StolpersteinCardsViewController.class): @"StolpersteinCards",
            NSStringFromClass(StolpersteinDescriptionViewController.class): @"StolpersteinDescription"

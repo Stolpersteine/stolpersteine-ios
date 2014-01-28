@@ -28,12 +28,11 @@
 #import "AppDelegate.h"
 #import "DiagnosticsService.h"
 #import "ConfigurationService.h"
+#import "MapSearchDisplayController.h"
 #import "Localization.h"
 
-#import "Stolperstein.h"
-#import "StolpersteinSearchData.h"
-#import "StolpersteinSynchronizationControllerDelegate.h"
 #import "StolpersteinSynchronizationController.h"
+#import "StolpersteinSynchronizationControllerDelegate.h"
 #import "StolpersteinCardsViewController.h"
 #import "StolpersteinAnnotationView.h"
 #import "StolpersteinNetworkService.h"
@@ -45,13 +44,11 @@
 static const double ZOOM_DISTANCE_USER = 1200;
 static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
-@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, CCHMapClusterControllerDelegate, StolpersteinSynchronizationControllerDelegate>
+@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, CCHMapClusterControllerDelegate, StolpersteinSynchronizationControllerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
 @property (nonatomic, strong) StolpersteinSynchronizationController *stolpersteinSyncController;
-@property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
-@property (nonatomic, strong) NSArray *searchedStolpersteine;
 @property (nonatomic, strong) CCHMapClusterController *mapClusterController;
 
 @end
@@ -66,21 +63,28 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.mapView.showsBuildings = YES;
     self.infoButton.accessibilityLabel = NSLocalizedString(@"MapViewController.info", nil);
     
+    // Clustering
+    self.mapClusterController = [[CCHMapClusterController alloc] initWithMapView:self.mapView];
+    self.mapClusterController.delegate = self;
+    
     // Navigation bar
-    [self.searchDisplayController.searchBar removeFromSuperview];
-    self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
-    self.navigationItem.rightBarButtonItem = self.locationBarButtonItem;
+    self.mapSearchDisplayController.networkService = [AppDelegate networkService];
+    self.mapSearchDisplayController.mapClusterController = self.mapClusterController;
+    self.mapSearchDisplayController.zoomDistance = ZOOM_DISTANCE_STOLPERSTEIN;
+    self.mapSearchDisplayController.delegate = self.mapSearchDisplayController;
+    self.mapSearchDisplayController.searchResultsDataSource = self.mapSearchDisplayController;
+    self.mapSearchDisplayController.searchResultsDelegate = self.mapSearchDisplayController;
+    
+    [self.mapSearchDisplayController.searchBar removeFromSuperview];
+    self.mapSearchDisplayController.displaysSearchBarInNavigationBar = YES;
+    self.mapSearchDisplayController.navigationItem.rightBarButtonItem = self.locationBarButtonItem;
     [self updateLocationBarButtonItem];
-    self.searchDisplayController.searchBar.placeholder = NSLocalizedString(@"MapViewController.searchBarPlaceholder", nil);
+    self.mapSearchDisplayController.searchBar.placeholder = NSLocalizedString(@"MapViewController.searchBarPlaceholder", nil);
     [self updateSearchBarForInterfaceOrientation:self.interfaceOrientation];
     
     // User location
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    
-    // Clustering
-    self.mapClusterController = [[CCHMapClusterController alloc] initWithMapView:self.mapView];
-    self.mapClusterController.delegate = self;
     
     // Start loading data
     self.stolpersteinSyncController = [[StolpersteinSynchronizationController alloc] initWithNetworkService:AppDelegate.networkService];
@@ -235,49 +239,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     }
 }
 
-#pragma mark - Search display controller
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(updateSearchData:) withObject:searchString afterDelay:0.3];
-    
-    return NO;
-}
-
-- (void)updateSearchData:(NSString *)searchString
-{
-    [self.searchStolpersteineOperation cancel];
-    
-    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
-    searchData.keyword = searchString;
-    self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 100) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.searchedStolpersteine = stolpersteine;
-        [self.searchDisplayController.searchResultsTableView reloadData];
-        [self.searchDisplayController.searchResultsTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
-        
-        return YES;
-    }];
-}
-
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
-{
-    [self.navigationItem setRightBarButtonItem:nil animated:YES];
-    [controller.searchBar setShowsCancelButton:YES animated:NO];
-}
-
-- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller
-{
-    [AppDelegate.diagnosticsService trackEvent:DiagnosticsServiceEventSearchStarted withClass:self.class];
-}
-
-- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
-{
-    [self.searchStolpersteineOperation cancel];
-    [self.navigationItem setRightBarButtonItem:self.locationBarButtonItem animated:YES];
-    [controller.searchBar setShowsCancelButton:NO animated:YES];
-}
-
 #pragma mark - Map cluster controller
 
 - (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
@@ -294,46 +255,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 {
     StolpersteinAnnotationView *mapClusterAnnotationView = (StolpersteinAnnotationView *)[self.mapClusterController.mapView viewForAnnotation:mapClusterAnnotation];
     mapClusterAnnotationView.count = mapClusterAnnotation.annotations.count;
-}
-
-#pragma mark - Table view
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString * const cellIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
-    }
-    
-    Stolperstein *stolperstein = self.searchedStolpersteine[indexPath.row];
-    cell.textLabel.text = [Localization newNameFromStolperstein:stolperstein];
-    cell.detailTextLabel.text = [Localization newShortAddressFromStolperstein:stolperstein];
-
-    return cell;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.searchedStolpersteine.count;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Deselect table row
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-     
-    // Dismiss search display controller
-    self.searchDisplayController.active = NO;
-    
-    // Force selected annotation to be on map
-    Stolperstein *stolperstein = self.searchedStolpersteine[indexPath.row];
-    __weak CCHMapClusterController *weakMapClusterController = self.mapClusterController;
-    [weakMapClusterController addAnnotations:@[stolperstein] withCompletionHandler:^{
-        // Zoom to selected stolperstein
-        [weakMapClusterController selectAnnotation:stolperstein andZoomToRegionWithLatitudinalMeters:ZOOM_DISTANCE_STOLPERSTEIN longitudinalMeters:ZOOM_DISTANCE_STOLPERSTEIN];
-    }];
 }
 
 @end

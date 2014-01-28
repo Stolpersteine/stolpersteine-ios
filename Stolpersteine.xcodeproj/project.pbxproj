@@ -56,9 +56,9 @@
 		6207C27D188AE277000CA2D4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 622DEDA417F432EB009C9B44 /* Settings.bundle */; };
 		6207C27E188AE277000CA2D4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 622DEDA417F432EB009C9B44 /* Settings.bundle */; };
 		6207C280188B0E1C000CA2D4 /* Stolpersteine-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6207C27F188B0E1C000CA2D4 /* Stolpersteine-Config.plist */; };
-		6207C282188B0E2B000CA2D4 /* Stolpersteine-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6207C281188B0E2B000CA2D4 /* Stolpersteine-Config.plist */; };
 		6207C285188B0F0F000CA2D4 /* buildnumber_dynamic.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6207C283188B0F0F000CA2D4 /* buildnumber_dynamic.xcconfig */; };
 		6207C289188B0F21000CA2D4 /* buildnumber_dynamic.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6207C287188B0F21000CA2D4 /* buildnumber_dynamic.xcconfig */; };
+		62684D85189837CA00770B01 /* Stolpersteine-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6207C281188B0E2B000CA2D4 /* Stolpersteine-Config.plist */; };
 		626EFDCE1896F22F00206C4B /* StolpersteinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 626EFDCD1896F22F00206C4B /* StolpersteinAnnotationView.m */; };
 		626EFDCF1896F22F00206C4B /* StolpersteinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 626EFDCD1896F22F00206C4B /* StolpersteinAnnotationView.m */; };
 		6288BDEA188AE00C00F9B986 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627E43B8169B0F050065C1F1 /* Foundation.framework */; };
@@ -582,7 +582,7 @@
 				6207C27A188AE268000CA2D4 /* Localizable.strings in Resources */,
 				6207C275188AE25B000CA2D4 /* gunter-demnig.jpg in Resources */,
 				6207C276188AE25B000CA2D4 /* gunter-demnig@2x.jpg in Resources */,
-				6207C282188B0E2B000CA2D4 /* Stolpersteine-Config.plist in Resources */,
+				62684D85189837CA00770B01 /* Stolpersteine-Config.plist in Resources */,
 				6207C27C188AE272000CA2D4 /* MainStoryboard.storyboard in Resources */,
 				6207C27E188AE277000CA2D4 /* Settings.bundle in Resources */,
 				6288BE2A188AE02C00F9B986 /* Images.xcassets in Resources */,

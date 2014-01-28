@@ -18,8 +18,8 @@
 		<real>0.2</real>
 		<key>span.longitudeDelta</key>
 		<real>0.2</real>
-		<key>Filter city</key>
-		<string>Bochum</string>
 	</dict>
+	<key>Filter city</key>
+	<string>Bochum</string>
 </dict>
 </plist>

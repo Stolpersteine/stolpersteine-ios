@@ -25,6 +25,9 @@
 
 #import "StolpersteinAnnotationView.h"
 
+#define FOREGROUND_COLOR [UIColor colorWithWhite:(244.0 / 255.0) alpha:1.0]
+#define BACKGROUND_COLOR [UIColor colorWithRed:(254.0 / 255.0) green:(148.0 / 255.0) blue:(40.0 / 255.0) alpha:0.95]
+
 static inline CGPoint TBRectCenter(CGRect rect)
 {
     return CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
@@ -73,8 +76,7 @@ static inline CGFloat TBScaledValueForValue(CGFloat value)
     _countLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _countLabel.textAlignment = NSTextAlignmentCenter;
     _countLabel.backgroundColor = [UIColor clearColor];
-//    _countLabel.textColor = [UIColor colorWithWhite:(35.0/255.0) alpha:1.0];
-    _countLabel.textColor = [UIColor whiteColor];
+    _countLabel.textColor = FOREGROUND_COLOR;
     _countLabel.textAlignment = NSTextAlignmentCenter;
     _countLabel.adjustsFontSizeToFitWidth = YES;
     _countLabel.minimumScaleFactor = 2;
@@ -139,21 +141,14 @@ static inline CGFloat TBScaledValueForValue(CGFloat value)
         CGContextRef context = UIGraphicsGetCurrentContext();
         
         CGContextSetAllowsAntialiasing(context, true);
-        
-        UIColor *outerCircleStrokeColor = [UIColor colorWithRed:(35.0 / 255.0) green:(35.0 / 255.0) blue:(35.0 / 255.0) alpha:1.0];
-//        UIColor *innerCircleStrokeColor = [UIColor whiteColor];
-        UIColor *innerCircleFillColor = [UIColor colorWithRed:(254.0 / 255.0) green:(148.0 / 255.0) blue:(40.0 / 255.0) alpha:1.0];;
-        
         CGRect circleFrame = CGRectInset(rect, 4, 4);
         
+        UIColor *outerCircleStrokeColor = FOREGROUND_COLOR;
         [outerCircleStrokeColor setStroke];
         CGContextSetLineWidth(context, 1.0);
         CGContextStrokeEllipseInRect(context, circleFrame);
-        
-//        [innerCircleStrokeColor setStroke];
-//        CGContextSetLineWidth(context, 4);
-//        CGContextStrokeEllipseInRect(context, circleFrame);
-//        
+
+        UIColor *innerCircleFillColor = BACKGROUND_COLOR;
         [innerCircleFillColor setFill];
         CGContextFillEllipseInRect(context, circleFrame);
     }

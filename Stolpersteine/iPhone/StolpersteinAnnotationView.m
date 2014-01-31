@@ -91,67 +91,40 @@ static inline CGFloat TBScaledValueForValue(CGFloat value)
 {
     _oneLocation = oneLocation;
     
-    UIImage *image;
-    CGPoint centerOffset;
-    if (oneLocation) {
-        image = [UIImage imageNamed:@"MarkerSquare"];
-        centerOffset = CGPointMake(0, -11);
-        CGRect frame = self.bounds;
-        frame.origin.y -= 1;
-        self.countLabel.frame = frame;
-        
-        self.image = image;
-        self.centerOffset = centerOffset;
-    } else {
-        CGPoint oldCenter = self.center;
-        CGRect newBounds = CGRectMake(0, 0, 44 * TBScaledValueForValue(self.count), 44 * TBScaledValueForValue(self.count));
-        self.frame = TBCenterRectRounded(newBounds, oldCenter);
-        self.center = oldCenter;
-
-        [self setNeedsDisplay];
-    }
-//    } else {
-//        image = [UIImage imageNamed:@"MarkerCircle"];
-//        centerOffset = CGPointZero;
-//    }
-    
-//    self.calloutOffset
+    [self updateImage];
 }
 
 - (void)setCount:(NSUInteger)count
 {
     _count = count;
     
-    if (!self.isOneLocation) {
-        CGPoint oldCenter = self.center;
-        CGRect newBounds = CGRectMake(0, 0, 44 * TBScaledValueForValue(count), 44 * TBScaledValueForValue(count));
-        self.frame = TBCenterRectRounded(newBounds, oldCenter);
-        self.center = oldCenter;
-        
-        [self setNeedsDisplay];
-    }
-
     self.countLabel.text = [@(count) stringValue];
-    
+    [self updateImage];
 }
 
-- (void)drawRect:(CGRect)rect
+- (void)updateImage
 {
-    if (!self.isOneLocation) {
-        CGContextRef context = UIGraphicsGetCurrentContext();
+    UIImage *image;
+    CGPoint centerOffset;
+    if (self.oneLocation) {
+        image = [UIImage imageNamed:@"MarkerSquare"];
+        centerOffset = CGPointMake(0, -11);
+        CGRect frame = self.bounds;
+        frame.origin.y -= 1;
+        self.countLabel.frame = frame;
+    } else {
+        centerOffset = CGPointZero;
+        self.countLabel.frame = self.bounds;
         
-        CGContextSetAllowsAntialiasing(context, true);
-        CGRect circleFrame = CGRectInset(rect, 4, 4);
-        
-        UIColor *outerCircleStrokeColor = FOREGROUND_COLOR;
-        [outerCircleStrokeColor setStroke];
-        CGContextSetLineWidth(context, 1.0);
-        CGContextStrokeEllipseInRect(context, circleFrame);
-
-        UIColor *innerCircleFillColor = BACKGROUND_COLOR;
-        [innerCircleFillColor setFill];
-        CGContextFillEllipseInRect(context, circleFrame);
+        if (self.count > 999) {
+            image = [UIImage imageNamed:@"MarkerCircle88"];
+        } else {
+            image = [UIImage imageNamed:@"MarkerCircle44"];
+        }
     }
+    
+    self.image = image;
+    self.centerOffset = centerOffset;
 }
 
 @end

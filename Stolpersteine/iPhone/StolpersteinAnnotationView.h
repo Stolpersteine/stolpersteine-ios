@@ -28,5 +28,6 @@
 @interface StolpersteinAnnotationView : MKAnnotationView
 
 @property (assign, nonatomic) NSUInteger count;
+@property (assign, nonatomic, getter = isOneLocation) BOOL oneLocation;
 
 @end

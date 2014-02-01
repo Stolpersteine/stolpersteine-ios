@@ -25,6 +25,9 @@
 
 #import "StolpersteinAnnotationView.h"
 
+#define FOREGROUND_COLOR [UIColor colorWithWhite:(244.0 / 255.0) alpha:1.0]
+#define BACKGROUND_COLOR [UIColor colorWithRed:(254.0 / 255.0) green:(148.0 / 255.0) blue:(40.0 / 255.0) alpha:0.95]
+
 static inline CGPoint TBRectCenter(CGRect rect)
 {
     return CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
@@ -62,19 +65,21 @@ static inline CGFloat TBScaledValueForValue(CGFloat value)
         self.backgroundColor = [UIColor clearColor];
         [self setupLabel];
         [self setCount:1];
+        [self setOneLocation:NO];
     }
     return self;
 }
 
 - (void)setupLabel
 {
-    _countLabel = [[UILabel alloc] initWithFrame:self.frame];
+    _countLabel = [[UILabel alloc] initWithFrame:self.bounds];
     _countLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _countLabel.textAlignment = NSTextAlignmentCenter;
     _countLabel.backgroundColor = [UIColor clearColor];
-    _countLabel.textColor = [UIColor whiteColor];
+    _countLabel.textColor = FOREGROUND_COLOR;
     _countLabel.textAlignment = NSTextAlignmentCenter;
     _countLabel.adjustsFontSizeToFitWidth = YES;
+    _countLabel.minimumScaleFactor = 2;
     _countLabel.numberOfLines = 1;
     _countLabel.font = [UIFont boldSystemFontOfSize:12];
     _countLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
@@ -82,42 +87,44 @@ static inline CGFloat TBScaledValueForValue(CGFloat value)
     [self addSubview:_countLabel];
 }
 
+- (void)setOneLocation:(BOOL)oneLocation
+{
+    _oneLocation = oneLocation;
+    
+    [self updateImage];
+}
+
 - (void)setCount:(NSUInteger)count
 {
     _count = count;
     
-    CGPoint oldCenter = self.center;
-    CGRect newBounds = CGRectMake(0, 0, 44 * TBScaledValueForValue(count), 44 * TBScaledValueForValue(count));
-    self.frame = TBCenterRectRounded(newBounds, oldCenter);
-    self.center = oldCenter;
-
     self.countLabel.text = [@(count) stringValue];
-    
-    [self setNeedsDisplay];
+    [self updateImage];
 }
 
-- (void)drawRect:(CGRect)rect
+- (void)updateImage
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIImage *image;
+    CGPoint centerOffset;
+    if (self.oneLocation) {
+        image = [UIImage imageNamed:@"MarkerSquare"];
+        centerOffset = CGPointMake(0, -11);
+        CGRect frame = self.bounds;
+        frame.origin.y -= 1;
+        self.countLabel.frame = frame;
+    } else {
+        centerOffset = CGPointZero;
+        self.countLabel.frame = self.bounds;
+        
+        if (self.count > 999) {
+            image = [UIImage imageNamed:@"MarkerCircle88"];
+        } else {
+            image = [UIImage imageNamed:@"MarkerCircle44"];
+        }
+    }
     
-    CGContextSetAllowsAntialiasing(context, true);
-    
-    UIColor *outerCircleStrokeColor = [UIColor colorWithWhite:0 alpha:0.25];
-    UIColor *innerCircleStrokeColor = [UIColor whiteColor];
-    UIColor *innerCircleFillColor = [UIColor colorWithRed:(255.0 / 255.0) green:(95 / 255.0) blue:(42 / 255.0) alpha:1.0];
-    
-    CGRect circleFrame = CGRectInset(rect, 4, 4);
-    
-    [outerCircleStrokeColor setStroke];
-    CGContextSetLineWidth(context, 5.0);
-    CGContextStrokeEllipseInRect(context, circleFrame);
-    
-    [innerCircleStrokeColor setStroke];
-    CGContextSetLineWidth(context, 4);
-    CGContextStrokeEllipseInRect(context, circleFrame);
-    
-    [innerCircleFillColor setFill];
-    CGContextFillEllipseInRect(context, circleFrame);
+    self.image = image;
+    self.centerOffset = centerOffset;
 }
 
 @end

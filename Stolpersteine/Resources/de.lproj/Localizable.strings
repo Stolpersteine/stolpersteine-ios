@@ -35,7 +35,7 @@
 "InfoViewController.sourcesText" = "Wir bedanken uns bei den folgenden Organisationen, die uns die Daten für diese App zur Verfügung gestellt haben:";
 "InfoViewController.kssTitle" = "Koordinierungsstelle Stolpersteine Berlin";
 "InfoViewController.wikipediaTitle" = "Wikipedia";
-"InfoViewController.acknowledgementsText" = "Diese App ist ein Open-Source-Projekt mit Beiträgen von Claus Höfele, Hendrik Spree und Rachel Höfele.";
+"InfoViewController.acknowledgementsText" = "Diese App ist ein Open-Source-Projekt mit Beiträgen von Claus Höfele, Hendrik Spree, Rachel Höfele und Tom Reinert.";
 "InfoViewController.contactTitle" = "Schreiben Sie uns eine E-Mail";
 "InfoViewController.gitHubTitle" = "Stolpersteine App auf GitHub";
 
@@ -48,7 +48,7 @@
 "InfoViewController.wikipediaStolpersteineURL" = "http://de.wikipedia.org/wiki/Liste_der_Stolpersteine_in_Berlin";
 "InfoViewController.gitHubURL" = "https://github.com/optionu/stolpersteine-ios";
 "InfoViewController.recommendationSubject" = "Stolpersteine in Berlin";
-"InfoViewController.recommendationMessage" = "Hallo,\n\nhier kann man die kostenlose iPhone App mit Namen und Adressen der rund 5.000 Stolpersteine in Berlin herunterladen: https://itunes.apple.com/de/app/stolpersteine-in-berlin/id640731757?mt=8\n\nKann ich sehr empfehlen.";
+"InfoViewController.recommendationMessage" = "Hallo,\n\nhier kann man die kostenlose iPhone App mit Namen und Adressen der rund 5.000 Stolpersteine in Berlin herunterladen: https://itunes.apple.com/de/app/stolpersteine-in-berlin/id640731757?mt=8.";
 "InfoViewController.contactSubject" = "Stolpersteine iPhone App";
 "InfoViewController.contactMessage" = "\n\nVersion %@ (%@)";
 

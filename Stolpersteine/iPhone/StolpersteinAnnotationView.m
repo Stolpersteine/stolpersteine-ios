@@ -63,14 +63,18 @@ static inline CGFloat TBScaledValueForValue(CGFloat value)
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        [self setupLabel];
-        [self setCount:1];
-        [self setOneLocation:NO];
+        [self setUpLabel];
+        _oneLocation = NO;
+        self.count = 1;
+        
+//        for (int i = 0; i < 10000; i++) {
+//            NSLog(@"%tu: %f", i, 44 * TBScaledValueForValue(i));
+//        }
     }
     return self;
 }
 
-- (void)setupLabel
+- (void)setUpLabel
 {
     _countLabel = [[UILabel alloc] initWithFrame:self.bounds];
     _countLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -108,7 +112,7 @@ static inline CGFloat TBScaledValueForValue(CGFloat value)
     CGPoint centerOffset;
     if (self.oneLocation) {
         image = [UIImage imageNamed:@"MarkerSquare"];
-        centerOffset = CGPointMake(0, -11);
+        centerOffset = CGPointMake(0, image.size.height * 0.5);
         CGRect frame = self.bounds;
         frame.origin.y -= 1;
         self.countLabel.frame = frame;
@@ -117,9 +121,15 @@ static inline CGFloat TBScaledValueForValue(CGFloat value)
         self.countLabel.frame = self.bounds;
         
         if (self.count > 999) {
-            image = [UIImage imageNamed:@"MarkerCircle88"];
+            image = [UIImage imageNamed:@"MarkerCircle94"];
+        } else if (self.count > 499) {
+            image = [UIImage imageNamed:@"MarkerCircle90"];
+        } else if (self.count > 99) {
+            image = [UIImage imageNamed:@"MarkerCircle84"];
+        } else if (self.count > 9) {
+            image = [UIImage imageNamed:@"MarkerCircle62"];
         } else {
-            image = [UIImage imageNamed:@"MarkerCircle44"];
+            image = [UIImage imageNamed:@"MarkerCircle52"];
         }
     }
     

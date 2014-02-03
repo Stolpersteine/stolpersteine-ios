@@ -33,8 +33,9 @@
 
 "InfoViewController.acknowledgementsSection" = "Acknowledgements";
 "InfoViewController.sourcesText" = "We are grateful to the following organisations, who made their data available for use in this app:";
-"InfoViewController.kssTitle" = "Koordinierungsstelle Stolpersteine Berlin";
-"InfoViewController.wikipediaTitle" = "Wikipedia";
+"InfoViewController.berlinKSSTitle" = "Koordinierungsstelle Stolpersteine Berlin";
+"InfoViewController.bochumAFGTitle" = "Stadt Bochum";
+"InfoViewController.berlinWikipediaTitle" = "Wikipedia";
 "InfoViewController.acknowledgementsText" = "This app is an open source project with contributions from Claus Höfele, Hendrik Spree, Rachel Höfele, and Tom Reinert.";
 "InfoViewController.contactTitle" = "Send us an e-mail";
 "InfoViewController.gitHubTitle" = "Stolpersteine app on GitHub";
@@ -44,8 +45,9 @@
 
 "InfoViewController.wikipediaURL" = "http://en.wikipedia.org/wiki/Stolperstein";
 "InfoViewController.demnigURL" = "http://www.stolpersteine.com/index.php?id=1&L=1";
-"InfoViewController.kssBerlinURL" = "http://www.stolpersteine-berlin.de/en/stolpersteine";
-"InfoViewController.wikipediaStolpersteineURL" = "http://de.wikipedia.org/wiki/Liste_der_Stolpersteine_in_Berlin";
+"InfoViewController.berlinKSSURL" = "http://www.stolpersteine-berlin.de/";
+"InfoViewController.bochumAFGURL" = "http://www.bochum.de/stolpersteine/nav/9BLDJS939BOCM";
+"InfoViewController.berlinWikipediaURL" = "http://de.wikipedia.org/wiki/Liste_der_Stolpersteine_in_Berlin";
 "InfoViewController.gitHubURL" = "https://github.com/optionu/stolpersteine-ios";
 "InfoViewController.recommendationSubject" = "Stolpersteine in Berlin";
 "InfoViewController.recommendationMessage" = "Hi,\n\nDownload the free iPhone app here and locate all of Berlin's Stolpersteine: https://itunes.apple.com/de/app/stolpersteine-in-berlin/id640731757?mt=8.";

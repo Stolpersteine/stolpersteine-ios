@@ -465,8 +465,36 @@
                                             <bool key="isElement" value="YES"/>
                                         </accessibility>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4Ig-tV-lur">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="3hU-ux-7ws">
                                         <rect key="frame" x="0.0" y="781" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3hU-ux-7ws" id="lc6-o6-JGG">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLm-ey-Qle">
+                                                    <rect key="frame" x="15" y="7" width="31" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <bool key="isElement" value="NO"/>
+                                                    </accessibility>
+                                                    <state key="normal" title="AFG">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nLm-ey-Qle" firstAttribute="leading" secondItem="lc6-o6-JGG" secondAttribute="leading" constant="15" id="Jt4-NG-FfN"/>
+                                                <constraint firstAttribute="centerY" secondItem="nLm-ey-Qle" secondAttribute="centerY" id="cKn-OZ-XMl"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" none="YES" button="YES"/>
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4Ig-tV-lur">
+                                        <rect key="frame" x="0.0" y="825" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Ig-tV-lur" id="gmM-OK-Che">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -494,7 +522,7 @@
                                         </accessibility>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="rm1-QE-ZyY">
-                                        <rect key="frame" x="0.0" y="825" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="869" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rm1-QE-ZyY" id="h9O-fW-YdV">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
@@ -515,7 +543,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="f5N-tC-bpg">
-                                        <rect key="frame" x="0.0" y="925" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="969" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f5N-tC-bpg" id="wCs-5K-xFa">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -544,7 +572,7 @@
                                         </accessibility>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="sCV-pV-fxt">
-                                        <rect key="frame" x="0.0" y="969" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1013" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sCV-pV-fxt" id="DcV-mD-3RL">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -576,7 +604,7 @@
                             <tableViewSection headerTitle="Legal" id="Qs2-vk-GWH">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="200" id="Pfm-0Q-xCL">
-                                        <rect key="frame" x="0.0" y="1061" width="320" height="200"/>
+                                        <rect key="frame" x="0.0" y="1105" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pfm-0Q-xCL" id="q91-xM-UMs">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
@@ -619,16 +647,17 @@
                         <outlet property="aboutLabel" destination="CrZ-iF-n1q" id="fWL-e5-jQh"/>
                         <outlet property="acknowledgementsLabel" destination="YHs-RI-Ujc" id="qA0-el-fbm"/>
                         <outlet property="artistInfoButton" destination="TIn-kE-DJK" id="qQq-Pt-qBt"/>
+                        <outlet property="berlinKSSButton" destination="qew-M9-jMr" id="XzT-uV-BFD"/>
+                        <outlet property="berlinWikipediaButton" destination="9yr-9f-c3W" id="Y5G-oq-ocp"/>
+                        <outlet property="bochumAFGButton" destination="nLm-ey-Qle" id="Fv1-Lg-9rJ"/>
                         <outlet property="contactButton" destination="QA4-QR-Kmh" id="sUU-Zu-AMc"/>
                         <outlet property="gitHubButton" destination="ar0-UW-8Pc" id="5P8-pT-id5"/>
-                        <outlet property="kssButton" destination="qew-M9-jMr" id="i2C-8h-BLG"/>
                         <outlet property="legalLabel" destination="dPS-eh-oJe" id="jxZ-Jc-FP8"/>
                         <outlet property="ratingButton" destination="wgU-Vh-9zh" id="f6M-rR-Zbe"/>
                         <outlet property="recommendButton" destination="z9u-E4-3UX" id="6UE-Su-l99"/>
                         <outlet property="sourcesLabel" destination="C1t-YI-StL" id="Pzq-e3-ZW2"/>
                         <outlet property="stolpersteineInfoButton" destination="D3P-Oi-ckN" id="qM1-Jj-fFm"/>
                         <outlet property="stolpersteineLabel" destination="fxe-Q9-Y6F" id="xNI-x5-Ayi"/>
-                        <outlet property="wikipediaButton" destination="9yr-9f-c3W" id="ueI-Fv-WCZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdW-hi-dKJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

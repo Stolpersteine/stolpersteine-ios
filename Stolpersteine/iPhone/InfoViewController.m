@@ -59,8 +59,9 @@
 	
     // Acknowledgements
 	self.sourcesLabel.text = NSLocalizedString(@"InfoViewController.sourcesText", nil);
-	[self.kssButton setTitle:NSLocalizedString(@"InfoViewController.kssTitle", nil) forState:UIControlStateNormal];
-	[self.wikipediaButton setTitle:NSLocalizedString(@"InfoViewController.wikipediaTitle", nil) forState:UIControlStateNormal];
+	[self.berlinKSSButton setTitle:NSLocalizedString(@"InfoViewController.berlinKSSTitle", nil) forState:UIControlStateNormal];
+	[self.bochumAFGButton setTitle:NSLocalizedString(@"InfoViewController.bochumAFGTitle", nil) forState:UIControlStateNormal];
+	[self.berlinWikipediaButton setTitle:NSLocalizedString(@"InfoViewController.berlinWikipediaTitle", nil) forState:UIControlStateNormal];
 	self.acknowledgementsLabel.text = NSLocalizedString(@"InfoViewController.acknowledgementsText", nil);
 	[self.contactButton setTitle:NSLocalizedString(@"InfoViewController.contactTitle", nil) forState:UIControlStateNormal];
 	[self.gitHubButton setTitle:NSLocalizedString(@"InfoViewController.gitHubTitle", nil) forState:UIControlStateNormal];
@@ -95,7 +96,7 @@
     } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION && indexPath.row == 0) {
         label = self.sourcesLabel;
         padding = SOURCES_PADDING;
-    } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION && indexPath.row == 3) {
+    } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION && indexPath.row == 4) {
         label = self.acknowledgementsLabel;
         padding = ACKNOWLEDGEMENTS_PADDING;
     } else if (indexPath.section == LEGAL_SECTION && indexPath.row == 0) {
@@ -162,10 +163,13 @@
         }
     } else if (indexPath.section == ACKNOWLEDGEMENTS_SECTION) {
         if (indexPath.row == 1) {
-            urlString = NSLocalizedString(@"InfoViewController.kssBerlinURL", nil);
+            urlString = NSLocalizedString(@"InfoViewController.berlinKSSURL", nil);
             diagnosticsLabel = @"kssBerlin";
         } else if (indexPath.row == 2) {
-            urlString = NSLocalizedString(@"InfoViewController.wikipediaStolpersteineURL", nil);
+            urlString = NSLocalizedString(@"InfoViewController.bochumAFGURL", nil);
+            diagnosticsLabel = @"wikipediaBerlin";
+        } else if (indexPath.row == 3) {
+            urlString = NSLocalizedString(@"InfoViewController.berlinWikipediaURL", nil);
             diagnosticsLabel = @"wikipediaBerlin";
         } else if (indexPath.row == 4) {
             NSString *subject = NSLocalizedString(@"InfoViewController.contactSubject", nil);

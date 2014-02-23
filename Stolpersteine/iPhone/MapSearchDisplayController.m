@@ -35,6 +35,9 @@
 
 #import "CCHMapClusterController.h"
 
+#define REQUEST_DELAY 0.3
+#define REQUEST_SIZE 100
+
 @interface MapSearchDisplayController()
 
 @property (nonatomic, strong) NSArray *searchedStolpersteine;
@@ -50,7 +53,7 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(updateSearchData:) withObject:searchString afterDelay:0.3];
+    [self performSelector:@selector(updateSearchData:) withObject:searchString afterDelay:REQUEST_DELAY];
     
     return NO;
 }
@@ -61,7 +64,7 @@
     
     StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
     searchData.keyword = searchString;
-    self.searchStolpersteineOperation = [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 100) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
+    self.searchStolpersteineOperation = [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, REQUEST_SIZE) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.searchedStolpersteine = stolpersteine;
         [self.searchResultsTableView reloadData];
         [self.searchResultsTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];

@@ -31,9 +31,4 @@
 
 @property (nonatomic, strong) Stolperstein *stolperstein;
 
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *activityBarButtonItem;
-
-- (IBAction)showActivities:(UIBarButtonItem *)sender;
-
 @end

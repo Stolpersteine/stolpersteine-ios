@@ -51,7 +51,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     [super viewDidLoad];
     
     StolpersteinCardCell *measuringCell = [self.tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
-    [measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein streetButtonHidden:self.isStreetButtonHidden];
+    [measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein streetButtonHidden:self.isStreetButtonHidden index:0];
     [measuringCell updateLayoutWithTableView:self.tableView];
     self.tableView.estimatedRowHeight = [measuringCell heightForCurrentStolperstein];
     self.measuringCell = measuringCell;
@@ -106,7 +106,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 
 - (void)contentSizeCategoryDidChange:(NSNotification *)notification
 {
-    [self.measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein streetButtonHidden:self.isStreetButtonHidden];
+    [self.measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein streetButtonHidden:self.isStreetButtonHidden index:0];
     [self.measuringCell updateLayoutWithTableView:self.tableView];
     self.tableView.estimatedRowHeight = [self.measuringCell heightForCurrentStolperstein];
     [self.tableView reloadData];
@@ -150,7 +150,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.measuringCell updateWithStolperstein:self.stolpersteine[indexPath.row] streetButtonHidden:self.isStreetButtonHidden];
+    [self.measuringCell updateWithStolperstein:self.stolpersteine[indexPath.row] streetButtonHidden:self.isStreetButtonHidden index:0];
     [self.measuringCell updateLayoutWithTableView:tableView];
     CGFloat height = [self.measuringCell heightForCurrentStolperstein];
     return height;
@@ -165,8 +165,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 {
     StolpersteinCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
     [cell updateLayoutWithTableView:tableView];
-    [cell updateWithStolperstein:self.stolpersteine[indexPath.row] streetButtonHidden:self.isStreetButtonHidden];
-    cell.streetButton.tag = indexPath.row;
+    [cell updateWithStolperstein:self.stolpersteine[indexPath.row] streetButtonHidden:self.isStreetButtonHidden index:indexPath.row];
     
     if ([cell canSelectCurrentStolperstein]) {
         cell.selectionStyle = UITableViewCellSelectionStyleGray;

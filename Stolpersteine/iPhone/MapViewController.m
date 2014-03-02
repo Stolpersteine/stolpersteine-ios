@@ -46,6 +46,11 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 @interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, CCHMapClusterControllerDelegate, StolpersteinSynchronizationControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *locationBarButtonItem;
+@property (weak, nonatomic) IBOutlet MapSearchDisplayController *mapSearchDisplayController;
+
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
 @property (nonatomic, strong) StolpersteinSynchronizationController *stolpersteinSyncController;

@@ -13,6 +13,12 @@
 
 @interface StolpersteinCardCell()<UIActionSheetDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *bodyLabel;
+@property (weak, nonatomic) IBOutlet UIButton *streetButton;
+@property (weak, nonatomic) IBOutlet UIImageView *chevronImageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftSpaceConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightSpaceConstraint;
+
 @property (nonatomic, strong) Stolperstein *stolperstein;
 
 @end
@@ -44,11 +50,12 @@
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
-- (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden
+- (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden index:(NSUInteger)index
 {
     self.stolperstein = stolperstein;
     self.bodyLabel.attributedText = [StolpersteinCardCell newBodyAttributedStringFromStolperstein:stolperstein];
     self.chevronImageView.hidden = ([self canSelectCurrentStolperstein] == NO);
+    self.streetButton.tag = index;
     
     if (streetButtonHidden) {
         [self.streetButton removeFromSuperview];
@@ -114,7 +121,7 @@
     return bodyAttributedString;
 }
 
-#pragma mark Copy & paste related methods
+#pragma mark Copy & paste
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {

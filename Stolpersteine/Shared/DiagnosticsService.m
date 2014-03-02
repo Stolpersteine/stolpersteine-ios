@@ -37,6 +37,8 @@
 #import "StolpersteinDescriptionViewController.h"
 #import "AppDelegate.h"
 
+#import <CoreLocation/CoreLocation.h>
+
 #define CUSTOM_DIMENSION_INTERFACE_ORIENTATION 1
 #define CUSTOM_DIMENSION_LOCATION_SERVICES 2
 

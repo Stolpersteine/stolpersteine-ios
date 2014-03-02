@@ -13,8 +13,7 @@
 
 @interface StolpersteinCardCell()<UIActionSheetDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *bodyLabel;
-@property (weak, nonatomic) IBOutlet UIButton *streetButton;
+@property (weak, nonatomic) IBOutlet UITextView *bodyTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *chevronImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightSpaceConstraint;
@@ -34,11 +33,6 @@
 
 - (void)setUp
 {
-    // Street button
-    NSString *title = NSLocalizedString(@"StolpersteinCardCell.street", nil);
-    [self.streetButton setTitle:title forState:UIControlStateNormal];
-    self.streetButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-    
     // Copy & paste
     UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [self addGestureRecognizer:recognizer];
@@ -53,13 +47,8 @@
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden index:(NSUInteger)index
 {
     self.stolperstein = stolperstein;
-    self.bodyLabel.attributedText = [StolpersteinCardCell newBodyAttributedStringFromStolperstein:stolperstein];
+    self.bodyTextView.attributedText = [StolpersteinCardCell newBodyAttributedStringFromStolperstein:stolperstein streetButtonHidden:streetButtonHidden];
     self.chevronImageView.hidden = ([self canSelectCurrentStolperstein] == NO);
-    self.streetButton.tag = index;
-    
-    if (streetButtonHidden) {
-        [self.streetButton removeFromSuperview];
-    }
 }
 
 - (BOOL)canSelectCurrentStolperstein
@@ -80,26 +69,13 @@
     return stolperstein;
 }
 
-- (void)updateLayoutWithTableView:(UITableView *)tableView
+- (CGFloat)heightForCurrentStolpersteinWithWidth:(CGFloat)width
 {
-    CGFloat left = self.leftSpaceConstraint.constant;
-    CGFloat right = self.rightSpaceConstraint.constant;
-    CGFloat width = tableView.bounds.size.width - left - right;
-    self.bodyLabel.preferredMaxLayoutWidth = width;
+    CGSize size = [self.bodyTextView sizeThatFits:CGSizeMake(width, FLT_MAX)];
+    return ceil(size.height);
 }
 
-- (CGFloat)heightForCurrentStolperstein
-{
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-    [self.contentView setNeedsLayout];
-    [self.contentView layoutIfNeeded];
-    
-    CGFloat height = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    return height;
-}
-
-+ (NSAttributedString *)newBodyAttributedStringFromStolperstein:(Stolperstein *)stolperstein
++ (NSAttributedString *)newBodyAttributedStringFromStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden
 {
     NSString *name = [Localization newNameFromStolperstein:stolperstein];
     NSString *address = [Localization newLongAddressFromStolperstein:stolperstein];

@@ -54,8 +54,5 @@
 "InfoViewController.contactSubject" = "Stolpersteine iPhone App";
 "InfoViewController.contactMessage" = "\n\nVersion %@ (%@)";
 
-"StolpersteinCardCell.street" = "Alle in dieser Straße";
-"StolpersteinCardCell.source" = "Quelle";
-
 "StolpersteinCardsViewController.webViewTitleBiography" = "Biografie";
 "StolpersteinCardsViewController.webViewTitleDescription" = "Beschreibung";

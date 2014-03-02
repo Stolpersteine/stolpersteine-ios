@@ -15,9 +15,8 @@
 @property (nonatomic, readonly) Stolperstein *stolperstein;
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden index:(NSUInteger)index;
-- (void)updateLayoutWithTableView:(UITableView *)tableView;
 - (BOOL)canSelectCurrentStolperstein;
-- (CGFloat)heightForCurrentStolperstein;
+- (CGFloat)heightForCurrentStolpersteinWithWidth:(CGFloat)width;
 
 + (Stolperstein *)standardStolperstein;
 

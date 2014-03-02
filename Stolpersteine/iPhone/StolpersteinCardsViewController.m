@@ -52,8 +52,8 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     
     StolpersteinCardCell *measuringCell = [self.tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
     [measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein streetButtonHidden:self.isStreetButtonHidden index:0];
-    [measuringCell updateLayoutWithTableView:self.tableView];
-    self.tableView.estimatedRowHeight = [measuringCell heightForCurrentStolperstein];
+    CGFloat width = self.tableView.frame.size.width;
+    self.tableView.estimatedRowHeight = [measuringCell heightForCurrentStolpersteinWithWidth:width];
     self.measuringCell = measuringCell;
     
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
@@ -107,8 +107,8 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 - (void)contentSizeCategoryDidChange:(NSNotification *)notification
 {
     [self.measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein streetButtonHidden:self.isStreetButtonHidden index:0];
-    [self.measuringCell updateLayoutWithTableView:self.tableView];
-    self.tableView.estimatedRowHeight = [self.measuringCell heightForCurrentStolperstein];
+    CGFloat width = self.tableView.frame.size.width;
+    self.tableView.estimatedRowHeight = [self.measuringCell heightForCurrentStolpersteinWithWidth:width];
     [self.tableView reloadData];
 }
 
@@ -151,8 +151,8 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.measuringCell updateWithStolperstein:self.stolpersteine[indexPath.row] streetButtonHidden:self.isStreetButtonHidden index:0];
-    [self.measuringCell updateLayoutWithTableView:tableView];
-    CGFloat height = [self.measuringCell heightForCurrentStolperstein];
+    CGFloat width = self.tableView.frame.size.width;
+    CGFloat height = [self.measuringCell heightForCurrentStolpersteinWithWidth:width];
     return height;
 }
 
@@ -164,7 +164,6 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StolpersteinCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
-    [cell updateLayoutWithTableView:tableView];
     [cell updateWithStolperstein:self.stolpersteine[indexPath.row] streetButtonHidden:self.isStreetButtonHidden index:indexPath.row];
     
     if ([cell canSelectCurrentStolperstein]) {

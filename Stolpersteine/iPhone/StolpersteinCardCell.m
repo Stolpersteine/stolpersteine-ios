@@ -15,8 +15,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *bodyTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *chevronImageView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftSpaceConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightSpaceConstraint;
 
 @property (nonatomic, strong) Stolperstein *stolperstein;
 

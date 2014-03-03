@@ -14,7 +14,7 @@
 @interface StolpersteinCardCell()<UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *bodyTextView;
-@property (weak, nonatomic) IBOutlet UIImageView *chevronImageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightConstraint;
 
 @property (nonatomic, strong) Stolperstein *stolperstein;
 
@@ -46,7 +46,12 @@
 {
     self.stolperstein = stolperstein;
     self.bodyTextView.attributedText = [StolpersteinCardCell newBodyAttributedStringFromStolperstein:stolperstein streetButtonHidden:streetButtonHidden];
-    self.chevronImageView.hidden = ([self canSelectCurrentStolperstein] == NO);
+    
+    if ([self canSelectCurrentStolperstein]) {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        self.accessoryType = UITableViewCellAccessoryNone;
+    }
 }
 
 - (BOOL)canSelectCurrentStolperstein
@@ -67,10 +72,13 @@
     return stolperstein;
 }
 
-- (CGFloat)heightForCurrentStolpersteinWithWidth:(CGFloat)width
+- (CGFloat)heightForCurrentStolpersteinWithTableViewWidth:(CGFloat)width
 {
+    width -= self.accessoryType == UITableViewCellAccessoryNone ? 0 : 33;   // accessory view
     CGSize size = [self.bodyTextView sizeThatFits:CGSizeMake(width, FLT_MAX)];
-    return ceil(size.height);
+    CGFloat height = ceil(size.height);
+    height += 1;    // cell separator
+    return height;
 }
 
 + (NSAttributedString *)newBodyAttributedStringFromStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden

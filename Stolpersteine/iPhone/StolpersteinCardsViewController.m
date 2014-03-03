@@ -53,7 +53,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     StolpersteinCardCell *measuringCell = [self.tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
     [measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein streetButtonHidden:self.isStreetButtonHidden index:0];
     CGFloat width = self.tableView.frame.size.width;
-    self.tableView.estimatedRowHeight = [measuringCell heightForCurrentStolpersteinWithWidth:width];
+    self.tableView.estimatedRowHeight = [measuringCell heightForCurrentStolpersteinWithTableViewWidth:width];
     self.measuringCell = measuringCell;
     
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
@@ -108,7 +108,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 {
     [self.measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein streetButtonHidden:self.isStreetButtonHidden index:0];
     CGFloat width = self.tableView.frame.size.width;
-    self.tableView.estimatedRowHeight = [self.measuringCell heightForCurrentStolpersteinWithWidth:width];
+    self.tableView.estimatedRowHeight = [self.measuringCell heightForCurrentStolpersteinWithTableViewWidth:width];
     [self.tableView reloadData];
 }
 
@@ -152,7 +152,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 {
     [self.measuringCell updateWithStolperstein:self.stolpersteine[indexPath.row] streetButtonHidden:self.isStreetButtonHidden index:0];
     CGFloat width = self.tableView.frame.size.width;
-    CGFloat height = [self.measuringCell heightForCurrentStolpersteinWithWidth:width];
+    CGFloat height = [self.measuringCell heightForCurrentStolpersteinWithTableViewWidth:width];
     return height;
 }
 

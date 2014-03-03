@@ -16,7 +16,7 @@
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden index:(NSUInteger)index;
 - (BOOL)canSelectCurrentStolperstein;
-- (CGFloat)heightForCurrentStolpersteinWithWidth:(CGFloat)width;
+- (CGFloat)heightForCurrentStolpersteinWithTableViewWidth:(CGFloat)width;
 
 + (Stolperstein *)standardStolperstein;
 

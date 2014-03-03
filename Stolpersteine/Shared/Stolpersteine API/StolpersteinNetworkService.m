@@ -135,6 +135,10 @@ static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1"
             }
         });
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+        
         BOOL shouldRunGlobalErrorHandler = YES;
         if (completionHandler) {
             shouldRunGlobalErrorHandler = completionHandler(nil, error);

@@ -10,10 +10,11 @@
 
 #import "Stolperstein.h"
 #import "Localization.h"
+#import "TextView.h"
 
-@interface StolpersteinCardCell()<UIActionSheetDelegate>
+@interface StolpersteinCardCell () <UIActionSheetDelegate, UITextViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextView *bodyTextView;
+@property (weak, nonatomic) IBOutlet TextView *bodyTextView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightConstraint;
 
 @property (nonatomic, strong) Stolperstein *stolperstein;
@@ -31,15 +32,29 @@
 
 - (void)setUp
 {
-    // Copy & paste
-    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    [self addGestureRecognizer:recognizer];
-    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(willHideEditMenu:) name:UIMenuControllerWillHideMenuNotification object:nil];
+    self.bodyTextView.delegate = self;
+    
+//    // Copy & paste
+//    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+//    [self addGestureRecognizer:recognizer];
+//    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(willHideEditMenu:) name:UIMenuControllerWillHideMenuNotification object:nil];
 }
 
 - (void)dealloc
 {
     [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+{
+    NSLog(@"shouldInteractWithURL %@", URL);
+    return NO;
+}
+
+- (void)setTableView:(UITableView *)tableView
+{
+    self.bodyTextView.tableView = tableView;
+//    self.bodyTextView.indexPath = [tableView indexPathForCell:self];
 }
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden index:(NSUInteger)index
@@ -97,6 +112,10 @@
     UIFont *addressFont = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     NSRange addressRange = NSMakeRange(nameRange.length + 1, address.length);
     [bodyAttributedString addAttribute:NSFontAttributeName value:addressFont range:addressRange];
+    
+    NSString *streetName = [Localization newStreetNameFromStolperstein:stolperstein];
+    NSRange streetNameRange = NSMakeRange(nameRange.length + 1, streetName.length);
+    [bodyAttributedString addAttribute:NSLinkAttributeName value:@"http://google.de" range:streetNameRange];
     
     [bodyAttributedString endEditing];
     

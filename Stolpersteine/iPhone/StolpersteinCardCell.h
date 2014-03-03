@@ -13,6 +13,7 @@
 @interface StolpersteinCardCell : UITableViewCell
 
 @property (nonatomic, readonly) Stolperstein *stolperstein;
+@property (nonatomic, weak) UITableView *tableView;
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden index:(NSUInteger)index;
 - (BOOL)canSelectCurrentStolperstein;

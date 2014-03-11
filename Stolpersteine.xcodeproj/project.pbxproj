@@ -56,8 +56,6 @@
 		6207C27D188AE277000CA2D4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 622DEDA417F432EB009C9B44 /* Settings.bundle */; };
 		6207C27E188AE277000CA2D4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 622DEDA417F432EB009C9B44 /* Settings.bundle */; };
 		6207C280188B0E1C000CA2D4 /* Stolpersteine-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6207C27F188B0E1C000CA2D4 /* Stolpersteine-Config.plist */; };
-		6207C285188B0F0F000CA2D4 /* buildnumber_dynamic.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6207C283188B0F0F000CA2D4 /* buildnumber_dynamic.xcconfig */; };
-		6207C289188B0F21000CA2D4 /* buildnumber_dynamic.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6207C287188B0F21000CA2D4 /* buildnumber_dynamic.xcconfig */; };
 		62222C3018C4840C00AFD6BE /* TextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62222C2F18C4840C00AFD6BE /* TextView.m */; };
 		62222C3118C4840C00AFD6BE /* TextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62222C2F18C4840C00AFD6BE /* TextView.m */; };
 		62684D85189837CA00770B01 /* Stolpersteine-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6207C281188B0E2B000CA2D4 /* Stolpersteine-Config.plist */; };
@@ -519,7 +517,7 @@
 		627E43A9169B0F050065C1F1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Option-U Software";
 				TargetAttributes = {
 					486576F5180B29CD000326D1 = {
@@ -567,7 +565,6 @@
 			files = (
 				6207C271188AE251000CA2D4 /* Images.xcassets in Resources */,
 				6288BDF2188AE00C00F9B986 /* InfoPlist.strings in Resources */,
-				6207C289188B0F21000CA2D4 /* buildnumber_dynamic.xcconfig in Resources */,
 				6207C279188AE268000CA2D4 /* Localizable.strings in Resources */,
 				6207C273188AE25A000CA2D4 /* gunter-demnig.jpg in Resources */,
 				6207C274188AE25A000CA2D4 /* gunter-demnig@2x.jpg in Resources */,
@@ -584,7 +581,6 @@
 			files = (
 				6207C272188AE251000CA2D4 /* Images.xcassets in Resources */,
 				6288BE22188AE02C00F9B986 /* InfoPlist.strings in Resources */,
-				6207C285188B0F0F000CA2D4 /* buildnumber_dynamic.xcconfig in Resources */,
 				6207C27A188AE268000CA2D4 /* Localizable.strings in Resources */,
 				6207C275188AE25B000CA2D4 /* gunter-demnig.jpg in Resources */,
 				6207C276188AE25B000CA2D4 /* gunter-demnig@2x.jpg in Resources */,
@@ -855,7 +851,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -982,7 +977,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1017,7 +1011,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1046,7 +1039,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6207C28D188B103F000CA2D4 /* buildnumber_fixed.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconBerlin;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -1076,7 +1068,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6207C28D188B103F000CA2D4 /* buildnumber_fixed.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconBerlin;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -1103,7 +1094,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6207C287188B0F21000CA2D4 /* buildnumber_dynamic.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconBerlin;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -1130,7 +1120,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6207C28D188B103F000CA2D4 /* buildnumber_fixed.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconBochum;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -1160,7 +1149,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6207C28D188B103F000CA2D4 /* buildnumber_fixed.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconBochum;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -1187,7 +1175,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6207C283188B0F0F000CA2D4 /* buildnumber_dynamic.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconBochum;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;

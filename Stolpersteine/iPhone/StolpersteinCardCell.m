@@ -57,6 +57,11 @@
 //    self.bodyTextView.indexPath = [tableView indexPathForCell:self];
 }
 
+- (UITableView *)tableView
+{
+    return self.bodyTextView.tableView;
+}
+
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden index:(NSUInteger)index
 {
     self.stolperstein = stolperstein;

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XLj-i0-kjg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XLj-i0-kjg">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Map View Controller-->
         <scene sceneID="5">
             <objects>
-                <viewController storyboardIdentifier="mapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="2" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j9P-KY-w1b"/>
                         <viewControllerLayoutGuide type="bottom" id="6uW-y9-QN2"/>
@@ -85,7 +85,7 @@
         <!--Navigation Controller-->
         <scene sceneID="zxt-c3-c4Y">
             <objects>
-                <navigationController storyboardIdentifier="navigationController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XLj-i0-kjg" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XLj-i0-kjg" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cIR-Dy-Gmq">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -143,6 +143,7 @@
                     <navigationItem key="navigationItem" id="hYk-hn-xCs"/>
                     <connections>
                         <segue destination="ZbI-TV-s7f" kind="push" identifier="stolpersteinCardsViewControllerToStolpersteinDescriptionViewController" id="haG-kk-mn9"/>
+                        <segue destination="eFT-eI-2Vl" kind="modal" identifier="stolpersteinCardsViewControllerToStolpersteinCardsViewController" id="bFb-hD-TGS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GeU-YR-f5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -162,7 +163,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15Y-ke-IAZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="574" y="-736"/>
+            <point key="canvasLocation" x="574" y="-770"/>
         </scene>
         <!--Stolperstein Description View Controller-->
         <scene sceneID="bQI-pg-hfM">

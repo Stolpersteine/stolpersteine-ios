@@ -27,11 +27,14 @@
 #import <MapKit/MapKit.h>
 
 @protocol CCHMapClusterControllerDelegate;
+@class CCHMapClusterController;
 
 /**
  Container for clustered annotations.
  */
 @interface CCHMapClusterAnnotation : NSObject<MKAnnotation>
+
+@property (nonatomic, weak) CCHMapClusterController *mapClusterController;
 
 /** The string containing the annotation's title. */
 @property (nonatomic, copy) NSString *title;
@@ -50,5 +53,8 @@
 - (BOOL)isCluster;
 /** Returns YES if all annotations in this cluster are at the same location. */
 - (BOOL)isOneLocation;
+
+/** The area that includes all annotations. */
+- (MKMapRect)mapRect;
 
 @end

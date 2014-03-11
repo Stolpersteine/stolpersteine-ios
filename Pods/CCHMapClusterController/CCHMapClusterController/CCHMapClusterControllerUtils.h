@@ -27,6 +27,7 @@
 #import <MapKit/MapKit.h>
 
 @class CCHMapClusterAnnotation;
+@class CCHMapClusterController;
 
 MKMapRect CCHMapClusterControllerAlignMapRectToCellSize(MKMapRect mapRect, double cellSize);
 CCHMapClusterAnnotation *CCHMapClusterControllerFindVisibleAnnotation(NSSet *annotations, NSSet *visibleAnnotations);
@@ -36,7 +37,8 @@ double CCHMapClusterControllerMapLengthForLength(MKMapView *mapView, UIView *vie
 double CCHMapClusterControllerMapLengthForLength(MKMapView *mapView, NSView *view, double length);
 #endif
 double CCHMapClusterControllerAlignMapLengthToWorldWidth(double mapLength);
-BOOL CCHMapClusterControllerCoordinateEqualToCoordinate(CLLocationCoordinate2D coordinate1, CLLocationCoordinate2D coordinate2);
+BOOL CCHMapClusterControllerCoordinateEqualToCoordinate(CLLocationCoordinate2D coordinate0, CLLocationCoordinate2D coordinate1);
 CCHMapClusterAnnotation *CCHMapClusterControllerClusterAnnotationForAnnotation(MKMapView *mapView, id<MKAnnotation> annotation, MKMapRect mapRect);
 void CCHMapClusterControllerEnumerateCells(MKMapRect mapRect, double cellSize, void (^block)(MKMapRect cellRect));
 MKMapRect CCHMapClusterControllerMapRectForCoordinateRegion(MKCoordinateRegion coordinateRegion);
+NSSet *CCHMapClusterControllerClusterAnnotationsForAnnotations(NSArray *annotations, CCHMapClusterController *mapClusterController);

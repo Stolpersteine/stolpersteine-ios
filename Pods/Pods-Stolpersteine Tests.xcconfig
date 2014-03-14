@@ -2,5 +2,5 @@ GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/CCHMapClusterController" "${PODS_ROOT}/Headers/CCHMapsActivity" "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/OCMock" "${PODS_ROOT}/Headers/TUSafariActivity" $(SDKROOT)/usr/include/libz
 LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAnalytics-iOS-SDK"
 OTHER_CFLAGS = $(inherited) "-isystem${PODS_ROOT}/Headers" "-isystem${PODS_ROOT}/Headers/AFNetworking" "-isystem${PODS_ROOT}/Headers/CCHMapClusterController" "-isystem${PODS_ROOT}/Headers/CCHMapsActivity" "-isystem${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" "-isystem${PODS_ROOT}/Headers/OCMock" "-isystem${PODS_ROOT}/Headers/TUSafariActivity"
-OTHER_LDFLAGS = -ObjC -lGoogleAnalyticsServices -lz -framework CFNetwork -framework CoreData -framework CoreGraphics -framework CoreLocation -framework MapKit -framework MobileCoreServices -framework Security -framework SystemConfiguration -weak_framework AdSupport
+OTHER_LDFLAGS = -ObjC -lGoogleAnalyticsServices -lz -framework CFNetwork -framework CoreData -framework CoreGraphics -framework CoreLocation -framework MapKit -framework MobileCoreServices -framework Security -framework SystemConfiguration
 PODS_ROOT = ${SRCROOT}/Pods

@@ -5,7 +5,7 @@ link_with 'Stolpersteine Berlin', 'Stolpersteine Bochum'
 pod 'CCHMapClusterController'
 pod 'CCHMapsActivity'
 pod 'AFNetworking', '~> 1.3.3'
-pod 'GoogleAnalytics-iOS-SDK'
+pod 'GoogleAnalytics-iOS-SDK', '3.0.3c'
 pod 'TUSafariActivity'
 
 target 'Stolpersteine Tests' do

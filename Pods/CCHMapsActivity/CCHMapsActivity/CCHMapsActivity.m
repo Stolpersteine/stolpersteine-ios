@@ -52,7 +52,8 @@
 
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems
 {
-    BOOL result;
+    BOOL result = NO;
+    
     for (id activityItem in activityItems) {
         if ([activityItem isKindOfClass:MKMapItem.class]) {
             result = YES;
@@ -68,6 +69,7 @@
     for (id activityItem in activityItems) {
         if ([activityItem isKindOfClass:MKMapItem.class]) {
             self.mapItem = activityItem;
+            break;
         }
     }
 }

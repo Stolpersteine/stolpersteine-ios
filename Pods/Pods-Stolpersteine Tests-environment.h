@@ -22,7 +22,7 @@
 #define COCOAPODS_POD_AVAILABLE_CCHMapsActivity
 #define COCOAPODS_VERSION_MAJOR_CCHMapsActivity 0
 #define COCOAPODS_VERSION_MINOR_CCHMapsActivity 0
-#define COCOAPODS_VERSION_PATCH_CCHMapsActivity 1
+#define COCOAPODS_VERSION_PATCH_CCHMapsActivity 2
 
 // GoogleAnalytics-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK

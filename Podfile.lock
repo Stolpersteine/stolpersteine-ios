@@ -1,7 +1,7 @@
 PODS:
   - AFNetworking (1.3.3)
   - CCHMapClusterController (1.5.0)
-  - CCHMapsActivity (0.0.1)
+  - CCHMapsActivity (0.0.2)
   - GoogleAnalytics-iOS-SDK (3.0.3)
   - OCMock (2.2.3)
   - TUSafariActivity (1.0.0)
@@ -17,7 +17,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
   CCHMapClusterController: 5290080f8852023fc0b416f04b9bf54aae724e82
-  CCHMapsActivity: c25e097df63e231ffacb7f9f1f43d8dd3f591bf8
+  CCHMapsActivity: a91368f1db67576d3bb83b0e8a30e542a92b21a1
   GoogleAnalytics-iOS-SDK: 7b0e55cfe5e70d60478a7b105f15ac71e8bc373e
   OCMock: 74e4ddbcef134170dcc844f91c691f13868075d7
   TUSafariActivity: bd9da588f5f9136ba445d89f8f86b6dccf4d46ba

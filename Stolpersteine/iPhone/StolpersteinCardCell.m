@@ -10,11 +10,12 @@
 
 #import "Stolperstein.h"
 #import "Localization.h"
-#import "TextView.h"
+#import "CCHLinkTextView.h"
+#import "CCHLinkTextViewDelegate.h"
 
-@interface StolpersteinCardCell () <UIActionSheetDelegate, UITextViewDelegate>
+@interface StolpersteinCardCell () <UIActionSheetDelegate, CCHLinkTextViewDelegate>
 
-@property (weak, nonatomic) IBOutlet TextView *bodyTextView;
+@property (weak, nonatomic) IBOutlet CCHLinkTextView *bodyTextView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightConstraint;
 
 @property (nonatomic, strong) Stolperstein *stolperstein;
@@ -32,7 +33,7 @@
 
 - (void)setUp
 {
-    self.bodyTextView.delegate = self;
+    self.bodyTextView.linkDelegate = self;
     
 //    // Copy & paste
 //    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
@@ -43,23 +44,6 @@
 - (void)dealloc
 {
     [NSNotificationCenter.defaultCenter removeObserver:self];
-}
-
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
-{
-    NSLog(@"shouldInteractWithURL %@", URL);
-    return NO;
-}
-
-- (void)setTableView:(UITableView *)tableView
-{
-    self.bodyTextView.tableView = tableView;
-//    self.bodyTextView.indexPath = [tableView indexPathForCell:self];
-}
-
-- (UITableView *)tableView
-{
-    return self.bodyTextView.tableView;
 }
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden index:(NSUInteger)index
@@ -125,6 +109,13 @@
     [bodyAttributedString endEditing];
     
     return bodyAttributedString;
+}
+
+#pragma mark Link handling
+
+- (void)linkTextViewDidTap:(CCHLinkTextView *)linkTextView
+{
+    NSLog(@"Tap");
 }
 
 #pragma mark Copy & paste

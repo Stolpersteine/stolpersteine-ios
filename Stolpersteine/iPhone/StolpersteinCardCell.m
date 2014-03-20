@@ -115,7 +115,14 @@
 
 - (void)linkTextViewDidTap:(CCHLinkTextView *)linkTextView
 {
-    NSLog(@"Tap");
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:self];
+    if ([self.tableView.delegate respondsToSelector:@selector(tableView:willSelectRowAtIndexPath:)]) {
+        [self.tableView.delegate tableView:self.tableView willSelectRowAtIndexPath:indexPath];
+    }
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    if ([self.tableView.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
+        [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+    }
 }
 
 #pragma mark Copy & paste

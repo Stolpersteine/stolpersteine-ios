@@ -164,6 +164,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StolpersteinCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
+    cell.tableView = tableView;
     [cell updateWithStolperstein:self.stolpersteine[indexPath.row] streetButtonHidden:self.isStreetButtonHidden index:indexPath.row];
     
     if ([cell canSelectCurrentStolperstein]) {

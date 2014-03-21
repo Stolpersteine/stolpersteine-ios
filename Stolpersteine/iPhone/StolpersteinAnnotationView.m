@@ -87,7 +87,7 @@
         image = [UIImage imageNamed:@"MarkerSquare"];
         centerOffset = CGPointMake(0, image.size.height * 0.5);
         CGRect frame = self.bounds;
-        frame.origin.y -= 1;
+        frame.origin.y -= 2;
         self.countLabel.frame = frame;
     } else {
         centerOffset = CGPointZero;

@@ -13,7 +13,7 @@
 #import "CCHLinkTextView.h"
 #import "CCHLinkTextViewDelegate.h"
 
-@interface StolpersteinCardCell () <UIActionSheetDelegate, CCHLinkTextViewDelegate>
+@interface StolpersteinCardCell () <UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet CCHLinkTextView *bodyTextView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightConstraint;
@@ -33,8 +33,6 @@
 
 - (void)setUp
 {
-    self.bodyTextView.linkDelegate = self;
-    
 //    // Copy & paste
 //    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
 //    [self addGestureRecognizer:recognizer];
@@ -46,10 +44,27 @@
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
-- (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden index:(NSUInteger)index
+- (id<CCHLinkTextViewDelegate>)linkDelegate
+{
+    return self.bodyTextView.linkDelegate;
+}
+
+- (void)setLinkDelegate:(id<CCHLinkTextViewDelegate>)linkDelegate
+{
+    self.bodyTextView.linkDelegate = linkDelegate;
+}
+
+- (void)updateWithStolperstein:(Stolperstein *)stolperstein linksDisabled:(BOOL)linksDisabled index:(NSUInteger)index
 {
     self.stolperstein = stolperstein;
-    self.bodyTextView.attributedText = [StolpersteinCardCell newBodyAttributedStringFromStolperstein:stolperstein streetButtonHidden:streetButtonHidden];
+    self.bodyTextView.attributedText = [StolpersteinCardCell newBodyAttributedStringFromStolperstein:stolperstein linksDisabled:linksDisabled];
+    
+    if (!linksDisabled) {
+        NSString *name = [Localization newNameFromStolperstein:stolperstein];
+        NSString *streetName = [Localization newStreetNameFromStolperstein:stolperstein];
+        NSRange streetNameRange = NSMakeRange(name.length + 1, streetName.length);
+        [self.bodyTextView addLinkForRange:streetNameRange];
+    }
     
     if ([self canSelectCurrentStolperstein]) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -85,7 +100,7 @@
     return height;
 }
 
-+ (NSAttributedString *)newBodyAttributedStringFromStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden
++ (NSAttributedString *)newBodyAttributedStringFromStolperstein:(Stolperstein *)stolperstein linksDisabled:(BOOL)linksDisabled
 {
     NSString *name = [Localization newNameFromStolperstein:stolperstein];
     NSString *address = [Localization newLongAddressFromStolperstein:stolperstein];
@@ -102,27 +117,9 @@
     NSRange addressRange = NSMakeRange(nameRange.length + 1, address.length);
     [bodyAttributedString addAttribute:NSFontAttributeName value:addressFont range:addressRange];
     
-    NSString *streetName = [Localization newStreetNameFromStolperstein:stolperstein];
-    NSRange streetNameRange = NSMakeRange(nameRange.length + 1, streetName.length);
-    [bodyAttributedString addAttribute:NSLinkAttributeName value:@"http://google.de" range:streetNameRange];
-    
     [bodyAttributedString endEditing];
     
     return bodyAttributedString;
-}
-
-#pragma mark Link handling
-
-- (void)linkTextViewDidTap:(CCHLinkTextView *)linkTextView
-{
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:self];
-    if ([self.tableView.delegate respondsToSelector:@selector(tableView:willSelectRowAtIndexPath:)]) {
-        [self.tableView.delegate tableView:self.tableView willSelectRowAtIndexPath:indexPath];
-    }
-    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-    if ([self.tableView.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
-        [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:indexPath];
-    }
 }
 
 #pragma mark Copy & paste

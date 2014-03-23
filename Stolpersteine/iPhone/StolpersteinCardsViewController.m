@@ -31,13 +31,16 @@
 #import "StolpersteinSearchData.h"
 #import "StolpersteinNetworkService.h"
 
+#import "CCHLinkTextView.h"
+#import "CCHLinkTextViewDelegate.h"
+
 #import "AppDelegate.h"
 #import "DiagnosticsService.h"
 #import "Localization.h"
 
 static NSString * const CELL_IDENTIFIER = @"cell";
 
-@interface StolpersteinCardsViewController()
+@interface StolpersteinCardsViewController () <CCHLinkTextViewDelegate>
 
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
 @property (nonatomic, strong) StolpersteinCardCell *measuringCell;
@@ -51,7 +54,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     [super viewDidLoad];
     
     StolpersteinCardCell *measuringCell = [self.tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
-    [measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein streetButtonHidden:self.isStreetButtonHidden index:0];
+    [measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein linksDisabled:self.linksDisabled index:0];
     CGFloat width = self.tableView.frame.size.width;
     self.tableView.estimatedRowHeight = [measuringCell heightForCurrentStolpersteinWithTableViewWidth:width];
     self.measuringCell = measuringCell;
@@ -99,14 +102,14 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     [self.tableView reloadData];
 }
 
-- (BOOL)isStreetButtonHidden
+- (BOOL)linksDisabled
 {
     return (self.searchData != nil);
 }
 
 - (void)contentSizeCategoryDidChange:(NSNotification *)notification
 {
-    [self.measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein streetButtonHidden:self.isStreetButtonHidden index:0];
+    [self.measuringCell updateWithStolperstein:StolpersteinCardCell.standardStolperstein linksDisabled:self.linksDisabled index:0];
     CGFloat width = self.tableView.frame.size.width;
     self.tableView.estimatedRowHeight = [self.measuringCell heightForCurrentStolpersteinWithTableViewWidth:width];
     [self.tableView reloadData];
@@ -120,9 +123,10 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath *indexPath;
-    if ([sender isKindOfClass:UIButton.class]) {
-        NSInteger row = [sender tag];
-        indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    if ([sender isKindOfClass:CCHLinkTextView.class]) {
+        UIView *view = (UIView *)sender;
+        CGPoint point = [self.tableView convertPoint:view.center fromView:view];
+        indexPath = [self.tableView indexPathForRowAtPoint:point];
     } else {
         indexPath = self.tableView.indexPathForSelectedRow;
     }
@@ -130,7 +134,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     StolpersteinCardCell *cardCell = (StolpersteinCardCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     Stolperstein *stolperstein = cardCell.stolperstein;
 
-    if ([segue.identifier isEqualToString:@"stolpersteinCardsViewControllerToModalStolpersteinCardsViewController"]) {
+    if ([segue.identifier isEqualToString:@"stolpersteinCardsViewControllerToStolpersteinCardsViewController"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         StolpersteinCardsViewController *cardsViewController = (StolpersteinCardsViewController *)navigationController.topViewController;
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:cardsViewController action:@selector(dismissViewController)];
@@ -150,7 +154,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.measuringCell updateWithStolperstein:self.stolpersteine[indexPath.row] streetButtonHidden:self.isStreetButtonHidden index:0];
+    [self.measuringCell updateWithStolperstein:self.stolpersteine[indexPath.row] linksDisabled:self.linksDisabled index:0];
     CGFloat width = self.tableView.frame.size.width;
     CGFloat height = [self.measuringCell heightForCurrentStolpersteinWithTableViewWidth:width];
     return height;
@@ -164,8 +168,8 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StolpersteinCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
-    cell.tableView = tableView;
-    [cell updateWithStolperstein:self.stolpersteine[indexPath.row] streetButtonHidden:self.isStreetButtonHidden index:indexPath.row];
+    cell.linkDelegate = self;
+    [cell updateWithStolperstein:self.stolpersteine[indexPath.row] linksDisabled:self.linksDisabled index:indexPath.row];
     
     if ([cell canSelectCurrentStolperstein]) {
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
@@ -182,6 +186,13 @@ static NSString * const CELL_IDENTIFIER = @"cell";
     if ([cardCell canSelectCurrentStolperstein]) {
         [self performSegueWithIdentifier:@"stolpersteinCardsViewControllerToStolpersteinDescriptionViewController" sender:self];
     }
+}
+
+#pragma mark Link handling
+
+- (void)linkTextView:(CCHLinkTextView *)linkTextView didTapLinkAtCharacterIndex:(NSUInteger)characterIndex
+{
+    [self performSegueWithIdentifier:@"stolpersteinCardsViewControllerToStolpersteinCardsViewController" sender:linkTextView];
 }
 
 @end

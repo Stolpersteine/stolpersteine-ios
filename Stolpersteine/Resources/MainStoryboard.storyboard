@@ -659,7 +659,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IconLocation" width="23" height="24"/>
+        <image name="IconLocation" width="27" height="24"/>
         <image name="InfoDark" width="22" height="22"/>
         <image name="OptionUColor" width="285" height="88"/>
         <image name="gunter-demnig.jpg" width="568" height="150"/>

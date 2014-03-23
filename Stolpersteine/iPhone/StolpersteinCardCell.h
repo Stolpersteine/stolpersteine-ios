@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class Stolperstein;
+@protocol CCHLinkTextViewDelegate;
 
 @interface StolpersteinCardCell : UITableViewCell
 
+@property (nonatomic, weak) id<CCHLinkTextViewDelegate> linkDelegate;
 @property (nonatomic, readonly) Stolperstein *stolperstein;
-@property (nonatomic, weak) UITableView *tableView;
 
-- (void)updateWithStolperstein:(Stolperstein *)stolperstein streetButtonHidden:(BOOL)streetButtonHidden index:(NSUInteger)index;
+- (void)updateWithStolperstein:(Stolperstein *)stolperstein linksDisabled:(BOOL)linksDisabled index:(NSUInteger)index;
 - (BOOL)canSelectCurrentStolperstein;
 - (CGFloat)heightForCurrentStolpersteinWithTableViewWidth:(CGFloat)width;
 

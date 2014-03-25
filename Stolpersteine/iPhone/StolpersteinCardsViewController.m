@@ -70,7 +70,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
         [self.searchStolpersteineOperation cancel];
         self.searchStolpersteineOperation = [AppDelegate.networkService retrieveStolpersteineWithSearchData:self.searchData range:NSMakeRange(0, 0) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
             self.stolpersteine = stolpersteine;
-            self.title = [Localization newStolpersteineCountFromCount:stolpersteine.count];
+            self.title = self.searchData.street;
             [self.tableView reloadData];
             
             return YES;
@@ -190,7 +190,12 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 
 #pragma mark Link handling
 
-- (void)linkTextView:(CCHLinkTextView *)linkTextView didTapLinkAtCharacterIndex:(NSUInteger)characterIndex
+- (void)linkTextView:(CCHLinkTextView *)linkTextView didTapLinkWithValue:(id)value
+{
+    [self performSegueWithIdentifier:@"stolpersteinCardsViewControllerToStolpersteinCardsViewController" sender:linkTextView];
+}
+
+- (void)linkTextView:(CCHLinkTextView *)linkTextView didLongPressLinkWithValue:(id)value
 {
     [self performSegueWithIdentifier:@"stolpersteinCardsViewControllerToStolpersteinCardsViewController" sender:linkTextView];
 }

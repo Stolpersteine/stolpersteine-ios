@@ -1,1 +1,1 @@
-../../../../../CCHLinkTextView/CCHLinkTextView/CCHLinkTextView.h
+../../CCHLinkTextView/CCHLinkTextView/CCHLinkTextView.h

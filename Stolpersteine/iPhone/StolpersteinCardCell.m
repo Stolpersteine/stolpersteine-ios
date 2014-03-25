@@ -33,6 +33,9 @@
 
 - (void)setUp
 {
+    self.bodyTextView.editable = NO;
+    self.bodyTextView.selectable = NO;
+    
 //    // Copy & paste
 //    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
 //    [self addGestureRecognizer:recognizer];
@@ -58,13 +61,6 @@
 {
     self.stolperstein = stolperstein;
     self.bodyTextView.attributedText = [StolpersteinCardCell newBodyAttributedStringFromStolperstein:stolperstein linksDisabled:linksDisabled];
-    
-    if (!linksDisabled) {
-        NSString *name = [Localization newNameFromStolperstein:stolperstein];
-        NSString *streetName = [Localization newStreetNameFromStolperstein:stolperstein];
-        NSRange streetNameRange = NSMakeRange(name.length + 1, streetName.length);
-        [self.bodyTextView addLinkForRange:streetNameRange];
-    }
     
     if ([self canSelectCurrentStolperstein]) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -116,6 +112,12 @@
     UIFont *addressFont = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     NSRange addressRange = NSMakeRange(nameRange.length + 1, address.length);
     [bodyAttributedString addAttribute:NSFontAttributeName value:addressFont range:addressRange];
+    
+    if (!linksDisabled) {
+        NSString *streetName = [Localization newStreetNameFromStolperstein:stolperstein];
+        NSRange streetNameRange = NSMakeRange(name.length + 1, streetName.length);
+        [bodyAttributedString addAttribute:CCHLinkAttributeName value:@"" range:streetNameRange];
+    }
     
     [bodyAttributedString endEditing];
     

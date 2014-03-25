@@ -1,1 +1,1 @@
-../../../../../CCHLinkTextView/CCHLinkTextView/CCHLinkGestureRecognizer.h
+../../CCHLinkTextView/CCHLinkTextView/CCHLinkGestureRecognizer.h

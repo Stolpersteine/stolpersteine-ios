@@ -14,11 +14,14 @@ DEPENDENCIES:
   - CCHMapsActivity
   - GoogleAnalytics-iOS-SDK (= 3.0.3c)
   - OCMock
-  - TUSafariActivity
+  - TUSafariActivity (from `https://github.com/davbeck/TUSafariActivity.git`, commit `c67c2c4272d89765a927dd034708772f3a4a39ee`)
 
 EXTERNAL SOURCES:
   CCHLinkTextView:
     :git: https://github.com/choefele/CCHLinkTextView.git
+  TUSafariActivity:
+    :commit: c67c2c4272d89765a927dd034708772f3a4a39ee
+    :git: https://github.com/davbeck/TUSafariActivity.git
 
 SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66

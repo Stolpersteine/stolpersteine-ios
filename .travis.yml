@@ -1,4 +1,5 @@
 language: objective-c
+install: echo
 script: 
   - set -o pipefail && xcodebuild -workspace Stolpersteine.xcworkspace -scheme "Stolpersteine Berlin" -sdk iphonesimulator -configuration Debug test  | xcpretty -c
   - set -o pipefail && xcodebuild -workspace Stolpersteine.xcworkspace -scheme "Stolpersteine Bochum" -sdk iphonesimulator -configuration Debug  | xcpretty -c

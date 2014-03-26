@@ -1,5 +1,6 @@
 language: objective-c
 before_install:
   - gem install xcpretty
+install: echo
 script: 
   - xcodebuild -workspace Stolpersteine.xcworkspace -scheme "Stolpersteine Berlin" -sdk iphonesimulator -configuration Debug test && xcodebuild -workspace Stolpersteine.xcworkspace -scheme "Stolpersteine Bochum" -sdk iphonesimulator -configuration Debug

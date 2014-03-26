@@ -102,12 +102,21 @@
         return;
     }
     
-//    [self.connection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
-//        NSMutableArray *stolpersteine;
-//        [transaction enumerateKeysInCollection:COLLECTION_STOLPERSTEINE usingBlock:^(NSString *key, BOOL *stop) {
-//            <#code#>
-//        }];
-//    }];
+    [self.connection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+        __block NSUInteger location = 0;
+        NSMutableArray *stolpersteine = [NSMutableArray array];
+        [transaction enumerateKeysInCollection:COLLECTION_STOLPERSTEINE usingBlock:^(NSString *key, BOOL *stop) {
+            BOOL isComplete = location >= (range.location + range.length);
+            if (isComplete) {
+                *stop = YES;
+                completionHandler(stolpersteine, nil);
+            } else if (location >= range.location) {
+                Stolperstein *stolperstein = [transaction objectForKey:key inCollection:COLLECTION_STOLPERSTEINE];
+                [stolpersteine addObject:stolperstein];
+            }
+            location++;
+        }];
+    }];
 }
 
 - (void)deleteStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)(NSError *error))completionHandler

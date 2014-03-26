@@ -97,4 +97,29 @@
     XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 }
 
+- (void)testRetrieveStolpersteine
+{
+    NSMutableArray *stolpersteineToCreate = [NSMutableArray array];
+    for (NSUInteger i = 0; i < 10; i++) {
+        Stolperstein *stolperstein = [[Stolperstein alloc] init];
+        stolperstein.id = @(i).stringValue;
+        [stolpersteineToCreate addObject:stolperstein];
+    }
+    
+    self.done = NO;
+    [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:^(NSError *error) {
+        self.done = YES;
+    }];
+    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+
+    self.done = NO;
+    NSRange range = NSMakeRange(2, 5);
+    [self.dataService retrieveStolpersteineWithRange:range completionHandler:^(NSArray *stolpersteine, NSError *error) {
+        self.done = YES;
+        
+        XCTAssertEqual(stolpersteine.count, range.length);
+    }];
+    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+}
+
 @end

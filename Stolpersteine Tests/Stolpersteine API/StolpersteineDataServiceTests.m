@@ -42,6 +42,8 @@
     [super setUp];
     
     self.dataService = [[StolpersteineDataService alloc] init];
+    self.dataService.cacheEnabled = NO;
+    
     self.done = NO;
 }
 
@@ -66,14 +68,12 @@
     stolpersteinToCreate.personFirstName = @"abc";
     
     self.done = NO;
-    self.dataService = [[StolpersteineDataService alloc] init];
     [self.dataService createStolpersteine:@[stolpersteinToCreate] completionHandler:^(NSError *error) {
         self.done = YES;
     }];
     XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 
     self.done = NO;
-    self.dataService = [[StolpersteineDataService alloc] init];
     [self.dataService retrieveStolpersteinWithID:stolpersteinToCreate.id completionHandler:^(Stolperstein *stolperstein, NSError *error) {
         self.done = YES;
         
@@ -83,14 +83,12 @@
     XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
     
     self.done = NO;
-    self.dataService = [[StolpersteineDataService alloc] init];
     [self.dataService deleteStolpersteine:@[stolpersteinToCreate] completionHandler:^(NSError *error) {
         self.done = YES;
     }];
     XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 
     self.done = NO;
-    self.dataService = [[StolpersteineDataService alloc] init];
     [self.dataService retrieveStolpersteinWithID:stolpersteinToCreate.id completionHandler:^(Stolperstein *stolperstein, NSError *error) {
         self.done = YES;
         

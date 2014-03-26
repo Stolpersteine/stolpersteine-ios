@@ -29,6 +29,8 @@
 
 @interface StolpersteineDataService : NSObject
 
+@property (nonatomic, assign, getter = isCacheEnabled) BOOL cacheEnabled;
+
 - (void)createStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)(NSError *error))completionHandler;
 - (void)retrieveStolpersteinWithID:(NSString *)ID completionHandler:(void (^)(Stolperstein *stolperstein, NSError *error))completionHandler;
 - (void)retrieveStolpersteineWithRange:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine, NSError *error))completionHandler;

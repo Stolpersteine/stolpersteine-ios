@@ -47,6 +47,12 @@
     return self;
 }
 
+- (void)setCacheEnabled:(BOOL)cacheEnabled
+{
+    _cacheEnabled = cacheEnabled;
+    self.connection.objectCacheEnabled = cacheEnabled;
+}
+
 - (YapDatabase *)sharedYapDatabase
 {
     static YapDatabase *sharedYapDatabase = nil;
@@ -92,7 +98,16 @@
 
 - (void)retrieveStolpersteineWithRange:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine, NSError *error))completionHandler
 {
+    if (!completionHandler) {
+        return;
+    }
     
+//    [self.connection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+//        NSMutableArray *stolpersteine;
+//        [transaction enumerateKeysInCollection:COLLECTION_STOLPERSTEINE usingBlock:^(NSString *key, BOOL *stop) {
+//            <#code#>
+//        }];
+//    }];
 }
 
 - (void)deleteStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)(NSError *error))completionHandler

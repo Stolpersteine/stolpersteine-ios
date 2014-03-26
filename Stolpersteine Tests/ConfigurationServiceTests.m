@@ -51,19 +51,19 @@
 - (void)testCoordinateRegionExists
 {
     MKCoordinateRegion value = [self.configurationService coordinateRegionConfigurationForKey:ConfigurationServiceKeyVisibleRegion];
-    XCTAssertEqual(value.center.latitude, 1);
-    XCTAssertEqual(value.center.longitude, 2);
-    XCTAssertEqual(value.span.latitudeDelta, 3);
-    XCTAssertEqual(value.span.longitudeDelta, 4);
+    XCTAssertEqual(value.center.latitude, 1.0);
+    XCTAssertEqual(value.center.longitude, 2.0);
+    XCTAssertEqual(value.span.latitudeDelta, 3.0);
+    XCTAssertEqual(value.span.longitudeDelta, 4.0);
 }
 
 - (void)testCoordinateRegionMissing
 {
     MKCoordinateRegion value = [self.configurationServiceEmpty coordinateRegionConfigurationForKey:ConfigurationServiceKeyVisibleRegion];
-    XCTAssertEqual(value.center.latitude, 0);
-    XCTAssertEqual(value.center.longitude, 0);
-    XCTAssertEqual(value.span.latitudeDelta, 0);
-    XCTAssertEqual(value.span.longitudeDelta, 0);
+    XCTAssertEqual(value.center.latitude, 0.0);
+    XCTAssertEqual(value.center.longitude, 0.0);
+    XCTAssertEqual(value.span.latitudeDelta, 0.0);
+    XCTAssertEqual(value.span.longitudeDelta, 0.0);
 }
 
 @end

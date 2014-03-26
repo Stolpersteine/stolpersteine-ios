@@ -73,13 +73,15 @@
 
 - (void)createStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)(NSError *error))completionHandler
 {
-    [self.connection readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+    [self.connection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
         for (Stolperstein *stolperstein in stolpersteine) {
             [transaction setObject:stolperstein forKey:stolperstein.id inCollection:COLLECTION_STOLPERSTEINE];
         }
         
         if (completionHandler) {
-            completionHandler(nil);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler(nil);
+            });
         }
     }];
 }
@@ -90,9 +92,11 @@
         return;
     }
     
-    [self.connection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+    [self.connection asyncReadWithBlock:^(YapDatabaseReadTransaction *transaction) {
         Stolperstein *stolperstein = [transaction objectForKey:ID inCollection:COLLECTION_STOLPERSTEINE];
-        completionHandler(stolperstein, nil);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionHandler(stolperstein, nil);
+        });
     }];
 }
 
@@ -102,14 +106,16 @@
         return;
     }
     
-    [self.connection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+    [self.connection asyncReadWithBlock:^(YapDatabaseReadTransaction *transaction) {
         __block NSUInteger location = 0;
         NSMutableArray *stolpersteine = [NSMutableArray array];
         [transaction enumerateKeysInCollection:COLLECTION_STOLPERSTEINE usingBlock:^(NSString *key, BOOL *stop) {
             BOOL isComplete = location >= (range.location + range.length);
             if (isComplete) {
                 *stop = YES;
-                completionHandler(stolpersteine, nil);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionHandler(stolpersteine, nil);
+                });
             } else if (location >= range.location) {
                 Stolperstein *stolperstein = [transaction objectForKey:key inCollection:COLLECTION_STOLPERSTEINE];
                 [stolpersteine addObject:stolperstein];
@@ -121,12 +127,14 @@
 
 - (void)deleteStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)(NSError *error))completionHandler
 {
-    [self.connection readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+    [self.connection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
         NSArray *keys = [stolpersteine valueForKey:@"id"];
         [transaction removeObjectsForKeys:keys inCollection:COLLECTION_STOLPERSTEINE];
         
         if (completionHandler) {
-            completionHandler(nil);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler(nil);
+            });
         }
     }];
 }

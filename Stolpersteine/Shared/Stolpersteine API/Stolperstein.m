@@ -27,6 +27,43 @@
 
 @implementation Stolperstein
 
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if (self) {
+        _id = [decoder decodeObjectForKey:@"id"];
+        _type = [decoder decodeIntegerForKey:@"type"];
+        _sourceURLString = [decoder decodeObjectForKey:@"sourceURLString"];
+        _sourceName = [decoder decodeObjectForKey:@"sourceName"];
+        _personFirstName = [decoder decodeObjectForKey:@"personFirstName"];
+        _personLastName = [decoder decodeObjectForKey:@"personLastName"];
+        _personBiographyURLString = [decoder decodeObjectForKey:@"personBiographyURLString"];
+        _locationStreet = [decoder decodeObjectForKey:@"locationStreet"];
+        _locationZipCode = [decoder decodeObjectForKey:@"locationZipCode"];
+        _locationCity = [decoder decodeObjectForKey:@"locationCity"];
+        _locationCoordinate.latitude = [decoder decodeDoubleForKey:@"locationCoordinate.latitude"];
+        _locationCoordinate.longitude = [decoder decodeDoubleForKey:@"locationCoordinate.longitude"];
+    }
+    return self;
+    
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:self.id forKey:@"id"];
+    [coder encodeInteger:self.type forKey:@"type"];
+    [coder encodeObject:self.sourceURLString forKey:@"sourceURLString"];
+    [coder encodeObject:self.sourceName forKey:@"sourceName"];
+    [coder encodeObject:self.personFirstName forKey:@"personFirstName"];
+    [coder encodeObject:self.personLastName forKey:@"personLastName"];
+    [coder encodeObject:self.personBiographyURLString forKey:@"personBiographyURLString"];
+    [coder encodeObject:self.locationStreet forKey:@"locationStreet"];
+    [coder encodeObject:self.locationZipCode forKey:@"locationZipCode"];
+    [coder encodeObject:self.locationCity forKey:@"locationCity"];
+    [coder encodeDouble:self.locationCoordinate.latitude forKey:@"locationCoordinate.latitude"];
+    [coder encodeDouble:self.locationCoordinate.longitude forKey:@"locationCoordinate.longitude"];
+}
+
 - (BOOL)isEqual:(id)other
 {
     BOOL isEqual;

@@ -30,6 +30,27 @@
 #define COCOAPODS_VERSION_MINOR_CCHMapsActivity 0
 #define COCOAPODS_VERSION_PATCH_CCHMapsActivity 2
 
+// CocoaLumberjack
+#define COCOAPODS_POD_AVAILABLE_CocoaLumberjack
+// This library does not follow semantic-versioning,
+// so we were not able to define version macros.
+// Please contact the author.
+// Version: 1.6.5.1.
+
+// CocoaLumberjack/Core
+#define COCOAPODS_POD_AVAILABLE_CocoaLumberjack_Core
+// This library does not follow semantic-versioning,
+// so we were not able to define version macros.
+// Please contact the author.
+// Version: 1.6.5.1.
+
+// CocoaLumberjack/Extensions
+#define COCOAPODS_POD_AVAILABLE_CocoaLumberjack_Extensions
+// This library does not follow semantic-versioning,
+// so we were not able to define version macros.
+// Please contact the author.
+// Version: 1.6.5.1.
+
 // GoogleAnalytics-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
 // This library does not follow semantic-versioning,
@@ -48,4 +69,10 @@
 #define COCOAPODS_VERSION_MAJOR_TUSafariActivity 1
 #define COCOAPODS_VERSION_MINOR_TUSafariActivity 0
 #define COCOAPODS_VERSION_PATCH_TUSafariActivity 0
+
+// YapDatabase
+#define COCOAPODS_POD_AVAILABLE_YapDatabase
+#define COCOAPODS_VERSION_MAJOR_YapDatabase 2
+#define COCOAPODS_VERSION_MINOR_YapDatabase 4
+#define COCOAPODS_VERSION_PATCH_YapDatabase 0
 

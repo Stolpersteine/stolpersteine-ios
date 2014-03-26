@@ -56,6 +56,9 @@
 		6207C27D188AE277000CA2D4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 622DEDA417F432EB009C9B44 /* Settings.bundle */; };
 		6207C27E188AE277000CA2D4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 622DEDA417F432EB009C9B44 /* Settings.bundle */; };
 		6207C280188B0E1C000CA2D4 /* Stolpersteine-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6207C27F188B0E1C000CA2D4 /* Stolpersteine-Config.plist */; };
+		625D113118E34F5B00CD55FF /* StolpersteineDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 625D113018E34F5B00CD55FF /* StolpersteineDataService.m */; };
+		625D113218E34F5B00CD55FF /* StolpersteineDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 625D113018E34F5B00CD55FF /* StolpersteineDataService.m */; };
+		625D113418E35B9000CD55FF /* StolpersteineDataServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 625D113318E35B9000CD55FF /* StolpersteineDataServiceTests.m */; };
 		62684D85189837CA00770B01 /* Stolpersteine-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6207C281188B0E2B000CA2D4 /* Stolpersteine-Config.plist */; };
 		626EFDCE1896F22F00206C4B /* StolpersteinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 626EFDCD1896F22F00206C4B /* StolpersteinAnnotationView.m */; };
 		626EFDCF1896F22F00206C4B /* StolpersteinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 626EFDCD1896F22F00206C4B /* StolpersteinAnnotationView.m */; };
@@ -141,6 +144,9 @@
 		622DEDA217F432EB009C9B44 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		622DEDA317F432EB009C9B44 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		622DEDA417F432EB009C9B44 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		625D112F18E34F5B00CD55FF /* StolpersteineDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteineDataService.h; sourceTree = "<group>"; };
+		625D113018E34F5B00CD55FF /* StolpersteineDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteineDataService.m; sourceTree = "<group>"; };
+		625D113318E35B9000CD55FF /* StolpersteineDataServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteineDataServiceTests.m; sourceTree = "<group>"; };
 		626EFDCC1896F22F00206C4B /* StolpersteinAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteinAnnotationView.h; sourceTree = "<group>"; };
 		626EFDCD1896F22F00206C4B /* StolpersteinAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteinAnnotationView.m; sourceTree = "<group>"; };
 		627A0B9E16BC007600CFA71E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -275,6 +281,7 @@
 		48E2781B180B2BD00018EE03 /* Stolpersteine API */ = {
 			isa = PBXGroup;
 			children = (
+				625D113318E35B9000CD55FF /* StolpersteineDataServiceTests.m */,
 				48E2781D180B2BD00018EE03 /* StolpersteinNetworkServiceTests.m */,
 				48E2781F180B2BD00018EE03 /* StolpersteinTests.m */,
 			);
@@ -380,6 +387,8 @@
 		627E442F169C41EC0065C1F1 /* Stolpersteine API */ = {
 			isa = PBXGroup;
 			children = (
+				625D112F18E34F5B00CD55FF /* StolpersteineDataService.h */,
+				625D113018E34F5B00CD55FF /* StolpersteineDataService.m */,
 				627E4430169C420A0065C1F1 /* StolpersteinNetworkService.h */,
 				627E4431169C420A0065C1F1 /* StolpersteinNetworkService.m */,
 				62F18DF917736A4200E2FAF9 /* StolpersteinNetworkServiceDelegate.h */,
@@ -741,6 +750,7 @@
 				48E27824180B2BD00018EE03 /* StolpersteinNetworkServiceTests.m in Sources */,
 				62AB9D72188BC8BA0003AB4C /* ConfigurationServiceTests.m in Sources */,
 				48E27823180B2BD00018EE03 /* LocalizationTests.m in Sources */,
+				625D113418E35B9000CD55FF /* StolpersteineDataServiceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +761,7 @@
 				6207C262188AE0EF000CA2D4 /* StolpersteinNetworkService.m in Sources */,
 				62AB9D6F188BC4450003AB4C /* ConfigurationService.m in Sources */,
 				626EFDCE1896F22F00206C4B /* StolpersteinAnnotationView.m in Sources */,
+				625D113118E34F5B00CD55FF /* StolpersteineDataService.m in Sources */,
 				6207C257188AE0DA000CA2D4 /* StolpersteinCardsViewController.m in Sources */,
 				6207C259188AE0DA000CA2D4 /* StolpersteinDescriptionViewController.m in Sources */,
 				6207C264188AE0EF000CA2D4 /* NSDictionary+StolpersteinParsing.m in Sources */,
@@ -775,6 +786,7 @@
 				6207C26A188AE0EF000CA2D4 /* StolpersteinNetworkService.m in Sources */,
 				62AB9D70188BC4450003AB4C /* ConfigurationService.m in Sources */,
 				626EFDCF1896F22F00206C4B /* StolpersteinAnnotationView.m in Sources */,
+				625D113218E34F5B00CD55FF /* StolpersteineDataService.m in Sources */,
 				6207C25C188AE0DB000CA2D4 /* StolpersteinCardsViewController.m in Sources */,
 				6207C25E188AE0DB000CA2D4 /* StolpersteinDescriptionViewController.m in Sources */,
 				6207C26C188AE0EF000CA2D4 /* NSDictionary+StolpersteinParsing.m in Sources */,

@@ -26,12 +26,12 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-typedef enum {
+typedef NS_ENUM(NSInteger, StolpersteinType) {
     StolpersteinTypeStolperstein,
     StolpersteinTypeStolperschwelle
-} StolpersteinType;
+};
 
-@interface Stolperstein : NSObject<MKAnnotation>
+@interface Stolperstein : NSObject<MKAnnotation, NSCoding>
 
 @property (nonatomic, copy) NSString *id;
 @property (nonatomic, assign) StolpersteinType type;
@@ -48,6 +48,9 @@ typedef enum {
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, readonly, assign) CLLocationCoordinate2D coordinate;
+
+- (id)initWithCoder:(NSCoder *)decoder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 
 - (BOOL)isEqualToStolperstein:(Stolperstein *)stolperstein;
 

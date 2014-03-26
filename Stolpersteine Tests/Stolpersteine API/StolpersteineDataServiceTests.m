@@ -120,6 +120,12 @@
         XCTAssertEqual(stolpersteine.count, range.length);
     }];
     XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+
+    self.done = NO;
+    [self.dataService deleteStolpersteine:stolpersteineToCreate completionHandler:^(NSError *error) {
+        self.done = YES;
+    }];
+    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 }
 
 @end

@@ -31,7 +31,6 @@
 @interface StolpersteineDataServiceTests : XCTestCase
 
 @property (nonatomic, strong) StolpersteineDataService *dataService;
-@property (nonatomic, assign) BOOL done;
 
 @end
 
@@ -43,22 +42,7 @@
     
     self.dataService = [[StolpersteineDataService alloc] init];
     self.dataService.cacheEnabled = NO;
-    
-    self.done = NO;
-}
-
-- (BOOL)waitForCompletion:(NSTimeInterval)timeoutSecs
-{
-    NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeoutSecs];
-    
-    do {
-        [NSRunLoop.currentRunLoop runMode:NSDefaultRunLoopMode beforeDate:timeoutDate];
-        if (timeoutDate.timeIntervalSinceNow < 0.0) {
-            break;
-        }
-    } while (!self.done);
-    
-    return self.done;
+    self.dataService.synchronous = YES;
 }
 
 - (void)testStolpersteineLifecycle
@@ -67,34 +51,34 @@
     stolpersteinToCreate.id = @"123";
     stolpersteinToCreate.personFirstName = @"abc";
     
-    self.done = NO;
-    [self.dataService createStolpersteine:@[stolpersteinToCreate] completionHandler:^(NSError *error) {
-        self.done = YES;
+    __block BOOL done = NO;
+    [self.dataService createStolpersteine:@[stolpersteinToCreate] completionHandler:^() {
+        done = YES;
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    XCTAssertTrue(done);
 
-    self.done = NO;
+    done = NO;
     [self.dataService retrieveStolpersteinWithID:stolpersteinToCreate.id completionHandler:^(Stolperstein *stolperstein) {
-        self.done = YES;
+        done = YES;
         
         XCTAssertEqualObjects(stolpersteinToCreate, stolperstein);
         XCTAssertEqualObjects(stolpersteinToCreate.personFirstName, stolperstein.personFirstName);
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    XCTAssertTrue(done);
     
-    self.done = NO;
-    [self.dataService deleteStolpersteine:@[stolpersteinToCreate] completionHandler:^(NSError *error) {
-        self.done = YES;
+    done = NO;
+    [self.dataService deleteStolpersteine:@[stolpersteinToCreate] completionHandler:^() {
+        done = YES;
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    XCTAssertTrue(done);
 
-    self.done = NO;
+    done = NO;
     [self.dataService retrieveStolpersteinWithID:stolpersteinToCreate.id completionHandler:^(Stolperstein *stolperstein) {
-        self.done = YES;
+        done = YES;
         
         XCTAssertNil(stolperstein);
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    XCTAssertTrue(done);
 }
 
 - (void)testRetrieveStolpersteine
@@ -106,26 +90,14 @@
         [stolpersteineToCreate addObject:stolperstein];
     }
     
-    self.done = NO;
-    [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:^(NSError *error) {
-        self.done = YES;
-    }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
 
-    self.done = NO;
     NSRange range = NSMakeRange(2, 5);
     [self.dataService retrieveStolpersteineWithRange:range completionHandler:^(NSArray *stolpersteine) {
-        self.done = YES;
-        
         XCTAssertEqual(stolpersteine.count, range.length);
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
 
-    self.done = NO;
-    [self.dataService deleteStolpersteine:stolpersteineToCreate completionHandler:^() {
-        self.done = YES;
-    }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    [self.dataService deleteStolpersteine:stolpersteineToCreate completionHandler:NULL];
 }
 
 @end

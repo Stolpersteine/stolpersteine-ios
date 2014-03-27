@@ -30,6 +30,7 @@
 @interface StolpersteineDataService : NSObject
 
 @property (nonatomic, assign, getter = isCacheEnabled) BOOL cacheEnabled;
+@property (nonatomic, assign, getter = isSynchronous) BOOL synchronous;
 
 - (void)createStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler;
 - (void)retrieveStolpersteinWithID:(NSString *)ID completionHandler:(void (^)(Stolperstein *stolperstein))completionHandler;

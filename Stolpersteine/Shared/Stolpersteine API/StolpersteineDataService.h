@@ -31,9 +31,9 @@
 
 @property (nonatomic, assign, getter = isCacheEnabled) BOOL cacheEnabled;
 
-- (void)createStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)(NSError *error))completionHandler;
-- (void)retrieveStolpersteinWithID:(NSString *)ID completionHandler:(void (^)(Stolperstein *stolperstein, NSError *error))completionHandler;
-- (void)retrieveStolpersteineWithRange:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine, NSError *error))completionHandler;
-- (void)deleteStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)(NSError *error))completionHandler;
+- (void)createStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler;
+- (void)retrieveStolpersteinWithID:(NSString *)ID completionHandler:(void (^)(Stolperstein *stolperstein))completionHandler;
+- (void)retrieveStolpersteineWithRange:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine))completionHandler;
+- (void)deleteStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler;
 
 @end

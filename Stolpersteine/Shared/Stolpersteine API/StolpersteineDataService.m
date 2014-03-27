@@ -77,70 +77,66 @@
     return [path stringByAppendingPathComponent:@"database.sqlite"];
 }
 
-- (void)createStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)(NSError *error))completionHandler
+- (void)createStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler
 {
     [self.connection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
         for (Stolperstein *stolperstein in stolpersteine) {
             [transaction setObject:stolperstein forKey:stolperstein.id inCollection:COLLECTION_STOLPERSTEINE];
         }
-        
+    } completionBlock:^{
         if (completionHandler) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completionHandler(nil);
-            });
+            completionHandler();
         }
     }];
 }
 
-- (void)retrieveStolpersteinWithID:(NSString *)ID completionHandler:(void (^)(Stolperstein *stolperstein, NSError *error))completionHandler
+- (void)retrieveStolpersteinWithID:(NSString *)ID completionHandler:(void (^)(Stolperstein *stolperstein))completionHandler
 {
     if (!completionHandler) {
         return;
     }
     
+    __block Stolperstein *stolperstein;
     [self.connection asyncReadWithBlock:^(YapDatabaseReadTransaction *transaction) {
-        Stolperstein *stolperstein = [transaction objectForKey:ID inCollection:COLLECTION_STOLPERSTEINE];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completionHandler(stolperstein, nil);
-        });
+        stolperstein = [transaction objectForKey:ID inCollection:COLLECTION_STOLPERSTEINE];
+    } completionBlock:^{
+        completionHandler(stolperstein);
     }];
 }
 
-- (void)retrieveStolpersteineWithRange:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine, NSError *error))completionHandler
+- (void)retrieveStolpersteineWithRange:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine))completionHandler
 {
     if (!completionHandler) {
         return;
     }
     
+    __block NSMutableArray *stolpersteine;
     [self.connection asyncReadWithBlock:^(YapDatabaseReadTransaction *transaction) {
         __block NSUInteger location = 0;
-        NSMutableArray *stolpersteine = [NSMutableArray array];
+        stolpersteine = [NSMutableArray array];
         [transaction enumerateKeysInCollection:COLLECTION_STOLPERSTEINE usingBlock:^(NSString *key, BOOL *stop) {
             BOOL isComplete = location >= (range.location + range.length);
             if (isComplete) {
                 *stop = YES;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    completionHandler(stolpersteine, nil);
-                });
             } else if (location >= range.location) {
                 Stolperstein *stolperstein = [transaction objectForKey:key inCollection:COLLECTION_STOLPERSTEINE];
                 [stolpersteine addObject:stolperstein];
             }
             location++;
         }];
+    } completionBlock:^{
+        completionHandler(stolpersteine);
     }];
 }
 
-- (void)deleteStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)(NSError *error))completionHandler
+- (void)deleteStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler
 {
     [self.connection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
         NSArray *keys = [stolpersteine valueForKey:@"id"];
         [transaction removeObjectsForKeys:keys inCollection:COLLECTION_STOLPERSTEINE];
-        
+    } completionBlock:^{
         if (completionHandler) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completionHandler(nil);
-            });
+            completionHandler();
         }
     }];
 }

@@ -66,9 +66,15 @@
 
 + (NSString *)filePath
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [paths objectAtIndex:0];
-    return [documentDirectory stringByAppendingPathComponent:@"database.sqlite"];
+    // This directory is backed up by iOS, but never visible to the user,
+    // see http://developer.apple.com/library/ios/#qa/qa1699/_index.html
+    NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [libraryPath stringByAppendingPathComponent:@"Private Documents"];
+    if (![NSFileManager.defaultManager fileExistsAtPath:path isDirectory:NULL]) {
+        [NSFileManager.defaultManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:NULL];
+    }
+
+    return [path stringByAppendingPathComponent:@"database.sqlite"];
 }
 
 - (void)createStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)(NSError *error))completionHandler

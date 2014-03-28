@@ -23,7 +23,7 @@ DEPENDENCIES:
   - GoogleAnalytics-iOS-SDK (= 3.0.3c)
   - OCMock
   - TUSafariActivity (from `https://github.com/davbeck/TUSafariActivity.git`, commit `c67c2c4272d89765a927dd034708772f3a4a39ee`)
-  - YapDatabase
+  - YapDatabase (from `https://github.com/yaptv/YapDatabase.git`, commit `7f7072b7e71b84f173fcb23e9c77ba1b4855ca36`)
 
 EXTERNAL SOURCES:
   CCHLinkTextView:
@@ -31,6 +31,9 @@ EXTERNAL SOURCES:
   TUSafariActivity:
     :commit: c67c2c4272d89765a927dd034708772f3a4a39ee
     :git: https://github.com/davbeck/TUSafariActivity.git
+  YapDatabase:
+    :commit: 7f7072b7e71b84f173fcb23e9c77ba1b4855ca36
+    :git: https://github.com/yaptv/YapDatabase.git
 
 SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66

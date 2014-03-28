@@ -2,7 +2,7 @@
 //  StolpersteineDataService.m
 //  Stolpersteine
 //
-//  Copyright (C) 2013 Option-U Software
+//  Copyright (C) 2014 Option-U Software
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,20 +23,20 @@
 //  THE SOFTWARE.
 //
 
-#import "StolpersteineDataService.h"
+#import "StolpersteineReadDataService.h"
 
 #import "YapDatabase.h"
 #import "Stolperstein.h"
 
-#define COLLECTION_STOLPERSTEINE @"stolpersteine"
+NSString * const StolpersteineReadDataServiceCollection = @"stolpersteine";
 
-@interface StolpersteineDataService()
+@interface StolpersteineReadDataService()
 
 @property (nonatomic, strong) YapDatabaseConnection *connection;
 
 @end
 
-@implementation StolpersteineDataService
+@implementation StolpersteineReadDataService
 
 - (id)init
 {
@@ -59,7 +59,7 @@
     static YapDatabase *sharedYapDatabase = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedYapDatabase = [[YapDatabase alloc]initWithPath:StolpersteineDataService.filePath];
+        sharedYapDatabase = [[YapDatabase alloc]initWithPath:StolpersteineReadDataService.filePath];
     });
     
     return sharedYapDatabase;
@@ -90,31 +90,6 @@
     }
 }
 
-- (void)readWriteWithBlock:(void (^)(YapDatabaseReadWriteTransaction *transaction))block completionBlock:(dispatch_block_t)completionBlock
-{
-    if (self.isSynchronous) {
-        [self.connection readWriteWithBlock:block];
-        if (completionBlock) {
-            completionBlock();
-        }
-    } else {
-        [self.connection asyncReadWriteWithBlock:block completionBlock:completionBlock];
-    }
-}
-
-- (void)createStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler
-{
-    [self readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-        for (Stolperstein *stolperstein in stolpersteine) {
-            [transaction setObject:stolperstein forKey:stolperstein.id inCollection:COLLECTION_STOLPERSTEINE];
-        }
-    } completionBlock:^{
-        if (completionHandler) {
-            completionHandler();
-        }
-    }];
-}
-
 - (void)retrieveStolpersteinWithID:(NSString *)ID completionHandler:(void (^)(Stolperstein *stolperstein))completionHandler
 {
     if (!completionHandler) {
@@ -123,7 +98,7 @@
     
     __block Stolperstein *stolperstein;
     [self readWithBlock:^(YapDatabaseReadTransaction *transaction) {
-        stolperstein = [transaction objectForKey:ID inCollection:COLLECTION_STOLPERSTEINE];
+        stolperstein = [transaction objectForKey:ID inCollection:StolpersteineReadDataServiceCollection];
     } completionBlock:^{
         completionHandler(stolperstein);
     }];
@@ -139,30 +114,18 @@
     [self readWithBlock:^(YapDatabaseReadTransaction *transaction) {
         __block NSUInteger location = 0;
         stolpersteine = [NSMutableArray array];
-        [transaction enumerateKeysInCollection:COLLECTION_STOLPERSTEINE usingBlock:^(NSString *key, BOOL *stop) {
+        [transaction enumerateKeysInCollection:StolpersteineReadDataServiceCollection usingBlock:^(NSString *key, BOOL *stop) {
             BOOL isComplete = location >= (range.location + range.length);
             if (isComplete) {
                 *stop = YES;
             } else if (location >= range.location) {
-                Stolperstein *stolperstein = [transaction objectForKey:key inCollection:COLLECTION_STOLPERSTEINE];
+                Stolperstein *stolperstein = [transaction objectForKey:key inCollection:StolpersteineReadDataServiceCollection];
                 [stolpersteine addObject:stolperstein];
             }
             location++;
         }];
     } completionBlock:^{
         completionHandler(stolpersteine);
-    }];
-}
-
-- (void)deleteStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler
-{
-    [self readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-        NSArray *keys = [stolpersteine valueForKey:@"id"];
-        [transaction removeObjectsForKeys:keys inCollection:COLLECTION_STOLPERSTEINE];
-    } completionBlock:^{
-        if (completionHandler) {
-            completionHandler();
-        }
     }];
 }
 

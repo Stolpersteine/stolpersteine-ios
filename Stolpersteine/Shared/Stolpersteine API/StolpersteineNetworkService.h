@@ -1,5 +1,5 @@
 //
-//  StolpersteinSearchData.m
+//  StolpersteineNetworkService.h
 //  Stolpersteine
 //
 //  Copyright (C) 2013 Option-U Software
@@ -23,8 +23,19 @@
 //  THE SOFTWARE.
 //
 
-#import "StolpersteinSearchData.h"
+#import <Foundation/Foundation.h>
 
-@implementation StolpersteinSearchData
+@class StolpersteineSearchData;
+@protocol StolpersteineNetworkServiceDelegate;
+
+@interface StolpersteineNetworkService : NSObject
+
+@property (nonatomic, weak) id<StolpersteineNetworkServiceDelegate> delegate;
+@property (nonatomic, assign) BOOL allowsInvalidSSLCertificate;
+@property (nonatomic, strong) StolpersteineSearchData *defaultSearchData;
+
+- (id)initWithClientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword;
+
+- (NSOperation *)retrieveStolpersteineWithSearchData:(StolpersteineSearchData *)searchData range:(NSRange)range completionHandler:(BOOL (^)(NSArray *stolpersteine, NSError *error))completionHandler;
 
 @end

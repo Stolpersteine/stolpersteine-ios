@@ -30,8 +30,8 @@
 #import "Localization.h"
 
 #import "Stolperstein.h"
-#import "StolpersteinSearchData.h"
-#import "StolpersteinNetworkService.h"
+#import "StolpersteineSearchData.h"
+#import "StolpersteineNetworkService.h"
 
 #import "CCHMapClusterController.h"
 
@@ -62,7 +62,7 @@
 {
     [self.searchStolpersteineOperation cancel];
     
-    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
     searchData.keyword = searchString;
     self.searchStolpersteineOperation = [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, REQUEST_SIZE) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.searchedStolpersteine = stolpersteine;

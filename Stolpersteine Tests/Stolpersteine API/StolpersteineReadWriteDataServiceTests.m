@@ -1,8 +1,8 @@
 //
-//  StolpersteineDataServiceTests.m
+//  StolpersteineReadWriteDataServiceTests.m
 //  Stolpersteine
 //
-//  Copyright (C) 2013 Option-U Software
+//  Copyright (C) 2014 Option-U Software
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,24 +23,24 @@
 //  THE SOFTWARE.
 //
 
-#import "StolpersteineDataService.h"
+#import "StolpersteineReadWriteDataService.h"
 #import "Stolperstein.h"
 
 #import <XCTest/XCTest.h>
 
-@interface StolpersteineDataServiceTests : XCTestCase
+@interface StolpersteineReadWriteDataServiceTests : XCTestCase
 
-@property (nonatomic, strong) StolpersteineDataService *dataService;
+@property (nonatomic, strong) StolpersteineReadWriteDataService *dataService;
 
 @end
 
-@implementation StolpersteineDataServiceTests
+@implementation StolpersteineReadWriteDataServiceTests
 
 - (void)setUp
 {
     [super setUp];
     
-    self.dataService = [[StolpersteineDataService alloc] init];
+    self.dataService = [[StolpersteineReadWriteDataService alloc] init];
     self.dataService.cacheEnabled = NO;
     self.dataService.synchronous = YES;
 }

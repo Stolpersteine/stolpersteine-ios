@@ -1,5 +1,5 @@
 //
-//  StolpersteinNetworkServiceTests.m
+//  StolpersteineNetworkServiceTests.m
 //  Stolpersteine
 //
 //  Copyright (C) 2013 Option-U Software
@@ -24,27 +24,27 @@
 //
 
 #import "Stolperstein.h"
-#import "StolpersteinSearchData.h"
-#import "StolpersteinNetworkService.h"
+#import "StolpersteineSearchData.h"
+#import "StolpersteineNetworkService.h"
 
 #import <XCTest/XCTest.h>
 
 static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1";
 
-@interface StolpersteinNetworkServiceTests : XCTestCase
+@interface StolpersteineNetworkServiceTests : XCTestCase
 
-@property (nonatomic, strong) StolpersteinNetworkService *networkService;
+@property (nonatomic, strong) StolpersteineNetworkService *networkService;
 @property (nonatomic, assign) BOOL done;
 
 @end
 
-@implementation StolpersteinNetworkServiceTests
+@implementation StolpersteineNetworkServiceTests
 
 - (void)setUp
 {
     [super setUp];
 
-    self.networkService = [[StolpersteinNetworkService alloc] initWithClientUser:nil clientPassword:nil];
+    self.networkService = [[StolpersteineNetworkService alloc] initWithClientUser:nil clientPassword:nil];
     self.networkService.allowsInvalidSSLCertificate = YES;
     
     self.done = NO;
@@ -106,7 +106,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 
 - (void)testRetrieveStolpersteineKeyword
 {
-    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
     searchData.keyword = @"Ern";
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
@@ -126,7 +126,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 
 - (void)testRetrieveStolpersteineStreet
 {
-    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
     searchData.street = @"Turmstraße";
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
@@ -146,7 +146,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 - (void)testRetrieveStolpersteineCity
 {
     self.networkService.defaultSearchData.city = @"xyz";    // will be overridden by specific search data
-    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
     searchData.city = @"Berlin";
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
@@ -166,7 +166,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 - (void)testRetrieveStolpersteineCityInvalid
 {
     self.networkService.defaultSearchData.city = @"Berlin";    // will be overridden by specific search data
-    StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
     searchData.city = @"xyz";
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;

@@ -25,14 +25,14 @@
 
 #import "AppDelegate.h"
 
-#import "StolpersteinNetworkService.h"
-#import "StolpersteinSearchData.h"
+#import "StolpersteineNetworkService.h"
+#import "StolpersteineSearchData.h"
 #import "DiagnosticsService.h"
 #import "ConfigurationService.h"
 
 @interface AppDelegate()
 
-@property (strong, nonatomic) StolpersteinNetworkService *networkService;
+@property (strong, nonatomic) StolpersteineNetworkService *networkService;
 @property (strong, nonatomic) DiagnosticsService *diagnosticsService;
 @property (strong, nonatomic) ConfigurationService *configurationService;
 
@@ -41,7 +41,7 @@
 
 @implementation AppDelegate
 
-+ (StolpersteinNetworkService *)networkService
++ (StolpersteineNetworkService *)networkService
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     return appDelegate.networkService;
@@ -81,7 +81,7 @@
     // Network service
     NSString *clientUser = [self.configurationService stringConfigurationForKey:ConfigurationServiceKeyAPIUser];
     NSString *clientPassword = [self.configurationService stringConfigurationForKey:ConfigurationServiceKeyAPIPassword];
-    self.networkService = [[StolpersteinNetworkService alloc] initWithClientUser:clientUser clientPassword:clientPassword];
+    self.networkService = [[StolpersteineNetworkService alloc] initWithClientUser:clientUser clientPassword:clientPassword];
     NSString *city = [self.configurationService stringConfigurationForKey:ConfigurationServiceKeyFilterCity];
     self.networkService.defaultSearchData.city = city;
     self.networkService.delegate = self;
@@ -99,7 +99,7 @@
 
 #pragma mark - Stolperstein network service
 
-- (void)stolpersteinNetworkService:(StolpersteinNetworkService *)stolpersteinNetworkService handleError:(NSError *)error
+- (void)stolpersteinNetworkService:(StolpersteineNetworkService *)stolpersteinNetworkService handleError:(NSError *)error
 {
     NSLog(@"Network error: %@", error);
     

@@ -28,8 +28,8 @@
 #import "Stolperstein.h"
 #import "StolpersteinDescriptionViewController.h"
 #import "StolpersteinCardCell.h"
-#import "StolpersteinSearchData.h"
-#import "StolpersteinNetworkService.h"
+#import "StolpersteineSearchData.h"
+#import "StolpersteineNetworkService.h"
 
 #import "CCHLinkTextView.h"
 #import "CCHLinkTextViewDelegate.h"
@@ -140,7 +140,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:cardsViewController action:@selector(dismissViewController)];
         cardsViewController.navigationItem.rightBarButtonItem = barButtonItem;
         
-        StolpersteinSearchData *searchData = [[StolpersteinSearchData alloc] init];
+        StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
         searchData.street = [Localization newStreetNameFromStolperstein:stolperstein];
         cardsViewController.searchData = searchData;
     } else if ([segue.identifier isEqualToString:@"stolpersteinCardsViewControllerToStolpersteinDescriptionViewController"]) {

@@ -1,5 +1,5 @@
 //
-//  StolpersteinSynchronizationController.m
+//  StolpersteineSynchronizationController.m
 //  Stolpersteine
 //
 //  Copyright (C) 2013 Option-U Software
@@ -23,25 +23,25 @@
 //  THE SOFTWARE.
 //
 
-#import "StolpersteinSynchronizationController.h"
+#import "StolpersteineSynchronizationController.h"
 
-#import "StolpersteinNetworkService.h"
+#import "StolpersteineNetworkService.h"
 #import "StolpersteinSynchronizationControllerDelegate.h"
 
 #define NETWORK_BATCH_SIZE 500
 
-@interface StolpersteinSynchronizationController()
+@interface StolpersteineSynchronizationController()
 
-@property (nonatomic, strong) StolpersteinNetworkService *networkService;
+@property (nonatomic, strong) StolpersteineNetworkService *networkService;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
 @property (nonatomic, assign, getter = isSynchronizing) BOOL synchronizing;
 @property (nonatomic, strong) NSMutableSet *stolpersteine;
 
 @end
 
-@implementation StolpersteinSynchronizationController
+@implementation StolpersteineSynchronizationController
 
-- (id)initWithNetworkService:(StolpersteinNetworkService *)networkService
+- (id)initWithNetworkService:(StolpersteineNetworkService *)networkService
 {
     self = [super init];
     if (self) {

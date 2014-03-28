@@ -25,11 +25,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class StolpersteinSearchData;
+@class StolpersteineSearchData;
 
 @interface StolpersteinCardsViewController : UITableViewController
 
 @property (strong, nonatomic) NSArray *stolpersteine;
-@property (strong, nonatomic) StolpersteinSearchData *searchData;
+@property (strong, nonatomic) StolpersteineSearchData *searchData;
 
 @end

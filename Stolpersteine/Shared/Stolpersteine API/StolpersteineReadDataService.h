@@ -1,8 +1,8 @@
 //
-//  StolpersteinSynchronizationController.h
+//  StolpersteineReadDataService.h
 //  Stolpersteine
 //
-//  Copyright (C) 2013 Option-U Software
+//  Copyright (C) 2014 Option-U Software
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,15 +25,18 @@
 
 #import <Foundation/Foundation.h>
 
-@class StolpersteinNetworkService;
-@protocol StolpersteinSynchronizationControllerDelegate;
+@class Stolperstein;
+@class YapDatabaseConnection;
 
-@interface StolpersteinSynchronizationController : NSObject
+extern NSString * const StolpersteineReadDataServiceCollection;
 
-@property (nonatomic, strong, readonly) StolpersteinNetworkService *networkService;
-@property (nonatomic, weak) id<StolpersteinSynchronizationControllerDelegate> delegate;
+@interface StolpersteineReadDataService : NSObject
 
-- (id)initWithNetworkService:(StolpersteinNetworkService *)networkService;
-- (void)synchronize;
+@property (nonatomic, assign, getter = isCacheEnabled) BOOL cacheEnabled;
+@property (nonatomic, assign, getter = isSynchronous) BOOL synchronous;
+@property (nonatomic, strong, readonly) YapDatabaseConnection *connection;
+
+- (void)retrieveStolpersteinWithID:(NSString *)ID completionHandler:(void (^)(Stolperstein *stolperstein))completionHandler;
+- (void)retrieveStolpersteineWithRange:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine))completionHandler;
 
 @end

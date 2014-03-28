@@ -1,5 +1,5 @@
 //
-//  StolpersteineDataService.h
+//  StolpersteineSearchData.h
 //  Stolpersteine
 //
 //  Copyright (C) 2013 Option-U Software
@@ -25,16 +25,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class Stolperstein;
+@interface StolpersteineSearchData : NSObject
 
-@interface StolpersteineDataService : NSObject
-
-@property (nonatomic, assign, getter = isCacheEnabled) BOOL cacheEnabled;
-@property (nonatomic, assign, getter = isSynchronous) BOOL synchronous;
-
-- (void)createStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler;
-- (void)retrieveStolpersteinWithID:(NSString *)ID completionHandler:(void (^)(Stolperstein *stolperstein))completionHandler;
-- (void)retrieveStolpersteineWithRange:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine))completionHandler;
-- (void)deleteStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler;
+@property (nonatomic, copy) NSString *keyword;
+@property (nonatomic, copy) NSString *street;
+@property (nonatomic, copy) NSString *city;
 
 @end

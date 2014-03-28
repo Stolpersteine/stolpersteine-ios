@@ -1,5 +1,5 @@
 //
-//  StolpersteinSearchData.h
+//  StolpersteineSynchronizationController.h
 //  Stolpersteine
 //
 //  Copyright (C) 2013 Option-U Software
@@ -25,10 +25,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StolpersteinSearchData : NSObject
+@class StolpersteineNetworkService;
+@protocol StolpersteineSynchronizationControllerDelegate;
 
-@property (nonatomic, copy) NSString *keyword;
-@property (nonatomic, copy) NSString *street;
-@property (nonatomic, copy) NSString *city;
+@interface StolpersteineSynchronizationController : NSObject
+
+@property (nonatomic, strong, readonly) StolpersteineNetworkService *networkService;
+@property (nonatomic, weak) id<StolpersteineSynchronizationControllerDelegate> delegate;
+
+- (id)initWithNetworkService:(StolpersteineNetworkService *)networkService;
+- (void)synchronize;
 
 @end

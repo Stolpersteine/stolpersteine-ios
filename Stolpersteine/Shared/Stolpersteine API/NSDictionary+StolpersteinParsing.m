@@ -1,5 +1,5 @@
 //
-//  NSDictionary+Parsing.m
+//  NSDictionary+StolpersteinParsing.m
 //  Stolpersteine
 //
 //  Copyright (C) 2013 Option-U Software

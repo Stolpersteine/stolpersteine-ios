@@ -1,5 +1,5 @@
 //
-//  StolpersteinNetworkServiceDelegate.h
+//  StolpersteineNetworkServiceDelegate.h
 //  Stolpersteine
 //
 //  Copyright (C) 2013 Option-U Software
@@ -25,11 +25,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class StolpersteinNetworkService;
+@class StolpersteineNetworkService;
 
-@protocol StolpersteinNetworkServiceDelegate <NSObject>
+@protocol StolpersteineNetworkServiceDelegate <NSObject>
 
 @optional
-- (void)stolpersteinNetworkService:(StolpersteinNetworkService *)stolpersteinNetworkService handleError:(NSError *)error;
+- (void)stolpersteinNetworkService:(StolpersteineNetworkService *)stolpersteinNetworkService handleError:(NSError *)error;
 
 @end

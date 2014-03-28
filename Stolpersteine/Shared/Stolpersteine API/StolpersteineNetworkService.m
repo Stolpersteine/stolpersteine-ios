@@ -23,27 +23,27 @@
 //  THE SOFTWARE.
 //
 
-#import "StolpersteinNetworkService.h"
+#import "StolpersteineNetworkService.h"
 
 #import "AFJSONRequestOperation.h"
 #import "AFImageRequestOperation.h"
 #import "AFHTTPClient.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "Stolperstein.h"
-#import "StolpersteinSearchData.h"
+#import "StolpersteineSearchData.h"
 #import "StolpersteinNetworkServiceDelegate.h"
 #import "NSDictionary+StolpersteinParsing.h"
 
 static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1";
 
-@interface StolpersteinNetworkService ()
+@interface StolpersteineNetworkService ()
 
 @property (nonatomic, strong) AFHTTPClient *httpClient;
 @property (nonatomic, strong) NSString *encodedClientCredentials;
 
 @end
 
-@implementation StolpersteinNetworkService
+@implementation StolpersteineNetworkService
 
 - (id)initWithClientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword
 {
@@ -58,7 +58,7 @@ static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1"
             _encodedClientCredentials = [[clientCredentials dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
         }
 
-        _defaultSearchData = [[StolpersteinSearchData alloc] init];
+        _defaultSearchData = [[StolpersteineSearchData alloc] init];
         
         AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     }
@@ -93,7 +93,7 @@ static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1"
     }
 }
 
-- (NSOperation *)retrieveStolpersteineWithSearchData:(StolpersteinSearchData *)searchData range:(NSRange)range completionHandler:(BOOL (^)(NSArray *stolpersteine, NSError *error))completionHandler
+- (NSOperation *)retrieveStolpersteineWithSearchData:(StolpersteineSearchData *)searchData range:(NSRange)range completionHandler:(BOOL (^)(NSArray *stolpersteine, NSError *error))completionHandler
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     

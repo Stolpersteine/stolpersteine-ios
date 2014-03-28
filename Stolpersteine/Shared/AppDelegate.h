@@ -27,15 +27,15 @@
 
 #import "StolpersteinNetworkServiceDelegate.h"
 
-@class StolpersteinNetworkService;
+@class StolpersteineNetworkService;
 @class DiagnosticsService;
 @class ConfigurationService;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, StolpersteinNetworkServiceDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, StolpersteineNetworkServiceDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-+ (StolpersteinNetworkService *)networkService;
++ (StolpersteineNetworkService *)networkService;
 + (DiagnosticsService *)diagnosticsService;
 + (ConfigurationService *)configurationService;
 

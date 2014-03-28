@@ -25,12 +25,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class StolpersteinNetworkService;
+@class StolpersteineNetworkService;
 @class CCHMapClusterController;
 
 @interface MapSearchDisplayController : UISearchDisplayController <UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) StolpersteinNetworkService *networkService;
+@property (nonatomic, strong) StolpersteineNetworkService *networkService;
 @property (nonatomic, strong) CCHMapClusterController *mapClusterController;
 @property (nonatomic, assign) double zoomDistance;
 

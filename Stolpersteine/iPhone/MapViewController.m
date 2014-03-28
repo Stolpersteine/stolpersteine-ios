@@ -31,11 +31,11 @@
 #import "MapSearchDisplayController.h"
 #import "Localization.h"
 
-#import "StolpersteinSynchronizationController.h"
+#import "StolpersteineSynchronizationController.h"
 #import "StolpersteinSynchronizationControllerDelegate.h"
 #import "StolpersteinCardsViewController.h"
 #import "StolpersteinAnnotationView.h"
-#import "StolpersteinNetworkService.h"
+#import "StolpersteineNetworkService.h"
 
 #import "CCHMapClusterController.h"
 #import "CCHMapClusterControllerDelegate.h"
@@ -44,7 +44,7 @@
 static const double ZOOM_DISTANCE_USER = 1200;
 static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
-@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, CCHMapClusterControllerDelegate, StolpersteinSynchronizationControllerDelegate>
+@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, CCHMapClusterControllerDelegate, StolpersteineSynchronizationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
@@ -53,7 +53,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
-@property (nonatomic, strong) StolpersteinSynchronizationController *stolpersteinSyncController;
+@property (nonatomic, strong) StolpersteineSynchronizationController *stolpersteinSyncController;
 @property (nonatomic, strong) CCHMapClusterController *mapClusterController;
 
 @end
@@ -92,7 +92,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     self.locationManager.delegate = self;
     
     // Start loading data
-    self.stolpersteinSyncController = [[StolpersteinSynchronizationController alloc] initWithNetworkService:AppDelegate.networkService];
+    self.stolpersteinSyncController = [[StolpersteineSynchronizationController alloc] initWithNetworkService:AppDelegate.networkService];
     self.stolpersteinSyncController.delegate = self;
 
     // Initialize map region
@@ -190,7 +190,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 #pragma mark - Stolperstein synchronization controller
 
-- (void)stolpersteinSynchronizationController:(StolpersteinSynchronizationController *)stolpersteinSynchronizationController didAddStolpersteine:(NSArray *)stolpersteine
+- (void)stolpersteinSynchronizationController:(StolpersteineSynchronizationController *)stolpersteinSynchronizationController didAddStolpersteine:(NSArray *)stolpersteine
 {
     [self.mapClusterController addAnnotations:stolpersteine withCompletionHandler:NULL];
 }

@@ -74,5 +74,5 @@
 #define COCOAPODS_POD_AVAILABLE_YapDatabase
 #define COCOAPODS_VERSION_MAJOR_YapDatabase 2
 #define COCOAPODS_VERSION_MINOR_YapDatabase 4
-#define COCOAPODS_VERSION_PATCH_YapDatabase 0
+#define COCOAPODS_VERSION_PATCH_YapDatabase 1
 

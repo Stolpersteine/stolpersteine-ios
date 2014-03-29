@@ -12,7 +12,7 @@ PODS:
   - GoogleAnalytics-iOS-SDK (3.0.3c)
   - OCMock (2.2.3)
   - TUSafariActivity (1.0.0)
-  - YapDatabase (2.4):
+  - YapDatabase (2.4.1):
     - CocoaLumberjack (~> 1.6.3)
 
 DEPENDENCIES:
@@ -23,7 +23,7 @@ DEPENDENCIES:
   - GoogleAnalytics-iOS-SDK (= 3.0.3c)
   - OCMock
   - TUSafariActivity (from `https://github.com/davbeck/TUSafariActivity.git`, commit `c67c2c4272d89765a927dd034708772f3a4a39ee`)
-  - YapDatabase (from `https://github.com/yaptv/YapDatabase.git`, commit `7f7072b7e71b84f173fcb23e9c77ba1b4855ca36`)
+  - YapDatabase
 
 EXTERNAL SOURCES:
   CCHLinkTextView:
@@ -31,9 +31,6 @@ EXTERNAL SOURCES:
   TUSafariActivity:
     :commit: c67c2c4272d89765a927dd034708772f3a4a39ee
     :git: https://github.com/davbeck/TUSafariActivity.git
-  YapDatabase:
-    :commit: 7f7072b7e71b84f173fcb23e9c77ba1b4855ca36
-    :git: https://github.com/yaptv/YapDatabase.git
 
 SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
@@ -44,6 +41,6 @@ SPEC CHECKSUMS:
   GoogleAnalytics-iOS-SDK: a1dc8c700de9edf41f57c0abe54a7eb2182a1820
   OCMock: 74e4ddbcef134170dcc844f91c691f13868075d7
   TUSafariActivity: bd9da588f5f9136ba445d89f8f86b6dccf4d46ba
-  YapDatabase: 3e1159ee9540859342bf2869a86dd9e434548c45
+  YapDatabase: 96c3aed68fe5087d596a4b400087b861e43c93d3
 
 COCOAPODS: 0.30.0

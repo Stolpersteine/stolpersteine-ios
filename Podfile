@@ -6,7 +6,7 @@ pod 'CCHMapClusterController'
 pod 'CCHMapsActivity'
 pod 'CCHLinkTextView', :git => 'https://github.com/choefele/CCHLinkTextView.git'
 pod 'AFNetworking', '~> 1.3.3'
-pod 'YapDatabase', :git => 'https://github.com/yaptv/YapDatabase.git', :commit => '7f7072b7e71b84f173fcb23e9c77ba1b4855ca36'
+pod 'YapDatabase'
 pod 'GoogleAnalytics-iOS-SDK', '3.0.3c'
 pod 'TUSafariActivity', :git => 'https://github.com/davbeck/TUSafariActivity.git', :commit => 'c67c2c4272d89765a927dd034708772f3a4a39ee'
 

@@ -24,6 +24,7 @@
 //
 
 #import "StolpersteineReadWriteDataService.h"
+#import "StolpersteineSearchData.h"
 #import "Stolperstein.h"
 
 #import <XCTest/XCTest.h>
@@ -97,6 +98,48 @@
         XCTAssertEqual(stolpersteine.count, range.length);
     }];
 
+    [self.dataService deleteStolpersteine:stolpersteineToCreate completionHandler:NULL];
+}
+
+- (void)testRetrieveStolpersteineKeyword
+{
+    Stolperstein *stolperstein0 = [[Stolperstein alloc] init];
+    stolperstein0.id = @"0";
+    stolperstein0.personFirstName = @"Erna";
+    Stolperstein *stolperstein1 = [[Stolperstein alloc] init];
+    stolperstein1.personLastName = @"Ernas";
+    stolperstein1.id = @"1";
+    NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1];
+    [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
+ 
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
+    searchData.keyword = @"ern";
+    [self.dataService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 10) completionHandler:^(NSArray *stolpersteine) {
+        XCTAssertTrue([stolpersteine containsObject:stolperstein0]);
+        XCTAssertTrue([stolpersteine containsObject:stolperstein1]);
+    }];
+
+    [self.dataService deleteStolpersteine:stolpersteineToCreate completionHandler:NULL];
+}
+
+- (void)testRetrieveStolpersteineKeywordMultiple
+{
+    Stolperstein *stolperstein0 = [[Stolperstein alloc] init];
+    stolperstein0.id = @"0";
+    stolperstein0.personFirstName = @"Erna";
+    Stolperstein *stolperstein1 = [[Stolperstein alloc] init];
+    stolperstein1.personLastName = @"Meier";
+    stolperstein1.id = @"1";
+    NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1];
+    [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
+    
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
+    searchData.keyword = @"ern mei";
+    [self.dataService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 10) completionHandler:^(NSArray *stolpersteine) {
+        XCTAssertTrue([stolpersteine containsObject:stolperstein0]);
+        XCTAssertTrue([stolpersteine containsObject:stolperstein1]);
+    }];
+    
     [self.dataService deleteStolpersteine:stolpersteineToCreate completionHandler:NULL];
 }
 

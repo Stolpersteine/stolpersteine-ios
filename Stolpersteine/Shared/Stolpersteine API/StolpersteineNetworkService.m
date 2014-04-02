@@ -98,7 +98,7 @@ static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1"
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
     // Optional parameters
-    NSString *keyword = searchData.keyword ? searchData.keyword : self.defaultSearchData.keyword;
+    NSString *keyword = searchData.keywordsString ? searchData.keywordsString : self.defaultSearchData.keywordsString;
     if (keyword) {
         [parameters setObject:keyword forKey:@"q"];
     }

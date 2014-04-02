@@ -39,6 +39,6 @@ extern NSString * const StolpersteineReadDataServiceCollection;
 
 - (void)retrieveStolpersteinWithID:(NSString *)ID completionHandler:(void (^)(Stolperstein *stolperstein))completionHandler;
 - (void)retrieveStolpersteineWithRange:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine))completionHandler;
-- (void)retrieveStolpersteineWithSearchData:(StolpersteineSearchData *)searchData range:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine))completionHandler;
+- (void)retrieveStolpersteineWithSearchData:(StolpersteineSearchData *)searchData limit:(NSUInteger)limit completionHandler:(void (^)(NSArray *stolpersteine))completionHandler;
 
 @end

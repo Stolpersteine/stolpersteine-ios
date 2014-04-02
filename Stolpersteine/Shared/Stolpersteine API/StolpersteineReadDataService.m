@@ -27,12 +27,16 @@
 
 #import "YapDatabase.h"
 #import "YapDatabaseFullTextSearch.h"
+#import "YapDatabaseView.h"
 
 #import "Stolperstein.h"
 #import "StolpersteineSearchData.h"
 
 NSString * const StolpersteineReadDataServiceCollection = @"stolpersteine";
-NSString * const StolpersteineReadDataServiceFullTextSearchExtensionName = @"fullTextSearch";
+static NSString * const StolpersteineReadDataServiceFullTextSearchExtensionName = @"fullTextSearch";
+static NSString * const StolpersteineReadDataServiceAllItemsViewExtensionName = @"allItems";
+static int FullTextSearchExtensionVersion = 1;
+static NSString * const AllItemsViewExtensionVersion = @"1";
 
 @interface StolpersteineReadDataService()
 
@@ -46,26 +50,26 @@ NSString * const StolpersteineReadDataServiceFullTextSearchExtensionName = @"ful
 {
     self = [super init];
     if (self) {
-        YapDatabase *database = [self.class sharedYapDatabase];
-        [self.class registerFullTextSearchExtensionWithDatabase:database];
-        _connection = [database newConnection];
+        _connection = [self.class.sharedDatabase newConnection];
         _cacheEnabled = _connection.objectCacheEnabled;
     }
     return self;
 }
 
-+ (YapDatabase *)sharedYapDatabase
++ (YapDatabase *)sharedDatabase
 {
-    static YapDatabase *sharedYapDatabase = nil;
+    static YapDatabase *sharedDatabase = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedYapDatabase = [[YapDatabase alloc]initWithPath:StolpersteineReadDataService.filePath];
+        sharedDatabase = [[YapDatabase alloc]initWithPath:self.class.databasePath];
+        [self.class registerFullTextSearchExtensionWithDatabase:sharedDatabase];
+        [self.class registerAllItemsViewExtensionWithDatabase:sharedDatabase];
     });
     
-    return sharedYapDatabase;
+    return sharedDatabase;
 }
 
-+ (NSString *)filePath
++ (NSString *)databasePath
 {
     // This directory is backed up by iOS, but never visible to the user,
     // see http://developer.apple.com/library/ios/#qa/qa1699/_index.html
@@ -81,9 +85,14 @@ NSString * const StolpersteineReadDataServiceFullTextSearchExtensionName = @"ful
 + (void)registerFullTextSearchExtensionWithDatabase:(YapDatabase *)database
 {
     NSArray *propertiesToIndex = @[NSStringFromSelector(@selector(personFirstName)),
-                                   NSStringFromSelector(@selector(personLastName))];
+                                   NSStringFromSelector(@selector(personLastName)),
+                                   NSStringFromSelector(@selector(locationStreet)),
+                                   NSStringFromSelector(@selector(locationZipCode)),
+                                   NSStringFromSelector(@selector(locationCity))];
     YapDatabaseFullTextSearchBlockType blockType = YapDatabaseFullTextSearchBlockTypeWithObject;
     YapDatabaseFullTextSearchWithObjectBlock block = ^(NSMutableDictionary *dict, NSString *collection, NSString *key, id object) {
+        NSAssert([collection isEqualToString:StolpersteineReadDataServiceCollection], @"Invalid collection");
+        
         if ([object isKindOfClass:Stolperstein.class]) {
             Stolperstein *stolperstein = (Stolperstein *)object;
             
@@ -93,11 +102,37 @@ NSString * const StolpersteineReadDataServiceFullTextSearchExtensionName = @"ful
             if (stolperstein.personLastName) {
                 [dict setObject:stolperstein.personLastName forKey:propertiesToIndex[1]];
             }
+            if (stolperstein.locationStreet) {
+                [dict setObject:stolperstein.locationStreet forKey:propertiesToIndex[2]];
+            }
+            if (stolperstein.locationZipCode) {
+                [dict setObject:stolperstein.locationZipCode forKey:propertiesToIndex[3]];
+            }
+            if (stolperstein.locationCity) {
+                [dict setObject:stolperstein.locationCity forKey:propertiesToIndex[4]];
+            }
         }
     };
     
-    YapDatabaseFullTextSearch *fullTextSearch = [[YapDatabaseFullTextSearch alloc] initWithColumnNames:propertiesToIndex block:block blockType:blockType];
+    YapDatabaseFullTextSearch *fullTextSearch = [[YapDatabaseFullTextSearch alloc] initWithColumnNames:propertiesToIndex block:block blockType:blockType version:FullTextSearchExtensionVersion];
     [database registerExtension:fullTextSearch withName:StolpersteineReadDataServiceFullTextSearchExtensionName];
+}
+
++ (void)registerAllItemsViewExtensionWithDatabase:(YapDatabase *)database
+{
+    YapDatabaseViewGroupingWithKeyBlock groupingBlock = ^NSString *(NSString *collection, NSString *key) {
+        NSAssert([collection isEqualToString:StolpersteineReadDataServiceCollection], @"Invalid collection");
+
+        return @"";
+    };
+    YapDatabaseViewSortingWithKeyBlock sortingBlock = ^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, NSString *collection2, NSString *key2) {
+        NSAssert([collection1 isEqualToString:StolpersteineReadDataServiceCollection], @"Invalid collection");
+        NSAssert([collection2 isEqualToString:StolpersteineReadDataServiceCollection], @"Invalid collection");
+
+        return NSOrderedSame;
+    };
+    YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGroupingBlock:groupingBlock groupingBlockType:YapDatabaseViewBlockTypeWithKey sortingBlock:sortingBlock sortingBlockType:YapDatabaseViewBlockTypeWithKey versionTag:AllItemsViewExtensionVersion];
+    [database registerExtension:databaseView withName:StolpersteineReadDataServiceAllItemsViewExtensionName];
 }
 
 - (void)setCacheEnabled:(BOOL)cacheEnabled
@@ -157,36 +192,38 @@ NSString * const StolpersteineReadDataServiceFullTextSearchExtensionName = @"ful
     }];
 }
 
-- (void)retrieveStolpersteineWithSearchData:(StolpersteineSearchData *)searchData range:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine))completionHandler
+- (void)retrieveStolpersteineWithSearchData:(StolpersteineSearchData *)searchData limit:(NSUInteger)limit completionHandler:(void (^)(NSArray *stolpersteine))completionHandler
 {
     if (!completionHandler) {
         return;
     }
     
-    NSMutableString *searchString = [NSMutableString string];
-    
-    if (searchData.keyword) {
-        NSArray *keywords = [searchData.keyword componentsSeparatedByString:@" "];
-        [searchString appendString:[keywords componentsJoinedByString:@"* OR "]];
-        [searchString appendString:@"*"];
+    NSMutableArray *searchStrings = [NSMutableArray array];
+    if (searchData.keywordsString) {
+        NSArray *keywords = [searchData.keywordsString componentsSeparatedByString:@" "];
+        NSString *keywordsSearchString = [NSString stringWithFormat:@"%@*", [keywords componentsJoinedByString:@"* OR "]];
+        [searchStrings addObject:keywordsSearchString];
     }
     
+    if (searchData.street) {
+        NSString *streetSearchString = [NSString stringWithFormat:@"%@:%@*", NSStringFromSelector(@selector(locationStreet)), searchData.street];
+        [searchStrings addObject:streetSearchString];
+    }
+    
+    NSString *searchString = [searchStrings componentsJoinedByString:@" AND "];
     __block NSMutableArray *stolpersteine;
     [self readWithBlock:^(YapDatabaseReadTransaction *transaction) {
-        __block NSUInteger location = 0;
         stolpersteine = [NSMutableArray array];
-        id fullTextSearch = [transaction ext:StolpersteineReadDataServiceFullTextSearchExtensionName];
-        [fullTextSearch enumerateKeysMatching:searchString usingBlock:^(NSString *collection, NSString *key, BOOL *stop) {
+        YapDatabaseFullTextSearchTransaction *fullTextSearchTransaction = [transaction ext:StolpersteineReadDataServiceFullTextSearchExtensionName];
+        [fullTextSearchTransaction enumerateKeysMatching:searchString usingBlock:^(NSString *collection, NSString *key, BOOL *stop) {
             NSAssert([collection isEqualToString:StolpersteineReadDataServiceCollection], @"Invalid collection");
             
-            BOOL isComplete = (location >= (range.location + range.length));
-            if (isComplete) {
+            Stolperstein *stolperstein = [transaction objectForKey:key inCollection:StolpersteineReadDataServiceCollection];
+            [stolpersteine addObject:stolperstein];
+            
+            if (stolpersteine.count >= limit) {
                 *stop = YES;
-            } else if (location >= range.location) {
-                Stolperstein *stolperstein = [transaction objectForKey:key inCollection:StolpersteineReadDataServiceCollection];
-                [stolpersteine addObject:stolperstein];
             }
-            location++;
         }];
     } completionBlock:^{
         completionHandler(stolpersteine);

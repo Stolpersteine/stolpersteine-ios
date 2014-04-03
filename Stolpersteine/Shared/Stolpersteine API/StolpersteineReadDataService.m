@@ -48,28 +48,44 @@ static NSString * const AllItemsViewExtensionVersion = @"1";
 
 - (id)init
 {
+    return [self initWithName:@"database.sqlite"];
+}
+
+- (id)initWithName:(NSString *)name
+{
     self = [super init];
     if (self) {
-        _connection = [self.class.sharedDatabase newConnection];
+        YapDatabase *yapDatabase = [self.class sharedDatabaseWithName:name];
+        _connection = [yapDatabase newConnection];
         _cacheEnabled = _connection.objectCacheEnabled;
     }
     return self;
 }
 
-+ (YapDatabase *)sharedDatabase
++ (YapDatabase *)sharedDatabaseWithName:(NSString *)name
 {
-    static YapDatabase *sharedDatabase = nil;
+    static NSMutableDictionary *sharedDatabases = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedDatabase = [[YapDatabase alloc]initWithPath:self.class.databasePath];
-        [self.class registerFullTextSearchExtensionWithDatabase:sharedDatabase];
-        [self.class registerAllItemsViewExtensionWithDatabase:sharedDatabase];
+        sharedDatabases = [NSMutableDictionary dictionary];
     });
+
+    YapDatabase *sharedDatabase;
+    @synchronized(sharedDatabases) {
+        sharedDatabase = [sharedDatabases objectForKey:name];
+        if (sharedDatabase == nil) {
+            NSString *databasePath = [self.class databasePathWithName:name];
+            sharedDatabase = [[YapDatabase alloc] initWithPath:databasePath];
+            [self.class registerFullTextSearchExtensionWithDatabase:sharedDatabase];
+            [self.class registerAllItemsViewExtensionWithDatabase:sharedDatabase];
+            [sharedDatabases setObject:sharedDatabase forKey:name];
+        }
+    }
     
     return sharedDatabase;
 }
 
-+ (NSString *)databasePath
++ (NSString *)databasePathWithName:(NSString *)name
 {
     // This directory is backed up by iOS, but never visible to the user,
     // see http://developer.apple.com/library/ios/#qa/qa1699/_index.html
@@ -79,7 +95,7 @@ static NSString * const AllItemsViewExtensionVersion = @"1";
         [NSFileManager.defaultManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:NULL];
     }
 
-    return [path stringByAppendingPathComponent:@"database.sqlite"];
+    return [path stringByAppendingPathComponent:name];
 }
 
 + (void)registerFullTextSearchExtensionWithDatabase:(YapDatabase *)database

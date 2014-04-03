@@ -41,7 +41,7 @@
 {
     [super setUp];
     
-    self.dataService = [[StolpersteineReadWriteDataService alloc] init];
+    self.dataService = [[StolpersteineReadWriteDataService alloc] initWithName:@"debugDatabase.sqlite"];
     self.dataService.cacheEnabled = NO;
     self.dataService.synchronous = YES;
 }

@@ -37,6 +37,9 @@ extern NSString * const StolpersteineReadDataServiceCollection;
 @property (nonatomic, assign, getter = isSynchronous) BOOL synchronous;
 @property (nonatomic, strong, readonly) YapDatabaseConnection *connection;
 
+- (id)init;
+- (id)initWithName:(NSString *)name;
+
 - (void)retrieveStolpersteinWithID:(NSString *)ID completionHandler:(void (^)(Stolperstein *stolperstein))completionHandler;
 - (void)retrieveStolpersteineWithRange:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine))completionHandler;
 - (void)retrieveStolpersteineWithSearchData:(StolpersteineSearchData *)searchData limit:(NSUInteger)limit completionHandler:(void (^)(NSArray *stolpersteine))completionHandler;

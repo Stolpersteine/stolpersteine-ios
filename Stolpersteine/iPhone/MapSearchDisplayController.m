@@ -63,7 +63,7 @@
     [self.searchStolpersteineOperation cancel];
     
     StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
-    searchData.keyword = searchString;
+    searchData.keywordsString = searchString;
     self.searchStolpersteineOperation = [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, REQUEST_SIZE) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.searchedStolpersteine = stolpersteine;
         [self.searchResultsTableView reloadData];

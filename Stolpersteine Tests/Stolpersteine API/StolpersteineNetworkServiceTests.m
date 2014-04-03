@@ -107,15 +107,15 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 - (void)testRetrieveStolpersteineKeyword
 {
     StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
-    searchData.keyword = @"Ern";
+    searchData.keywordsString = @"Ern";
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
         XCTAssertNil(error, @"Error request");
         XCTAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
-            BOOL found = [stolperstein.personFirstName hasPrefix:searchData.keyword];
-            found |= [stolperstein.personLastName hasPrefix:searchData.keyword];
+            BOOL found = [stolperstein.personFirstName hasPrefix:searchData.keywordsString];
+            found |= [stolperstein.personLastName hasPrefix:searchData.keywordsString];
             XCTAssertTrue(found, @"Wrong search result");
         }
         

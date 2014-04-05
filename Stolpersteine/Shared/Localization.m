@@ -135,9 +135,10 @@
     NSString *name = [Localization newNameFromStolperstein:stolperstein];
     NSString *address = [Localization newShortAddressFromStolperstein:stolperstein];
     NSMutableString *string = [NSMutableString stringWithFormat:@"%@\n%@", name, address];
-    if (stolperstein.personBiographyURLString) {
+    NSString *localizedPersonBiographyURLString = stolperstein.personBiographyURLString;
+    if (localizedPersonBiographyURLString) {
         [string appendString:@"\n"];
-        [string appendString:stolperstein.personBiographyURLString];
+        [string appendString:localizedPersonBiographyURLString];
     }
     
     return string;

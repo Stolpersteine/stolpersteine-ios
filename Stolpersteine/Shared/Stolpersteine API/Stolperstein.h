@@ -49,6 +49,9 @@ typedef NS_ENUM(NSInteger, StolpersteinType) {
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, readonly, assign) CLLocationCoordinate2D coordinate;
 
+@property (nonatomic, readonly, copy) NSString *localizedPersonBiographyURLString;
+
+
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)coder;
 

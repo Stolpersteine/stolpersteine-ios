@@ -139,7 +139,7 @@
 {
     Stolperstein *stolperstein = self.stolperstein;
     UIPasteboard *pasteboard = UIPasteboard.generalPasteboard;
-    pasteboard.URL = [NSURL URLWithString:stolperstein.personBiographyURLString];
+    pasteboard.URL = [NSURL URLWithString:stolperstein.localizedPersonBiographyURLString];
     pasteboard.string = [Localization newPasteboardStringFromStolperstein:stolperstein];
     
     [self setSelected:NO animated:YES];

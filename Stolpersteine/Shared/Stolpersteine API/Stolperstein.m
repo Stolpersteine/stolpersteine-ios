@@ -90,22 +90,22 @@
     return self.id.hash;
 }
 
-- (NSString *)personBiographyURLString
+- (NSString *)localizedPersonBiographyURLString
 {
-    NSString *personBiographyURLString = _personBiographyURLString;
+    NSString *localizedPersonBiographyURLString = _personBiographyURLString;
     
     // Use English website for Berlin biographies if not using German
     NSArray *preferredLanguages = NSLocale.preferredLanguages;
     if (preferredLanguages.count > 0 && ![preferredLanguages[0] hasPrefix:@"de"]) {
         static NSString *prefixGerman = @"http://www.stolpersteine-berlin.de/de";
         static NSString *prefixEnglish = @"http://www.stolpersteine-berlin.de/en";
-        if ([personBiographyURLString hasPrefix:prefixGerman]) {
+        if ([localizedPersonBiographyURLString hasPrefix:prefixGerman]) {
             NSRange range = NSMakeRange(0, prefixGerman.length);
-            personBiographyURLString = [personBiographyURLString stringByReplacingCharactersInRange:range withString:prefixEnglish];
+            localizedPersonBiographyURLString = [localizedPersonBiographyURLString stringByReplacingCharactersInRange:range withString:prefixEnglish];
         }
     }
     
-    return personBiographyURLString;
+    return localizedPersonBiographyURLString;
 }
 
 - (CLLocationCoordinate2D)coordinate

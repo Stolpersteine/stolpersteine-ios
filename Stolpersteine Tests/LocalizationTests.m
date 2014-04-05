@@ -184,7 +184,7 @@
     XCTAssertEqualObjects(address, @"Straße 1\n12345", @"Wrong address");
 
     // Both city and zip code
-    stolperstein = [self newStolpersteinWithLocationStreet:@"Straße 1" locationZipCode:@"Stadt" locationCity:@"12345"];
+    stolperstein = [self newStolpersteinWithLocationStreet:@"Straße 1" locationZipCode:@"12345" locationCity:@"Stadt"];
     address = [Localization newLongAddressFromStolperstein:stolperstein];
     XCTAssertEqualObjects(address, @"Straße 1\n12345 Stadt", @"Wrong address");
 }

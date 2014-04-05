@@ -63,7 +63,8 @@
     // Load web site
     self.webView.delegate = self;
     self.webView.scalesPageToFit = YES;
-    NSURL *url = [[NSURL alloc] initWithString:self.stolperstein.localizedPersonBiographyURLString];
+    NSString *personBiographyURLString = [Localization newPersonBiographyURLStringFromStolperstein:self.stolperstein];
+    NSURL *url = [[NSURL alloc] initWithString:personBiographyURLString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 }

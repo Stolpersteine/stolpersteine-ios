@@ -391,6 +391,10 @@
 		627E442F169C41EC0065C1F1 /* Stolpersteine API */ = {
 			isa = PBXGroup;
 			children = (
+				627E4436169C43970065C1F1 /* Stolperstein.h */,
+				627E4437169C43970065C1F1 /* Stolperstein.m */,
+				48AC6D6E16BF0964004C4AF4 /* StolpersteineSearchData.h */,
+				48AC6D6F16BF0964004C4AF4 /* StolpersteineSearchData.m */,
 				625D112F18E34F5B00CD55FF /* StolpersteineReadDataService.h */,
 				625D113018E34F5B00CD55FF /* StolpersteineReadDataService.m */,
 				62895D3318E5769500C93F57 /* StolpersteineReadWriteDataService.h */,
@@ -403,10 +407,6 @@
 				489B682C17739444000803C2 /* StolpersteinSynchronizationControllerDelegate.h */,
 				6222BEFF16A030E5006ED538 /* NSDictionary+StolpersteinParsing.h */,
 				6222BF0016A030E5006ED538 /* NSDictionary+StolpersteinParsing.m */,
-				627E4436169C43970065C1F1 /* Stolperstein.h */,
-				627E4437169C43970065C1F1 /* Stolperstein.m */,
-				48AC6D6E16BF0964004C4AF4 /* StolpersteineSearchData.h */,
-				48AC6D6F16BF0964004C4AF4 /* StolpersteineSearchData.m */,
 			);
 			path = "Stolpersteine API";
 			sourceTree = "<group>";

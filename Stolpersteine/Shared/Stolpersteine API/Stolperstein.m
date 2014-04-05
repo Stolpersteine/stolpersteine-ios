@@ -27,6 +27,26 @@
 
 @implementation Stolperstein
 
+- (id)initWithID:(NSString *)ID type:(StolpersteinType)type sourceName:(NSString *)sourceName sourceURLString:(NSString *)sourceURLString personFirstName:(NSString *)personFirstName personLastName:(NSString *)personLastName personBiographyURLString:(NSString *)personBiographyURLString locationStreet:(NSString *)locationStreet locationZipCode:(NSString *)locationZipCode locationCity:(NSString *)locationCity locationCoordinate:(CLLocationCoordinate2D)locationCoordinate
+{
+    self = [super init];
+    if (self) {
+        _id = ID;
+        _type = type;
+        _sourceURLString = sourceURLString;
+        _sourceName = sourceName;
+        _personFirstName = personFirstName;
+        _personLastName = personLastName;
+        _personBiographyURLString = personBiographyURLString;
+        _locationStreet = locationStreet;
+        _locationZipCode = locationZipCode;
+        _locationCity = locationCity;
+        _locationCoordinate = locationCoordinate;
+    }
+    
+    return self;
+}
+
 - (id)initWithCoder:(NSCoder *)decoder
 {
     self = [super init];
@@ -44,8 +64,8 @@
         _locationCoordinate.latitude = [decoder decodeDoubleForKey:@"locationCoordinate.latitude"];
         _locationCoordinate.longitude = [decoder decodeDoubleForKey:@"locationCoordinate.longitude"];
     }
-    return self;
     
+    return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder
@@ -88,24 +108,6 @@
 - (NSUInteger)hash
 {
     return self.id.hash;
-}
-
-- (NSString *)localizedPersonBiographyURLString
-{
-    NSString *localizedPersonBiographyURLString = _personBiographyURLString;
-    
-    // Use English website for Berlin biographies if not using German
-    NSArray *preferredLanguages = NSLocale.preferredLanguages;
-    if (preferredLanguages.count > 0 && ![preferredLanguages[0] hasPrefix:@"de"]) {
-        static NSString *prefixGerman = @"http://www.stolpersteine-berlin.de/de";
-        static NSString *prefixEnglish = @"http://www.stolpersteine-berlin.de/en";
-        if ([localizedPersonBiographyURLString hasPrefix:prefixGerman]) {
-            NSRange range = NSMakeRange(0, prefixGerman.length);
-            localizedPersonBiographyURLString = [localizedPersonBiographyURLString stringByReplacingCharactersInRange:range withString:prefixEnglish];
-        }
-    }
-    
-    return localizedPersonBiographyURLString;
 }
 
 - (CLLocationCoordinate2D)coordinate

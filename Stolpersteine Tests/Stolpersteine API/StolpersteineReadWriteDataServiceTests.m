@@ -37,6 +37,38 @@
 
 @implementation StolpersteineReadWriteDataServiceTests
 
+- (Stolperstein *)newStolpersteinWithID:(NSString *)ID personFirstName:(NSString *)personFirstName personLastName:(NSString *)personLastName
+{
+    Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:ID
+                                                             type:StolpersteinTypeStolperstein
+                                                       sourceName:nil
+                                                  sourceURLString:nil
+                                                  personFirstName:personFirstName
+                                                   personLastName:personLastName
+                                         personBiographyURLString:nil
+                                                   locationStreet:nil
+                                                  locationZipCode:nil
+                                                     locationCity:nil
+                                               locationCoordinate:CLLocationCoordinate2DMake(0, 0)];
+    return stolperstein;
+}
+
+- (Stolperstein *)newStolpersteinWithID:(NSString *)ID locationStreet:(NSString *)locationStreet
+{
+    Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:ID
+                                                             type:StolpersteinTypeStolperstein
+                                                       sourceName:nil
+                                                  sourceURLString:nil
+                                                  personFirstName:nil
+                                                   personLastName:nil
+                                         personBiographyURLString:nil
+                                                   locationStreet:locationStreet
+                                                  locationZipCode:nil
+                                                     locationCity:nil
+                                               locationCoordinate:CLLocationCoordinate2DMake(0, 0)];
+    return stolperstein;
+}
+
 - (void)setUp
 {
     [super setUp];
@@ -48,9 +80,7 @@
 
 - (void)testStolpersteineLifecycle
 {
-    Stolperstein *stolpersteinToCreate = [[Stolperstein alloc] init];
-    stolpersteinToCreate.id = @"123";
-    stolpersteinToCreate.personFirstName = @"abc";
+    Stolperstein *stolpersteinToCreate = [self newStolpersteinWithID:@"123" personFirstName:@"abc" personLastName:nil];
     
     __block BOOL done = NO;
     [self.dataService createStolpersteine:@[stolpersteinToCreate] completionHandler:^() {
@@ -86,8 +116,7 @@
 {
     NSMutableArray *stolpersteineToCreate = [NSMutableArray array];
     for (NSUInteger i = 0; i < 10; i++) {
-        Stolperstein *stolperstein = [[Stolperstein alloc] init];
-        stolperstein.id = @(i).stringValue;
+        Stolperstein *stolperstein = [self newStolpersteinWithID:@(i).stringValue personFirstName:nil personLastName:nil];
         [stolpersteineToCreate addObject:stolperstein];
     }
     
@@ -103,17 +132,12 @@
 
 - (void)testRetrieveStolpersteineKeywordsString
 {
-    Stolperstein *stolperstein0 = [[Stolperstein alloc] init];
-    stolperstein0.id = @"0";
-    stolperstein0.personFirstName = @"Erna";
-    Stolperstein *stolperstein1 = [[Stolperstein alloc] init];
-    stolperstein1.id = @"1";
-    stolperstein1.personLastName = @"Ernas";
+    Stolperstein *stolperstein0 = [self newStolpersteinWithID:@"0" personFirstName:@"Erna" personLastName:nil];
+    Stolperstein *stolperstein1 = [self newStolpersteinWithID:@"1" personFirstName:nil personLastName:@"Ernas"];
     NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1];
     [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
 
-    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
-    searchData.keywordsString = @"ern";
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:@"ern" street:nil city:nil];
     [self.dataService retrieveStolpersteineWithSearchData:searchData limit:10 completionHandler:^(NSArray *stolpersteine) {
         XCTAssertTrue([stolpersteine containsObject:stolperstein0]);
         XCTAssertTrue([stolpersteine containsObject:stolperstein1]);
@@ -124,17 +148,12 @@
 
 - (void)testRetrieveStolpersteineKeywordsStringLimit
 {
-    Stolperstein *stolperstein0 = [[Stolperstein alloc] init];
-    stolperstein0.id = @"0";
-    stolperstein0.personFirstName = @"Erna";
-    Stolperstein *stolperstein1 = [[Stolperstein alloc] init];
-    stolperstein1.id = @"1";
-    stolperstein1.personLastName = @"Ernas";
+    Stolperstein *stolperstein0 = [self newStolpersteinWithID:@"0" personFirstName:@"Erna" personLastName:nil];
+    Stolperstein *stolperstein1 = [self newStolpersteinWithID:@"1" personFirstName:nil personLastName:@"Ernas"];
     NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1];
     [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
     
-    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
-    searchData.keywordsString = @"ern";
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:@"ern" street:nil city:nil];
     [self.dataService retrieveStolpersteineWithSearchData:searchData limit:1 completionHandler:^(NSArray *stolpersteine) {
         XCTAssertEqual(stolpersteine.count, 1u);
     }];
@@ -145,17 +164,12 @@
 
 - (void)testRetrieveStolpersteineKeywordsStringMultiple
 {
-    Stolperstein *stolperstein0 = [[Stolperstein alloc] init];
-    stolperstein0.id = @"0";
-    stolperstein0.personFirstName = @"Erna";
-    Stolperstein *stolperstein1 = [[Stolperstein alloc] init];
-    stolperstein1.id = @"1";
-    stolperstein1.personLastName = @"Meier";
+    Stolperstein *stolperstein0 = [self newStolpersteinWithID:@"0" personFirstName:@"Erna" personLastName:nil];
+    Stolperstein *stolperstein1 = [self newStolpersteinWithID:@"1" personFirstName:nil personLastName:@"Meier"];
     NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1];
     [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
     
-    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
-    searchData.keywordsString = @"ern mei";
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:@"ern mei" street:nil city:nil];
     [self.dataService retrieveStolpersteineWithSearchData:searchData limit:10 completionHandler:^(NSArray *stolpersteine) {
         XCTAssertTrue([stolpersteine containsObject:stolperstein0]);
         XCTAssertTrue([stolpersteine containsObject:stolperstein1]);
@@ -166,20 +180,13 @@
 
 - (void)testRetrieveStolpersteineStreet
 {
-    Stolperstein *stolperstein0 = [[Stolperstein alloc] init];
-    stolperstein0.id = @"0";
-    stolperstein0.locationStreet = @"straße";
-    Stolperstein *stolperstein1 = [[Stolperstein alloc] init];
-    stolperstein1.id = @"1";
-    stolperstein1.personLastName = @"straße";
-    Stolperstein *stolperstein2 = [[Stolperstein alloc] init];
-    stolperstein2.id = @"2";
-    stolperstein2.locationStreet = @"straß";
+    Stolperstein *stolperstein0 = [self newStolpersteinWithID:@"0" locationStreet:@"straße"];
+    Stolperstein *stolperstein1 = [self newStolpersteinWithID:@"1" personFirstName:nil personLastName:@"straße"];
+    Stolperstein *stolperstein2 = [self newStolpersteinWithID:@"2" locationStreet:@"straß"];
     NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1, stolperstein2];
     [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
     
-    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
-    searchData.street = @"straß";
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:@"straß" city:nil];
     [self.dataService retrieveStolpersteineWithSearchData:searchData limit:10 completionHandler:^(NSArray *stolpersteine) {
         XCTAssertTrue([stolpersteine containsObject:stolperstein0]);
         XCTAssertFalse([stolpersteine containsObject:stolperstein1]);

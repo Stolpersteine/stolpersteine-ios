@@ -27,8 +27,10 @@
 
 @interface StolpersteineSearchData : NSObject
 
-@property (nonatomic, copy) NSString *keywordsString;
-@property (nonatomic, copy) NSString *street;
-@property (nonatomic, copy) NSString *city;
+@property (nonatomic, readonly, copy) NSString *keywordsString;
+@property (nonatomic, readonly, copy) NSString *street;
+@property (nonatomic, readonly, copy) NSString *city;
+
+- (id)initWithKeywordsString:(NSString *)keywordsString street:(NSString *)street city:(NSString *)city;
 
 @end

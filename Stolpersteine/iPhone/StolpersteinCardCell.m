@@ -77,13 +77,17 @@
 
 + (Stolperstein *)standardStolperstein
 {
-    Stolperstein *stolperstein = [[Stolperstein alloc] init];
-    stolperstein.personFirstName = @"xxxxxxxxxx";
-    stolperstein.personLastName = @"xxxxxxxxxx";
-    stolperstein.locationStreet = @"xxxxxxxxxx xxx";
-    stolperstein.locationZipCode = @"xxxx";
-    stolperstein.locationCity = @"xxxxxxxxxx";
-
+    Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:nil
+                                                             type:StolpersteinTypeStolperstein
+                                                       sourceName:nil
+                                                  sourceURLString:nil
+                                                  personFirstName:@"xxxxxxxxxx"
+                                                   personLastName:@"xxxxxxxxxx"
+                                         personBiographyURLString:nil
+                                                   locationStreet:@"xxxxxxxxxx xxx"
+                                                  locationZipCode:@"xxxx"
+                                                     locationCity:@"xxxxxxxxxx"
+                                               locationCoordinate:CLLocationCoordinate2DMake(0, 0)];
     return stolperstein;
 }
 
@@ -139,7 +143,8 @@
 {
     Stolperstein *stolperstein = self.stolperstein;
     UIPasteboard *pasteboard = UIPasteboard.generalPasteboard;
-    pasteboard.URL = [NSURL URLWithString:stolperstein.localizedPersonBiographyURLString];
+    NSString *personBiographyURLString = [Localization newPersonBiographyURLStringFromStolperstein:self.stolperstein];
+    pasteboard.URL = [NSURL URLWithString:personBiographyURLString];
     pasteboard.string = [Localization newPasteboardStringFromStolperstein:stolperstein];
     
     [self setSelected:NO animated:YES];

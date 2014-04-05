@@ -27,4 +27,16 @@
 
 @implementation StolpersteineSearchData
 
+- (id)initWithKeywordsString:(NSString *)keywordsString street:(NSString *)street city:(NSString *)city
+{
+    self = [super init];
+    if (self) {
+        _keywordsString = keywordsString;
+        _street = street;
+        _city = city;
+    }
+    
+    return self;
+}
+
 @end

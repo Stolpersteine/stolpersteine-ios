@@ -140,8 +140,8 @@ static NSString * const CELL_IDENTIFIER = @"cell";
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:cardsViewController action:@selector(dismissViewController)];
         cardsViewController.navigationItem.rightBarButtonItem = barButtonItem;
         
-        StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
-        searchData.street = [Localization newStreetNameFromStolperstein:stolperstein];
+        NSString *street = street = [Localization newStreetNameFromStolperstein:stolperstein];
+        StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:street city:nil];
         cardsViewController.searchData = searchData;
     } else if ([segue.identifier isEqualToString:@"stolpersteinCardsViewControllerToStolpersteinDescriptionViewController"]) {
         StolpersteinDescriptionViewController *webViewController = (StolpersteinDescriptionViewController *)segue.destinationViewController;

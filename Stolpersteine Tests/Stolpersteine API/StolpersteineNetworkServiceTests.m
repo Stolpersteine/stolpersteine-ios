@@ -106,8 +106,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 
 - (void)testRetrieveStolpersteineKeyword
 {
-    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
-    searchData.keywordsString = @"Ern";
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:@"Ern" street:nil city:nil];
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
@@ -126,8 +125,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 
 - (void)testRetrieveStolpersteineStreet
 {
-    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
-    searchData.street = @"Turmstraße";
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:@"Turmstraße" city:nil];
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
@@ -145,9 +143,9 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 
 - (void)testRetrieveStolpersteineCity
 {
-    self.networkService.defaultSearchData.city = @"xyz";    // will be overridden by specific search data
-    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
-    searchData.city = @"Berlin";
+    StolpersteineSearchData *defaultSearchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:nil city:@"xyz"];
+    self.networkService.defaultSearchData = defaultSearchData;    // will be overridden by specific search data
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:nil city:@"Berlin"];
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
@@ -165,9 +163,9 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 
 - (void)testRetrieveStolpersteineCityInvalid
 {
-    self.networkService.defaultSearchData.city = @"Berlin";    // will be overridden by specific search data
-    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] init];
-    searchData.city = @"xyz";
+    StolpersteineSearchData *defaultSearchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:nil city:@"Berlin"];
+    self.networkService.defaultSearchData = defaultSearchData;    // will be overridden by specific search data
+    StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:nil city:@"xyz"];
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         
@@ -181,7 +179,8 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 
 - (void)testRetrieveStolpersteineCityDefaultInvalid
 {
-    self.networkService.defaultSearchData.city = @"xyz";
+    StolpersteineSearchData *defaultSearchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:nil city:@"xyz"];
+    self.networkService.defaultSearchData = defaultSearchData;
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         self.done = YES;
         

@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, StolpersteinType) {
 
 @interface Stolperstein : NSObject<MKAnnotation, NSCoding, NSCopying>
 
-@property (nonatomic, readonly, copy) NSString *id;
+@property (nonatomic, readonly, copy) NSString *ID;
 @property (nonatomic, readonly) StolpersteinType type;
 @property (nonatomic, readonly, copy) NSString *sourceName;
 @property (nonatomic, readonly, copy) NSString *sourceURLString;

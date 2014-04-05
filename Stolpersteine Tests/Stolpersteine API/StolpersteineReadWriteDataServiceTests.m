@@ -89,7 +89,7 @@
     XCTAssertTrue(done);
 
     done = NO;
-    [self.dataService retrieveStolpersteinWithID:stolpersteinToCreate.id completionHandler:^(Stolperstein *stolperstein) {
+    [self.dataService retrieveStolpersteinWithID:stolpersteinToCreate.ID completionHandler:^(Stolperstein *stolperstein) {
         done = YES;
         
         XCTAssertEqualObjects(stolpersteinToCreate, stolperstein);
@@ -104,7 +104,7 @@
     XCTAssertTrue(done);
 
     done = NO;
-    [self.dataService retrieveStolpersteinWithID:stolpersteinToCreate.id completionHandler:^(Stolperstein *stolperstein) {
+    [self.dataService retrieveStolpersteinWithID:stolpersteinToCreate.ID completionHandler:^(Stolperstein *stolperstein) {
         done = YES;
         
         XCTAssertNil(stolperstein);

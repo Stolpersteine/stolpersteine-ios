@@ -73,8 +73,8 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
         XCTAssertTrue(stolpersteine.count == 5, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
             // Mandatory fields
-            XCTAssertNotNil(stolperstein.id, @"Wrong ID");
-            XCTAssertTrue([stolperstein.id isKindOfClass:NSString.class], @"Wrong type for ID");
+            XCTAssertNotNil(stolperstein.ID, @"Wrong ID");
+            XCTAssertTrue([stolperstein.ID isKindOfClass:NSString.class], @"Wrong type for ID");
             XCTAssertTrue(stolperstein.type == StolpersteinTypeStolperstein || stolperstein.type == StolpersteinTypeStolperschwelle, @"Wrong type");
             XCTAssertNotNil(stolperstein.sourceName, @"Wrong source name");
             XCTAssertTrue([stolperstein.sourceName isKindOfClass:NSString.class], @"Wrong type for source name");
@@ -202,8 +202,8 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
         XCTAssertNil(error, @"Error request");
         XCTAssertEqual(stolpersteine.count, 2u, @"Wrong number of stolpersteine");
         if (stolpersteine.count == 2) {
-            stolpersteineID0 = [stolpersteine[0] id];
-            stolpersteineID1 = [stolpersteine[1] id];
+            stolpersteineID0 = [stolpersteine[0] ID];
+            stolpersteineID1 = [stolpersteine[1] ID];
         }
         
         return NO;
@@ -218,7 +218,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
         XCTAssertNil(error, @"Error request");
         XCTAssertEqual(stolpersteine.count, 1u, @"Wrong number of stolpersteine");
         if (stolpersteine.count == 1) {
-            XCTAssertEqualObjects(stolpersteineID0, [stolpersteine[0] id], @"Wrong stolpersteine ID");
+            XCTAssertEqualObjects(stolpersteineID0, [stolpersteine[0] ID], @"Wrong stolpersteine ID");
         }
         
         return NO;
@@ -233,7 +233,7 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
         XCTAssertNil(error, @"Error request");
         XCTAssertEqual(stolpersteine.count, 1u, @"Wrong number of stolpersteine");
         if (stolpersteine.count == 1) {
-            XCTAssertEqualObjects(stolpersteineID1, [stolpersteine[0] id], @"Wrong stolpersteine ID");
+            XCTAssertEqualObjects(stolpersteineID1, [stolpersteine[0] ID], @"Wrong stolpersteine ID");
         }
         
         return NO;

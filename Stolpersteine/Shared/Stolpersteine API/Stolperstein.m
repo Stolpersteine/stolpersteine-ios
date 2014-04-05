@@ -31,7 +31,7 @@
 {
     self = [super init];
     if (self) {
-        _id = ID;
+        _ID = ID;
         _type = type;
         _sourceURLString = sourceURLString;
         _sourceName = sourceName;
@@ -51,7 +51,7 @@
 {
     self = [super init];
     if (self) {
-        _id = [decoder decodeObjectForKey:@"id"];
+        _ID = [decoder decodeObjectForKey:@"ID"];
         _type = [decoder decodeIntegerForKey:@"type"];
         _sourceURLString = [decoder decodeObjectForKey:@"sourceURLString"];
         _sourceName = [decoder decodeObjectForKey:@"sourceName"];
@@ -70,7 +70,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-    [coder encodeObject:self.id forKey:@"id"];
+    [coder encodeObject:self.ID forKey:@"ID"];
     [coder encodeInteger:self.type forKey:@"type"];
     [coder encodeObject:self.sourceURLString forKey:@"sourceURLString"];
     [coder encodeObject:self.sourceName forKey:@"sourceName"];
@@ -106,13 +106,13 @@
 
 - (BOOL)isEqualToStolperstein:(Stolperstein *)stolperstein
 {
-    BOOL isEqual = [self.id isEqualToString:stolperstein.id];
+    BOOL isEqual = [self.ID isEqualToString:stolperstein.ID];
     return isEqual;
 }
 
 - (NSUInteger)hash
 {
-    return self.id.hash;
+    return self.ID.hash;
 }
 
 - (CLLocationCoordinate2D)coordinate

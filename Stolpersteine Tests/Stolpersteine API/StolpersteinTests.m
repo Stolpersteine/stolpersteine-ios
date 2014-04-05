@@ -75,8 +75,8 @@
     // Wrong class
     stolperstein0 = [self newStolpersteinwithID:@"123"];
     stolperstein1 = [self newStolpersteinwithID:@"456"];
-    XCTAssertFalse([stolperstein0 isEqual:stolperstein1.id], @"Wrong equality");
-    XCTAssertFalse([stolperstein1 isEqual:stolperstein0.id], @"Wrong equality");
+    XCTAssertFalse([stolperstein0 isEqual:stolperstein1.ID], @"Wrong equality");
+    XCTAssertFalse([stolperstein1 isEqual:stolperstein0.ID], @"Wrong equality");
 
     // nil IDs
     stolperstein0 = [self newStolpersteinwithID:nil];

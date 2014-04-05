@@ -29,7 +29,7 @@
 {
     [self readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
         for (Stolperstein *stolperstein in stolpersteine) {
-            [transaction setObject:stolperstein forKey:stolperstein.id inCollection:StolpersteineReadDataServiceCollection];
+            [transaction setObject:stolperstein forKey:stolperstein.ID inCollection:StolpersteineReadDataServiceCollection];
         }
     } completionBlock:^{
         if (completionHandler) {
@@ -41,7 +41,7 @@
 - (void)deleteStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler
 {
     [self readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-        NSArray *keys = [stolpersteine valueForKey:@"id"];
+        NSArray *keys = [stolpersteine valueForKey:NSStringFromSelector(@selector(ID))];
         [transaction removeObjectsForKeys:keys inCollection:StolpersteineReadDataServiceCollection];
     } completionBlock:^{
         if (completionHandler) {

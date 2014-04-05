@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, StolpersteinType) {
     StolpersteinTypeStolperschwelle
 };
 
-@interface Stolperstein : NSObject<MKAnnotation, NSCoding>
+@interface Stolperstein : NSObject<MKAnnotation, NSCoding, NSCopying>
 
 @property (nonatomic, readonly, copy) NSString *id;
 @property (nonatomic, readonly) StolpersteinType type;

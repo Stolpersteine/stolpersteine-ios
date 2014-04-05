@@ -84,6 +84,11 @@
     [coder encodeDouble:self.locationCoordinate.longitude forKey:@"locationCoordinate.longitude"];
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    return self;    // immutable
+}
+
 - (BOOL)isEqual:(id)other
 {
     BOOL isEqual;

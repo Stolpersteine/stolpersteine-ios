@@ -25,7 +25,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StolpersteineSearchData : NSObject
+@interface StolpersteineSearchData : NSObject<NSCopying>
 
 @property (nonatomic, readonly, copy) NSString *keywordsString;
 @property (nonatomic, readonly, copy) NSString *street;

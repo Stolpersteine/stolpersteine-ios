@@ -89,7 +89,7 @@
 
     stolperstein0 = [self newStolpersteinwithID:nil];
     stolperstein1 = [self newStolpersteinwithID:nil];
-    XCTAssertFalse([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
+    XCTAssertTrue([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
 
     // nil objects
     XCTAssertFalse([(id)nil isEqual:stolperstein1], @"Wrong equality");
@@ -97,7 +97,7 @@
     XCTAssertFalse([(id)nil isEqual:nil], @"Wrong equality");
 }
 
-- (void)testEqualToStolperstein
+- (void)testEqualToStolpersteinID
 {
     Stolperstein *stolperstein0, *stolperstein1;
     
@@ -131,7 +131,7 @@
     
     stolperstein0 = [self newStolpersteinwithID:nil];
     stolperstein1 = [self newStolpersteinwithID:nil];
-    XCTAssertFalse([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
+    XCTAssertTrue([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
     
     // nil objects
     XCTAssertFalse([(id)nil isEqualToStolperstein:stolperstein1], @"Wrong equality");

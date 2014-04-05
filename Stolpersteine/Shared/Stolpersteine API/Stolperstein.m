@@ -95,7 +95,7 @@
     
     if (other == self) {
         isEqual = YES;
-    } else if (!other || ![other isKindOfClass:self.class]) {
+    } else if (![other isKindOfClass:self.class]) {
         isEqual = NO;
     } else {
         isEqual = [self isEqualToStolperstein:other];
@@ -106,7 +106,25 @@
 
 - (BOOL)isEqualToStolperstein:(Stolperstein *)stolperstein
 {
-    BOOL isEqual = [self.ID isEqualToString:stolperstein.ID];
+    BOOL isEqual;
+    
+    if (stolperstein == nil) {
+        isEqual = NO;
+    } else {
+        isEqual = ((_ID == stolperstein->_ID) || [_ID isEqualToString:stolperstein->_ID]) &&
+            (_type == stolperstein->_type) &&
+            ((_sourceName == stolperstein->_sourceName) || [_sourceName isEqualToString:stolperstein->_sourceName]) &&
+            ((_sourceURLString == stolperstein->_sourceURLString) || [_sourceURLString isEqualToString:stolperstein->_sourceURLString]) &&
+            ((_personFirstName == stolperstein->_personFirstName) || [_personFirstName isEqualToString:stolperstein->_personFirstName]) &&
+            ((_personLastName == stolperstein->_personLastName) || [_personLastName isEqualToString:stolperstein->_personLastName]) &&
+            ((_personBiographyURLString == stolperstein->_personBiographyURLString) || [_personBiographyURLString isEqualToString:stolperstein->_personBiographyURLString]) &&
+            ((_locationStreet == stolperstein->_locationStreet) || [_locationStreet isEqualToString:stolperstein->_locationStreet]) &&
+            ((_locationZipCode == stolperstein->_locationZipCode) || [_locationZipCode isEqualToString:stolperstein->_locationZipCode]) &&
+            ((_locationCity == stolperstein->_locationCity) || [_locationCity isEqualToString:stolperstein->_locationCity]) &&
+            (_locationCoordinate.latitude == stolperstein->_locationCoordinate.latitude) &&
+            (_locationCoordinate.longitude == stolperstein->_locationCoordinate.longitude);
+    }
+    
     return isEqual;
 }
 

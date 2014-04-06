@@ -77,7 +77,7 @@ static NSString * const AllItemsViewExtensionVersion = @"1";
             NSString *databasePath = [self.class databasePathWithName:name];
             sharedDatabase = [[YapDatabase alloc] initWithPath:databasePath];
             [self.class registerFullTextSearchExtensionWithDatabase:sharedDatabase];
-            [self.class registerAllItemsViewExtensionWithDatabase:sharedDatabase];
+//            [self.class registerAllItemsViewExtensionWithDatabase:sharedDatabase];
             [sharedDatabases setObject:sharedDatabase forKey:name];
         }
     }
@@ -181,6 +181,25 @@ static NSString * const AllItemsViewExtensionVersion = @"1";
     } completionBlock:^{
         completionHandler(stolperstein);
     }];
+}
+
+- (void)retrieveStolpersteinWithIDs:(NSArray *)IDs completionHandler:(void (^)(NSArray *stolpersteine))completionHandler
+{
+    if (!completionHandler) {
+        return;
+    }
+    
+    __block NSMutableArray *stolpersteine = [NSMutableArray array];
+    [self readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+        for (NSString *ID in IDs) {
+            Stolperstein *stolperstein = [transaction objectForKey:ID inCollection:StolpersteineReadDataServiceCollection];
+            if (stolperstein) {
+                [stolpersteine addObject:stolperstein];
+            }
+        }
+    } completionBlock:^{
+        completionHandler(stolpersteine);
+    }];    
 }
 
 - (void)retrieveStolpersteineWithRange:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine))completionHandler

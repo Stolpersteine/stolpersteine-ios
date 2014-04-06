@@ -40,7 +40,7 @@ extern NSString * const StolpersteineReadDataServiceCollection;
 - (id)init;
 - (id)initWithName:(NSString *)name;
 
-- (void)retrieveStolpersteinWithID:(NSString *)ID completionHandler:(void (^)(Stolperstein *stolperstein))completionHandler;
+- (void)retrieveStolpersteinWithIDs:(NSArray *)IDs completionHandler:(void (^)(NSArray *stolpersteine))completionHandler;
 - (void)retrieveStolpersteineWithRange:(NSRange)range completionHandler:(void (^)(NSArray *stolpersteine))completionHandler;
 - (void)retrieveStolpersteineWithSearchData:(StolpersteineSearchData *)searchData limit:(NSUInteger)limit completionHandler:(void (^)(NSArray *stolpersteine))completionHandler;
 

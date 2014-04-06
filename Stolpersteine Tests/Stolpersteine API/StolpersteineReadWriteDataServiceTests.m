@@ -83,15 +83,16 @@
     Stolperstein *stolpersteinToCreate = [self newStolpersteinWithID:@"123" personFirstName:@"abc" personLastName:nil];
     
     __block BOOL done = NO;
-    [self.dataService createStolpersteine:@[stolpersteinToCreate] completionHandler:^() {
+    [self.dataService createOrUpdateStolpersteine:@[stolpersteinToCreate] completionHandler:^() {
         done = YES;
     }];
     XCTAssertTrue(done);
 
     done = NO;
-    [self.dataService retrieveStolpersteinWithID:stolpersteinToCreate.ID completionHandler:^(Stolperstein *stolperstein) {
+    [self.dataService retrieveStolpersteinWithIDs:@[stolpersteinToCreate.ID] completionHandler:^(NSArray *stolpersteine) {
         done = YES;
         
+        Stolperstein *stolperstein = stolpersteine[0];
         XCTAssertEqualObjects(stolpersteinToCreate, stolperstein);
         XCTAssertEqualObjects(stolpersteinToCreate.personFirstName, stolperstein.personFirstName);
     }];
@@ -104,10 +105,10 @@
     XCTAssertTrue(done);
 
     done = NO;
-    [self.dataService retrieveStolpersteinWithID:stolpersteinToCreate.ID completionHandler:^(Stolperstein *stolperstein) {
+    [self.dataService retrieveStolpersteinWithIDs:@[stolpersteinToCreate.ID] completionHandler:^(NSArray *stolpersteine) {
         done = YES;
         
-        XCTAssertNil(stolperstein);
+        XCTAssertEqual(stolpersteine.count, (NSUInteger)0);
     }];
     XCTAssertTrue(done);
 }
@@ -120,7 +121,7 @@
         [stolpersteineToCreate addObject:stolperstein];
     }
     
-    [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
+    [self.dataService createOrUpdateStolpersteine:stolpersteineToCreate completionHandler:NULL];
 
     NSRange range = NSMakeRange(2, 5);
     [self.dataService retrieveStolpersteineWithRange:range completionHandler:^(NSArray *stolpersteine) {
@@ -135,7 +136,7 @@
     Stolperstein *stolperstein0 = [self newStolpersteinWithID:@"0" personFirstName:@"Erna" personLastName:nil];
     Stolperstein *stolperstein1 = [self newStolpersteinWithID:@"1" personFirstName:nil personLastName:@"Ernas"];
     NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1];
-    [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
+    [self.dataService createOrUpdateStolpersteine:stolpersteineToCreate completionHandler:NULL];
 
     StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:@"ern" street:nil city:nil];
     [self.dataService retrieveStolpersteineWithSearchData:searchData limit:10 completionHandler:^(NSArray *stolpersteine) {
@@ -151,7 +152,7 @@
     Stolperstein *stolperstein0 = [self newStolpersteinWithID:@"0" personFirstName:@"Erna" personLastName:nil];
     Stolperstein *stolperstein1 = [self newStolpersteinWithID:@"1" personFirstName:nil personLastName:@"Ernas"];
     NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1];
-    [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
+    [self.dataService createOrUpdateStolpersteine:stolpersteineToCreate completionHandler:NULL];
     
     StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:@"ern" street:nil city:nil];
     [self.dataService retrieveStolpersteineWithSearchData:searchData limit:1 completionHandler:^(NSArray *stolpersteine) {
@@ -167,7 +168,7 @@
     Stolperstein *stolperstein0 = [self newStolpersteinWithID:@"0" personFirstName:@"Erna" personLastName:nil];
     Stolperstein *stolperstein1 = [self newStolpersteinWithID:@"1" personFirstName:nil personLastName:@"Meier"];
     NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1];
-    [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
+    [self.dataService createOrUpdateStolpersteine:stolpersteineToCreate completionHandler:NULL];
     
     StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:@"ern mei" street:nil city:nil];
     [self.dataService retrieveStolpersteineWithSearchData:searchData limit:10 completionHandler:^(NSArray *stolpersteine) {
@@ -184,7 +185,7 @@
     Stolperstein *stolperstein1 = [self newStolpersteinWithID:@"1" personFirstName:nil personLastName:@"straße"];
     Stolperstein *stolperstein2 = [self newStolpersteinWithID:@"2" locationStreet:@"straß"];
     NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1, stolperstein2];
-    [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
+    [self.dataService createOrUpdateStolpersteine:stolpersteineToCreate completionHandler:NULL];
     
     StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:@"straß" city:nil];
     [self.dataService retrieveStolpersteineWithSearchData:searchData limit:10 completionHandler:^(NSArray *stolpersteine) {

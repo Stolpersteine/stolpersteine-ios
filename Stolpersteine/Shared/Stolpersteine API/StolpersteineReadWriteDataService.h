@@ -10,7 +10,11 @@
 
 @interface StolpersteineReadWriteDataService : StolpersteineReadDataService
 
-- (void)createStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler;
+extern NSString * const StolpersteineReadWriteDataServiceAddedIDsKey;
+extern NSString * const StolpersteineReadWriteDataServiceUpdatedIDsKey;
+extern NSString * const StolpersteineReadWriteDataServiceRemovedIDsKey;
+
+- (void)createOrUpdateStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler;
 - (void)deleteStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler;
 
 @end

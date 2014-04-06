@@ -11,6 +11,10 @@
 #import "YapDatabase.h"
 #import "Stolperstein.h"
 
+NSString * const StolpersteineReadWriteDataServiceAddedIDsKey = @"added";
+NSString * const StolpersteineReadWriteDataServiceUpdatedIDsKey = @"updated";
+NSString * const StolpersteineReadWriteDataServiceRemovedIDsKey = @"removed";
+
 @implementation StolpersteineReadWriteDataService
 
 - (void)readWriteWithBlock:(void (^)(YapDatabaseReadWriteTransaction *transaction))block completionBlock:(dispatch_block_t)completionBlock
@@ -25,12 +29,25 @@
     }
 }
 
-- (void)createStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler
+- (void)createOrUpdateStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler
 {
     [self readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+        NSMutableArray *addedIDs = [NSMutableArray array];
+        NSMutableArray *updatedIDs = [NSMutableArray array];
         for (Stolperstein *stolperstein in stolpersteine) {
-            [transaction setObject:stolperstein forKey:stolperstein.ID inCollection:StolpersteineReadDataServiceCollection];
+            Stolperstein *existingStolperstein = [transaction objectForKey:stolperstein.ID inCollection:StolpersteineReadDataServiceCollection];
+            if (![existingStolperstein isEqualToStolperstein:stolperstein]) {
+                
+                if (existingStolperstein) {
+                    [updatedIDs addObject:stolperstein.ID];
+                } else {
+                    [addedIDs addObject:stolperstein.ID];
+                }
+                
+                [transaction setObject:stolperstein forKey:stolperstein.ID inCollection:StolpersteineReadDataServiceCollection];
+            }
         }
+        [transaction setCustomObjectForYapDatabaseModifiedNotification:@{StolpersteineReadWriteDataServiceAddedIDsKey : addedIDs, StolpersteineReadWriteDataServiceUpdatedIDsKey : updatedIDs}];
     } completionBlock:^{
         if (completionHandler) {
             completionHandler();
@@ -41,8 +58,9 @@
 - (void)deleteStolpersteine:(NSArray *)stolpersteine completionHandler:(void (^)())completionHandler
 {
     [self readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-        NSArray *keys = [stolpersteine valueForKey:NSStringFromSelector(@selector(ID))];
-        [transaction removeObjectsForKeys:keys inCollection:StolpersteineReadDataServiceCollection];
+        NSArray *removedIDs = [stolpersteine valueForKey:NSStringFromSelector(@selector(ID))];
+        [transaction removeObjectsForKeys:removedIDs inCollection:StolpersteineReadDataServiceCollection];
+        [transaction setCustomObjectForYapDatabaseModifiedNotification:@{StolpersteineReadWriteDataServiceRemovedIDsKey : removedIDs}];
     } completionBlock:^{
         if (completionHandler) {
             completionHandler();

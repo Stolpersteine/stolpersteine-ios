@@ -192,7 +192,18 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)stolpersteinSynchronizationController:(StolpersteineSynchronizationController *)stolpersteinSynchronizationController didAddStolpersteine:(NSArray *)stolpersteine
 {
+    NSLog(@"Add %tu items", stolpersteine.count);
     [self.mapClusterController addAnnotations:stolpersteine withCompletionHandler:NULL];
+}
+
+- (void)stolpersteinSynchronizationController:(StolpersteineSynchronizationController *)stolpersteinSynchronizationController didUpdateStolpersteine:(NSArray *)stolpersteine
+{
+    NSLog(@"Update %tu items", stolpersteine.count);
+}
+
+- (void)stolpersteinSynchronizationController:(StolpersteineSynchronizationController *)stolpersteinSynchronizationController didRemoveStolpersteine:(NSArray *)stolpersteine
+{
+    NSLog(@"Remove %tu items", stolpersteine.count);
 }
 
 #pragma mark - Map view

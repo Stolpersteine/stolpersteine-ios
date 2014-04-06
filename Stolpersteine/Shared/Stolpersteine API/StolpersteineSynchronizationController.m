@@ -29,15 +29,17 @@
 #import "StolpersteineReadWriteDataService.h"
 #import "StolpersteinSynchronizationControllerDelegate.h"
 
-#define NETWORK_BATCH_SIZE 500
+#import "YapDatabase.h"
+#import "YapSet.h"
+#import "YapCollectionKey.h"
 
 @interface StolpersteineSynchronizationController()
 
 @property (nonatomic, strong) StolpersteineNetworkService *networkService;
+@property (nonatomic, strong) StolpersteineReadDataService *readDataService;
 @property (nonatomic, strong) StolpersteineReadWriteDataService *readWriteDataService;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
 @property (nonatomic, assign, getter = isSynchronizing) BOOL synchronizing;
-@property (nonatomic, strong) NSMutableSet *stolpersteine;
 
 @end
 
@@ -49,64 +51,90 @@
     if (self) {
         _networkService = networkService;
         _readWriteDataService = [[StolpersteineReadWriteDataService alloc] init];
-        _stolpersteine = [NSMutableSet setWithCapacity:NETWORK_BATCH_SIZE];
+        _readDataService = [[StolpersteineReadDataService alloc] init];
+        [_readDataService.connection beginLongLivedReadTransaction];
+        
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(databaseChanged) name:YapDatabaseModifiedNotification object:nil];
     }
     
     return self;
 }
 
-- (void)synchronize
+- (void)dealloc
 {
-    if (!self.isSynchronizing) {
-        [self didStartSynchronization];
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
+- (void)databaseChanged
+{
+    BOOL respondsToAddStolpersteine = [self.delegate respondsToSelector:@selector(stolpersteinSynchronizationController:didAddStolpersteine:)];
+    BOOL respondsToUpdateStolpersteine = [self.delegate respondsToSelector:@selector(stolpersteinSynchronizationController:didUpdateStolpersteine:)];
+    BOOL respondsToRemoveStolpersteine = [self.delegate respondsToSelector:@selector(stolpersteinSynchronizationController:didRemoveStolpersteine:)];
+
+    NSArray *notifications = [self.readDataService.connection beginLongLivedReadTransaction];
+    for (NSNotification *notification in notifications)
+	{
+        NSAssert([notification.userInfo objectForKey:YapDatabaseConnectionKey] == self.readWriteDataService.connection, @"Invalid connection");
+                 
+		NSDictionary *changes = [notification.userInfo objectForKey:YapDatabaseCustomKey];
         
-        NSRange range = NSMakeRange(0, NETWORK_BATCH_SIZE);
-        [self retrieveStolpersteineWithRange:range];
+        if (respondsToAddStolpersteine) {
+            NSArray *addedIDs = [changes objectForKey:StolpersteineReadWriteDataServiceAddedIDsKey];
+            [self.readDataService retrieveStolpersteinWithIDs:addedIDs completionHandler:^(NSArray *stolpersteine) {
+                [self.delegate stolpersteinSynchronizationController:self didAddStolpersteine:stolpersteine];
+            }];
+        }
+        
+        if (respondsToUpdateStolpersteine) {
+            NSArray *updatedIDs = [changes objectForKey:StolpersteineReadWriteDataServiceUpdatedIDsKey];
+            [self.readDataService retrieveStolpersteinWithIDs:updatedIDs completionHandler:^(NSArray *stolpersteine) {
+                [self.delegate stolpersteinSynchronizationController:self didUpdateStolpersteine:stolpersteine];
+            }];
+        }
+
+        if (respondsToRemoveStolpersteine) {
+            NSArray *removedIDs = [changes objectForKey:StolpersteineReadWriteDataServiceUpdatedIDsKey];
+            [self.readDataService retrieveStolpersteinWithIDs:removedIDs completionHandler:^(NSArray *stolpersteine) {
+                [self.delegate stolpersteinSynchronizationController:self didRemoveStolpersteine:stolpersteine];
+            }];
+        }
     }
 }
 
-- (void)retrieveStolpersteineWithRange:(NSRange)range
+- (void)synchronize
+{
+    [self retrieveStolpersteineFromDatabase];
+    
+    if (!self.isSynchronizing) {
+        [self didStartSynchronization];
+        
+        [self retrieveStolpersteineFromServer];
+    }
+}
+
+- (void)retrieveStolpersteineFromDatabase
+{
+    [self.readDataService retrieveStolpersteineWithRange:NSMakeRange(0, UINT_MAX) completionHandler:^(NSArray *stolpersteine) {
+        if ([self.delegate respondsToSelector:@selector(stolpersteinSynchronizationController:didAddStolpersteine:)]) {
+            [self.delegate stolpersteinSynchronizationController:self didAddStolpersteine:stolpersteine];
+        }
+    }];
+}
+
+- (void)retrieveStolpersteineFromServer
 {
     [self.retrieveStolpersteineOperation cancel];
-    self.retrieveStolpersteineOperation = [self.networkService retrieveStolpersteineWithSearchData:nil range:range completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
+    self.retrieveStolpersteineOperation = [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 0) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
         if (error == nil) {
-            [self didAddStolpersteine:stolpersteine];
-            
-            if (stolpersteine.count == range.length) {
-                // Next batch of data
-                NSRange nextRange = NSMakeRange(NSMaxRange(range), range.length);
-                [self retrieveStolpersteineWithRange:nextRange];
-            } else {
+            [self.readWriteDataService createOrUpdateStolpersteine:stolpersteine completionHandler:^{
                 [self didEndSynchronization];
-            }
+            }];
         } else {
             [self didFailSynchronization];
         }
         
         return YES;
     }];
-}
-
-- (void)didAddStolpersteine:(NSArray *)stolpersteine
-{
-    // Filter out items that are already on the map
-    NSMutableSet *additionalStolpersteineAsSet = [NSMutableSet setWithArray:stolpersteine];
-    [additionalStolpersteineAsSet minusSet:self.stolpersteine];
-    NSArray *additionalStolpersteine = additionalStolpersteineAsSet.allObjects;
-    [self.stolpersteine addObjectsFromArray:additionalStolpersteine];
-    
-    // Tell delegate about additional items
-    if (additionalStolpersteine.count > 0 && [self.delegate respondsToSelector:@selector(stolpersteinSynchronizationController:didAddStolpersteine:)]) {
-        [self.delegate stolpersteinSynchronizationController:self didAddStolpersteine:additionalStolpersteine];
-    }
-    
-//    // Store locally
-//    [self.readWriteDataService createStolpersteine:additionalStolpersteine completionHandler:^{
-//        // Tell delegate about additional items
-//        if (additionalStolpersteine.count > 0 && [self.delegate respondsToSelector:@selector(stolpersteinSynchronizationController:didAddStolpersteine:)]) {
-//            [self.delegate stolpersteinSynchronizationController:self didAddStolpersteine:additionalStolpersteine];
-//        }
-//    }];
 }
 
 - (void)didStartSynchronization

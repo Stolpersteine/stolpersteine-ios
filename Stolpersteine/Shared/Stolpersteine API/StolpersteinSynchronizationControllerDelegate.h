@@ -31,6 +31,7 @@
 
 @optional
 - (void)stolpersteinSynchronizationController:(StolpersteineSynchronizationController *)stolpersteinSynchronizationController didAddStolpersteine:(NSArray *)stolpersteine;
+- (void)stolpersteinSynchronizationController:(StolpersteineSynchronizationController *)stolpersteinSynchronizationController didUpdateStolpersteine:(NSArray *)stolpersteine;
 - (void)stolpersteinSynchronizationController:(StolpersteineSynchronizationController *)stolpersteinSynchronizationController didRemoveStolpersteine:(NSArray *)stolpersteine;
 
 @end

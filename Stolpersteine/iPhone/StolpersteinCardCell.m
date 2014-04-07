@@ -70,7 +70,7 @@
 
 - (BOOL)canSelectCurrentStolperstein
 {
-    BOOL canSelectRow = (self.stolperstein.personBiographyURLString.length > 0);
+    BOOL canSelectRow = (self.stolperstein.personBiographyURL != nil);
     return canSelectRow;
 }
 
@@ -79,10 +79,10 @@
     Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:nil
                                                              type:StolpersteinTypeStolperstein
                                                        sourceName:nil
-                                                  sourceURLString:nil
+                                                        sourceURL:nil
                                                   personFirstName:@"xxxxxxxxxx"
                                                    personLastName:@"xxxxxxxxxx"
-                                         personBiographyURLString:nil
+                                               personBiographyURL:nil
                                                    locationStreet:@"xxxxxxxxxx xxx"
                                                   locationZipCode:@"xxxx"
                                                      locationCity:@"xxxxxxxxxx"
@@ -142,8 +142,7 @@
 {
     Stolperstein *stolperstein = self.stolperstein;
     UIPasteboard *pasteboard = UIPasteboard.generalPasteboard;
-    NSString *personBiographyURLString = [Localization newPersonBiographyURLStringFromStolperstein:self.stolperstein];
-    pasteboard.URL = [NSURL URLWithString:personBiographyURLString];
+    pasteboard.URL = [Localization newPersonBiographyURLFromStolperstein:self.stolperstein];
     pasteboard.string = [Localization newPasteboardStringFromStolperstein:stolperstein];
     
     [self setSelected:NO animated:YES];

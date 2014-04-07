@@ -42,13 +42,16 @@
     NSString *longitudeAsString = [self valueForKeyPath:@"location.coordinates.longitude"];
     CLLocationCoordinate2D locationCoordinate = CLLocationCoordinate2DMake(latitudeAsString.doubleValue, longitudeAsString.doubleValue);
     
+    NSURL *sourceURL = [NSURL URLWithString:[self valueForKeyPath:@"source.url"]];
+    NSURL *personBiographyURL = [NSURL URLWithString:[self valueForKeyPath:@"person.biographyUrl"]];
+    
     Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:[self valueForKeyPath:@"id"]
                                                              type:type
                                                        sourceName:[self valueForKeyPath:@"source.name"]
-                                                  sourceURLString:[self valueForKeyPath:@"source.url"]
+                                                        sourceURL:sourceURL
                                                   personFirstName:[self valueForKeyPath:@"person.firstName"]
                                                    personLastName:[self valueForKeyPath:@"person.lastName"]
-                                         personBiographyURLString:[self valueForKeyPath:@"person.biographyUrl"]
+                                               personBiographyURL:personBiographyURL
                                                    locationStreet:[self valueForKeyPath:@"location.street"]
                                                   locationZipCode:[self valueForKeyPath:@"location.zipCode"]
                                                      locationCity:[self valueForKeyPath:@"location.city"]

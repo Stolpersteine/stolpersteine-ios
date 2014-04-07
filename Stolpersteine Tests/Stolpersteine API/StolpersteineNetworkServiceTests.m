@@ -78,14 +78,14 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
             XCTAssertTrue(stolperstein.type == StolpersteinTypeStolperstein || stolperstein.type == StolpersteinTypeStolperschwelle, @"Wrong type");
             XCTAssertNotNil(stolperstein.sourceName, @"Wrong source name");
             XCTAssertTrue([stolperstein.sourceName isKindOfClass:NSString.class], @"Wrong type for source name");
-            XCTAssertNotNil(stolperstein.sourceURLString, @"Wrong source url");
-            XCTAssertTrue([stolperstein.sourceURLString isKindOfClass:NSString.class], @"Wrong type for source url");
+            XCTAssertNotNil(stolperstein.sourceURL, @"Wrong source url");
+            XCTAssertTrue([stolperstein.sourceURL isKindOfClass:NSURL.class], @"Wrong type for source url");
             XCTAssertNotNil(stolperstein.personFirstName, @"Wrong first name");
             XCTAssertTrue([stolperstein.personFirstName isKindOfClass:NSString.class], @"Wrong type for first name");
             XCTAssertNotNil(stolperstein.personLastName, @"Wrong last name");
             XCTAssertTrue([stolperstein.personLastName isKindOfClass:NSString.class], @"Wrong type for last name");
-            XCTAssertNotNil(stolperstein.personBiographyURLString, @"Wrong biography url");
-            XCTAssertTrue([stolperstein.personBiographyURLString isKindOfClass:NSString.class], @"Wrong type for biography URL");
+            XCTAssertNotNil(stolperstein.personBiographyURL, @"Wrong biography url");
+            XCTAssertTrue([stolperstein.personBiographyURL isKindOfClass:NSURL.class], @"Wrong type for biography URL");
             XCTAssertNotNil(stolperstein.locationStreet, @"Wrong street");
             XCTAssertTrue([stolperstein.locationStreet isKindOfClass:NSString.class], @"Wrong type for street");
             XCTAssertNotNil(stolperstein.locationCity, @"Wrong city");

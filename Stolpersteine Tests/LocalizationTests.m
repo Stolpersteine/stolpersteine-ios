@@ -41,10 +41,10 @@
     Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:nil
                                                              type:StolpersteinTypeStolperstein
                                                        sourceName:nil
-                                                  sourceURLString:nil
+                                                        sourceURL:nil
                                                   personFirstName:personFirstName
                                                    personLastName:personLastName
-                                         personBiographyURLString:nil
+                                               personBiographyURL:nil
                                                    locationStreet:nil
                                                   locationZipCode:nil
                                                      locationCity:nil
@@ -57,10 +57,10 @@
     Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:nil
                                                              type:StolpersteinTypeStolperschwelle
                                                        sourceName:nil
-                                                  sourceURLString:nil
+                                                        sourceURL:nil
                                                   personFirstName:nil
                                                    personLastName:personLastName
-                                         personBiographyURLString:nil
+                                               personBiographyURL:nil
                                                    locationStreet:nil
                                                   locationZipCode:nil
                                                      locationCity:nil
@@ -73,10 +73,10 @@
     Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:nil
                                                              type:StolpersteinTypeStolperstein
                                                        sourceName:nil
-                                                  sourceURLString:nil
+                                                        sourceURL:nil
                                                   personFirstName:nil
                                                    personLastName:nil
-                                         personBiographyURLString:nil
+                                               personBiographyURL:nil
                                                    locationStreet:locationStreet
                                                   locationZipCode:locationZipCode
                                                      locationCity:locationCity

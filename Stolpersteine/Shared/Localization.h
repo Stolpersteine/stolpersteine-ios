@@ -36,7 +36,7 @@
 + (NSString *)newShortAddressFromStolperstein:(Stolperstein *)stolperstein;
 + (NSString *)newLongAddressFromStolperstein:(Stolperstein *)stolperstein;
 + (NSString *)newPasteboardStringFromStolperstein:(Stolperstein *)stolperstein;
-+ (NSString *)newPersonBiographyURLStringFromStolperstein:(Stolperstein *)stolperstein;
++ (NSURL *)newPersonBiographyURLFromStolperstein:(Stolperstein *)stolperstein;
 + (NSString *)newTitleFromMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation;
 + (NSString *)newSubtitleFromMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation;
 + (NSString *)newStolpersteineCountFromCount:(NSUInteger)count;

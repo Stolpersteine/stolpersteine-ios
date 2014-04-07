@@ -38,10 +38,10 @@
     Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:ID
                                                              type:StolpersteinTypeStolperstein
                                                        sourceName:nil
-                                                  sourceURLString:nil
+                                                        sourceURL:nil
                                                   personFirstName:nil
                                                    personLastName:nil
-                                         personBiographyURLString:nil
+                                               personBiographyURL:nil
                                                    locationStreet:nil
                                                   locationZipCode:nil
                                                      locationCity:nil

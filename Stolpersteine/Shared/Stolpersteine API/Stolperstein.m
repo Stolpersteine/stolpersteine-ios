@@ -27,17 +27,17 @@
 
 @implementation Stolperstein
 
-- (id)initWithID:(NSString *)ID type:(StolpersteinType)type sourceName:(NSString *)sourceName sourceURLString:(NSString *)sourceURLString personFirstName:(NSString *)personFirstName personLastName:(NSString *)personLastName personBiographyURLString:(NSString *)personBiographyURLString locationStreet:(NSString *)locationStreet locationZipCode:(NSString *)locationZipCode locationCity:(NSString *)locationCity locationCoordinate:(CLLocationCoordinate2D)locationCoordinate
+- (id)initWithID:(NSString *)ID type:(StolpersteinType)type sourceName:(NSString *)sourceName sourceURL:(NSURL *)sourceURL personFirstName:(NSString *)personFirstName personLastName:(NSString *)personLastName personBiographyURL:(NSString *)personBiographyURL locationStreet:(NSString *)locationStreet locationZipCode:(NSString *)locationZipCode locationCity:(NSString *)locationCity locationCoordinate:(CLLocationCoordinate2D)locationCoordinate
 {
     self = [super init];
     if (self) {
         _ID = ID;
         _type = type;
-        _sourceURLString = sourceURLString;
+        _sourceURL = sourceURL;
         _sourceName = sourceName;
         _personFirstName = personFirstName;
         _personLastName = personLastName;
-        _personBiographyURLString = personBiographyURLString;
+        _personBiographyURL = personBiographyURL;
         _locationStreet = locationStreet;
         _locationZipCode = locationZipCode;
         _locationCity = locationCity;
@@ -53,11 +53,11 @@
     if (self) {
         _ID = [decoder decodeObjectForKey:@"ID"];
         _type = [decoder decodeIntegerForKey:@"type"];
-        _sourceURLString = [decoder decodeObjectForKey:@"sourceURLString"];
+        _sourceURL = [decoder decodeObjectForKey:@"sourceURL"];
         _sourceName = [decoder decodeObjectForKey:@"sourceName"];
         _personFirstName = [decoder decodeObjectForKey:@"personFirstName"];
         _personLastName = [decoder decodeObjectForKey:@"personLastName"];
-        _personBiographyURLString = [decoder decodeObjectForKey:@"personBiographyURLString"];
+        _personBiographyURL = [decoder decodeObjectForKey:@"personBiographyURL"];
         _locationStreet = [decoder decodeObjectForKey:@"locationStreet"];
         _locationZipCode = [decoder decodeObjectForKey:@"locationZipCode"];
         _locationCity = [decoder decodeObjectForKey:@"locationCity"];
@@ -72,11 +72,11 @@
 {
     [coder encodeObject:self.ID forKey:@"ID"];
     [coder encodeInteger:self.type forKey:@"type"];
-    [coder encodeObject:self.sourceURLString forKey:@"sourceURLString"];
+    [coder encodeObject:self.sourceURL forKey:@"sourceURL"];
     [coder encodeObject:self.sourceName forKey:@"sourceName"];
     [coder encodeObject:self.personFirstName forKey:@"personFirstName"];
     [coder encodeObject:self.personLastName forKey:@"personLastName"];
-    [coder encodeObject:self.personBiographyURLString forKey:@"personBiographyURLString"];
+    [coder encodeObject:self.personBiographyURL forKey:@"personBiographyURL"];
     [coder encodeObject:self.locationStreet forKey:@"locationStreet"];
     [coder encodeObject:self.locationZipCode forKey:@"locationZipCode"];
     [coder encodeObject:self.locationCity forKey:@"locationCity"];
@@ -114,10 +114,10 @@
         isEqual = ((_ID == stolperstein->_ID) || [_ID isEqualToString:stolperstein->_ID]) &&
             (_type == stolperstein->_type) &&
             ((_sourceName == stolperstein->_sourceName) || [_sourceName isEqualToString:stolperstein->_sourceName]) &&
-            ((_sourceURLString == stolperstein->_sourceURLString) || [_sourceURLString isEqualToString:stolperstein->_sourceURLString]) &&
+            ((_sourceURL == stolperstein->_sourceURL) || [_sourceURL isEqual:stolperstein->_sourceURL]) &&
             ((_personFirstName == stolperstein->_personFirstName) || [_personFirstName isEqualToString:stolperstein->_personFirstName]) &&
             ((_personLastName == stolperstein->_personLastName) || [_personLastName isEqualToString:stolperstein->_personLastName]) &&
-            ((_personBiographyURLString == stolperstein->_personBiographyURLString) || [_personBiographyURLString isEqualToString:stolperstein->_personBiographyURLString]) &&
+            ((_personBiographyURL == stolperstein->_personBiographyURL) || [_personBiographyURL isEqual:stolperstein->_personBiographyURL]) &&
             ((_locationStreet == stolperstein->_locationStreet) || [_locationStreet isEqualToString:stolperstein->_locationStreet]) &&
             ((_locationZipCode == stolperstein->_locationZipCode) || [_locationZipCode isEqualToString:stolperstein->_locationZipCode]) &&
             ((_locationCity == stolperstein->_locationCity) || [_locationCity isEqualToString:stolperstein->_locationCity]) &&

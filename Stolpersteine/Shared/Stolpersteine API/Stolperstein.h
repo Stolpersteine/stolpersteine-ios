@@ -36,10 +36,10 @@ typedef NS_ENUM(NSInteger, StolpersteinType) {
 @property (nonatomic, readonly, copy) NSString *ID;
 @property (nonatomic, readonly) StolpersteinType type;
 @property (nonatomic, readonly, copy) NSString *sourceName;
-@property (nonatomic, readonly, copy) NSString *sourceURLString;
+@property (nonatomic, readonly, copy) NSURL *sourceURL;
 @property (nonatomic, readonly, copy) NSString *personFirstName;
 @property (nonatomic, readonly, copy) NSString *personLastName;
-@property (nonatomic, readonly, copy) NSString *personBiographyURLString;
+@property (nonatomic, readonly, copy) NSURL *personBiographyURL;
 @property (nonatomic, readonly, copy) NSString *locationStreet;
 @property (nonatomic, readonly, copy) NSString *locationZipCode;
 @property (nonatomic, readonly, copy) NSString *locationCity;
@@ -49,7 +49,7 @@ typedef NS_ENUM(NSInteger, StolpersteinType) {
 @property (nonatomic, readonly, copy) NSString *subtitle;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
-- (id)initWithID:(NSString *)ID type:(StolpersteinType)type sourceName:(NSString *)sourceName sourceURLString:(NSString *)sourceURLString personFirstName:(NSString *)personFirstName personLastName:(NSString *)personLastName personBiographyURLString:(NSString *)personBiographyURLString locationStreet:(NSString *)locationStreet locationZipCode:(NSString *)locationZipCode locationCity:(NSString *)locationCity locationCoordinate:(CLLocationCoordinate2D)locationCoordinate;
+- (id)initWithID:(NSString *)ID type:(StolpersteinType)type sourceName:(NSString *)sourceName sourceURL:(NSURL *)sourceURL personFirstName:(NSString *)personFirstName personLastName:(NSString *)personLastName personBiographyURL:(NSString *)personBiographyURL locationStreet:(NSString *)locationStreet locationZipCode:(NSString *)locationZipCode locationCity:(NSString *)locationCity locationCoordinate:(CLLocationCoordinate2D)locationCoordinate;
 
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)coder;

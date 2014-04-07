@@ -135,7 +135,7 @@
     NSString *name = [Localization newNameFromStolperstein:stolperstein];
     NSString *address = [Localization newShortAddressFromStolperstein:stolperstein];
     NSMutableString *string = [NSMutableString stringWithFormat:@"%@\n%@", name, address];
-    NSString *localizedPersonBiographyURLString = stolperstein.personBiographyURLString;
+    NSString *localizedPersonBiographyURLString = [[self.class newPersonBiographyURLFromStolperstein:stolperstein] absoluteString];
     if (localizedPersonBiographyURLString) {
         [string appendString:@"\n"];
         [string appendString:localizedPersonBiographyURLString];
@@ -144,9 +144,9 @@
     return string;
 }
 
-+ (NSString *)newPersonBiographyURLStringFromStolperstein:(Stolperstein *)stolperstein
++ (NSURL *)newPersonBiographyURLFromStolperstein:(Stolperstein *)stolperstein
 {
-    NSString *personBiographyURLString = stolperstein.personBiographyURLString;
+    NSString *personBiographyURLString = stolperstein.personBiographyURL.absoluteString;
     
     // Use English website for Berlin biographies if not using German
     NSArray *preferredLanguages = NSLocale.preferredLanguages;
@@ -159,7 +159,7 @@
         }
     }
     
-    return personBiographyURLString;
+    return [NSURL URLWithString:personBiographyURLString];
 }
 
 + (NSString *)newTitleFromMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation

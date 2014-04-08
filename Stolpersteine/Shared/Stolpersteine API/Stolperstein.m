@@ -27,7 +27,7 @@
 
 @implementation Stolperstein
 
-- (id)initWithID:(NSString *)ID type:(StolpersteinType)type sourceName:(NSString *)sourceName sourceURL:(NSURL *)sourceURL personFirstName:(NSString *)personFirstName personLastName:(NSString *)personLastName personBiographyURL:(NSString *)personBiographyURL locationStreet:(NSString *)locationStreet locationZipCode:(NSString *)locationZipCode locationCity:(NSString *)locationCity locationCoordinate:(CLLocationCoordinate2D)locationCoordinate
+- (id)initWithID:(NSString *)ID type:(StolpersteinType)type sourceName:(NSString *)sourceName sourceURL:(NSURL *)sourceURL personFirstName:(NSString *)personFirstName personLastName:(NSString *)personLastName personBiographyURL:(NSURL *)personBiographyURL locationStreet:(NSString *)locationStreet locationZipCode:(NSString *)locationZipCode locationCity:(NSString *)locationCity locationCoordinate:(CLLocationCoordinate2D)locationCoordinate
 {
     self = [super init];
     if (self) {

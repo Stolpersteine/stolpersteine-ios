@@ -36,7 +36,7 @@ NSString * const StolpersteineReadWriteDataServiceRemovedIDsKey = @"removed";
         NSMutableArray *updatedIDs = [NSMutableArray array];
         for (Stolperstein *stolperstein in stolpersteine) {
             Stolperstein *existingStolperstein = [transaction objectForKey:stolperstein.ID inCollection:StolpersteineReadDataServiceCollection];
-            if (![existingStolperstein isEqualToStolperstein:stolperstein]) {
+            if (![existingStolperstein isExactMatchToStolperstein:stolperstein]) {
                 
                 if (existingStolperstein) {
                     [updatedIDs addObject:stolperstein.ID];

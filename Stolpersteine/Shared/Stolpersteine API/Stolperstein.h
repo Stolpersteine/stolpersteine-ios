@@ -55,5 +55,6 @@ typedef NS_ENUM(NSInteger, StolpersteinType) {
 - (void)encodeWithCoder:(NSCoder *)coder;
 
 - (BOOL)isEqualToStolperstein:(Stolperstein *)stolperstein;
+- (BOOL)isExactMatchToStolperstein:(Stolperstein *)stolperstein;
 
 @end

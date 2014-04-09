@@ -93,9 +93,7 @@
 {
     BOOL isEqual;
     
-    if (other == self) {
-        isEqual = YES;
-    } else if (![other isKindOfClass:self.class]) {
+    if (![other isKindOfClass:self.class]) {
         isEqual = NO;
     } else {
         isEqual = [self isEqualToStolperstein:other];
@@ -108,24 +106,39 @@
 {
     BOOL isEqual;
     
-    if (stolperstein == nil) {
+    if (stolperstein == self) {
+        isEqual = YES;
+    } else if (stolperstein == nil) {
         isEqual = NO;
     } else {
-        isEqual = ((_ID == stolperstein->_ID) || [_ID isEqualToString:stolperstein->_ID]) &&
-            (_type == stolperstein->_type) &&
-            ((_sourceName == stolperstein->_sourceName) || [_sourceName isEqualToString:stolperstein->_sourceName]) &&
-            ((_sourceURL == stolperstein->_sourceURL) || [_sourceURL isEqual:stolperstein->_sourceURL]) &&
-            ((_personFirstName == stolperstein->_personFirstName) || [_personFirstName isEqualToString:stolperstein->_personFirstName]) &&
-            ((_personLastName == stolperstein->_personLastName) || [_personLastName isEqualToString:stolperstein->_personLastName]) &&
-            ((_personBiographyURL == stolperstein->_personBiographyURL) || [_personBiographyURL isEqual:stolperstein->_personBiographyURL]) &&
-            ((_locationStreet == stolperstein->_locationStreet) || [_locationStreet isEqualToString:stolperstein->_locationStreet]) &&
-            ((_locationZipCode == stolperstein->_locationZipCode) || [_locationZipCode isEqualToString:stolperstein->_locationZipCode]) &&
-            ((_locationCity == stolperstein->_locationCity) || [_locationCity isEqualToString:stolperstein->_locationCity]) &&
-            (_locationCoordinate.latitude == stolperstein->_locationCoordinate.latitude) &&
-            (_locationCoordinate.longitude == stolperstein->_locationCoordinate.longitude);
+        isEqual = ((_ID == stolperstein->_ID) || [_ID isEqualToString:stolperstein->_ID]);
     }
     
     return isEqual;
+}
+
+- (BOOL)isExactMatchToStolperstein:(Stolperstein *)stolperstein
+{
+    BOOL isExactMatch;
+    
+    if (stolperstein == nil) {
+        isExactMatch = NO;
+    } else {
+        isExactMatch = ((_ID == stolperstein->_ID) || [_ID isEqualToString:stolperstein->_ID]) &&
+        (_type == stolperstein->_type) &&
+        ((_sourceName == stolperstein->_sourceName) || [_sourceName isEqualToString:stolperstein->_sourceName]) &&
+        ((_sourceURL == stolperstein->_sourceURL) || [_sourceURL isEqual:stolperstein->_sourceURL]) &&
+        ((_personFirstName == stolperstein->_personFirstName) || [_personFirstName isEqualToString:stolperstein->_personFirstName]) &&
+        ((_personLastName == stolperstein->_personLastName) || [_personLastName isEqualToString:stolperstein->_personLastName]) &&
+        ((_personBiographyURL == stolperstein->_personBiographyURL) || [_personBiographyURL isEqual:stolperstein->_personBiographyURL]) &&
+        ((_locationStreet == stolperstein->_locationStreet) || [_locationStreet isEqualToString:stolperstein->_locationStreet]) &&
+        ((_locationZipCode == stolperstein->_locationZipCode) || [_locationZipCode isEqualToString:stolperstein->_locationZipCode]) &&
+        ((_locationCity == stolperstein->_locationCity) || [_locationCity isEqualToString:stolperstein->_locationCity]) &&
+        (_locationCoordinate.latitude == stolperstein->_locationCoordinate.latitude) &&
+        (_locationCoordinate.longitude == stolperstein->_locationCoordinate.longitude);
+    }
+    
+    return isExactMatch;
 }
 
 - (NSUInteger)hash

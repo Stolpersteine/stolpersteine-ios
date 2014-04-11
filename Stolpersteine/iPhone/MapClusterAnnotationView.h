@@ -25,7 +25,7 @@
 
 #import <MapKit/MapKit.h>
 
-@interface StolpersteinAnnotationView : MKAnnotationView
+@interface MapClusterAnnotationView : MKAnnotationView
 
 @property (assign, nonatomic) NSUInteger count;
 @property (assign, nonatomic, getter = isOneLocation) BOOL oneLocation;

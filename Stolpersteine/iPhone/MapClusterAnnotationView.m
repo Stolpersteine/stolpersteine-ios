@@ -23,16 +23,16 @@
 //  THE SOFTWARE.
 //
 
-#import "StolpersteinAnnotationView.h"
+#import "MapClusterAnnotationView.h"
 
 #define FOREGROUND_COLOR [UIColor colorWithWhite:(244.0 / 255.0) alpha:1.0]
-@interface StolpersteinAnnotationView ()
+@interface MapClusterAnnotationView ()
 
 @property (strong, nonatomic) UILabel *countLabel;
 
 @end
 
-@implementation StolpersteinAnnotationView
+@implementation MapClusterAnnotationView
 
 - (id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
 {

@@ -33,110 +33,74 @@
 
 @implementation StolpersteinTests
 
-- (Stolperstein *)newStolpersteinwithID:(NSString *)ID
-{
-    Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:ID
-                                                             type:StolpersteinTypeStolperstein
-                                                       sourceName:nil
-                                                  sourceURLString:nil
-                                                  personFirstName:nil
-                                                   personLastName:nil
-                                         personBiographyURLString:nil
-                                                   locationStreet:nil
-                                                  locationZipCode:nil
-                                                     locationCity:nil
-                                               locationCoordinate:CLLocationCoordinate2DMake(0, 0)];
-    return stolperstein;
-}
-
 - (void)testEqual
 {
     Stolperstein *stolperstein0, *stolperstein1;
     
     // IDs match
-    stolperstein0 = [self newStolpersteinwithID:@"123"];
-    stolperstein1 = [self newStolpersteinwithID:@"123"];
-    XCTAssertTrue([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
-    XCTAssertTrue([stolperstein1 isEqual:stolperstein0], @"Wrong equality");
-    XCTAssertTrue(stolperstein0.hash == stolperstein1.hash, @"Wrong hash");
+    stolperstein0 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"123";
+    }];
+    stolperstein1 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"123";
+    }];
+    XCTAssertTrue([stolperstein0 isEqual:stolperstein1]);
+    XCTAssertTrue([stolperstein1 isEqual:stolperstein0]);
+    XCTAssertTrue(stolperstein0.hash == stolperstein1.hash);
 
     // Object equals itself
-    stolperstein0 = [self newStolpersteinwithID:@"123"];
-    XCTAssertTrue([stolperstein0 isEqual:stolperstein0], @"Wrong equality");
-    XCTAssertTrue(stolperstein0.hash == stolperstein0.hash, @"Wrong hash");
+    stolperstein0 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"123";
+    }];
+    XCTAssertTrue([stolperstein0 isEqual:stolperstein0]);
+    XCTAssertTrue(stolperstein0.hash == stolperstein0.hash);
 
     // IDs don't match
-    stolperstein0 = [self newStolpersteinwithID:@"123"];
-    stolperstein1 = [self newStolpersteinwithID:@"456"];
-    XCTAssertFalse([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
-    XCTAssertFalse([stolperstein1 isEqual:stolperstein0], @"Wrong equality");
-    XCTAssertFalse(stolperstein0.hash == stolperstein1.hash, @"Wrong hash"); // not required, but preferable
+    stolperstein0 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"123";
+    }];
+    stolperstein1 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"456";
+    }];
+    XCTAssertFalse([stolperstein0 isEqual:stolperstein1]);
+    XCTAssertFalse([stolperstein1 isEqual:stolperstein0]);
+    XCTAssertFalse(stolperstein0.hash == stolperstein1.hash); // not required, but preferable
 
     // Wrong class
-    stolperstein0 = [self newStolpersteinwithID:@"123"];
-    stolperstein1 = [self newStolpersteinwithID:@"456"];
-    XCTAssertFalse([stolperstein0 isEqual:stolperstein1.ID], @"Wrong equality");
-    XCTAssertFalse([stolperstein1 isEqual:stolperstein0.ID], @"Wrong equality");
+    stolperstein0 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"123";
+    }];
+    stolperstein1 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"456";
+    }];
+    XCTAssertFalse([stolperstein0 isEqual:stolperstein1.ID]);
+    XCTAssertFalse([stolperstein1 isEqual:stolperstein0.ID]);
 
     // nil IDs
-    stolperstein0 = [self newStolpersteinwithID:nil];
-    stolperstein1 = [self newStolpersteinwithID:@"456"];
-    XCTAssertFalse([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
+    stolperstein0 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+    }];
+    stolperstein1 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"456";
+    }];
+    XCTAssertFalse([stolperstein0 isEqual:stolperstein1]);
 
-    stolperstein0 = [self newStolpersteinwithID:@"123"];
-    stolperstein1 = [self newStolpersteinwithID:nil];
-    XCTAssertFalse([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
+    stolperstein0 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"123";
+    }];
+    stolperstein1 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+    }];
+    XCTAssertFalse([stolperstein0 isEqual:stolperstein1]);
 
-    stolperstein0 = [self newStolpersteinwithID:nil];
-    stolperstein1 = [self newStolpersteinwithID:nil];
-    XCTAssertTrue([stolperstein0 isEqual:stolperstein1], @"Wrong equality");
+    stolperstein0 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+    }];
+    stolperstein1 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+    }];
+    XCTAssertTrue([stolperstein0 isEqual:stolperstein1]);
 
     // nil objects
-    XCTAssertFalse([(id)nil isEqual:stolperstein1], @"Wrong equality");
-    XCTAssertFalse([stolperstein0 isEqual:nil], @"Wrong equality");
-    XCTAssertFalse([(id)nil isEqual:nil], @"Wrong equality");
-}
-
-- (void)testEqualToStolpersteinID
-{
-    Stolperstein *stolperstein0, *stolperstein1;
-    
-    // IDs match
-    stolperstein0 = [self newStolpersteinwithID:@"123"];
-    stolperstein1 = [self newStolpersteinwithID:@"123"];
-    XCTAssertTrue([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
-    XCTAssertTrue([stolperstein1 isEqualToStolperstein:stolperstein0], @"Wrong equality");
-    XCTAssertTrue(stolperstein0.hash == stolperstein1.hash, @"Wrong hash");
-    
-    // Object equals itself
-    stolperstein0 = [self newStolpersteinwithID:@"123"];
-    XCTAssertTrue([stolperstein0 isEqualToStolperstein:stolperstein0], @"Wrong equality");
-    XCTAssertTrue(stolperstein0.hash == stolperstein0.hash, @"Wrong hash");
-    
-    // IDs don't match
-    stolperstein0 = [self newStolpersteinwithID:@"123"];
-    stolperstein1 = [self newStolpersteinwithID:@"456"];
-    XCTAssertFalse([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
-    XCTAssertFalse([stolperstein1 isEqualToStolperstein:stolperstein0], @"Wrong equality");
-    XCTAssertFalse(stolperstein0.hash == stolperstein1.hash, @"Wrong hash"); // not required, but preferable
-
-    // nil IDs
-    stolperstein0 = [self newStolpersteinwithID:nil];
-    stolperstein1 = [self newStolpersteinwithID:@"456"];
-    XCTAssertFalse([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
-    
-    stolperstein0 = [self newStolpersteinwithID:@"123"];
-    stolperstein1 = [self newStolpersteinwithID:nil];
-    XCTAssertFalse([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
-    
-    stolperstein0 = [self newStolpersteinwithID:nil];
-    stolperstein1 = [self newStolpersteinwithID:nil];
-    XCTAssertTrue([stolperstein0 isEqualToStolperstein:stolperstein1], @"Wrong equality");
-    
-    // nil objects
-    XCTAssertFalse([(id)nil isEqualToStolperstein:stolperstein1], @"Wrong equality");
-    XCTAssertFalse([stolperstein0 isEqualToStolperstein:nil], @"Wrong equality");
-    XCTAssertFalse([(id)nil isEqualToStolperstein:nil], @"Wrong equality");
+    XCTAssertFalse([(id)nil isEqual:stolperstein1]);
+    XCTAssertFalse([stolperstein0 isEqual:nil]);
+    XCTAssertFalse([(id)nil isEqual:nil]);
 }
 
 @end

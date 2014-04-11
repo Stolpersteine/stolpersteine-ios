@@ -26,6 +26,8 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
+@class StolpersteinComponents;
+
 typedef NS_ENUM(NSInteger, StolpersteinType) {
     StolpersteinTypeStolperstein,
     StolpersteinTypeStolperschwelle
@@ -49,11 +51,40 @@ typedef NS_ENUM(NSInteger, StolpersteinType) {
 @property (nonatomic, readonly, copy) NSString *subtitle;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
-- (id)initWithID:(NSString *)ID type:(StolpersteinType)type sourceName:(NSString *)sourceName sourceURLString:(NSString *)sourceURLString personFirstName:(NSString *)personFirstName personLastName:(NSString *)personLastName personBiographyURLString:(NSString *)personBiographyURLString locationStreet:(NSString *)locationStreet locationZipCode:(NSString *)locationZipCode locationCity:(NSString *)locationCity locationCoordinate:(CLLocationCoordinate2D)locationCoordinate;
+- (id)initWithID:(NSString *)ID
+            type:(StolpersteinType)type
+      sourceName:(NSString *)sourceName
+ sourceURLString:(NSString *)sourceURLString
+ personFirstName:(NSString *)personFirstName
+  personLastName:(NSString *)personLastName
+personBiographyURLString:(NSString *)personBiographyURLString
+  locationStreet:(NSString *)locationStreet
+ locationZipCode:(NSString *)locationZipCode
+    locationCity:(NSString *)locationCity
+locationCoordinate:(CLLocationCoordinate2D)locationCoordinate;
++ (instancetype)stolpersteinWithBuilderBlock:(void(^)(StolpersteinComponents *builder))builderBlock;
 
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)coder;
 
 - (BOOL)isEqualToStolperstein:(Stolperstein *)stolperstein;
+
+@end
+
+@interface StolpersteinComponents : NSObject
+
+@property (nonatomic, copy) NSString *ID;
+@property (nonatomic) StolpersteinType type;
+@property (nonatomic, copy) NSString *sourceName;
+@property (nonatomic, copy) NSString *sourceURLString;
+@property (nonatomic, copy) NSString *personFirstName;
+@property (nonatomic, copy) NSString *personLastName;
+@property (nonatomic, copy) NSString *personBiographyURLString;
+@property (nonatomic, copy) NSString *locationStreet;
+@property (nonatomic, copy) NSString *locationZipCode;
+@property (nonatomic, copy) NSString *locationCity;
+@property (nonatomic) CLLocationCoordinate2D locationCoordinate;
+
+- (Stolperstein *)stolperstein;
 
 @end

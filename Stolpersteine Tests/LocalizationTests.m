@@ -36,80 +36,55 @@
 
 @implementation LocalizationTests
 
-- (Stolperstein *)newStolpersteinWithPersonFirstName:(NSString *)personFirstName personLastName:(NSString *)personLastName
-{
-    Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:nil
-                                                             type:StolpersteinTypeStolperstein
-                                                       sourceName:nil
-                                                  sourceURLString:nil
-                                                  personFirstName:personFirstName
-                                                   personLastName:personLastName
-                                         personBiographyURLString:nil
-                                                   locationStreet:nil
-                                                  locationZipCode:nil
-                                                     locationCity:nil
-                                               locationCoordinate:CLLocationCoordinate2DMake(0, 0)];
-    return stolperstein;
-}
-
-- (Stolperstein *)newStolpersteinTypeStolperschwelleWithPersonLastName:(NSString *)personLastName
-{
-    Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:nil
-                                                             type:StolpersteinTypeStolperschwelle
-                                                       sourceName:nil
-                                                  sourceURLString:nil
-                                                  personFirstName:nil
-                                                   personLastName:personLastName
-                                         personBiographyURLString:nil
-                                                   locationStreet:nil
-                                                  locationZipCode:nil
-                                                     locationCity:nil
-                                               locationCoordinate:CLLocationCoordinate2DMake(0, 0)];
-    return stolperstein;
-}
-
-- (Stolperstein *)newStolpersteinWithLocationStreet:(NSString *)locationStreet locationZipCode:(NSString *)locationZipCode locationCity:(NSString *)locationCity
-{
-    Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:nil
-                                                             type:StolpersteinTypeStolperstein
-                                                       sourceName:nil
-                                                  sourceURLString:nil
-                                                  personFirstName:nil
-                                                   personLastName:nil
-                                         personBiographyURLString:nil
-                                                   locationStreet:locationStreet
-                                                  locationZipCode:locationZipCode
-                                                     locationCity:locationCity
-                                               locationCoordinate:CLLocationCoordinate2DMake(0, 0)];
-    return stolperstein;
-}
-
 - (void)testNewName
 {
     Stolperstein *stolperstein;
     
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"Erna" personLastName:@"Müller"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"Erna";
+        builder.personLastName = @"Müller";
+    }];
     XCTAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Erna Müller", @"Wrong name");
     
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"Erna Therese" personLastName:@"Müller"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"Erna Therese";
+        builder.personLastName = @"Müller";
+    }];
     XCTAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Erna Therese Müller", @"Wrong name");
     
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"Erna" personLastName:@"von Müller"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"Erna";
+        builder.personLastName = @"von Müller";
+    }];
     XCTAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Erna von Müller", @"Wrong name");
     
-    stolperstein = [self newStolpersteinWithPersonFirstName:nil personLastName:@"Müller"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = nil;
+        builder.personLastName = @"Müller";
+    }];
     XCTAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Müller", @"Wrong name");
     
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"" personLastName:@"Müller"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"";
+        builder.personLastName = @"Müller";
+    }];
     XCTAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Müller", @"Wrong name");
 
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"Erna" personLastName:nil];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"Erna";
+        builder.personLastName = nil;
+    }];
     XCTAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Erna", @"Wrong name");
     
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"Erna" personLastName:@""];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"Erna";
+        builder.personLastName = @"";
+    }];
     XCTAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Erna", @"Wrong name");
     
-    stolperstein = [self newStolpersteinTypeStolperschwelleWithPersonLastName:@"Gossner-Mission"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personLastName = @"Gossner-Mission";
+    }];
     XCTAssertEqualObjects([Localization newNameFromStolperstein:stolperstein], @"Gossner-Mission (Stolperschwelle)", @"Wrong name");
 }
 
@@ -117,31 +92,58 @@
 {
     Stolperstein *stolperstein;
     
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"Erna" personLastName:@"Müller"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"Erna";
+        builder.personLastName = @"Müller";
+    }];
     XCTAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E. Müller", @"Wrong name");
     
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"Erna Therese" personLastName:@"Müller"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"Erna Therese";
+        builder.personLastName = @"Müller";
+    }];
     XCTAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E. Müller", @"Wrong name");
     
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"Erna" personLastName:@"von Müller"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"Erna";
+        builder.personLastName = @"von Müller";
+    }];
     XCTAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E. von Müller", @"Wrong name");
 
-    stolperstein = [self newStolpersteinWithPersonFirstName:nil personLastName:@"Müller"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = nil;
+        builder.personLastName = @"Müller";
+    }];
     XCTAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"Müller", @"Wrong name");
 
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"" personLastName:@"Müller"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"";
+        builder.personLastName = @"Müller";
+    }];
     XCTAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"Müller", @"Wrong name");
 
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"Erna" personLastName:nil];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"Erna";
+        builder.personLastName = nil;
+    }];
     XCTAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E.", @"Wrong name");
 
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"Erna" personLastName:@""];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"Erna";
+        builder.personLastName = @"";
+    }];
     XCTAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E.", @"Wrong name");
 
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"E." personLastName:@"Müller"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"E.";
+        builder.personLastName = @"Müller";
+    }];
     XCTAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E. Müller", @"Wrong name");
 
-    stolperstein = [self newStolpersteinWithPersonFirstName:@"E" personLastName:@"Müller"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"E";
+        builder.personLastName = @"Müller";
+    }];
     XCTAssertEqualObjects([Localization newShortNameFromStolperstein:stolperstein], @"E. Müller", @"Wrong name");
 }
 
@@ -149,16 +151,24 @@
 {
     Stolperstein *stolperstein;
     
-    stolperstein = [self newStolpersteinWithLocationStreet:@"Turmstraße 76a" locationZipCode:nil locationCity:nil];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.locationStreet = @"Turmstraße 76a";
+    }];
     XCTAssertEqualObjects([Localization newStreetNameFromStolperstein:stolperstein], @"Turmstraße", @"Wrong street name");
     
-    stolperstein = [self newStolpersteinWithLocationStreet:@"Turmstraße 10" locationZipCode:nil locationCity:nil];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.locationStreet = @"Turmstraße 10";
+    }];
     XCTAssertEqualObjects([Localization newStreetNameFromStolperstein:stolperstein], @"Turmstraße", @"Wrong street name");
     
-    stolperstein = [self newStolpersteinWithLocationStreet:@"Turmstraße" locationZipCode:nil locationCity:nil];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.locationStreet = @"Turmstraße";
+    }];
     XCTAssertEqualObjects([Localization newStreetNameFromStolperstein:stolperstein], @"Turmstraße", @"Wrong street name");
     
-    stolperstein = [self newStolpersteinWithLocationStreet:@"Alt-Moabit 11" locationZipCode:nil locationCity:nil];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.locationStreet = @"Alt-Moabit 11";
+    }];
     XCTAssertEqualObjects([Localization newStreetNameFromStolperstein:stolperstein], @"Alt-Moabit", @"Wrong street name");
 }
 
@@ -169,22 +179,34 @@
     XCTAssertEqualObjects(address, @"", @"Wrong address");
     
     // No street
-    stolperstein = [self newStolpersteinWithLocationStreet:nil locationZipCode:nil locationCity:@"Stadt"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.locationCity = @"Stadt";
+    }];
     address = [Localization newLongAddressFromStolperstein:stolperstein];
     XCTAssertEqualObjects(address, @"Stadt", @"Wrong address");
 
     // City, but no zip code
-    stolperstein = [self newStolpersteinWithLocationStreet:@"Straße 1" locationZipCode:nil locationCity:@"Stadt"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.locationStreet = @"Straße 1";
+        builder.locationCity = @"Stadt";
+    }];
     address = [Localization newLongAddressFromStolperstein:stolperstein];
     XCTAssertEqualObjects(address, @"Straße 1\nStadt", @"Wrong address");
     
     // Zip code, but no city
-    stolperstein = [self newStolpersteinWithLocationStreet:@"Straße 1" locationZipCode:@"12345" locationCity:nil];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.locationStreet = @"Straße 1";
+        builder.locationZipCode = @"12345";
+    }];
     address = [Localization newLongAddressFromStolperstein:stolperstein];
     XCTAssertEqualObjects(address, @"Straße 1\n12345", @"Wrong address");
 
     // Both city and zip code
-    stolperstein = [self newStolpersteinWithLocationStreet:@"Straße 1" locationZipCode:@"12345" locationCity:@"Stadt"];
+    stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.locationStreet = @"Straße 1";
+        builder.locationZipCode = @"12345";
+        builder.locationCity = @"Stadt";
+    }];
     address = [Localization newLongAddressFromStolperstein:stolperstein];
     XCTAssertEqualObjects(address, @"Straße 1\n12345 Stadt", @"Wrong address");
 }

@@ -31,28 +31,28 @@
 
 - (Stolperstein *)newStolperstein
 {
-    StolpersteinType type;
-    if ([[self valueForKeyPath:@"type"] isEqualToString:@"stolperschwelle"]) {
-        type = StolpersteinTypeStolperschwelle;
-    } else {
-        type = StolpersteinTypeStolperstein;
-    }
+    Stolperstein *stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = [self valueForKeyPath:@"id"];
+        builder.sourceName = [self valueForKeyPath:@"source.name"];
+        builder.sourceURLString = [self valueForKeyPath:@"source.url"];
+        builder.personFirstName = [self valueForKeyPath:@"person.firstName"];
+        builder.personLastName = [self valueForKeyPath:@"person.lastName"];
+        builder.personBiographyURLString = [self valueForKeyPath:@"person.biographyUrl"];
+        builder.locationStreet = [self valueForKeyPath:@"location.street"];
+        builder.locationZipCode = [self valueForKeyPath:@"location.zipCode"];
+        builder.locationCity = [self valueForKeyPath:@"location.city"];
+
+        if ([[self valueForKeyPath:@"type"] isEqualToString:@"stolperschwelle"]) {
+            builder.type = StolpersteinTypeStolperschwelle;
+        } else {
+            builder.type = StolpersteinTypeStolperstein;
+        }
+
+        NSString *latitudeAsString = [self valueForKeyPath:@"location.coordinates.latitude"];
+        NSString *longitudeAsString = [self valueForKeyPath:@"location.coordinates.longitude"];
+        builder.locationCoordinate = CLLocationCoordinate2DMake(latitudeAsString.doubleValue, longitudeAsString.doubleValue);
+    }];
     
-    NSString *latitudeAsString = [self valueForKeyPath:@"location.coordinates.latitude"];
-    NSString *longitudeAsString = [self valueForKeyPath:@"location.coordinates.longitude"];
-    CLLocationCoordinate2D locationCoordinate = CLLocationCoordinate2DMake(latitudeAsString.doubleValue, longitudeAsString.doubleValue);
-    
-    Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:[self valueForKeyPath:@"id"]
-                                                             type:type
-                                                       sourceName:[self valueForKeyPath:@"source.name"]
-                                                  sourceURLString:[self valueForKeyPath:@"source.url"]
-                                                  personFirstName:[self valueForKeyPath:@"person.firstName"]
-                                                   personLastName:[self valueForKeyPath:@"person.lastName"]
-                                         personBiographyURLString:[self valueForKeyPath:@"person.biographyUrl"]
-                                                   locationStreet:[self valueForKeyPath:@"location.street"]
-                                                  locationZipCode:[self valueForKeyPath:@"location.zipCode"]
-                                                     locationCity:[self valueForKeyPath:@"location.city"]
-                                               locationCoordinate:locationCoordinate];
     return stolperstein;
 }
 

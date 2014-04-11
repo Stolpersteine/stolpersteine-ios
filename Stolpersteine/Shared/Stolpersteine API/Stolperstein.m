@@ -68,6 +68,16 @@
     return self;
 }
 
++ (instancetype)stolpersteinWithBuilderBlock:(void(^)(StolpersteinComponents *builder))builderBlock
+{
+    NSParameterAssert(builderBlock);
+    
+    StolpersteinComponents *builder = [[StolpersteinComponents alloc] init];
+    builderBlock(builder);
+    
+    return [builder stolperstein];
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     [coder encodeObject:self.ID forKey:@"ID"];
@@ -136,6 +146,25 @@
 - (CLLocationCoordinate2D)coordinate
 {
     return self.locationCoordinate;
+}
+
+@end
+
+@implementation StolpersteinComponents
+
+- (Stolperstein *)stolperstein
+{
+    return [[Stolperstein alloc] initWithID:self.ID
+                                       type:self.type
+                                 sourceName:self.sourceName
+                            sourceURLString:self.sourceURLString
+                            personFirstName:self.personFirstName
+                             personLastName:self.personLastName
+                   personBiographyURLString:self.personBiographyURLString
+                             locationStreet:self.locationStreet
+                            locationZipCode:self.locationZipCode
+                               locationCity:self.locationCity
+                         locationCoordinate:self.locationCoordinate];
 }
 
 @end

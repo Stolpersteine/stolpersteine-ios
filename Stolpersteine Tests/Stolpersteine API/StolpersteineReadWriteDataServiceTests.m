@@ -37,38 +37,6 @@
 
 @implementation StolpersteineReadWriteDataServiceTests
 
-- (Stolperstein *)newStolpersteinWithID:(NSString *)ID personFirstName:(NSString *)personFirstName personLastName:(NSString *)personLastName
-{
-    Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:ID
-                                                             type:StolpersteinTypeStolperstein
-                                                       sourceName:nil
-                                                  sourceURLString:nil
-                                                  personFirstName:personFirstName
-                                                   personLastName:personLastName
-                                         personBiographyURLString:nil
-                                                   locationStreet:nil
-                                                  locationZipCode:nil
-                                                     locationCity:nil
-                                               locationCoordinate:CLLocationCoordinate2DMake(0, 0)];
-    return stolperstein;
-}
-
-- (Stolperstein *)newStolpersteinWithID:(NSString *)ID locationStreet:(NSString *)locationStreet
-{
-    Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:ID
-                                                             type:StolpersteinTypeStolperstein
-                                                       sourceName:nil
-                                                  sourceURLString:nil
-                                                  personFirstName:nil
-                                                   personLastName:nil
-                                         personBiographyURLString:nil
-                                                   locationStreet:locationStreet
-                                                  locationZipCode:nil
-                                                     locationCity:nil
-                                               locationCoordinate:CLLocationCoordinate2DMake(0, 0)];
-    return stolperstein;
-}
-
 - (void)setUp
 {
     [super setUp];
@@ -80,7 +48,10 @@
 
 - (void)testStolpersteineLifecycle
 {
-    Stolperstein *stolpersteinToCreate = [self newStolpersteinWithID:@"123" personFirstName:@"abc" personLastName:nil];
+    Stolperstein *stolpersteinToCreate = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"123";
+        builder.personFirstName = @"abc";
+    }];
     
     __block BOOL done = NO;
     [self.dataService createStolpersteine:@[stolpersteinToCreate] completionHandler:^() {
@@ -116,7 +87,9 @@
 {
     NSMutableArray *stolpersteineToCreate = [NSMutableArray array];
     for (NSUInteger i = 0; i < 10; i++) {
-        Stolperstein *stolperstein = [self newStolpersteinWithID:@(i).stringValue personFirstName:nil personLastName:nil];
+        Stolperstein *stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+            builder.ID = @(i).stringValue;
+        }];
         [stolpersteineToCreate addObject:stolperstein];
     }
     
@@ -132,8 +105,14 @@
 
 - (void)testRetrieveStolpersteineKeywordsString
 {
-    Stolperstein *stolperstein0 = [self newStolpersteinWithID:@"0" personFirstName:@"Erna" personLastName:nil];
-    Stolperstein *stolperstein1 = [self newStolpersteinWithID:@"1" personFirstName:nil personLastName:@"Ernas"];
+    Stolperstein *stolperstein0 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"0";
+        builder.personFirstName = @"Erna";
+    }];
+    Stolperstein *stolperstein1 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"1";
+        builder.personLastName = @"Ernas";
+    }];
     NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1];
     [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
 
@@ -148,8 +127,14 @@
 
 - (void)testRetrieveStolpersteineKeywordsStringLimit
 {
-    Stolperstein *stolperstein0 = [self newStolpersteinWithID:@"0" personFirstName:@"Erna" personLastName:nil];
-    Stolperstein *stolperstein1 = [self newStolpersteinWithID:@"1" personFirstName:nil personLastName:@"Ernas"];
+    Stolperstein *stolperstein0 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"0";
+        builder.personFirstName = @"Erna";
+    }];
+    Stolperstein *stolperstein1 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"1";
+        builder.personLastName = @"Ernas";
+    }];
     NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1];
     [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
     
@@ -164,8 +149,14 @@
 
 - (void)testRetrieveStolpersteineKeywordsStringMultiple
 {
-    Stolperstein *stolperstein0 = [self newStolpersteinWithID:@"0" personFirstName:@"Erna" personLastName:nil];
-    Stolperstein *stolperstein1 = [self newStolpersteinWithID:@"1" personFirstName:nil personLastName:@"Meier"];
+    Stolperstein *stolperstein0 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"0";
+        builder.personFirstName = @"Erna";
+    }];
+    Stolperstein *stolperstein1 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"1";
+        builder.personLastName = @"Meier";
+    }];
     NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1];
     [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
     
@@ -180,9 +171,18 @@
 
 - (void)testRetrieveStolpersteineStreet
 {
-    Stolperstein *stolperstein0 = [self newStolpersteinWithID:@"0" locationStreet:@"straße"];
-    Stolperstein *stolperstein1 = [self newStolpersteinWithID:@"1" personFirstName:nil personLastName:@"straße"];
-    Stolperstein *stolperstein2 = [self newStolpersteinWithID:@"2" locationStreet:@"straß"];
+    Stolperstein *stolperstein0 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"0";
+        builder.locationStreet = @"straße";
+    }];
+    Stolperstein *stolperstein1 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"1";
+        builder.personLastName = @"straße";
+    }];
+    Stolperstein *stolperstein2 = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.ID = @"2";
+        builder.locationStreet = @"straß";
+    }];
     NSArray *stolpersteineToCreate = @[stolperstein0, stolperstein1, stolperstein2];
     [self.dataService createStolpersteine:stolpersteineToCreate completionHandler:NULL];
     

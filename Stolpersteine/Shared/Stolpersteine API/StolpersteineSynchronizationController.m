@@ -26,7 +26,6 @@
 #import "StolpersteineSynchronizationController.h"
 
 #import "StolpersteineNetworkService.h"
-#import "StolpersteineReadWriteDataService.h"
 #import "StolpersteinSynchronizationControllerDelegate.h"
 
 #define NETWORK_BATCH_SIZE 500
@@ -34,7 +33,6 @@
 @interface StolpersteineSynchronizationController()
 
 @property (nonatomic, strong) StolpersteineNetworkService *networkService;
-@property (nonatomic, strong) StolpersteineReadWriteDataService *readWriteDataService;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
 @property (nonatomic, assign, getter = isSynchronizing) BOOL synchronizing;
 @property (nonatomic, strong) NSMutableSet *stolpersteine;
@@ -48,7 +46,6 @@
     self = [super init];
     if (self) {
         _networkService = networkService;
-        _readWriteDataService = [[StolpersteineReadWriteDataService alloc] init];
         _stolpersteine = [NSMutableSet setWithCapacity:NETWORK_BATCH_SIZE];
     }
     

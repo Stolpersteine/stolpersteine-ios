@@ -68,7 +68,7 @@
 {
     _oneLocation = oneLocation;
     
-    [self updateImage];
+    [self setNeedsLayout];
 }
 
 - (void)setCount:(NSUInteger)count
@@ -76,10 +76,10 @@
     _count = count;
     
     self.countLabel.text = [@(count) stringValue];
-    [self updateImage];
+    [self setNeedsLayout];
 }
 
-- (void)updateImage
+- (void)layoutSubviews
 {
     UIImage *image;
     CGPoint centerOffset;

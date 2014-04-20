@@ -1,5 +1,5 @@
 PODS:
-  - AFNetworking (1.3.3)
+  - AFNetworking (1.3.4)
   - CCHLinkTextView (1.0.0)
   - CCHMapClusterController (1.5.0)
   - CCHMapsActivity (0.0.2)
@@ -9,38 +9,36 @@ PODS:
   - CocoaLumberjack/Core (1.6.5.1)
   - CocoaLumberjack/Extensions (1.6.5.1):
     - CocoaLumberjack/Core
-  - GoogleAnalytics-iOS-SDK (3.0.3c)
-  - OCMock (2.2.3)
+  - GoogleAnalytics-iOS-SDK (3.0.6)
+  - OCMock (2.2.4)
   - TUSafariActivity (1.0.0)
   - YapDatabase (2.4.1):
     - CocoaLumberjack (~> 1.6.3)
 
 DEPENDENCIES:
-  - AFNetworking (~> 1.3.3)
-  - CCHLinkTextView (from `https://github.com/choefele/CCHLinkTextView.git`)
+  - AFNetworking (~> 1.3)
+  - CCHLinkTextView
   - CCHMapClusterController
   - CCHMapsActivity
-  - GoogleAnalytics-iOS-SDK (= 3.0.3c)
+  - GoogleAnalytics-iOS-SDK
   - OCMock
   - TUSafariActivity (from `https://github.com/davbeck/TUSafariActivity.git`, commit `c67c2c4272d89765a927dd034708772f3a4a39ee`)
   - YapDatabase
 
 EXTERNAL SOURCES:
-  CCHLinkTextView:
-    :git: https://github.com/choefele/CCHLinkTextView.git
   TUSafariActivity:
     :commit: c67c2c4272d89765a927dd034708772f3a4a39ee
     :git: https://github.com/davbeck/TUSafariActivity.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
-  CCHLinkTextView: f8d88219401f02393bd2cae9f398455b053a0679
+  AFNetworking: e403d4333a4e1956cb3fe42364c3c879f820c9a0
+  CCHLinkTextView: a61688cec8e0b19d4980e6e5ca3531f67d404071
   CCHMapClusterController: 5290080f8852023fc0b416f04b9bf54aae724e82
   CCHMapsActivity: a91368f1db67576d3bb83b0e8a30e542a92b21a1
   CocoaLumberjack: 17803afbade3126a377d32b8d23367264b44ced6
-  GoogleAnalytics-iOS-SDK: a1dc8c700de9edf41f57c0abe54a7eb2182a1820
-  OCMock: 74e4ddbcef134170dcc844f91c691f13868075d7
+  GoogleAnalytics-iOS-SDK: 16dfcc0c4491148bf372edc85a8470cc405ffb72
+  OCMock: 5008fae4b4789b8fc3e48cd7660f2eb5ef8ce89e
   TUSafariActivity: bd9da588f5f9136ba445d89f8f86b6dccf4d46ba
   YapDatabase: 96c3aed68fe5087d596a4b400087b861e43c93d3
 
-COCOAPODS: 0.31.1
+COCOAPODS: 0.32.1

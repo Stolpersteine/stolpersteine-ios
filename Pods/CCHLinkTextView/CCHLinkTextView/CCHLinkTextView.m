@@ -64,6 +64,45 @@ NSString *const CCHLinkAttributeName = @"CCHLinkAttributeName";
     self.linkGestureRecognizer = [[CCHLinkGestureRecognizer alloc] initWithTarget:self action:@selector(linkAction:)];
     self.linkGestureRecognizer.delegate = self;
     [self addGestureRecognizer:self.linkGestureRecognizer];
+    
+    self.tapAreaInsets = UIEdgeInsetsMake(-5, -5, -5, -5);
+    self.editable = NO;
+    self.selectable = NO;
+}
+
+- (id)debugQuickLookObject
+{
+    if (self.bounds.size.width < 0.0f || self.bounds.size.height < 0.0f) {
+        return nil;
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, self.window.screen.scale);
+
+    // Draw rectangles for all links
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIGraphicsPushContext(context);
+    CGContextSetFillColorWithColor(context, DEBUG_COLOR.CGColor);
+    NSAttributedString *attributedString = self.attributedText;
+    [attributedString enumerateAttribute:CCHLinkAttributeName inRange:NSMakeRange(0, attributedString.length) options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
+        if (value) {
+            [self enumerateViewRectsForRanges:@[[NSValue valueWithRange:range]] usingBlock:^(CGRect rect, NSRange range, BOOL *stop) {
+                CGContextFillRect(context, rect);
+            }];
+        }
+    }];
+
+    UIGraphicsPopContext();
+    
+    // Draw text
+    CGRect rect = self.bounds;
+    rect.origin.x += self.textContainerInset.left + self.textContainer.lineFragmentPadding;
+    rect.origin.y += self.textContainerInset.top;
+    [attributedString drawInRect:rect];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 - (void)setAttributedText:(NSAttributedString *)attributedText
@@ -78,20 +117,24 @@ NSString *const CCHLinkAttributeName = @"CCHLinkAttributeName";
     [super setAttributedText:mutableAttributedText];
 }
 
-//- (void)drawRect:(CGRect)rect
-//{
-//    [super drawRect:rect];
-//    
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    UIGraphicsPushContext(context);
-//
-//    CGContextSetFillColorWithColor(context, DEBUG_COLOR.CGColor);
-//    [self enumerateViewRectsForRanges:self.linkRanges usingBlock:^(CGRect rect, NSRange range, BOOL *stop) {
-//        CGContextFillRect(context, rect);
-//    }];
-//    
-//    UIGraphicsPopContext();
-//}
+- (void)enumerateViewRectsForRanges:(NSArray *)ranges usingBlock:(void (^)(CGRect rect, NSRange range, BOOL *stop))block
+{
+    if (!block) {
+        return;
+    }
+
+    for (NSValue *rangeAsValue in ranges) {
+        NSRange range = rangeAsValue.rangeValue;
+        NSRange glyphRange = [self.layoutManager glyphRangeForCharacterRange:range actualCharacterRange:NULL];
+        [self.layoutManager enumerateEnclosingRectsForGlyphRange:glyphRange withinSelectedGlyphRange:NSMakeRange(NSNotFound, 0) inTextContainer:self.textContainer usingBlock:^(CGRect rect, BOOL *stop) {
+            rect.origin.x += self.textContainerInset.left;
+            rect.origin.y += self.textContainerInset.top;
+            rect = UIEdgeInsetsInsetRect(rect, self.tapAreaInsets);
+            
+            block(rect, range, stop);
+        }];
+    }
+}
 
 - (BOOL)enumerateLinkRangesContainingLocation:(CGPoint)location usingBlock:(void (^)(NSRange range))block
 {
@@ -113,24 +156,6 @@ NSString *const CCHLinkAttributeName = @"CCHLinkAttributeName";
     }];
     
     return found;
-}
-
-- (void)enumerateViewRectsForRanges:(NSArray *)ranges usingBlock:(void (^)(CGRect rect, NSRange range, BOOL *stop))block
-{
-    if (!block) {
-        return;
-    }
-
-    for (NSValue *rangeAsValue in ranges) {
-        NSRange range = rangeAsValue.rangeValue;
-        NSRange glyphRange = [self.layoutManager glyphRangeForCharacterRange:range actualCharacterRange:NULL];
-        [self.layoutManager enumerateEnclosingRectsForGlyphRange:glyphRange withinSelectedGlyphRange:NSMakeRange(NSNotFound, 0) inTextContainer:self.textContainer usingBlock:^(CGRect rect, BOOL *stop) {
-            rect.origin.x += self.textContainerInset.left;
-            rect.origin.y += self.textContainerInset.top;
-            
-            block(rect, range, stop);
-        }];
-    }
 }
 
 - (void)setMinimumPressDuration:(CFTimeInterval)minimumPressDuration

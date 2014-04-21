@@ -4,7 +4,7 @@ link_with 'Stolpersteine Berlin', 'Stolpersteine Bochum'
 
 pod 'CCHMapClusterController'
 pod 'CCHMapsActivity'
-pod 'CCHLinkTextView'
+pod 'CCHLinkTextView', :head
 pod 'AFNetworking', '~> 1.3'
 pod 'YapDatabase'
 pod 'GoogleAnalytics-iOS-SDK'

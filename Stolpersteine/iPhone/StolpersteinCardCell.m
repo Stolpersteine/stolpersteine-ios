@@ -12,6 +12,7 @@
 #import "Localization.h"
 #import "CCHLinkTextView.h"
 #import "CCHLinkTextViewDelegate.h"
+#import "CCHLinkGestureRecognizer.h"
 
 @interface StolpersteinCardCell () <UIActionSheetDelegate>
 
@@ -33,13 +34,11 @@
 
 - (void)setUp
 {
-    self.bodyTextView.editable = NO;
-    self.bodyTextView.selectable = NO;
-    
-//    // Copy & paste
-//    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-//    [self addGestureRecognizer:recognizer];
-//    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(willHideEditMenu:) name:UIMenuControllerWillHideMenuNotification object:nil];
+    // Copy & paste
+    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    [recognizer requireGestureRecognizerToFail:self.bodyTextView.linkGestureRecognizer];
+    [self addGestureRecognizer:recognizer];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(willHideEditMenu:) name:UIMenuControllerWillHideMenuNotification object:nil];
 }
 
 - (void)dealloc

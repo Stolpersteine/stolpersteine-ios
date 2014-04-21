@@ -1,6 +1,6 @@
 PODS:
   - AFNetworking (1.3.4)
-  - CCHLinkTextView (1.0.0)
+  - CCHLinkTextView (HEAD based on 1.0.0)
   - CCHMapClusterController (1.5.0)
   - CCHMapsActivity (0.0.2)
   - CocoaLumberjack (1.6.5.1):
@@ -17,7 +17,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3)
-  - CCHLinkTextView
+  - CCHLinkTextView (HEAD)
   - CCHMapClusterController
   - CCHMapsActivity
   - GoogleAnalytics-iOS-SDK

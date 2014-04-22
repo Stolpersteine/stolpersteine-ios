@@ -76,17 +76,14 @@
 
 + (Stolperstein *)standardStolperstein
 {
-    Stolperstein *stolperstein = [[Stolperstein alloc] initWithID:nil
-                                                             type:StolpersteinTypeStolperstein
-                                                       sourceName:nil
-                                                        sourceURL:nil
-                                                  personFirstName:@"xxxxxxxxxx"
-                                                   personLastName:@"xxxxxxxxxx"
-                                               personBiographyURL:nil
-                                                   locationStreet:@"xxxxxxxxxx xxx"
-                                                  locationZipCode:@"xxxx"
-                                                     locationCity:@"xxxxxxxxxx"
-                                               locationCoordinate:CLLocationCoordinate2DMake(0, 0)];
+    Stolperstein *stolperstein = [Stolperstein stolpersteinWithBuilderBlock:^(StolpersteinComponents *builder) {
+        builder.personFirstName = @"xxxxxxxxxx";
+        builder.personLastName = @"xxxxxxxxxx";
+        builder.locationStreet = @"xxxxxxxxxx xxx";
+        builder.locationZipCode = @"xxxx";
+        builder.locationCity = @"xxxxxxxxxx";
+    }];
+
     return stolperstein;
 }
 

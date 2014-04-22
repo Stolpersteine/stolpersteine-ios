@@ -31,7 +31,7 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "Stolperstein.h"
 #import "StolpersteineSearchData.h"
-#import "StolpersteinNetworkServiceDelegate.h"
+#import "StolpersteineNetworkServiceDelegate.h"
 #import "NSDictionary+StolpersteinParsing.h"
 
 static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1";

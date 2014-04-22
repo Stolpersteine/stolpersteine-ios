@@ -25,7 +25,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "StolpersteinNetworkServiceDelegate.h"
+#import "StolpersteineNetworkServiceDelegate.h"
 
 @class StolpersteineNetworkService;
 @class DiagnosticsService;

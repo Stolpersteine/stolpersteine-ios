@@ -29,12 +29,12 @@
 #import "DiagnosticsService.h"
 #import "ConfigurationService.h"
 #import "MapSearchDisplayController.h"
+#import "MapClusterAnnotationView.h"
 #import "Localization.h"
 
 #import "StolpersteineSynchronizationController.h"
 #import "StolpersteinSynchronizationControllerDelegate.h"
 #import "StolpersteinCardsViewController.h"
-#import "StolpersteinAnnotationView.h"
 #import "StolpersteineNetworkService.h"
 
 #import "CCHMapClusterController.h"
@@ -204,11 +204,11 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     if ([annotation isKindOfClass:CCHMapClusterAnnotation.class]) {
         static NSString *identifier = @"stolpersteinCluster";
         
-        StolpersteinAnnotationView *mapClusterAnnotationView = (StolpersteinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        MapClusterAnnotationView *mapClusterAnnotationView = (MapClusterAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (mapClusterAnnotationView) {
             mapClusterAnnotationView.annotation = annotation;
         } else {
-            mapClusterAnnotationView = [[StolpersteinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            mapClusterAnnotationView = [[MapClusterAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             mapClusterAnnotationView.canShowCallout = YES;
 
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -259,7 +259,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)mapClusterController:(CCHMapClusterController *)mapClusterController willReuseMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
 {
-    StolpersteinAnnotationView *mapClusterAnnotationView = (StolpersteinAnnotationView *)[self.mapClusterController.mapView viewForAnnotation:mapClusterAnnotation];
+    MapClusterAnnotationView *mapClusterAnnotationView = (MapClusterAnnotationView *)[self.mapClusterController.mapView viewForAnnotation:mapClusterAnnotation];
     mapClusterAnnotationView.count = mapClusterAnnotation.annotations.count;
     mapClusterAnnotationView.oneLocation = mapClusterAnnotation.isOneLocation;
 }

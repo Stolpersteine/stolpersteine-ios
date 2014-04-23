@@ -132,12 +132,8 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)updateSearchBarForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    UIImage *backgroundImage;
-    if (UIDeviceOrientationIsLandscape(interfaceOrientation)) {
-        backgroundImage = [UIImage imageNamed:@"SearchBarBackgroundLandscape"];
-    } else {
-        backgroundImage = [UIImage imageNamed:@"SearchBarBackground"];
-    }
+    NSString *imageName = UIDeviceOrientationIsLandscape(interfaceOrientation) ? @"SearchBarBackgroundLandscape" : @"SearchBarBackground";
+    UIImage *backgroundImage = [UIImage imageNamed:imageName];
     [self.searchDisplayController.searchBar setSearchFieldBackgroundImage:backgroundImage forState:UIControlStateNormal];
 }
 

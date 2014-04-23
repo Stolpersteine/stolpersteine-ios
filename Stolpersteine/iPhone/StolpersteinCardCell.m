@@ -137,10 +137,12 @@
 
 - (void)copy:(id)sender
 {
-    Stolperstein *stolperstein = self.stolperstein;
     UIPasteboard *pasteboard = UIPasteboard.generalPasteboard;
-    pasteboard.URL = [Localization newPersonBiographyURLFromStolperstein:self.stolperstein];
-    pasteboard.string = [Localization newPasteboardStringFromStolperstein:stolperstein];
+    NSURL *URL = [Localization newPersonBiographyURLFromStolperstein:self.stolperstein];
+    if (URL) {
+        pasteboard.URL = [Localization newPersonBiographyURLFromStolperstein:self.stolperstein];
+    }
+    pasteboard.string = [Localization newPasteboardStringFromStolperstein:self.stolperstein];
     
     [self setSelected:NO animated:YES];
 }

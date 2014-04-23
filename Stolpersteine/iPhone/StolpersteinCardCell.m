@@ -34,6 +34,8 @@
 
 - (void)setUp
 {
+    self.bodyTextView.textContainer.lineFragmentPadding = 15;
+    
     // Copy & paste
     UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [recognizer requireGestureRecognizerToFail:self.bodyTextView.linkGestureRecognizer];

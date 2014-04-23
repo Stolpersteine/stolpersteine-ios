@@ -101,8 +101,6 @@
 
 - (void)stolpersteinNetworkService:(StolpersteineNetworkService *)stolpersteinNetworkService handleError:(NSError *)error
 {
-    NSLog(@"Network error: %@", error);
-    
     NSString *errorTitle = NSLocalizedString(@"AppDelegate.errorTitle", nil);
     NSString *errorMessage = NSLocalizedString(@"AppDelegate.errorMessage", nil);
     NSString *errorButtonTitle = NSLocalizedString(@"AppDelegate.errorButtonTitle", nil);

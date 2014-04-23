@@ -80,7 +80,7 @@
             [self didFailSynchronization];
         }
         
-        return YES;
+        return (self.stolpersteine.count == 0);
     }];
 }
 

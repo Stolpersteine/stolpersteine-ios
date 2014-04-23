@@ -73,7 +73,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
             self.title = self.searchData.street;
             [self.tableView reloadData];
             
-            return YES;
+            return NO;
         }];
     }
 }

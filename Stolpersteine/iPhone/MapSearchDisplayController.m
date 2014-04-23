@@ -68,7 +68,7 @@
         [self.searchResultsTableView reloadData];
         [self.searchResultsTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
         
-        return YES;
+        return NO;
     }];
 }
 

@@ -52,7 +52,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 @property (weak, nonatomic) IBOutlet MapSearchDisplayController *mapSearchDisplayController;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, assign, getter = isUserLocationMode) BOOL userLocationMode;
+@property (nonatomic, assign) BOOL displayRegionIcon;
 @property (nonatomic, strong) StolpersteineSynchronizationController *stolpersteinSyncController;
 @property (nonatomic, strong) CCHMapClusterController *mapClusterController;
 
@@ -83,7 +83,6 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
     [self.mapSearchDisplayController.searchBar removeFromSuperview];
     self.mapSearchDisplayController.displaysSearchBarInNavigationBar = YES;
     self.mapSearchDisplayController.navigationItem.rightBarButtonItem = self.locationBarButtonItem;
-    [self updateLocationBarButtonItem];
     self.mapSearchDisplayController.searchBar.placeholder = NSLocalizedString(@"MapViewController.searchBarPlaceholder", nil);
     [self updateSearchBarForInterfaceOrientation:self.interfaceOrientation];
     
@@ -139,9 +138,14 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (void)updateLocationBarButtonItem
 {
+    // Force region mode if locations aren't available
+    if (![CLLocationManager locationServicesEnabled] || ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorized)) {
+        self.displayRegionIcon = YES;
+    }
+
     UIImage *image;
     NSString *accessibilityLabel;
-    if (self.userLocationMode) {
+    if (self.displayRegionIcon) {
         image = [UIImage imageNamed:@"IconRegion"];
         accessibilityLabel = NSLocalizedString(@"MapViewController.region", nil);
     } else {
@@ -154,17 +158,16 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 
 - (IBAction)centerMap:(UIBarButtonItem *)sender
 {
-    BOOL userLocationAvailable = (self.mapView.userLocation.location != nil);
+    self.displayRegionIcon = !self.displayRegionIcon;
+    
     NSString *diagnosticsLabel;
-    if (!self.isUserLocationMode && userLocationAvailable) {
-        self.userLocationMode = YES;
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, ZOOM_DISTANCE_USER, ZOOM_DISTANCE_USER);
-        [self.mapView setRegion:region animated:YES];
+    if (self.displayRegionIcon) {
+        if (self.mapView.userLocation.location) {
+            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, ZOOM_DISTANCE_USER, ZOOM_DISTANCE_USER);
+            [self.mapView setRegion:region animated:YES];
+        }
         diagnosticsLabel = @"userLocation";
     } else {
-        if (userLocationAvailable) {
-            self.userLocationMode = NO;
-        }
         MKCoordinateRegion region = [AppDelegate.configurationService coordinateRegionConfigurationForKey:ConfigurationServiceKeyVisibleRegion];
         [self.mapView setRegion:region animated:YES];
         diagnosticsLabel = @"region";
@@ -234,11 +237,12 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 {
     if (status == kCLAuthorizationStatusAuthorized) {
         self.mapView.showsUserLocation = YES;
+        [self.locationManager startUpdatingLocation];
     } else {
         self.mapView.showsUserLocation = NO;
-        self.userLocationMode = YES;
-        [self updateLocationBarButtonItem];
+        [self.locationManager stopUpdatingLocation];
     }
+    [self updateLocationBarButtonItem];
 }
 
 #pragma mark - Map cluster controller

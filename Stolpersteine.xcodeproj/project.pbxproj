@@ -657,7 +657,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy version information into Settings.bundle\nshortVersion=`/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $SRCROOT/$INFOPLIST_FILE`\n#version=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $SRCROOT/$INFOPLIST_FILE`\nversion=$BUILD_NUMBER\necho \"Stolpersteine \"$shortVersion\" (\"$version\")\"\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $shortVersion ($version)\" \"$BUILT_PRODUCTS_DIR/Stolpersteine.app/Settings.bundle/Root.plist\"\n\n# Copy version information into Info.plist\n/usr/libexec/PlistBuddy \"$BUILT_PRODUCTS_DIR/$INFOPLIST_PATH\" -c \"set :CFBundleVersion $BUILD_NUMBER\"";
+			shellScript = "# Copy version information into Settings.bundle\nshortVersion=`/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$SRCROOT/$INFOPLIST_FILE\"`\nversion=$BUILD_NUMBER\necho \"Version \"$shortVersion\" (\"$version\")\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $shortVersion ($version)\" \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Settings.bundle/Root.plist\"\n\n# Copy version information into Info.plist\n/usr/libexec/PlistBuddy \"$BUILT_PRODUCTS_DIR/$INFOPLIST_PATH\" -c \"set :CFBundleVersion $BUILD_NUMBER\"";
 		};
 		6207C290188B33EE000CA2D4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -670,7 +670,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy version information into Settings.bundle\nshortVersion=`/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $SRCROOT/$INFOPLIST_FILE`\n#version=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $SRCROOT/$INFOPLIST_FILE`\nversion=$BUILD_NUMBER\necho \"Stolpersteine \"$shortVersion\" (\"$version\")\"\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $shortVersion ($version)\" \"$BUILT_PRODUCTS_DIR/Stolpersteine.app/Settings.bundle/Root.plist\"\n\n# Copy version information into Info.plist\n/usr/libexec/PlistBuddy \"$BUILT_PRODUCTS_DIR/$INFOPLIST_PATH\" -c \"set :CFBundleVersion $BUILD_NUMBER\"";
+			shellScript = "# Copy version information into Settings.bundle\nshortVersion=`/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$SRCROOT/$INFOPLIST_FILE\"`\nversion=$BUILD_NUMBER\necho \"Version \"$shortVersion\" (\"$version\")\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $shortVersion ($version)\" \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Settings.bundle/Root.plist\"\n\n# Copy version information into Info.plist\n/usr/libexec/PlistBuddy \"$BUILT_PRODUCTS_DIR/$INFOPLIST_PATH\" -c \"set :CFBundleVersion $BUILD_NUMBER\"";
 		};
 		6207C291188B33F8000CA2D4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -683,7 +683,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" == \"Distribution\" ]\n# Increment version number\nthen /usr/bin/perl -pe 's/(BUILD_NUMBER = )(\\d+)/$1.($2+1)/eg' -i $SRCROOT/Stolpersteine/buildnumber_dynamic.xcconfig\nfi";
+			shellScript = "if [ \"$CONFIGURATION\" == \"Distribution\" ]\n# Increment version number\nthen /usr/bin/perl -pe 's/(BUILD_NUMBER = )(\\d+)/$1.($2+1)/eg' -i \"$SRCROOT/$EXECUTABLE_NAME/buildnumber_dynamic.xcconfig\"\nfi";
 		};
 		6E0A553971F8474C9D26AB05 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -38,7 +38,6 @@
 
 @end
 
-
 @implementation AppDelegate
 
 + (StolpersteineNetworkService *)networkService

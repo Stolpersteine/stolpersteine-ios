@@ -184,7 +184,7 @@
 + (NSString *)newSubtitleFromMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
 {
     NSString *subtitle;
-    if ([mapClusterAnnotation isOneLocation]) {
+    if (mapClusterAnnotation.isUniqueLocation) {
         Stolperstein *stolperstein = [mapClusterAnnotation.annotations anyObject];
         subtitle = [Localization newShortAddressFromStolperstein:stolperstein];
     } else {

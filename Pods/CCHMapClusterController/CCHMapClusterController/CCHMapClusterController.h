@@ -38,25 +38,36 @@
 /** Clustered annotations. */
 @property (nonatomic, copy, readonly) NSSet *annotations;
 /** Map view to display clustered annotations. */
-@property (nonatomic, strong, readonly) MKMapView *mapView;
+@property (nonatomic, readonly) MKMapView *mapView;
 
 /** Multiplier to extend visible area that's included for clustering (default: 0.5). */
-@property (nonatomic, assign) double marginFactor;
+@property (nonatomic) double marginFactor;
 /** Cell size in [points] (default: 60). */
-@property (nonatomic, assign) double cellSize;
-/** Displays the grid used for clustering. */
-@property (nonatomic, assign, getter = isDebuggingEnabled) BOOL debuggingEnabled;
+@property (nonatomic) double cellSize;
+
+/** The current zoom level of the visible map region. A zoom level of 0 means that the entire map fits
+ the screen width. The value increases while zooming in. */
+@property (nonatomic, readonly) double zoomLevel;
+/** The maximum zoom level before clustering will be disabled and each annotation on the map will
+ have a unique location (default: `DBL_MAX`). */
+@property (nonatomic) double maxZoomLevelForClustering;
+
+/** The minimum number of unique locations before a cell gets clustered (default: 0). */
+@property (nonatomic) NSUInteger minUniqueLocationsForClustering;
 
 /** Delegate to configure cluster annotations. */
 @property (nonatomic, weak) id<CCHMapClusterControllerDelegate> delegate;
 
-/** Delegate to define strategy for positioning cluster annotations (default: `CCHCenterOfMassMapClusterer`). */
+/** Strategy for positioning cluster annotations (default: `CCHCenterOfMassMapClusterer`). */
 @property (nonatomic, weak) id<CCHMapClusterer> clusterer;
 /** Reuse existing cluster annotations for a cell (default: `YES`). */
-@property (nonatomic, assign) BOOL reuseExistingClusterAnnotations;
+@property (nonatomic) BOOL reuseExistingClusterAnnotations;
 
-/** Delegate to define strategy for animating cluster annotations in and out (default: `CCHFadeInOutMapAnimator`). */
+/** Strategy for animating cluster annotations in and out (default: `CCHFadeInOutMapAnimator`). */
 @property (nonatomic, weak) id<CCHMapAnimator> animator;
+
+/** Displays the grid used for clustering. */
+@property (nonatomic, getter = isDebuggingEnabled) BOOL debuggingEnabled;
 
 /**
  Initializes the cluster controller.

@@ -1,7 +1,7 @@
 PODS:
   - AFNetworking (1.3.4)
   - CCHLinkTextView (1.0.1)
-  - CCHMapClusterController (1.5.0)
+  - CCHMapClusterController (1.6.0)
   - CCHMapsActivity (0.0.2)
   - CocoaLumberjack (1.6.5.1):
     - CocoaLumberjack/Core
@@ -37,7 +37,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
   CCHLinkTextView: eb9a0d2d901a5c1f592c1a8f0446b4249740117d
-  CCHMapClusterController: 6477e5f621fac2f7b1fa99fb438453d5167991d7
+  CCHMapClusterController: b07c400f3f25e08065ea3e1d3022057f4ed289ef
   CCHMapsActivity: ef3e9f2bd8c7461d702bb53155c186dcfa59b651
   CocoaLumberjack: baf4a09a3bcbdfea3363556a90104e026d3504e2
   GoogleAnalytics-iOS-SDK: bb285d8eef15a682f1b82971becd0d22edd0e53b

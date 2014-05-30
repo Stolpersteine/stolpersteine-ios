@@ -26,8 +26,7 @@
 #import "CCHMapClusterAnnotation.h"
 
 #import "CCHMapClusterControllerDelegate.h"
-
-#define fequal(a, b) (fabs((a) - (b)) < __FLT_EPSILON__)
+#import "CCHMapClusterControllerUtils.h"
 
 @implementation CCHMapClusterAnnotation
 
@@ -54,19 +53,14 @@
     return (self.annotations.count > 1);
 }
 
+- (BOOL)isUniqueLocation
+{
+    return CCHMapClusterControllerIsUniqueLocation(self.annotations);
+}
+
 - (BOOL)isOneLocation
 {
-    CLLocationCoordinate2D coordinate = kCLLocationCoordinate2DInvalid;
-    for (id<MKAnnotation> annotation in self.annotations) {
-        if (!CLLocationCoordinate2DIsValid(coordinate) || (fequal(coordinate.latitude, annotation.coordinate.latitude) && fequal(coordinate.longitude, annotation.coordinate.longitude))) {
-            coordinate = annotation.coordinate;
-        } else {
-            coordinate = kCLLocationCoordinate2DInvalid;
-            break;
-        }
-    }
-    
-    return CLLocationCoordinate2DIsValid(coordinate);
+    return [self isUniqueLocation];
 }
 
 - (MKMapRect)mapRect

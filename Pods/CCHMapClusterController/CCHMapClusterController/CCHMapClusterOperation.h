@@ -1,8 +1,8 @@
 //
-//  CCHMapAnimator.h
+//  CCHMapClusterOperation.h
 //  CCHMapClusterController
 //
-//  Copyright (C) 2013 Claus Höfele
+//  Copyright (C) 2014 Claus Höfele
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,30 +24,27 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 @class CCHMapClusterController;
+@class CCHMapClusterAnnotation;
+@class CCHMapTree;
+@protocol CCHMapClusterer;
+@protocol CCHMapAnimator;
+@protocol CCHMapClusterControllerDelegate;
 
-/**
- A custom strategy that defines how annotation views for `CCHClusterAnnotation`s are animated 
- must implement this protocol.
- */
-@protocol CCHMapAnimator <NSObject>
+@interface CCHMapClusterOperation : NSOperation
 
-/**
- Called on the main thread to animate in the given annotation views. At this point, the views' annotations
- have already been added to the map view.
- @param mapClusterController map cluster controller.
- @param annotationViews .
- */
-- (void)mapClusterController:(CCHMapClusterController *)mapClusterController didAddAnnotationViews:(NSArray *)annotationViews;
+@property (nonatomic) CCHMapTree *allAnnotationsMapTree;
+@property (nonatomic) CCHMapTree *visibleAnnotationsMapTree;
+@property (nonatomic) id<CCHMapClusterer> clusterer;
+@property (nonatomic) id<CCHMapAnimator> animator;
+@property (nonatomic, weak) id<CCHMapClusterControllerDelegate> clusterControllerDelegate;
+@property (nonatomic, weak) CCHMapClusterController *clusterController;
 
-/**
- Called on the main thread to animate out the given annotations. The views' annotations will be removed
- when calling the completion handler.
- @param mapClusterController map cluster controller.
- @param annotations annotations to animate (annotations are of type `CCHMapClusterAnnotation`).
- @param completionHandler this completion handler must be called after the animation has finished.
- */
-- (void)mapClusterController:(CCHMapClusterController *)mapClusterController willRemoveAnnotations:(NSArray *)annotations withCompletionHandler:(void (^)())completionHandler;
+- (id)initWithMapView:(MKMapView *)mapView cellSize:(double)cellSize marginFactor:(double)marginFactor reuseExistingClusterAnnotations:(BOOL)reuseExistingClusterAnnotation maxZoomLevelForClustering:(double)maxZoomLevelForClustering minUniqueLocationsForClustering:(NSUInteger)minUniqueLocationsForClustering;
+
++ (double)cellMapSizeForCellSize:(double)cellSize withMapView:(MKMapView *)mapView;
++ (MKMapRect)gridMapRectForMapRect:(MKMapRect)mapRect withCellMapSize:(double)cellMapSize marginFactor:(double)marginFactor;
 
 @end

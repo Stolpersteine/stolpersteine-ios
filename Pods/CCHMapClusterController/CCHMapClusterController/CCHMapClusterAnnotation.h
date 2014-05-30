@@ -41,7 +41,7 @@
 /** The string containing the annotation's subtitle. */
 @property (nonatomic, copy) NSString *subtitle;
 /** The center point of the annotation. */
-@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
+@property (nonatomic) CLLocationCoordinate2D coordinate;
 
 /** Custom titles and subtitles are retrieved via this delegate. */
 @property (nonatomic, weak) id<CCHMapClusterControllerDelegate> delegate;
@@ -51,8 +51,9 @@
 
 /** Returns YES if this cluster contains more than one annotation. */
 - (BOOL)isCluster;
-/** Returns YES if all annotations in this cluster are at the same location. */
-- (BOOL)isOneLocation;
+/** Returns YES if all annotations in this cluster have the same location. */
+- (BOOL)isUniqueLocation;
+- (BOOL)isOneLocation __deprecated;
 
 /** The area that includes all annotations. */
 - (MKMapRect)mapRect;

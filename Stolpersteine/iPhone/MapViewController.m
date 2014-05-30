@@ -216,7 +216,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
         
         CCHMapClusterAnnotation *mapClusterAnnotation = (CCHMapClusterAnnotation *)annotation;
         mapClusterAnnotationView.count = mapClusterAnnotation.annotations.count;
-        mapClusterAnnotationView.oneLocation = mapClusterAnnotation.isOneLocation;
+        mapClusterAnnotationView.oneLocation = mapClusterAnnotation.isUniqueLocation;
         
         annotationView = mapClusterAnnotationView;
     }
@@ -261,7 +261,7 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 {
     MapClusterAnnotationView *mapClusterAnnotationView = (MapClusterAnnotationView *)[self.mapClusterController.mapView viewForAnnotation:mapClusterAnnotation];
     mapClusterAnnotationView.count = mapClusterAnnotation.annotations.count;
-    mapClusterAnnotationView.oneLocation = mapClusterAnnotation.isOneLocation;
+    mapClusterAnnotationView.oneLocation = mapClusterAnnotation.isUniqueLocation;
 }
 
 @end

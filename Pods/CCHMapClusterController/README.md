@@ -7,6 +7,8 @@ CCHMapClusterController
 
 See [Changes](https://github.com/choefele/CCHMapClusterController/blob/master/CHANGES.md) for a high-level overview of recent updates.
 
+Need to talk to a human? [I'm @claushoefele on Twitter](https://twitter.com/claushoefele).
+
 ## Getting started
 
 If you have your project set up with an `MKMapView`, integrating clustering will take 4 lines of code:
@@ -36,9 +38,9 @@ If you have your project set up with an `MKMapView`, integrating clustering will
 
 Don't worry about manually updating the clusters; `CCHMapClusterController` automatically knows when changes have occurred that require the clusters to regroup.
 
-To try out the clustering, experiment with the examples included in this project, or download the app “Stolpersteine in Berlin” [![Download on the App Store](https://linkmaker.itunes.apple.com/htmlResources/assets//images/web/linkmaker/badge_appstore-sm.png)](https://itunes.apple.com/de/app/stolpersteine-in-berlin/id640731757?mt=8&uo=4).
+To try out the clustering, experiment with the example included in this project, or download the app “Stolpersteine in Berlin” [![Download on the App Store](https://linkmaker.itunes.apple.com/htmlResources/assets//images/web/linkmaker/badge_appstore-sm.png)](https://itunes.apple.com/de/app/stolpersteine-in-berlin/id640731757?mt=8&uo=4).
 
-## Developer's guide
+## Usage
 
 - [Installation](#installation)
 - [Performance](#performance)
@@ -46,8 +48,9 @@ To try out the clustering, experiment with the examples included in this project
 - [Custom annotation views](#custom-annotation-views)
 - [Custom titles and subtitles for callouts](#custom-titles-and-subtitles-for-callouts)
 - [Positioning cluster annotations](#positioning-cluster-annotations)
-- [Animations](#animations)
 - [Cluster grouping](#cluster-grouping)
+- [Dynamically disabling clustering](#dynamically-disabling-clustering)
+- [Animations](#animations)
 - [Code recipes](#code-recipes)
  - [Finding a clustered annotation](#finding-a-clustered-annotation)
  - [Centering the map without changing the zoom level](#centering-the-map-without-changing-the-zoom-level)
@@ -78,7 +81,7 @@ The quad tree implementation used to gather annotations for a cell is based on [
 
 Other factors are the density of the clustered annotations (annotations spread over a large area cluster faster) and the way annotation views are implemented (if possible, use images instead of `drawRect:`).
 
-The examples in this project contain two data sets for testing: 5000+ annotations in a small area around Berlin and 80000+ annotations spread over the entire US. Both data sets perform fine on an iPhone 4S.
+The example in this project contains two data sets for testing: 5000+ annotations in a small area around Berlin and 80000+ annotations spread over the entire US. Both data sets perform fine on an iPhone 4S.
 
 ### Cell size and margin factor
 
@@ -90,7 +93,9 @@ To debug these settings, set the `debugEnabled` property to `YES`. This will dis
 
 ### Custom annotation views
 
-Cluster annotations are of type `CCHMapClusterAnnotation`. Customizing the look of clustered annotations is possible via the standard `mapView:viewForAnnotation:` method that's part of `MKMapViewDelegate`. In addition, the delegate method `mapClusterController:willReuseMapClusterAnnotation:` is called when a cluster annotation is reused for a cell (see property `reuseExistingClusterAnnotations` below).
+Cluster annotations are of type `CCHMapClusterAnnotation`. Apart from implementing the `MKAnnotation` protocol, this class' property `annotations` exposes an array of annotations contained in the cluster. `CCHMapClusterAnnotation` also has two properties that can help you categorize the cluster annotation: `isCluster` returns `YES` if the cluster annotation has more than one annotation and `isUniqueLocation` if all annotations in this cluster have the same location.
+
+Customizing the look of cluster annotations is possible via the standard `mapView:viewForAnnotation:` method that's part of `MKMapViewDelegate`.
 
 ```Objective-C
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -104,7 +109,13 @@ Cluster annotations are of type `CCHMapClusterAnnotation`. Customizing the look 
     
     return annotationView;
 }
+```
 
+In addition, the delegate method `mapClusterController:willReuseMapClusterAnnotation:` is called when a cluster annotation is reused for a cell. The reused cluster annotation will have the same location as before, but will contain different annotations. This avoids annotations moving around while adding more data (see the property `reuseExistingClusterAnnotations` below on how to disable this behavior). 
+
+Make sure that you implement both `mapView:viewForAnnotation:` and `mapClusterController:willReuseMapClusterAnnotation:` to always have the annotation view in a consistent state.
+
+```Objective-C
 - (void)mapClusterController:(CCHMapClusterController *)mapClusterController willReuseMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
 {
     ClusterAnnotationView *clusterAnnotationView = (ClusterAnnotationView *)[self.mapView viewForAnnotation:mapClusterAnnotation];
@@ -150,10 +161,6 @@ Instances of these classes can be assigned to `CCHMapClusterController`'s proper
 
 In addition, `CCHMapClusterController` by default reuses cluster annotations for a cell. This is beneficial for incrementally adding more annotations to the clustering (e.g. when downloading batches of data) because you want to avoid the cluster annotation jumping around during updates. Set `reuseExistingClusterAnnotations` to `NO` if you don't want this behavior.
 
-### Animations
-
-By default, annotation views for cluster annotations receive an animation that fades the view in when added and out when removed (`CCHFadeInOutAnimator`). You can provide your own animation code by implementing the protocol `CCHMapAnimator` and changing `CCHMapClusterController`'s property `animator`.
-
 ### Cluster grouping
 
 To have independent groups of clusters, more than one `CCHMapClusterController` can work on the same `MKMapView` instance. Each `CCHMapClusterController` can have its own settings.
@@ -169,6 +176,19 @@ self.mapClusterControllerBlue = [[CCHMapClusterController alloc] initWithMapView
 self.mapClusterControllerBlue.cellSize = ...;
 self.mapClusterControllerBlue.marginFactor = ...;
 ```
+
+### Dynamically disabling clustering
+
+Sometimes it's helpful to disable clustering based on the current map data. This allows you to show unclustered annotations if needed. There are two properties for this purpose:
+
+- `maxZoomLevelForClustering`: controls clustering for the entire map based on how far the map has been zoomed in. To disable clustering, set the `maxZoomLevelForClustering` property to the zoom level where you want clustering to stop. A zoom level of 0 means that the entire map fits the screen width and the value increases when zooming in. You can retrieve the current zoom level from `CCHMapClusterController`'s property `zoomLevel`. By default, `maxZoomLevelForClustering` is set to `DBL_MAX`, which means clustering is never disabled.
+- `minUniqueLocationsForClustering`: controls clustering for a cell based on the number of unique locations in a cell. Clustering is disabled if the number of unique locations in a cell is below this value. By default, `minUniqueLocationsForClustering` is set to 0, which means clustering is never disabled.
+
+The example in this project contains settings to experiment with these properties.
+
+### Animations
+
+By default, annotation views for cluster annotations receive an animation that fades the view in when added and out when removed (`CCHFadeInOutAnimator`). You can provide your own animation code by implementing the protocol `CCHMapAnimator` and changing `CCHMapClusterController`'s property `animator`.
 
 ### Code recipes
 
@@ -226,6 +246,8 @@ Instead, `CCHMapClusterAnnotation` offers the method `mapRect` that manually cal
 }
 ```
 
+Use `CCHMapClusterController`'s `maxZoomLevelForClustering` property if you want to guarantee that each cluster annotation on the map will have one unique location when being zoomed in.
+
 #### Showing callout accessory views for unclustered annotations only
 
 This can be achieved by setting up the accessory views and then controlling their display status via the `canShowCallout` property.
@@ -240,14 +262,14 @@ This can be achieved by setting up the accessory views and then controlling thei
         annotationView.rightCalloutAccessoryView = ...
 
         CCHMapClusterAnnotation *clusterAnnotation = (CCHMapClusterAnnotation *)annotation;
-        annotationView.canShowCallout = clusterAnnotation.isOneLocation;
+        annotationView.canShowCallout = clusterAnnotation.isUniqueLocation;
     }
 }
 
 - (void)mapClusterController:(CCHMapClusterController *)mapClusterController willReuseMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
 {
     ClusterAnnotationView *clusterAnnotationView = (ClusterAnnotationView *)[self.mapClusterController.mapView viewForAnnotation:mapClusterAnnotation];
-    clusterAnnotationView.canShowCallout = clusterAnnotation.isOneLocation;
+    clusterAnnotationView.canShowCallout = clusterAnnotation.isUniqueLocation;
 }
 ```
 

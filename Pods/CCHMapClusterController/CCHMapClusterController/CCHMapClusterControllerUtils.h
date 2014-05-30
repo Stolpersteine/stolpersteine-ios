@@ -39,6 +39,9 @@ double CCHMapClusterControllerMapLengthForLength(MKMapView *mapView, NSView *vie
 double CCHMapClusterControllerAlignMapLengthToWorldWidth(double mapLength);
 BOOL CCHMapClusterControllerCoordinateEqualToCoordinate(CLLocationCoordinate2D coordinate0, CLLocationCoordinate2D coordinate1);
 CCHMapClusterAnnotation *CCHMapClusterControllerClusterAnnotationForAnnotation(MKMapView *mapView, id<MKAnnotation> annotation, MKMapRect mapRect);
-void CCHMapClusterControllerEnumerateCells(MKMapRect mapRect, double cellSize, void (^block)(MKMapRect cellRect));
+void CCHMapClusterControllerEnumerateCells(MKMapRect mapRect, double cellSize, void (^block)(MKMapRect cellMapRect));
 MKMapRect CCHMapClusterControllerMapRectForCoordinateRegion(MKCoordinateRegion coordinateRegion);
 NSSet *CCHMapClusterControllerClusterAnnotationsForAnnotations(NSArray *annotations, CCHMapClusterController *mapClusterController);
+double CCHMapClusterControllerZoomLevelForRegion(CLLocationDegrees longitudeCenter, CLLocationDegrees longitudeDelta, CGFloat width);
+NSArray *CCHMapClusterControllerAnnotationSetsByUniqueLocations(NSSet *annotations, NSUInteger maxUniqueLocations);
+BOOL CCHMapClusterControllerIsUniqueLocation(NSSet *annotations);

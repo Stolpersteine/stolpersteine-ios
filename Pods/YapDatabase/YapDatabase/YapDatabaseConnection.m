@@ -124,7 +124,7 @@
 		
 		extensions = [[NSMutableDictionary alloc] init];
 		
-		YapDatabaseDefaults *defaults = [database defaults];
+		YapDatabaseConnectionDefaults *defaults = [database connectionDefaults];
 		
 		NSUInteger keyCacheLimit = MIN_KEY_CACHE_LIMIT;
 		
@@ -211,6 +211,11 @@
 				// And in all my testing, I've only seen the busy_handler called once per db.
 				
 				sqlite3_busy_timeout(db, 50); // milliseconds
+                
+#ifdef SQLITE_HAS_CODEC
+                // Configure SQLCipher encryption for the new database connection.
+                [database configureEncryptionForDatabase:db];
+#endif
 			}
 		}
 		

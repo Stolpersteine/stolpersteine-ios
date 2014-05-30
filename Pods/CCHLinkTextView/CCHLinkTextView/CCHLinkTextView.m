@@ -35,8 +35,8 @@ NSString *const CCHLinkAttributeName = @"CCHLinkAttributeName";
 
 @interface CCHLinkTextView () <UIGestureRecognizerDelegate>
 
-@property (nonatomic, assign) CGPoint touchDownLocation;
-@property (nonatomic, strong) CCHLinkGestureRecognizer *linkGestureRecognizer;
+@property (nonatomic) CGPoint touchDownLocation;
+@property (nonatomic) CCHLinkGestureRecognizer *linkGestureRecognizer;
 
 @end
 
@@ -107,6 +107,18 @@ NSString *const CCHLinkAttributeName = @"CCHLinkAttributeName";
     UIGraphicsEndImageContext();
     
     return image;
+}
+
+- (void)setLinkTextAttributes:(NSDictionary *)linkTextAttributes
+{
+    [super setLinkTextAttributes:linkTextAttributes];
+    [self setAttributedText:self.attributedText];
+}
+
+- (void)setLinkTextTouchAttributes:(NSDictionary *)linkTextTouchAttributes
+{
+    _linkTextTouchAttributes = linkTextTouchAttributes;
+    [self setAttributedText:self.attributedText];
 }
 
 - (void)setAttributedText:(NSAttributedString *)attributedText
@@ -224,8 +236,11 @@ NSString *const CCHLinkAttributeName = @"CCHLinkAttributeName";
 {
     [self enumerateLinkRangesContainingLocation:location usingBlock:^(NSRange range) {
         NSMutableAttributedString *attributedText = [self.attributedText mutableCopy];
+        for (NSString *attribute in self.linkTextAttributes) {
+            [attributedText removeAttribute:attribute range:range];
+        }
         [attributedText addAttributes:self.linkTextTouchAttributes range:range];
-        self.attributedText = attributedText;
+        [super setAttributedText:attributedText];
     }];
 }
 
@@ -237,7 +252,7 @@ NSString *const CCHLinkAttributeName = @"CCHLinkAttributeName";
             [attributedText removeAttribute:attribute range:range];
         }
         [attributedText addAttributes:self.linkTextAttributes range:range];
-        self.attributedText = attributedText;
+        [super setAttributedText:attributedText];
     }];
 }
 

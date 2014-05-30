@@ -16,7 +16,7 @@
 #define COCOAPODS_POD_AVAILABLE_CCHLinkTextView
 #define COCOAPODS_VERSION_MAJOR_CCHLinkTextView 1
 #define COCOAPODS_VERSION_MINOR_CCHLinkTextView 0
-#define COCOAPODS_VERSION_PATCH_CCHLinkTextView 0
+#define COCOAPODS_VERSION_PATCH_CCHLinkTextView 1
 
 // CCHMapClusterController
 #define COCOAPODS_POD_AVAILABLE_CCHMapClusterController
@@ -55,7 +55,7 @@
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_GoogleAnalytics_iOS_SDK 3
 #define COCOAPODS_VERSION_MINOR_GoogleAnalytics_iOS_SDK 0
-#define COCOAPODS_VERSION_PATCH_GoogleAnalytics_iOS_SDK 6
+#define COCOAPODS_VERSION_PATCH_GoogleAnalytics_iOS_SDK 7
 
 // TUSafariActivity
 #define COCOAPODS_POD_AVAILABLE_TUSafariActivity
@@ -67,5 +67,17 @@
 #define COCOAPODS_POD_AVAILABLE_YapDatabase
 #define COCOAPODS_VERSION_MAJOR_YapDatabase 2
 #define COCOAPODS_VERSION_MINOR_YapDatabase 4
-#define COCOAPODS_VERSION_PATCH_YapDatabase 1
+#define COCOAPODS_VERSION_PATCH_YapDatabase 2
+
+// YapDatabase/common
+#define COCOAPODS_POD_AVAILABLE_YapDatabase_common
+#define COCOAPODS_VERSION_MAJOR_YapDatabase_common 2
+#define COCOAPODS_VERSION_MINOR_YapDatabase_common 4
+#define COCOAPODS_VERSION_PATCH_YapDatabase_common 2
+
+// YapDatabase/standard
+#define COCOAPODS_POD_AVAILABLE_YapDatabase_standard
+#define COCOAPODS_VERSION_MAJOR_YapDatabase_standard 2
+#define COCOAPODS_VERSION_MINOR_YapDatabase_standard 4
+#define COCOAPODS_VERSION_PATCH_YapDatabase_standard 2
 

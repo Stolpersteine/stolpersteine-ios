@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 
 #import "YapDatabase.h"
-#import "YapDatabaseDefaults.h"
 #import "YapDatabaseConnection.h"
+#import "YapDatabaseConnectionDefaults.h"
 #import "YapDatabaseTransaction.h"
 #import "YapDatabaseExtension.h"
 
@@ -33,13 +33,15 @@ extern NSString *const YapDatabaseNotificationKey;
 @interface YapDatabase () {
 @private
 	
+	YapDatabaseOptions *options;
+	
 	NSMutableArray *changesets;
 	uint64_t snapshot;
 	
 	dispatch_queue_t internalQueue;
 	dispatch_queue_t checkpointQueue;
 	
-	YapDatabaseDefaults *defaults;
+	YapDatabaseConnectionDefaults *connectionDefaults;
 	
 	NSDictionary *registeredExtensions;
 	NSDictionary *registeredTables;
@@ -89,7 +91,7 @@ extern NSString *const YapDatabaseNotificationKey;
 /**
  * New connections inherit their default values from this structure.
 **/
-- (YapDatabaseDefaults *)defaults;
+- (YapDatabaseConnectionDefaults *)connectionDefaults;
 
 /**
  * Called from YapDatabaseConnection's dealloc method to remove connection's state from connectionStates array.
@@ -153,6 +155,13 @@ extern NSString *const YapDatabaseNotificationKey;
  * each invocation is able to checkpoint one or more commits.
 **/
 - (void)asyncCheckpoint:(uint64_t)maxCheckpointableSnapshot;
+
+#ifdef SQLITE_HAS_CODEC
+/**
+ * Configures database encryption via SQLCipher.
+ **/
+- (BOOL)configureEncryptionForDatabase:(sqlite3*)sqlite;
+#endif
 
 @end
 
@@ -291,21 +300,17 @@ extern NSString *const YapDatabaseNotificationKey;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface YapDatabaseReadTransaction () {
-@private
-	
+@protected
 	NSMutableDictionary *extensions;
 	NSMutableArray *orderedExtensions;
 	BOOL extensionsReady;
-
-@protected
+	
 	BOOL isMutated; // Used for "mutation during enumeration" protection
 	
 @public
 	__unsafe_unretained YapDatabaseConnection *connection;
 	
 	BOOL isReadWriteTransaction;
-	BOOL rollback;
-	id customObjectForNotification;
 }
 
 - (id)initWithConnection:(YapDatabaseConnection *)connection isReadWriteTransaction:(BOOL)flag;
@@ -319,10 +324,6 @@ extern NSString *const YapDatabaseNotificationKey;
 - (NSArray *)orderedExtensions;
 
 - (YapMemoryTableTransaction *)memoryTableTransaction:(NSString *)tableName;
-
-- (void)addRegisteredExtensionTransaction:(YapDatabaseExtensionTransaction *)extTransaction;
-- (void)removeRegisteredExtensionTransaction:(NSString *)extName;
-
 
 - (BOOL)getBoolValue:(BOOL *)valuePtr forKey:(NSString *)key extension:(NSString *)extensionName;
 - (void)setBoolValue:(BOOL)value forKey:(NSString *)key extension:(NSString *)extensionName;
@@ -438,7 +439,11 @@ extern NSString *const YapDatabaseNotificationKey;
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface YapDatabaseReadWriteTransaction ()
+@interface YapDatabaseReadWriteTransaction () {
+@public
+	BOOL rollback;
+	id customObjectForNotification;
+}
 
 - (void)replaceObject:(id)object forKey:(NSString *)key inCollection:(NSString *)collection withRowid:(int64_t)rowid;
 - (void)replaceMetadata:(id)metadata
@@ -447,5 +452,8 @@ extern NSString *const YapDatabaseNotificationKey;
               withRowid:(int64_t)rowid;
 
 - (void)removeObjectForKey:(NSString *)key inCollection:(NSString *)collection withRowid:(int64_t)rowid;
+
+- (void)addRegisteredExtensionTransaction:(YapDatabaseExtensionTransaction *)extTransaction;
+- (void)removeRegisteredExtensionTransaction:(NSString *)extName;
 
 @end

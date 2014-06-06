@@ -34,7 +34,7 @@
 
 @implementation ConfigurationService
 
-- (id)initWithConfigurationsFile:(NSString *)file
+- (instancetype)initWithConfigurationsFile:(NSString *)file
 {
     self = [super init];
     if (self) {

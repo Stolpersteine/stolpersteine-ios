@@ -45,7 +45,7 @@ static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1"
 
 @implementation StolpersteineNetworkService
 
-- (id)initWithClientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword
+- (instancetype)initWithClientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword
 {
     self = [super init];
     if (self) {

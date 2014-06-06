@@ -51,20 +51,20 @@ typedef NS_ENUM(NSInteger, StolpersteinType) {
 @property (nonatomic, readonly, copy) NSString *subtitle;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
-- (id)initWithID:(NSString *)ID
-            type:(StolpersteinType)type
-      sourceName:(NSString *)sourceName
-       sourceURL:(NSURL *)sourceURL
- personFirstName:(NSString *)personFirstName
-  personLastName:(NSString *)personLastName
-personBiographyURL:(NSURL *)personBiographyURL
-  locationStreet:(NSString *)locationStreet
- locationZipCode:(NSString *)locationZipCode
-    locationCity:(NSString *)locationCity
-locationCoordinate:(CLLocationCoordinate2D)locationCoordinate;
+- (instancetype)initWithID:(NSString *)ID
+                      type:(StolpersteinType)type
+                sourceName:(NSString *)sourceName
+                 sourceURL:(NSURL *)sourceURL
+           personFirstName:(NSString *)personFirstName
+            personLastName:(NSString *)personLastName
+        personBiographyURL:(NSURL *)personBiographyURL
+            locationStreet:(NSString *)locationStreet
+           locationZipCode:(NSString *)locationZipCode
+              locationCity:(NSString *)locationCity
+        locationCoordinate:(CLLocationCoordinate2D)locationCoordinate;
 + (instancetype)stolpersteinWithBuilderBlock:(void(^)(StolpersteinComponents *builder))builderBlock;
 
-- (id)initWithCoder:(NSCoder *)decoder;
+- (instancetype)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)coder;
 
 - (BOOL)isEqualToStolperstein:(Stolperstein *)stolperstein;

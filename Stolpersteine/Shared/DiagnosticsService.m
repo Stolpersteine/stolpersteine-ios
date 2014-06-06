@@ -53,7 +53,7 @@
 
 @implementation DiagnosticsService
 
-- (id)initWithGoogleAnalyticsID:(NSString *)googleAnayticsID
+- (instancetype)initWithGoogleAnalyticsID:(NSString *)googleAnayticsID
 {
     self = [super init];
     if (self) {

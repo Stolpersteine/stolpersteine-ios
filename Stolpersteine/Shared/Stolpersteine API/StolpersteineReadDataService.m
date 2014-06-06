@@ -46,12 +46,12 @@ static NSString * const AllItemsViewExtensionVersion = @"1";
 
 @implementation StolpersteineReadDataService
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithName:@"database.sqlite"];
 }
 
-- (id)initWithName:(NSString *)name
+- (instancetype)initWithName:(NSString *)name
 {
     self = [super init];
     if (self) {

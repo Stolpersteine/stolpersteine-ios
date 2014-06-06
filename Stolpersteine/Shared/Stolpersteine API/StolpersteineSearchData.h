@@ -31,6 +31,6 @@
 @property (nonatomic, readonly, copy) NSString *street;
 @property (nonatomic, readonly, copy) NSString *city;
 
-- (id)initWithKeywordsString:(NSString *)keywordsString street:(NSString *)street city:(NSString *)city;
+- (instancetype)initWithKeywordsString:(NSString *)keywordsString street:(NSString *)street city:(NSString *)city;
 
 @end

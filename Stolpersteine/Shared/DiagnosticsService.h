@@ -34,7 +34,7 @@ typedef enum {
 
 @interface DiagnosticsService : NSObject
 
-- (id)initWithGoogleAnalyticsID:(NSString *)googleAnayticsID;
+- (instancetype)initWithGoogleAnalyticsID:(NSString *)googleAnayticsID;
 
 - (void)trackViewWithClass:(Class)class;
 - (void)trackEvent:(DiagnosticsServiceEvent)event withClass:(Class)class;

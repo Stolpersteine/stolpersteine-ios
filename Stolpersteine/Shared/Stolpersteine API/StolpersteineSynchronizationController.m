@@ -41,7 +41,7 @@
 
 @implementation StolpersteineSynchronizationController
 
-- (id)initWithNetworkService:(StolpersteineNetworkService *)networkService
+- (instancetype)initWithNetworkService:(StolpersteineNetworkService *)networkService
 {
     self = [super init];
     if (self) {

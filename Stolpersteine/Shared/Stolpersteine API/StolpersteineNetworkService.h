@@ -34,7 +34,7 @@
 @property (nonatomic, assign) BOOL allowsInvalidSSLCertificate;
 @property (nonatomic, strong) StolpersteineSearchData *defaultSearchData;
 
-- (id)initWithClientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword;
+- (instancetype)initWithClientUser:(NSString *)clientUser clientPassword:(NSString *)clientPassword;
 
 - (NSOperation *)retrieveStolpersteineWithSearchData:(StolpersteineSearchData *)searchData range:(NSRange)range completionHandler:(BOOL (^)(NSArray *stolpersteine, NSError *error))completionHandler;
 

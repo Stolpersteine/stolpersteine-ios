@@ -33,7 +33,7 @@
 @property (nonatomic, strong, readonly) StolpersteineNetworkService *networkService;
 @property (nonatomic, weak) id<StolpersteineSynchronizationControllerDelegate> delegate;
 
-- (id)initWithNetworkService:(StolpersteineNetworkService *)networkService;
+- (instancetype)initWithNetworkService:(StolpersteineNetworkService *)networkService;
 - (void)synchronize;
 
 @end

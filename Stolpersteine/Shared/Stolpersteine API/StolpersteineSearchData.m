@@ -27,7 +27,7 @@
 
 @implementation StolpersteineSearchData
 
-- (id)initWithKeywordsString:(NSString *)keywordsString street:(NSString *)street city:(NSString *)city
+- (instancetype)initWithKeywordsString:(NSString *)keywordsString street:(NSString *)street city:(NSString *)city
 {
     self = [super init];
     if (self) {
@@ -39,7 +39,7 @@
     return self;
 }
 
-- (id)copyWithZone:(NSZone *)zone
+- (instancetype)copyWithZone:(NSZone *)zone
 {
     return self;    // immutable
 }

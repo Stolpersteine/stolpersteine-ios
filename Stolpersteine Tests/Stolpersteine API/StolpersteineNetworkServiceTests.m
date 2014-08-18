@@ -84,8 +84,6 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
             XCTAssertTrue([stolperstein.personFirstName isKindOfClass:NSString.class], @"Wrong type for first name");
             XCTAssertNotNil(stolperstein.personLastName, @"Wrong last name");
             XCTAssertTrue([stolperstein.personLastName isKindOfClass:NSString.class], @"Wrong type for last name");
-            XCTAssertNotNil(stolperstein.personBiographyURL, @"Wrong biography url");
-            XCTAssertTrue([stolperstein.personBiographyURL isKindOfClass:NSURL.class], @"Wrong type for biography URL");
             XCTAssertNotNil(stolperstein.locationStreet, @"Wrong street");
             XCTAssertTrue([stolperstein.locationStreet isKindOfClass:NSString.class], @"Wrong type for street");
             XCTAssertNotNil(stolperstein.locationCity, @"Wrong city");
@@ -94,6 +92,9 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
             XCTAssertTrue(stolperstein.locationCoordinate.longitude != 0, @"Wrong coordinates");
             
             // Optional fields
+            if (stolperstein.personBiographyURL) {
+                XCTAssertTrue([stolperstein.personBiographyURL isKindOfClass:NSURL.class], @"Wrong type for biography URL");
+            }
             if (stolperstein.locationZipCode) {
                 XCTAssertTrue([stolperstein.locationZipCode isKindOfClass:NSString.class], @"Wrong type for zip code");
             }

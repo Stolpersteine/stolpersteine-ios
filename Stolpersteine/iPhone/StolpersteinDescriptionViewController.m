@@ -40,10 +40,10 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *activityBarButtonItem;
 
-@property (nonatomic, strong) UIBarButtonItem *activityIndicatorBarButtonItem;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
-@property (nonatomic, assign, getter = isNetworkActivityIndicatorVisible) BOOL networkActivityIndicatorVisible;
-@property (nonatomic, strong) NSString *webViewTitle;
+@property (nonatomic) UIBarButtonItem *activityIndicatorBarButtonItem;
+@property (nonatomic) UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, getter = isNetworkActivityIndicatorVisible) BOOL networkActivityIndicatorVisible;
+@property (nonatomic, copy) NSString *webViewTitle;
 
 @end
 

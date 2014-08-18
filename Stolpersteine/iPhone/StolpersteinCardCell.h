@@ -14,7 +14,7 @@
 @interface StolpersteinCardCell : UITableViewCell
 
 @property (nonatomic, weak) id<CCHLinkTextViewDelegate> linkDelegate;
-@property (nonatomic, readonly) Stolperstein *stolperstein;
+@property (nonatomic, copy, readonly) Stolperstein *stolperstein;
 
 - (void)updateWithStolperstein:(Stolperstein *)stolperstein linksDisabled:(BOOL)linksDisabled index:(NSUInteger)index;
 - (BOOL)canSelectCurrentStolperstein;

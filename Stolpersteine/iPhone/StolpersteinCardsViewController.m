@@ -43,7 +43,7 @@ static NSString * const CELL_IDENTIFIER = @"cell";
 @interface StolpersteinCardsViewController () <CCHLinkTextViewDelegate>
 
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
-@property (nonatomic, strong) StolpersteinCardCell *measuringCell;
+@property (nonatomic) StolpersteinCardCell *measuringCell;
 
 @end
 

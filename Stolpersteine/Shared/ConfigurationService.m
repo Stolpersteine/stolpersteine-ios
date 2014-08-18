@@ -27,8 +27,8 @@
 
 @interface ConfigurationService()
 
-@property (nonatomic, strong) NSDictionary *configurations;
-@property (nonatomic, strong) NSDictionary *enumToStringMapping;
+@property (nonatomic, copy) NSDictionary *configurations;
+@property (nonatomic, copy) NSDictionary *enumToStringMapping;
 
 @end
 

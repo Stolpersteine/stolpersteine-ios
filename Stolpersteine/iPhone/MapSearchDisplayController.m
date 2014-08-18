@@ -40,7 +40,7 @@
 
 @interface MapSearchDisplayController()
 
-@property (nonatomic, strong) NSArray *searchedStolpersteine;
+@property (nonatomic, copy) NSArray *searchedStolpersteine;
 @property (nonatomic, weak) NSOperation *searchStolpersteineOperation;
 @property (nonatomic, weak) UIBarButtonItem *originalBarButtonItem;
 

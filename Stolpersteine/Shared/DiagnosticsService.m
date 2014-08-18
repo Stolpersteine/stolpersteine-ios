@@ -44,10 +44,10 @@
 
 @interface DiagnosticsService()
 
-@property (nonatomic, strong) GAI *gai;
-@property (nonatomic, strong) id<GAITracker> gaiTracker;
-@property (nonatomic, strong) NSDictionary *classToViewNameMapping;
-@property (nonatomic, strong) NSDictionary *eventToActionNameMapping;
+@property (nonatomic) GAI *gai;
+@property (nonatomic) id<GAITracker> gaiTracker;
+@property (nonatomic, copy) NSDictionary *classToViewNameMapping;
+@property (nonatomic, copy) NSDictionary *eventToActionNameMapping;
 
 @end
 

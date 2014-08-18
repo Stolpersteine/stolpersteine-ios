@@ -27,7 +27,7 @@
 
 @interface MapClusterAnnotationView : MKAnnotationView
 
-@property (assign, nonatomic) NSUInteger count;
-@property (assign, nonatomic, getter = isOneLocation) BOOL oneLocation;
+@property (nonatomic) NSUInteger count;
+@property (nonatomic, getter = isOneLocation) BOOL oneLocation;
 
 @end

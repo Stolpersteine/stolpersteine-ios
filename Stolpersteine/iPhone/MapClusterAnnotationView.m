@@ -26,9 +26,10 @@
 #import "MapClusterAnnotationView.h"
 
 #define FOREGROUND_COLOR [UIColor colorWithWhite:(244.0 / 255.0) alpha:1.0]
+
 @interface MapClusterAnnotationView ()
 
-@property (strong, nonatomic) UILabel *countLabel;
+@property (nonatomic) UILabel *countLabel;
 
 @end
 

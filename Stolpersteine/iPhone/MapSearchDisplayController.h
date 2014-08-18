@@ -30,8 +30,8 @@
 
 @interface MapSearchDisplayController : UISearchDisplayController <UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) StolpersteineNetworkService *networkService;
-@property (nonatomic, strong) CCHMapClusterController *mapClusterController;
-@property (nonatomic, assign) double zoomDistance;
+@property (nonatomic) StolpersteineNetworkService *networkService;
+@property (nonatomic) CCHMapClusterController *mapClusterController;
+@property (nonatomic) double zoomDistance;
 
 @end

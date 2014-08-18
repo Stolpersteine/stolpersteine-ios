@@ -12,8 +12,8 @@
 
 @interface ConfigurationServiceTests : XCTestCase
 
-@property (nonatomic, strong) ConfigurationService *configurationService;
-@property (nonatomic, strong) ConfigurationService *configurationServiceEmpty;
+@property (nonatomic) ConfigurationService *configurationService;
+@property (nonatomic) ConfigurationService *configurationServiceEmpty;
 
 @end
 

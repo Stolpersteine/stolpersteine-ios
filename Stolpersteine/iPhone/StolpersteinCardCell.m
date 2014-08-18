@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet CCHLinkTextView *bodyTextView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightConstraint;
 
-@property (nonatomic, strong) Stolperstein *stolperstein;
+@property (nonatomic, copy) Stolperstein *stolperstein;
 
 @end
 

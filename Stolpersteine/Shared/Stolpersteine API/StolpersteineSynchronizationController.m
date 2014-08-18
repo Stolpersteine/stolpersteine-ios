@@ -32,10 +32,10 @@
 
 @interface StolpersteineSynchronizationController()
 
-@property (nonatomic, strong) StolpersteineNetworkService *networkService;
+@property (nonatomic) StolpersteineNetworkService *networkService;
 @property (nonatomic, weak) NSOperation *retrieveStolpersteineOperation;
-@property (nonatomic, assign, getter = isSynchronizing) BOOL synchronizing;
-@property (nonatomic, strong) NSMutableSet *stolpersteine;
+@property (nonatomic, getter = isSynchronizing) BOOL synchronizing;
+@property (nonatomic) NSMutableSet *stolpersteine;
 
 @end
 

@@ -32,9 +32,9 @@
 
 @interface AppDelegate()
 
-@property (strong, nonatomic) StolpersteineNetworkService *networkService;
-@property (strong, nonatomic) DiagnosticsService *diagnosticsService;
-@property (strong, nonatomic) ConfigurationService *configurationService;
+@property (nonatomic) StolpersteineNetworkService *networkService;
+@property (nonatomic) DiagnosticsService *diagnosticsService;
+@property (nonatomic) ConfigurationService *configurationService;
 
 @end
 

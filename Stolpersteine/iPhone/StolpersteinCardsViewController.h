@@ -29,7 +29,7 @@
 
 @interface StolpersteinCardsViewController : UITableViewController
 
-@property (strong, nonatomic) NSArray *stolpersteine;
-@property (strong, nonatomic) StolpersteineSearchData *searchData;
+@property (nonatomic, copy) NSArray *stolpersteine;
+@property (nonatomic) StolpersteineSearchData *searchData;
 
 @end

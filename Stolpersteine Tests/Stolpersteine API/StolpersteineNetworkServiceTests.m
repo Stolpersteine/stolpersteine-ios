@@ -33,8 +33,8 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 
 @interface StolpersteineNetworkServiceTests : XCTestCase
 
-@property (nonatomic, strong) StolpersteineNetworkService *networkService;
-@property (nonatomic, assign) BOOL done;
+@property (nonatomic) StolpersteineNetworkService *networkService;
+@property (nonatomic) BOOL done;
 
 @end
 

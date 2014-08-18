@@ -30,7 +30,7 @@
 
 @interface StolpersteineSynchronizationController : NSObject
 
-@property (nonatomic, strong, readonly) StolpersteineNetworkService *networkService;
+@property (nonatomic, readonly) StolpersteineNetworkService *networkService;
 @property (nonatomic, weak) id<StolpersteineSynchronizationControllerDelegate> delegate;
 
 - (instancetype)initWithNetworkService:(StolpersteineNetworkService *)networkService;

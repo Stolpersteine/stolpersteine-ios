@@ -33,7 +33,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, StolpersteineNetworkServiceDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (nonatomic) UIWindow *window;
 
 + (StolpersteineNetworkService *)networkService;
 + (DiagnosticsService *)diagnosticsService;

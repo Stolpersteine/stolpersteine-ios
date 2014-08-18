@@ -51,10 +51,10 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *locationBarButtonItem;
 @property (weak, nonatomic) IBOutlet MapSearchDisplayController *mapSearchDisplayController;
 
-@property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, assign) BOOL displayRegionIcon;
-@property (nonatomic, strong) StolpersteineSynchronizationController *stolpersteinSyncController;
-@property (nonatomic, strong) CCHMapClusterController *mapClusterController;
+@property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) BOOL displayRegionIcon;
+@property (nonatomic) StolpersteineSynchronizationController *stolpersteinSyncController;
+@property (nonatomic) CCHMapClusterController *mapClusterController;
 
 @end
 

@@ -29,6 +29,6 @@
 
 @interface StolpersteinDescriptionViewController : UIViewController<UIWebViewDelegate>
 
-@property (nonatomic, strong) Stolperstein *stolperstein;
+@property (nonatomic, copy) Stolperstein *stolperstein;
 
 @end

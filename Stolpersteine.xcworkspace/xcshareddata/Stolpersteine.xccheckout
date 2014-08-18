@@ -10,29 +10,29 @@
 	<string>Stolpersteine</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>79EAB9BF-35C6-4F2B-9BEB-46836760D0FE</key>
+		<key>77A929EAF48F35EF3C77B112FF01F749CA65F20D</key>
 		<string>ssh://github.com/optionu/stolpersteine-ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Stolpersteine.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>79EAB9BF-35C6-4F2B-9BEB-46836760D0FE</key>
+		<key>77A929EAF48F35EF3C77B112FF01F749CA65F20D</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/optionu/stolpersteine-ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>79EAB9BF-35C6-4F2B-9BEB-46836760D0FE</string>
+	<string>77A929EAF48F35EF3C77B112FF01F749CA65F20D</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>79EAB9BF-35C6-4F2B-9BEB-46836760D0FE</string>
+			<string>77A929EAF48F35EF3C77B112FF01F749CA65F20D</string>
 			<key>IDESourceControlWCCName</key>
 			<string>stolpersteine-ios</string>
 		</dict>

@@ -51,6 +51,18 @@
     return self;
 }
 
++ (NSString *)appVersion
+{
+    NSString *version = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleVersion"];
+    return version;
+}
+
++ (NSString *)appShortVersion
+{
+    NSString *shortVersion = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    return shortVersion;
+}
+
 - (NSString *)stringConfigurationForKey:(ConfigurationServiceKey)key
 {
     NSString *keyAsString = [self.enumToStringMapping objectForKey:@(key)];

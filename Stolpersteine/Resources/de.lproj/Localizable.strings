@@ -27,7 +27,7 @@
 "InfoViewController.artistInfoTitle" = "Gunter Demnigs Webseite";
 
 "InfoViewController.aboutSection" = "App bewerten";
-"InfoViewController.aboutText" = "Gefällt Ihnen diese App? Über Ihre Bewertung oder eine Weiterempfehlung würden wir uns freuen.";
+"InfoViewController.aboutText" = "Gefällt Ihnen diese App? Über Ihre Bewertung oder eine Weiterempfehlung würden wir uns freuen.\n\nVersion: %@ (%@)";
 "InfoViewController.ratingTitle" = "Im App Store bewerten";
 "InfoViewController.recommendTitle" = "An Freunde weiterempfehlen";
 

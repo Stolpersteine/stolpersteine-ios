@@ -27,7 +27,7 @@
 "InfoViewController.artistInfoTitle" = "Gunter Demnig's website";
 
 "InfoViewController.aboutSection" = "Rate this app";
-"InfoViewController.aboutText" = "Do you like this app? We appreciate your feedback.";
+"InfoViewController.aboutText" = "Do you like this app? We appreciate your feedback.\n\nVersion: %@ (%@)";
 "InfoViewController.ratingTitle" = "Rate this app in the App Store";
 "InfoViewController.recommendTitle" = "Recommend to friends";
 

@@ -36,6 +36,9 @@ typedef enum {
 
 @interface ConfigurationService : NSObject
 
++ (NSString *)appVersion;
++ (NSString *)appShortVersion;
+
 - (instancetype)initWithConfigurationsFile:(NSString *)file;
 - (NSString *)stringConfigurationForKey:(ConfigurationServiceKey)key;
 - (MKCoordinateRegion)coordinateRegionConfigurationForKey:(ConfigurationServiceKey)key;

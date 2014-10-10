@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "DiagnosticsService.h"
+#import "ConfigurationService.h"
 
 #import <MessageUI/MessageUI.h>
 
@@ -72,7 +73,10 @@
     [self.artistInfoButton setTitle:NSLocalizedString(@"InfoViewController.artistInfoTitle", nil) forState:UIControlStateNormal];
 	
 	// About
-	self.aboutLabel.text = NSLocalizedString(@"InfoViewController.aboutText", nil);
+    NSString *formatString = NSLocalizedString(@"InfoViewController.aboutText", nil);
+    NSString *appShortVersion = [ConfigurationService appShortVersion];
+    NSString *appVersion = [ConfigurationService appVersion];
+	self.aboutLabel.text = [NSString stringWithFormat:formatString, appShortVersion, appVersion];
 	[self.ratingButton setTitle:NSLocalizedString(@"InfoViewController.ratingTitle", nil) forState:UIControlStateNormal];
 	[self.recommendButton setTitle:NSLocalizedString(@"InfoViewController.recommendTitle", nil) forState:UIControlStateNormal];
 	

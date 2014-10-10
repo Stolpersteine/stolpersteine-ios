@@ -69,9 +69,7 @@
     }
 
     // App version info
-    NSString *version = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleVersion"];
-    NSString *shortVersion = [[NSBundle.mainBundle infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSLog(@"Stolpersteine %@ (%@)", shortVersion, version);
+    NSLog(@"Stolpersteine %@ (%@)", [ConfigurationService appShortVersion], [ConfigurationService appVersion]);
     
     // Configuration service
     NSString *configurationsFile = [NSBundle.mainBundle pathForResource:@"Stolpersteine-Config" ofType:@"plist"];

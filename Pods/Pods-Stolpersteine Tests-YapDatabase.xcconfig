@@ -1,1 +1,0 @@
-PODS_STOLPERSTEINE_TESTS_YAPDATABASE_OTHER_LDFLAGS = -weak_library /usr/lib/libc++.dylib -lsqlite3

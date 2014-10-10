@@ -92,9 +92,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1452BF759A36498F9CF18EA1 /* Pods-Stolpersteine Unit Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stolpersteine Unit Tests.xcconfig"; path = "Pods/Pods-Stolpersteine Unit Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		14095748B46440AD3EEDD4C4 /* Pods-Stolpersteine Tests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stolpersteine Tests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-Stolpersteine Tests/Pods-Stolpersteine Tests.distribution.xcconfig"; sourceTree = "<group>"; };
 		195B6404122D49D18523AE52 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FB1CE575DC24C59907CFA77 /* libPods-Stolpersteine Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stolpersteine Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		402A96E3095A048CABC65AB0 /* Pods-Stolpersteine Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stolpersteine Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stolpersteine Tests/Pods-Stolpersteine Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		46017F931D1859DBA97F4881 /* Pods.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution.xcconfig"; sourceTree = "<group>"; };
 		4805809416C5BD8800C49272 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		484C8EE4169B609F001CEA59 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		48633B8916C03F690057A317 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -133,9 +135,6 @@
 		6205ED95175E023000482DF9 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		6207C27F188B0E1C000CA2D4 /* Stolpersteine-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Stolpersteine-Config.plist"; sourceTree = "<group>"; };
 		6207C281188B0E2B000CA2D4 /* Stolpersteine-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Stolpersteine-Config.plist"; sourceTree = "<group>"; };
-		6207C283188B0F0F000CA2D4 /* buildnumber_dynamic.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = buildnumber_dynamic.xcconfig; sourceTree = "<group>"; };
-		6207C287188B0F21000CA2D4 /* buildnumber_dynamic.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = buildnumber_dynamic.xcconfig; sourceTree = "<group>"; };
-		6207C28D188B103F000CA2D4 /* buildnumber_fixed.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = buildnumber_fixed.xcconfig; sourceTree = "<group>"; };
 		6222BEFF16A030E5006ED538 /* NSDictionary+StolpersteinParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+StolpersteinParsing.h"; sourceTree = "<group>"; };
 		6222BF0016A030E5006ED538 /* NSDictionary+StolpersteinParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+StolpersteinParsing.m"; sourceTree = "<group>"; };
 		622DEDA217F432EB009C9B44 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -176,9 +175,10 @@
 		62B6B94A17F4338D009E18AE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62B6B94C17F4338D009E18AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62F18DF917736A4200E2FAF9 /* StolpersteineNetworkServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteineNetworkServiceDelegate.h; sourceTree = "<group>"; };
-		90D265056EBE417F95BF08CA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		9703DF9DC8314D4AB2AD07A0 /* Pods-Stolpersteine Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stolpersteine Tests.xcconfig"; path = "Pods/Pods-Stolpersteine Tests.xcconfig"; sourceTree = "<group>"; };
+		7DAC9596362F3A3DBFFC161E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		9070E7C5042F617F41C79A6C /* Pods-Stolpersteine Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stolpersteine Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stolpersteine Tests/Pods-Stolpersteine Tests.release.xcconfig"; sourceTree = "<group>"; };
 		AE0DCC63AF534AF3826ADCFF /* libPods-Stolpersteine Unit Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stolpersteine Unit Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0A9C3B5FF5DB6991A3138BD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,7 +284,6 @@
 		6207C28C188B101A000CA2D4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6207C28D188B103F000CA2D4 /* buildnumber_fixed.xcconfig */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -311,9 +310,7 @@
 				486576FA180B29CD000326D1 /* Stolpersteine Tests */,
 				627E43B5169B0F050065C1F1 /* Frameworks */,
 				627E43B3169B0F050065C1F1 /* Products */,
-				90D265056EBE417F95BF08CA /* Pods.xcconfig */,
-				1452BF759A36498F9CF18EA1 /* Pods-Stolpersteine Unit Tests.xcconfig */,
-				9703DF9DC8314D4AB2AD07A0 /* Pods-Stolpersteine Tests.xcconfig */,
+				7F7659489F166A5441691A6D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -413,7 +410,6 @@
 				6288BDF0188AE00C00F9B986 /* InfoPlist.strings */,
 				6288BDF3188AE00C00F9B986 /* main.m */,
 				6288BDF5188AE00C00F9B986 /* Stolpersteine Berlin-Prefix.pch */,
-				6207C287188B0F21000CA2D4 /* buildnumber_dynamic.xcconfig */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -435,9 +431,21 @@
 				6288BE20188AE02C00F9B986 /* InfoPlist.strings */,
 				6288BE23188AE02C00F9B986 /* main.m */,
 				6288BE25188AE02C00F9B986 /* Stolpersteine Bochum-Prefix.pch */,
-				6207C283188B0F0F000CA2D4 /* buildnumber_dynamic.xcconfig */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7F7659489F166A5441691A6D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C0A9C3B5FF5DB6991A3138BD /* Pods.debug.xcconfig */,
+				7DAC9596362F3A3DBFFC161E /* Pods.release.xcconfig */,
+				46017F931D1859DBA97F4881 /* Pods.distribution.xcconfig */,
+				402A96E3095A048CABC65AB0 /* Pods-Stolpersteine Tests.debug.xcconfig */,
+				9070E7C5042F617F41C79A6C /* Pods-Stolpersteine Tests.release.xcconfig */,
+				14095748B46440AD3EEDD4C4 /* Pods-Stolpersteine Tests.distribution.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -472,8 +480,6 @@
 				6288BDE6188AE00B00F9B986 /* Frameworks */,
 				6288BDE7188AE00B00F9B986 /* Resources */,
 				1D2562218FAE4D8985B3D30C /* Copy Pods Resources */,
-				6207C291188B33F8000CA2D4 /* ShellScript */,
-				6207C290188B33EE000CA2D4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -493,8 +499,6 @@
 				6288BE16188AE02C00F9B986 /* Frameworks */,
 				6288BE17188AE02C00F9B986 /* Resources */,
 				B7A2EA4E0644407A8FF3448D /* Copy Pods Resources */,
-				6207C28E188B33B7000CA2D4 /* ShellScript */,
-				6207C28F188B33CA000CA2D4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -516,6 +520,9 @@
 				TargetAttributes = {
 					486576F5180B29CD000326D1 = {
 						TestTargetID = 6288BDE8188AE00B00F9B986;
+					};
+					6288BDE8188AE00B00F9B986 = {
+						DevelopmentTeam = KN32D96YCR;
 					};
 				};
 			};
@@ -600,7 +607,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		56FA2FFF1C884B69939A06BB /* Check Pods Manifest.lock */ = {
@@ -618,58 +625,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		6207C28E188B33B7000CA2D4 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" == \"Distribution\" ]\n# Increment version number\nthen /usr/bin/perl -pe 's/(BUILD_NUMBER = )(\\d+)/$1.($2+1)/eg' -i $SRCROOT/Stolpersteine/buildnumber_dynamic.xcconfig\nfi";
-		};
-		6207C28F188B33CA000CA2D4 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Copy version information into Settings.bundle\nshortVersion=`/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$SRCROOT/$INFOPLIST_FILE\"`\nversion=$BUILD_NUMBER\necho \"Version \"$shortVersion\" (\"$version\")\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $shortVersion ($version)\" \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Settings.bundle/Root.plist\"\n\n# Copy version information into Info.plist\n/usr/libexec/PlistBuddy \"$BUILT_PRODUCTS_DIR/$INFOPLIST_PATH\" -c \"set :CFBundleVersion $BUILD_NUMBER\"";
-		};
-		6207C290188B33EE000CA2D4 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Copy version information into Settings.bundle\necho \"Plist \"$SRCROOT\"/\"$INFOPLIST_FILE\nshortVersion=`/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$SRCROOT/$INFOPLIST_FILE\"`\nversion=$BUILD_NUMBER\necho \"Version \"$shortVersion\" (\"$version\")\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $shortVersion ($version)\" \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Settings.bundle/Root.plist\"\n\n# Copy version information into Info.plist\n/usr/libexec/PlistBuddy \"$BUILT_PRODUCTS_DIR/$INFOPLIST_PATH\" -c \"set :CFBundleVersion $BUILD_NUMBER\"";
-		};
-		6207C291188B33F8000CA2D4 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" == \"Distribution\" ]\n# Increment version number\nthen /usr/bin/perl -pe 's/(BUILD_NUMBER = )(\\d+)/$1.($2+1)/eg' -i \"$SRCROOT/$EXECUTABLE_NAME/buildnumber_dynamic.xcconfig\"\nfi";
-		};
 		6E0A553971F8474C9D26AB05 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -682,7 +637,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Stolpersteine Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stolpersteine Tests/Pods-Stolpersteine Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9189B83492784309AC3E0223 /* Check Pods Manifest.lock */ = {
@@ -727,7 +682,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -869,7 +824,7 @@
 		};
 		48657704180B29CE000326D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9703DF9DC8314D4AB2AD07A0 /* Pods-Stolpersteine Tests.xcconfig */;
+			baseConfigurationReference = 402A96E3095A048CABC65AB0 /* Pods-Stolpersteine Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Stolpersteine Berlin.app/Stolpersteine Berlin";
 				CLANG_ENABLE_MODULES = YES;
@@ -903,7 +858,7 @@
 		};
 		48657705180B29CE000326D1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9703DF9DC8314D4AB2AD07A0 /* Pods-Stolpersteine Tests.xcconfig */;
+			baseConfigurationReference = 9070E7C5042F617F41C79A6C /* Pods-Stolpersteine Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Stolpersteine Berlin.app/Stolpersteine Berlin";
 				CLANG_ENABLE_MODULES = YES;
@@ -934,7 +889,7 @@
 		};
 		48657706180B29CE000326D1 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9703DF9DC8314D4AB2AD07A0 /* Pods-Stolpersteine Tests.xcconfig */;
+			baseConfigurationReference = 14095748B46440AD3EEDD4C4 /* Pods-Stolpersteine Tests.distribution.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Stolpersteine Berlin.app/Stolpersteine Berlin";
 				CLANG_ENABLE_MODULES = YES;
@@ -1027,7 +982,7 @@
 		};
 		6288BE0E188AE00C00F9B986 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6207C28D188B103F000CA2D4 /* buildnumber_fixed.xcconfig */;
+			baseConfigurationReference = C0A9C3B5FF5DB6991A3138BD /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconBerlin;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1038,6 +993,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine Berlin/Stolpersteine Berlin-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1056,7 +1012,7 @@
 		};
 		6288BE0F188AE00C00F9B986 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6207C28D188B103F000CA2D4 /* buildnumber_fixed.xcconfig */;
+			baseConfigurationReference = 7DAC9596362F3A3DBFFC161E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconBerlin;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1067,6 +1023,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine Berlin/Stolpersteine Berlin-Prefix.pch";
@@ -1082,7 +1039,7 @@
 		};
 		6288BE10188AE00C00F9B986 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6207C287188B0F21000CA2D4 /* buildnumber_dynamic.xcconfig */;
+			baseConfigurationReference = 46017F931D1859DBA97F4881 /* Pods.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconBerlin;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1093,6 +1050,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine Berlin/Stolpersteine Berlin-Prefix.pch";
@@ -1108,7 +1066,7 @@
 		};
 		6288BE3E188AE02C00F9B986 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6207C28D188B103F000CA2D4 /* buildnumber_fixed.xcconfig */;
+			baseConfigurationReference = C0A9C3B5FF5DB6991A3138BD /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconBochum;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1137,7 +1095,7 @@
 		};
 		6288BE3F188AE02C00F9B986 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6207C28D188B103F000CA2D4 /* buildnumber_fixed.xcconfig */;
+			baseConfigurationReference = 7DAC9596362F3A3DBFFC161E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconBochum;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1163,7 +1121,7 @@
 		};
 		6288BE40188AE02C00F9B986 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6207C283188B0F0F000CA2D4 /* buildnumber_dynamic.xcconfig */;
+			baseConfigurationReference = 46017F931D1859DBA97F4881 /* Pods.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconBochum;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

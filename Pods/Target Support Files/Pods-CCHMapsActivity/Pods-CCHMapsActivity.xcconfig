@@ -1,0 +1,1 @@
+PODS_CCHMAPSACTIVITY_OTHER_LDFLAGS = -framework "MapKit"

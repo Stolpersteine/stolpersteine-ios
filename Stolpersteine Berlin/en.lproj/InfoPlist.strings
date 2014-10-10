@@ -1,2 +1,3 @@
 /* Localized versions of Info.plist keys */
 
+NSLocationWhenInUseUsageDescription = "Your location simplifies navigating the map.";

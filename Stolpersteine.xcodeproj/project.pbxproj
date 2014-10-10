@@ -153,6 +153,7 @@
 		627E4431169C420A0065C1F1 /* StolpersteineNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StolpersteineNetworkService.m; sourceTree = "<group>"; };
 		627E4436169C43970065C1F1 /* Stolperstein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stolperstein.h; sourceTree = "<group>"; };
 		627E4437169C43970065C1F1 /* Stolperstein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stolperstein.m; sourceTree = "<group>"; };
+		627F079619E7FC5600F85AAC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6288BDE9188AE00B00F9B986 /* Stolpersteine Berlin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stolpersteine Berlin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6288BDEF188AE00C00F9B986 /* Stolpersteine Berlin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Stolpersteine Berlin-Info.plist"; sourceTree = "<group>"; };
 		6288BDF1188AE00C00F9B986 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -770,6 +771,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6288BDF1188AE00C00F9B986 /* en */,
+				627F079619E7FC5600F85AAC /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

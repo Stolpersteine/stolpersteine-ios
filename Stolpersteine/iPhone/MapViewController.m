@@ -211,6 +211,13 @@ static const double ZOOM_DISTANCE_STOLPERSTEIN = ZOOM_DISTANCE_USER * 0.25;
             mapClusterAnnotationView.canShowCallout = YES;
 
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+                // Workaround for misaligned button, see http://stackoverflow.com/questions/25484608/ios-8-mkannotationview-rightcalloutaccessoryview-misaligned
+                CGRect frame = rightButton.frame;
+                frame.size.height = 55;
+                frame.size.width = 55;
+                rightButton.frame = frame;
+            }
             mapClusterAnnotationView.rightCalloutAccessoryView = rightButton;
         }
         

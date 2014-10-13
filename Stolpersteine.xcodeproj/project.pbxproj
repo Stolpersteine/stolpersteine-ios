@@ -526,6 +526,9 @@
 					6288BDE8188AE00B00F9B986 = {
 						DevelopmentTeam = KN32D96YCR;
 					};
+					6288BE18188AE02C00F9B986 = {
+						DevelopmentTeam = WQ5NMCAH69;
+					};
 				};
 			};
 			buildConfigurationList = 627E43AC169B0F050065C1F1 /* Build configuration list for PBXProject "Stolpersteine" */;
@@ -1081,6 +1084,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine Bochum/Stolpersteine Bochum-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1110,6 +1114,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine Bochum/Stolpersteine Bochum-Prefix.pch";
@@ -1136,6 +1141,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stolpersteine Bochum/Stolpersteine Bochum-Prefix.pch";

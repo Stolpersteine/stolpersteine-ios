@@ -1,0 +1,3 @@
+/* Localized versions of Info.plist keys */
+
+NSLocationWhenInUseUsageDescription = "Mit Ihrem Standort können wir Ihnen die Suche auf der Karte vereinfachen.";

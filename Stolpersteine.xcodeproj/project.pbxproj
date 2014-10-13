@@ -175,6 +175,7 @@
 		62AB9D75188BDED50003AB4C /* ConfigurationServiceTestsEmpty.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigurationServiceTestsEmpty.plist; sourceTree = "<group>"; };
 		62B6B94A17F4338D009E18AE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62B6B94C17F4338D009E18AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		62B8D52C19EBF4C100D2182E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62F18DF917736A4200E2FAF9 /* StolpersteineNetworkServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StolpersteineNetworkServiceDelegate.h; sourceTree = "<group>"; };
 		7DAC9596362F3A3DBFFC161E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9070E7C5042F617F41C79A6C /* Pods-Stolpersteine Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stolpersteine Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stolpersteine Tests/Pods-Stolpersteine Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -780,6 +781,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6288BE21188AE02C00F9B986 /* en */,
+				62B8D52C19EBF4C100D2182E /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

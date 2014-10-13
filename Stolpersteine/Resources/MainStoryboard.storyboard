@@ -226,7 +226,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="209"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gunter-demnig.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ACu-Y0-XDS">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gunter-demnig.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ACu-Y0-XDS">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="150" id="F1a-pl-3ss"/>

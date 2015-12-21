@@ -181,7 +181,7 @@
     if (viewName) {
         [self updateCustomDimensions];
         [self.gaiTracker set:kGAIScreenName value:viewName];
-        NSDictionary *data = [[GAIDictionaryBuilder createAppView] build];
+        NSDictionary *data = [[GAIDictionaryBuilder createScreenView] build];
         [self.gaiTracker send:data];
     }
 }

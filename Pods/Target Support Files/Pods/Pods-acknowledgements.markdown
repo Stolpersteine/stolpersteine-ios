@@ -86,8 +86,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## GoogleAnalytics-iOS-SDK
 
-Copyright 2009 - 2014 Google, Inc. All rights reserved.
-
+Copyright 2009 - 2015 Google, Inc. All rights reserved.
 
 ## TUSafariActivity
 

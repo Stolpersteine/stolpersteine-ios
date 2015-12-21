@@ -1,0 +1,5 @@
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/CCHMapClusterController" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/CCHLinkTextView" "${PODS_ROOT}/Headers/Public/CCHMapClusterController" "${PODS_ROOT}/Headers/Public/CCHMapsActivity" "${PODS_ROOT}/Headers/Public/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/Public/OCMock" "${PODS_ROOT}/Headers/Public/TUSafariActivity"
+OTHER_LDFLAGS = -framework "CoreLocation" -framework "MapKit"
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES

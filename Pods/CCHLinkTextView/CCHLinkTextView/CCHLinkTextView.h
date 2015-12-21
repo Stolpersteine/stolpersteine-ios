@@ -37,9 +37,7 @@ extern NSString *const CCHLinkAttributeName;
 /** Delegate to receive tap and long press events. */
 @property (nonatomic, weak) id<CCHLinkTextViewDelegate> linkDelegate;
 
-/** `NSAttributedString` attributes applied to links. */
-@property (nonatomic, copy) NSDictionary *linkTextAttributes NS_AVAILABLE_IOS(7_0);
-/** `NSAttributedString` attributes applied to links when touched. */
+/** `NSAttributedString` attributes applied to links when touched. Use `linkTextAttributes` for attributes applied to links before being touched.*/
 @property (nonatomic, copy) NSDictionary *linkTextTouchAttributes;
 
 /** The minimum period fingers must press on the link for the gesture to be recognized as a long press (default = 0.5s). */
@@ -52,6 +50,10 @@ extern NSString *const CCHLinkAttributeName;
 
 /** The gesture recognizer used to detect links in this text view. */
 @property (nonatomic, readonly) CCHLinkGestureRecognizer *linkGestureRecognizer;
+
+/** The corner radius of the rounded rectangle that is shown when the link is touched. Set to 0
+ to disable rounder corners (default = 0 points). */
+@property (nonatomic) CGFloat linkCornerRadius;
 
 /** 
  For the given ranges, enumerates all view rectangles that cover each range.

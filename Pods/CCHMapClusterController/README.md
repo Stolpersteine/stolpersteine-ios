@@ -3,7 +3,7 @@ CCHMapClusterController
 
 `CCHMapClusterController` solves the problem of displaying many annotations on an `MKMapView` and is available under the MIT license.
 
-[![Build Status](https://travis-ci.org/choefele/CCHMapClusterController.png?branch=master)](https://travis-ci.org/choefele/CCHMapClusterController)&nbsp;![Version](https://cocoapod-badges.herokuapp.com/v/CCHMapClusterController/badge.png)&nbsp;![Platform](https://cocoapod-badges.herokuapp.com/p/CCHMapClusterController/badge.png)&nbsp;[![Issues in Progress](https://badge.waffle.io/choefele/cchmapclustercontroller.png?label=in%20progress&title=In%20Progress)](https://waffle.io/choefele/cchmapclustercontroller)
+[![Build Status](https://img.shields.io/travis/choefele/CCHMapClusterController.svg)](https://travis-ci.org/choefele/CCHMapClusterController)&nbsp;![Version](https://img.shields.io/cocoapods/v/CCHMapClusterController.svg)&nbsp;![Platform](http://img.shields.io/cocoapods/p/CCHMapClusterController.svg)
 
 See [Changes](https://github.com/choefele/CCHMapClusterController/blob/master/CHANGES.md) for a high-level overview of recent updates.
 
@@ -62,10 +62,10 @@ To try out the clustering, experiment with the example included in this project,
 
 ### Installation
 
-Use [CocoaPods](http://cocoapods.org) to easily integrate `CCHMapClusterController` into your project. Minimum deployment targets are 6.0 for iOS and 10.9 for OS X.
+Use [CocoaPods](http://cocoapods.org) to easily integrate `CCHMapClusterController` into your project. Minimum deployment targets are 7.0 for iOS and 10.9 for OS X.
 
 ```ruby
-platform :ios, '6.0'
+platform :ios, '7.0'
 pod "CCHMapClusterController"
 ```
 

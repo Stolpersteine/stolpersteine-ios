@@ -103,6 +103,8 @@
  * <li>dclid</li>
  * <li>gclid</li>
  * <li>gmob_t</li>
+ * <li>aclid</li>
+ * <li>anid</li>
  * </ul>
  * <p>
  * Example:
@@ -127,7 +129,7 @@
 
  This method is deprecated.  Use createScreenView instead.
  */
-+ (GAIDictionaryBuilder *)createAppView;
++ (GAIDictionaryBuilder *)createAppView DEPRECATED_MSG_ATTRIBUTE("Use createScreenView instead.");
 
 /*!
  Returns a GAIDictionaryBuilder object with parameters specific to a screenview
@@ -205,7 +207,8 @@
  Add a product impression to this hit.
  */
 - (GAIDictionaryBuilder *)addProductImpression:(GAIEcommerceProduct *)product
-                                impressionList:(NSString *)name;
+                                impressionList:(NSString *)name
+                                impressionSource:(NSString *)source;
 
 /*!
  Add a promotion to this hit.

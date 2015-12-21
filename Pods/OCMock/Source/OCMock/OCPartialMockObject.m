@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2009-2014 Erik Doernenburg and contributors
+ *  Copyright (c) 2009-2015 Erik Doernenburg and contributors
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may
  *  not use these files except in compliance with the License. You may obtain
@@ -19,7 +19,7 @@
 #import "OCPartialMockObject.h"
 #import "NSMethodSignature+OCMAdditions.h"
 #import "NSObject+OCMAdditions.h"
-#import "OCMFunctions.h"
+#import "OCMFunctionsPrivate.h"
 #import "OCMInvocationStub.h"
 
 
@@ -29,6 +29,7 @@
 
 - (id)initWithObject:(NSObject *)anObject
 {
+    NSParameterAssert(anObject != nil);
     [self assertClassIsSupported:[anObject class]];
 	[super initWithClass:[anObject class]];
 	realObject = [anObject retain];
@@ -39,6 +40,7 @@
 - (void)dealloc
 {
 	[self stopMocking];
+	[realObject release];
 	[super dealloc];
 }
 
@@ -58,7 +60,7 @@
 {
     NSString *classname = NSStringFromClass(class);
     NSString *reason = nil;
-    if([classname hasPrefix:@"__NSTagged"])
+    if([classname hasPrefix:@"__NSTagged"] || [classname hasPrefix:@"NSTagged"])
         reason = [NSString stringWithFormat:@"OCMock does not support partially mocking tagged classes; got %@", classname];
     else if([classname hasPrefix:@"__NSCF"])
         reason = [NSString stringWithFormat:@"OCMock does not support partially mocking toll-free bridged classes; got %@", classname];

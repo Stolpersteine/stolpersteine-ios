@@ -47,6 +47,7 @@
 
 @interface CCHMapClusterController()<MKMapViewDelegate>
 
+@property (nonatomic) NSMutableSet *allAnnotations;
 @property (nonatomic) CCHMapTree *allAnnotationsMapTree;
 @property (nonatomic) CCHMapTree *visibleAnnotationsMapTree;
 @property (nonatomic) NSOperationQueue *backgroundQueue;
@@ -71,6 +72,7 @@
         _cellSize = 60;
         _maxZoomLevelForClustering = DBL_MAX;
         _mapView = mapView;
+        _allAnnotations = [NSMutableSet new];
         _allAnnotationsMapTree = [[CCHMapTree alloc] initWithNodeCapacity:NODE_CAPACITY minLatitude:WORLD_MIN_LAT maxLatitude:WORLD_MAX_LAT minLongitude:WORLD_MIN_LON maxLongitude:WORLD_MAX_LON];
         _visibleAnnotationsMapTree = [[CCHMapTree alloc] initWithNodeCapacity:NODE_CAPACITY minLatitude:WORLD_MIN_LAT maxLatitude:WORLD_MAX_LAT minLongitude:WORLD_MIN_LON maxLongitude:WORLD_MAX_LON];
         _backgroundQueue = [[NSOperationQueue alloc] init];
@@ -100,7 +102,7 @@
 
 - (NSSet *)annotations
 {
-    return [self.allAnnotationsMapTree.annotations copy];
+    return self.allAnnotations.copy;
 }
 
 - (void)setClusterer:(id<CCHMapClusterer>)clusterer
@@ -135,6 +137,8 @@
 {
     [self cancelAllClusterOperations];
     
+    [self.allAnnotations addObjectsFromArray:annotations];
+    
     [self.backgroundQueue addOperationWithBlock:^{
         BOOL updated = [self.allAnnotationsMapTree addAnnotations:annotations];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -150,6 +154,8 @@
 - (void)removeAnnotations:(NSArray *)annotations withCompletionHandler:(void (^)())completionHandler
 {
     [self cancelAllClusterOperations];
+    
+    [self.allAnnotations minusSet:[NSSet setWithArray:annotations]];
     
     [self.backgroundQueue addOperationWithBlock:^{
         BOOL updated = [self.allAnnotationsMapTree removeAnnotations:annotations];
@@ -189,7 +195,7 @@
     };
     
     [self.backgroundQueue addOperation:operation];
-
+    
     // Debugging
     if (self.isDebuggingEnabled) {
         double cellMapSize = [CCHMapClusterOperation cellMapSizeForCellSize:self.cellSize withMapView:self.mapView];
@@ -214,7 +220,7 @@
     
     // Add polygons outlining each cell
     CCHMapClusterControllerEnumerateCells(gridMapRect, cellMapSize, ^(MKMapRect cellMapRect) {
-//        cellMapRect.origin.x -= MKMapSizeWorld.width;  // fixes issue when view port spans 180th meridian
+        //        cellMapRect.origin.x -= MKMapSizeWorld.width;  // fixes issue when view port spans 180th meridian
         
         MKMapPoint points[4];
         points[0] = MKMapPointMake(MKMapRectGetMinX(cellMapRect), MKMapRectGetMinY(cellMapRect));

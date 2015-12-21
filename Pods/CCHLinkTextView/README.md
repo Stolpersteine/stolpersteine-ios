@@ -53,7 +53,7 @@ linkTextView.attributedText = attributedText;
 
 If you have code using `NSLinkAttributeName`, you can simply replace it with `CCHLinkAttributeName`.
 
-The `value` can be anything you want and will be provided when the link fires. To receive link events, implement `CCHLinkTextViewDelegate` and set the `delegate` property. `CCHLinkTextViewDelegate` provides two callbacks:
+The `value` can be anything you want and will be provided when the link fires. To receive link events, implement `CCHLinkTextViewDelegate` and set the `linkDelegate` property. `CCHLinkTextViewDelegate` provides two callbacks:
 
 ```Obj-C
 - (void)linkTextView:(CCHLinkTextView *)linkTextView didTapLinkWithValue:(id)value;
@@ -63,6 +63,8 @@ The `value` can be anything you want and will be provided when the link fires. T
 The first method is called for taps, the second for long presses.
 
 To style the links, use `linkTextAttributes` and `linkTextTouchAttributes`. These dictionaries contain `NSAttributedString` attributes applied to links as they appear normally and when touched. By default, `linkTextAttributes` sets the tint color as foreground color and `linkTextTouchAttributes` a light gray background. 
+
+Use `linkCornerRadius` to make the background on touch as a rounded rectangle.
 
 ### Advanced settings
 

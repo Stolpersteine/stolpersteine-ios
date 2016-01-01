@@ -527,7 +527,7 @@
 						TestTargetID = 6288BDE8188AE00B00F9B986;
 					};
 					6288BDE8188AE00B00F9B986 = {
-						DevelopmentTeam = KN32D96YCR;
+						DevelopmentTeam = 44GL67YD3Z;
 					};
 					6288BE18188AE02C00F9B986 = {
 						DevelopmentTeam = WQ5NMCAH69;
@@ -1100,7 +1100,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

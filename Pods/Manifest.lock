@@ -3,9 +3,7 @@ PODS:
   - CCHLinkTextView (1.2.0)
   - CCHMapClusterController (1.7.0)
   - CCHMapsActivity (0.0.2)
-  - GoogleAnalytics-iOS-SDK (3.12):
-    - GoogleAnalytics-iOS-SDK/Core (= 3.12)
-  - GoogleAnalytics-iOS-SDK/Core (3.12)
+  - GoogleAnalytics (3.14.0)
   - OCMock (3.2)
   - TUSafariActivity (1.0.0)
 
@@ -14,7 +12,7 @@ DEPENDENCIES:
   - CCHLinkTextView
   - CCHMapClusterController
   - CCHMapsActivity
-  - GoogleAnalytics-iOS-SDK
+  - GoogleAnalytics
   - OCMock
   - TUSafariActivity (from `https://github.com/davbeck/TUSafariActivity.git`, commit
     `c67c2c4272d89765a927dd034708772f3a4a39ee`)
@@ -34,7 +32,7 @@ SPEC CHECKSUMS:
   CCHLinkTextView: bfe688e0b7d34088375a466524158765832f7657
   CCHMapClusterController: d8cd12cd5682ec6cd76d911ac7198f981b6cc1b8
   CCHMapsActivity: 756066a90033bb33a2acab63d65785f703151b67
-  GoogleAnalytics-iOS-SDK: 13241762fa4aea845eb75bef6c0da3427a26e7b3
+  GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
   OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
   TUSafariActivity: dd346df54a8f1cbb4fd05d504c76d47225fac99e
 

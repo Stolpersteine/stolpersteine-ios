@@ -34,7 +34,7 @@
 #import "StolpersteineNetworkServiceDelegate.h"
 #import "NSDictionary+StolpersteinParsing.h"
 
-static NSString * const API_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1";
+static NSString * const API_URL = @"http://api.stolpersteineapp.org/v1";
 
 @interface StolpersteineNetworkService ()
 

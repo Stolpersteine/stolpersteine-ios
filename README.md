@@ -1,6 +1,6 @@
 # Stolpersteine iOS App
 
-[![Build Status](https://travis-ci.org/Stolpersteine/stolpersteine-ios.svg)](https://travis-ci.org/optionu/stolpersteine-ios)
+[![Build Status](https://travis-ci.org/Stolpersteine/stolpersteine-ios.svg)](https://travis-ci.org/Stolpersteine/stolpersteine-ios)
 
 iOS app to display the locations of [Stolpersteine](http://en.wikipedia.org/wiki/Stolperstein) on a map. 
 

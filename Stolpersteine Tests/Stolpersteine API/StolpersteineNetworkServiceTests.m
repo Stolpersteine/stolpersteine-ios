@@ -29,12 +29,9 @@
 
 #import <XCTest/XCTest.h>
 
-static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1";
-
 @interface StolpersteineNetworkServiceTests : XCTestCase
 
 @property (nonatomic) StolpersteineNetworkService *networkService;
-@property (nonatomic) BOOL done;
 
 @end
 
@@ -46,29 +43,13 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
 
     self.networkService = [[StolpersteineNetworkService alloc] initWithClientUser:nil clientPassword:nil];
     self.networkService.allowsInvalidSSLCertificate = YES;
-    
-    self.done = NO;
-}
-
-- (BOOL)waitForCompletion:(NSTimeInterval)timeoutSecs
-{
-    NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeoutSecs];
-    
-    do {
-        [NSRunLoop.currentRunLoop runMode:NSDefaultRunLoopMode beforeDate:timeoutDate];
-        if (timeoutDate.timeIntervalSinceNow < 0.0) {
-            break;
-        }
-    } while (!self.done);
-    
-    return self.done;
 }
 
 - (void)testRetrieveStolpersteine
 {
+    XCTestExpectation *expectation = [self expectationWithDescription:NSStringFromSelector(_cmd)];
+    
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = YES;
-        
         XCTAssertNil(error, @"Error request");
         XCTAssertTrue(stolpersteine.count == 5, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
@@ -100,17 +81,20 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
             }
         }
         
+        [expectation fulfill];
+        
         return NO;
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    
+    [self waitForExpectationsWithTimeout:10 handler:NULL];
 }
 
 - (void)testRetrieveStolpersteineKeyword
 {
+    XCTestExpectation *expectation = [self expectationWithDescription:NSStringFromSelector(_cmd)];
+
     StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:@"Ern" street:nil city:nil];
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = YES;
-        
         XCTAssertNil(error, @"Error request");
         XCTAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
@@ -119,17 +103,19 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
             XCTAssertTrue(found, @"Wrong search result");
         }
         
+        [expectation fulfill];
+        
         return NO;
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    [self waitForExpectationsWithTimeout:10 handler:NULL];
 }
 
 - (void)testRetrieveStolpersteineStreet
 {
+    XCTestExpectation *expectation = [self expectationWithDescription:NSStringFromSelector(_cmd)];
+
     StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:@"Turmstraße" city:nil];
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = YES;
-        
         XCTAssertNil(error, @"Error request");
         XCTAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
@@ -137,19 +123,22 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
             XCTAssertTrue(found, @"Wrong search result");
         }
         
+        [expectation fulfill];
+        
         return NO;
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    
+    [self waitForExpectationsWithTimeout:10 handler:NULL];
 }
 
 - (void)testRetrieveStolpersteineCity
 {
+    XCTestExpectation *expectation = [self expectationWithDescription:NSStringFromSelector(_cmd)];
+
     StolpersteineSearchData *defaultSearchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:nil city:@"xyz"];
     self.networkService.defaultSearchData = defaultSearchData;    // will be overridden by specific search data
     StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:nil city:@"Berlin"];
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = YES;
-        
         XCTAssertNil(error, @"Error request");
         XCTAssertTrue(stolpersteine.count > 0, @"Wrong number of stolpersteine");
         for (Stolperstein *stolperstein in stolpersteine) {
@@ -157,49 +146,57 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
             XCTAssertTrue(found, @"Wrong search result");
         }
         
+        [expectation fulfill];
+        
         return NO;
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    
+    [self waitForExpectationsWithTimeout:10 handler:NULL];
 }
 
 - (void)testRetrieveStolpersteineCityInvalid
 {
+    XCTestExpectation *expectation = [self expectationWithDescription:NSStringFromSelector(_cmd)];
+
     StolpersteineSearchData *defaultSearchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:nil city:@"Berlin"];
     self.networkService.defaultSearchData = defaultSearchData;    // will be overridden by specific search data
     StolpersteineSearchData *searchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:nil city:@"xyz"];
     [self.networkService retrieveStolpersteineWithSearchData:searchData range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = YES;
-        
         XCTAssertNil(error, @"Error request");
         XCTAssertEqual(stolpersteine.count, 0u, @"Wrong number of stolpersteine");
         
+        [expectation fulfill];
+        
         return NO;
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    
+    [self waitForExpectationsWithTimeout:10 handler:NULL];
 }
 
 - (void)testRetrieveStolpersteineCityDefaultInvalid
 {
+    XCTestExpectation *expectation = [self expectationWithDescription:NSStringFromSelector(_cmd)];
+
     StolpersteineSearchData *defaultSearchData = [[StolpersteineSearchData alloc] initWithKeywordsString:nil street:nil city:@"xyz"];
     self.networkService.defaultSearchData = defaultSearchData;
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 5) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = YES;
-        
         XCTAssertNil(error, @"Error request");
         XCTAssertEqual(stolpersteine.count, 0u, @"Wrong number of stolpersteine");
         
+        [expectation fulfill];
+        
         return NO;
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    
+    [self waitForExpectationsWithTimeout:10 handler:NULL];
 }
 
 - (void)testRetrieveStolpersteinePaging
 {
     // Load first two stolpersteine
+    XCTestExpectation *expectation = [self expectationWithDescription:NSStringFromSelector(_cmd)];
     __block NSString *stolpersteineID0, *stolpersteineID1;
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 2) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = YES;
-        
         XCTAssertNil(error, @"Error request");
         XCTAssertEqual(stolpersteine.count, 2u, @"Wrong number of stolpersteine");
         if (stolpersteine.count == 2) {
@@ -207,39 +204,41 @@ static NSString * const BASE_URL = @"https://stolpersteine-api.eu01.aws.af.cm/v1
             stolpersteineID1 = [stolpersteine[1] ID];
         }
         
+        [expectation fulfill];
+        
         return NO;
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    [self waitForExpectationsWithTimeout:10 handler:NULL];
 
     // First page
-    self.done = NO;
+    expectation = [self expectationWithDescription:NSStringFromSelector(_cmd)];
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(0, 1) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = YES;
-        
         XCTAssertNil(error, @"Error request");
         XCTAssertEqual(stolpersteine.count, 1u, @"Wrong number of stolpersteine");
         if (stolpersteine.count == 1) {
             XCTAssertEqualObjects(stolpersteineID0, [stolpersteine[0] ID], @"Wrong stolpersteine ID");
         }
         
+        [expectation fulfill];
+        
         return NO;
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    [self waitForExpectationsWithTimeout:10 handler:NULL];
 
     // Second page
-    self.done = NO;
+    expectation = [self expectationWithDescription:NSStringFromSelector(_cmd)];
     [self.networkService retrieveStolpersteineWithSearchData:nil range:NSMakeRange(1, 1) completionHandler:^BOOL(NSArray *stolpersteine, NSError *error) {
-        self.done = YES;
-        
         XCTAssertNil(error, @"Error request");
         XCTAssertEqual(stolpersteine.count, 1u, @"Wrong number of stolpersteine");
         if (stolpersteine.count == 1) {
             XCTAssertEqualObjects(stolpersteineID1, [stolpersteine[0] ID], @"Wrong stolpersteine ID");
         }
+
+        [expectation fulfill];
         
         return NO;
     }];
-    XCTAssertTrue([self waitForCompletion:5.0], @"Time out");
+    [self waitForExpectationsWithTimeout:10 handler:NULL];
 }
 
 @end
